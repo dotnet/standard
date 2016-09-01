@@ -423,7 +423,7 @@ namespace System
         public int ExecuteAssemblyByName(string assemblyName, System.Security.Policy.Evidence assemblySecurity, params string[] args) { throw null; }
         public int ExecuteAssemblyByName(string assemblyName, params string[] args) { throw null; }
         public System.Reflection.Assembly[] GetAssemblies() { throw null; }
-        [System.ObsoleteAttribute("AppDomain.GetCurrentThreadId has been deprecated because it does not provide a stable Id when managed threads are running on fibers (aka lightweight threads). To get a stable identifier for a managed thread, use the ManagedThreadId property on Thread.  http://go.microsoft.com/fwlink/?linkid=14202", false)]
+        [System.Runtime.InteropServices.DllImport("kernel32.dll")][System.ObsoleteAttribute("AppDomain.GetCurrentThreadId has been deprecated because it does not provide a stable Id when managed threads are running on fibers (aka lightweight threads). To get a stable identifier for a managed thread, use the ManagedThreadId property on Thread.  http://go.microsoft.com/fwlink/?linkid=14202", false)]
         public static extern int GetCurrentThreadId();
         public object GetData(string name) { throw null; }
         public new System.Type GetType() { throw null; }
@@ -12619,16 +12619,16 @@ namespace System.Runtime.InteropServices
         public static int QueryInterface(System.IntPtr pUnk, ref System.Guid iid, out System.IntPtr ppv) { ppv = default(System.IntPtr); throw null; }
         public static byte ReadByte(System.IntPtr ptr) { throw null; }
         public static byte ReadByte(System.IntPtr ptr, int ofs) { throw null; }
-        public static extern byte ReadByte(object ptr, int ofs);
+        [System.Runtime.InteropServices.DllImport("mscoree.dll")]public static extern byte ReadByte(object ptr, int ofs);
         public static short ReadInt16(System.IntPtr ptr) { throw null; }
         public static short ReadInt16(System.IntPtr ptr, int ofs) { throw null; }
-        public static extern short ReadInt16(object ptr, int ofs);
+        [System.Runtime.InteropServices.DllImport("mscoree.dll")]public static extern short ReadInt16(object ptr, int ofs);
         public static int ReadInt32(System.IntPtr ptr) { throw null; }
         public static int ReadInt32(System.IntPtr ptr, int ofs) { throw null; }
-        public static extern int ReadInt32(object ptr, int ofs);
+        [System.Runtime.InteropServices.DllImport("mscoree.dll")]public static extern int ReadInt32(object ptr, int ofs);
         public static long ReadInt64(System.IntPtr ptr) { throw null; }
         public static long ReadInt64(System.IntPtr ptr, int ofs) { throw null; }
-        public static extern long ReadInt64(object ptr, int ofs);
+        [System.Runtime.InteropServices.DllImport("mscoree.dll")]public static extern long ReadInt64(object ptr, int ofs);
         public static System.IntPtr ReadIntPtr(System.IntPtr ptr) { throw null; }
         public static System.IntPtr ReadIntPtr(System.IntPtr ptr, int ofs) { throw null; }
         public static System.IntPtr ReadIntPtr(object ptr, int ofs) { throw null; }
@@ -12663,19 +12663,19 @@ namespace System.Runtime.InteropServices
         public static System.IntPtr UnsafeAddrOfPinnedArrayElement<T>(T[] arr, int index) { throw null; }
         public static void WriteByte(System.IntPtr ptr, byte val) { }
         public static void WriteByte(System.IntPtr ptr, int ofs, byte val) { }
-        public static extern void WriteByte(object ptr, int ofs, byte val);
+        [System.Runtime.InteropServices.DllImport("mscoree.dll")]public static extern void WriteByte(object ptr, int ofs, byte val);
         public static void WriteInt16(System.IntPtr ptr, char val) { }
         public static void WriteInt16(System.IntPtr ptr, short val) { }
         public static void WriteInt16(System.IntPtr ptr, int ofs, char val) { }
         public static void WriteInt16(System.IntPtr ptr, int ofs, short val) { }
         public static void WriteInt16(object ptr, int ofs, char val) { ptr = default(object); }
-        public static extern void WriteInt16(object ptr, int ofs, short val);
+        [System.Runtime.InteropServices.DllImport("mscoree.dll")]public static extern void WriteInt16(object ptr, int ofs, short val);
         public static void WriteInt32(System.IntPtr ptr, int val) { }
         public static void WriteInt32(System.IntPtr ptr, int ofs, int val) { }
-        public static extern void WriteInt32(object ptr, int ofs, int val);
+        [System.Runtime.InteropServices.DllImport("mscoree.dll")]public static extern void WriteInt32(object ptr, int ofs, int val);
         public static void WriteInt64(System.IntPtr ptr, int ofs, long val) { }
         public static void WriteInt64(System.IntPtr ptr, long val) { }
-        public static extern void WriteInt64(object ptr, int ofs, long val);
+        [System.Runtime.InteropServices.DllImport("mscoree.dll")]public static extern void WriteInt64(object ptr, int ofs, long val);
         public static void WriteIntPtr(System.IntPtr ptr, int ofs, System.IntPtr val) { }
         public static void WriteIntPtr(System.IntPtr ptr, System.IntPtr val) { }
         public static void WriteIntPtr(object ptr, int ofs, System.IntPtr val) { ptr = default(object); }

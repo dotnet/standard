@@ -6061,8 +6061,10 @@ namespace System.Diagnostics.Tracing
         protected void WriteEvent(int eventId, string arg1, long arg2) { }
         protected void WriteEvent(int eventId, string arg1, string arg2) { }
         protected void WriteEvent(int eventId, string arg1, string arg2, string arg3) { }
+        [System.CLSCompliantAttribute(false)]
         protected unsafe void WriteEventCore(int eventId, int eventDataCount, System.Diagnostics.Tracing.EventSource.EventData* data) { }
         protected void WriteEventWithRelatedActivityId(int eventId, System.Guid relatedActivityId, params object[] args) { }
+        [System.CLSCompliantAttribute(false)]
         protected unsafe void WriteEventWithRelatedActivityIdCore(int eventId, System.Guid* relatedActivityId, int eventDataCount, System.Diagnostics.Tracing.EventSource.EventData* data) { }
         [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Size=1)]
         protected internal partial struct EventData
