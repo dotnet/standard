@@ -2324,14 +2324,11 @@ namespace System
         public static string ExpandEnvironmentVariables(string name) { throw null; }
         public static void FailFast(string message) { }
         public static void FailFast(string message, System.Exception exception) { }
-        [System.Security.Permissions.EnvironmentPermissionAttribute(System.Security.Permissions.SecurityAction.Demand, Read="PATH")]
         public static string[] GetCommandLineArgs() { throw null; }
         public static string GetEnvironmentVariable(string variable) { throw null; }
-        [System.Security.Permissions.EnvironmentPermissionAttribute(System.Security.Permissions.SecurityAction.Demand, Unrestricted=true)]
         public static System.Collections.IDictionary GetEnvironmentVariables() { throw null; }
         public static string GetFolderPath(System.Environment.SpecialFolder folder) { throw null; }
         public static string GetFolderPath(System.Environment.SpecialFolder folder, System.Environment.SpecialFolderOption option) { throw null; }
-        [System.Security.Permissions.EnvironmentPermissionAttribute(System.Security.Permissions.SecurityAction.Demand, Unrestricted=true)]
         public static string[] GetLogicalDrives() { throw null; }
         public static void SetEnvironmentVariable(string variable, string value) { }
         public enum SpecialFolder
@@ -7517,7 +7514,6 @@ namespace System.IO
         public static string GetPathRoot(string path) { throw null; }
         public static string GetRandomFileName() { throw null; }
         public static string GetTempFileName() { throw null; }
-        [System.Security.Permissions.EnvironmentPermissionAttribute(System.Security.Permissions.SecurityAction.Demand, Unrestricted=true)]
         public static string GetTempPath() { throw null; }
         public static bool HasExtension(string path) { throw null; }
         public static bool IsPathRooted(string path) { throw null; }
@@ -7917,11 +7913,8 @@ namespace System.IO.IsolatedStorage
         public string[] GetFileNames(string searchPattern) { throw null; }
         public System.DateTimeOffset GetLastAccessTime(string path) { throw null; }
         public System.DateTimeOffset GetLastWriteTime(string path) { throw null; }
-        [System.Security.Permissions.IsolatedStorageFilePermissionAttribute(System.Security.Permissions.SecurityAction.Demand, UsageAllowed=(System.Security.Permissions.IsolatedStorageContainment)(69))]
         public static System.IO.IsolatedStorage.IsolatedStorageFile GetMachineStoreForApplication() { throw null; }
-        [System.Security.Permissions.IsolatedStorageFilePermissionAttribute(System.Security.Permissions.SecurityAction.Demand, UsageAllowed=(System.Security.Permissions.IsolatedStorageContainment)(64))]
         public static System.IO.IsolatedStorage.IsolatedStorageFile GetMachineStoreForAssembly() { throw null; }
-        [System.Security.Permissions.IsolatedStorageFilePermissionAttribute(System.Security.Permissions.SecurityAction.Demand, UsageAllowed=(System.Security.Permissions.IsolatedStorageContainment)(48))]
         public static System.IO.IsolatedStorage.IsolatedStorageFile GetMachineStoreForDomain() { throw null; }
         protected override System.Security.Permissions.IsolatedStoragePermission GetPermission(System.Security.PermissionSet ps) { throw null; }
         public static System.IO.IsolatedStorage.IsolatedStorageFile GetStore(System.IO.IsolatedStorage.IsolatedStorageScope scope, object applicationIdentity) { throw null; }
@@ -7929,11 +7922,8 @@ namespace System.IO.IsolatedStorage
         public static System.IO.IsolatedStorage.IsolatedStorageFile GetStore(System.IO.IsolatedStorage.IsolatedStorageScope scope, System.Security.Policy.Evidence domainEvidence, System.Type domainEvidenceType, System.Security.Policy.Evidence assemblyEvidence, System.Type assemblyEvidenceType) { throw null; }
         public static System.IO.IsolatedStorage.IsolatedStorageFile GetStore(System.IO.IsolatedStorage.IsolatedStorageScope scope, System.Type applicationEvidenceType) { throw null; }
         public static System.IO.IsolatedStorage.IsolatedStorageFile GetStore(System.IO.IsolatedStorage.IsolatedStorageScope scope, System.Type domainEvidenceType, System.Type assemblyEvidenceType) { throw null; }
-        [System.Security.Permissions.IsolatedStorageFilePermissionAttribute(System.Security.Permissions.SecurityAction.Demand, UsageAllowed=(System.Security.Permissions.IsolatedStorageContainment)(21))]
         public static System.IO.IsolatedStorage.IsolatedStorageFile GetUserStoreForApplication() { throw null; }
-        [System.Security.Permissions.IsolatedStorageFilePermissionAttribute(System.Security.Permissions.SecurityAction.Demand, UsageAllowed=(System.Security.Permissions.IsolatedStorageContainment)(32))]
         public static System.IO.IsolatedStorage.IsolatedStorageFile GetUserStoreForAssembly() { throw null; }
-        [System.Security.Permissions.IsolatedStorageFilePermissionAttribute(System.Security.Permissions.SecurityAction.Demand, UsageAllowed=(System.Security.Permissions.IsolatedStorageContainment)(16))]
         public static System.IO.IsolatedStorage.IsolatedStorageFile GetUserStoreForDomain() { throw null; }
         public static System.IO.IsolatedStorage.IsolatedStorageFile GetUserStoreForSite() { throw null; }
         public override bool IncreaseQuotaTo(long newQuotaSize) { throw null; }

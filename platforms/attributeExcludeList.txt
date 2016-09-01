@@ -19,8 +19,10 @@ T:System.Runtime.InteropServices.DllImport
 T:System.Runtime.InteropServices.GuidAttribute
 T:System.Runtime.InteropServices.InterfaceTypeAttribute
 T:System.Runtime.Serialization.KnownTypeAttribute
+T:System.Security.Permissions.EnvironmentPermissionAttribute
 T:System.Security.Permissions.FileIOPermissionAttribute
 T:System.Security.Permissions.HostProtectionAttribute
+T:System.Security.Permissions.IsolatedStorageFilePermissionAttribute
 T:System.Security.Permissions.PermissionSetAttribute
 T:System.Security.Permissions.ReflectionPermissionAttribute
 T:System.Security.Permissions.SecurityPermissionAttribute
