@@ -1,0 +1,150 @@
+﻿{
+  "settings": {
+    "ConfigurationGroup": {
+      "description": "Sets the configuration group as Release or Debug",
+      "valueType": "property",
+      "values": ["Release", "Debug"],
+      "defaultValue": "Debug"
+    },
+    "MsBuildLogging": {
+      "description": "MsBuild logging options.",
+      "valueType": "passThrough",
+      "values": [],
+      "defaultValue": "/flp:v=normal"
+    },
+    "MsBuildWarning": {
+      "description": "MsBuild warning logging.",
+      "valueType": "passThrough",
+      "values": [],
+      "defaultValue": "/flp2:warningsonly;logfile=msbuild.wrn"
+    },
+    "MsBuildError": {
+      "description": "MsBuild error logging.",
+      "valueType": "passThrough",
+      "values": [],
+      "defaultValue": "/flp3:errorsonly;logfile=msbuild.err"
+    },
+    "MsBuildParameters": {
+      "description": "MsBuild building options.",
+      "valueType": "passThrough",
+      "values": [],
+      "defaultValue": "/nologo /maxcpucount /verbosity:minimal /clp:Summary"
+    },
+    "MsBuildBinClashLogger-Windows": {
+      "description": "MsBuild Bin clash logger options for Windows.",
+      "valueType": "passThrough",
+      "values": [],
+      "defaultValue": "/l:BinClashLogger,Tools\\net45\\Microsoft.DotNet.Build.Tasks.dll;LogFile=binclash.log"
+    },
+    "Project": {
+      "description": "Project where the commands are going to be applied.",
+      "valueType": "passThrough",
+      "values": [],
+      "defaultValue": ""
+    },
+    "CleanAllProjects": {
+      "description": "MsBuild target that deletes the binary output directory.",
+      "valueType": "target",
+      "values": [],
+      "defaultValue": ""
+    },
+    "CleanPackages": {
+      "description": "MsBuild target that deletes the repo-local nuget package directory.",
+      "valueType": "target",
+      "values": [],
+      "defaultValue": ""
+    },
+    "CleanPackagesCache": {
+      "description": "MsBuild target that deletes the user-local nuget package cache.",
+      "valueType": "target",
+      "values": [],
+      "defaultValue": ""
+    }
+  },
+  "commands": {
+    "build-managed":{
+      "alias":{
+        "binaries":{
+          "description": "Only builds binaries. It doesn't restore packages.",
+          "settings":{
+            "RestoreDuringBuild": false,
+            "BuildTests": false,
+            "BuildPackages": false
+          }
+        },
+        "debug":{
+          "description": "Sets ConfigurationGroup=Debug or the value passed by the user.",
+          "settings":{
+            "ConfigurationGroup": "Debug"
+          }
+        },
+        "release":{
+          "description": "Sets ConfigurationGroup=Release or the value passed by the user.",
+          "settings":{
+            "ConfigurationGroup": "Release"
+          }
+        },
+      },
+      "defaultValues":{
+        "toolName": "msbuild",
+        "settings": {
+          "ConfigurationGroup": "default",
+          "MsBuildLogging":"default",
+          "MsBuildWarning":"default",
+          "MsBuildError":"default"
+        }
+      }
+    },
+    "clean":{
+      "alias":{
+        "b":{
+          "description": "Deletes the binary output directory.",
+          "settings":{
+            "CleanAllProjects": "default"
+          }
+        },
+        "p":{
+          "description": "Deletes the repo-local nuget package directory.",
+          "settings":{
+            "CleanPackages": "default"
+            }
+        },
+        "c":{
+          "description": "Deletes the user-local nuget package cache.",
+          "settings":{
+            "CleanPackagesCache": "default"
+          }
+        }
+      },
+      "defaultValues":{
+        "toolName": "msbuild",
+        "settings": {
+          "MsBuildLogging":"/flp:v=normal;LogFile=clean.log"
+        }
+      }
+    }
+  },
+  "tools": {
+    "msbuild": {
+      "osSpecific": {
+        "windows": {
+          "defaultParameters": "/nologo /verbosity:minimal /clp:Summary /maxcpucount /nodeReuse:false /l:BinClashLogger,Tools\\net45\\Microsoft.DotNet.Build.Tasks.dll;LogFile=binclash.log",
+          "path": "Tools/msbuild.cmd"
+        },
+      },
+      "valueTypes": {
+        "property": "/p:{name}={value}",
+        "target": "/t:{name}",
+        "internal": "/{name}"
+      }
+    },
+    "terminal": {
+      "osSpecific": {
+        "windows": {
+          "filesExtension": "cmd"
+        },
+      },
+      "valueTypes": {}
+    }
+  }
+}

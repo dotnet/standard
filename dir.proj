@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.props))\dir.props" />
+  <ItemGroup>
+    <Project Include="netstandard/ref/*.csproj" />
+    <Project Include="netstandard/src/*.builds" />
+    <Project Include="platforms/dir.proj" />
+  </ItemGroup>
+
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.traversal.targets))\dir.traversal.targets" />
+
+  <!-- Override CleanAllProjects from dir.traversal.targets and just remove the full BinDir -->
+  <Target Name="CleanAllProjects">
+    <RemoveDir Directories="$(BinDir)" />
+  </Target>
+</Project>
+
