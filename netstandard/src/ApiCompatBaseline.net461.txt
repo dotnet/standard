@@ -1,1 +1,4 @@
-Total Issues: 0
+Compat issues with assembly netstandard:
+InterfacesShouldHaveSameMembers : Implementation interface member 'System.Runtime.InteropServices.ITypeLibConverter.ConvertTypeLibToAssembly(System.Object, System.String, System.Int32, System.Runtime.InteropServices.ITypeLibImporterNotifySink, System.Byte[], System.Reflection.StrongNameKeyPair, System.Boolean)' is not in the contract.
+InterfacesShouldHaveSameMembers : Implementation interface member 'System.Runtime.InteropServices.ITypeLibConverter.ConvertTypeLibToAssembly(System.Object, System.String, System.Runtime.InteropServices.TypeLibImporterFlags, System.Runtime.InteropServices.ITypeLibImporterNotifySink, System.Byte[], System.Reflection.StrongNameKeyPair, System.String, System.Version)' is not in the contract.
+Total Issues: 2

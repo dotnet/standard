@@ -23,19 +23,6 @@ MembersMustExist : Member 'System.AppDomain.ApplicationTrust.get()' does not exi
 MembersMustExist : Member 'System.AppDomain.CreateComInstanceFrom(System.String, System.String)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.AppDomain.CreateComInstanceFrom(System.String, System.String, System.Byte[], System.Configuration.Assemblies.AssemblyHashAlgorithm)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.AppDomain.CreateDomain(System.String, System.Security.Policy.Evidence, System.AppDomainSetup, System.Security.PermissionSet, System.Security.Policy.StrongName[])' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomain.DefineDynamicAssembly(System.Reflection.AssemblyName, System.Reflection.Emit.AssemblyBuilderAccess)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomain.DefineDynamicAssembly(System.Reflection.AssemblyName, System.Reflection.Emit.AssemblyBuilderAccess, System.Collections.Generic.IEnumerable<System.Reflection.Emit.CustomAttributeBuilder>)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomain.DefineDynamicAssembly(System.Reflection.AssemblyName, System.Reflection.Emit.AssemblyBuilderAccess, System.Collections.Generic.IEnumerable<System.Reflection.Emit.CustomAttributeBuilder>, System.Security.SecurityContextSource)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomain.DefineDynamicAssembly(System.Reflection.AssemblyName, System.Reflection.Emit.AssemblyBuilderAccess, System.Security.PermissionSet, System.Security.PermissionSet, System.Security.PermissionSet)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomain.DefineDynamicAssembly(System.Reflection.AssemblyName, System.Reflection.Emit.AssemblyBuilderAccess, System.Security.Policy.Evidence)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomain.DefineDynamicAssembly(System.Reflection.AssemblyName, System.Reflection.Emit.AssemblyBuilderAccess, System.Security.Policy.Evidence, System.Security.PermissionSet, System.Security.PermissionSet, System.Security.PermissionSet)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomain.DefineDynamicAssembly(System.Reflection.AssemblyName, System.Reflection.Emit.AssemblyBuilderAccess, System.String)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomain.DefineDynamicAssembly(System.Reflection.AssemblyName, System.Reflection.Emit.AssemblyBuilderAccess, System.String, System.Boolean, System.Collections.Generic.IEnumerable<System.Reflection.Emit.CustomAttributeBuilder>)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomain.DefineDynamicAssembly(System.Reflection.AssemblyName, System.Reflection.Emit.AssemblyBuilderAccess, System.String, System.Security.PermissionSet, System.Security.PermissionSet, System.Security.PermissionSet)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomain.DefineDynamicAssembly(System.Reflection.AssemblyName, System.Reflection.Emit.AssemblyBuilderAccess, System.String, System.Security.Policy.Evidence)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomain.DefineDynamicAssembly(System.Reflection.AssemblyName, System.Reflection.Emit.AssemblyBuilderAccess, System.String, System.Security.Policy.Evidence, System.Security.PermissionSet, System.Security.PermissionSet, System.Security.PermissionSet)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomain.DefineDynamicAssembly(System.Reflection.AssemblyName, System.Reflection.Emit.AssemblyBuilderAccess, System.String, System.Security.Policy.Evidence, System.Security.PermissionSet, System.Security.PermissionSet, System.Security.PermissionSet, System.Boolean)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomain.DefineDynamicAssembly(System.Reflection.AssemblyName, System.Reflection.Emit.AssemblyBuilderAccess, System.String, System.Security.Policy.Evidence, System.Security.PermissionSet, System.Security.PermissionSet, System.Security.PermissionSet, System.Boolean, System.Collections.Generic.IEnumerable<System.Reflection.Emit.CustomAttributeBuilder>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.AppDomain.remove_ReflectionOnlyAssemblyResolve(System.ResolveEventHandler)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.AppDomain.SetDynamicBase(System.String)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.AppDomainSetup' does not implement interface 'System.IAppDomainSetup' in the implementation but it does in the contract.
@@ -100,36 +87,6 @@ MembersMustExist : Member 'System.Reflection.Assembly.SecurityRuleSet.get()' doe
 CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.TargetException' does not inherit from base type 'System.ApplicationException' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.TargetInvocationException' does not inherit from base type 'System.ApplicationException' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.TargetParameterCountException' does not inherit from base type 'System.ApplicationException' in the implementation but it does in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.AssemblyBuilder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.AssemblyBuilderAccess' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.ConstructorBuilder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.CustomAttributeBuilder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.DynamicILInfo' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.DynamicMethod' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.EnumBuilder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.EventBuilder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.EventToken' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.FieldBuilder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.FieldToken' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.GenericTypeParameterBuilder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.ILGenerator' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.Label' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.LocalBuilder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.MethodBuilder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.MethodRental' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.MethodToken' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.ModuleBuilder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.ParameterBuilder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.ParameterToken' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.PEFileKinds' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.PropertyBuilder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.PropertyToken' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.SignatureHelper' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.SignatureToken' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.StringToken' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.TypeBuilder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.TypeToken' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.UnmanagedMarshal' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.GCLatencyMode System.Runtime.GCLatencyMode.NoGCRegion' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.ProfileOptimization' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.IDispatchConstantAttribute' does not exist in the implementation but it does exist in the contract.
@@ -292,4 +249,4 @@ MembersMustExist : Member 'System.Threading.Mutex.GetAccessControl()' does not e
 MembersMustExist : Member 'System.Threading.Mutex.SetAccessControl(System.Security.AccessControl.MutexSecurity)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.Thread.DisableComObjectEagerCleanup()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.ThreadAbortException.ExceptionState.get()' does not exist in the implementation but it does exist in the contract.
-Total Issues: 293
+Total Issues: 250
