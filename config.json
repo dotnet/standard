@@ -6,6 +6,12 @@
       "values": ["Release", "Debug"],
       "defaultValue": "Debug"
     },
+    "ExtraParameters": {
+      "description": "Extra parameters will be passed to the selected command.",
+      "valueType": "passThrough",
+      "values": [],
+      "defaultValue": ""
+    },
     "MsBuildLogging": {
       "description": "MsBuild logging options.",
       "valueType": "passThrough",
@@ -59,6 +65,12 @@
       "valueType": "target",
       "values": [],
       "defaultValue": ""
+    },
+    "Rebuild": {
+      "description": "Does a rebuild which runs the clean and then the build targets.",
+      "valueType": "target",
+      "values": [],
+      "defaultValue": ""
     }
   },
   "commands": {
@@ -84,14 +96,19 @@
             "ConfigurationGroup": "Release"
           }
         },
+        "rebuild": {
+          "settings": {
+            "Rebuild": "default"
+          }
+        }
       },
       "defaultValues":{
         "toolName": "msbuild",
         "settings": {
           "ConfigurationGroup": "default",
-          "MsBuildLogging":"default",
-          "MsBuildWarning":"default",
-          "MsBuildError":"default"
+          "MsBuildLogging": "default",
+          "MsBuildWarning": "default",
+          "MsBuildError": "default"
         }
       }
     },
