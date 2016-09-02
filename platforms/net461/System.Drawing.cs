@@ -1,6 +1,5 @@
 namespace System.Drawing
 {
-    [System.ComponentModel.EditorAttribute("System.Drawing.Design.BitmapEditor, System.Drawing.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.Drawing.Design.UITypeEditor))]
     public sealed partial class Bitmap : System.Drawing.Image
     {
         public Bitmap(System.Drawing.Image original) { }
@@ -234,7 +233,6 @@ namespace System.Drawing
         public static bool operator ==(System.Drawing.CharacterRange cr1, System.Drawing.CharacterRange cr2) { throw null; }
         public static bool operator !=(System.Drawing.CharacterRange cr1, System.Drawing.CharacterRange cr2) { throw null; }
     }
-    [System.ComponentModel.EditorAttribute("System.Drawing.Design.ColorEditor, System.Drawing.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.Drawing.Design.UITypeEditor))]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct Color
     {
@@ -426,7 +424,6 @@ namespace System.Drawing
         public static int ToOle(System.Drawing.Color c) { throw null; }
         public static int ToWin32(System.Drawing.Color c) { throw null; }
     }
-    [System.ComponentModel.EditorAttribute("System.Drawing.Design.ContentAlignmentEditor, System.Drawing.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.Drawing.Design.UITypeEditor))]
     public enum ContentAlignment
     {
         BottomCenter = 512,
@@ -459,7 +456,6 @@ namespace System.Drawing
         SourcePaint = 15597702,
         Whiteness = 16711778,
     }
-    [System.ComponentModel.EditorAttribute("System.Drawing.Design.FontEditor, System.Drawing.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.Drawing.Design.UITypeEditor))]
     public sealed partial class Font : System.MarshalByRefObject, System.ICloneable, System.IDisposable, System.Runtime.Serialization.ISerializable
     {
         public Font(System.Drawing.Font prototype, System.Drawing.FontStyle newStyle) { }
@@ -490,7 +486,6 @@ namespace System.Drawing
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public bool Italic { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ComponentModel.EditorAttribute("System.Drawing.Design.FontNameEditor, System.Drawing.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.Drawing.Design.UITypeEditor))]
         public string Name { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public string OriginalFontName { get { throw null; } }
@@ -847,7 +842,6 @@ namespace System.Drawing
         Point = 3,
         World = 0,
     }
-    [System.ComponentModel.EditorAttribute("System.Drawing.Design.IconEditor, System.Drawing.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.Drawing.Design.UITypeEditor))]
     public sealed partial class Icon : System.MarshalByRefObject, System.ICloneable, System.IDisposable, System.Runtime.Serialization.ISerializable
     {
         public Icon(System.Drawing.Icon original, System.Drawing.Size size) { }
@@ -889,7 +883,6 @@ namespace System.Drawing
         System.IntPtr GetHdc();
         void ReleaseHdc();
     }
-    [System.ComponentModel.EditorAttribute("System.Drawing.Design.ImageEditor, System.Drawing.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.Drawing.Design.UITypeEditor))]
     [System.ComponentModel.ImmutableObjectAttribute(true)]
     public abstract partial class Image : System.MarshalByRefObject, System.ICloneable, System.IDisposable, System.Runtime.Serialization.ISerializable
     {
@@ -1924,7 +1917,6 @@ namespace System.Drawing.Configuration
     public sealed partial class SystemDrawingSection : System.Configuration.ConfigurationSection
     {
         public SystemDrawingSection() { }
-        [System.Configuration.ConfigurationPropertyAttribute("bitmapSuffix")]
         public string BitmapSuffix { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
     }
@@ -3173,7 +3165,6 @@ namespace System.Drawing.Imaging
         UserInputBuffer = 4,
         WriteOnly = 2,
     }
-    [System.ComponentModel.EditorAttribute("System.Drawing.Design.MetafileEditor, System.Drawing.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.Drawing.Design.UITypeEditor))]
     public sealed partial class Metafile : System.Drawing.Image
     {
         public Metafile(System.IntPtr henhmetafile, bool deleteEmf) { }

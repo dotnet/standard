@@ -281,7 +281,6 @@ namespace System.Runtime.Serialization.Configuration
     public sealed partial class DataContractSerializerSection : System.Configuration.ConfigurationSection
     {
         public DataContractSerializerSection() { }
-        [System.Configuration.ConfigurationPropertyAttribute("declaredTypes", DefaultValue=null)]
         public System.Runtime.Serialization.Configuration.DeclaredTypeElementCollection DeclaredTypes { get { throw null; } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
     }
@@ -289,10 +288,8 @@ namespace System.Runtime.Serialization.Configuration
     {
         public DeclaredTypeElement() { }
         public DeclaredTypeElement(string typeName) { }
-        [System.Configuration.ConfigurationPropertyAttribute("", DefaultValue=null, Options=1)]
         public System.Runtime.Serialization.Configuration.TypeElementCollection KnownTypes { get { throw null; } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("type", DefaultValue="", Options=4)]
         public string Type { get { throw null; } set { } }
         protected override void PostDeserialize() { }
     }
@@ -315,7 +312,6 @@ namespace System.Runtime.Serialization.Configuration
     public sealed partial class NetDataContractSerializerSection : System.Configuration.ConfigurationSection
     {
         public NetDataContractSerializerSection() { }
-        [System.Configuration.ConfigurationPropertyAttribute("enableUnsafeTypeForwarding", DefaultValue=false)]
         public bool EnableUnsafeTypeForwarding { get { throw null; } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
     }
@@ -324,13 +320,10 @@ namespace System.Runtime.Serialization.Configuration
         public ParameterElement() { }
         public ParameterElement(int index) { }
         public ParameterElement(string typeName) { }
-        [System.Configuration.ConfigurationPropertyAttribute("index", DefaultValue=0)]
         [System.Configuration.IntegerValidatorAttribute(MinValue=0)]
         public int Index { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("", DefaultValue=null, Options=1)]
         public System.Runtime.Serialization.Configuration.ParameterElementCollection Parameters { get { throw null; } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("type", DefaultValue="")]
         [System.Configuration.StringValidatorAttribute(MinLength=0)]
         public string Type { get { throw null; } set { } }
         protected override void PostDeserialize() { }
@@ -363,13 +356,10 @@ namespace System.Runtime.Serialization.Configuration
     {
         public TypeElement() { }
         public TypeElement(string typeName) { }
-        [System.Configuration.ConfigurationPropertyAttribute("index", DefaultValue=0)]
         [System.Configuration.IntegerValidatorAttribute(MinValue=0)]
         public int Index { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("", DefaultValue=null, Options=1)]
         public System.Runtime.Serialization.Configuration.ParameterElementCollection Parameters { get { throw null; } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("type", DefaultValue="")]
         [System.Configuration.StringValidatorAttribute(MinLength=0)]
         public string Type { get { throw null; } set { } }
         protected override void Reset(System.Configuration.ConfigurationElement parentElement) { }

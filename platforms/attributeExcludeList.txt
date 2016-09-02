@@ -1,3 +1,9 @@
+T:System.ComponentModel.DesignerAttribute
+T:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute
+T:System.ComponentModel.Design.Serialization.RootDesignerSerializerAttribute
+T:System.ComponentModel.EditorAttribute
+T:System.ComponentModel.TypeConverterAttribute
+T:System.Configuration.ConfigurationPropertyAttribute
 T:System.Diagnostics.CodeAnalysis.SuppressMessageAttribute
 T:System.Diagnostics.DebuggerBrowsableAttribute
 T:System.Diagnostics.DebuggerDisplayAttribute
@@ -5,7 +11,8 @@ T:System.Diagnostics.DebuggerHiddenAttribute
 T:System.Diagnostics.DebuggerNonUserCodeAttribute
 T:System.Diagnostics.DebuggerStepThroughAttribute
 T:System.Diagnostics.DebuggerTypeProxyAttribute
-T:System.ComponentModel.TypeConverterAttribute
+T:System.Diagnostics.MonitoringDescriptionAttribute
+T:System.IO.IODescriptionAttribut
 T:System.Runtime.CompilerServices.AsyncStateMachineAttribute
 T:System.Runtime.CompilerServices.CompilerGeneratedAttribute
 T:System.Runtime.CompilerServices.IteratorStateMachineAttribute

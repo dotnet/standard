@@ -3183,7 +3183,6 @@ namespace System.Xml.Serialization.Configuration
     public sealed partial class DateTimeSerializationSection : System.Configuration.ConfigurationSection
     {
         public DateTimeSerializationSection() { }
-        [System.Configuration.ConfigurationPropertyAttribute("mode", DefaultValue=(System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode)(1))]
         public System.Xml.Serialization.Configuration.DateTimeSerializationSection.DateTimeSerializationMode Mode { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
         public enum DateTimeSerializationMode
@@ -3204,10 +3203,8 @@ namespace System.Xml.Serialization.Configuration
         public SchemaImporterExtensionElement() { }
         public SchemaImporterExtensionElement(string name, string type) { }
         public SchemaImporterExtensionElement(string name, System.Type type) { }
-        [System.Configuration.ConfigurationPropertyAttribute("name", IsRequired=true, IsKey=true)]
         public string Name { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("type", IsRequired=true, IsKey=false)]
         public System.Type Type { get { throw null; } set { } }
     }
     [System.Configuration.ConfigurationCollectionAttribute(typeof(System.Xml.Serialization.Configuration.SchemaImporterExtensionElement))]
@@ -3229,28 +3226,22 @@ namespace System.Xml.Serialization.Configuration
     {
         public SchemaImporterExtensionsSection() { }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("", IsDefaultCollection=true)]
         public System.Xml.Serialization.Configuration.SchemaImporterExtensionElementCollection SchemaImporterExtensions { get { throw null; } }
         protected override void InitializeDefault() { }
     }
     public sealed partial class SerializationSectionGroup : System.Configuration.ConfigurationSectionGroup
     {
         public SerializationSectionGroup() { }
-        [System.Configuration.ConfigurationPropertyAttribute("dateTimeSerialization")]
         public System.Xml.Serialization.Configuration.DateTimeSerializationSection DateTimeSerialization { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("schemaImporterExtensions")]
         public System.Xml.Serialization.Configuration.SchemaImporterExtensionsSection SchemaImporterExtensions { get { throw null; } }
         public System.Xml.Serialization.Configuration.XmlSerializerSection XmlSerializer { get { throw null; } }
     }
     public sealed partial class XmlSerializerSection : System.Configuration.ConfigurationSection
     {
         public XmlSerializerSection() { }
-        [System.Configuration.ConfigurationPropertyAttribute("checkDeserializeAdvances", DefaultValue=false)]
         public bool CheckDeserializeAdvances { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("tempFilesLocation", DefaultValue=null)]
         public string TempFilesLocation { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("useLegacySerializerGeneration", DefaultValue=false)]
         public bool UseLegacySerializerGeneration { get { throw null; } set { } }
     }
 }
@@ -3260,14 +3251,12 @@ namespace System.Xml.XmlConfiguration
     public sealed partial class XmlReaderSection : System.Configuration.ConfigurationSection
     {
         public XmlReaderSection() { }
-        [System.Configuration.ConfigurationPropertyAttribute("prohibitDefaultResolver", DefaultValue="false")]
         public string ProhibitDefaultResolverString { get { throw null; } set { } }
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
     public sealed partial class XsltConfigSection : System.Configuration.ConfigurationSection
     {
         public XsltConfigSection() { }
-        [System.Configuration.ConfigurationPropertyAttribute("prohibitDefaultResolver", DefaultValue="false")]
         public string ProhibitDefaultResolverString { get { throw null; } set { } }
     }
 }

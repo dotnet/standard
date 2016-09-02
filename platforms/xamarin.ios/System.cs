@@ -73,6 +73,7 @@ namespace Mono.Security.Interface
         AesGcm256 = 4,
         None = 0,
     }
+    [System.CLSCompliantAttribute(false)]
     public enum CipherSuiteCode : ushort
     {
         TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA = (ushort)25,
@@ -451,6 +452,7 @@ namespace Mono.Security.Interface
     {
         public MonoTlsConnectionInfo() { }
         public Mono.Security.Interface.CipherAlgorithmType CipherAlgorithmType { get { throw null; } set { } }
+        [System.CLSCompliantAttribute(false)]
         public Mono.Security.Interface.CipherSuiteCode CipherSuiteCode { get { throw null; } set { } }
         public Mono.Security.Interface.ExchangeAlgorithmType ExchangeAlgorithmType { get { throw null; } set { } }
         public Mono.Security.Interface.HashAlgorithmType HashAlgorithmType { get { throw null; } set { } }
@@ -489,6 +491,7 @@ namespace Mono.Security.Interface
         public bool CheckCertificateRevocationStatus { get { throw null; } set { } }
         public Mono.Security.Interface.MonoLocalCertificateSelectionCallback ClientCertificateSelectionCallback { get { throw null; } set { } }
         public static Mono.Security.Interface.MonoTlsSettings DefaultSettings { get { throw null; } set { } }
+        [System.CLSCompliantAttribute(false)]
         public Mono.Security.Interface.CipherSuiteCode[] EnabledCiphers { get { throw null; } set { } }
         public System.Nullable<Mono.Security.Interface.TlsProtocols> EnabledProtocols { get { throw null; } set { } }
         public Mono.Security.Interface.MonoRemoteCertificateValidationCallback RemoteCertificateValidationCallback { get { throw null; } set { } }
@@ -1641,7 +1644,6 @@ namespace System.Collections.Specialized
         void System.Collections.IList.Insert(int index, object value) { }
         void System.Collections.IList.Remove(object value) { }
     }
-    [System.ComponentModel.Design.Serialization.DesignerSerializerAttribute("System.Diagnostics.Design.StringDictionaryCodeDomSerializer, System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.ComponentModel.Design.Serialization.CodeDomSerializer, System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     public partial class StringDictionary : System.Collections.IEnumerable
     {
         public StringDictionary() { }
@@ -2478,9 +2480,6 @@ namespace System.ComponentModel
         object GetPropertyValue(object component, int dispid, ref bool success);
         object GetPropertyValue(object component, string propertyName, ref bool success);
     }
-    [System.ComponentModel.Design.Serialization.RootDesignerSerializerAttribute("System.ComponentModel.Design.Serialization.RootCodeDomSerializer, System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.ComponentModel.Design.Serialization.CodeDomSerializer, System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", true)]
-    [System.ComponentModel.DesignerAttribute("System.ComponentModel.Design.ComponentDesigner, System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.ComponentModel.Design.IDesigner))]
-    [System.ComponentModel.DesignerAttribute("System.Windows.Forms.Design.ComponentDocumentDesigner, System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.ComponentModel.Design.IRootDesigner))]
     public partial interface IComponent : System.IDisposable
     {
         System.ComponentModel.ISite Site { get; set; }
@@ -2528,7 +2527,6 @@ namespace System.ComponentModel
         string Name { get; }
         bool Show(string language, string value, ref string newValue);
     }
-    [System.ComponentModel.EditorAttribute("System.Windows.Forms.Design.DataSourceListEditor, System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [System.ComponentModel.MergablePropertyAttribute(false)]
     public partial interface IListSource
     {
@@ -2844,7 +2842,6 @@ namespace System.ComponentModel
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
     }
-    [System.ComponentModel.DesignerAttribute("System.Windows.Forms.Design.ComponentDocumentDesigner, System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.ComponentModel.Design.IRootDesigner))]
     [System.ComponentModel.DesignerCategoryAttribute("Component")]
     public partial class MarshalByValueComponent : System.ComponentModel.IComponent, System.IDisposable, System.IServiceProvider
     {
@@ -3288,7 +3285,7 @@ namespace System.ComponentModel
     }
     public partial class RunWorkerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        public RunWorkerCompletedEventArgs(object result, System.Exception error, bool cancelled) { }
+        public RunWorkerCompletedEventArgs(object result, System.Exception error, bool cancelled) : base(null, false, null) { }
         public object Result { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
@@ -3704,7 +3701,6 @@ namespace System.ComponentModel.Design
         protected virtual bool ShowDialog(System.ComponentModel.Design.DesignerOptionService.DesignerOptionCollection options, object optionObject) { throw null; }
         object System.ComponentModel.Design.IDesignerOptionService.GetOptionValue(string pageName, string valueName) { throw null; }
         void System.ComponentModel.Design.IDesignerOptionService.SetOptionValue(string pageName, string valueName, object value) { }
-        [System.ComponentModel.EditorAttribute("", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
         public sealed partial class DesignerOptionCollection : System.Collections.ICollection, System.Collections.IEnumerable, System.Collections.IList
         {
             internal DesignerOptionCollection() { }
@@ -4473,191 +4469,137 @@ namespace System.Diagnostics
     }
     [System.ComponentModel.DefaultEventAttribute("Exited")]
     [System.ComponentModel.DefaultPropertyAttribute("StartInfo")]
-    [System.ComponentModel.DesignerAttribute("System.Diagnostics.Design.ProcessDesigner, System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [System.Diagnostics.MonitoringDescriptionAttribute("Provides access to local and remote processes, enabling starting and stopping of local processes.")]
     public partial class Process : System.ComponentModel.Component
     {
         public Process() { }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Base process priority.")]
         public int BasePriority { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Whether the process component should watch for the associated process to exit, and raise the Exited event.")]
         public bool EnableRaisingEvents { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The value returned from the associated process when it terminated.")]
         public int ExitCode { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The time that the associated process exited.")]
         public System.DateTime ExitTime { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Returns the native handle for this process.   The handle is only available if the process was started using this component.")]
         public System.IntPtr Handle { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Handles for this process.")]
         public int HandleCount { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Indicates if the associated process has been terminated.")]
         public bool HasExited { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The unique identifier for the process.")]
         public int Id { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The name of the machine the running the process.")]
         public string MachineName { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The main module of the process.")]
         public System.Diagnostics.ProcessModule MainModule { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The handle of the main window of the process.")]
         public System.IntPtr MainWindowHandle { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The title of the main window of the process.")]
         public string MainWindowTitle { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The maximum amount of physical memory the process has required since it was started.")]
         public System.IntPtr MaxWorkingSet { get { throw null; } set { } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The minimum amount of physical memory the process has required since it was started.")]
         public System.IntPtr MinWorkingSet { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The modules that are loaded as part of this process.")]
         public System.Diagnostics.ProcessModuleCollection Modules { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The number of bytes that are not pageable.")]
         [System.ObsoleteAttribute("Use NonpagedSystemMemorySize64")]
         public int NonpagedSystemMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The number of bytes that are not pageable.")]
         public long NonpagedSystemMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The number of bytes that are paged.")]
         [System.ObsoleteAttribute("Use PagedMemorySize64")]
         public int PagedMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The number of bytes that are paged.")]
         public long PagedMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The amount of paged system memory in bytes.")]
         [System.ObsoleteAttribute("Use PagedSystemMemorySize64")]
         public int PagedSystemMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The amount of paged system memory in bytes.")]
         public long PagedSystemMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The maximum amount of paged memory used by this process.")]
         [System.ObsoleteAttribute("Use PeakPagedMemorySize64")]
         public int PeakPagedMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The maximum amount of paged memory used by this process.")]
         public long PeakPagedMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The maximum amount of virtual memory used by this process.")]
         [System.ObsoleteAttribute("Use PeakVirtualMemorySize64")]
         public int PeakVirtualMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The maximum amount of virtual memory used by this process.")]
         public long PeakVirtualMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The maximum amount of system memory used by this process.")]
         [System.ObsoleteAttribute("Use PeakWorkingSet64")]
         public int PeakWorkingSet { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The maximum amount of system memory used by this process.")]
         public long PeakWorkingSet64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Process will be of higher priority while it is actively used.")]
         public bool PriorityBoostEnabled { get { throw null; } set { } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The priority that the threads in the process run relative to.")]
         public System.Diagnostics.ProcessPriorityClass PriorityClass { get { throw null; } set { } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The amount of memory exclusively used by this process.")]
         [System.ObsoleteAttribute("Use PrivateMemorySize64")]
         public int PrivateMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The amount of memory exclusively used by this process.")]
         public long PrivateMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The amount of CPU time the process spent inside the operating system core.")]
         public System.TimeSpan PrivilegedProcessorTime { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The name of this process.")]
         public string ProcessName { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Allowed processor that can be used by this process.")]
         public System.IntPtr ProcessorAffinity { get { throw null; } set { } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Is this process responsive.")]
         public bool Responding { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public Microsoft.Win32.SafeHandles.SafeProcessHandle SafeHandle { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The session ID for this process.")]
         public int SessionId { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Standard error stream of the process.")]
         public System.IO.StreamReader StandardError { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Standard input stream of the process.")]
         public System.IO.StreamWriter StandardInput { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Standard output stream of the process.")]
         public System.IO.StreamReader StandardOutput { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(2))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Specifies information used to start a process.")]
         public System.Diagnostics.ProcessStartInfo StartInfo { get { throw null; } set { } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The time at which the process was started.")]
         public System.DateTime StartTime { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DefaultValueAttribute(null)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The object used to marshal the event handler calls issued as a result of a Process exit.")]
         public System.ComponentModel.ISynchronizeInvoke SynchronizingObject { get { throw null; } set { } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The number of threads of this process.")]
         public System.Diagnostics.ProcessThreadCollection Threads { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The amount of CPU time the process has used.")]
         public System.TimeSpan TotalProcessorTime { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The amount of CPU time the process spent outside the operating system core.")]
         public System.TimeSpan UserProcessorTime { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The amount of virtual memory currently used for this process.")]
         [System.ObsoleteAttribute("Use VirtualMemorySize64")]
         public int VirtualMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The amount of virtual memory currently used for this process.")]
         public long VirtualMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The amount of physical memory currently used for this process.")]
         [System.ObsoleteAttribute("Use WorkingSet64")]
         public int WorkingSet { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The amount of physical memory currently used for this process.")]
         public long WorkingSet64 { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Indicates if the process component is associated with a real process.")]
         public event System.Diagnostics.DataReceivedEventHandler ErrorDataReceived { add { } remove { } }
         [System.ComponentModel.CategoryAttribute("Behavior")]
-        [System.Diagnostics.MonitoringDescriptionAttribute("If the WatchForExit property is set to true, then this event is raised when the associated process exits.")]
         public event System.EventHandler Exited { add { } remove { } }
         [System.ComponentModel.BrowsableAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Indicates if the process component is associated with a real process.")]
         public event System.Diagnostics.DataReceivedEventHandler OutputDataReceived { add { } remove { } }
         public void BeginErrorReadLine() { }
         public void BeginOutputReadLine() { }
@@ -4690,21 +4632,15 @@ namespace System.Diagnostics
         public bool WaitForInputIdle() { throw null; }
         public bool WaitForInputIdle(int milliseconds) { throw null; }
     }
-    [System.ComponentModel.DesignerAttribute("System.Diagnostics.Design.ProcessModuleDesigner, System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     public partial class ProcessModule : System.ComponentModel.Component
     {
         internal ProcessModule() { }
-        [System.Diagnostics.MonitoringDescriptionAttribute("The base memory address of this module")]
         public System.IntPtr BaseAddress { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("The base memory address of the entry point of this module")]
         public System.IntPtr EntryPointAddress { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("The file name of this module")]
         public string FileName { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public System.Diagnostics.FileVersionInfo FileVersionInfo { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("The memory needed by this module")]
         public int ModuleMemorySize { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("The name of this module")]
         public string ModuleName { get { throw null; } }
         public override string ToString() { throw null; }
     }
@@ -4740,11 +4676,9 @@ namespace System.Diagnostics
         [System.ComponentModel.DefaultValueAttribute("")]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         [System.ComponentModel.SettingsBindableAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Command line arguments that will be passed to the application specified by the FileName property.")]
         public string Arguments { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute(false)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Whether to start the process without creating a new window to contain it.")]
         public bool CreateNoWindow { get { throw null; } set { } }
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         public string Domain { get { throw null; } set { } }
@@ -4754,22 +4688,17 @@ namespace System.Diagnostics
         public System.Collections.Generic.IDictionary<string, string> Environment { get { throw null; } }
         [System.ComponentModel.DefaultValueAttribute(null)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(2))]
-        [System.ComponentModel.EditorAttribute("System.Diagnostics.Design.StringDictionaryEditor, System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Set of environment variables that apply to this process and child processes.")]
         public System.Collections.Specialized.StringDictionary EnvironmentVariables { get { throw null; } }
         [System.ComponentModel.DefaultValueAttribute(false)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Whether to show an error dialog to the user if there is an error.")]
         public bool ErrorDialog { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public System.IntPtr ErrorDialogParentHandle { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute("")]
-        [System.ComponentModel.EditorAttribute("System.Diagnostics.Design.StartFileNameEditor, System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         [System.ComponentModel.SettingsBindableAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The name of the application, document or URL to start.")]
         public string FileName { get { throw null; } set { } }
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         public bool LoadUserProfile { get { throw null; } set { } }
@@ -4779,15 +4708,12 @@ namespace System.Diagnostics
         public string PasswordInClearText { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute(false)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Whether the process's error output is written to the Process instance's StandardError member.")]
         public bool RedirectStandardError { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute(false)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Whether the process command input is read from the Process instance's StandardInput member.")]
         public bool RedirectStandardInput { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute(false)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Whether the process output is written to the Process instance's StandardOutput member.")]
         public bool RedirectStandardOutput { get { throw null; } set { } }
         public System.Text.Encoding StandardErrorEncoding { get { throw null; } set { } }
         public System.Text.Encoding StandardOutputEncoding { get { throw null; } set { } }
@@ -4795,57 +4721,39 @@ namespace System.Diagnostics
         public string UserName { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute(true)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Whether to use the operating system shell to start the process.")]
         public bool UseShellExecute { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute("")]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The verb to apply to the document specified by the FileName property.")]
         public string Verb { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public string[] Verbs { get { throw null; } }
         [System.ComponentModel.DefaultValueAttribute((System.Diagnostics.ProcessWindowStyle)(0))]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("How the main window should be created when the process starts.")]
         public System.Diagnostics.ProcessWindowStyle WindowStyle { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute("")]
-        [System.ComponentModel.EditorAttribute("System.Diagnostics.Design.WorkingDirectoryEditor, System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         [System.ComponentModel.SettingsBindableAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("The initial working directory for the process.")]
         public string WorkingDirectory { get { throw null; } set { } }
     }
-    [System.ComponentModel.DesignerAttribute("System.Diagnostics.Design.ProcessThreadDesigner, System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     public partial class ProcessThread : System.ComponentModel.Component
     {
         internal ProcessThread() { }
-        [System.Diagnostics.MonitoringDescriptionAttribute("The base priority of this thread.")]
         public int BasePriority { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("The current priority of this thread.")]
         public int CurrentPriority { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("The ID of this thread.")]
         public int Id { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public int IdealProcessor { set { } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("Thread gets a priority boot when interactively used by a user.")]
         public bool PriorityBoostEnabled { get { throw null; } set { } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("The priority level of this thread.")]
         public System.Diagnostics.ThreadPriorityLevel PriorityLevel { get { throw null; } set { } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("The amount of CPU time used in privileged mode.")]
         public System.TimeSpan PrivilegedProcessorTime { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public System.IntPtr ProcessorAffinity { set { } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("The start address in memory of this thread.")]
         public System.IntPtr StartAddress { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("The time this thread was started.")]
         public System.DateTime StartTime { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("The current state of this thread.")]
         public System.Diagnostics.ThreadState ThreadState { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("The total amount of CPU time used.")]
         public System.TimeSpan TotalProcessorTime { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("The amount of CPU time used in user mode.")]
         public System.TimeSpan UserProcessorTime { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("The reason why this thread is waiting.")]
         public System.Diagnostics.ThreadWaitReason WaitReason { get { throw null; } }
         public void ResetIdealProcessor() { }
     }
@@ -5554,7 +5462,7 @@ namespace System.Net
     }
     public partial class DownloadDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal DownloadDataCompletedEventArgs() { }
+        internal DownloadDataCompletedEventArgs() : base(null, false, null) { }
         public byte[] Result { get { throw null; } }
     }
     public delegate void DownloadDataCompletedEventHandler(object sender, System.Net.DownloadDataCompletedEventArgs e);
@@ -5567,7 +5475,7 @@ namespace System.Net
     public delegate void DownloadProgressChangedEventHandler(object sender, System.Net.DownloadProgressChangedEventArgs e);
     public partial class DownloadStringCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal DownloadStringCompletedEventArgs() { }
+        internal DownloadStringCompletedEventArgs() : base(null, false, null) { }
         public string Result { get { throw null; } }
     }
     public delegate void DownloadStringCompletedEventHandler(object sender, System.Net.DownloadStringCompletedEventArgs e);
@@ -6196,13 +6104,13 @@ namespace System.Net
     }
     public partial class OpenReadCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal OpenReadCompletedEventArgs() { }
+        internal OpenReadCompletedEventArgs() : base(null, false, null) { }
         public System.IO.Stream Result { get { throw null; } }
     }
     public delegate void OpenReadCompletedEventHandler(object sender, System.Net.OpenReadCompletedEventArgs e);
     public partial class OpenWriteCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal OpenWriteCompletedEventArgs() { }
+        internal OpenWriteCompletedEventArgs() : base(null, false, null) { }
         public System.IO.Stream Result { get { throw null; } }
     }
     public delegate void OpenWriteCompletedEventHandler(object sender, System.Net.OpenWriteCompletedEventArgs e);
@@ -6322,13 +6230,13 @@ namespace System.Net
     }
     public partial class UploadDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal UploadDataCompletedEventArgs() { }
+        internal UploadDataCompletedEventArgs() : base(null, false, null) { }
         public byte[] Result { get { throw null; } }
     }
     public delegate void UploadDataCompletedEventHandler(object sender, System.Net.UploadDataCompletedEventArgs e);
     public partial class UploadFileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal UploadFileCompletedEventArgs() { }
+        internal UploadFileCompletedEventArgs() : base(null, false, null) { }
         public byte[] Result { get { throw null; } }
     }
     public delegate void UploadFileCompletedEventHandler(object sender, System.Net.UploadFileCompletedEventArgs e);
@@ -6343,13 +6251,13 @@ namespace System.Net
     public delegate void UploadProgressChangedEventHandler(object sender, System.Net.UploadProgressChangedEventArgs e);
     public partial class UploadStringCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal UploadStringCompletedEventArgs() { }
+        internal UploadStringCompletedEventArgs() : base(null, false, null) { }
         public string Result { get { throw null; } }
     }
     public delegate void UploadStringCompletedEventHandler(object sender, System.Net.UploadStringCompletedEventArgs e);
     public partial class UploadValuesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal UploadValuesCompletedEventArgs() { }
+        internal UploadValuesCompletedEventArgs() : base(null, false, null) { }
         public byte[] Result { get { throw null; } }
     }
     public delegate void UploadValuesCompletedEventHandler(object sender, System.Net.UploadValuesCompletedEventArgs e);
@@ -7577,7 +7485,7 @@ namespace System.Net.NetworkInformation
     }
     public partial class PingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal PingCompletedEventArgs() { }
+        internal PingCompletedEventArgs() : base(null, false, null) { }
         public System.Net.NetworkInformation.PingReply Reply { get { throw null; } }
     }
     public delegate void PingCompletedEventHandler(object sender, System.Net.NetworkInformation.PingCompletedEventArgs e);
@@ -9624,7 +9532,9 @@ namespace System.Text.RegularExpressions
         public Regex(string pattern, System.Text.RegularExpressions.RegexOptions options) { }
         public Regex(string pattern, System.Text.RegularExpressions.RegexOptions options, System.TimeSpan matchTimeout) { }
         public static int CacheSize { get { throw null; } set { } }
+        [System.CLSCompliantAttribute(false)]
         protected System.Collections.IDictionary CapNames { get { throw null; } set { } }
+        [System.CLSCompliantAttribute(false)]
         protected System.Collections.IDictionary Caps { get { throw null; } set { } }
         public System.TimeSpan MatchTimeout { get { throw null; } }
         public System.Text.RegularExpressions.RegexOptions Options { get { throw null; } }

@@ -2352,7 +2352,6 @@ namespace System.Collections.Specialized
         void System.Collections.IList.Insert(int index, object value) { }
         void System.Collections.IList.Remove(object value) { }
     }
-    [System.ComponentModel.Design.Serialization.DesignerSerializerAttribute("System.Diagnostics.Design.StringDictionaryCodeDomSerializer, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.ComponentModel.Design.Serialization.CodeDomSerializer, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     public partial class StringDictionary : System.Collections.IEnumerable
     {
         public StringDictionary() { }
@@ -3189,9 +3188,6 @@ namespace System.ComponentModel
         object GetPropertyValue(object component, int dispid, ref bool success);
         object GetPropertyValue(object component, string propertyName, ref bool success);
     }
-    [System.ComponentModel.Design.Serialization.RootDesignerSerializerAttribute("System.ComponentModel.Design.Serialization.RootCodeDomSerializer, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.ComponentModel.Design.Serialization.CodeDomSerializer, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", true)]
-    [System.ComponentModel.DesignerAttribute("System.ComponentModel.Design.ComponentDesigner, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.ComponentModel.Design.IDesigner))]
-    [System.ComponentModel.DesignerAttribute("System.Windows.Forms.Design.ComponentDocumentDesigner, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.ComponentModel.Design.IRootDesigner))]
     public partial interface IComponent : System.IDisposable
     {
         System.ComponentModel.ISite Site { get; set; }
@@ -3239,7 +3235,6 @@ namespace System.ComponentModel
         string Name { get; }
         bool Show(string language, string value, ref string newValue);
     }
-    [System.ComponentModel.EditorAttribute("System.Windows.Forms.Design.DataSourceListEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [System.ComponentModel.MergablePropertyAttribute(false)]
     public partial interface IListSource
     {
@@ -3555,7 +3550,6 @@ namespace System.ComponentModel
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
     }
-    [System.ComponentModel.DesignerAttribute("System.Windows.Forms.Design.ComponentDocumentDesigner, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.ComponentModel.Design.IRootDesigner))]
     [System.ComponentModel.DesignerCategoryAttribute("Component")]
     public partial class MarshalByValueComponent : System.ComponentModel.IComponent, System.IDisposable, System.IServiceProvider
     {
@@ -3999,7 +3993,7 @@ namespace System.ComponentModel
     }
     public partial class RunWorkerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        public RunWorkerCompletedEventArgs(object result, System.Exception error, bool cancelled) { }
+        public RunWorkerCompletedEventArgs(object result, System.Exception error, bool cancelled) : base(null, false, null) { }
         public object Result { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
@@ -4415,7 +4409,6 @@ namespace System.ComponentModel.Design
         protected virtual bool ShowDialog(System.ComponentModel.Design.DesignerOptionService.DesignerOptionCollection options, object optionObject) { throw null; }
         object System.ComponentModel.Design.IDesignerOptionService.GetOptionValue(string pageName, string valueName) { throw null; }
         void System.ComponentModel.Design.IDesignerOptionService.SetOptionValue(string pageName, string valueName, object value) { }
-        [System.ComponentModel.EditorAttribute("", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
         public sealed partial class DesignerOptionCollection : System.Collections.ICollection, System.Collections.IEnumerable, System.Collections.IList
         {
             internal DesignerOptionCollection() { }
@@ -5022,6 +5015,7 @@ namespace System.ComponentModel.Design.Serialization
         void System.IDisposable.Dispose() { }
     }
 }
+/* CONFIG
 namespace System.Configuration
 {
     [System.AttributeUsageAttribute((System.AttributeTargets)(128))]
@@ -5073,7 +5067,6 @@ namespace System.Configuration
     {
         public ClientSettingsSection() { }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("", IsDefaultCollection=true)]
         public System.Configuration.SettingElementCollection Settings { get { throw null; } }
     }
     public partial class ConfigurationException : System.SystemException
@@ -5159,7 +5152,6 @@ namespace System.Configuration
     public sealed partial class IdnElement : System.Configuration.ConfigurationElement
     {
         public IdnElement() { }
-        [System.Configuration.ConfigurationPropertyAttribute("enabled", DefaultValue=(System.UriIdnScope)(0))]
         public System.UriIdnScope Enabled { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
     }
@@ -5179,7 +5171,6 @@ namespace System.Configuration
     public sealed partial class IriParsingElement : System.Configuration.ConfigurationElement
     {
         public IriParsingElement() { }
-        [System.Configuration.ConfigurationPropertyAttribute("enabled", DefaultValue=false)]
         public bool Enabled { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
     }
@@ -5218,9 +5209,7 @@ namespace System.Configuration
     public sealed partial class SchemeSettingElement : System.Configuration.ConfigurationElement
     {
         public SchemeSettingElement() { }
-        [System.Configuration.ConfigurationPropertyAttribute("genericUriParserOptions", DefaultValue=0, IsRequired=true)]
         public System.GenericUriParserOptions GenericUriParserOptions { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("name", DefaultValue=null, IsRequired=true, IsKey=true)]
         public string Name { get { throw null; } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
     }
@@ -5253,12 +5242,9 @@ namespace System.Configuration
     {
         public SettingElement() { }
         public SettingElement(string name, System.Configuration.SettingsSerializeAs serializeAs) { }
-        [System.Configuration.ConfigurationPropertyAttribute("name", IsRequired=true, IsKey=true, DefaultValue="")]
         public string Name { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("serializeAs", IsRequired=true, DefaultValue=(System.Configuration.SettingsSerializeAs)(0))]
         public System.Configuration.SettingsSerializeAs SerializeAs { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("value", IsRequired=true, DefaultValue=null)]
         public System.Configuration.SettingValueElement Value { get { throw null; } set { } }
         public override bool Equals(object settings) { throw null; }
         public override int GetHashCode() { throw null; }
@@ -5482,12 +5468,9 @@ namespace System.Configuration
     public sealed partial class UriSection : System.Configuration.ConfigurationSection
     {
         public UriSection() { }
-        [System.Configuration.ConfigurationPropertyAttribute("idn")]
         public System.Configuration.IdnElement Idn { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("iriParsing")]
         public System.Configuration.IriParsingElement IriParsing { get { throw null; } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("schemeSettings")]
         public System.Configuration.SchemeSettingElementCollection SchemeSettings { get { throw null; } }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(128))]
@@ -5500,6 +5483,7 @@ namespace System.Configuration
         public UserSettingsGroup() { }
     }
 }
+*/
 namespace System.Diagnostics
 {
     [System.Diagnostics.SwitchLevelAttribute(typeof(bool))]
@@ -5530,13 +5514,10 @@ namespace System.Diagnostics
         public CounterCreationData() { }
         public CounterCreationData(string counterName, string counterHelp, System.Diagnostics.PerformanceCounterType counterType) { }
         [System.ComponentModel.DefaultValueAttribute("")]
-        [System.Diagnostics.MonitoringDescriptionAttribute("CounterHelp")]
         public string CounterHelp { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute("")]
-        [System.Diagnostics.MonitoringDescriptionAttribute("CounterName")]
         public string CounterName { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute((System.Diagnostics.PerformanceCounterType)(65536))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("CounterType")]
         public System.Diagnostics.PerformanceCounterType CounterType { get { throw null; } set { } }
     }
     public partial class CounterCreationDataCollection : System.Collections.CollectionBase
@@ -5678,12 +5659,14 @@ namespace System.Diagnostics
         public override void TraceEvent(System.Diagnostics.TraceEventCache eventCache, string source, System.Diagnostics.TraceEventType eventType, int id, string message) { }
         public override void TraceEvent(System.Diagnostics.TraceEventCache eventCache, string source, System.Diagnostics.TraceEventType eventType, int id, string format, params object[] args) { }
     }
+/*CONFIG
     [System.ObsoleteAttribute("This class has been deprecated.  http://go.microsoft.com/fwlink/?linkid=14202")]
     public partial class DiagnosticsConfigurationHandler : System.Configuration.IConfigurationSectionHandler
     {
         public DiagnosticsConfigurationHandler() { }
         public virtual object Create(object parent, object configContext, System.Xml.XmlNode section) { throw null; }
     }
+*/
     public partial class EntryWrittenEventArgs : System.EventArgs
     {
         public EntryWrittenEventArgs() { }
@@ -5701,7 +5684,6 @@ namespace System.Diagnostics
     }
     [System.ComponentModel.DefaultEventAttribute("EntryWritten")]
     [System.ComponentModel.InstallerTypeAttribute("System.Diagnostics.EventLogInstaller, System.Configuration.Install, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [System.Diagnostics.MonitoringDescriptionAttribute("EventLogDesc")]
     public partial class EventLog : System.ComponentModel.Component, System.ComponentModel.ISupportInitialize
     {
         public EventLog() { }
@@ -5710,23 +5692,19 @@ namespace System.Diagnostics
         public EventLog(string logName, string machineName, string source) { }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogMonitoring")]
         public bool EnableRaisingEvents { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogEntries")]
         public System.Diagnostics.EventLogEntryCollection Entries { get { throw null; } }
         [System.ComponentModel.DefaultValueAttribute("")]
         [System.ComponentModel.ReadOnlyAttribute(true)]
         [System.ComponentModel.SettingsBindableAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogLog")]
         public string Log { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public string LogDisplayName { get { throw null; } }
         [System.ComponentModel.DefaultValueAttribute(".")]
         [System.ComponentModel.ReadOnlyAttribute(true)]
         [System.ComponentModel.SettingsBindableAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogMachineName")]
         public string MachineName { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
@@ -5738,13 +5716,10 @@ namespace System.Diagnostics
         [System.ComponentModel.DefaultValueAttribute("")]
         [System.ComponentModel.ReadOnlyAttribute(true)]
         [System.ComponentModel.SettingsBindableAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogSource")]
         public string Source { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DefaultValueAttribute(null)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogSynchronizingObject")]
         public System.ComponentModel.ISynchronizeInvoke SynchronizingObject { get { throw null; } set { } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogEntryWritten")]
         public event System.Diagnostics.EntryWrittenEventHandler EntryWritten { add { } remove { } }
         public void BeginInit() { }
         public void Clear() { }
@@ -5788,35 +5763,20 @@ namespace System.Diagnostics
     public sealed partial class EventLogEntry : System.ComponentModel.Component, System.Runtime.Serialization.ISerializable
     {
         internal EventLogEntry() { }
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogEntryCategory")]
         public string Category { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogEntryCategoryNumber")]
         public short CategoryNumber { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogEntryData")]
         public byte[] Data { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogEntryEntryType")]
         public System.Diagnostics.EventLogEntryType EntryType { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogEntryEventID")]
         [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.EventLogEntry.InstanceId instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
         public int EventID { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogEntryIndex")]
         public int Index { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogEntryResourceId")]
         public long InstanceId { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogEntryMachineName")]
         public string MachineName { get { throw null; } }
-        [System.ComponentModel.EditorAttribute("System.ComponentModel.Design.BinaryEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogEntryMessage")]
         public string Message { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogEntryReplacementStrings")]
         public string[] ReplacementStrings { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogEntrySource")]
         public string Source { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogEntryTimeGenerated")]
         public System.DateTime TimeGenerated { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogEntryTimeWritten")]
         public System.DateTime TimeWritten { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("LogEntryUserName")]
         public string UserName { get { throw null; } }
         public bool Equals(System.Diagnostics.EventLogEntry otherEntry) { throw null; }
         void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
@@ -6020,14 +5980,12 @@ namespace System.Diagnostics
         public string CategoryName { get { throw null; } set { } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         [System.ComponentModel.ReadOnlyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("PC_CounterHelp")]
         public string CounterHelp { get { throw null; } }
         [System.ComponentModel.DefaultValueAttribute("")]
         [System.ComponentModel.ReadOnlyAttribute(true)]
         [System.ComponentModel.SettingsBindableAttribute(true)]
         public string CounterName { get { throw null; } set { } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("PC_CounterType")]
         public System.Diagnostics.PerformanceCounterType CounterType { get { throw null; } }
         [System.ComponentModel.DefaultValueAttribute((System.Diagnostics.PerformanceCounterInstanceLifetime)(0))]
         public System.Diagnostics.PerformanceCounterInstanceLifetime InstanceLifetime { get { throw null; } set { } }
@@ -6041,11 +5999,9 @@ namespace System.Diagnostics
         public string MachineName { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("PC_RawValue")]
         public long RawValue { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DefaultValueAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("PC_ReadOnly")]
         public bool ReadOnly { get { throw null; } set { } }
         public void BeginInit() { }
         public void Close() { }
@@ -6197,192 +6153,138 @@ namespace System.Diagnostics
     }
     [System.ComponentModel.DefaultEventAttribute("Exited")]
     [System.ComponentModel.DefaultPropertyAttribute("StartInfo")]
-    [System.ComponentModel.DesignerAttribute("System.Diagnostics.Design.ProcessDesigner, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [System.Diagnostics.MonitoringDescriptionAttribute("ProcessDesc")]
     public partial class Process : System.ComponentModel.Component
     {
         public Process() { }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessBasePriority")]
         public int BasePriority { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessEnableRaisingEvents")]
         public bool EnableRaisingEvents { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessExitCode")]
         public int ExitCode { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessExitTime")]
         public System.DateTime ExitTime { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessHandle")]
         public System.IntPtr Handle { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessHandleCount")]
         public int HandleCount { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessTerminated")]
         public bool HasExited { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessId")]
         public int Id { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessMachineName")]
         public string MachineName { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessMainModule")]
         public System.Diagnostics.ProcessModule MainModule { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessMainWindowHandle")]
         public System.IntPtr MainWindowHandle { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessMainWindowTitle")]
         public string MainWindowTitle { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessMaxWorkingSet")]
         public System.IntPtr MaxWorkingSet { get { throw null; } set { } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessMinWorkingSet")]
         public System.IntPtr MinWorkingSet { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessModules")]
         public System.Diagnostics.ProcessModuleCollection Modules { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessNonpagedSystemMemorySize")]
         [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.NonpagedSystemMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
         public int NonpagedSystemMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessNonpagedSystemMemorySize")]
         public long NonpagedSystemMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessPagedMemorySize")]
         [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PagedMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
         public int PagedMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessPagedMemorySize")]
         public long PagedMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessPagedSystemMemorySize")]
         [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PagedSystemMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
         public int PagedSystemMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessPagedSystemMemorySize")]
         public long PagedSystemMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessPeakPagedMemorySize")]
         [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PeakPagedMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
         public int PeakPagedMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessPeakPagedMemorySize")]
         public long PeakPagedMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessPeakVirtualMemorySize")]
         [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PeakVirtualMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
         public int PeakVirtualMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessPeakVirtualMemorySize")]
         public long PeakVirtualMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessPeakWorkingSet")]
         [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PeakWorkingSet64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
         public int PeakWorkingSet { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessPeakWorkingSet")]
         public long PeakWorkingSet64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessPriorityBoostEnabled")]
         public bool PriorityBoostEnabled { get { throw null; } set { } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessPriorityClass")]
         public System.Diagnostics.ProcessPriorityClass PriorityClass { get { throw null; } set { } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessPrivateMemorySize")]
         [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PrivateMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
         public int PrivateMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessPrivateMemorySize")]
         public long PrivateMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessPrivilegedProcessorTime")]
         public System.TimeSpan PrivilegedProcessorTime { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessProcessName")]
         public string ProcessName { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessProcessorAffinity")]
         public System.IntPtr ProcessorAffinity { get { throw null; } set { } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessResponding")]
         public bool Responding { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public Microsoft.Win32.SafeHandles.SafeProcessHandle SafeHandle { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessSessionId")]
         public int SessionId { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessStandardError")]
         public System.IO.StreamReader StandardError { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessStandardInput")]
         public System.IO.StreamWriter StandardInput { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessStandardOutput")]
         public System.IO.StreamReader StandardOutput { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(2))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessStartInfo")]
         public System.Diagnostics.ProcessStartInfo StartInfo { get { throw null; } set { } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessStartTime")]
         public System.DateTime StartTime { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DefaultValueAttribute(null)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessSynchronizingObject")]
         public System.ComponentModel.ISynchronizeInvoke SynchronizingObject { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessThreads")]
         public System.Diagnostics.ProcessThreadCollection Threads { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessTotalProcessorTime")]
         public System.TimeSpan TotalProcessorTime { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessUserProcessorTime")]
         public System.TimeSpan UserProcessorTime { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessVirtualMemorySize")]
         [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.VirtualMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
         public int VirtualMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessVirtualMemorySize")]
         public long VirtualMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessWorkingSet")]
         [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.WorkingSet64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
         public int WorkingSet { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessWorkingSet")]
         public long WorkingSet64 { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessAssociated")]
         public event System.Diagnostics.DataReceivedEventHandler ErrorDataReceived { add { } remove { } }
         [System.ComponentModel.CategoryAttribute("Behavior")]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessExited")]
         public event System.EventHandler Exited { add { } remove { } }
         [System.ComponentModel.BrowsableAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessAssociated")]
         public event System.Diagnostics.DataReceivedEventHandler OutputDataReceived { add { } remove { } }
         public void BeginErrorReadLine() { }
         public void BeginOutputReadLine() { }
@@ -6415,21 +6317,15 @@ namespace System.Diagnostics
         public bool WaitForInputIdle() { throw null; }
         public bool WaitForInputIdle(int milliseconds) { throw null; }
     }
-    [System.ComponentModel.DesignerAttribute("System.Diagnostics.Design.ProcessModuleDesigner, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     public partial class ProcessModule : System.ComponentModel.Component
     {
         internal ProcessModule() { }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcModBaseAddress")]
         public System.IntPtr BaseAddress { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcModEntryPointAddress")]
         public System.IntPtr EntryPointAddress { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcModFileName")]
         public string FileName { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public System.Diagnostics.FileVersionInfo FileVersionInfo { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcModModuleMemorySize")]
         public int ModuleMemorySize { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcModModuleName")]
         public string ModuleName { get { throw null; } }
         public override string ToString() { throw null; }
     }
@@ -6459,11 +6355,9 @@ namespace System.Diagnostics
         [System.ComponentModel.DefaultValueAttribute("")]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         [System.ComponentModel.SettingsBindableAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessArguments")]
         public string Arguments { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute(false)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessCreateNoWindow")]
         public bool CreateNoWindow { get { throw null; } set { } }
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         public string Domain { get { throw null; } set { } }
@@ -6473,22 +6367,17 @@ namespace System.Diagnostics
         public System.Collections.Generic.IDictionary<string, string> Environment { get { throw null; } }
         [System.ComponentModel.DefaultValueAttribute(null)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(2))]
-        [System.ComponentModel.EditorAttribute("System.Diagnostics.Design.StringDictionaryEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessEnvironmentVariables")]
         public System.Collections.Specialized.StringDictionary EnvironmentVariables { get { throw null; } }
         [System.ComponentModel.DefaultValueAttribute(false)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessErrorDialog")]
         public bool ErrorDialog { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public System.IntPtr ErrorDialogParentHandle { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute("")]
-        [System.ComponentModel.EditorAttribute("System.Diagnostics.Design.StartFileNameEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         [System.ComponentModel.SettingsBindableAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessFileName")]
         public string FileName { get { throw null; } set { } }
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         public bool LoadUserProfile { get { throw null; } set { } }
@@ -6498,15 +6387,12 @@ namespace System.Diagnostics
         public string PasswordInClearText { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute(false)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessRedirectStandardError")]
         public bool RedirectStandardError { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute(false)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessRedirectStandardInput")]
         public bool RedirectStandardInput { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute(false)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessRedirectStandardOutput")]
         public bool RedirectStandardOutput { get { throw null; } set { } }
         public System.Text.Encoding StandardErrorEncoding { get { throw null; } set { } }
         public System.Text.Encoding StandardOutputEncoding { get { throw null; } set { } }
@@ -6514,57 +6400,39 @@ namespace System.Diagnostics
         public string UserName { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute(true)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessUseShellExecute")]
         public bool UseShellExecute { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute("")]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessVerb")]
         public string Verb { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public string[] Verbs { get { throw null; } }
         [System.ComponentModel.DefaultValueAttribute((System.Diagnostics.ProcessWindowStyle)(0))]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessWindowStyle")]
         public System.Diagnostics.ProcessWindowStyle WindowStyle { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute("")]
-        [System.ComponentModel.EditorAttribute("System.Diagnostics.Design.WorkingDirectoryEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         [System.ComponentModel.SettingsBindableAttribute(true)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ProcessWorkingDirectory")]
         public string WorkingDirectory { get { throw null; } set { } }
     }
-    [System.ComponentModel.DesignerAttribute("System.Diagnostics.Design.ProcessThreadDesigner, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     public partial class ProcessThread : System.ComponentModel.Component
     {
         internal ProcessThread() { }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ThreadBasePriority")]
         public int BasePriority { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ThreadCurrentPriority")]
         public int CurrentPriority { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ThreadId")]
         public int Id { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public int IdealProcessor { set { } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ThreadPriorityBoostEnabled")]
         public bool PriorityBoostEnabled { get { throw null; } set { } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ThreadPriorityLevel")]
         public System.Diagnostics.ThreadPriorityLevel PriorityLevel { get { throw null; } set { } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ThreadPrivilegedProcessorTime")]
         public System.TimeSpan PrivilegedProcessorTime { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public System.IntPtr ProcessorAffinity { set { } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ThreadStartAddress")]
         public System.IntPtr StartAddress { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ThreadStartTime")]
         public System.DateTime StartTime { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ThreadThreadState")]
         public System.Diagnostics.ThreadState ThreadState { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ThreadTotalProcessorTime")]
         public System.TimeSpan TotalProcessorTime { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ThreadUserProcessorTime")]
         public System.TimeSpan UserProcessorTime { get { throw null; } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("ThreadWaitReason")]
         public System.Diagnostics.ThreadWaitReason WaitReason { get { throw null; } }
         public void ResetIdealProcessor() { }
     }
@@ -7010,7 +6878,6 @@ namespace System.IO
         [System.IO.IODescriptionAttribute("FSW_ChangedFilter")]
         public System.IO.NotifyFilters NotifyFilter { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute("")]
-        [System.ComponentModel.EditorAttribute("System.Diagnostics.Design.FSWPathEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
         [System.ComponentModel.SettingsBindableAttribute(true)]
         [System.IO.IODescriptionAttribute("FSW_Path")]
         public string Path { get { throw null; } set { } }
@@ -7213,7 +7080,6 @@ namespace System.IO.Ports
         public System.IO.Ports.SerialPinChange EventType { get { throw null; } }
     }
     public delegate void SerialPinChangedEventHandler(object sender, System.IO.Ports.SerialPinChangedEventArgs e);
-    [System.Diagnostics.MonitoringDescriptionAttribute("SerialPortDesc")]
     public partial class SerialPort : System.ComponentModel.Component
     {
         public const int InfiniteTimeout = -1;
@@ -7229,7 +7095,6 @@ namespace System.IO.Ports
         public System.IO.Stream BaseStream { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(true)]
         [System.ComponentModel.DefaultValueAttribute(9600)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("BaudRate")]
         public int BaudRate { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
@@ -7248,78 +7113,59 @@ namespace System.IO.Ports
         public bool CtsHolding { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(true)]
         [System.ComponentModel.DefaultValueAttribute(8)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("DataBits")]
         public int DataBits { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(true)]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("DiscardNull")]
         public bool DiscardNull { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public bool DsrHolding { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(true)]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("DtrEnable")]
         public bool DtrEnable { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Encoding")]
         public System.Text.Encoding Encoding { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(true)]
         [System.ComponentModel.DefaultValueAttribute((System.IO.Ports.Handshake)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Handshake")]
         public System.IO.Ports.Handshake Handshake { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public bool IsOpen { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DefaultValueAttribute("\n")]
-        [System.Diagnostics.MonitoringDescriptionAttribute("NewLine")]
         public string NewLine { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(true)]
         [System.ComponentModel.DefaultValueAttribute((System.IO.Ports.Parity)(0))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("Parity")]
         public System.IO.Ports.Parity Parity { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(true)]
         [System.ComponentModel.DefaultValueAttribute((byte)63)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ParityReplace")]
         public byte ParityReplace { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(true)]
         [System.ComponentModel.DefaultValueAttribute("COM1")]
-        [System.Diagnostics.MonitoringDescriptionAttribute("PortName")]
         public string PortName { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(true)]
         [System.ComponentModel.DefaultValueAttribute(4096)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ReadBufferSize")]
         public int ReadBufferSize { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(true)]
         [System.ComponentModel.DefaultValueAttribute(-1)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ReadTimeout")]
         public int ReadTimeout { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(true)]
         [System.ComponentModel.DefaultValueAttribute(1)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("ReceivedBytesThreshold")]
         public int ReceivedBytesThreshold { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(true)]
         [System.ComponentModel.DefaultValueAttribute(false)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("RtsEnable")]
         public bool RtsEnable { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(true)]
         [System.ComponentModel.DefaultValueAttribute((System.IO.Ports.StopBits)(1))]
-        [System.Diagnostics.MonitoringDescriptionAttribute("StopBits")]
         public System.IO.Ports.StopBits StopBits { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(true)]
         [System.ComponentModel.DefaultValueAttribute(2048)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("WriteBufferSize")]
         public int WriteBufferSize { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(true)]
         [System.ComponentModel.DefaultValueAttribute(-1)]
-        [System.Diagnostics.MonitoringDescriptionAttribute("WriteTimeout")]
         public int WriteTimeout { get { throw null; } set { } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("SerialDataReceived")]
         public event System.IO.Ports.SerialDataReceivedEventHandler DataReceived { add { } remove { } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("SerialErrorReceived")]
         public event System.IO.Ports.SerialErrorReceivedEventHandler ErrorReceived { add { } remove { } }
-        [System.Diagnostics.MonitoringDescriptionAttribute("SerialPinChanged")]
         public event System.IO.Ports.SerialPinChangedEventHandler PinChanged { add { } remove { } }
         public void Close() { }
         public void DiscardInBuffer() { }
@@ -7575,7 +7421,7 @@ namespace System.Net
     }
     public partial class DownloadDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal DownloadDataCompletedEventArgs() { }
+        internal DownloadDataCompletedEventArgs() : base(null, false, null) { }
         public byte[] Result { get { throw null; } }
     }
     public delegate void DownloadDataCompletedEventHandler(object sender, System.Net.DownloadDataCompletedEventArgs e);
@@ -7588,7 +7434,7 @@ namespace System.Net
     public delegate void DownloadProgressChangedEventHandler(object sender, System.Net.DownloadProgressChangedEventArgs e);
     public partial class DownloadStringCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal DownloadStringCompletedEventArgs() { }
+        internal DownloadStringCompletedEventArgs() : base(null, false, null) { }
         public string Result { get { throw null; } }
     }
     public delegate void DownloadStringCompletedEventHandler(object sender, System.Net.DownloadStringCompletedEventArgs e);
@@ -8237,13 +8083,13 @@ namespace System.Net
     }
     public partial class OpenReadCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal OpenReadCompletedEventArgs() { }
+        internal OpenReadCompletedEventArgs() : base(null, false, null) { }
         public System.IO.Stream Result { get { throw null; } }
     }
     public delegate void OpenReadCompletedEventHandler(object sender, System.Net.OpenReadCompletedEventArgs e);
     public partial class OpenWriteCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal OpenWriteCompletedEventArgs() { }
+        internal OpenWriteCompletedEventArgs() : base(null, false, null) { }
         public System.IO.Stream Result { get { throw null; } }
     }
     public delegate void OpenWriteCompletedEventHandler(object sender, System.Net.OpenWriteCompletedEventArgs e);
@@ -8361,13 +8207,13 @@ namespace System.Net
     }
     public partial class UploadDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal UploadDataCompletedEventArgs() { }
+        internal UploadDataCompletedEventArgs() : base(null, false, null) { }
         public byte[] Result { get { throw null; } }
     }
     public delegate void UploadDataCompletedEventHandler(object sender, System.Net.UploadDataCompletedEventArgs e);
     public partial class UploadFileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal UploadFileCompletedEventArgs() { }
+        internal UploadFileCompletedEventArgs() : base(null, false, null) { }
         public byte[] Result { get { throw null; } }
     }
     public delegate void UploadFileCompletedEventHandler(object sender, System.Net.UploadFileCompletedEventArgs e);
@@ -8382,13 +8228,13 @@ namespace System.Net
     public delegate void UploadProgressChangedEventHandler(object sender, System.Net.UploadProgressChangedEventArgs e);
     public partial class UploadStringCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal UploadStringCompletedEventArgs() { }
+        internal UploadStringCompletedEventArgs() : base(null, false, null) { }
         public string Result { get { throw null; } }
     }
     public delegate void UploadStringCompletedEventHandler(object sender, System.Net.UploadStringCompletedEventArgs e);
     public partial class UploadValuesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal UploadValuesCompletedEventArgs() { }
+        internal UploadValuesCompletedEventArgs() : base(null, false, null) { }
         public byte[] Result { get { throw null; } }
     }
     public delegate void UploadValuesCompletedEventHandler(object sender, System.Net.UploadValuesCompletedEventArgs e);
@@ -8825,6 +8671,7 @@ namespace System.Net.Cache
         public override string ToString() { throw null; }
     }
 }
+/*CONFIG
 namespace System.Net.Configuration
 {
     public sealed partial class AuthenticationModuleElement : System.Configuration.ConfigurationElement
@@ -8832,7 +8679,6 @@ namespace System.Net.Configuration
         public AuthenticationModuleElement() { }
         public AuthenticationModuleElement(string typeName) { }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("type", IsRequired=true, IsKey=true)]
         public string Type { get { throw null; } set { } }
     }
     [System.Configuration.ConfigurationCollectionAttribute(typeof(System.Net.Configuration.AuthenticationModuleElement))]
@@ -8853,7 +8699,6 @@ namespace System.Net.Configuration
     public sealed partial class AuthenticationModulesSection : System.Configuration.ConfigurationSection
     {
         public AuthenticationModulesSection() { }
-        [System.Configuration.ConfigurationPropertyAttribute("", IsDefaultCollection=true)]
         public System.Net.Configuration.AuthenticationModuleElementCollection AuthenticationModules { get { throw null; } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
         protected override void InitializeDefault() { }
@@ -8863,7 +8708,6 @@ namespace System.Net.Configuration
     {
         public BypassElement() { }
         public BypassElement(string address) { }
-        [System.Configuration.ConfigurationPropertyAttribute("address", IsRequired=true, IsKey=true)]
         public string Address { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
     }
@@ -8887,9 +8731,7 @@ namespace System.Net.Configuration
     {
         public ConnectionManagementElement() { }
         public ConnectionManagementElement(string address, int maxConnection) { }
-        [System.Configuration.ConfigurationPropertyAttribute("address", IsRequired=true, IsKey=true)]
         public string Address { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("maxconnection", IsRequired=true, DefaultValue=1)]
         public int MaxConnection { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
     }
@@ -8911,23 +8753,17 @@ namespace System.Net.Configuration
     public sealed partial class ConnectionManagementSection : System.Configuration.ConfigurationSection
     {
         public ConnectionManagementSection() { }
-        [System.Configuration.ConfigurationPropertyAttribute("", IsDefaultCollection=true)]
         public System.Net.Configuration.ConnectionManagementElementCollection ConnectionManagement { get { throw null; } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
     }
     public sealed partial class DefaultProxySection : System.Configuration.ConfigurationSection
     {
         public DefaultProxySection() { }
-        [System.Configuration.ConfigurationPropertyAttribute("bypasslist")]
         public System.Net.Configuration.BypassElementCollection BypassList { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("enabled", DefaultValue=true)]
         public bool Enabled { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("module")]
         public System.Net.Configuration.ModuleElement Module { get { throw null; } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("proxy")]
         public System.Net.Configuration.ProxyElement Proxy { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("useDefaultCredentials", DefaultValue=false)]
         public bool UseDefaultCredentials { get { throw null; } set { } }
         protected override void PostDeserialize() { }
         protected override void Reset(System.Configuration.ConfigurationElement parentElement) { }
@@ -8935,7 +8771,6 @@ namespace System.Net.Configuration
     public sealed partial class FtpCachePolicyElement : System.Configuration.ConfigurationElement
     {
         public FtpCachePolicyElement() { }
-        [System.Configuration.ConfigurationPropertyAttribute("policyLevel", DefaultValue=(System.Net.Cache.RequestCacheLevel)(0))]
         public System.Net.Cache.RequestCacheLevel PolicyLevel { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
         protected override void DeserializeElement(System.Xml.XmlReader reader, bool serializeCollectionKey) { }
@@ -8944,13 +8779,9 @@ namespace System.Net.Configuration
     public sealed partial class HttpCachePolicyElement : System.Configuration.ConfigurationElement
     {
         public HttpCachePolicyElement() { }
-        [System.Configuration.ConfigurationPropertyAttribute("maximumAge", DefaultValue="10675199.02:48:05.4775807")]
         public System.TimeSpan MaximumAge { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("maximumStale", DefaultValue="-10675199.02:48:05.4775808")]
         public System.TimeSpan MaximumStale { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("minimumFresh", DefaultValue="-10675199.02:48:05.4775808")]
         public System.TimeSpan MinimumFresh { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("policyLevel", IsRequired=true, DefaultValue=(System.Net.Cache.HttpRequestCacheLevel)(0))]
         public System.Net.Cache.HttpRequestCacheLevel PolicyLevel { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
         protected override void DeserializeElement(System.Xml.XmlReader reader, bool serializeCollectionKey) { }
@@ -8960,46 +8791,33 @@ namespace System.Net.Configuration
     {
         public HttpListenerElement() { }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("timeouts")]
         public System.Net.Configuration.HttpListenerTimeoutsElement Timeouts { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("unescapeRequestUrl", DefaultValue=true, IsRequired=false)]
         public bool UnescapeRequestUrl { get { throw null; } }
     }
     public sealed partial class HttpListenerTimeoutsElement : System.Configuration.ConfigurationElement
     {
         public HttpListenerTimeoutsElement() { }
-        [System.Configuration.ConfigurationPropertyAttribute("drainEntityBody", DefaultValue=0, IsRequired=false)]
         public System.TimeSpan DrainEntityBody { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("entityBody", DefaultValue=0, IsRequired=false)]
         public System.TimeSpan EntityBody { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("headerWait", DefaultValue=0, IsRequired=false)]
         public System.TimeSpan HeaderWait { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("idleConnection", DefaultValue=0, IsRequired=false)]
         public System.TimeSpan IdleConnection { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("minSendBytesPerSecond", DefaultValue=(long)0, IsRequired=false)]
         public long MinSendBytesPerSecond { get { throw null; } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("requestQueue", DefaultValue=0, IsRequired=false)]
         public System.TimeSpan RequestQueue { get { throw null; } }
     }
     public sealed partial class HttpWebRequestElement : System.Configuration.ConfigurationElement
     {
         public HttpWebRequestElement() { }
-        [System.Configuration.ConfigurationPropertyAttribute("maximumErrorResponseLength", DefaultValue=64)]
         public int MaximumErrorResponseLength { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("maximumResponseHeadersLength", DefaultValue=64)]
         public int MaximumResponseHeadersLength { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("maximumUnauthorizedUploadLength", DefaultValue=-1)]
         public int MaximumUnauthorizedUploadLength { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("useUnsafeHeaderParsing", DefaultValue=false)]
         public bool UseUnsafeHeaderParsing { get { throw null; } set { } }
         protected override void PostDeserialize() { }
     }
     public sealed partial class Ipv6Element : System.Configuration.ConfigurationElement
     {
         public Ipv6Element() { }
-        [System.Configuration.ConfigurationPropertyAttribute("enabled", DefaultValue=false)]
         public bool Enabled { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
     }
@@ -9012,47 +8830,34 @@ namespace System.Net.Configuration
     {
         public ModuleElement() { }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("type")]
         public string Type { get { throw null; } set { } }
     }
     public sealed partial class NetSectionGroup : System.Configuration.ConfigurationSectionGroup
     {
         public NetSectionGroup() { }
-        [System.Configuration.ConfigurationPropertyAttribute("authenticationModules")]
         public System.Net.Configuration.AuthenticationModulesSection AuthenticationModules { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("connectionManagement")]
         public System.Net.Configuration.ConnectionManagementSection ConnectionManagement { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("defaultProxy")]
         public System.Net.Configuration.DefaultProxySection DefaultProxy { get { throw null; } }
         public System.Net.Configuration.MailSettingsSectionGroup MailSettings { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("requestCaching")]
         public System.Net.Configuration.RequestCachingSection RequestCaching { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("settings")]
         public System.Net.Configuration.SettingsSection Settings { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("webRequestModules")]
         public System.Net.Configuration.WebRequestModulesSection WebRequestModules { get { throw null; } }
         public static System.Net.Configuration.NetSectionGroup GetSectionGroup(System.Configuration.Configuration config) { throw null; }
     }
     public sealed partial class PerformanceCountersElement : System.Configuration.ConfigurationElement
     {
         public PerformanceCountersElement() { }
-        [System.Configuration.ConfigurationPropertyAttribute("enabled", DefaultValue=false)]
         public bool Enabled { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
     }
     public sealed partial class ProxyElement : System.Configuration.ConfigurationElement
     {
         public ProxyElement() { }
-        [System.Configuration.ConfigurationPropertyAttribute("autoDetect", DefaultValue=(System.Net.Configuration.ProxyElement.AutoDetectValues)(-1))]
         public System.Net.Configuration.ProxyElement.AutoDetectValues AutoDetect { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("bypassonlocal", DefaultValue=(System.Net.Configuration.ProxyElement.BypassOnLocalValues)(-1))]
         public System.Net.Configuration.ProxyElement.BypassOnLocalValues BypassOnLocal { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("proxyaddress")]
         public System.Uri ProxyAddress { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("scriptLocation")]
         public System.Uri ScriptLocation { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("usesystemdefault", DefaultValue=(System.Net.Configuration.ProxyElement.UseSystemDefaultValues)(-1))]
         public System.Net.Configuration.ProxyElement.UseSystemDefaultValues UseSystemDefault { get { throw null; } set { } }
         public enum AutoDetectValues
         {
@@ -9076,18 +8881,12 @@ namespace System.Net.Configuration
     public sealed partial class RequestCachingSection : System.Configuration.ConfigurationSection
     {
         public RequestCachingSection() { }
-        [System.Configuration.ConfigurationPropertyAttribute("defaultFtpCachePolicy")]
         public System.Net.Configuration.FtpCachePolicyElement DefaultFtpCachePolicy { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("defaultHttpCachePolicy")]
         public System.Net.Configuration.HttpCachePolicyElement DefaultHttpCachePolicy { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("defaultPolicyLevel", DefaultValue=(System.Net.Cache.RequestCacheLevel)(1))]
         public System.Net.Cache.RequestCacheLevel DefaultPolicyLevel { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("disableAllCaching", DefaultValue=false)]
         public bool DisableAllCaching { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("isPrivateCache", DefaultValue=true)]
         public bool IsPrivateCache { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("unspecifiedMaximumAge", DefaultValue="1.00:00:00")]
         public System.TimeSpan UnspecifiedMaximumAge { get { throw null; } set { } }
         protected override void DeserializeElement(System.Xml.XmlReader reader, bool serializeCollectionKey) { }
         protected override void PostDeserialize() { }
@@ -9095,96 +8894,64 @@ namespace System.Net.Configuration
     public sealed partial class ServicePointManagerElement : System.Configuration.ConfigurationElement
     {
         public ServicePointManagerElement() { }
-        [System.Configuration.ConfigurationPropertyAttribute("checkCertificateName", DefaultValue=true)]
         public bool CheckCertificateName { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("checkCertificateRevocationList", DefaultValue=false)]
         public bool CheckCertificateRevocationList { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("dnsRefreshTimeout", DefaultValue=120000)]
         public int DnsRefreshTimeout { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("enableDnsRoundRobin", DefaultValue=false)]
         public bool EnableDnsRoundRobin { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("encryptionPolicy", DefaultValue=(System.Net.Security.EncryptionPolicy)(0))]
         public System.Net.Security.EncryptionPolicy EncryptionPolicy { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("expect100Continue", DefaultValue=true)]
         public bool Expect100Continue { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("useNagleAlgorithm", DefaultValue=true)]
         public bool UseNagleAlgorithm { get { throw null; } set { } }
         protected override void PostDeserialize() { }
     }
     public sealed partial class SettingsSection : System.Configuration.ConfigurationSection
     {
         public SettingsSection() { }
-        [System.Configuration.ConfigurationPropertyAttribute("httpListener")]
         public System.Net.Configuration.HttpListenerElement HttpListener { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("httpWebRequest")]
         public System.Net.Configuration.HttpWebRequestElement HttpWebRequest { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("ipv6")]
         public System.Net.Configuration.Ipv6Element Ipv6 { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("performanceCounters")]
         public System.Net.Configuration.PerformanceCountersElement PerformanceCounters { get { throw null; } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("servicePointManager")]
         public System.Net.Configuration.ServicePointManagerElement ServicePointManager { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("socket")]
         public System.Net.Configuration.SocketElement Socket { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("webProxyScript")]
         public System.Net.Configuration.WebProxyScriptElement WebProxyScript { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("webUtility")]
         public System.Net.Configuration.WebUtilityElement WebUtility { get { throw null; } }
     }
     public sealed partial class SmtpNetworkElement : System.Configuration.ConfigurationElement
     {
         public SmtpNetworkElement() { }
-        [System.Configuration.ConfigurationPropertyAttribute("clientDomain")]
         public string ClientDomain { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("defaultCredentials", DefaultValue=false)]
         public bool DefaultCredentials { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("enableSsl", DefaultValue=false)]
         public bool EnableSsl { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("host")]
         public string Host { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("password")]
         public string Password { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("port", DefaultValue=25)]
         public int Port { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("targetName")]
         public string TargetName { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("userName")]
         public string UserName { get { throw null; } set { } }
         protected override void PostDeserialize() { }
     }
     public sealed partial class SmtpSection : System.Configuration.ConfigurationSection
     {
         public SmtpSection() { }
-        [System.Configuration.ConfigurationPropertyAttribute("deliveryFormat", DefaultValue=(System.Net.Mail.SmtpDeliveryFormat)(0))]
         public System.Net.Mail.SmtpDeliveryFormat DeliveryFormat { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("deliveryMethod", DefaultValue=(System.Net.Mail.SmtpDeliveryMethod)(0))]
         public System.Net.Mail.SmtpDeliveryMethod DeliveryMethod { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("from")]
         public string From { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("network")]
         public System.Net.Configuration.SmtpNetworkElement Network { get { throw null; } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("specifiedPickupDirectory")]
         public System.Net.Configuration.SmtpSpecifiedPickupDirectoryElement SpecifiedPickupDirectory { get { throw null; } }
     }
     public sealed partial class SmtpSpecifiedPickupDirectoryElement : System.Configuration.ConfigurationElement
     {
         public SmtpSpecifiedPickupDirectoryElement() { }
-        [System.Configuration.ConfigurationPropertyAttribute("pickupDirectoryLocation")]
         public string PickupDirectoryLocation { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
     }
     public sealed partial class SocketElement : System.Configuration.ConfigurationElement
     {
         public SocketElement() { }
-        [System.Configuration.ConfigurationPropertyAttribute("alwaysUseCompletionPortsForAccept", DefaultValue=false)]
         public bool AlwaysUseCompletionPortsForAccept { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("alwaysUseCompletionPortsForConnect", DefaultValue=false)]
         public bool AlwaysUseCompletionPortsForConnect { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("ipProtectionLevel", DefaultValue=(System.Net.Sockets.IPProtectionLevel)(-1))]
         public System.Net.Sockets.IPProtectionLevel IPProtectionLevel { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
         protected override void PostDeserialize() { }
@@ -9205,7 +8972,6 @@ namespace System.Net.Configuration
     public sealed partial class WebProxyScriptElement : System.Configuration.ConfigurationElement
     {
         public WebProxyScriptElement() { }
-        [System.Configuration.ConfigurationPropertyAttribute("downloadTimeout", DefaultValue="00:01:00")]
         public System.TimeSpan DownloadTimeout { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
         protected override void PostDeserialize() { }
@@ -9215,10 +8981,8 @@ namespace System.Net.Configuration
         public WebRequestModuleElement() { }
         public WebRequestModuleElement(string prefix, string type) { }
         public WebRequestModuleElement(string prefix, System.Type type) { }
-        [System.Configuration.ConfigurationPropertyAttribute("prefix", IsRequired=true, IsKey=true)]
         public string Prefix { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("type")]
         public System.Type Type { get { throw null; } set { } }
     }
     [System.Configuration.ConfigurationCollectionAttribute(typeof(System.Net.Configuration.WebRequestModuleElement))]
@@ -9240,7 +9004,6 @@ namespace System.Net.Configuration
     {
         public WebRequestModulesSection() { }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("", IsDefaultCollection=true)]
         public System.Net.Configuration.WebRequestModuleElementCollection WebRequestModules { get { throw null; } }
         protected override void InitializeDefault() { }
         protected override void PostDeserialize() { }
@@ -9249,12 +9012,11 @@ namespace System.Net.Configuration
     {
         public WebUtilityElement() { }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("unicodeDecodingConformance", DefaultValue=(System.Net.Configuration.UnicodeDecodingConformance)(0))]
         public System.Net.Configuration.UnicodeDecodingConformance UnicodeDecodingConformance { get { throw null; } set { } }
-        [System.Configuration.ConfigurationPropertyAttribute("unicodeEncodingConformance", DefaultValue=(System.Net.Configuration.UnicodeEncodingConformance)(0))]
         public System.Net.Configuration.UnicodeEncodingConformance UnicodeEncodingConformance { get { throw null; } set { } }
     }
 }
+*/
 namespace System.Net.Mail
 {
     public partial class AlternateView : System.Net.Mail.AttachmentBase
@@ -10080,7 +9842,7 @@ namespace System.Net.NetworkInformation
     }
     public partial class PingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal PingCompletedEventArgs() { }
+        internal PingCompletedEventArgs() : base(null, false, null) { }
         public System.Net.NetworkInformation.PingReply Reply { get { throw null; } }
     }
     public delegate void PingCompletedEventHandler(object sender, System.Net.NetworkInformation.PingCompletedEventArgs e);
@@ -11541,24 +11303,21 @@ namespace System.Security.Authentication.ExtendedProtection
         Referred = 1,
     }
 }
+/*CONFIG
 namespace System.Security.Authentication.ExtendedProtection.Configuration
 {
     public sealed partial class ExtendedProtectionPolicyElement : System.Configuration.ConfigurationElement
     {
         public ExtendedProtectionPolicyElement() { }
-        [System.Configuration.ConfigurationPropertyAttribute("customServiceNames")]
         public System.Security.Authentication.ExtendedProtection.Configuration.ServiceNameElementCollection CustomServiceNames { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("policyEnforcement")]
         public System.Security.Authentication.ExtendedProtection.PolicyEnforcement PolicyEnforcement { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
-        [System.Configuration.ConfigurationPropertyAttribute("protectionScenario", DefaultValue=(System.Security.Authentication.ExtendedProtection.ProtectionScenario)(0))]
         public System.Security.Authentication.ExtendedProtection.ProtectionScenario ProtectionScenario { get { throw null; } set { } }
         public System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy BuildPolicy() { throw null; }
     }
     public sealed partial class ServiceNameElement : System.Configuration.ConfigurationElement
     {
         public ServiceNameElement() { }
-        [System.Configuration.ConfigurationPropertyAttribute("name")]
         public string Name { get { throw null; } set { } }
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
     }
@@ -11578,6 +11337,7 @@ namespace System.Security.Authentication.ExtendedProtection.Configuration
         public void RemoveAt(int index) { }
     }
 }
+*/
 namespace System.Security.Claims
 {
     public static partial class DynamicRoleClaimProvider
