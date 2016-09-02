@@ -1,18 +1,4 @@
 Compat issues with assembly netstandard:
-CannotRemoveBaseTypeOrInterface : Type 'Microsoft.Win32.RegistryKey' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
-MembersMustExist : Member 'Microsoft.Win32.RegistryKey.Close()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'Microsoft.Win32.RegistryKey.CreateSubKey(System.String, Microsoft.Win32.RegistryKeyPermissionCheck)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'Microsoft.Win32.RegistryKey.CreateSubKey(System.String, Microsoft.Win32.RegistryKeyPermissionCheck, Microsoft.Win32.RegistryOptions)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'Microsoft.Win32.RegistryKey.CreateSubKey(System.String, Microsoft.Win32.RegistryKeyPermissionCheck, Microsoft.Win32.RegistryOptions, System.Security.AccessControl.RegistrySecurity)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'Microsoft.Win32.RegistryKey.CreateSubKey(System.String, Microsoft.Win32.RegistryKeyPermissionCheck, System.Security.AccessControl.RegistrySecurity)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'Microsoft.Win32.RegistryKey.GetAccessControl()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'Microsoft.Win32.RegistryKey.GetAccessControl(System.Security.AccessControl.AccessControlSections)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive, System.String)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive, System.String, Microsoft.Win32.RegistryView)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'Microsoft.Win32.RegistryKey.OpenSubKey(System.String, Microsoft.Win32.RegistryKeyPermissionCheck)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'Microsoft.Win32.RegistryKey.OpenSubKey(System.String, Microsoft.Win32.RegistryKeyPermissionCheck, System.Security.AccessControl.RegistryRights)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'Microsoft.Win32.RegistryKey.SetAccessControl(System.Security.AccessControl.RegistrySecurity)' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.RegistryKeyPermissionCheck' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'Microsoft.Win32.SafeHandles.SafeAccessTokenHandle..ctor(System.IntPtr)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'Microsoft.Win32.SafeHandles.SafeAccessTokenHandle.InvalidHandle.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.ActivationContext.ApplicationManifestBytes.get()' does not exist in the implementation but it does exist in the contract.
@@ -249,4 +235,4 @@ MembersMustExist : Member 'System.Threading.Mutex.GetAccessControl()' does not e
 MembersMustExist : Member 'System.Threading.Mutex.SetAccessControl(System.Security.AccessControl.MutexSecurity)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.Thread.DisableComObjectEagerCleanup()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.ThreadAbortException.ExceptionState.get()' does not exist in the implementation but it does exist in the contract.
-Total Issues: 250
+Total Issues: 236
