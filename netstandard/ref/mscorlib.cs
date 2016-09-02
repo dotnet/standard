@@ -154,70 +154,6 @@ namespace Microsoft.Win32.SafeHandles
 }
 namespace System
 {
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _AppDomain
-    {
-        string BaseDirectory { get; }
-        string DynamicDirectory { get; }
-        System.Security.Policy.Evidence Evidence { get; }
-        string FriendlyName { get; }
-        string RelativeSearchPath { get; }
-        bool ShadowCopyFiles { get; }
-        event System.AssemblyLoadEventHandler AssemblyLoad;
-        event System.ResolveEventHandler AssemblyResolve;
-        event System.EventHandler DomainUnload;
-        event System.EventHandler ProcessExit;
-        event System.ResolveEventHandler ResourceResolve;
-        event System.ResolveEventHandler TypeResolve;
-        event System.UnhandledExceptionEventHandler UnhandledException;
-        void AppendPrivatePath(string path);
-        void ClearPrivatePath();
-        void ClearShadowCopyPath();
-        System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName);
-        System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes);
-        System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, object[] activationAttributes);
-        System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName);
-        System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes);
-        System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, object[] activationAttributes);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, System.Security.Policy.Evidence evidence);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, System.Security.Policy.Evidence evidence, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir, System.Security.Policy.Evidence evidence);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir, System.Security.Policy.Evidence evidence, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir, System.Security.Policy.Evidence evidence, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions, bool isSynchronized);
-        void DoCallBack(System.CrossAppDomainDelegate theDelegate);
-        bool Equals(object other);
-        int ExecuteAssembly(string assemblyFile);
-        int ExecuteAssembly(string assemblyFile, System.Security.Policy.Evidence assemblySecurity);
-        int ExecuteAssembly(string assemblyFile, System.Security.Policy.Evidence assemblySecurity, string[] args);
-        System.Reflection.Assembly[] GetAssemblies();
-        object GetData(string name);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        object GetLifetimeService();
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        object InitializeLifetimeService();
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        System.Reflection.Assembly Load(byte[] rawAssembly);
-        System.Reflection.Assembly Load(byte[] rawAssembly, byte[] rawSymbolStore);
-        System.Reflection.Assembly Load(byte[] rawAssembly, byte[] rawSymbolStore, System.Security.Policy.Evidence securityEvidence);
-        System.Reflection.Assembly Load(System.Reflection.AssemblyName assemblyRef);
-        System.Reflection.Assembly Load(System.Reflection.AssemblyName assemblyRef, System.Security.Policy.Evidence assemblySecurity);
-        System.Reflection.Assembly Load(string assemblyString);
-        System.Reflection.Assembly Load(string assemblyString, System.Security.Policy.Evidence assemblySecurity);
-        void SetAppDomainPolicy(System.Security.Policy.PolicyLevel domainPolicy);
-        void SetCachePath(string s);
-        void SetData(string name, object data);
-        void SetPrincipalPolicy(System.Security.Principal.PrincipalPolicy policy);
-        void SetShadowCopyPath(string s);
-        void SetThreadPrincipal(System.Security.Principal.IPrincipal principal);
-        string ToString();
-    }
     public partial class AccessViolationException : System.SystemException
     {
         public AccessViolationException() { }
@@ -252,7 +188,7 @@ namespace System
             StoreBounded = 1,
         }
     }
-    public sealed partial class Activator : System.Runtime.InteropServices._Activator
+    public sealed partial class Activator
     {
         internal Activator() { }
         public static System.Runtime.Remoting.ObjectHandle CreateComInstanceFrom(string assemblyName, string typeName) { throw null; }
@@ -286,10 +222,6 @@ namespace System
         public static System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, object[] activationAttributes) { throw null; }
         public static object GetObject(System.Type type, string url) { throw null; }
         public static object GetObject(System.Type type, string url, object state) { throw null; }
-        void System.Runtime.InteropServices._Activator.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._Activator.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._Activator.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._Activator.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
     public partial class AggregateException : System.Exception
     {
@@ -314,7 +246,7 @@ namespace System
         public static void SetSwitch(string switchName, bool isEnabled) { }
         public static bool TryGetSwitch(string switchName, out bool isEnabled) { isEnabled = default(bool); throw null; }
     }
-    public sealed partial class AppDomain : System.MarshalByRefObject, System._AppDomain, System.Security.IEvidenceFactory
+    public sealed partial class AppDomain : System.MarshalByRefObject, System.Security.IEvidenceFactory
     {
         internal AppDomain() { }
         public System.ActivationContext ActivationContext { get { throw null; } }
@@ -456,10 +388,6 @@ namespace System
         [System.ObsoleteAttribute("AppDomain.SetShadowCopyPath has been deprecated. Please investigate the use of AppDomainSetup.ShadowCopyDirectories instead. http://go.microsoft.com/fwlink/?linkid=14202")]
         public void SetShadowCopyPath(string path) { }
         public void SetThreadPrincipal(System.Security.Principal.IPrincipal principal) { }
-        void System._AppDomain.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System._AppDomain.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System._AppDomain.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System._AppDomain.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
         public override string ToString() { throw null; }
         public static void Unload(System.AppDomain domain) { }
     }
@@ -764,7 +692,7 @@ namespace System
     public delegate void AssemblyLoadEventHandler(object sender, System.AssemblyLoadEventArgs args);
     public delegate void AsyncCallback(System.IAsyncResult ar);
     [System.AttributeUsageAttribute((System.AttributeTargets)(32767), Inherited=true, AllowMultiple=false)]
-    public abstract partial class Attribute : System.Runtime.InteropServices._Attribute
+    public abstract partial class Attribute
     {
         protected Attribute() { }
         public virtual object TypeId { get { throw null; } }
@@ -804,10 +732,6 @@ namespace System
         public static bool IsDefined(System.Reflection.ParameterInfo element, System.Type attributeType) { throw null; }
         public static bool IsDefined(System.Reflection.ParameterInfo element, System.Type attributeType, bool inherit) { throw null; }
         public virtual bool Match(object obj) { throw null; }
-        void System.Runtime.InteropServices._Attribute.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._Attribute.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._Attribute.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._Attribute.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
     [System.FlagsAttribute]
     public enum AttributeTargets
@@ -2468,7 +2392,7 @@ namespace System
     }
     public delegate void EventHandler(object sender, System.EventArgs e);
     public delegate void EventHandler<TEventArgs>(object sender, TEventArgs e);
-    public partial class Exception : System.Runtime.InteropServices._Exception, System.Runtime.Serialization.ISerializable
+    public partial class Exception : System.Runtime.Serialization.ISerializable
     {
         public Exception() { }
         protected Exception(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
@@ -3958,7 +3882,7 @@ namespace System
         int System.IComparable.CompareTo(object obj) { throw null; }
         public override string ToString() { throw null; }
     }
-    public abstract partial class Type : System.Reflection.MemberInfo, System.Reflection.IReflect, System.Runtime.InteropServices._Type
+    public abstract partial class Type : System.Reflection.MemberInfo, System.Reflection.IReflect
     {
         public static readonly char Delimiter;
         public static readonly System.Type[] EmptyTypes;
@@ -4135,10 +4059,6 @@ namespace System
         public static bool operator ==(System.Type left, System.Type right) { throw null; }
         public static bool operator !=(System.Type left, System.Type right) { throw null; }
         public static System.Type ReflectionOnlyGetType(string typeName, bool throwIfNotFound, bool ignoreCase) { throw null; }
-        void System.Runtime.InteropServices._Type.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._Type.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._Type.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._Type.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
         public override string ToString() { throw null; }
     }
     public partial class TypeAccessException : System.TypeLoadException
@@ -8092,7 +8012,7 @@ namespace System.Reflection
         public AmbiguousMatchException(string message) { }
         public AmbiguousMatchException(string message, System.Exception inner) { }
     }
-    public abstract partial class Assembly : System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._Assembly, System.Runtime.Serialization.ISerializable, System.Security.IEvidenceFactory
+    public abstract partial class Assembly : System.Reflection.ICustomAttributeProvider, System.Runtime.Serialization.ISerializable, System.Security.IEvidenceFactory
     {
         protected Assembly() { }
         public virtual string CodeBase { get { throw null; } }
@@ -8183,7 +8103,6 @@ namespace System.Reflection
         public static System.Reflection.Assembly ReflectionOnlyLoad(byte[] rawAssembly) { throw null; }
         public static System.Reflection.Assembly ReflectionOnlyLoad(string assemblyString) { throw null; }
         public static System.Reflection.Assembly ReflectionOnlyLoadFrom(string assemblyFile) { throw null; }
-        System.Type System.Runtime.InteropServices._Assembly.GetType() { throw null; }
         public override string ToString() { throw null; }
         public static System.Reflection.Assembly UnsafeLoadFrom(string assemblyFile) { throw null; }
     }
@@ -8288,7 +8207,7 @@ namespace System.Reflection
         public string Key { get { throw null; } }
         public string Value { get { throw null; } }
     }
-    public sealed partial class AssemblyName : System.ICloneable, System.Runtime.InteropServices._AssemblyName, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable
+    public sealed partial class AssemblyName : System.ICloneable, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable
     {
         public AssemblyName() { }
         public AssemblyName(string assemblyName) { }
@@ -8314,10 +8233,6 @@ namespace System.Reflection
         public static bool ReferenceMatchesDefinition(System.Reflection.AssemblyName reference, System.Reflection.AssemblyName definition) { throw null; }
         public void SetPublicKey(byte[] publicKey) { }
         public void SetPublicKeyToken(byte[] publicKeyToken) { }
-        void System.Runtime.InteropServices._AssemblyName.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._AssemblyName.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._AssemblyName.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._AssemblyName.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
         public override string ToString() { throw null; }
     }
     [System.FlagsAttribute]
@@ -8408,7 +8323,7 @@ namespace System.Reflection
         Standard = 1,
         VarArgs = 2,
     }
-    public abstract partial class ConstructorInfo : System.Reflection.MethodBase, System.Runtime.InteropServices._ConstructorInfo
+    public abstract partial class ConstructorInfo : System.Reflection.MethodBase
     {
         public static readonly string ConstructorName;
         public static readonly string TypeConstructorName;
@@ -8420,15 +8335,6 @@ namespace System.Reflection
         public abstract object Invoke(System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture);
         public static bool operator ==(System.Reflection.ConstructorInfo left, System.Reflection.ConstructorInfo right) { throw null; }
         public static bool operator !=(System.Reflection.ConstructorInfo left, System.Reflection.ConstructorInfo right) { throw null; }
-        void System.Runtime.InteropServices._ConstructorInfo.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        System.Type System.Runtime.InteropServices._ConstructorInfo.GetType() { throw null; }
-        void System.Runtime.InteropServices._ConstructorInfo.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._ConstructorInfo.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._ConstructorInfo.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
-        object System.Runtime.InteropServices._ConstructorInfo.Invoke_2(object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture) { throw null; }
-        object System.Runtime.InteropServices._ConstructorInfo.Invoke_3(object obj, object[] parameters) { throw null; }
-        object System.Runtime.InteropServices._ConstructorInfo.Invoke_4(System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture) { throw null; }
-        object System.Runtime.InteropServices._ConstructorInfo.Invoke_5(object[] parameters) { throw null; }
     }
     public partial class CustomAttributeData
     {
@@ -8533,7 +8439,7 @@ namespace System.Reflection
         RTSpecialName = 1024,
         SpecialName = 512,
     }
-    public abstract partial class EventInfo : System.Reflection.MemberInfo, System.Runtime.InteropServices._EventInfo
+    public abstract partial class EventInfo : System.Reflection.MemberInfo
     {
         protected EventInfo() { }
         public virtual System.Reflection.MethodInfo AddMethod { get { throw null; } }
@@ -8558,11 +8464,6 @@ namespace System.Reflection
         public static bool operator ==(System.Reflection.EventInfo left, System.Reflection.EventInfo right) { throw null; }
         public static bool operator !=(System.Reflection.EventInfo left, System.Reflection.EventInfo right) { throw null; }
         public virtual void RemoveEventHandler(object target, System.Delegate handler) { }
-        void System.Runtime.InteropServices._EventInfo.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        System.Type System.Runtime.InteropServices._EventInfo.GetType() { throw null; }
-        void System.Runtime.InteropServices._EventInfo.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._EventInfo.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._EventInfo.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
     public partial class ExceptionHandlingClause
     {
@@ -8607,7 +8508,7 @@ namespace System.Reflection
         SpecialName = 512,
         Static = 16,
     }
-    public abstract partial class FieldInfo : System.Reflection.MemberInfo, System.Runtime.InteropServices._FieldInfo
+    public abstract partial class FieldInfo : System.Reflection.MemberInfo
     {
         protected FieldInfo() { }
         public abstract System.Reflection.FieldAttributes Attributes { get; }
@@ -8645,11 +8546,6 @@ namespace System.Reflection
         public abstract void SetValue(object obj, object value, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Globalization.CultureInfo culture);
         [System.CLSCompliantAttribute(false)]
         public virtual void SetValueDirect(System.TypedReference obj, object value) { }
-        void System.Runtime.InteropServices._FieldInfo.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        System.Type System.Runtime.InteropServices._FieldInfo.GetType() { throw null; }
-        void System.Runtime.InteropServices._FieldInfo.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._FieldInfo.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._FieldInfo.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
     [System.FlagsAttribute]
     public enum GenericParameterAttributes
@@ -8730,7 +8626,7 @@ namespace System.Reflection
         public virtual System.Reflection.ResourceLocation ResourceLocation { get { throw null; } }
     }
     public delegate bool MemberFilter(System.Reflection.MemberInfo m, object filterCriteria);
-    public abstract partial class MemberInfo : System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._MemberInfo
+    public abstract partial class MemberInfo : System.Reflection.ICustomAttributeProvider
     {
         protected MemberInfo() { }
         public virtual System.Collections.Generic.IEnumerable<System.Reflection.CustomAttributeData> CustomAttributes { get { throw null; } }
@@ -8748,11 +8644,6 @@ namespace System.Reflection
         public abstract bool IsDefined(System.Type attributeType, bool inherit);
         public static bool operator ==(System.Reflection.MemberInfo left, System.Reflection.MemberInfo right) { throw null; }
         public static bool operator !=(System.Reflection.MemberInfo left, System.Reflection.MemberInfo right) { throw null; }
-        void System.Runtime.InteropServices._MemberInfo.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        System.Type System.Runtime.InteropServices._MemberInfo.GetType() { throw null; }
-        void System.Runtime.InteropServices._MemberInfo.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._MemberInfo.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._MemberInfo.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
     [System.FlagsAttribute]
     public enum MemberTypes
@@ -8795,7 +8686,7 @@ namespace System.Reflection
         Virtual = 64,
         VtableLayoutMask = 256,
     }
-    public abstract partial class MethodBase : System.Reflection.MemberInfo, System.Runtime.InteropServices._MethodBase
+    public abstract partial class MethodBase : System.Reflection.MemberInfo
     {
         protected MethodBase() { }
         public abstract System.Reflection.MethodAttributes Attributes { get; }
@@ -8821,19 +8712,6 @@ namespace System.Reflection
         public bool IsVirtual { get { throw null; } }
         public abstract System.RuntimeMethodHandle MethodHandle { get; }
         public virtual System.Reflection.MethodImplAttributes MethodImplementationFlags { get { throw null; } }
-        bool System.Runtime.InteropServices._MethodBase.IsAbstract { get { throw null; } }
-        bool System.Runtime.InteropServices._MethodBase.IsAssembly { get { throw null; } }
-        bool System.Runtime.InteropServices._MethodBase.IsConstructor { get { throw null; } }
-        bool System.Runtime.InteropServices._MethodBase.IsFamily { get { throw null; } }
-        bool System.Runtime.InteropServices._MethodBase.IsFamilyAndAssembly { get { throw null; } }
-        bool System.Runtime.InteropServices._MethodBase.IsFamilyOrAssembly { get { throw null; } }
-        bool System.Runtime.InteropServices._MethodBase.IsFinal { get { throw null; } }
-        bool System.Runtime.InteropServices._MethodBase.IsHideBySig { get { throw null; } }
-        bool System.Runtime.InteropServices._MethodBase.IsPrivate { get { throw null; } }
-        bool System.Runtime.InteropServices._MethodBase.IsPublic { get { throw null; } }
-        bool System.Runtime.InteropServices._MethodBase.IsSpecialName { get { throw null; } }
-        bool System.Runtime.InteropServices._MethodBase.IsStatic { get { throw null; } }
-        bool System.Runtime.InteropServices._MethodBase.IsVirtual { get { throw null; } }
         public override bool Equals(object obj) { throw null; }
         public static System.Reflection.MethodBase GetCurrentMethod() { throw null; }
         public virtual System.Type[] GetGenericArguments() { throw null; }
@@ -8847,11 +8725,6 @@ namespace System.Reflection
         public abstract object Invoke(object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture);
         public static bool operator ==(System.Reflection.MethodBase left, System.Reflection.MethodBase right) { throw null; }
         public static bool operator !=(System.Reflection.MethodBase left, System.Reflection.MethodBase right) { throw null; }
-        void System.Runtime.InteropServices._MethodBase.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        System.Type System.Runtime.InteropServices._MethodBase.GetType() { throw null; }
-        void System.Runtime.InteropServices._MethodBase.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._MethodBase.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._MethodBase.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
     public partial class MethodBody
     {
@@ -8882,7 +8755,7 @@ namespace System.Reflection
         Synchronized = 32,
         Unmanaged = 4,
     }
-    public abstract partial class MethodInfo : System.Reflection.MethodBase, System.Runtime.InteropServices._MethodInfo
+    public abstract partial class MethodInfo : System.Reflection.MethodBase
     {
         protected MethodInfo() { }
         public override System.Reflection.MemberTypes MemberType { get { throw null; } }
@@ -8899,11 +8772,6 @@ namespace System.Reflection
         public virtual System.Reflection.MethodInfo MakeGenericMethod(params System.Type[] typeArguments) { throw null; }
         public static bool operator ==(System.Reflection.MethodInfo left, System.Reflection.MethodInfo right) { throw null; }
         public static bool operator !=(System.Reflection.MethodInfo left, System.Reflection.MethodInfo right) { throw null; }
-        void System.Runtime.InteropServices._MethodInfo.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        System.Type System.Runtime.InteropServices._MethodInfo.GetType() { throw null; }
-        void System.Runtime.InteropServices._MethodInfo.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._MethodInfo.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._MethodInfo.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
     public sealed partial class Missing : System.Runtime.Serialization.ISerializable
     {
@@ -8911,7 +8779,7 @@ namespace System.Reflection
         public static readonly System.Reflection.Missing Value;
         void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
     }
-    public abstract partial class Module : System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._Module, System.Runtime.Serialization.ISerializable
+    public abstract partial class Module : System.Reflection.ICustomAttributeProvider, System.Runtime.Serialization.ISerializable
     {
         public static readonly System.Reflection.TypeFilter FilterTypeName;
         public static readonly System.Reflection.TypeFilter FilterTypeNameIgnoreCase;
@@ -8962,10 +8830,6 @@ namespace System.Reflection
         public virtual string ResolveString(int metadataToken) { throw null; }
         public System.Type ResolveType(int metadataToken) { throw null; }
         public virtual System.Type ResolveType(int metadataToken, System.Type[] genericTypeArguments, System.Type[] genericMethodArguments) { throw null; }
-        void System.Runtime.InteropServices._Module.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._Module.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._Module.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._Module.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
         public override string ToString() { throw null; }
     }
     public delegate System.Reflection.Module ModuleResolveEventHandler(object sender, System.ResolveEventArgs e);
@@ -9000,7 +8864,7 @@ namespace System.Reflection
         ReservedMask = 61440,
         Retval = 8,
     }
-    public partial class ParameterInfo : System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._ParameterInfo, System.Runtime.Serialization.IObjectReference
+    public partial class ParameterInfo : System.Reflection.ICustomAttributeProvider, System.Runtime.Serialization.IObjectReference
     {
         protected System.Reflection.ParameterAttributes AttrsImpl;
         protected System.Type ClassImpl;
@@ -9031,10 +8895,6 @@ namespace System.Reflection
         public object GetRealObject(System.Runtime.Serialization.StreamingContext context) { throw null; }
         public virtual System.Type[] GetRequiredCustomModifiers() { throw null; }
         public virtual bool IsDefined(System.Type attributeType, bool inherit) { throw null; }
-        void System.Runtime.InteropServices._ParameterInfo.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._ParameterInfo.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._ParameterInfo.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._ParameterInfo.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
         public override string ToString() { throw null; }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -9082,7 +8942,7 @@ namespace System.Reflection
         RTSpecialName = 1024,
         SpecialName = 512,
     }
-    public abstract partial class PropertyInfo : System.Reflection.MemberInfo, System.Runtime.InteropServices._PropertyInfo
+    public abstract partial class PropertyInfo : System.Reflection.MemberInfo
     {
         protected PropertyInfo() { }
         public abstract System.Reflection.PropertyAttributes Attributes { get; }
@@ -9114,11 +8974,6 @@ namespace System.Reflection
         public void SetValue(object obj, object value) { }
         public virtual void SetValue(object obj, object value, object[] index) { }
         public abstract void SetValue(object obj, object value, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] index, System.Globalization.CultureInfo culture);
-        void System.Runtime.InteropServices._PropertyInfo.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        System.Type System.Runtime.InteropServices._PropertyInfo.GetType() { throw null; }
-        void System.Runtime.InteropServices._PropertyInfo.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._PropertyInfo.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._PropertyInfo.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
     public abstract partial class ReflectionContext
     {
@@ -9302,7 +9157,7 @@ namespace System.Reflection
 }
 namespace System.Reflection.Emit
 {
-    public sealed partial class AssemblyBuilder : System.Reflection.Assembly, System.Runtime.InteropServices._AssemblyBuilder
+    public sealed partial class AssemblyBuilder : System.Reflection.Assembly
     {
         internal AssemblyBuilder() { }
         public override string CodeBase { get { throw null; } }
@@ -9360,10 +9215,6 @@ namespace System.Reflection.Emit
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
         public void SetEntryPoint(System.Reflection.MethodInfo entryMethod) { }
         public void SetEntryPoint(System.Reflection.MethodInfo entryMethod, System.Reflection.Emit.PEFileKinds fileKind) { }
-        void System.Runtime.InteropServices._AssemblyBuilder.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._AssemblyBuilder.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._AssemblyBuilder.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._AssemblyBuilder.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
     [System.FlagsAttribute]
     public enum AssemblyBuilderAccess
@@ -9374,7 +9225,7 @@ namespace System.Reflection.Emit
         RunAndSave = 3,
         Save = 2,
     }
-    public sealed partial class ConstructorBuilder : System.Reflection.ConstructorInfo, System.Runtime.InteropServices._ConstructorBuilder
+    public sealed partial class ConstructorBuilder : System.Reflection.ConstructorInfo
     {
         internal ConstructorBuilder() { }
         public override System.Reflection.MethodAttributes Attributes { get { throw null; } }
@@ -9406,22 +9257,14 @@ namespace System.Reflection.Emit
         public void SetImplementationFlags(System.Reflection.MethodImplAttributes attributes) { }
         public void SetMethodBody(byte[] il, int maxStack, byte[] localSignature, System.Collections.Generic.IEnumerable<System.Reflection.Emit.ExceptionHandler> exceptionHandlers, System.Collections.Generic.IEnumerable<int> tokenFixups) { }
         public void SetSymCustomAttribute(string name, byte[] data) { }
-        void System.Runtime.InteropServices._ConstructorBuilder.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._ConstructorBuilder.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._ConstructorBuilder.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._ConstructorBuilder.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
         public override string ToString() { throw null; }
     }
-    public partial class CustomAttributeBuilder : System.Runtime.InteropServices._CustomAttributeBuilder
+    public partial class CustomAttributeBuilder
     {
         public CustomAttributeBuilder(System.Reflection.ConstructorInfo con, object[] constructorArgs) { }
         public CustomAttributeBuilder(System.Reflection.ConstructorInfo con, object[] constructorArgs, System.Reflection.FieldInfo[] namedFields, object[] fieldValues) { }
         public CustomAttributeBuilder(System.Reflection.ConstructorInfo con, object[] constructorArgs, System.Reflection.PropertyInfo[] namedProperties, object[] propertyValues) { }
         public CustomAttributeBuilder(System.Reflection.ConstructorInfo con, object[] constructorArgs, System.Reflection.PropertyInfo[] namedProperties, object[] propertyValues, System.Reflection.FieldInfo[] namedFields, object[] fieldValues) { }
-        void System.Runtime.InteropServices._CustomAttributeBuilder.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._CustomAttributeBuilder.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._CustomAttributeBuilder.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._CustomAttributeBuilder.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
     public partial class DynamicILInfo
     {
@@ -9484,7 +9327,7 @@ namespace System.Reflection.Emit
         public override bool IsDefined(System.Type attributeType, bool inherit) { throw null; }
         public override string ToString() { throw null; }
     }
-    public sealed partial class EnumBuilder : System.Reflection.TypeInfo, System.Runtime.InteropServices._EnumBuilder
+    public sealed partial class EnumBuilder : System.Reflection.TypeInfo
     {
         internal EnumBuilder() { }
         public override System.Reflection.Assembly Assembly { get { throw null; } }
@@ -9544,12 +9387,8 @@ namespace System.Reflection.Emit
         public override System.Type MakePointerType() { throw null; }
         public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
-        void System.Runtime.InteropServices._EnumBuilder.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._EnumBuilder.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._EnumBuilder.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._EnumBuilder.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
-    public sealed partial class EventBuilder : System.Runtime.InteropServices._EventBuilder
+    public sealed partial class EventBuilder
     {
         internal EventBuilder() { }
         public void AddOtherMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
@@ -9559,10 +9398,6 @@ namespace System.Reflection.Emit
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
         public void SetRaiseMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
         public void SetRemoveOnMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
-        void System.Runtime.InteropServices._EventBuilder.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._EventBuilder.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._EventBuilder.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._EventBuilder.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct EventToken
@@ -9592,7 +9427,7 @@ namespace System.Reflection.Emit
         public static bool operator ==(System.Reflection.Emit.ExceptionHandler left, System.Reflection.Emit.ExceptionHandler right) { throw null; }
         public static bool operator !=(System.Reflection.Emit.ExceptionHandler left, System.Reflection.Emit.ExceptionHandler right) { throw null; }
     }
-    public sealed partial class FieldBuilder : System.Reflection.FieldInfo, System.Runtime.InteropServices._FieldBuilder
+    public sealed partial class FieldBuilder : System.Reflection.FieldInfo
     {
         internal FieldBuilder() { }
         public override System.Reflection.FieldAttributes Attributes { get { throw null; } }
@@ -9614,10 +9449,6 @@ namespace System.Reflection.Emit
         public void SetMarshal(System.Reflection.Emit.UnmanagedMarshal unmanagedMarshal) { }
         public void SetOffset(int iOffset) { }
         public override void SetValue(object obj, object val, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Globalization.CultureInfo culture) { }
-        void System.Runtime.InteropServices._FieldBuilder.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._FieldBuilder.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._FieldBuilder.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._FieldBuilder.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct FieldToken
@@ -9716,7 +9547,7 @@ namespace System.Reflection.Emit
         public void SetInterfaceConstraints(params System.Type[] interfaceConstraints) { }
         public override string ToString() { throw null; }
     }
-    public partial class ILGenerator : System.Runtime.InteropServices._ILGenerator
+    public partial class ILGenerator
     {
         internal ILGenerator() { }
         public virtual int ILOffset { get { throw null; } }
@@ -9757,10 +9588,6 @@ namespace System.Reflection.Emit
         public virtual void EndScope() { }
         public virtual void MarkLabel(System.Reflection.Emit.Label loc) { }
         public virtual void MarkSequencePoint(System.Diagnostics.SymbolStore.ISymbolDocumentWriter document, int startLine, int startColumn, int endLine, int endColumn) { }
-        void System.Runtime.InteropServices._ILGenerator.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._ILGenerator.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._ILGenerator.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._ILGenerator.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
         public virtual void ThrowException(System.Type excType) { }
         public virtual void UsingNamespace(string usingNamespace) { }
     }
@@ -9773,7 +9600,7 @@ namespace System.Reflection.Emit
         public static bool operator ==(System.Reflection.Emit.Label a, System.Reflection.Emit.Label b) { throw null; }
         public static bool operator !=(System.Reflection.Emit.Label a, System.Reflection.Emit.Label b) { throw null; }
     }
-    public sealed partial class LocalBuilder : System.Reflection.LocalVariableInfo, System.Runtime.InteropServices._LocalBuilder
+    public sealed partial class LocalBuilder : System.Reflection.LocalVariableInfo
     {
         internal LocalBuilder() { }
         public override bool IsPinned { get { throw null; } }
@@ -9781,12 +9608,8 @@ namespace System.Reflection.Emit
         public override System.Type LocalType { get { throw null; } }
         public void SetLocalSymInfo(string name) { }
         public void SetLocalSymInfo(string name, int startOffset, int endOffset) { }
-        void System.Runtime.InteropServices._LocalBuilder.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._LocalBuilder.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._LocalBuilder.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._LocalBuilder.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
-    public sealed partial class MethodBuilder : System.Reflection.MethodInfo, System.Runtime.InteropServices._MethodBuilder
+    public sealed partial class MethodBuilder : System.Reflection.MethodInfo
     {
         internal MethodBuilder() { }
         public override System.Reflection.MethodAttributes Attributes { get { throw null; } }
@@ -9837,22 +9660,14 @@ namespace System.Reflection.Emit
         public void SetReturnType(System.Type returnType) { }
         public void SetSignature(System.Type returnType, System.Type[] returnTypeRequiredCustomModifiers, System.Type[] returnTypeOptionalCustomModifiers, System.Type[] parameterTypes, System.Type[][] parameterTypeRequiredCustomModifiers, System.Type[][] parameterTypeOptionalCustomModifiers) { }
         public void SetSymCustomAttribute(string name, byte[] data) { }
-        void System.Runtime.InteropServices._MethodBuilder.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._MethodBuilder.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._MethodBuilder.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._MethodBuilder.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
         public override string ToString() { throw null; }
     }
-    public sealed partial class MethodRental : System.Runtime.InteropServices._MethodRental
+    public sealed partial class MethodRental
     {
         internal MethodRental() { }
         public const int JitImmediate = 1;
         public const int JitOnDemand = 0;
         public static void SwapMethodBody(System.Type cls, int methodtoken, System.IntPtr rgIL, int methodSize, int flags) { }
-        void System.Runtime.InteropServices._MethodRental.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._MethodRental.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._MethodRental.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._MethodRental.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct MethodToken
@@ -9865,7 +9680,7 @@ namespace System.Reflection.Emit
         public static bool operator ==(System.Reflection.Emit.MethodToken a, System.Reflection.Emit.MethodToken b) { throw null; }
         public static bool operator !=(System.Reflection.Emit.MethodToken a, System.Reflection.Emit.MethodToken b) { throw null; }
     }
-    public partial class ModuleBuilder : System.Reflection.Module, System.Runtime.InteropServices._ModuleBuilder
+    public partial class ModuleBuilder : System.Reflection.Module
     {
         internal ModuleBuilder() { }
         public override System.Reflection.Assembly Assembly { get { throw null; } }
@@ -9938,10 +9753,6 @@ namespace System.Reflection.Emit
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
         public void SetSymCustomAttribute(string name, byte[] data) { }
         public void SetUserEntryPoint(System.Reflection.MethodInfo entryPoint) { }
-        void System.Runtime.InteropServices._ModuleBuilder.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._ModuleBuilder.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._ModuleBuilder.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._ModuleBuilder.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct OpCode
@@ -10236,7 +10047,7 @@ namespace System.Reflection.Emit
         Size8 = 8,
         Unspecified = 0,
     }
-    public partial class ParameterBuilder : System.Runtime.InteropServices._ParameterBuilder
+    public partial class ParameterBuilder
     {
         internal ParameterBuilder() { }
         public virtual int Attributes { get { throw null; } }
@@ -10251,10 +10062,6 @@ namespace System.Reflection.Emit
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
         [System.ObsoleteAttribute("An alternate API is available: Emit the MarshalAs custom attribute instead. http://go.microsoft.com/fwlink/?linkid=14202")]
         public virtual void SetMarshal(System.Reflection.Emit.UnmanagedMarshal unmanagedMarshal) { }
-        void System.Runtime.InteropServices._ParameterBuilder.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._ParameterBuilder.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._ParameterBuilder.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._ParameterBuilder.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct ParameterToken
@@ -10273,7 +10080,7 @@ namespace System.Reflection.Emit
         Dll = 1,
         WindowApplication = 3,
     }
-    public sealed partial class PropertyBuilder : System.Reflection.PropertyInfo, System.Runtime.InteropServices._PropertyBuilder
+    public sealed partial class PropertyBuilder : System.Reflection.PropertyInfo
     {
         internal PropertyBuilder() { }
         public override System.Reflection.PropertyAttributes Attributes { get { throw null; } }
@@ -10302,10 +10109,6 @@ namespace System.Reflection.Emit
         public void SetSetMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
         public override void SetValue(object obj, object value, object[] index) { }
         public override void SetValue(object obj, object value, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] index, System.Globalization.CultureInfo culture) { }
-        void System.Runtime.InteropServices._PropertyBuilder.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._PropertyBuilder.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._PropertyBuilder.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._PropertyBuilder.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct PropertyToken
@@ -10318,7 +10121,7 @@ namespace System.Reflection.Emit
         public static bool operator ==(System.Reflection.Emit.PropertyToken a, System.Reflection.Emit.PropertyToken b) { throw null; }
         public static bool operator !=(System.Reflection.Emit.PropertyToken a, System.Reflection.Emit.PropertyToken b) { throw null; }
     }
-    public sealed partial class SignatureHelper : System.Runtime.InteropServices._SignatureHelper
+    public sealed partial class SignatureHelper
     {
         internal SignatureHelper() { }
         public void AddArgument(System.Type clsArgument) { }
@@ -10340,10 +10143,6 @@ namespace System.Reflection.Emit
         public static System.Reflection.Emit.SignatureHelper GetPropertySigHelper(System.Reflection.Module mod, System.Type returnType, System.Type[] parameterTypes) { throw null; }
         public static System.Reflection.Emit.SignatureHelper GetPropertySigHelper(System.Reflection.Module mod, System.Type returnType, System.Type[] requiredReturnTypeCustomModifiers, System.Type[] optionalReturnTypeCustomModifiers, System.Type[] parameterTypes, System.Type[][] requiredParameterTypeCustomModifiers, System.Type[][] optionalParameterTypeCustomModifiers) { throw null; }
         public byte[] GetSignature() { throw null; }
-        void System.Runtime.InteropServices._SignatureHelper.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._SignatureHelper.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._SignatureHelper.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._SignatureHelper.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
         public override string ToString() { throw null; }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -10399,7 +10198,7 @@ namespace System.Reflection.Emit
         public static bool operator ==(System.Reflection.Emit.StringToken a, System.Reflection.Emit.StringToken b) { throw null; }
         public static bool operator !=(System.Reflection.Emit.StringToken a, System.Reflection.Emit.StringToken b) { throw null; }
     }
-    public sealed partial class TypeBuilder : System.Reflection.TypeInfo, System.Runtime.InteropServices._TypeBuilder
+    public sealed partial class TypeBuilder : System.Reflection.TypeInfo
     {
         internal TypeBuilder() { }
         public const int UnspecifiedTypeSize = 0;
@@ -10509,10 +10308,6 @@ namespace System.Reflection.Emit
         public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
         public void SetParent(System.Type parent) { }
-        void System.Runtime.InteropServices._TypeBuilder.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._TypeBuilder.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._TypeBuilder.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._TypeBuilder.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
         public override string ToString() { throw null; }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -11251,629 +11046,6 @@ namespace System.Runtime.Hosting
 }
 namespace System.Runtime.InteropServices
 {
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Activator))]
-    public partial interface _Activator
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Assembly))]
-    public partial interface _Assembly
-    {
-        string CodeBase { get; }
-        System.Reflection.MethodInfo EntryPoint { get; }
-        string EscapedCodeBase { get; }
-        System.Security.Policy.Evidence Evidence { get; }
-        string FullName { get; }
-        bool GlobalAssemblyCache { get; }
-        string Location { get; }
-        event System.Reflection.ModuleResolveEventHandler ModuleResolve;
-        object CreateInstance(string typeName);
-        object CreateInstance(string typeName, bool ignoreCase);
-        object CreateInstance(string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes);
-        bool Equals(object other);
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        System.Type[] GetExportedTypes();
-        System.IO.FileStream GetFile(string name);
-        System.IO.FileStream[] GetFiles();
-        System.IO.FileStream[] GetFiles(bool getResourceModules);
-        int GetHashCode();
-        System.Reflection.Module[] GetLoadedModules();
-        System.Reflection.Module[] GetLoadedModules(bool getResourceModules);
-        System.Reflection.ManifestResourceInfo GetManifestResourceInfo(string resourceName);
-        string[] GetManifestResourceNames();
-        System.IO.Stream GetManifestResourceStream(string name);
-        System.IO.Stream GetManifestResourceStream(System.Type type, string name);
-        System.Reflection.Module GetModule(string name);
-        System.Reflection.Module[] GetModules();
-        System.Reflection.Module[] GetModules(bool getResourceModules);
-        System.Reflection.AssemblyName GetName();
-        System.Reflection.AssemblyName GetName(bool copiedName);
-        void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context);
-        System.Reflection.AssemblyName[] GetReferencedAssemblies();
-        System.Reflection.Assembly GetSatelliteAssembly(System.Globalization.CultureInfo culture);
-        System.Reflection.Assembly GetSatelliteAssembly(System.Globalization.CultureInfo culture, System.Version version);
-        System.Type GetType();
-        System.Type GetType(string name);
-        System.Type GetType(string name, bool throwOnError);
-        System.Type GetType(string name, bool throwOnError, bool ignoreCase);
-        System.Type[] GetTypes();
-        bool IsDefined(System.Type attributeType, bool inherit);
-        System.Reflection.Module LoadModule(string moduleName, byte[] rawModule);
-        System.Reflection.Module LoadModule(string moduleName, byte[] rawModule, byte[] rawSymbolStore);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Emit.AssemblyBuilder))]
-    public partial interface _AssemblyBuilder
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.AssemblyName))]
-    public partial interface _AssemblyName
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Attribute))]
-    public partial interface _Attribute
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Emit.ConstructorBuilder))]
-    public partial interface _ConstructorBuilder
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.ConstructorInfo))]
-    public partial interface _ConstructorInfo
-    {
-        System.Reflection.MethodAttributes Attributes { get; }
-        System.Reflection.CallingConventions CallingConvention { get; }
-        System.Type DeclaringType { get; }
-        bool IsAbstract { get; }
-        bool IsAssembly { get; }
-        bool IsConstructor { get; }
-        bool IsFamily { get; }
-        bool IsFamilyAndAssembly { get; }
-        bool IsFamilyOrAssembly { get; }
-        bool IsFinal { get; }
-        bool IsHideBySig { get; }
-        bool IsPrivate { get; }
-        bool IsPublic { get; }
-        bool IsSpecialName { get; }
-        bool IsStatic { get; }
-        bool IsVirtual { get; }
-        System.Reflection.MemberTypes MemberType { get; }
-        System.RuntimeMethodHandle MethodHandle { get; }
-        string Name { get; }
-        System.Type ReflectedType { get; }
-        bool Equals(object other);
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        System.Reflection.MethodImplAttributes GetMethodImplementationFlags();
-        System.Reflection.ParameterInfo[] GetParameters();
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        object Invoke_2(object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture);
-        object Invoke_3(object obj, object[] parameters);
-        object Invoke_4(System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture);
-        object Invoke_5(object[] parameters);
-        bool IsDefined(System.Type attributeType, bool inherit);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Emit.CustomAttributeBuilder))]
-    public partial interface _CustomAttributeBuilder
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Emit.EnumBuilder))]
-    public partial interface _EnumBuilder
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Emit.EventBuilder))]
-    public partial interface _EventBuilder
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.EventInfo))]
-    public partial interface _EventInfo
-    {
-        System.Reflection.EventAttributes Attributes { get; }
-        System.Type DeclaringType { get; }
-        System.Type EventHandlerType { get; }
-        bool IsMulticast { get; }
-        bool IsSpecialName { get; }
-        System.Reflection.MemberTypes MemberType { get; }
-        string Name { get; }
-        System.Type ReflectedType { get; }
-        void AddEventHandler(object target, System.Delegate handler);
-        bool Equals(object other);
-        System.Reflection.MethodInfo GetAddMethod();
-        System.Reflection.MethodInfo GetAddMethod(bool nonPublic);
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        System.Reflection.MethodInfo GetRaiseMethod();
-        System.Reflection.MethodInfo GetRaiseMethod(bool nonPublic);
-        System.Reflection.MethodInfo GetRemoveMethod();
-        System.Reflection.MethodInfo GetRemoveMethod(bool nonPublic);
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        bool IsDefined(System.Type attributeType, bool inherit);
-        void RemoveEventHandler(object target, System.Delegate handler);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _Exception
-    {
-        string HelpLink { get; set; }
-        System.Exception InnerException { get; }
-        string Message { get; }
-        string Source { get; set; }
-        string StackTrace { get; }
-        System.Reflection.MethodBase TargetSite { get; }
-        bool Equals(object obj);
-        System.Exception GetBaseException();
-        int GetHashCode();
-        void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context);
-        System.Type GetType();
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Emit.FieldBuilder))]
-    public partial interface _FieldBuilder
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.FieldInfo))]
-    public partial interface _FieldInfo
-    {
-        System.Reflection.FieldAttributes Attributes { get; }
-        System.Type DeclaringType { get; }
-        System.RuntimeFieldHandle FieldHandle { get; }
-        System.Type FieldType { get; }
-        bool IsAssembly { get; }
-        bool IsFamily { get; }
-        bool IsFamilyAndAssembly { get; }
-        bool IsFamilyOrAssembly { get; }
-        bool IsInitOnly { get; }
-        bool IsLiteral { get; }
-        bool IsNotSerialized { get; }
-        bool IsPinvokeImpl { get; }
-        bool IsPrivate { get; }
-        bool IsPublic { get; }
-        bool IsSpecialName { get; }
-        bool IsStatic { get; }
-        System.Reflection.MemberTypes MemberType { get; }
-        string Name { get; }
-        System.Type ReflectedType { get; }
-        bool Equals(object other);
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        object GetValue(object obj);
-        object GetValueDirect(System.TypedReference obj);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        bool IsDefined(System.Type attributeType, bool inherit);
-        void SetValue(object obj, object value);
-        void SetValue(object obj, object value, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Globalization.CultureInfo culture);
-        void SetValueDirect(System.TypedReference obj, object value);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Emit.ILGenerator))]
-    public partial interface _ILGenerator
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Emit.LocalBuilder))]
-    public partial interface _LocalBuilder
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.MemberInfo))]
-    public partial interface _MemberInfo
-    {
-        System.Type DeclaringType { get; }
-        System.Reflection.MemberTypes MemberType { get; }
-        string Name { get; }
-        System.Type ReflectedType { get; }
-        bool Equals(object other);
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        bool IsDefined(System.Type attributeType, bool inherit);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.MethodBase))]
-    public partial interface _MethodBase
-    {
-        System.Reflection.MethodAttributes Attributes { get; }
-        System.Reflection.CallingConventions CallingConvention { get; }
-        System.Type DeclaringType { get; }
-        bool IsAbstract { get; }
-        bool IsAssembly { get; }
-        bool IsConstructor { get; }
-        bool IsFamily { get; }
-        bool IsFamilyAndAssembly { get; }
-        bool IsFamilyOrAssembly { get; }
-        bool IsFinal { get; }
-        bool IsHideBySig { get; }
-        bool IsPrivate { get; }
-        bool IsPublic { get; }
-        bool IsSpecialName { get; }
-        bool IsStatic { get; }
-        bool IsVirtual { get; }
-        System.Reflection.MemberTypes MemberType { get; }
-        System.RuntimeMethodHandle MethodHandle { get; }
-        string Name { get; }
-        System.Type ReflectedType { get; }
-        bool Equals(object other);
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        System.Reflection.MethodImplAttributes GetMethodImplementationFlags();
-        System.Reflection.ParameterInfo[] GetParameters();
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        object Invoke(object obj, object[] parameters);
-        object Invoke(object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        bool IsDefined(System.Type attributeType, bool inherit);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Emit.MethodBuilder))]
-    public partial interface _MethodBuilder
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.MethodInfo))]
-    public partial interface _MethodInfo
-    {
-        System.Reflection.MethodAttributes Attributes { get; }
-        System.Reflection.CallingConventions CallingConvention { get; }
-        System.Type DeclaringType { get; }
-        bool IsAbstract { get; }
-        bool IsAssembly { get; }
-        bool IsConstructor { get; }
-        bool IsFamily { get; }
-        bool IsFamilyAndAssembly { get; }
-        bool IsFamilyOrAssembly { get; }
-        bool IsFinal { get; }
-        bool IsHideBySig { get; }
-        bool IsPrivate { get; }
-        bool IsPublic { get; }
-        bool IsSpecialName { get; }
-        bool IsStatic { get; }
-        bool IsVirtual { get; }
-        System.Reflection.MemberTypes MemberType { get; }
-        System.RuntimeMethodHandle MethodHandle { get; }
-        string Name { get; }
-        System.Type ReflectedType { get; }
-        System.Type ReturnType { get; }
-        System.Reflection.ICustomAttributeProvider ReturnTypeCustomAttributes { get; }
-        bool Equals(object other);
-        System.Reflection.MethodInfo GetBaseDefinition();
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        System.Reflection.MethodImplAttributes GetMethodImplementationFlags();
-        System.Reflection.ParameterInfo[] GetParameters();
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        object Invoke(object obj, object[] parameters);
-        object Invoke(object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        bool IsDefined(System.Type attributeType, bool inherit);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Emit.MethodRental))]
-    public partial interface _MethodRental
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Module))]
-    public partial interface _Module
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Emit.ModuleBuilder))]
-    public partial interface _ModuleBuilder
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Emit.ParameterBuilder))]
-    public partial interface _ParameterBuilder
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.ParameterInfo))]
-    public partial interface _ParameterInfo
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Emit.PropertyBuilder))]
-    public partial interface _PropertyBuilder
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.PropertyInfo))]
-    public partial interface _PropertyInfo
-    {
-        System.Reflection.PropertyAttributes Attributes { get; }
-        bool CanRead { get; }
-        bool CanWrite { get; }
-        System.Type DeclaringType { get; }
-        bool IsSpecialName { get; }
-        System.Reflection.MemberTypes MemberType { get; }
-        string Name { get; }
-        System.Type PropertyType { get; }
-        System.Type ReflectedType { get; }
-        bool Equals(object other);
-        System.Reflection.MethodInfo[] GetAccessors();
-        System.Reflection.MethodInfo[] GetAccessors(bool nonPublic);
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        System.Reflection.MethodInfo GetGetMethod();
-        System.Reflection.MethodInfo GetGetMethod(bool nonPublic);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        System.Reflection.ParameterInfo[] GetIndexParameters();
-        System.Reflection.MethodInfo GetSetMethod();
-        System.Reflection.MethodInfo GetSetMethod(bool nonPublic);
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        object GetValue(object obj, object[] index);
-        object GetValue(object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] index, System.Globalization.CultureInfo culture);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        bool IsDefined(System.Type attributeType, bool inherit);
-        void SetValue(object obj, object value, object[] index);
-        void SetValue(object obj, object value, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] index, System.Globalization.CultureInfo culture);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Emit.SignatureHelper))]
-    public partial interface _SignatureHelper
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Threading.Thread))]
-    public partial interface _Thread
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Type))]
-    public partial interface _Type
-    {
-        System.Reflection.Assembly Assembly { get; }
-        string AssemblyQualifiedName { get; }
-        System.Reflection.TypeAttributes Attributes { get; }
-        System.Type BaseType { get; }
-        System.Type DeclaringType { get; }
-        string FullName { get; }
-        System.Guid GUID { get; }
-        bool HasElementType { get; }
-        bool IsAbstract { get; }
-        bool IsAnsiClass { get; }
-        bool IsArray { get; }
-        bool IsAutoClass { get; }
-        bool IsAutoLayout { get; }
-        bool IsByRef { get; }
-        bool IsClass { get; }
-        bool IsCOMObject { get; }
-        bool IsContextful { get; }
-        bool IsEnum { get; }
-        bool IsExplicitLayout { get; }
-        bool IsImport { get; }
-        bool IsInterface { get; }
-        bool IsLayoutSequential { get; }
-        bool IsMarshalByRef { get; }
-        bool IsNestedAssembly { get; }
-        bool IsNestedFamANDAssem { get; }
-        bool IsNestedFamily { get; }
-        bool IsNestedFamORAssem { get; }
-        bool IsNestedPrivate { get; }
-        bool IsNestedPublic { get; }
-        bool IsNotPublic { get; }
-        bool IsPointer { get; }
-        bool IsPrimitive { get; }
-        bool IsPublic { get; }
-        bool IsSealed { get; }
-        bool IsSerializable { get; }
-        bool IsSpecialName { get; }
-        bool IsUnicodeClass { get; }
-        bool IsValueType { get; }
-        System.Reflection.MemberTypes MemberType { get; }
-        System.Reflection.Module Module { get; }
-        string Name { get; }
-        string Namespace { get; }
-        System.Type ReflectedType { get; }
-        System.RuntimeTypeHandle TypeHandle { get; }
-        System.Reflection.ConstructorInfo TypeInitializer { get; }
-        System.Type UnderlyingSystemType { get; }
-        bool Equals(object other);
-        bool Equals(System.Type o);
-        System.Type[] FindInterfaces(System.Reflection.TypeFilter filter, object filterCriteria);
-        System.Reflection.MemberInfo[] FindMembers(System.Reflection.MemberTypes memberType, System.Reflection.BindingFlags bindingAttr, System.Reflection.MemberFilter filter, object filterCriteria);
-        int GetArrayRank();
-        System.Reflection.ConstructorInfo GetConstructor(System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Reflection.CallingConventions callConvention, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
-        System.Reflection.ConstructorInfo GetConstructor(System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
-        System.Reflection.ConstructorInfo GetConstructor(System.Type[] types);
-        System.Reflection.ConstructorInfo[] GetConstructors();
-        System.Reflection.ConstructorInfo[] GetConstructors(System.Reflection.BindingFlags bindingAttr);
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        System.Reflection.MemberInfo[] GetDefaultMembers();
-        System.Type GetElementType();
-        System.Reflection.EventInfo GetEvent(string name);
-        System.Reflection.EventInfo GetEvent(string name, System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.EventInfo[] GetEvents();
-        System.Reflection.EventInfo[] GetEvents(System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.FieldInfo GetField(string name);
-        System.Reflection.FieldInfo GetField(string name, System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.FieldInfo[] GetFields();
-        System.Reflection.FieldInfo[] GetFields(System.Reflection.BindingFlags bindingAttr);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        System.Type GetInterface(string name);
-        System.Type GetInterface(string name, bool ignoreCase);
-        System.Reflection.InterfaceMapping GetInterfaceMap(System.Type interfaceType);
-        System.Type[] GetInterfaces();
-        System.Reflection.MemberInfo[] GetMember(string name);
-        System.Reflection.MemberInfo[] GetMember(string name, System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.MemberInfo[] GetMember(string name, System.Reflection.MemberTypes type, System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.MemberInfo[] GetMembers();
-        System.Reflection.MemberInfo[] GetMembers(System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.MethodInfo GetMethod(string name);
-        System.Reflection.MethodInfo GetMethod(string name, System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.MethodInfo GetMethod(string name, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Reflection.CallingConventions callConvention, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
-        System.Reflection.MethodInfo GetMethod(string name, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
-        System.Reflection.MethodInfo GetMethod(string name, System.Type[] types);
-        System.Reflection.MethodInfo GetMethod(string name, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
-        System.Reflection.MethodInfo[] GetMethods();
-        System.Reflection.MethodInfo[] GetMethods(System.Reflection.BindingFlags bindingAttr);
-        System.Type GetNestedType(string name);
-        System.Type GetNestedType(string name, System.Reflection.BindingFlags bindingAttr);
-        System.Type[] GetNestedTypes();
-        System.Type[] GetNestedTypes(System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.PropertyInfo[] GetProperties();
-        System.Reflection.PropertyInfo[] GetProperties(System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.PropertyInfo GetProperty(string name);
-        System.Reflection.PropertyInfo GetProperty(string name, System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.PropertyInfo GetProperty(string name, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Type returnType, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
-        System.Reflection.PropertyInfo GetProperty(string name, System.Type returnType);
-        System.Reflection.PropertyInfo GetProperty(string name, System.Type returnType, System.Type[] types);
-        System.Reflection.PropertyInfo GetProperty(string name, System.Type returnType, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
-        System.Reflection.PropertyInfo GetProperty(string name, System.Type[] types);
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        object InvokeMember(string name, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object target, object[] args);
-        object InvokeMember(string name, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object target, object[] args, System.Globalization.CultureInfo culture);
-        object InvokeMember(string name, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object target, object[] args, System.Reflection.ParameterModifier[] modifiers, System.Globalization.CultureInfo culture, string[] namedParameters);
-        bool IsAssignableFrom(System.Type c);
-        bool IsDefined(System.Type attributeType, bool inherit);
-        bool IsInstanceOfType(object o);
-        bool IsSubclassOf(System.Type c);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Reflection.Emit.TypeBuilder))]
-    public partial interface _TypeBuilder
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(64), AllowMultiple=false, Inherited=false)]
     public sealed partial class AllowReversePInvokeCallsAttribute : System.Attribute
     {
@@ -20543,7 +19715,7 @@ namespace System.Threading
         public SynchronizationLockException(string message) { }
         public SynchronizationLockException(string message, System.Exception innerException) { }
     }
-    public sealed partial class Thread : System.Runtime.ConstrainedExecution.CriticalFinalizerObject, System.Runtime.InteropServices._Thread
+    public sealed partial class Thread : System.Runtime.ConstrainedExecution.CriticalFinalizerObject
     {
         public Thread(System.Threading.ParameterizedThreadStart start) { }
         public Thread(System.Threading.ParameterizedThreadStart start, int maxStackSize) { }
@@ -20602,10 +19774,6 @@ namespace System.Threading
         public void Start(object parameter) { }
         [System.ObsoleteAttribute("Thread.Suspend has been deprecated.  Please use other classes in System.Threading, such as Monitor, Mutex, Event, and Semaphore, to synchronize Threads or protect resources.  http://go.microsoft.com/fwlink/?linkid=14202", false)]
         public void Suspend() { }
-        void System.Runtime.InteropServices._Thread.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
-        void System.Runtime.InteropServices._Thread.GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo) { }
-        void System.Runtime.InteropServices._Thread.GetTypeInfoCount(out uint pcTInfo) { pcTInfo = default(uint); }
-        void System.Runtime.InteropServices._Thread.Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr) { }
         public bool TrySetApartmentState(System.Threading.ApartmentState state) { throw null; }
         public static byte VolatileRead(ref byte address) { throw null; }
         public static double VolatileRead(ref double address) { throw null; }
