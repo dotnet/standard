@@ -20,6 +20,7 @@
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.core.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.io.compression.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.io.compression.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.net.http.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.numerics.csproj" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
