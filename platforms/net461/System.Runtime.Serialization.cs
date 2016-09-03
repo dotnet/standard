@@ -276,6 +276,7 @@ namespace System.Runtime.Serialization
         public void Import(System.Xml.Schema.XmlSchemaSet schemas, System.Xml.XmlQualifiedName typeName) { }
     }
 }
+/* CONFIG
 namespace System.Runtime.Serialization.Configuration
 {
     public sealed partial class DataContractSerializerSection : System.Configuration.ConfigurationSection
@@ -380,6 +381,7 @@ namespace System.Runtime.Serialization.Configuration
         public void RemoveAt(int index) { }
     }
 }
+*/
 namespace System.Runtime.Serialization.Json
 {
     public sealed partial class DataContractJsonSerializer : System.Runtime.Serialization.XmlObjectSerializer
