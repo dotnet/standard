@@ -18,6 +18,8 @@
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\mscorlib.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.core.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.io.compression.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.io.compression.csproj" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>
