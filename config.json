@@ -96,6 +96,11 @@
             "ConfigurationGroup": "Release"
           }
         },
+        "c": {
+          "settings": {
+            "Rebuild": "default"
+          }
+        },
         "rebuild": {
           "settings": {
             "Rebuild": "default"
