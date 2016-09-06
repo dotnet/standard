@@ -12,7 +12,8 @@
   <ItemGroup>
     <Compile Include="mscorlib.cs" />
     <Compile Include="mscorlib.appdomain.cs" />
-    <Compile Include="system.cs" />
+    <Compile Include="System.cs" />
+    <Compile Include="System.Core.cs" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>

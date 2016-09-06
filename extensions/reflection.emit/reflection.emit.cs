@@ -40,6 +40,11 @@ APIs removed/broken by this factoring:
 //REFEMIT        public static void CompileToAssembly(System.Text.RegularExpressions.RegexCompilationInfo[] regexinfos, System.Reflection.AssemblyName assemblyname, System.Reflection.Emit.CustomAttributeBuilder[] attributes) { }
 //REFEMIT        public static void CompileToAssembly(System.Text.RegularExpressions.RegexCompilationInfo[] regexinfos, System.Reflection.AssemblyName assemblyname, System.Reflection.Emit.CustomAttributeBuilder[] attributes, string resourceFile) { }
     }
+    public abstract partial class LambdaExpression : System.Linq.Expressions.Expression
+    {
+//REFEMIT        public void CompileToMethod(System.Reflection.Emit.MethodBuilder method) { }
+//REFEMIT        public void CompileToMethod(System.Reflection.Emit.MethodBuilder method, System.Runtime.CompilerServices.DebugInfoGenerator debugInfoGenerator) { }
+    }
 */
 
 namespace System.Reflection.Emit

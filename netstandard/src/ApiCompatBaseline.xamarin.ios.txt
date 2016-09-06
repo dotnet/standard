@@ -23,6 +23,10 @@ TypesMustExist : Type 'Microsoft.Win32.UserPreferenceChangingEventArgs' does not
 TypesMustExist : Type 'Microsoft.Win32.UserPreferenceChangingEventHandler' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'Microsoft.Win32.SafeHandles.SafeAccessTokenHandle..ctor(System.IntPtr)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'Microsoft.Win32.SafeHandles.SafeAccessTokenHandle.InvalidHandle.get()' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'Microsoft.Win32.SafeHandles.SafeNCryptHandle' does not inherit from base type 'Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid' in the implementation but it does in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle' does not inherit from base type 'Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid' in the implementation but it does in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle' does not inherit from base type 'Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid' in the implementation but it does in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle' does not inherit from base type 'Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'Microsoft.Win32.SafeHandles.SafeX509ChainHandle' does not inherit from base type 'Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.ActivationContext.ApplicationManifestBytes.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.ActivationContext.DeploymentManifestBytes.get()' does not exist in the implementation but it does exist in the contract.
@@ -177,6 +181,7 @@ TypesMustExist : Type 'System.Diagnostics.EventLogPermissionAttribute' does not 
 TypesMustExist : Type 'System.Diagnostics.EventLogPermissionEntry' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.EventLogPermissionEntryCollection' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.EventLogTraceListener' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.EventSchemaTraceListener' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.EventSourceCreationData' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.ICollectData' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.InstanceData' does not exist in the implementation but it does exist in the contract.
@@ -196,8 +201,53 @@ TypesMustExist : Type 'System.Diagnostics.PerformanceCounterPermissionEntryColle
 TypesMustExist : Type 'System.Diagnostics.PerformanceCounterType' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Diagnostics.ProcessModuleCollection' does not inherit from base type 'System.Collections.ReadOnlyCollectionBase' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Diagnostics.ProcessThreadCollection' does not inherit from base type 'System.Collections.ReadOnlyCollectionBase' in the implementation but it does in the contract.
+TypesMustExist : Type 'System.Diagnostics.TraceLogRetentionOption' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.UnescapedXmlDiagnosticData' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.XmlWriterTraceListener' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.EventDescriptor' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.EventProvider' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.EventProviderTraceListener' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventBookmark' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventKeyword' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLevel' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogConfiguration' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogInformation' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogInvalidDataException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogIsolation' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogLink' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogMode' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogNotFoundException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogPropertySelector' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogProviderDisabledException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogQuery' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogReader' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogReadingException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogRecord' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogSession' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogStatus' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogType' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogWatcher' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventMetadata' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventOpcode' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventProperty' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventRecord' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventRecordWrittenEventArgs' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventTask' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.PathType' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.ProviderMetadata' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.SessionAuthentication' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.StandardEventKeywords' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.StandardEventLevel' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.StandardEventOpcode' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.StandardEventTask' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.PerformanceData.CounterData' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.PerformanceData.CounterSet' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.PerformanceData.CounterSetInstance' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.PerformanceData.CounterSetInstanceType' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.PerformanceData.CounterType' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.Tracing.EventSourceException..ctor(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Globalization.CompareInfo.Version.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Globalization.CultureInfo.CultureTypes.get()' does not exist in the implementation but it does exist in the contract.
@@ -240,6 +290,33 @@ CannotRemoveBaseTypeOrInterface : Type 'System.IO.UnmanagedMemoryStream' does no
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.Compression.DeflateStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.Compression.GZipStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.IsolatedStorage.IsolatedStorageFileStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.MemoryMappedFiles.MemoryMappedViewStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.Pipes.AnonymousPipeClientStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.Pipes.AnonymousPipeServerStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.IO.Pipes.AnonymousPipeServerStream..ctor(System.IO.Pipes.PipeDirection, System.IO.HandleInheritability, System.Int32, System.IO.Pipes.PipeSecurity)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.Pipes.NamedPipeClientStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.IO.Pipes.NamedPipeClientStream..ctor(System.String, System.String, System.IO.Pipes.PipeAccessRights, System.IO.Pipes.PipeOptions, System.Security.Principal.TokenImpersonationLevel, System.IO.HandleInheritability)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Pipes.NamedPipeClientStream.CheckPipePropertyOperations()' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.Pipes.NamedPipeServerStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.IO.Pipes.NamedPipeServerStream..ctor(System.String, System.IO.Pipes.PipeDirection, System.Int32, System.IO.Pipes.PipeTransmissionMode, System.IO.Pipes.PipeOptions, System.Int32, System.Int32, System.IO.Pipes.PipeSecurity)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Pipes.NamedPipeServerStream..ctor(System.String, System.IO.Pipes.PipeDirection, System.Int32, System.IO.Pipes.PipeTransmissionMode, System.IO.Pipes.PipeOptions, System.Int32, System.Int32, System.IO.Pipes.PipeSecurity, System.IO.HandleInheritability)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Pipes.NamedPipeServerStream..ctor(System.String, System.IO.Pipes.PipeDirection, System.Int32, System.IO.Pipes.PipeTransmissionMode, System.IO.Pipes.PipeOptions, System.Int32, System.Int32, System.IO.Pipes.PipeSecurity, System.IO.HandleInheritability, System.IO.Pipes.PipeAccessRights)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Pipes.NamedPipeServerStream.BeginWaitForConnection(System.AsyncCallback, System.Object)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Pipes.NamedPipeServerStream.EndWaitForConnection(System.IAsyncResult)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Pipes.NamedPipeServerStream.RunAsClient(System.IO.Pipes.PipeStreamImpersonationWorker)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.Pipes.PipeAccessRights' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.Pipes.PipeAccessRule' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.Pipes.PipeAuditRule' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.Pipes.PipeSecurity' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.Pipes.PipeStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.IO.Pipes.PipeStream.CheckPipePropertyOperations()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Pipes.PipeStream.CheckReadOperations()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Pipes.PipeStream.CheckWriteOperations()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Pipes.PipeStream.GetAccessControl()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Pipes.PipeStream.InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle, System.Boolean, System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Pipes.PipeStream.IsHandleExposed.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Pipes.PipeStream.SetAccessControl(System.IO.Pipes.PipeSecurity)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.Pipes.PipeStreamImpersonationWorker' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Ports.Handshake' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Ports.Parity' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Ports.SerialData' does not exist in the implementation but it does exist in the contract.
@@ -253,6 +330,26 @@ TypesMustExist : Type 'System.IO.Ports.SerialPinChangedEventArgs' does not exist
 TypesMustExist : Type 'System.IO.Ports.SerialPinChangedEventHandler' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Ports.SerialPort' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Ports.StopBits' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.InstanceNotFoundException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.InstrumentationBaseException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.InstrumentationException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.ManagementBindAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.ManagementCommitAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.ManagementConfigurationAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.ManagementConfigurationType' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.ManagementCreateAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.ManagementEntityAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.ManagementEnumeratorAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.ManagementHostingModel' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.ManagementKeyAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.ManagementMemberAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.ManagementNameAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.ManagementNewInstanceAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.ManagementProbeAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.ManagementReferenceAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.ManagementRemoveAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.ManagementTaskAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Management.Instrumentation.WmiConfigurationAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Media.SoundPlayer' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Media.SystemSound' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Media.SystemSounds' does not exist in the implementation but it does exist in the contract.
@@ -335,7 +432,13 @@ CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.TargetInvocationExcept
 CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.TargetParameterCountException' does not inherit from base type 'System.ApplicationException' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Runtime.GCLatencyMode System.Runtime.GCLatencyMode.NoGCRegion' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.ProfileOptimization' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.CompilerServices.Closure' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Runtime.CompilerServices.DebugInfoGenerator.CreatePdbGenerator()' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.IDispatchConstantAttribute' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeOps.CreateRuntimeVariables()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeOps.CreateRuntimeVariables(System.Object[], System.Int64[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeOps.MergeRuntimeVariables(System.Runtime.CompilerServices.IRuntimeVariables, System.Runtime.CompilerServices.IRuntimeVariables, System.Int32[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeOps.Quote(System.Linq.Expressions.Expression, System.Object, System.Object[])' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.DesignerServices.WindowsRuntimeDesignerContext' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.ComImportAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.DispatchWrapper' does not exist in the implementation but it does exist in the contract.
@@ -440,6 +543,7 @@ MembersMustExist : Member 'System.Security.HostSecurityManager.GenerateAppDomain
 MembersMustExist : Member 'System.Security.HostSecurityManager.GenerateAssemblyEvidence(System.Type, System.Reflection.Assembly)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.HostSecurityManager.GetHostSuppliedAppDomainEvidenceTypes()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.HostSecurityManager.GetHostSuppliedAssemblyEvidenceTypes(System.Reflection.Assembly)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.ManifestKinds' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.PermissionSet.AddPermissionImpl(System.Security.IPermission)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.PermissionSet.GetEnumeratorImpl()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.PermissionSet.GetPermissionImpl(System.Type)' does not exist in the implementation but it does exist in the contract.
@@ -457,28 +561,58 @@ TypesMustExist : Type 'System.Security.Claims.DynamicRoleClaimProvider' does not
 MembersMustExist : Member 'System.Security.Cryptography.CryptoConfig.AddAlgorithm(System.Type, System.String[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.CryptoConfig.AddOID(System.String, System.String[])' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Security.Cryptography.CryptoStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.ECDiffieHellman' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.ECDiffieHellmanCng' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.ECDiffieHellmanCngPublicKey' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDsaCng.FromXmlString(System.String, System.Security.Cryptography.ECKeyXmlFormat)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDsaCng.HashAlgorithm.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDsaCng.HashAlgorithm.set(System.Security.Cryptography.CngAlgorithm)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDsaCng.SignData(System.Byte[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDsaCng.SignData(System.Byte[], System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDsaCng.SignData(System.IO.Stream)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDsaCng.ToXmlString(System.Security.Cryptography.ECKeyXmlFormat)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDsaCng.VerifyData(System.Byte[], System.Byte[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDsaCng.VerifyData(System.Byte[], System.Int32, System.Int32, System.Byte[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDsaCng.VerifyData(System.IO.Stream, System.Byte[])' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.ECKeyXmlFormat' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.ManifestSignatureInformation' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.ManifestSignatureInformationCollection' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.MD5Cng' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.RC2CryptoServiceProvider.UseSalt.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.RC2CryptoServiceProvider.UseSalt.set(System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.Rfc2898DeriveBytes.CryptDeriveKey(System.String, System.String, System.Int32, System.Byte[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.RNGCryptoServiceProvider..ctor(System.Byte[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.RNGCryptoServiceProvider..ctor(System.Security.Cryptography.CspParameters)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.RNGCryptoServiceProvider..ctor(System.String)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.SHA1Cng' does not exist in the implementation but it does exist in the contract.
 CannotSealType : Type 'System.Security.Cryptography.SHA1Managed' is sealed in the implementation but not sealed in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Security.Cryptography.SHA1Managed.HashCore(System.Byte[], System.Int32, System.Int32)' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Security.Cryptography.SHA1Managed.HashFinal()' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Security.Cryptography.SHA1Managed.Initialize()' is non-virtual in the implementation but is virtual in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.SHA256Cng' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.SHA256CryptoServiceProvider' does not exist in the implementation but it does exist in the contract.
 CannotSealType : Type 'System.Security.Cryptography.SHA256Managed' is sealed in the implementation but not sealed in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Security.Cryptography.SHA256Managed.HashCore(System.Byte[], System.Int32, System.Int32)' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Security.Cryptography.SHA256Managed.HashFinal()' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Security.Cryptography.SHA256Managed.Initialize()' is non-virtual in the implementation but is virtual in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.SHA384Cng' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.SHA384CryptoServiceProvider' does not exist in the implementation but it does exist in the contract.
 CannotSealType : Type 'System.Security.Cryptography.SHA384Managed' is sealed in the implementation but not sealed in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Security.Cryptography.SHA384Managed.HashCore(System.Byte[], System.Int32, System.Int32)' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Security.Cryptography.SHA384Managed.HashFinal()' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Security.Cryptography.SHA384Managed.Initialize()' is non-virtual in the implementation but is virtual in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.SHA512Cng' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.SHA512CryptoServiceProvider' does not exist in the implementation but it does exist in the contract.
 CannotSealType : Type 'System.Security.Cryptography.SHA512Managed' is sealed in the implementation but not sealed in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Security.Cryptography.SHA512Managed.HashCore(System.Byte[], System.Int32, System.Int32)' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Security.Cryptography.SHA512Managed.HashFinal()' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Security.Cryptography.SHA512Managed.Initialize()' is non-virtual in the implementation but is virtual in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.SignatureVerificationResult' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.StrongNameSignatureInformation' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.X509Certificates.AuthenticodeSignatureInformation' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.X509Certificates.TimestampInformation' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.X509Certificates.TrustStatus' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.X509Certificates.X509Certificate2..ctor(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Security.Permissions.ResourcePermissionBase' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Security.Permissions.ResourcePermissionBaseEntry' does not exist in the implementation but it does exist in the contract.
@@ -509,4 +643,4 @@ TypesMustExist : Type 'System.Web.AspNetHostingPermission' does not exist in the
 TypesMustExist : Type 'System.Web.AspNetHostingPermissionAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Web.AspNetHostingPermissionLevel' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Windows.Markup.ValueSerializerAttribute' does not exist in the implementation but it does exist in the contract.
-Total Issues: 510
+Total Issues: 644
