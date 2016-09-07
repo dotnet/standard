@@ -538,6 +538,12 @@ TypesMustExist : Type 'System.Runtime.InteropServices.UCOMITypeInfo' does not ex
 TypesMustExist : Type 'System.Runtime.InteropServices.UCOMITypeLib' does not exist in the implementation but it does exist in the contract.
 EnumTypesMustMatch : Enum type for 'System.Runtime.InteropServices.VARFLAGS' is 'System.Int32' in implementation but 'System.Int16' in the contract.
 MembersMustExist : Member 'System.Int16 System.Runtime.InteropServices.VARFLAGS.value__' does not exist in the implementation but it does exist in the contract.
+InterfacesShouldHaveSameMembers : Contract interface member 'System.Runtime.Serialization.IDataContractSurrogate.ProcessImportedType(System.CodeDom.CodeTypeDeclaration, System.CodeDom.CodeCompileUnit)' is not in the implementation.
+MembersMustExist : Member 'System.Runtime.Serialization.IDataContractSurrogate.ProcessImportedType(System.CodeDom.CodeTypeDeclaration, System.CodeDom.CodeCompileUnit)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.Serialization.ImportOptions' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Runtime.Serialization.XmlSerializableServices.AddDefaultSchema(System.Xml.Schema.XmlSchemaSet, System.Xml.XmlQualifiedName)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.Serialization.XsdDataContractExporter' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.Serialization.XsdDataContractImporter' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Runtime.Serialization.Formatters.Binary.BinaryFormatter' does not implement interface 'System.Runtime.Remoting.Messaging.IRemotingFormatter' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Security.HostSecurityManager.GenerateAppDomainEvidence(System.Type)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.HostSecurityManager.GenerateAssemblyEvidence(System.Type, System.Reflection.Assembly)' does not exist in the implementation but it does exist in the contract.
@@ -665,4 +671,4 @@ MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Refle
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Type)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.TemporaryFiles.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable, System.Xml.Xsl.XsltArgumentList, System.Xml.XmlWriter, System.Xml.XmlResolver)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 666
+Total Issues: 672
