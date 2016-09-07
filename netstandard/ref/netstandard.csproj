@@ -14,6 +14,8 @@
     <Compile Include="mscorlib.appdomain.cs" />
     <Compile Include="System.cs" />
     <Compile Include="System.Core.cs" />
+    <Compile Include="System.IO.Compression.cs" />
+    <Compile Include="System.IO.Compression.FileSystem.cs" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>

@@ -19,7 +19,7 @@
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.core.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.io.compression.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.io.compression.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.io.compression.filesystem.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.net.http.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.numerics.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.runtime.serialization.csproj" />
