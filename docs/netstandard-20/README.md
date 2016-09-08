@@ -12,8 +12,8 @@ This table shows which version of .NET Standard 1.x a given platform implements:
 |:--------------------------|:----------|-----:|-----:|-----:|-----:|-----:|-----:|-----:|
 |.NET Core                  |netcoreapp |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|   1.0|
 |.NET Framework             |net        |&rarr;|  4.5 | 4.5.1|   4.6| 4.6.1| 4.6.2| vNext|
-|Xamarin.iOS                |           |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|
-|Xamarin.Android            |           |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|
+|Xamarin.iOS                |           |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|     *|
+|Xamarin.Android            |           |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|     *|
 |Universal Windows Platform |uap        |&rarr;|&rarr;|&rarr;|&rarr;|  10.0|      |      |
 |Windows                    |win        |&rarr;|   8.0|   8.1|      |      |      |      |
 |Windows Phone              |wpa        |&rarr;|&rarr;|   8.1|      |      |      |      |
