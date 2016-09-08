@@ -4,6 +4,35 @@ This document describes the plan for .NET Standard 2.0, which includes the
 definition of its API surface as well as the principles we use to extend and
 review those additions.
 
+## Support Matrix
+
+This table shows which version of .NET Standard 1.x a given platform implements:
+
+|Platform Name              |Alias      |   1.0|   1.1|   1.2|   1.3|   1.4|   1.5|   1.6|
+|:--------------------------|:----------|-----:|-----:|-----:|-----:|-----:|-----:|-----:|
+|.NET Core                  |netcoreapp |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|   1.0|
+|.NET Framework             |net        |&rarr;|  4.5 | 4.5.1|   4.6| 4.6.1| 4.6.2| vNext|
+|Xamarin.iOS                |           |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|
+|Xamarin.Android            |           |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|
+|Universal Windows Platform |uap        |&rarr;|&rarr;|&rarr;|&rarr;|  10.0|      |      |
+|Windows                    |win        |&rarr;|   8.0|   8.1|      |      |      |      |
+|Windows Phone              |wpa        |&rarr;|&rarr;|   8.1|      |      |      |      |
+|Windows Phone Silverlight  |wp         |   8.0|      |      |      |      |      |      |
+
+For .NET Standard 2 we decided to make a breaking change to allow .NET Framework
+4.6.1 to support it. More details in [this section](#breaking-change-to-net-standard-1x):
+
+|Platform Name              |Alias      |   2.0|
+|:--------------------------|:----------|-----:|
+|.NET Core                  |netcoreapp |   1.1|
+|.NET Framework             |net        | 4.6.1|
+|Xamarin.iOS                |           |     *|
+|Xamarin.Android            |           |     *|
+|Universal Windows Platform |uap        |      |
+|Windows                    |win        |      |
+|Windows Phone              |wpa        |      |
+|Windows Phone Silverlight  |wp         |      |
+
 ## Goals
 
 Before we go into the details I'd like to explicitly state the goals of .NET
