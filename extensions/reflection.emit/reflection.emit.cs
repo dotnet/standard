@@ -58,7 +58,7 @@ namespace System.Reflection.Emit
         internal AssemblyBuilder() { }
         public override string CodeBase { get { throw null; } }
         public override System.Reflection.MethodInfo EntryPoint { get { throw null; } }
-        public override System.Security.Policy.Evidence Evidence { get { throw null; } }
+//CAS        public override System.Security.Policy.Evidence Evidence { get { throw null; } }
         public override string FullName { get { throw null; } }
         public override bool GlobalAssemblyCache { get { throw null; } }
         public override long HostContext { get { throw null; } }
@@ -66,7 +66,7 @@ namespace System.Reflection.Emit
         public override bool IsDynamic { get { throw null; } }
         public override string Location { get { throw null; } }
         public override System.Reflection.Module ManifestModule { get { throw null; } }
-        public override System.Security.PermissionSet PermissionSet { get { throw null; } }
+//CAS        public override System.Security.PermissionSet PermissionSet { get { throw null; } }
         public override bool ReflectionOnly { get { throw null; } }
         public override System.Security.SecurityRuleSet SecurityRuleSet { get { throw null; } }
         public void AddResourceFile(string name, string fileName) { }
@@ -135,7 +135,7 @@ namespace System.Reflection.Emit
         [System.ObsoleteAttribute("This property has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202")]
         public System.Type ReturnType { get { throw null; } }
         public string Signature { get { throw null; } }
-        public void AddDeclarativeSecurity(System.Security.Permissions.SecurityAction action, System.Security.PermissionSet pset) { }
+//CAS        public void AddDeclarativeSecurity(System.Security.Permissions.SecurityAction action, System.Security.PermissionSet pset) { }
         public System.Reflection.Emit.ParameterBuilder DefineParameter(int iSequence, System.Reflection.ParameterAttributes attributes, string strParamName) { throw null; }
         public override object[] GetCustomAttributes(bool inherit) { throw null; }
         public override object[] GetCustomAttributes(System.Type attributeType, bool inherit) { throw null; }
@@ -526,7 +526,7 @@ namespace System.Reflection.Emit
         public override System.Type ReturnType { get { throw null; } }
         public override System.Reflection.ICustomAttributeProvider ReturnTypeCustomAttributes { get { throw null; } }
         public string Signature { get { throw null; } }
-        public void AddDeclarativeSecurity(System.Security.Permissions.SecurityAction action, System.Security.PermissionSet pset) { }
+//CAS        public void AddDeclarativeSecurity(System.Security.Permissions.SecurityAction action, System.Security.PermissionSet pset) { }
         public void CreateMethodBody(byte[] il, int count) { }
         public System.Reflection.Emit.GenericTypeParameterBuilder[] DefineGenericParameters(params string[] names) { throw null; }
         public System.Reflection.Emit.ParameterBuilder DefineParameter(int position, System.Reflection.ParameterAttributes attributes, string strParamName) { throw null; }
@@ -1123,7 +1123,7 @@ namespace System.Reflection.Emit
         public override System.RuntimeTypeHandle TypeHandle { get { throw null; } }
         public System.Reflection.Emit.TypeToken TypeToken { get { throw null; } }
         public override System.Type UnderlyingSystemType { get { throw null; } }
-        public void AddDeclarativeSecurity(System.Security.Permissions.SecurityAction action, System.Security.PermissionSet pset) { }
+//CAS        public void AddDeclarativeSecurity(System.Security.Permissions.SecurityAction action, System.Security.PermissionSet pset) { }
         public void AddInterfaceImplementation(System.Type interfaceType) { }
         public System.Type CreateType() { throw null; }
         public System.Reflection.TypeInfo CreateTypeInfo() { throw null; }
