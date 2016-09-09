@@ -11645,6 +11645,60 @@ namespace System.Runtime.InteropServices.WindowsRuntime
         public WriteOnlyArrayAttribute() { }
     }
 }
+namespace System.Runtime.Remoting.Messaging
+{
+    public partial class Header
+    {
+        public string HeaderNamespace;
+        public bool MustUnderstand;
+        public string Name;
+        public object Value;
+        public Header(string _Name, object _Value) { }
+        public Header(string _Name, object _Value, bool _MustUnderstand) { }
+        public Header(string _Name, object _Value, bool _MustUnderstand, string _HeaderNamespace) { }
+    }
+    public delegate object HeaderHandler(System.Runtime.Remoting.Messaging.Header[] headers);
+    public partial interface IMessage
+    {
+        System.Collections.IDictionary Properties { get; }
+    }
+    public partial interface IMethodCallMessage : System.Runtime.Remoting.Messaging.IMessage, System.Runtime.Remoting.Messaging.IMethodMessage
+    {
+        int InArgCount { get; }
+        object[] InArgs { get; }
+        object GetInArg(int argNum);
+        string GetInArgName(int index);
+    }
+    public partial interface IMethodMessage : System.Runtime.Remoting.Messaging.IMessage
+    {
+        int ArgCount { get; }
+        object[] Args { get; }
+        bool HasVarArgs { get; }
+        System.Runtime.Remoting.Messaging.LogicalCallContext LogicalCallContext { get; }
+        System.Reflection.MethodBase MethodBase { get; }
+        string MethodName { get; }
+        object MethodSignature { get; }
+        string TypeName { get; }
+        string Uri { get; }
+        object GetArg(int argNum);
+        string GetArgName(int index);
+    }
+    public partial interface IRemotingFormatter : System.Runtime.Serialization.IFormatter
+    {
+        object Deserialize(System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler);
+        void Serialize(System.IO.Stream serializationStream, object graph, System.Runtime.Remoting.Messaging.Header[] headers);
+    }
+    public sealed partial class LogicalCallContext : System.ICloneable, System.Runtime.Serialization.ISerializable
+    {
+        internal LogicalCallContext() { }
+        public bool HasInfo { get { throw null; } }
+        public object Clone() { throw null; }
+        public void FreeNamedDataSlot(string name) { }
+        public object GetData(string name) { throw null; }
+        public void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public void SetData(string name, object data) { }
+    }
+}
 namespace System.Runtime.Serialization
 {
     [System.CLSCompliantAttribute(false)]
@@ -11977,7 +12031,7 @@ namespace System.Runtime.Serialization.Formatters
 }
 namespace System.Runtime.Serialization.Formatters.Binary
 {
-    public sealed partial class BinaryFormatter : /*System.Runtime.Remoting.Messaging.IRemotingFormatter,*/ System.Runtime.Serialization.IFormatter
+    public sealed partial class BinaryFormatter : System.Runtime.Remoting.Messaging.IRemotingFormatter, System.Runtime.Serialization.IFormatter
     {
         public BinaryFormatter() { }
         public BinaryFormatter(System.Runtime.Serialization.ISurrogateSelector selector, System.Runtime.Serialization.StreamingContext context) { }
@@ -11988,12 +12042,12 @@ namespace System.Runtime.Serialization.Formatters.Binary
         public System.Runtime.Serialization.ISurrogateSelector SurrogateSelector { get { throw null; } set { } }
         public System.Runtime.Serialization.Formatters.FormatterTypeStyle TypeFormat { get { throw null; } set { } }
         public object Deserialize(System.IO.Stream serializationStream) { throw null; }
-//REMOTING        public object Deserialize(System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler) { throw null; }
-//REMOTING        public object DeserializeMethodResponse(System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler, System.Runtime.Remoting.Messaging.IMethodCallMessage methodCallMessage) { throw null; }
+        public object Deserialize(System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler) { throw null; }
+        public object DeserializeMethodResponse(System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler, System.Runtime.Remoting.Messaging.IMethodCallMessage methodCallMessage) { throw null; }
         public void Serialize(System.IO.Stream serializationStream, object graph) { }
-//REMOTING        public void Serialize(System.IO.Stream serializationStream, object graph, System.Runtime.Remoting.Messaging.Header[] headers) { }
-//REMOTING        public object UnsafeDeserialize(System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler) { throw null; }
-//REMOTING        public object UnsafeDeserializeMethodResponse(System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler, System.Runtime.Remoting.Messaging.IMethodCallMessage methodCallMessage) { throw null; }
+        public void Serialize(System.IO.Stream serializationStream, object graph, System.Runtime.Remoting.Messaging.Header[] headers) { }
+        public object UnsafeDeserialize(System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler) { throw null; }
+        public object UnsafeDeserializeMethodResponse(System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler, System.Runtime.Remoting.Messaging.IMethodCallMessage methodCallMessage) { throw null; }
     }
 }
 namespace System.Runtime.Versioning

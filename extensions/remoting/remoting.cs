@@ -4,15 +4,6 @@ APIs removed/broken by this factoring:
     {
 //REMOTING        public virtual System.Runtime.Remoting.ObjRef CreateObjRef(System.Type requestedType) { throw null; }
     }
-    public sealed partial class BinaryFormatter :
-//REMOTING System.Runtime.Remoting.Messaging.IRemotingFormatter
-    {
-//REMOTING        public object Deserialize(System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler) { throw null; }
-//REMOTING        public object DeserializeMethodResponse(System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler, System.Runtime.Remoting.Messaging.IMethodCallMessage methodCallMessage) { throw null; }
-//REMOTING        public void Serialize(System.IO.Stream serializationStream, object graph, System.Runtime.Remoting.Messaging.Header[] headers) { }
-//REMOTING        public object UnsafeDeserialize(System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler) { throw null; }
-//REMOTING        public object UnsafeDeserializeMethodResponse(System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler, System.Runtime.Remoting.Messaging.IMethodCallMessage methodCallMessage) { throw null; }
-    }
     public sealed partial class Thread : System.Runtime.ConstrainedExecution.CriticalFinalizerObject
     {
 //REMOTING        public static System.Runtime.Remoting.Contexts.Context CurrentContext { get { throw null; } }
@@ -690,23 +681,8 @@ namespace System.Runtime.Remoting.Messaging
         public ConstructionResponse(System.Runtime.Remoting.Messaging.Header[] h, System.Runtime.Remoting.Messaging.IMethodCallMessage mcm) : base (default(System.Runtime.Remoting.Messaging.Header[]), default(System.Runtime.Remoting.Messaging.IMethodCallMessage)) { }
         public override System.Collections.IDictionary Properties { get { throw null; } }
     }
-    public partial class Header
-    {
-        public string HeaderNamespace;
-        public bool MustUnderstand;
-        public string Name;
-        public object Value;
-        public Header(string _Name, object _Value) { }
-        public Header(string _Name, object _Value, bool _MustUnderstand) { }
-        public Header(string _Name, object _Value, bool _MustUnderstand, string _HeaderNamespace) { }
-    }
-    public delegate object HeaderHandler(System.Runtime.Remoting.Messaging.Header[] headers);
     public partial interface ILogicalThreadAffinative
     {
-    }
-    public partial interface IMessage
-    {
-        System.Collections.IDictionary Properties { get; }
     }
     public partial interface IMessageCtrl
     {
@@ -717,27 +693,6 @@ namespace System.Runtime.Remoting.Messaging
         System.Runtime.Remoting.Messaging.IMessageSink NextSink { get; }
         System.Runtime.Remoting.Messaging.IMessageCtrl AsyncProcessMessage(System.Runtime.Remoting.Messaging.IMessage msg, System.Runtime.Remoting.Messaging.IMessageSink replySink);
         System.Runtime.Remoting.Messaging.IMessage SyncProcessMessage(System.Runtime.Remoting.Messaging.IMessage msg);
-    }
-    public partial interface IMethodCallMessage : System.Runtime.Remoting.Messaging.IMessage, System.Runtime.Remoting.Messaging.IMethodMessage
-    {
-        int InArgCount { get; }
-        object[] InArgs { get; }
-        object GetInArg(int argNum);
-        string GetInArgName(int index);
-    }
-    public partial interface IMethodMessage : System.Runtime.Remoting.Messaging.IMessage
-    {
-        int ArgCount { get; }
-        object[] Args { get; }
-        bool HasVarArgs { get; }
-        System.Runtime.Remoting.Messaging.LogicalCallContext LogicalCallContext { get; }
-        System.Reflection.MethodBase MethodBase { get; }
-        string MethodName { get; }
-        object MethodSignature { get; }
-        string TypeName { get; }
-        string Uri { get; }
-        object GetArg(int argNum);
-        string GetArgName(int index);
     }
     public partial interface IMethodReturnMessage : System.Runtime.Remoting.Messaging.IMessage, System.Runtime.Remoting.Messaging.IMethodMessage
     {
@@ -752,21 +707,6 @@ namespace System.Runtime.Remoting.Messaging
     {
         protected System.Runtime.Remoting.Messaging.IMessage WrappedMessage;
         public InternalMessageWrapper(System.Runtime.Remoting.Messaging.IMessage msg) { }
-    }
-    public partial interface IRemotingFormatter : System.Runtime.Serialization.IFormatter
-    {
-        object Deserialize(System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler);
-        void Serialize(System.IO.Stream serializationStream, object graph, System.Runtime.Remoting.Messaging.Header[] headers);
-    }
-    public sealed partial class LogicalCallContext : System.ICloneable, System.Runtime.Serialization.ISerializable
-    {
-        internal LogicalCallContext() { }
-        public bool HasInfo { get { throw null; } }
-        public object Clone() { throw null; }
-        public void FreeNamedDataSlot(string name) { }
-        public object GetData(string name) { throw null; }
-        public void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public void SetData(string name, object data) { }
     }
     public delegate bool MessageSurrogateFilter(string key, object value);
     [System.CLSCompliantAttribute(false)]
