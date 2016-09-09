@@ -11645,6 +11645,36 @@ namespace System.Runtime.InteropServices.WindowsRuntime
         public WriteOnlyArrayAttribute() { }
     }
 }
+namespace System.Runtime.Remoting
+{
+    public partial interface IChannelInfo
+    {
+        object[] ChannelData { get; set; }
+    }
+    public partial interface IEnvoyInfo
+    {
+        System.Runtime.Remoting.Messaging.IMessageSink EnvoySinks { get; set; }
+    }
+    public partial interface IRemotingTypeInfo
+    {
+        string TypeName { get; set; }
+        bool CanCastTo(System.Type fromType, object o);
+    }
+    public partial class ObjRef : System.Runtime.Serialization.IObjectReference, System.Runtime.Serialization.ISerializable
+    {
+        public ObjRef() { }
+        public ObjRef(System.MarshalByRefObject o, System.Type requestedType) { }
+        protected ObjRef(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public virtual System.Runtime.Remoting.IChannelInfo ChannelInfo { get { throw null; } set { } }
+        public virtual System.Runtime.Remoting.IEnvoyInfo EnvoyInfo { get { throw null; } set { } }
+        public virtual System.Runtime.Remoting.IRemotingTypeInfo TypeInfo { get { throw null; } set { } }
+        public virtual string URI { get { throw null; } set { } }
+        public virtual void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public virtual object GetRealObject(System.Runtime.Serialization.StreamingContext context) { throw null; }
+        public bool IsFromThisAppDomain() { throw null; }
+        public bool IsFromThisProcess() { throw null; }
+    }
+}
 namespace System.Runtime.Remoting.Messaging
 {
     public partial class Header
@@ -11661,6 +11691,16 @@ namespace System.Runtime.Remoting.Messaging
     public partial interface IMessage
     {
         System.Collections.IDictionary Properties { get; }
+    }
+    public partial interface IMessageCtrl
+    {
+        void Cancel(int msToCancel);
+    }
+    public partial interface IMessageSink
+    {
+        System.Runtime.Remoting.Messaging.IMessageSink NextSink { get; }
+        System.Runtime.Remoting.Messaging.IMessageCtrl AsyncProcessMessage(System.Runtime.Remoting.Messaging.IMessage msg, System.Runtime.Remoting.Messaging.IMessageSink replySink);
+        System.Runtime.Remoting.Messaging.IMessage SyncProcessMessage(System.Runtime.Remoting.Messaging.IMessage msg);
     }
     public partial interface IMethodCallMessage : System.Runtime.Remoting.Messaging.IMessage, System.Runtime.Remoting.Messaging.IMethodMessage
     {
