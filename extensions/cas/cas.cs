@@ -458,19 +458,6 @@ namespace System.Security
     {
         System.Security.Policy.Evidence Evidence { get; }
     }
-    public partial interface IPermission : System.Security.ISecurityEncodable
-    {
-        System.Security.IPermission Copy();
-        void Demand();
-        System.Security.IPermission Intersect(System.Security.IPermission target);
-        bool IsSubsetOf(System.Security.IPermission target);
-        System.Security.IPermission Union(System.Security.IPermission target);
-    }
-    public partial interface ISecurityEncodable
-    {
-        void FromXml(System.Security.SecurityElement e);
-        System.Security.SecurityElement ToXml();
-    }
     public partial interface ISecurityPolicyEncodable
     {
         void FromXml(System.Security.SecurityElement e, System.Security.Policy.PolicyLevel level);
@@ -1150,11 +1137,6 @@ namespace System.Security.Policy
 }
 namespace System.Security.Permissions
 {
-    [System.AttributeUsageAttribute((System.AttributeTargets)(109), AllowMultiple=true, Inherited=false)]
-    public abstract partial class CodeAccessSecurityAttribute : System.Security.Permissions.SecurityAttribute
-    {
-        protected CodeAccessSecurityAttribute(System.Security.Permissions.SecurityAction action) : base (default(System.Security.Permissions.SecurityAction)) { }
-    }
     public sealed partial class EnvironmentPermission : System.Security.CodeAccessPermission, System.Security.Permissions.IUnrestrictedPermission
     {
         public EnvironmentPermission(System.Security.Permissions.EnvironmentPermissionAccess flag, string pathList) { }
@@ -1589,30 +1571,6 @@ namespace System.Security.Permissions
         public string Write { get { throw null; } set { } }
         public override System.Security.IPermission CreatePermission() { throw null; }
     }
-    public enum SecurityAction
-    {
-        Assert = 3,
-        Demand = 2,
-        [System.ObsoleteAttribute("Deny is obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
-        Deny = 4,
-        InheritanceDemand = 7,
-        LinkDemand = 6,
-        PermitOnly = 5,
-        [System.ObsoleteAttribute("Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
-        RequestMinimum = 8,
-        [System.ObsoleteAttribute("Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
-        RequestOptional = 9,
-        [System.ObsoleteAttribute("Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
-        RequestRefuse = 10,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(109), AllowMultiple=true, Inherited=false)]
-    public abstract partial class SecurityAttribute : System.Attribute
-    {
-        protected SecurityAttribute(System.Security.Permissions.SecurityAction action) { }
-        public System.Security.Permissions.SecurityAction Action { get { throw null; } set { } }
-        public bool Unrestricted { get { throw null; } set { } }
-        public abstract System.Security.IPermission CreatePermission();
-    }
     public sealed partial class SecurityPermission : System.Security.CodeAccessPermission, System.Security.Permissions.IUnrestrictedPermission
     {
         public SecurityPermission(System.Security.Permissions.PermissionState state) { }
@@ -1625,47 +1583,6 @@ namespace System.Security.Permissions
         public bool IsUnrestricted() { throw null; }
         public override System.Security.SecurityElement ToXml() { throw null; }
         public override System.Security.IPermission Union(System.Security.IPermission target) { throw null; }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(109), AllowMultiple=true, Inherited=false)]
-    public sealed partial class SecurityPermissionAttribute : System.Security.Permissions.CodeAccessSecurityAttribute
-    {
-        public SecurityPermissionAttribute(System.Security.Permissions.SecurityAction action) : base (default(System.Security.Permissions.SecurityAction)) { }
-        public bool Assertion { get { throw null; } set { } }
-        public bool BindingRedirects { get { throw null; } set { } }
-        public bool ControlAppDomain { get { throw null; } set { } }
-        public bool ControlDomainPolicy { get { throw null; } set { } }
-        public bool ControlEvidence { get { throw null; } set { } }
-        public bool ControlPolicy { get { throw null; } set { } }
-        public bool ControlPrincipal { get { throw null; } set { } }
-        public bool ControlThread { get { throw null; } set { } }
-        public bool Execution { get { throw null; } set { } }
-        public System.Security.Permissions.SecurityPermissionFlag Flags { get { throw null; } set { } }
-        public bool Infrastructure { get { throw null; } set { } }
-        public bool RemotingConfiguration { get { throw null; } set { } }
-        public bool SerializationFormatter { get { throw null; } set { } }
-        public bool SkipVerification { get { throw null; } set { } }
-        public bool UnmanagedCode { get { throw null; } set { } }
-        public override System.Security.IPermission CreatePermission() { throw null; }
-    }
-    [System.FlagsAttribute]
-    public enum SecurityPermissionFlag
-    {
-        AllFlags = 16383,
-        Assertion = 1,
-        BindingRedirects = 8192,
-        ControlAppDomain = 1024,
-        ControlDomainPolicy = 256,
-        ControlEvidence = 32,
-        ControlPolicy = 64,
-        ControlPrincipal = 512,
-        ControlThread = 16,
-        Execution = 8,
-        Infrastructure = 4096,
-        NoFlags = 0,
-        RemotingConfiguration = 2048,
-        SerializationFormatter = 128,
-        SkipVerification = 4,
-        UnmanagedCode = 2,
     }
     public sealed partial class SiteIdentityPermission : System.Security.CodeAccessPermission
     {
