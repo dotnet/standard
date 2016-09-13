@@ -3682,12 +3682,6 @@ namespace System.Diagnostics
         public bool Enabled { get { throw null; } set { } }
         protected override void OnValueChanged() { }
     }
-    public partial class ConsoleTraceListener : System.Diagnostics.TextWriterTraceListener
-    {
-        public ConsoleTraceListener() { }
-        public ConsoleTraceListener(bool useErrorStream) { }
-        public override void Close() { }
-    }
     public partial class CorrelationManager
     {
         internal CorrelationManager() { }
@@ -3831,12 +3825,6 @@ namespace System.Diagnostics
     {
         public MonitoringDescriptionAttribute(string description) { }
         public override string Description { get { throw null; } }
-    }
-    public enum OverflowAction
-    {
-        DoNotOverwrite = -1,
-        OverwriteAsNeeded = 0,
-        OverwriteOlder = 1,
     }
     [System.ComponentModel.DefaultEventAttribute("Exited")]
     [System.ComponentModel.DefaultPropertyAttribute("StartInfo")]
@@ -4497,24 +4485,6 @@ namespace System.Diagnostics
         public bool TraceWarning { get { throw null; } }
         protected override void OnSwitchSettingChanged() { }
         protected override void OnValueChanged() { }
-    }
-    public partial class XmlWriterTraceListener : System.Diagnostics.TextWriterTraceListener
-    {
-        public XmlWriterTraceListener(System.IO.Stream stream) { }
-        public XmlWriterTraceListener(System.IO.Stream stream, string name) { }
-        public XmlWriterTraceListener(System.IO.TextWriter writer) { }
-        public XmlWriterTraceListener(System.IO.TextWriter writer, string name) { }
-        public XmlWriterTraceListener(string filename) { }
-        public XmlWriterTraceListener(string filename, string name) { }
-        public override void Close() { }
-        public override void Fail(string message, string detailMessage) { }
-        public override void TraceData(System.Diagnostics.TraceEventCache eventCache, string source, System.Diagnostics.TraceEventType eventType, int id, object data) { }
-        public override void TraceData(System.Diagnostics.TraceEventCache eventCache, string source, System.Diagnostics.TraceEventType eventType, int id, params object[] data) { }
-        public override void TraceEvent(System.Diagnostics.TraceEventCache eventCache, string source, System.Diagnostics.TraceEventType eventType, int id, string message) { }
-        public override void TraceEvent(System.Diagnostics.TraceEventCache eventCache, string source, System.Diagnostics.TraceEventType eventType, int id, string format, params object[] args) { }
-        public override void TraceTransfer(System.Diagnostics.TraceEventCache eventCache, string source, int id, string message, System.Guid relatedActivityId) { }
-        public override void Write(string message) { }
-        public override void WriteLine(string message) { }
     }
 }
 namespace System.Diagnostics.CodeAnalysis

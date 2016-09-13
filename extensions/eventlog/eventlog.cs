@@ -169,4 +169,10 @@ namespace System.Diagnostics
         public System.Diagnostics.SourceLevels EventType { get { throw null; } set { } }
         public override bool ShouldTrace(System.Diagnostics.TraceEventCache cache, string source, System.Diagnostics.TraceEventType eventType, int id, string formatOrMessage, object[] args, object data1, object[] data) { throw null; }
     }
+    public enum OverflowAction
+    {
+        DoNotOverwrite = -1,
+        OverwriteAsNeeded = 0,
+        OverwriteOlder = 1,
+    }
 }
