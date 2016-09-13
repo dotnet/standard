@@ -45,6 +45,11 @@ APIs removed/broken by this factoring:
 //REFEMIT        public void CompileToMethod(System.Reflection.Emit.MethodBuilder method) { }
 //REFEMIT        public void CompileToMethod(System.Reflection.Emit.MethodBuilder method, System.Runtime.CompilerServices.DebugInfoGenerator debugInfoGenerator) { }
     }
+    public partial class XmlSerializer
+    {
+//REFEMIT        public static System.Reflection.Assembly GenerateSerializer(System.Type[] types, System.Xml.Serialization.XmlMapping[] mappings) { throw null; }
+//REFEMIT        public static System.Reflection.Assembly GenerateSerializer(System.Type[] types, System.Xml.Serialization.XmlMapping[] mappings, System.CodeDom.Compiler.CompilerParameters parameters) { throw null; }
+    }
     public sealed partial class XslCompiledTransform
     {
 //REFEMIT        public static System.CodeDom.Compiler.CompilerErrorCollection CompileToType(System.Xml.XmlReader stylesheet, System.Xml.Xsl.XsltSettings settings, System.Xml.XmlResolver stylesheetResolver, bool debug, System.Reflection.Emit.TypeBuilder typeBuilder, string scriptAssemblyPath) { throw null; }

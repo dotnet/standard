@@ -1,6 +1,4 @@
 Compat issues with assembly netstandard:
-TypesMustExist : Type 'Microsoft.CSharp.CSharpCodeProvider' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.VisualBasic.VBCodeProvider' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Microsoft.Win32.IntranetZoneCredentialPolicy' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Microsoft.Win32.PowerModeChangedEventArgs' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Microsoft.Win32.PowerModeChangedEventHandler' does not exist in the implementation but it does exist in the contract.
@@ -54,110 +52,7 @@ MembersMustExist : Member 'System.GC.TryStartNoGCRegion(System.Int64)' does not 
 MembersMustExist : Member 'System.GC.TryStartNoGCRegion(System.Int64, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.GC.TryStartNoGCRegion(System.Int64, System.Int64)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.GC.TryStartNoGCRegion(System.Int64, System.Int64, System.Boolean)' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeArgumentReferenceExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeArrayCreateExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeArrayIndexerExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeAssignStatement' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeAttachEventStatement' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeAttributeArgument' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeAttributeArgumentCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeAttributeDeclaration' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeAttributeDeclarationCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeBaseReferenceExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeBinaryOperatorExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeBinaryOperatorType' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeCastExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeCatchClause' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeCatchClauseCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeChecksumPragma' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeComment' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeCommentStatement' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeCommentStatementCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeCompileUnit' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeConditionStatement' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeConstructor' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeDefaultValueExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeDelegateCreateExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeDelegateInvokeExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeDirectionExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeDirective' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeDirectiveCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeEntryPointMethod' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeEventReferenceExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeExpressionCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeExpressionStatement' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeFieldReferenceExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeGotoStatement' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeIndexerExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeIterationStatement' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeLabeledStatement' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeLinePragma' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeMemberEvent' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeMemberField' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeMemberMethod' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeMemberProperty' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeMethodInvokeExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeMethodReferenceExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeMethodReturnStatement' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeNamespace' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeNamespaceCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeNamespaceImport' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeNamespaceImportCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeObject' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeObjectCreateExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeParameterDeclarationExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeParameterDeclarationExpressionCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodePrimitiveExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodePropertyReferenceExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodePropertySetValueReferenceExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeRegionDirective' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeRegionMode' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeRemoveEventStatement' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeSnippetCompileUnit' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeSnippetExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeSnippetStatement' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeSnippetTypeMember' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeStatement' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeStatementCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeThisReferenceExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeThrowExceptionStatement' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeTryCatchFinallyStatement' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeTypeConstructor' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeTypeDeclaration' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeTypeDeclarationCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeTypeDelegate' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeTypeMember' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeTypeMemberCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeTypeOfExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeTypeParameter' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeTypeParameterCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeTypeReference' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeTypeReferenceCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeTypeReferenceExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeTypeReferenceOptions' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeVariableDeclarationStatement' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.CodeVariableReferenceExpression' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.FieldDirection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.MemberAttributes' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.CodeCompiler' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.CodeDomProvider' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.CodeGenerator' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.CodeGeneratorOptions' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.CodeParser' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.CompilerError' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.CompilerErrorCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.CompilerInfo' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.CompilerParameters' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.CompilerResults' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.Executor' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.GeneratorSupport' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.ICodeCompiler' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.ICodeGenerator' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.ICodeParser' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.CodeDom.Compiler.IndentedTextWriter' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.LanguageOptions' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.TempFileCollection' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.ConsoleTraceListener' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.CounterCreationData' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.CounterCreationDataCollection' does not exist in the implementation but it does exist in the contract.
@@ -519,12 +414,8 @@ TypesMustExist : Type 'System.Runtime.InteropServices.UCOMITypeInfo' does not ex
 TypesMustExist : Type 'System.Runtime.InteropServices.UCOMITypeLib' does not exist in the implementation but it does exist in the contract.
 EnumTypesMustMatch : Enum type for 'System.Runtime.InteropServices.VARFLAGS' is 'System.Int32' in implementation but 'System.Int16' in the contract.
 MembersMustExist : Member 'System.Int16 System.Runtime.InteropServices.VARFLAGS.value__' does not exist in the implementation but it does exist in the contract.
-InterfacesShouldHaveSameMembers : Contract interface member 'System.Runtime.Serialization.IDataContractSurrogate.ProcessImportedType(System.CodeDom.CodeTypeDeclaration, System.CodeDom.CodeCompileUnit)' is not in the implementation.
-MembersMustExist : Member 'System.Runtime.Serialization.IDataContractSurrogate.ProcessImportedType(System.CodeDom.CodeTypeDeclaration, System.CodeDom.CodeCompileUnit)' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.ImportOptions' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.Serialization.XmlSerializableServices.AddDefaultSchema(System.Xml.Schema.XmlSchemaSet, System.Xml.XmlQualifiedName)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.Serialization.XsdDataContractExporter' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.XsdDataContractImporter' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Runtime.Serialization.Formatters.Binary.BinaryFormatter' does not implement interface 'System.Runtime.Remoting.Messaging.IRemotingFormatter' in the implementation but it does in the contract.
 TypesMustExist : Type 'System.Security.ManifestKinds' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.SecurityCriticalAttribute..ctor(System.Security.SecurityCriticalScope)' does not exist in the implementation but it does exist in the contract.
@@ -603,26 +494,10 @@ MembersMustExist : Member 'System.Threading.Mutex.SetAccessControl(System.Securi
 MembersMustExist : Member 'System.Threading.Thread.DisableComObjectEagerCleanup()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.ThreadAbortException.ExceptionState.get()' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Windows.Markup.ValueSerializerAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.CodeExporter' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.SchemaImporter' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.SoapCodeExporter' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.SoapSchemaExporter' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.SoapSchemaImporter' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlCodeExporter' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Xml.Serialization.XmlMemberMapping.GenerateTypeName(System.CodeDom.Compiler.CodeDomProvider)' does not exist in the implementation but it does exist in the contract.
-CannotRemoveBaseTypeOrInterface : Type 'System.Xml.Serialization.XmlSchemaImporter' does not inherit from base type 'System.Xml.Serialization.SchemaImporter' in the implementation but it does in the contract.
-MembersMustExist : Member 'System.Xml.Serialization.XmlSchemaImporter..ctor(System.Xml.Serialization.XmlSchemas, System.Xml.Serialization.CodeGenerationOptions, System.CodeDom.Compiler.CodeDomProvider, System.Xml.Serialization.ImportContext)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Xml.Serialization.XmlSchemaImporter..ctor(System.Xml.Serialization.XmlSchemas, System.Xml.Serialization.CodeGenerationOptions, System.Xml.Serialization.ImportContext)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Xml.Serialization.XmlSchemaImporter..ctor(System.Xml.Serialization.XmlSchemas, System.Xml.Serialization.CodeIdentifiers, System.Xml.Serialization.CodeGenerationOptions)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Serialization.XmlSerializationReader.ReadSerializable(System.Xml.Serialization.IXmlSerializable, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Serialization.XmlSerializer..ctor(System.Type, System.Xml.Serialization.XmlAttributeOverrides, System.Type[], System.Xml.Serialization.XmlRootAttribute, System.String, System.String)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Xml.Serialization.XmlSerializer.GenerateSerializer(System.Type[], System.Xml.Serialization.XmlMapping[])' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Xml.Serialization.XmlSerializer.GenerateSerializer(System.Type[], System.Xml.Serialization.XmlMapping[], System.CodeDom.Compiler.CompilerParameters)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Serialization.XmlSerializerFactory.CreateSerializer(System.Type, System.Xml.Serialization.XmlAttributeOverrides, System.Type[], System.Xml.Serialization.XmlRootAttribute, System.String, System.String)' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.Advanced.SchemaImporterExtension' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.Advanced.SchemaImporterExtensionCollection' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo, System.Byte[], System.Type[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Type)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.TemporaryFiles.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable, System.Xml.Xsl.XsltArgumentList, System.Xml.XmlWriter, System.Xml.XmlResolver)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 626
+Total Issues: 501

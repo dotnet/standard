@@ -45,19 +45,19 @@ namespace System.Runtime.Serialization
     {
         public DataContractSerializer(System.Type type) { }
         public DataContractSerializer(System.Type type, System.Collections.Generic.IEnumerable<System.Type> knownTypes) { }
-        public DataContractSerializer(System.Type type, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate) { }
-        public DataContractSerializer(System.Type type, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, System.Runtime.Serialization.DataContractResolver dataContractResolver) { }
+//CODEDOM        public DataContractSerializer(System.Type type, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate) { }
+//CODEDOM        public DataContractSerializer(System.Type type, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, System.Runtime.Serialization.DataContractResolver dataContractResolver) { }
         public DataContractSerializer(System.Type type, System.Runtime.Serialization.DataContractSerializerSettings settings) { }
         public DataContractSerializer(System.Type type, string rootName, string rootNamespace) { }
         public DataContractSerializer(System.Type type, string rootName, string rootNamespace, System.Collections.Generic.IEnumerable<System.Type> knownTypes) { }
-        public DataContractSerializer(System.Type type, string rootName, string rootNamespace, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate) { }
-        public DataContractSerializer(System.Type type, string rootName, string rootNamespace, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, System.Runtime.Serialization.DataContractResolver dataContractResolver) { }
+//CODEDOM        public DataContractSerializer(System.Type type, string rootName, string rootNamespace, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate) { }
+//CODEDOM        public DataContractSerializer(System.Type type, string rootName, string rootNamespace, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, System.Runtime.Serialization.DataContractResolver dataContractResolver) { }
         public DataContractSerializer(System.Type type, System.Xml.XmlDictionaryString rootName, System.Xml.XmlDictionaryString rootNamespace) { }
         public DataContractSerializer(System.Type type, System.Xml.XmlDictionaryString rootName, System.Xml.XmlDictionaryString rootNamespace, System.Collections.Generic.IEnumerable<System.Type> knownTypes) { }
-        public DataContractSerializer(System.Type type, System.Xml.XmlDictionaryString rootName, System.Xml.XmlDictionaryString rootNamespace, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate) { }
-        public DataContractSerializer(System.Type type, System.Xml.XmlDictionaryString rootName, System.Xml.XmlDictionaryString rootNamespace, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, System.Runtime.Serialization.DataContractResolver dataContractResolver) { }
+//CODEDOM        public DataContractSerializer(System.Type type, System.Xml.XmlDictionaryString rootName, System.Xml.XmlDictionaryString rootNamespace, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate) { }
+//CODEDOM        public DataContractSerializer(System.Type type, System.Xml.XmlDictionaryString rootName, System.Xml.XmlDictionaryString rootNamespace, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, System.Runtime.Serialization.DataContractResolver dataContractResolver) { }
         public System.Runtime.Serialization.DataContractResolver DataContractResolver { get { throw null; } }
-        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } }
+//CODEDOM        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } }
         public bool IgnoreExtensionDataObject { get { throw null; } }
         public System.Collections.ObjectModel.ReadOnlyCollection<System.Type> KnownTypes { get { throw null; } }
         public int MaxItemsInObjectGraph { get { throw null; } }
@@ -82,7 +82,7 @@ namespace System.Runtime.Serialization
     {
         public DataContractSerializerSettings() { }
         public System.Runtime.Serialization.DataContractResolver DataContractResolver { get { throw null; } set { } }
-        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } set { } }
+//CODEDOM        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } set { } }
         public bool IgnoreExtensionDataObject { get { throw null; } set { } }
         public System.Collections.Generic.IEnumerable<System.Type> KnownTypes { get { throw null; } set { } }
         public int MaxItemsInObjectGraph { get { throw null; } set { } }
@@ -125,23 +125,12 @@ namespace System.Runtime.Serialization
     public partial class ExportOptions
     {
         public ExportOptions() { }
-        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } set { } }
+//CODEDOM        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } set { } }
         public System.Collections.ObjectModel.Collection<System.Type> KnownTypes { get { throw null; } }
     }
     public sealed partial class ExtensionDataObject
     {
         internal ExtensionDataObject() { }
-    }
-    public partial interface IDataContractSurrogate
-    {
-        object GetCustomDataToExport(System.Reflection.MemberInfo memberInfo, System.Type dataContractType);
-        object GetCustomDataToExport(System.Type clrType, System.Type dataContractType);
-        System.Type GetDataContractType(System.Type type);
-        object GetDeserializedObject(object obj, System.Type targetType);
-        void GetKnownCustomDataTypes(System.Collections.ObjectModel.Collection<System.Type> customDataTypes);
-        object GetObjectToSerialize(object obj, System.Type targetType);
-        System.Type GetReferencedTypeOnImport(string typeName, string typeNamespace, object customData);
-        System.CodeDom.CodeTypeDeclaration ProcessImportedType(System.CodeDom.CodeTypeDeclaration typeDeclaration, System.CodeDom.CodeCompileUnit compileUnit);
     }
     public partial interface IExtensibleDataObject
     {
@@ -151,19 +140,6 @@ namespace System.Runtime.Serialization
     public sealed partial class IgnoreDataMemberAttribute : System.Attribute
     {
         public IgnoreDataMemberAttribute() { }
-    }
-    public partial class ImportOptions
-    {
-        public ImportOptions() { }
-        public System.CodeDom.Compiler.CodeDomProvider CodeProvider { get { throw null; } set { } }
-        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } set { } }
-        public bool EnableDataBinding { get { throw null; } set { } }
-        public bool GenerateInternal { get { throw null; } set { } }
-        public bool GenerateSerializable { get { throw null; } set { } }
-        public bool ImportXmlType { get { throw null; } set { } }
-        public System.Collections.Generic.IDictionary<string, string> Namespaces { get { throw null; } }
-        public System.Collections.Generic.ICollection<System.Type> ReferencedCollectionTypes { get { throw null; } }
-        public System.Collections.Generic.ICollection<System.Type> ReferencedTypes { get { throw null; } }
     }
     public partial class InvalidDataContractException : System.Exception
     {
@@ -256,24 +232,6 @@ namespace System.Runtime.Serialization
         public System.Xml.XmlQualifiedName GetRootElementName(System.Type type) { throw null; }
         public System.Xml.Schema.XmlSchemaType GetSchemaType(System.Type type) { throw null; }
         public System.Xml.XmlQualifiedName GetSchemaTypeName(System.Type type) { throw null; }
-    }
-    public partial class XsdDataContractImporter
-    {
-        public XsdDataContractImporter() { }
-        public XsdDataContractImporter(System.CodeDom.CodeCompileUnit codeCompileUnit) { }
-        public System.CodeDom.CodeCompileUnit CodeCompileUnit { get { throw null; } }
-        public System.Runtime.Serialization.ImportOptions Options { get { throw null; } set { } }
-        public bool CanImport(System.Xml.Schema.XmlSchemaSet schemas) { throw null; }
-        public bool CanImport(System.Xml.Schema.XmlSchemaSet schemas, System.Collections.Generic.ICollection<System.Xml.XmlQualifiedName> typeNames) { throw null; }
-        public bool CanImport(System.Xml.Schema.XmlSchemaSet schemas, System.Xml.Schema.XmlSchemaElement element) { throw null; }
-        public bool CanImport(System.Xml.Schema.XmlSchemaSet schemas, System.Xml.XmlQualifiedName typeName) { throw null; }
-        public System.CodeDom.CodeTypeReference GetCodeTypeReference(System.Xml.XmlQualifiedName typeName) { throw null; }
-        public System.CodeDom.CodeTypeReference GetCodeTypeReference(System.Xml.XmlQualifiedName typeName, System.Xml.Schema.XmlSchemaElement element) { throw null; }
-        public System.Collections.Generic.ICollection<System.CodeDom.CodeTypeReference> GetKnownTypeReferences(System.Xml.XmlQualifiedName typeName) { throw null; }
-        public void Import(System.Xml.Schema.XmlSchemaSet schemas) { }
-        public void Import(System.Xml.Schema.XmlSchemaSet schemas, System.Collections.Generic.ICollection<System.Xml.XmlQualifiedName> typeNames) { }
-        public System.Xml.XmlQualifiedName Import(System.Xml.Schema.XmlSchemaSet schemas, System.Xml.Schema.XmlSchemaElement element) { throw null; }
-        public void Import(System.Xml.Schema.XmlSchemaSet schemas, System.Xml.XmlQualifiedName typeName) { }
     }
 }
 /* CONFIG
@@ -388,15 +346,15 @@ namespace System.Runtime.Serialization.Json
     {
         public DataContractJsonSerializer(System.Type type) { }
         public DataContractJsonSerializer(System.Type type, System.Collections.Generic.IEnumerable<System.Type> knownTypes) { }
-        public DataContractJsonSerializer(System.Type type, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, bool alwaysEmitTypeInformation) { }
+//CODEDOM        public DataContractJsonSerializer(System.Type type, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, bool alwaysEmitTypeInformation) { }
         public DataContractJsonSerializer(System.Type type, System.Runtime.Serialization.Json.DataContractJsonSerializerSettings settings) { }
         public DataContractJsonSerializer(System.Type type, string rootName) { }
         public DataContractJsonSerializer(System.Type type, string rootName, System.Collections.Generic.IEnumerable<System.Type> knownTypes) { }
-        public DataContractJsonSerializer(System.Type type, string rootName, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, bool alwaysEmitTypeInformation) { }
+//CODEDOM        public DataContractJsonSerializer(System.Type type, string rootName, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, bool alwaysEmitTypeInformation) { }
         public DataContractJsonSerializer(System.Type type, System.Xml.XmlDictionaryString rootName) { }
         public DataContractJsonSerializer(System.Type type, System.Xml.XmlDictionaryString rootName, System.Collections.Generic.IEnumerable<System.Type> knownTypes) { }
-        public DataContractJsonSerializer(System.Type type, System.Xml.XmlDictionaryString rootName, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, bool alwaysEmitTypeInformation) { }
-        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } }
+//CODEDOM        public DataContractJsonSerializer(System.Type type, System.Xml.XmlDictionaryString rootName, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, bool alwaysEmitTypeInformation) { }
+//CODEDOM        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } }
         public System.Runtime.Serialization.DateTimeFormat DateTimeFormat { get { throw null; } }
         public System.Runtime.Serialization.EmitTypeInformation EmitTypeInformation { get { throw null; } }
         public bool IgnoreExtensionDataObject { get { throw null; } }
@@ -424,7 +382,7 @@ namespace System.Runtime.Serialization.Json
     public partial class DataContractJsonSerializerSettings
     {
         public DataContractJsonSerializerSettings() { }
-        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } set { } }
+//CODEDOM        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } set { } }
         public System.Runtime.Serialization.DateTimeFormat DateTimeFormat { get { throw null; } set { } }
         public System.Runtime.Serialization.EmitTypeInformation EmitTypeInformation { get { throw null; } set { } }
         public bool IgnoreExtensionDataObject { get { throw null; } set { } }

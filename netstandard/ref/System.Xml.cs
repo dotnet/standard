@@ -2281,11 +2281,6 @@ namespace System.Xml.Schema
 }
 namespace System.Xml.Serialization
 {
-    public abstract partial class CodeExporter
-    {
-        internal CodeExporter() { }
-        public System.CodeDom.CodeAttributeDeclarationCollection IncludeMetadata { get { throw null; } }
-    }
     [System.FlagsAttribute]
     public enum CodeGenerationOptions
     {
@@ -2338,11 +2333,6 @@ namespace System.Xml.Serialization
         bool Normalized { get; set; }
         System.Xml.WhitespaceHandling WhitespaceHandling { get; set; }
     }
-    public abstract partial class SchemaImporter
-    {
-        internal SchemaImporter() { }
-        public System.Xml.Serialization.Advanced.SchemaImporterExtensionCollection Extensions { get { throw null; } }
-    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(10624))]
     public partial class SoapAttributeAttribute : System.Attribute
     {
@@ -2370,18 +2360,6 @@ namespace System.Xml.Serialization
         public System.Xml.Serialization.SoapEnumAttribute SoapEnum { get { throw null; } set { } }
         public bool SoapIgnore { get { throw null; } set { } }
         public System.Xml.Serialization.SoapTypeAttribute SoapType { get { throw null; } set { } }
-    }
-    public partial class SoapCodeExporter : System.Xml.Serialization.CodeExporter
-    {
-        public SoapCodeExporter(System.CodeDom.CodeNamespace codeNamespace) { }
-        public SoapCodeExporter(System.CodeDom.CodeNamespace codeNamespace, System.CodeDom.CodeCompileUnit codeCompileUnit) { }
-        public SoapCodeExporter(System.CodeDom.CodeNamespace codeNamespace, System.CodeDom.CodeCompileUnit codeCompileUnit, System.CodeDom.Compiler.CodeDomProvider codeProvider, System.Xml.Serialization.CodeGenerationOptions options, System.Collections.Hashtable mappings) { }
-        public SoapCodeExporter(System.CodeDom.CodeNamespace codeNamespace, System.CodeDom.CodeCompileUnit codeCompileUnit, System.Xml.Serialization.CodeGenerationOptions options) { }
-        public SoapCodeExporter(System.CodeDom.CodeNamespace codeNamespace, System.CodeDom.CodeCompileUnit codeCompileUnit, System.Xml.Serialization.CodeGenerationOptions options, System.Collections.Hashtable mappings) { }
-        public void AddMappingMetadata(System.CodeDom.CodeAttributeDeclarationCollection metadata, System.Xml.Serialization.XmlMemberMapping member) { }
-        public void AddMappingMetadata(System.CodeDom.CodeAttributeDeclarationCollection metadata, System.Xml.Serialization.XmlMemberMapping member, bool forceUseMemberName) { }
-        public void ExportMembersMapping(System.Xml.Serialization.XmlMembersMapping xmlMembersMapping) { }
-        public void ExportTypeMapping(System.Xml.Serialization.XmlTypeMapping xmlTypeMapping) { }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(10624))]
     public partial class SoapElementAttribute : System.Attribute
@@ -2424,26 +2402,6 @@ namespace System.Xml.Serialization
         public System.Xml.Serialization.XmlTypeMapping ImportTypeMapping(System.Type type, string defaultNamespace) { throw null; }
         public void IncludeType(System.Type type) { }
         public void IncludeTypes(System.Reflection.ICustomAttributeProvider provider) { }
-    }
-    public partial class SoapSchemaExporter
-    {
-        public SoapSchemaExporter(System.Xml.Serialization.XmlSchemas schemas) { }
-        public void ExportMembersMapping(System.Xml.Serialization.XmlMembersMapping xmlMembersMapping) { }
-        public void ExportMembersMapping(System.Xml.Serialization.XmlMembersMapping xmlMembersMapping, bool exportEnclosingType) { }
-        public void ExportTypeMapping(System.Xml.Serialization.XmlTypeMapping xmlTypeMapping) { }
-    }
-    public partial class SoapSchemaImporter : System.Xml.Serialization.SchemaImporter
-    {
-        public SoapSchemaImporter(System.Xml.Serialization.XmlSchemas schemas) { }
-        public SoapSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeGenerationOptions options, System.CodeDom.Compiler.CodeDomProvider codeProvider, System.Xml.Serialization.ImportContext context) { }
-        public SoapSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeGenerationOptions options, System.Xml.Serialization.ImportContext context) { }
-        public SoapSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeIdentifiers typeIdentifiers) { }
-        public SoapSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeIdentifiers typeIdentifiers, System.Xml.Serialization.CodeGenerationOptions options) { }
-        public System.Xml.Serialization.XmlTypeMapping ImportDerivedTypeMapping(System.Xml.XmlQualifiedName name, System.Type baseType, bool baseTypeCanBeIndirect) { throw null; }
-        public System.Xml.Serialization.XmlMembersMapping ImportMembersMapping(string name, string ns, System.Xml.Serialization.SoapSchemaMember member) { throw null; }
-        public System.Xml.Serialization.XmlMembersMapping ImportMembersMapping(string name, string ns, System.Xml.Serialization.SoapSchemaMember[] members) { throw null; }
-        public System.Xml.Serialization.XmlMembersMapping ImportMembersMapping(string name, string ns, System.Xml.Serialization.SoapSchemaMember[] members, bool hasWrapperElement) { throw null; }
-        public System.Xml.Serialization.XmlMembersMapping ImportMembersMapping(string name, string ns, System.Xml.Serialization.SoapSchemaMember[] members, bool hasWrapperElement, System.Type baseType, bool baseTypeCanBeIndirect) { throw null; }
     }
     public partial class SoapSchemaMember
     {
@@ -2588,19 +2546,6 @@ namespace System.Xml.Serialization
         public XmlChoiceIdentifierAttribute(string name) { }
         public string MemberName { get { throw null; } set { } }
     }
-    public partial class XmlCodeExporter : System.Xml.Serialization.CodeExporter
-    {
-        public XmlCodeExporter(System.CodeDom.CodeNamespace codeNamespace) { }
-        public XmlCodeExporter(System.CodeDom.CodeNamespace codeNamespace, System.CodeDom.CodeCompileUnit codeCompileUnit) { }
-        public XmlCodeExporter(System.CodeDom.CodeNamespace codeNamespace, System.CodeDom.CodeCompileUnit codeCompileUnit, System.CodeDom.Compiler.CodeDomProvider codeProvider, System.Xml.Serialization.CodeGenerationOptions options, System.Collections.Hashtable mappings) { }
-        public XmlCodeExporter(System.CodeDom.CodeNamespace codeNamespace, System.CodeDom.CodeCompileUnit codeCompileUnit, System.Xml.Serialization.CodeGenerationOptions options) { }
-        public XmlCodeExporter(System.CodeDom.CodeNamespace codeNamespace, System.CodeDom.CodeCompileUnit codeCompileUnit, System.Xml.Serialization.CodeGenerationOptions options, System.Collections.Hashtable mappings) { }
-        public void AddMappingMetadata(System.CodeDom.CodeAttributeDeclarationCollection metadata, System.Xml.Serialization.XmlMemberMapping member, string ns) { }
-        public void AddMappingMetadata(System.CodeDom.CodeAttributeDeclarationCollection metadata, System.Xml.Serialization.XmlMemberMapping member, string ns, bool forceUseMemberName) { }
-        public void AddMappingMetadata(System.CodeDom.CodeAttributeDeclarationCollection metadata, System.Xml.Serialization.XmlTypeMapping mapping, string ns) { }
-        public void ExportMembersMapping(System.Xml.Serialization.XmlMembersMapping xmlMembersMapping) { }
-        public void ExportTypeMapping(System.Xml.Serialization.XmlTypeMapping xmlTypeMapping) { }
-    }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct XmlDeserializationEvents
     {
@@ -2690,7 +2635,7 @@ namespace System.Xml.Serialization
         public string TypeName { get { throw null; } }
         public string TypeNamespace { get { throw null; } }
         public string XsdElementName { get { throw null; } }
-        public string GenerateTypeName(System.CodeDom.Compiler.CodeDomProvider codeProvider) { throw null; }
+//CODEDOM        public string GenerateTypeName(System.CodeDom.Compiler.CodeDomProvider codeProvider) { throw null; }
     }
     public partial class XmlMembersMapping : System.Xml.Serialization.XmlMapping
     {
@@ -2774,13 +2719,14 @@ namespace System.Xml.Serialization
         public System.Xml.XmlQualifiedName ExportTypeMapping(System.Xml.Serialization.XmlMembersMapping xmlMembersMapping) { throw null; }
         public void ExportTypeMapping(System.Xml.Serialization.XmlTypeMapping xmlTypeMapping) { }
     }
-    public partial class XmlSchemaImporter : System.Xml.Serialization.SchemaImporter
+    public partial class XmlSchemaImporter
+//CodeDOM : System.Xml.Serialization.SchemaImporter
     {
         public XmlSchemaImporter(System.Xml.Serialization.XmlSchemas schemas) { }
-        public XmlSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeGenerationOptions options, System.CodeDom.Compiler.CodeDomProvider codeProvider, System.Xml.Serialization.ImportContext context) { }
-        public XmlSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeGenerationOptions options, System.Xml.Serialization.ImportContext context) { }
+//CODEDOM        public XmlSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeGenerationOptions options, System.CodeDom.Compiler.CodeDomProvider codeProvider, System.Xml.Serialization.ImportContext context) { }
+//CODEDOM        public XmlSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeGenerationOptions options, System.Xml.Serialization.ImportContext context) { }
         public XmlSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeIdentifiers typeIdentifiers) { }
-        public XmlSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeIdentifiers typeIdentifiers, System.Xml.Serialization.CodeGenerationOptions options) { }
+//CODEDOM        public XmlSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeIdentifiers typeIdentifiers, System.Xml.Serialization.CodeGenerationOptions options) { }
         public System.Xml.Serialization.XmlMembersMapping ImportAnyType(System.Xml.XmlQualifiedName typeName, string elementName) { throw null; }
         public System.Xml.Serialization.XmlTypeMapping ImportDerivedTypeMapping(System.Xml.XmlQualifiedName name, System.Type baseType) { throw null; }
         public System.Xml.Serialization.XmlTypeMapping ImportDerivedTypeMapping(System.Xml.XmlQualifiedName name, System.Type baseType, bool baseTypeCanBeIndirect) { throw null; }
@@ -3059,8 +3005,8 @@ namespace System.Xml.Serialization
 //CAS        public static System.Xml.Serialization.XmlSerializer[] FromMappings(System.Xml.Serialization.XmlMapping[] mappings, System.Security.Policy.Evidence evidence) { throw null; }
         public static System.Xml.Serialization.XmlSerializer[] FromMappings(System.Xml.Serialization.XmlMapping[] mappings, System.Type type) { throw null; }
         public static System.Xml.Serialization.XmlSerializer[] FromTypes(System.Type[] types) { throw null; }
-        public static System.Reflection.Assembly GenerateSerializer(System.Type[] types, System.Xml.Serialization.XmlMapping[] mappings) { throw null; }
-        public static System.Reflection.Assembly GenerateSerializer(System.Type[] types, System.Xml.Serialization.XmlMapping[] mappings, System.CodeDom.Compiler.CompilerParameters parameters) { throw null; }
+//REFEMIT        public static System.Reflection.Assembly GenerateSerializer(System.Type[] types, System.Xml.Serialization.XmlMapping[] mappings) { throw null; }
+//REFEMIT        public static System.Reflection.Assembly GenerateSerializer(System.Type[] types, System.Xml.Serialization.XmlMapping[] mappings, System.CodeDom.Compiler.CompilerParameters parameters) { throw null; }
         public static string GetXmlSerializerAssemblyName(System.Type type) { throw null; }
         public static string GetXmlSerializerAssemblyName(System.Type type, string defaultNamespace) { throw null; }
         public void Serialize(System.IO.Stream stream, object o) { }
@@ -3151,31 +3097,6 @@ namespace System.Xml.Serialization
         public string TypeName { get { throw null; } }
         public string XsdTypeName { get { throw null; } }
         public string XsdTypeNamespace { get { throw null; } }
-    }
-}
-namespace System.Xml.Serialization.Advanced
-{
-    public abstract partial class SchemaImporterExtension
-    {
-        protected SchemaImporterExtension() { }
-        public virtual string ImportAnyElement(System.Xml.Schema.XmlSchemaAny any, bool mixed, System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.XmlSchemaImporter importer, System.CodeDom.CodeCompileUnit compileUnit, System.CodeDom.CodeNamespace mainNamespace, System.Xml.Serialization.CodeGenerationOptions options, System.CodeDom.Compiler.CodeDomProvider codeProvider) { throw null; }
-        public virtual System.CodeDom.CodeExpression ImportDefaultValue(string value, string type) { throw null; }
-        public virtual string ImportSchemaType(string name, string ns, System.Xml.Schema.XmlSchemaObject context, System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.XmlSchemaImporter importer, System.CodeDom.CodeCompileUnit compileUnit, System.CodeDom.CodeNamespace mainNamespace, System.Xml.Serialization.CodeGenerationOptions options, System.CodeDom.Compiler.CodeDomProvider codeProvider) { throw null; }
-        public virtual string ImportSchemaType(System.Xml.Schema.XmlSchemaType type, System.Xml.Schema.XmlSchemaObject context, System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.XmlSchemaImporter importer, System.CodeDom.CodeCompileUnit compileUnit, System.CodeDom.CodeNamespace mainNamespace, System.Xml.Serialization.CodeGenerationOptions options, System.CodeDom.Compiler.CodeDomProvider codeProvider) { throw null; }
-    }
-    public partial class SchemaImporterExtensionCollection : System.Collections.CollectionBase
-    {
-        public SchemaImporterExtensionCollection() { }
-        public System.Xml.Serialization.Advanced.SchemaImporterExtension this[int index] { get { throw null; } set { } }
-        public int Add(string name, System.Type type) { throw null; }
-        public int Add(System.Xml.Serialization.Advanced.SchemaImporterExtension extension) { throw null; }
-        public new void Clear() { }
-        public bool Contains(System.Xml.Serialization.Advanced.SchemaImporterExtension extension) { throw null; }
-        public void CopyTo(System.Xml.Serialization.Advanced.SchemaImporterExtension[] array, int index) { }
-        public int IndexOf(System.Xml.Serialization.Advanced.SchemaImporterExtension extension) { throw null; }
-        public void Insert(int index, System.Xml.Serialization.Advanced.SchemaImporterExtension extension) { }
-        public void Remove(string name) { }
-        public void Remove(System.Xml.Serialization.Advanced.SchemaImporterExtension extension) { }
     }
 }
 /* CONFIG
@@ -3514,7 +3435,7 @@ namespace System.Xml.Xsl
         public XslCompiledTransform() { }
         public XslCompiledTransform(bool enableDebug) { }
         public System.Xml.XmlWriterSettings OutputSettings { get { throw null; } }
-        public System.CodeDom.Compiler.TempFileCollection TemporaryFiles { get { throw null; } }
+//CODEDOM        public System.CodeDom.Compiler.TempFileCollection TemporaryFiles { get { throw null; } }
 //REFEMIT        public static System.CodeDom.Compiler.CompilerErrorCollection CompileToType(System.Xml.XmlReader stylesheet, System.Xml.Xsl.XsltSettings settings, System.Xml.XmlResolver stylesheetResolver, bool debug, System.Reflection.Emit.TypeBuilder typeBuilder, string scriptAssemblyPath) { throw null; }
         public void Load(System.Reflection.MethodInfo executeMethod, byte[] queryData, System.Type[] earlyBoundTypes) { }
         public void Load(string stylesheetUri) { }
