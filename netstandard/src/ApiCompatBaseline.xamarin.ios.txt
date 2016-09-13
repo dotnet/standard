@@ -42,43 +42,6 @@ TypesMustExist : Type 'System.Diagnostics.TraceLogRetentionOption' does not exis
 TypesMustExist : Type 'System.Diagnostics.UnescapedXmlDiagnosticData' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.XmlWriterTraceListener' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.EventDescriptor' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.EventProvider' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.EventProviderTraceListener' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventBookmark' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventKeyword' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLevel' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogConfiguration' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogInformation' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogInvalidDataException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogIsolation' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogLink' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogMode' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogNotFoundException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogPropertySelector' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogProviderDisabledException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogQuery' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogReader' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogReadingException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogRecord' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogSession' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogStatus' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogType' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventLogWatcher' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventMetadata' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventOpcode' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventProperty' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventRecord' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventRecordWrittenEventArgs' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.EventTask' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.PathType' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.ProviderMetadata' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.SessionAuthentication' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.StandardEventKeywords' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.StandardEventLevel' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.StandardEventOpcode' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.StandardEventTask' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.Tracing.EventSourceException..ctor(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Globalization.CompareInfo.Version.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Globalization.CultureInfo.CultureTypes.get()' does not exist in the implementation but it does exist in the contract.
@@ -451,4 +414,4 @@ MembersMustExist : Member 'System.Xml.Serialization.XmlSerializerFactory.CreateS
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo, System.Byte[], System.Type[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Type)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable, System.Xml.Xsl.XsltArgumentList, System.Xml.XmlWriter, System.Xml.XmlResolver)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 452
+Total Issues: 415
