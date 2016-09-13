@@ -106,9 +106,6 @@ MembersMustExist : Member 'System.IO.Pipes.PipeStream.InitializeHandle(Microsoft
 MembersMustExist : Member 'System.IO.Pipes.PipeStream.IsHandleExposed.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Pipes.PipeStream.SetAccessControl(System.IO.Pipes.PipeSecurity)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Pipes.PipeStreamImpersonationWorker' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Media.SoundPlayer' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Media.SystemSound' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Media.SystemSounds' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.HttpListener.DefaultServiceNames.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.HttpListener.ExtendedProtectionPolicy.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.HttpListener.ExtendedProtectionPolicy.set(System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy)' does not exist in the implementation but it does exist in the contract.
@@ -375,4 +372,4 @@ MembersMustExist : Member 'System.Xml.Serialization.XmlSerializerFactory.CreateS
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo, System.Byte[], System.Type[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Type)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable, System.Xml.Xsl.XsltArgumentList, System.Xml.XmlWriter, System.Xml.XmlResolver)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 376
+Total Issues: 373
