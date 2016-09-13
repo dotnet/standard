@@ -106,19 +106,6 @@ MembersMustExist : Member 'System.IO.Pipes.PipeStream.InitializeHandle(Microsoft
 MembersMustExist : Member 'System.IO.Pipes.PipeStream.IsHandleExposed.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Pipes.PipeStream.SetAccessControl(System.IO.Pipes.PipeSecurity)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Pipes.PipeStreamImpersonationWorker' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Ports.Handshake' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Ports.Parity' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Ports.SerialData' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Ports.SerialDataReceivedEventArgs' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Ports.SerialDataReceivedEventHandler' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Ports.SerialError' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Ports.SerialErrorReceivedEventArgs' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Ports.SerialErrorReceivedEventHandler' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Ports.SerialPinChange' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Ports.SerialPinChangedEventArgs' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Ports.SerialPinChangedEventHandler' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Ports.SerialPort' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Ports.StopBits' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Management.Instrumentation.InstanceNotFoundException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Management.Instrumentation.InstrumentationBaseException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Management.Instrumentation.InstrumentationException' does not exist in the implementation but it does exist in the contract.
@@ -408,4 +395,4 @@ MembersMustExist : Member 'System.Xml.Serialization.XmlSerializerFactory.CreateS
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo, System.Byte[], System.Type[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Type)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable, System.Xml.Xsl.XsltArgumentList, System.Xml.XmlWriter, System.Xml.XmlResolver)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 409
+Total Issues: 396
