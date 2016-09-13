@@ -6,21 +6,9 @@ CannotRemoveBaseTypeOrInterface : Type 'Microsoft.Win32.SafeHandles.SafeNCryptKe
 CannotRemoveBaseTypeOrInterface : Type 'Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle' does not inherit from base type 'Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle' does not inherit from base type 'Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'Microsoft.Win32.SafeHandles.SafeX509ChainHandle' does not inherit from base type 'Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid' in the implementation but it does in the contract.
-MembersMustExist : Member 'System.ActivationContext.ApplicationManifestBytes.get()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.ActivationContext.DeploymentManifestBytes.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.AppDomain.add_ReflectionOnlyAssemblyResolve(System.ResolveEventHandler)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.AppDomain.remove_ReflectionOnlyAssemblyResolve(System.ResolveEventHandler)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.AppDomain.SetDynamicBase(System.String)' does not exist in the implementation but it does exist in the contract.
-CannotRemoveBaseTypeOrInterface : Type 'System.AppDomainSetup' does not implement interface 'System.IAppDomainSetup' in the implementation but it does in the contract.
-MembersMustExist : Member 'System.AppDomainSetup.AppDomainManagerAssembly.get()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomainSetup.AppDomainManagerAssembly.set(System.String)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomainSetup.AppDomainManagerType.get()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomainSetup.AppDomainManagerType.set(System.String)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomainSetup.PartialTrustVisibleAssemblies.get()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomainSetup.PartialTrustVisibleAssemblies.set(System.String[])' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomainSetup.SandboxInterop.get()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomainSetup.SandboxInterop.set(System.Boolean)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.AppDomainSetup.SetNativeFunction(System.String, System.Int32, System.IntPtr)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.ContextBoundObject' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Environment.GetEnvironmentVariable(System.String, System.EnvironmentVariableTarget)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Environment.GetEnvironmentVariables(System.EnvironmentVariableTarget)' does not exist in the implementation but it does exist in the contract.
@@ -287,7 +275,6 @@ MembersMustExist : Member 'System.Int16 System.Runtime.InteropServices.VARFLAGS.
 MembersMustExist : Member 'System.Runtime.Serialization.XmlSerializableServices.AddDefaultSchema(System.Xml.Schema.XmlSchemaSet, System.Xml.XmlQualifiedName)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.Serialization.XsdDataContractExporter' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Runtime.Serialization.Formatters.Binary.BinaryFormatter' does not implement interface 'System.Runtime.Remoting.Messaging.IRemotingFormatter' in the implementation but it does in the contract.
-TypesMustExist : Type 'System.Security.ManifestKinds' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.SecurityCriticalAttribute..ctor(System.Security.SecurityCriticalScope)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.SecurityCriticalAttribute.Scope.get()' does not exist in the implementation but it does exist in the contract.
 EnumTypesMustMatch : Enum type for 'System.Security.AccessControl.AceType' is 'System.Int32' in implementation but 'System.Byte' in the contract.
@@ -312,8 +299,6 @@ MembersMustExist : Member 'System.Security.Cryptography.ECDsaCng.VerifyData(Syst
 MembersMustExist : Member 'System.Security.Cryptography.ECDsaCng.VerifyData(System.Byte[], System.Int32, System.Int32, System.Byte[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.ECDsaCng.VerifyData(System.IO.Stream, System.Byte[])' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Security.Cryptography.ECKeyXmlFormat' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Security.Cryptography.ManifestSignatureInformation' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Security.Cryptography.ManifestSignatureInformationCollection' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Security.Cryptography.MD5Cng' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.RC2CryptoServiceProvider.UseSalt.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.RC2CryptoServiceProvider.UseSalt.set(System.Boolean)' does not exist in the implementation but it does exist in the contract.
@@ -369,4 +354,4 @@ MembersMustExist : Member 'System.Xml.Serialization.XmlSerializerFactory.CreateS
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo, System.Byte[], System.Type[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Type)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable, System.Xml.Xsl.XsltArgumentList, System.Xml.XmlWriter, System.Xml.XmlResolver)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 370
+Total Issues: 355

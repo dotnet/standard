@@ -1,16 +1,168 @@
 /*
 APIs removed/broken by this factoring:
+    public sealed partial class Activator
+    {
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateComInstanceFrom(string assemblyName, string typeName) { throw null; }
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateComInstanceFrom(string assemblyName, string typeName, byte[] hashValue, System.Configuration.Assemblies.AssemblyHashAlgorithm hashAlgorithm) { throw null; }
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstance(System.ActivationContext activationContext) { throw null; }
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstance(System.ActivationContext activationContext, string[] activationCustomData) { throw null; }
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstance(System.AppDomain domain, string assemblyName, string typeName) { throw null; }
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstance(System.AppDomain domain, string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
+//REMOTING        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateInstance which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstance(System.AppDomain domain, string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes) { throw null; }
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName) { throw null; }
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
+//REMOTING        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateInstance which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityInfo) { throw null; }
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, object[] activationAttributes) { throw null; }
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(System.AppDomain domain, string assemblyFile, string typeName) { throw null; }
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(System.AppDomain domain, string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
+//REMOTING        [System.ObsoleteAttribute("Methods which use Evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateInstanceFrom which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(System.AppDomain domain, string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes) { throw null; }
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName) { throw null; }
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
+//REMOTING        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateInstanceFrom which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityInfo) { throw null; }
+//REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, object[] activationAttributes) { throw null; }
+//REMOTING        public static object GetObject(System.Type type, string url) { throw null; }
+//REMOTING        public static object GetObject(System.Type type, string url, object state) { throw null; }
+    }
+    public sealed partial class AppDomain : System.MarshalByRefObject
+    {
+//REMOTING        public System.ActivationContext ActivationContext { get { throw null; } }
+//REMOTING        public System.ApplicationIdentity ApplicationIdentity { get { throw null; } }
+//REMOTING        public System.AppDomainManager DomainManager { get { throw null; } }
+//REMOTING        public System.AppDomainSetup SetupInformation { get { throw null; } }
+//REMOTING        public System.Runtime.Remoting.ObjectHandle CreateComInstanceFrom(string assemblyName, string typeName) { throw null; }
+//REMOTING        public System.Runtime.Remoting.ObjectHandle CreateComInstanceFrom(string assemblyFile, string typeName, byte[] hashValue, System.Configuration.Assemblies.AssemblyHashAlgorithm hashAlgorithm) { throw null; }
+//REMOTING        public System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName) { throw null; }
+//REMOTING        public System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
+//REMOTING        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateInstance which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+//REMOTING        public System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes) { throw null; }
+//REMOTING        public System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, object[] activationAttributes) { throw null; }
+//REMOTING        public object CreateInstanceAndUnwrap(string assemblyName, string typeName) { throw null; }
+//REMOTING        public object CreateInstanceAndUnwrap(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
+//REMOTING        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateInstanceAndUnwrap which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+//REMOTING        public object CreateInstanceAndUnwrap(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes) { throw null; }
+//REMOTING        public object CreateInstanceAndUnwrap(string assemblyName, string typeName, object[] activationAttributes) { throw null; }
+//REMOTING        public System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName) { throw null; }
+//REMOTING        public System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
+//REMOTING        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateInstanceFrom which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+//REMOTING        public System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes) { throw null; }
+//REMOTING        public System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, object[] activationAttributes) { throw null; }
+//REMOTING        public object CreateInstanceFromAndUnwrap(string assemblyName, string typeName) { throw null; }
+//REMOTING        public object CreateInstanceFromAndUnwrap(string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
+//REMOTING        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateInstanceFromAndUnwrap which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+//REMOTING        public object CreateInstanceFromAndUnwrap(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes) { throw null; }
+//REMOTING        public object CreateInstanceFromAndUnwrap(string assemblyName, string typeName, object[] activationAttributes) { throw null; }
+//REMOTING        public void DoCallBack(System.CrossAppDomainDelegate callBackDelegate) { }
+    }
     public sealed partial class Thread : System.Runtime.ConstrainedExecution.CriticalFinalizerObject
     {
 //REMOTING        public static System.Runtime.Remoting.Contexts.Context CurrentContext { get { throw null; } }
     }
-    public partial class ApplicationActivator
+    public sealed partial class ApplicationSecurityInfo
     {
-//REMOTING        public virtual System.Runtime.Remoting.ObjectHandle CreateInstance(System.ActivationContext activationContext) { throw null; }
-//REMOTING        public virtual System.Runtime.Remoting.ObjectHandle CreateInstance(System.ActivationContext activationContext, string[] activationCustomData) { throw null; }
-//REMOTING        protected static System.Runtime.Remoting.ObjectHandle CreateInstanceHelper(System.AppDomainSetup adSetup) { throw null; }
+//REMOTING        public ApplicationSecurityInfo(System.ActivationContext activationContext) { }
+    }
+    public static partial class ApplicationSecurityManager
+    {
+//REMOTING        public static bool DetermineApplicationTrust(System.ActivationContext activationContext, System.Security.Policy.TrustManagerContext context) { throw null; }
+    }
+    public partial interface IApplicationTrustManager : System.Security.ISecurityEncodable
+    {
+//REMOTING        System.Security.Policy.ApplicationTrust DetermineApplicationTrust(System.ActivationContext activationContext, System.Security.Policy.TrustManagerContext context);
     }
 */
+namespace System
+{
+    public sealed partial class ActivationContext : System.IDisposable, System.Runtime.Serialization.ISerializable
+    {
+        internal ActivationContext() { }
+        public byte[] ApplicationManifestBytes { get { throw null; } }
+        public byte[] DeploymentManifestBytes { get { throw null; } }
+        public System.ActivationContext.ContextForm Form { get { throw null; } }
+        public System.ApplicationIdentity Identity { get { throw null; } }
+        public static System.ActivationContext CreatePartialActivationContext(System.ApplicationIdentity identity) { throw null; }
+        public static System.ActivationContext CreatePartialActivationContext(System.ApplicationIdentity identity, string[] manifestPaths) { throw null; }
+        public void Dispose() { }
+        ~ActivationContext() { }
+        void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public enum ContextForm
+        {
+            Loose = 0,
+            StoreBounded = 1,
+        }
+    }
+    public delegate void AppDomainInitializer(string[] args);
+    public partial class AppDomainManager : System.MarshalByRefObject
+    {
+        public AppDomainManager() { }
+        public virtual System.Runtime.Hosting.ApplicationActivator ApplicationActivator { get { throw null; } }
+        public virtual System.Reflection.Assembly EntryAssembly { get { throw null; } }
+        public virtual System.Threading.HostExecutionContextManager HostExecutionContextManager { get { throw null; } }
+//CAS        public virtual System.Security.HostSecurityManager HostSecurityManager { get { throw null; } }
+        public System.AppDomainManagerInitializationOptions InitializationFlags { get { throw null; } set { } }
+//CAS        public virtual bool CheckSecuritySettings(System.Security.SecurityState state) { throw null; }
+//CAS        public virtual System.AppDomain CreateDomain(string friendlyName, System.Security.Policy.Evidence securityInfo, System.AppDomainSetup appDomainInfo) { throw null; }
+//CAS        protected static System.AppDomain CreateDomainHelper(string friendlyName, System.Security.Policy.Evidence securityInfo, System.AppDomainSetup appDomainInfo) { throw null; }
+        public virtual void InitializeNewDomain(System.AppDomainSetup appDomainInfo) { }
+    }
+    [System.FlagsAttribute]
+    public enum AppDomainManagerInitializationOptions
+    {
+        None = 0,
+        RegisterWithHost = 1,
+    }
+    public sealed partial class AppDomainSetup : System.IAppDomainSetup
+    {
+        public AppDomainSetup() { }
+        public AppDomainSetup(System.ActivationContext activationContext) { }
+        public AppDomainSetup(System.Runtime.Hosting.ActivationArguments activationArguments) { }
+        public System.Runtime.Hosting.ActivationArguments ActivationArguments { get { throw null; } set { } }
+        public System.AppDomainInitializer AppDomainInitializer { get { throw null; } set { } }
+        public string[] AppDomainInitializerArguments { get { throw null; } set { } }
+        public string AppDomainManagerAssembly { get { throw null; } set { } }
+        public string AppDomainManagerType { get { throw null; } set { } }
+        public string ApplicationBase { get { throw null; } set { } }
+        public string ApplicationName { get { throw null; } set { } }
+//CAS        public System.Security.Policy.ApplicationTrust ApplicationTrust { get { throw null; } set { } }
+        public string CachePath { get { throw null; } set { } }
+        public string ConfigurationFile { get { throw null; } set { } }
+        public bool DisallowApplicationBaseProbing { get { throw null; } set { } }
+        public bool DisallowBindingRedirects { get { throw null; } set { } }
+        public bool DisallowCodeDownload { get { throw null; } set { } }
+        public bool DisallowPublisherPolicy { get { throw null; } set { } }
+        public string DynamicBase { get { throw null; } set { } }
+        public string LicenseFile { get { throw null; } set { } }
+        public System.LoaderOptimization LoaderOptimization { get { throw null; } set { } }
+        public string[] PartialTrustVisibleAssemblies { get { throw null; } set { } }
+        public string PrivateBinPath { get { throw null; } set { } }
+        public string PrivateBinPathProbe { get { throw null; } set { } }
+        public bool SandboxInterop { get { throw null; } set { } }
+        public string ShadowCopyDirectories { get { throw null; } set { } }
+        public string ShadowCopyFiles { get { throw null; } set { } }
+        public string TargetFrameworkName { get { throw null; } set { } }
+        public byte[] GetConfigurationBytes() { throw null; }
+        public void SetCompatibilitySwitches(System.Collections.Generic.IEnumerable<string> switches) { }
+        public void SetConfigurationBytes(byte[] value) { }
+        public void SetNativeFunction(string functionName, int functionVersion, System.IntPtr functionPointer) { }
+    }
+    public delegate void CrossAppDomainDelegate();
+    public partial interface IAppDomainSetup
+    {
+        string ApplicationBase { get; set; }
+        string ApplicationName { get; set; }
+        string CachePath { get; set; }
+        string ConfigurationFile { get; set; }
+        string DynamicBase { get; set; }
+        string LicenseFile { get; set; }
+        string PrivateBinPath { get; set; }
+        string PrivateBinPathProbe { get; set; }
+        string ShadowCopyDirectories { get; set; }
+        string ShadowCopyFiles { get; set; }
+    }
+}
 namespace System.Deployment.Internal
 {
     public static partial class InternalActivationContextHelper
@@ -26,6 +178,28 @@ namespace System.Deployment.Internal
     public static partial class InternalApplicationIdentityHelper
     {
         public static object GetInternalAppId(System.ApplicationIdentity id) { throw null; }
+    }
+}
+namespace System.Runtime.Hosting
+{
+    public sealed partial class ActivationArguments
+//CAS : System.Security.Policy.EvidenceBase
+    {
+        public ActivationArguments(System.ActivationContext activationData) { }
+        public ActivationArguments(System.ActivationContext activationContext, string[] activationData) { }
+        public ActivationArguments(System.ApplicationIdentity applicationIdentity) { }
+        public ActivationArguments(System.ApplicationIdentity applicationIdentity, string[] activationData) { }
+        public System.ActivationContext ActivationContext { get { throw null; } }
+        public string[] ActivationData { get { throw null; } }
+        public System.ApplicationIdentity ApplicationIdentity { get { throw null; } }
+//CAS        public override System.Security.Policy.EvidenceBase Clone() { throw null; }
+    }
+    public partial class ApplicationActivator
+    {
+        public ApplicationActivator() { }
+        public virtual System.Runtime.Remoting.ObjectHandle CreateInstance(System.ActivationContext activationContext) { throw null; }
+        public virtual System.Runtime.Remoting.ObjectHandle CreateInstance(System.ActivationContext activationContext, string[] activationCustomData) { throw null; }
+        protected static System.Runtime.Remoting.ObjectHandle CreateInstanceHelper(System.AppDomainSetup adSetup) { throw null; }
     }
 }
 namespace System.Runtime.Remoting
@@ -1311,5 +1485,33 @@ namespace System.Runtime.Serialization.Formatters
         public System.Type[] ParamTypes { get { throw null; } set { } }
         public object[] ParamValues { get { throw null; } set { } }
         public string XmlNameSpace { get { throw null; } set { } }
+    }
+}
+namespace System.Security
+{
+    [System.FlagsAttribute]
+    public enum ManifestKinds
+    {
+        Application = 2,
+        ApplicationAndDeployment = 3,
+        Deployment = 1,
+        None = 0,
+    }
+}
+namespace System.Security.Cryptography
+{
+    public sealed partial class ManifestSignatureInformation
+    {
+        internal ManifestSignatureInformation() { }
+        public System.Security.Cryptography.X509Certificates.AuthenticodeSignatureInformation AuthenticodeSignature { get { throw null; } }
+        public System.Security.ManifestKinds Manifest { get { throw null; } }
+        public System.Security.Cryptography.StrongNameSignatureInformation StrongNameSignature { get { throw null; } }
+        public static System.Security.Cryptography.ManifestSignatureInformationCollection VerifySignature(System.ActivationContext application) { throw null; }
+        public static System.Security.Cryptography.ManifestSignatureInformationCollection VerifySignature(System.ActivationContext application, System.Security.ManifestKinds manifests) { throw null; }
+        public static System.Security.Cryptography.ManifestSignatureInformationCollection VerifySignature(System.ActivationContext application, System.Security.ManifestKinds manifests, System.Security.Cryptography.X509Certificates.X509RevocationFlag revocationFlag, System.Security.Cryptography.X509Certificates.X509RevocationMode revocationMode) { throw null; }
+    }
+    public sealed partial class ManifestSignatureInformationCollection : System.Collections.ObjectModel.ReadOnlyCollection<System.Security.Cryptography.ManifestSignatureInformation>
+    {
+        internal ManifestSignatureInformationCollection() : base (default(System.Collections.Generic.IList<System.Security.Cryptography.ManifestSignatureInformation>)) { }
     }
 }

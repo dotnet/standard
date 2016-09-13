@@ -56,24 +56,6 @@ namespace System
     public delegate void Action<in T1, in T2, in T3, in T4, in T5, in T6>(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6);
     public delegate void Action<in T1, in T2, in T3, in T4, in T5, in T6, in T7>(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7);
     public delegate void Action<in T1, in T2, in T3, in T4, in T5, in T6, in T7, in T8>(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8);
-    public sealed partial class ActivationContext : System.IDisposable, System.Runtime.Serialization.ISerializable
-    {
-        internal ActivationContext() { }
-        public byte[] ApplicationManifestBytes { get { throw null; } }
-        public byte[] DeploymentManifestBytes { get { throw null; } }
-        public System.ActivationContext.ContextForm Form { get { throw null; } }
-        public System.ApplicationIdentity Identity { get { throw null; } }
-        public static System.ActivationContext CreatePartialActivationContext(System.ApplicationIdentity identity) { throw null; }
-        public static System.ActivationContext CreatePartialActivationContext(System.ApplicationIdentity identity, string[] manifestPaths) { throw null; }
-        public void Dispose() { }
-        ~ActivationContext() { }
-        void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public enum ContextForm
-        {
-            Loose = 0,
-            StoreBounded = 1,
-        }
-    }
     public partial class AggregateException : System.Exception
     {
         public AggregateException() { }

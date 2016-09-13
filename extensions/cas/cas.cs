@@ -35,7 +35,6 @@ public sealed partial class AppDomain : System.MarshalByRefObject
     }
     public partial class AppDomainManager : System.MarshalByRefObject
     {
-//CAS        public virtual System.Runtime.Hosting.ApplicationActivator ApplicationActivator { get { throw null; } }
 //CAS        public virtual System.Security.HostSecurityManager HostSecurityManager { get { throw null; } }
 //CAS        public virtual bool CheckSecuritySettings(System.Security.SecurityState state) { throw null; }
 //CAS        public virtual System.AppDomain CreateDomain(string friendlyName, System.Security.Policy.Evidence securityInfo, System.AppDomainSetup appDomainInfo) { throw null; }
@@ -43,9 +42,12 @@ public sealed partial class AppDomain : System.MarshalByRefObject
     }
     public sealed partial class AppDomainSetup : System.IAppDomainSetup
     {
-//CAS        public AppDomainSetup(System.Runtime.Hosting.ActivationArguments activationArguments) { }
-//CAS        public System.Runtime.Hosting.ActivationArguments ActivationArguments { get { throw null; } set { } }
 //CAS        public System.Security.Policy.ApplicationTrust ApplicationTrust { get { throw null; } set { } }
+    }
+    public sealed partial class ActivationArguments
+//CAS : System.Security.Policy.EvidenceBase
+    {
+//CAS        public override System.Security.Policy.EvidenceBase Clone() { throw null; }
     }
     public abstract partial class IsolatedStorage : System.MarshalByRefObject
     {
@@ -369,27 +371,6 @@ namespace System.Net.NetworkInformation
         public override System.Security.IPermission CreatePermission() { throw null; }
     }
 }
-namespace System.Runtime.Hosting
-{
-    public sealed partial class ActivationArguments : System.Security.Policy.EvidenceBase
-    {
-        public ActivationArguments(System.ActivationContext activationData) { }
-        public ActivationArguments(System.ActivationContext activationContext, string[] activationData) { }
-        public ActivationArguments(System.ApplicationIdentity applicationIdentity) { }
-        public ActivationArguments(System.ApplicationIdentity applicationIdentity, string[] activationData) { }
-        public System.ActivationContext ActivationContext { get { throw null; } }
-        public string[] ActivationData { get { throw null; } }
-        public System.ApplicationIdentity ApplicationIdentity { get { throw null; } }
-        public override System.Security.Policy.EvidenceBase Clone() { throw null; }
-    }
-    public partial class ApplicationActivator
-    {
-        public ApplicationActivator() { }
-//REMOTING        public virtual System.Runtime.Remoting.ObjectHandle CreateInstance(System.ActivationContext activationContext) { throw null; }
-//REMOTING        public virtual System.Runtime.Remoting.ObjectHandle CreateInstance(System.ActivationContext activationContext, string[] activationCustomData) { throw null; }
-//REMOTING        protected static System.Runtime.Remoting.ObjectHandle CreateInstanceHelper(System.AppDomainSetup adSetup) { throw null; }
-    }
-}
 namespace System.Security
 {
     public abstract partial class CodeAccessPermission : System.Security.IPermission, System.Security.ISecurityEncodable, System.Security.IStackWalk
@@ -667,7 +648,7 @@ namespace System.Security.Policy
     }
     public sealed partial class ApplicationSecurityInfo
     {
-        public ApplicationSecurityInfo(System.ActivationContext activationContext) { }
+//REMOTING        public ApplicationSecurityInfo(System.ActivationContext activationContext) { }
         public System.Security.Policy.Evidence ApplicationEvidence { get { throw null; } set { } }
         public System.ApplicationId ApplicationId { get { throw null; } set { } }
         public System.Security.PermissionSet DefaultRequestSet { get { throw null; } set { } }
@@ -677,7 +658,7 @@ namespace System.Security.Policy
     {
         public static System.Security.Policy.IApplicationTrustManager ApplicationTrustManager { get { throw null; } }
         public static System.Security.Policy.ApplicationTrustCollection UserApplicationTrusts { get { throw null; } }
-        public static bool DetermineApplicationTrust(System.ActivationContext activationContext, System.Security.Policy.TrustManagerContext context) { throw null; }
+//REMOTING        public static bool DetermineApplicationTrust(System.ActivationContext activationContext, System.Security.Policy.TrustManagerContext context) { throw null; }
     }
     public sealed partial class ApplicationTrust : System.Security.Policy.EvidenceBase, System.Security.ISecurityEncodable
     {
@@ -885,7 +866,7 @@ namespace System.Security.Policy
     }
     public partial interface IApplicationTrustManager : System.Security.ISecurityEncodable
     {
-        System.Security.Policy.ApplicationTrust DetermineApplicationTrust(System.ActivationContext activationContext, System.Security.Policy.TrustManagerContext context);
+//REMOTING        System.Security.Policy.ApplicationTrust DetermineApplicationTrust(System.ActivationContext activationContext, System.Security.Policy.TrustManagerContext context);
     }
     public partial interface IIdentityPermissionFactory
     {

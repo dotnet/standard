@@ -40,12 +40,12 @@ namespace System
 //CAS   , System.Security.IEvidenceFactory
     {
         internal AppDomain() { }
-        public System.ActivationContext ActivationContext { get { throw null; } }
-        public System.ApplicationIdentity ApplicationIdentity { get { throw null; } }
+//REMOTING        public System.ActivationContext ActivationContext { get { throw null; } }
+//REMOTING        public System.ApplicationIdentity ApplicationIdentity { get { throw null; } }
 //CAS        public System.Security.Policy.ApplicationTrust ApplicationTrust { get { throw null; } }
         public string BaseDirectory { get { throw null; } }
         public static System.AppDomain CurrentDomain { get { throw null; } }
-        public System.AppDomainManager DomainManager { get { throw null; } }
+//REMOTING        public System.AppDomainManager DomainManager { get { throw null; } }
         public string DynamicDirectory { get { throw null; } }
 //CAS        public System.Security.Policy.Evidence Evidence { get { throw null; } }
         public string FriendlyName { get { throw null; } }
@@ -59,7 +59,7 @@ namespace System
         public System.TimeSpan MonitoringTotalProcessorTime { get { throw null; } }
 //CAS        public System.Security.PermissionSet PermissionSet { get { throw null; } }
         public string RelativeSearchPath { get { throw null; } }
-        public System.AppDomainSetup SetupInformation { get { throw null; } }
+//REMOTING        public System.AppDomainSetup SetupInformation { get { throw null; } }
         public bool ShadowCopyFiles { get { throw null; } }
         public event System.AssemblyLoadEventHandler AssemblyLoad { add { } remove { } }
         public event System.ResolveEventHandler AssemblyResolve { add { } remove { } }
@@ -126,7 +126,7 @@ namespace System
 //REFEMIT        public System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir, System.Security.Policy.Evidence evidence, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions, bool isSynchronized) { throw null; }
 //REFEMIT        [System.ObsoleteAttribute("Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
 //REFEMIT        public System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir, System.Security.Policy.Evidence evidence, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions, bool isSynchronized, System.Collections.Generic.IEnumerable<System.Reflection.Emit.CustomAttributeBuilder> assemblyAttributes) { throw null; }
-        public void DoCallBack(System.CrossAppDomainDelegate callBackDelegate) { }
+//REMOTING        public void DoCallBack(System.CrossAppDomainDelegate callBackDelegate) { }
         public int ExecuteAssembly(string assemblyFile) { throw null; }
 //CAS        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of ExecuteAssembly which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
 //CAS        public int ExecuteAssembly(string assemblyFile, System.Security.Policy.Evidence assemblySecurity) { throw null; }
@@ -182,60 +182,6 @@ namespace System
         public override string ToString() { throw null; }
         public static void Unload(System.AppDomain domain) { }
     }
-    public delegate void AppDomainInitializer(string[] args);
-    public partial class AppDomainManager : System.MarshalByRefObject
-    {
-        public AppDomainManager() { }
-//CAS        public virtual System.Runtime.Hosting.ApplicationActivator ApplicationActivator { get { throw null; } }
-        public virtual System.Reflection.Assembly EntryAssembly { get { throw null; } }
-        public virtual System.Threading.HostExecutionContextManager HostExecutionContextManager { get { throw null; } }
-//CAS        public virtual System.Security.HostSecurityManager HostSecurityManager { get { throw null; } }
-        public System.AppDomainManagerInitializationOptions InitializationFlags { get { throw null; } set { } }
-//CAS        public virtual bool CheckSecuritySettings(System.Security.SecurityState state) { throw null; }
-//CAS        public virtual System.AppDomain CreateDomain(string friendlyName, System.Security.Policy.Evidence securityInfo, System.AppDomainSetup appDomainInfo) { throw null; }
-//CAS        protected static System.AppDomain CreateDomainHelper(string friendlyName, System.Security.Policy.Evidence securityInfo, System.AppDomainSetup appDomainInfo) { throw null; }
-        public virtual void InitializeNewDomain(System.AppDomainSetup appDomainInfo) { }
-    }
-    [System.FlagsAttribute]
-    public enum AppDomainManagerInitializationOptions
-    {
-        None = 0,
-        RegisterWithHost = 1,
-    }
-    public sealed partial class AppDomainSetup : System.IAppDomainSetup
-    {
-        public AppDomainSetup() { }
-        public AppDomainSetup(System.ActivationContext activationContext) { }
-//CAS        public AppDomainSetup(System.Runtime.Hosting.ActivationArguments activationArguments) { }
-//CAS        public System.Runtime.Hosting.ActivationArguments ActivationArguments { get { throw null; } set { } }
-        public System.AppDomainInitializer AppDomainInitializer { get { throw null; } set { } }
-        public string[] AppDomainInitializerArguments { get { throw null; } set { } }
-        public string AppDomainManagerAssembly { get { throw null; } set { } }
-        public string AppDomainManagerType { get { throw null; } set { } }
-        public string ApplicationBase { get { throw null; } set { } }
-        public string ApplicationName { get { throw null; } set { } }
-//CAS        public System.Security.Policy.ApplicationTrust ApplicationTrust { get { throw null; } set { } }
-        public string CachePath { get { throw null; } set { } }
-        public string ConfigurationFile { get { throw null; } set { } }
-        public bool DisallowApplicationBaseProbing { get { throw null; } set { } }
-        public bool DisallowBindingRedirects { get { throw null; } set { } }
-        public bool DisallowCodeDownload { get { throw null; } set { } }
-        public bool DisallowPublisherPolicy { get { throw null; } set { } }
-        public string DynamicBase { get { throw null; } set { } }
-        public string LicenseFile { get { throw null; } set { } }
-        public System.LoaderOptimization LoaderOptimization { get { throw null; } set { } }
-        public string[] PartialTrustVisibleAssemblies { get { throw null; } set { } }
-        public string PrivateBinPath { get { throw null; } set { } }
-        public string PrivateBinPathProbe { get { throw null; } set { } }
-        public bool SandboxInterop { get { throw null; } set { } }
-        public string ShadowCopyDirectories { get { throw null; } set { } }
-        public string ShadowCopyFiles { get { throw null; } set { } }
-        public string TargetFrameworkName { get { throw null; } set { } }
-        public byte[] GetConfigurationBytes() { throw null; }
-        public void SetCompatibilitySwitches(System.Collections.Generic.IEnumerable<string> switches) { }
-        public void SetConfigurationBytes(byte[] value) { }
-        public void SetNativeFunction(string functionName, int functionVersion, System.IntPtr functionPointer) { }
-    }
     public partial class AppDomainUnloadedException : System.SystemException
     {
         public AppDomainUnloadedException() { }
@@ -249,19 +195,5 @@ namespace System
         protected CannotUnloadAppDomainException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public CannotUnloadAppDomainException(string message) { }
         public CannotUnloadAppDomainException(string message, System.Exception innerException) { }
-    }
-    public delegate void CrossAppDomainDelegate();
-    public partial interface IAppDomainSetup
-    {
-        string ApplicationBase { get; set; }
-        string ApplicationName { get; set; }
-        string CachePath { get; set; }
-        string ConfigurationFile { get; set; }
-        string DynamicBase { get; set; }
-        string LicenseFile { get; set; }
-        string PrivateBinPath { get; set; }
-        string PrivateBinPathProbe { get; set; }
-        string ShadowCopyDirectories { get; set; }
-        string ShadowCopyFiles { get; set; }
     }
 }

@@ -2295,17 +2295,6 @@ namespace System.Runtime.InteropServices
         public override void RemoveEventHandler(object target, System.Delegate handler) { }
     }
 }
-namespace System.Security
-{
-    [System.FlagsAttribute]
-    public enum ManifestKinds
-    {
-        Application = 2,
-        ApplicationAndDeployment = 3,
-        Deployment = 1,
-        None = 0,
-    }
-}
 namespace System.Security.Cryptography
 {
     public sealed partial class AesCryptoServiceProvider : System.Security.Cryptography.Aes
@@ -2640,20 +2629,6 @@ namespace System.Security.Cryptography
     public enum ECKeyXmlFormat
     {
         Rfc4050 = 0,
-    }
-    public sealed partial class ManifestSignatureInformation
-    {
-        internal ManifestSignatureInformation() { }
-        public System.Security.Cryptography.X509Certificates.AuthenticodeSignatureInformation AuthenticodeSignature { get { throw null; } }
-        public System.Security.ManifestKinds Manifest { get { throw null; } }
-        public System.Security.Cryptography.StrongNameSignatureInformation StrongNameSignature { get { throw null; } }
-        public static System.Security.Cryptography.ManifestSignatureInformationCollection VerifySignature(System.ActivationContext application) { throw null; }
-        public static System.Security.Cryptography.ManifestSignatureInformationCollection VerifySignature(System.ActivationContext application, System.Security.ManifestKinds manifests) { throw null; }
-        public static System.Security.Cryptography.ManifestSignatureInformationCollection VerifySignature(System.ActivationContext application, System.Security.ManifestKinds manifests, System.Security.Cryptography.X509Certificates.X509RevocationFlag revocationFlag, System.Security.Cryptography.X509Certificates.X509RevocationMode revocationMode) { throw null; }
-    }
-    public sealed partial class ManifestSignatureInformationCollection : System.Collections.ObjectModel.ReadOnlyCollection<System.Security.Cryptography.ManifestSignatureInformation>
-    {
-        internal ManifestSignatureInformationCollection() : base (default(System.Collections.Generic.IList<System.Security.Cryptography.ManifestSignatureInformation>)) { }
     }
     public sealed partial class MD5Cng : System.Security.Cryptography.MD5
     {
