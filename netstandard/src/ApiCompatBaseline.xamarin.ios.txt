@@ -34,10 +34,6 @@ MembersMustExist : Member 'System.GC.TryStartNoGCRegion(System.Int64, System.Int
 MembersMustExist : Member 'System.GC.TryStartNoGCRegion(System.Int64, System.Int64, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.CodeDom.Compiler.IndentedTextWriter' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 TypesMustExist : Type 'System.Diagnostics.ConsoleTraceListener' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.CounterCreationData' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.CounterCreationDataCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.CounterSample' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.CounterSampleCalculator' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.EntryWrittenEventArgs' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.EntryWrittenEventHandler' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.EventInstance' does not exist in the implementation but it does exist in the contract.
@@ -48,17 +44,7 @@ TypesMustExist : Type 'System.Diagnostics.EventLogEntryType' does not exist in t
 TypesMustExist : Type 'System.Diagnostics.EventLogTraceListener' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.EventSchemaTraceListener' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.EventSourceCreationData' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.ICollectData' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.InstanceData' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.InstanceDataCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.InstanceDataCollectionCollection' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.OverflowAction' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.PerformanceCounter' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.PerformanceCounterCategory' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.PerformanceCounterCategoryType' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.PerformanceCounterInstanceLifetime' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.PerformanceCounterManager' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.PerformanceCounterType' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Diagnostics.ProcessModuleCollection' does not inherit from base type 'System.Collections.ReadOnlyCollectionBase' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Diagnostics.ProcessThreadCollection' does not inherit from base type 'System.Collections.ReadOnlyCollectionBase' in the implementation but it does in the contract.
 TypesMustExist : Type 'System.Diagnostics.TraceLogRetentionOption' does not exist in the implementation but it does exist in the contract.
@@ -102,12 +88,6 @@ TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.StandardEventKeywords'
 TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.StandardEventLevel' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.StandardEventOpcode' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.Eventing.Reader.StandardEventTask' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.PerformanceData.CounterData' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.PerformanceData.CounterSet' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.PerformanceData.CounterSetInstance' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.PerformanceData.CounterSetInstanceType' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.PerformanceData.CounterType' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.Tracing.EventSourceException..ctor(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Globalization.CompareInfo.Version.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Globalization.CultureInfo.CultureTypes.get()' does not exist in the implementation but it does exist in the contract.
@@ -480,4 +460,4 @@ MembersMustExist : Member 'System.Xml.Serialization.XmlSerializerFactory.CreateS
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo, System.Byte[], System.Type[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Type)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable, System.Xml.Xsl.XsltArgumentList, System.Xml.XmlWriter, System.Xml.XmlResolver)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 481
+Total Issues: 461
