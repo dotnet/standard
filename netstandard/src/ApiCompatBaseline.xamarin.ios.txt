@@ -65,7 +65,6 @@ MembersMustExist : Member 'System.IO.FileSystemWatcher.Site.get()' does not exis
 MembersMustExist : Member 'System.IO.FileSystemWatcher.Site.set(System.ComponentModel.ISite)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.FileSystemWatcher.SynchronizingObject.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.FileSystemWatcher.SynchronizingObject.set(System.ComponentModel.ISynchronizeInvoke)' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.IODescriptionAttribute' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.MemoryStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.Stream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.StreamReader' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
@@ -174,7 +173,6 @@ CannotMakeMemberNonVirtual : Member 'System.Reflection.Assembly.ModuleResolve' i
 CannotMakeMemberNonVirtual : Member 'System.Reflection.Assembly.add_ModuleResolve(System.Reflection.ModuleResolveEventHandler)' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Reflection.Assembly.remove_ModuleResolve(System.Reflection.ModuleResolveEventHandler)' is non-virtual in the implementation but is virtual in the contract.
 MembersMustExist : Member 'System.Reflection.Assembly.SecurityRuleSet.get()' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.ICustomTypeProvider' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.TargetException' does not inherit from base type 'System.ApplicationException' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.TargetInvocationException' does not inherit from base type 'System.ApplicationException' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.TargetParameterCountException' does not inherit from base type 'System.ApplicationException' in the implementation but it does in the contract.
@@ -296,7 +294,6 @@ EnumTypesMustMatch : Enum type for 'System.Security.AccessControl.AceType' is 'S
 MembersMustExist : Member 'System.Byte System.Security.AccessControl.AceType.value__' does not exist in the implementation but it does exist in the contract.
 CannotMakeMoreVisible : Visibility of member 'System.Security.AccessControl.ObjectSecurity<T>.Persist(System.Runtime.InteropServices.SafeHandle)' is 'Family' in the implementation but 'FamilyOrAssembly' in the contract.
 CannotMakeMoreVisible : Visibility of member 'System.Security.AccessControl.ObjectSecurity<T>.Persist(System.String)' is 'Family' in the implementation but 'FamilyOrAssembly' in the contract.
-TypesMustExist : Type 'System.Security.Claims.DynamicRoleClaimProvider' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.CryptoConfig.AddAlgorithm(System.Type, System.String[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.CryptoConfig.AddOID(System.String, System.String[])' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Security.Cryptography.CryptoStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
@@ -372,4 +369,4 @@ MembersMustExist : Member 'System.Xml.Serialization.XmlSerializerFactory.CreateS
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo, System.Byte[], System.Type[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Type)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable, System.Xml.Xsl.XsltArgumentList, System.Xml.XmlWriter, System.Xml.XmlResolver)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 373
+Total Issues: 370

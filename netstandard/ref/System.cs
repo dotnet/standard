@@ -4512,47 +4512,36 @@ namespace System.IO
     }
     public delegate void FileSystemEventHandler(object sender, System.IO.FileSystemEventArgs e);
     [System.ComponentModel.DefaultEventAttribute("Changed")]
-    [System.IO.IODescriptionAttribute("FileSystemWatcherDesc")]
     public partial class FileSystemWatcher : System.ComponentModel.Component, System.ComponentModel.ISupportInitialize
     {
         public FileSystemWatcher() { }
         public FileSystemWatcher(string path) { }
         public FileSystemWatcher(string path, string filter) { }
         [System.ComponentModel.DefaultValueAttribute(false)]
-        [System.IO.IODescriptionAttribute("FSW_Enabled")]
         public bool EnableRaisingEvents { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute("*.*")]
         [System.ComponentModel.SettingsBindableAttribute(true)]
-        [System.IO.IODescriptionAttribute("FSW_Filter")]
         public string Filter { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute(false)]
-        [System.IO.IODescriptionAttribute("FSW_IncludeSubdirectories")]
         public bool IncludeSubdirectories { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DefaultValueAttribute(8192)]
         public int InternalBufferSize { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute((System.IO.NotifyFilters)(19))]
-        [System.IO.IODescriptionAttribute("FSW_ChangedFilter")]
         public System.IO.NotifyFilters NotifyFilter { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute("")]
         [System.ComponentModel.SettingsBindableAttribute(true)]
-        [System.IO.IODescriptionAttribute("FSW_Path")]
         public string Path { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public override System.ComponentModel.ISite Site { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DefaultValueAttribute(null)]
-        [System.IO.IODescriptionAttribute("FSW_SynchronizingObject")]
         public System.ComponentModel.ISynchronizeInvoke SynchronizingObject { get { throw null; } set { } }
-        [System.IO.IODescriptionAttribute("FSW_Changed")]
         public event System.IO.FileSystemEventHandler Changed { add { } remove { } }
-        [System.IO.IODescriptionAttribute("FSW_Created")]
         public event System.IO.FileSystemEventHandler Created { add { } remove { } }
-        [System.IO.IODescriptionAttribute("FSW_Deleted")]
         public event System.IO.FileSystemEventHandler Deleted { add { } remove { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public event System.IO.ErrorEventHandler Error { add { } remove { } }
-        [System.IO.IODescriptionAttribute("FSW_Renamed")]
         public event System.IO.RenamedEventHandler Renamed { add { } remove { } }
         public void BeginInit() { }
         protected override void Dispose(bool disposing) { }
@@ -4577,12 +4566,6 @@ namespace System.IO
         public InvalidDataException() { }
         public InvalidDataException(string message) { }
         public InvalidDataException(string message, System.Exception innerException) { }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
-    public partial class IODescriptionAttribute : System.ComponentModel.DescriptionAttribute
-    {
-        public IODescriptionAttribute(string description) { }
-        public override string Description { get { throw null; } }
     }
     [System.FlagsAttribute]
     public enum NotifyFilters
@@ -7976,13 +7959,6 @@ namespace System.Net.WebSockets
         Open = 2,
     }
 }
-namespace System.Reflection
-{
-    public partial interface ICustomTypeProvider
-    {
-        System.Type GetCustomType();
-    }
-}
 namespace System.Runtime.InteropServices
 {
     [System.AttributeUsageAttribute((System.AttributeTargets)(2048))]
@@ -8286,15 +8262,6 @@ namespace System.Security.Authentication.ExtendedProtection
     {
         Provided = 0,
         Referred = 1,
-    }
-}
-namespace System.Security.Claims
-{
-    public static partial class DynamicRoleClaimProvider
-    {
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("Use ClaimsAuthenticationManager to add claims to a ClaimsIdentity", true)]
-        public static void AddDynamicRoleClaims(System.Security.Claims.ClaimsIdentity claimsIdentity, System.Collections.Generic.IEnumerable<System.Security.Claims.Claim> claims) { }
     }
 }
 namespace System.Security.Cryptography
