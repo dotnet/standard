@@ -170,105 +170,6 @@ MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeOps.CreateRunt
 MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeOps.CreateRuntimeVariables(System.Object[], System.Int64[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeOps.MergeRuntimeVariables(System.Runtime.CompilerServices.IRuntimeVariables, System.Runtime.CompilerServices.IRuntimeVariables, System.Int32[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeOps.Quote(System.Linq.Expressions.Expression, System.Object, System.Object[])' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.DesignerServices.WindowsRuntimeDesignerContext' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.ComImportAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.DispatchWrapper' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.ErrorWrapper' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.EXCEPINFO' does not exist in the implementation but it does exist in the contract.
-EnumTypesMustMatch : Enum type for 'System.Runtime.InteropServices.FUNCFLAGS' is 'System.Int32' in implementation but 'System.Int16' in the contract.
-MembersMustExist : Member 'System.Int16 System.Runtime.InteropServices.FUNCFLAGS.value__' does not exist in the implementation but it does exist in the contract.
-EnumTypesMustMatch : Enum type for 'System.Runtime.InteropServices.IDLFLAG' is 'System.Int32' in implementation but 'System.Int16' in the contract.
-MembersMustExist : Member 'System.Int16 System.Runtime.InteropServices.IDLFLAG.value__' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.ITypeLibConverter' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.ITypeLibExporterNameProvider' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.ITypeLibExporterNotifySink' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.ITypeLibImporterNotifySink' does not exist in the implementation but it does exist in the contract.
-EnumTypesMustMatch : Enum type for 'System.Runtime.InteropServices.LIBFLAGS' is 'System.Int32' in implementation but 'System.Int16' in the contract.
-MembersMustExist : Member 'System.Int16 System.Runtime.InteropServices.LIBFLAGS.value__' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.CleanupUnusedObjectsInCurrentContext()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.CreateWrapperOfType(System.Object, System.Type)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.CreateWrapperOfType<T, TWrapper>(T)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.FinalReleaseComObject(System.Object)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GenerateGuidForType(System.Type)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GenerateProgIdForType(System.Type)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetActiveObject(System.String)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetComInterfaceForObject(System.Object, System.Type)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetComInterfaceForObject(System.Object, System.Type, System.Runtime.InteropServices.CustomQueryInterfaceMode)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetComInterfaceForObject<T, TInterface>(T)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetComInterfaceForObjectInContext(System.Object, System.Type)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetComObjectData(System.Object, System.Object)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetComSlotForMethodInfo(System.Reflection.MemberInfo)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetEndComSlot(System.Type)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetExceptionCode()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetExceptionPointers()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetHINSTANCE(System.Reflection.Module)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetHRForException(System.Exception)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetHRForLastWin32Error()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetIDispatchForObject(System.Object)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetIDispatchForObjectInContext(System.Object)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetITypeInfoForType(System.Type)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetIUnknownForObject(System.Object)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetIUnknownForObjectInContext(System.Object)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetManagedThunkForUnmanagedMethodPtr(System.IntPtr, System.IntPtr, System.Int32)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetMethodInfoForComSlot(System.Type, System.Int32, System.Runtime.InteropServices.ComMemberType)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetNativeVariantForObject(System.Object, System.IntPtr)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetNativeVariantForObject<T>(T, System.IntPtr)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetObjectForIUnknown(System.IntPtr)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetObjectForNativeVariant(System.IntPtr)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetObjectForNativeVariant<T>(System.IntPtr)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetObjectsForNativeVariants(System.IntPtr, System.Int32)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetObjectsForNativeVariants<T>(System.IntPtr, System.Int32)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetStartComSlot(System.Type)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetThreadFromFiberCookie(System.Int32)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetTypedObjectForIUnknown(System.IntPtr, System.Type)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetTypeForITypeInfo(System.IntPtr)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetTypeFromCLSID(System.Guid)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetTypeInfoName(System.Runtime.InteropServices.ComTypes.ITypeInfo)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetTypeInfoName(System.Runtime.InteropServices.UCOMITypeInfo)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetTypeLibGuid(System.Runtime.InteropServices.ComTypes.ITypeLib)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetTypeLibGuid(System.Runtime.InteropServices.UCOMITypeLib)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetTypeLibGuidForAssembly(System.Reflection.Assembly)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetTypeLibLcid(System.Runtime.InteropServices.ComTypes.ITypeLib)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetTypeLibLcid(System.Runtime.InteropServices.UCOMITypeLib)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetTypeLibName(System.Runtime.InteropServices.ComTypes.ITypeLib)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetTypeLibName(System.Runtime.InteropServices.UCOMITypeLib)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetTypeLibVersionForAssembly(System.Reflection.Assembly, System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetUniqueObjectForIUnknown(System.IntPtr)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.GetUnmanagedThunkForManagedMethodPtr(System.IntPtr, System.IntPtr, System.Int32)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.IsComObject(System.Object)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.IsTypeVisibleFromCom(System.Type)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.NumParamBytes(System.Reflection.MethodInfo)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.ReleaseComObject(System.Object)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.ReleaseThreadCache()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.SetComObjectData(System.Object, System.Object, System.Object)' does not exist in the implementation but it does exist in the contract.
-EnumTypesMustMatch : Enum type for 'System.Runtime.InteropServices.PARAMFLAG' is 'System.Int32' in implementation but 'System.Int16' in the contract.
-MembersMustExist : Member 'System.Int16 System.Runtime.InteropServices.PARAMFLAG.value__' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.RegistrationServices' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.RuntimeEnvironment.GetRuntimeInterfaceAsIntPtr(System.Guid, System.Guid)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.RuntimeEnvironment.GetRuntimeInterfaceAsObject(System.Guid, System.Guid)' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.StandardOleMarshalObject' does not exist in the implementation but it does exist in the contract.
-EnumTypesMustMatch : Enum type for 'System.Runtime.InteropServices.TYPEFLAGS' is 'System.Int32' in implementation but 'System.Int16' in the contract.
-MembersMustExist : Member 'System.Int16 System.Runtime.InteropServices.TYPEFLAGS.value__' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.TypeLibConverter' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.TypeLibExporterFlags' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.TypeLibImporterFlags' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.UCOMIBindCtx' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.UCOMIConnectionPoint' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.UCOMIConnectionPointContainer' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.UCOMIEnumConnectionPoints' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.UCOMIEnumConnections' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.UCOMIEnumMoniker' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.UCOMIEnumString' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.UCOMIEnumVARIANT' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.UCOMIMoniker' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.UCOMIPersistFile' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.UCOMIRunningObjectTable' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.UCOMIStream' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.UCOMITypeComp' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.UCOMITypeInfo' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.UCOMITypeLib' does not exist in the implementation but it does exist in the contract.
-EnumTypesMustMatch : Enum type for 'System.Runtime.InteropServices.VARFLAGS' is 'System.Int32' in implementation but 'System.Int16' in the contract.
-MembersMustExist : Member 'System.Int16 System.Runtime.InteropServices.VARFLAGS.value__' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.Serialization.XmlSerializableServices.AddDefaultSchema(System.Xml.Schema.XmlSchemaSet, System.Xml.XmlQualifiedName)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.Serialization.XsdDataContractExporter' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Runtime.Serialization.Formatters.Binary.BinaryFormatter' does not implement interface 'System.Runtime.Remoting.Messaging.IRemotingFormatter' in the implementation but it does in the contract.
@@ -351,4 +252,4 @@ MembersMustExist : Member 'System.Xml.Serialization.XmlSerializerFactory.CreateS
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo, System.Byte[], System.Type[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Type)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable, System.Xml.Xsl.XsltArgumentList, System.Xml.XmlWriter, System.Xml.XmlResolver)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 352
+Total Issues: 253
