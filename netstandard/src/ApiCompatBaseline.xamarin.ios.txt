@@ -1,24 +1,4 @@
 Compat issues with assembly netstandard:
-TypesMustExist : Type 'Microsoft.Win32.IntranetZoneCredentialPolicy' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.PowerModeChangedEventArgs' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.PowerModeChangedEventHandler' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.PowerModes' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.SessionEndedEventArgs' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.SessionEndedEventHandler' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.SessionEndingEventArgs' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.SessionEndingEventHandler' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.SessionEndReasons' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.SessionSwitchEventArgs' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.SessionSwitchEventHandler' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.SessionSwitchReason' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.SystemEvents' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.TimerElapsedEventArgs' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.TimerElapsedEventHandler' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.UserPreferenceCategory' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.UserPreferenceChangedEventArgs' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.UserPreferenceChangedEventHandler' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.UserPreferenceChangingEventArgs' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Microsoft.Win32.UserPreferenceChangingEventHandler' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'Microsoft.Win32.SafeHandles.SafeAccessTokenHandle..ctor(System.IntPtr)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'Microsoft.Win32.SafeHandles.SafeAccessTokenHandle.InvalidHandle.get()' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'Microsoft.Win32.SafeHandles.SafeNCryptHandle' does not inherit from base type 'Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid' in the implementation but it does in the contract.
@@ -500,4 +480,4 @@ MembersMustExist : Member 'System.Xml.Serialization.XmlSerializerFactory.CreateS
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo, System.Byte[], System.Type[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Type)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable, System.Xml.Xsl.XsltArgumentList, System.Xml.XmlWriter, System.Xml.XmlResolver)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 501
+Total Issues: 481
