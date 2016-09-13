@@ -34,16 +34,7 @@ MembersMustExist : Member 'System.GC.TryStartNoGCRegion(System.Int64, System.Int
 MembersMustExist : Member 'System.GC.TryStartNoGCRegion(System.Int64, System.Int64, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.CodeDom.Compiler.IndentedTextWriter' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 TypesMustExist : Type 'System.Diagnostics.ConsoleTraceListener' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.EntryWrittenEventArgs' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.EntryWrittenEventHandler' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.EventInstance' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.EventLog' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.EventLogEntry' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.EventLogEntryCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.EventLogEntryType' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.EventLogTraceListener' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.EventSchemaTraceListener' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Diagnostics.EventSourceCreationData' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.OverflowAction' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Diagnostics.ProcessModuleCollection' does not inherit from base type 'System.Collections.ReadOnlyCollectionBase' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Diagnostics.ProcessThreadCollection' does not inherit from base type 'System.Collections.ReadOnlyCollectionBase' in the implementation but it does in the contract.
@@ -460,4 +451,4 @@ MembersMustExist : Member 'System.Xml.Serialization.XmlSerializerFactory.CreateS
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo, System.Byte[], System.Type[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Type)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable, System.Xml.Xsl.XsltArgumentList, System.Xml.XmlWriter, System.Xml.XmlResolver)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 461
+Total Issues: 452
