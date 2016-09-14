@@ -2526,57 +2526,6 @@ namespace System.Security.Cryptography
         None = 0,
         ProtectKey = 1,
     }
-    public abstract partial class ECDiffieHellman : System.Security.Cryptography.AsymmetricAlgorithm
-    {
-        protected ECDiffieHellman() { }
-        public override string KeyExchangeAlgorithm { get { throw null; } }
-        public abstract System.Security.Cryptography.ECDiffieHellmanPublicKey PublicKey { get; }
-        public override string SignatureAlgorithm { get { throw null; } }
-        public static new System.Security.Cryptography.ECDiffieHellman Create() { throw null; }
-        public static new System.Security.Cryptography.ECDiffieHellman Create(string algorithm) { throw null; }
-        public abstract byte[] DeriveKeyMaterial(System.Security.Cryptography.ECDiffieHellmanPublicKey otherPartyPublicKey);
-    }
-    public sealed partial class ECDiffieHellmanCng : System.Security.Cryptography.ECDiffieHellman
-    {
-        public ECDiffieHellmanCng() { }
-        public ECDiffieHellmanCng(int keySize) { }
-        public ECDiffieHellmanCng(System.Security.Cryptography.CngKey key) { }
-        public System.Security.Cryptography.CngAlgorithm HashAlgorithm { get { throw null; } set { } }
-        public byte[] HmacKey { get { throw null; } set { } }
-        public System.Security.Cryptography.CngKey Key { get { throw null; } }
-        public System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction KeyDerivationFunction { get { throw null; } set { } }
-        public byte[] Label { get { throw null; } set { } }
-        public override System.Security.Cryptography.ECDiffieHellmanPublicKey PublicKey { get { throw null; } }
-        public byte[] SecretAppend { get { throw null; } set { } }
-        public byte[] SecretPrepend { get { throw null; } set { } }
-        public byte[] Seed { get { throw null; } set { } }
-        public bool UseSecretAgreementAsHmacKey { get { throw null; } }
-        public byte[] DeriveKeyMaterial(System.Security.Cryptography.CngKey otherPartyPublicKey) { throw null; }
-        public override byte[] DeriveKeyMaterial(System.Security.Cryptography.ECDiffieHellmanPublicKey otherPartyPublicKey) { throw null; }
-        public Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle DeriveSecretAgreementHandle(System.Security.Cryptography.CngKey otherPartyPublicKey) { throw null; }
-        public Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle DeriveSecretAgreementHandle(System.Security.Cryptography.ECDiffieHellmanPublicKey otherPartyPublicKey) { throw null; }
-        protected override void Dispose(bool disposing) { }
-        public override void FromXmlString(string xmlString) { }
-        public void FromXmlString(string xml, System.Security.Cryptography.ECKeyXmlFormat format) { }
-        public override string ToXmlString(bool includePrivateParameters) { throw null; }
-        public string ToXmlString(System.Security.Cryptography.ECKeyXmlFormat format) { throw null; }
-    }
-    public sealed partial class ECDiffieHellmanCngPublicKey : System.Security.Cryptography.ECDiffieHellmanPublicKey
-    {
-        internal ECDiffieHellmanCngPublicKey() : base (default(byte[])) { }
-        public System.Security.Cryptography.CngKeyBlobFormat BlobFormat { get { throw null; } }
-        protected override void Dispose(bool disposing) { }
-        public static System.Security.Cryptography.ECDiffieHellmanPublicKey FromByteArray(byte[] publicKeyBlob, System.Security.Cryptography.CngKeyBlobFormat format) { throw null; }
-        public static System.Security.Cryptography.ECDiffieHellmanCngPublicKey FromXmlString(string xml) { throw null; }
-        public System.Security.Cryptography.CngKey Import() { throw null; }
-        public override string ToXmlString() { throw null; }
-    }
-    public enum ECDiffieHellmanKeyDerivationFunction
-    {
-        Hash = 0,
-        Hmac = 1,
-        Tls = 2,
-    }
     public abstract partial class ECDiffieHellmanPublicKey : System.IDisposable
     {
         protected ECDiffieHellmanPublicKey(byte[] keyBlob) { }
@@ -2603,41 +2552,6 @@ namespace System.Security.Cryptography
         public bool VerifyData(System.IO.Stream data, byte[] signature, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         public abstract bool VerifyHash(byte[] hash, byte[] signature);
     }
-    public sealed partial class ECDsaCng : System.Security.Cryptography.ECDsa
-    {
-        public ECDsaCng() { }
-        public ECDsaCng(int keySize) { }
-        public ECDsaCng(System.Security.Cryptography.CngKey key) { }
-        public System.Security.Cryptography.CngAlgorithm HashAlgorithm { get { throw null; } set { } }
-        public System.Security.Cryptography.CngKey Key { get { throw null; } }
-        protected override void Dispose(bool disposing) { }
-        public override void FromXmlString(string xmlString) { }
-        public void FromXmlString(string xml, System.Security.Cryptography.ECKeyXmlFormat format) { }
-        protected override byte[] HashData(byte[] data, int offset, int count, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
-        protected override byte[] HashData(System.IO.Stream data, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
-        public byte[] SignData(byte[] data) { throw null; }
-        public byte[] SignData(byte[] data, int offset, int count) { throw null; }
-        public byte[] SignData(System.IO.Stream data) { throw null; }
-        public override byte[] SignHash(byte[] hash) { throw null; }
-        public override string ToXmlString(bool includePrivateParameters) { throw null; }
-        public string ToXmlString(System.Security.Cryptography.ECKeyXmlFormat format) { throw null; }
-        public bool VerifyData(byte[] data, byte[] signature) { throw null; }
-        public bool VerifyData(byte[] data, int offset, int count, byte[] signature) { throw null; }
-        public bool VerifyData(System.IO.Stream data, byte[] signature) { throw null; }
-        public override bool VerifyHash(byte[] hash, byte[] signature) { throw null; }
-    }
-    public enum ECKeyXmlFormat
-    {
-        Rfc4050 = 0,
-    }
-    public sealed partial class MD5Cng : System.Security.Cryptography.MD5
-    {
-        public MD5Cng() { }
-        protected override void Dispose(bool disposing) { }
-        protected override void HashCore(byte[] array, int ibStart, int cbSize) { }
-        protected override byte[] HashFinal() { throw null; }
-        public override void Initialize() { }
-    }
     public sealed partial class RSACng : System.Security.Cryptography.RSA
     {
         public RSACng() { }
@@ -2654,126 +2568,9 @@ namespace System.Security.Cryptography
         public override byte[] SignHash(byte[] hash, System.Security.Cryptography.HashAlgorithmName hashAlgorithm, System.Security.Cryptography.RSASignaturePadding padding) { throw null; }
         public override bool VerifyHash(byte[] hash, byte[] signature, System.Security.Cryptography.HashAlgorithmName hashAlgorithm, System.Security.Cryptography.RSASignaturePadding padding) { throw null; }
     }
-    public sealed partial class SHA1Cng : System.Security.Cryptography.SHA1
-    {
-        public SHA1Cng() { }
-        protected override void Dispose(bool disposing) { }
-        protected override void HashCore(byte[] array, int ibStart, int cbSize) { }
-        protected override byte[] HashFinal() { throw null; }
-        public override void Initialize() { }
-    }
-    public sealed partial class SHA256Cng : System.Security.Cryptography.SHA256
-    {
-        public SHA256Cng() { }
-        protected override void Dispose(bool disposing) { }
-        protected override void HashCore(byte[] array, int ibStart, int cbSize) { }
-        protected override byte[] HashFinal() { throw null; }
-        public override void Initialize() { }
-    }
-    public sealed partial class SHA256CryptoServiceProvider : System.Security.Cryptography.SHA256
-    {
-        public SHA256CryptoServiceProvider() { }
-        protected override void Dispose(bool disposing) { }
-        protected override void HashCore(byte[] array, int ibStart, int cbSize) { }
-        protected override byte[] HashFinal() { throw null; }
-        public override void Initialize() { }
-    }
-    public sealed partial class SHA384Cng : System.Security.Cryptography.SHA384
-    {
-        public SHA384Cng() { }
-        protected override void Dispose(bool disposing) { }
-        protected override void HashCore(byte[] array, int ibStart, int cbSize) { }
-        protected override byte[] HashFinal() { throw null; }
-        public override void Initialize() { }
-    }
-    public sealed partial class SHA384CryptoServiceProvider : System.Security.Cryptography.SHA384
-    {
-        public SHA384CryptoServiceProvider() { }
-        protected override void Dispose(bool disposing) { }
-        protected override void HashCore(byte[] array, int ibStart, int cbSize) { }
-        protected override byte[] HashFinal() { throw null; }
-        public override void Initialize() { }
-    }
-    public sealed partial class SHA512Cng : System.Security.Cryptography.SHA512
-    {
-        public SHA512Cng() { }
-        protected override void Dispose(bool disposing) { }
-        protected override void HashCore(byte[] array, int ibStart, int cbSize) { }
-        protected override byte[] HashFinal() { throw null; }
-        public override void Initialize() { }
-    }
-    public sealed partial class SHA512CryptoServiceProvider : System.Security.Cryptography.SHA512
-    {
-        public SHA512CryptoServiceProvider() { }
-        protected override void Dispose(bool disposing) { }
-        protected override void HashCore(byte[] array, int ibStart, int cbSize) { }
-        protected override byte[] HashFinal() { throw null; }
-        public override void Initialize() { }
-    }
-    public enum SignatureVerificationResult
-    {
-        AssemblyIdentityMismatch = 1,
-        BadDigest = -2146869232,
-        BadSignatureFormat = -2146762749,
-        BasicConstraintsNotObserved = -2146869223,
-        CertificateExpired = -2146762495,
-        CertificateExplicitlyDistrusted = -2146762479,
-        CertificateMalformed = -2146762488,
-        CertificateNotExplicitlyTrusted = -2146762748,
-        CertificateRevoked = -2146762484,
-        CertificateUsageNotAllowed = -2146762490,
-        ContainingSignatureInvalid = 2,
-        CouldNotBuildChain = -2146762486,
-        GenericTrustFailure = -2146762485,
-        InvalidCertificateName = -2146762476,
-        InvalidCertificatePolicy = -2146762477,
-        InvalidCertificateRole = -2146762493,
-        InvalidCertificateSignature = -2146869244,
-        InvalidCertificateUsage = -2146762480,
-        InvalidCountersignature = -2146869245,
-        InvalidSignerCertificate = -2146869246,
-        InvalidTimePeriodNesting = -2146762494,
-        InvalidTimestamp = -2146869243,
-        IssuerChainingError = -2146762489,
-        MissingSignature = -2146762496,
-        PathLengthConstraintViolated = -2146762492,
-        PublicKeyTokenMismatch = 3,
-        PublisherMismatch = 4,
-        RevocationCheckFailure = -2146762482,
-        SystemError = -2146869247,
-        UnknownCriticalExtension = -2146762491,
-        UnknownTrustProvider = -2146762751,
-        UnknownVerificationAction = -2146762750,
-        UntrustedCertificationAuthority = -2146762478,
-        UntrustedRootCertificate = -2146762487,
-        UntrustedTestRootCertificate = -2146762483,
-        Valid = 0,
-    }
-    public sealed partial class StrongNameSignatureInformation
-    {
-        internal StrongNameSignatureInformation() { }
-        public string HashAlgorithm { get { throw null; } }
-        public int HResult { get { throw null; } }
-        public bool IsValid { get { throw null; } }
-        public System.Security.Cryptography.AsymmetricAlgorithm PublicKey { get { throw null; } }
-        public System.Security.Cryptography.SignatureVerificationResult VerificationResult { get { throw null; } }
-    }
 }
 namespace System.Security.Cryptography.X509Certificates
 {
-    public sealed partial class AuthenticodeSignatureInformation
-    {
-        internal AuthenticodeSignatureInformation() { }
-        public string Description { get { throw null; } }
-        public System.Uri DescriptionUrl { get { throw null; } }
-        public string HashAlgorithm { get { throw null; } }
-        public int HResult { get { throw null; } }
-        public System.Security.Cryptography.X509Certificates.X509Chain SignatureChain { get { throw null; } }
-        public System.Security.Cryptography.X509Certificates.X509Certificate2 SigningCertificate { get { throw null; } }
-        public System.Security.Cryptography.X509Certificates.TimestampInformation Timestamp { get { throw null; } }
-        public System.Security.Cryptography.X509Certificates.TrustStatus TrustStatus { get { throw null; } }
-        public System.Security.Cryptography.SignatureVerificationResult VerificationResult { get { throw null; } }
-    }
     public static partial class ECDsaCertificateExtensions
     {
         public static System.Security.Cryptography.ECDsa GetECDsaPrivateKey(this System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { throw null; }
@@ -2783,24 +2580,6 @@ namespace System.Security.Cryptography.X509Certificates
     {
         public static System.Security.Cryptography.RSA GetRSAPrivateKey(this System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { throw null; }
         public static System.Security.Cryptography.RSA GetRSAPublicKey(this System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { throw null; }
-    }
-    public sealed partial class TimestampInformation
-    {
-        internal TimestampInformation() { }
-        public string HashAlgorithm { get { throw null; } }
-        public int HResult { get { throw null; } }
-        public bool IsValid { get { throw null; } }
-        public System.Security.Cryptography.X509Certificates.X509Chain SignatureChain { get { throw null; } }
-        public System.Security.Cryptography.X509Certificates.X509Certificate2 SigningCertificate { get { throw null; } }
-        public System.DateTime Timestamp { get { throw null; } }
-        public System.Security.Cryptography.SignatureVerificationResult VerificationResult { get { throw null; } }
-    }
-    public enum TrustStatus
-    {
-        KnownIdentity = 2,
-        Trusted = 3,
-        UnknownIdentity = 1,
-        Untrusted = 0,
     }
 }
 namespace System.Threading

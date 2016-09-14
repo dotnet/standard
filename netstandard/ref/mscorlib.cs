@@ -12093,8 +12093,8 @@ namespace System.Security.Cryptography
     {
         public CryptoConfig() { }
         public static bool AllowOnlyFipsAlgorithms { get { throw null; } }
-        public static void AddAlgorithm(System.Type algorithm, params string[] names) { }
-        public static void AddOID(string oid, params string[] names) { }
+//CRYPTO        public static void AddAlgorithm(System.Type algorithm, params string[] names) { }
+//CRYPTO        public static void AddOID(string oid, params string[] names) { }
         public static object CreateFromName(string name) { throw null; }
         public static object CreateFromName(string name, params object[] args) { throw null; }
         public static byte[] EncodeOID(string str) { throw null; }
@@ -12363,11 +12363,6 @@ namespace System.Security.Cryptography
         public HMACMD5() { }
         public HMACMD5(byte[] key) { }
     }
-    public partial class HMACRIPEMD160 : System.Security.Cryptography.HMAC
-    {
-        public HMACRIPEMD160() { }
-        public HMACRIPEMD160(byte[] key) { }
-    }
     public partial class HMACSHA1 : System.Security.Cryptography.HMAC
     {
         public HMACSHA1() { }
@@ -12426,17 +12421,6 @@ namespace System.Security.Cryptography
         public int MaxSize { get { throw null; } }
         public int MinSize { get { throw null; } }
         public int SkipSize { get { throw null; } }
-    }
-    public partial class MACTripleDES : System.Security.Cryptography.KeyedHashAlgorithm
-    {
-        public MACTripleDES() { }
-        public MACTripleDES(byte[] rgbKey) { }
-        public MACTripleDES(string strTripleDES, byte[] rgbKey) { }
-        public System.Security.Cryptography.PaddingMode Padding { get { throw null; } set { } }
-        protected override void Dispose(bool disposing) { }
-        protected override void HashCore(byte[] rgbData, int ibStart, int cbSize) { }
-        protected override byte[] HashFinal() { throw null; }
-        public override void Initialize() { }
     }
     public abstract partial class MaskGenerationMethod
     {
@@ -12514,7 +12498,7 @@ namespace System.Security.Cryptography
     {
         public RC2CryptoServiceProvider() { }
         public override int EffectiveKeySize { get { throw null; } set { } }
-        public bool UseSalt { get { throw null; } set { } }
+//CRYPTO        public bool UseSalt { get { throw null; } set { } }
         public override System.Security.Cryptography.ICryptoTransform CreateDecryptor(byte[] rgbKey, byte[] rgbIV) { throw null; }
         public override System.Security.Cryptography.ICryptoTransform CreateEncryptor(byte[] rgbKey, byte[] rgbIV) { throw null; }
         public override void GenerateIV() { }
@@ -12529,7 +12513,7 @@ namespace System.Security.Cryptography
         public Rfc2898DeriveBytes(string password, int saltSize, int iterations) { }
         public int IterationCount { get { throw null; } set { } }
         public byte[] Salt { get { throw null; } set { } }
-        public byte[] CryptDeriveKey(string algname, string alghashname, int keySize, byte[] rgbIV) { throw null; }
+//CRYPTO        public byte[] CryptDeriveKey(string algname, string alghashname, int keySize, byte[] rgbIV) { throw null; }
         protected override void Dispose(bool disposing) { }
         public override byte[] GetBytes(int cb) { throw null; }
         public override void Reset() { }
@@ -12562,25 +12546,12 @@ namespace System.Security.Cryptography
         public int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset) { throw null; }
         public byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount) { throw null; }
     }
-    public abstract partial class RIPEMD160 : System.Security.Cryptography.HashAlgorithm
-    {
-        protected RIPEMD160() { }
-        public static new System.Security.Cryptography.RIPEMD160 Create() { throw null; }
-        public static new System.Security.Cryptography.RIPEMD160 Create(string hashName) { throw null; }
-    }
-    public partial class RIPEMD160Managed : System.Security.Cryptography.RIPEMD160
-    {
-        public RIPEMD160Managed() { }
-        protected override void HashCore(byte[] rgb, int ibStart, int cbSize) { }
-        protected override byte[] HashFinal() { throw null; }
-        public override void Initialize() { }
-    }
     public sealed partial class RNGCryptoServiceProvider : System.Security.Cryptography.RandomNumberGenerator
     {
         public RNGCryptoServiceProvider() { }
-        public RNGCryptoServiceProvider(byte[] rgb) { }
-        public RNGCryptoServiceProvider(System.Security.Cryptography.CspParameters cspParams) { }
-        public RNGCryptoServiceProvider(string str) { }
+//CRYPTO        public RNGCryptoServiceProvider(byte[] rgb) { }
+//CRYPTO        public RNGCryptoServiceProvider(System.Security.Cryptography.CspParameters cspParams) { }
+//CRYPTO        public RNGCryptoServiceProvider(string str) { }
         protected override void Dispose(bool disposing) { }
         public override void GetBytes(byte[] data) { }
         public override void GetNonZeroBytes(byte[] data) { }
@@ -12767,7 +12738,7 @@ namespace System.Security.Cryptography
         protected override byte[] HashFinal() { throw null; }
         public override void Initialize() { }
     }
-    public partial class SHA1Managed : System.Security.Cryptography.SHA1
+    public sealed partial class SHA1Managed : System.Security.Cryptography.SHA1
     {
         public SHA1Managed() { }
         protected override void HashCore(byte[] rgb, int ibStart, int cbSize) { }
@@ -12780,7 +12751,7 @@ namespace System.Security.Cryptography
         public static new System.Security.Cryptography.SHA256 Create() { throw null; }
         public static new System.Security.Cryptography.SHA256 Create(string hashName) { throw null; }
     }
-    public partial class SHA256Managed : System.Security.Cryptography.SHA256
+    public sealed partial class SHA256Managed : System.Security.Cryptography.SHA256
     {
         public SHA256Managed() { }
         protected override void HashCore(byte[] rgb, int ibStart, int cbSize) { }
@@ -12793,7 +12764,7 @@ namespace System.Security.Cryptography
         public static new System.Security.Cryptography.SHA384 Create() { throw null; }
         public static new System.Security.Cryptography.SHA384 Create(string hashName) { throw null; }
     }
-    public partial class SHA384Managed : System.Security.Cryptography.SHA384
+    public sealed partial class SHA384Managed : System.Security.Cryptography.SHA384
     {
         public SHA384Managed() { }
         protected override void HashCore(byte[] rgb, int ibStart, int cbSize) { }
@@ -12806,7 +12777,7 @@ namespace System.Security.Cryptography
         public static new System.Security.Cryptography.SHA512 Create() { throw null; }
         public static new System.Security.Cryptography.SHA512 Create(string hashName) { throw null; }
     }
-    public partial class SHA512Managed : System.Security.Cryptography.SHA512
+    public sealed partial class SHA512Managed : System.Security.Cryptography.SHA512
     {
         public SHA512Managed() { }
         protected override void HashCore(byte[] rgb, int ibStart, int cbSize) { }

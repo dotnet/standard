@@ -1514,4 +1514,86 @@ namespace System.Security.Cryptography
     {
         internal ManifestSignatureInformationCollection() : base (default(System.Collections.Generic.IList<System.Security.Cryptography.ManifestSignatureInformation>)) { }
     }
+    public enum SignatureVerificationResult
+    {
+        AssemblyIdentityMismatch = 1,
+        BadDigest = -2146869232,
+        BadSignatureFormat = -2146762749,
+        BasicConstraintsNotObserved = -2146869223,
+        CertificateExpired = -2146762495,
+        CertificateExplicitlyDistrusted = -2146762479,
+        CertificateMalformed = -2146762488,
+        CertificateNotExplicitlyTrusted = -2146762748,
+        CertificateRevoked = -2146762484,
+        CertificateUsageNotAllowed = -2146762490,
+        ContainingSignatureInvalid = 2,
+        CouldNotBuildChain = -2146762486,
+        GenericTrustFailure = -2146762485,
+        InvalidCertificateName = -2146762476,
+        InvalidCertificatePolicy = -2146762477,
+        InvalidCertificateRole = -2146762493,
+        InvalidCertificateSignature = -2146869244,
+        InvalidCertificateUsage = -2146762480,
+        InvalidCountersignature = -2146869245,
+        InvalidSignerCertificate = -2146869246,
+        InvalidTimePeriodNesting = -2146762494,
+        InvalidTimestamp = -2146869243,
+        IssuerChainingError = -2146762489,
+        MissingSignature = -2146762496,
+        PathLengthConstraintViolated = -2146762492,
+        PublicKeyTokenMismatch = 3,
+        PublisherMismatch = 4,
+        RevocationCheckFailure = -2146762482,
+        SystemError = -2146869247,
+        UnknownCriticalExtension = -2146762491,
+        UnknownTrustProvider = -2146762751,
+        UnknownVerificationAction = -2146762750,
+        UntrustedCertificationAuthority = -2146762478,
+        UntrustedRootCertificate = -2146762487,
+        UntrustedTestRootCertificate = -2146762483,
+        Valid = 0,
+    }
+    public sealed partial class StrongNameSignatureInformation
+    {
+        internal StrongNameSignatureInformation() { }
+        public string HashAlgorithm { get { throw null; } }
+        public int HResult { get { throw null; } }
+        public bool IsValid { get { throw null; } }
+        public System.Security.Cryptography.AsymmetricAlgorithm PublicKey { get { throw null; } }
+        public System.Security.Cryptography.SignatureVerificationResult VerificationResult { get { throw null; } }
+    }
+}
+namespace System.Security.Cryptography.X509Certificates
+{
+    public sealed partial class AuthenticodeSignatureInformation
+    {
+        internal AuthenticodeSignatureInformation() { }
+        public string Description { get { throw null; } }
+        public System.Uri DescriptionUrl { get { throw null; } }
+        public string HashAlgorithm { get { throw null; } }
+        public int HResult { get { throw null; } }
+        public System.Security.Cryptography.X509Certificates.X509Chain SignatureChain { get { throw null; } }
+        public System.Security.Cryptography.X509Certificates.X509Certificate2 SigningCertificate { get { throw null; } }
+        public System.Security.Cryptography.X509Certificates.TimestampInformation Timestamp { get { throw null; } }
+        public System.Security.Cryptography.X509Certificates.TrustStatus TrustStatus { get { throw null; } }
+        public System.Security.Cryptography.SignatureVerificationResult VerificationResult { get { throw null; } }
+    }
+    public sealed partial class TimestampInformation
+    {
+        internal TimestampInformation() { }
+        public string HashAlgorithm { get { throw null; } }
+        public int HResult { get { throw null; } }
+        public bool IsValid { get { throw null; } }
+        public System.Security.Cryptography.X509Certificates.X509Chain SignatureChain { get { throw null; } }
+        public System.Security.Cryptography.X509Certificates.X509Certificate2 SigningCertificate { get { throw null; } }
+        public System.DateTime Timestamp { get { throw null; } }
+        public System.Security.Cryptography.SignatureVerificationResult VerificationResult { get { throw null; } }
+    }
+    public enum TrustStatus
+    {
+        KnownIdentity = 2,
+        Trusted = 3,
+        UnknownIdentity = 1,
+        Untrusted = 0,
+    }
 }
