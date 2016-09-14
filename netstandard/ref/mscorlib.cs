@@ -9904,11 +9904,11 @@ namespace System.Runtime.InteropServices
 //INTEROP        public static int ReleaseComObject(object o) { throw null; }
 //INTEROP        [System.ObsoleteAttribute("This API did not perform any operation and will be removed in future versions of the CLR.", false)]
 //INTEROP        public static void ReleaseThreadCache() { }
-        public static System.IntPtr SecureStringToBSTR(System.Security.SecureString s) { throw null; }
-        public static System.IntPtr SecureStringToCoTaskMemAnsi(System.Security.SecureString s) { throw null; }
-        public static System.IntPtr SecureStringToCoTaskMemUnicode(System.Security.SecureString s) { throw null; }
-        public static System.IntPtr SecureStringToGlobalAllocAnsi(System.Security.SecureString s) { throw null; }
-        public static System.IntPtr SecureStringToGlobalAllocUnicode(System.Security.SecureString s) { throw null; }
+//SECURESTRING        public static System.IntPtr SecureStringToBSTR(System.Security.SecureString s) { throw null; }
+//SECURESTRING        public static System.IntPtr SecureStringToCoTaskMemAnsi(System.Security.SecureString s) { throw null; }
+//SECURESTRING        public static System.IntPtr SecureStringToCoTaskMemUnicode(System.Security.SecureString s) { throw null; }
+//SECURESTRING        public static System.IntPtr SecureStringToGlobalAllocAnsi(System.Security.SecureString s) { throw null; }
+//SECURESTRING        public static System.IntPtr SecureStringToGlobalAllocUnicode(System.Security.SecureString s) { throw null; }
 //INTEROP        public static bool SetComObjectData(object obj, object key, object data) { throw null; }
         public static int SizeOf(object structure) { throw null; }
         public static int SizeOf(System.Type t) { throw null; }
