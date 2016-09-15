@@ -1,6 +1,6 @@
-# .NET Standard 2.0
+# .NET Standard 2
 
-This document describes the plan for .NET Standard 2.0, which includes the
+This document describes the plan for .NET Standard 2, which includes the
 definition of its API surface as well as the principles we use to extend and
 review those additions.
 
@@ -50,7 +50,7 @@ libraries (PCLs):
 
 ## Customer Scenarios
 
-These are the scenarios we need to be able to support with .NET Standard 2.0:
+These are the scenarios we need to be able to support with .NET Standard 2:
 
 * **Wide .NET Standard support**. Stacey builds a .NET Standard-based library.
   She can consume the library from all current platforms.
@@ -181,7 +181,7 @@ Standard 1.7. We've two options:
 
 1. We can update the existing platforms to include those APIs
 2. Perform a breaking change in .NET Standard and remove those APIs from .NET
-   Standard 2.0 and re-introduce them in .NET Standard 2.1
+   Standard 2 and re-introduce them in a later version of .NET Standard.
 
 At first, it seems much more logical to go with option (1). Unfortunately,
 updating existing platforms means shipping a new version of that platform.
@@ -189,21 +189,21 @@ This doesn't help our adoption problem as those new platforms aren't necessarily
 available to target in all circumstances. This is in particular true for .NET
 Framework.
 
-At the time we ship .NET Standard 2.0 we expect .NET Framework 4.6.1 to have
-enough adoption to make this a viable prerequisite for .NET Standard 2.0.
+At the time we ship .NET Standard 2 we expect .NET Framework 4.6.1 to have
+enough adoption to make this a viable prerequisite for .NET Standard 2.
 
-[This document](NetStandard17APIs_MissingFromPlatforms.md) inlcudes all the APIs
+[This document](NetStandardAPIs_MissingFromPlatforms.md) inlcudes all the APIs
 that are available in .NET Standard 1.7 but aren't implemented yet in:
 
-* [.NET Framework 4.6.1](NetStandard17APIs_MissingFromPlatforms.md#missing-from-net-framework-461)
-* [Xamarin iOS](NetStandard17APIs_MissingFromPlatforms.md#missing-from-ios)
-* [Xamarin Android](NetStandard17APIs_MissingFromPlatforms.md#missing-from-android)
+* [.NET Framework 4.6.1](NetStandardAPIs_MissingFromPlatforms.md#missing-from-net-framework-461)
+* [Xamarin iOS](NetStandardAPIs_MissingFromPlatforms.md#missing-from-ios)
+* [Xamarin Android](NetStandardAPIs_MissingFromPlatforms.md#missing-from-android)
 
 Since updating the Xamarin platforms is mostly an SDK problem (since the .NET
 plaform doesn't ship with iOS or Android itself) we hope we can update those
 platform to simply include those missing APIs. But as outlined above, this isn't
 a viable plan for .NET Framework so we plan on removing the APIs from .NET
-Standard 2.0 that [.NET Framework 4.6.1 doesn't implement](NetStandard17APIs_MissingFromPlatforms.md#missing-from-net-framework-461).
+Standard 2 that [.NET Framework 4.6.1 doesn't implement](NetStandardAPIs_MissingFromPlatforms.md#missing-from-net-framework-461).
 
 We ran an analysis of all packages on NuGet.org that target .NET Standard and
 use any of these APIs. At time of this writing we only found six non-Microsoft
@@ -215,8 +215,8 @@ The mitigation for these packages is as follows:
 * If they absolutely require the APIs, they will have to require .NET Standard
   2.1.
 * If they can replace the dependency with other APIs we added in .NET Standard
-  2.0, they can cross-compile and add a specific target to .NET Standard 2.0
-  and continue to support .NET Standard 1.x.
+  2, they can cross-compile and add a specific target to .NET Standard 2 and
+  continue to support .NET Standard 1.x.
 
 ## Inclusion Principles
 
