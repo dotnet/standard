@@ -103,7 +103,7 @@ namespace System
         public virtual System.Threading.HostExecutionContextManager HostExecutionContextManager { get { throw null; } }
 //CAS        public virtual System.Security.HostSecurityManager HostSecurityManager { get { throw null; } }
         public System.AppDomainManagerInitializationOptions InitializationFlags { get { throw null; } set { } }
-//CAS        public virtual bool CheckSecuritySettings(System.Security.SecurityState state) { throw null; }
+        public virtual bool CheckSecuritySettings(System.Security.SecurityState state) { throw null; }
 //CAS        public virtual System.AppDomain CreateDomain(string friendlyName, System.Security.Policy.Evidence securityInfo, System.AppDomainSetup appDomainInfo) { throw null; }
 //CAS        protected static System.AppDomain CreateDomainHelper(string friendlyName, System.Security.Policy.Evidence securityInfo, System.AppDomainSetup appDomainInfo) { throw null; }
         public virtual void InitializeNewDomain(System.AppDomainSetup appDomainInfo) { }
@@ -178,6 +178,21 @@ namespace System.Deployment.Internal
     public static partial class InternalApplicationIdentityHelper
     {
         public static object GetInternalAppId(System.ApplicationIdentity id) { throw null; }
+    }
+}
+namespace System.IO.IsolatedStorage
+{
+    public enum IsolatedStorageSecurityOptions
+    {
+        IncreaseQuotaForApplication = 4,
+    }
+    public partial class IsolatedStorageSecurityState : System.Security.SecurityState
+    {
+        internal IsolatedStorageSecurityState() { }
+        public System.IO.IsolatedStorage.IsolatedStorageSecurityOptions Options { get { throw null; } }
+        public long Quota { get { throw null; } set { } }
+        public long UsedSize { get { throw null; } }
+        public override void EnsureState() { }
     }
 }
 namespace System.Runtime.Hosting
@@ -1496,6 +1511,12 @@ namespace System.Security
         ApplicationAndDeployment = 3,
         Deployment = 1,
         None = 0,
+    }
+    public abstract partial class SecurityState
+    {
+        protected SecurityState() { }
+        public abstract void EnsureState();
+        public bool IsStateAvailable() { throw null; }
     }
 }
 namespace System.Security.Cryptography

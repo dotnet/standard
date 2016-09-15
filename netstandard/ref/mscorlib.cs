@@ -7545,18 +7545,6 @@ namespace System.IO.IsolatedStorage
         Roaming = 8,
         User = 1,
     }
-    public enum IsolatedStorageSecurityOptions
-    {
-        IncreaseQuotaForApplication = 4,
-    }
-    public partial class IsolatedStorageSecurityState : System.Security.SecurityState
-    {
-        internal IsolatedStorageSecurityState() { }
-        public System.IO.IsolatedStorage.IsolatedStorageSecurityOptions Options { get { throw null; } }
-        public long Quota { get { throw null; } set { } }
-        public long UsedSize { get { throw null; } }
-        public override void EnsureState() { }
-    }
 }
 namespace System.Reflection
 {
@@ -10975,12 +10963,6 @@ namespace System.Security
     public sealed partial class SecuritySafeCriticalAttribute : System.Attribute
     {
         public SecuritySafeCriticalAttribute() { }
-    }
-    public abstract partial class SecurityState
-    {
-        protected SecurityState() { }
-        public abstract void EnsureState();
-        public bool IsStateAvailable() { throw null; }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(1), AllowMultiple=false, Inherited=false)]
     public sealed partial class SecurityTransparentAttribute : System.Attribute

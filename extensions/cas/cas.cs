@@ -36,7 +36,6 @@ public sealed partial class AppDomain : System.MarshalByRefObject
     public partial class AppDomainManager : System.MarshalByRefObject
     {
 //CAS        public virtual System.Security.HostSecurityManager HostSecurityManager { get { throw null; } }
-//CAS        public virtual bool CheckSecuritySettings(System.Security.SecurityState state) { throw null; }
 //CAS        public virtual System.AppDomain CreateDomain(string friendlyName, System.Security.Policy.Evidence securityInfo, System.AppDomainSetup appDomainInfo) { throw null; }
 //CAS        protected static System.AppDomain CreateDomainHelper(string friendlyName, System.Security.Policy.Evidence securityInfo, System.AppDomainSetup appDomainInfo) { throw null; }
     }
