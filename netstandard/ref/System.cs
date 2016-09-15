@@ -8812,17 +8812,6 @@ namespace System.Text.RegularExpressions
         protected bool UseOptionR() { throw null; }
         protected internal static void ValidateMatchTimeout(System.TimeSpan matchTimeout) { }
     }
-    public partial class RegexCompilationInfo
-    {
-        public RegexCompilationInfo(string pattern, System.Text.RegularExpressions.RegexOptions options, string name, string fullnamespace, bool ispublic) { }
-        public RegexCompilationInfo(string pattern, System.Text.RegularExpressions.RegexOptions options, string name, string fullnamespace, bool ispublic, System.TimeSpan matchTimeout) { }
-        public bool IsPublic { get { throw null; } set { } }
-        public System.TimeSpan MatchTimeout { get { throw null; } set { } }
-        public string Name { get { throw null; } set { } }
-        public string Namespace { get { throw null; } set { } }
-        public System.Text.RegularExpressions.RegexOptions Options { get { throw null; } set { } }
-        public string Pattern { get { throw null; } set { } }
-    }
     public partial class RegexMatchTimeoutException : System.TimeoutException, System.Runtime.Serialization.ISerializable
     {
         public RegexMatchTimeoutException() { }

@@ -1237,3 +1237,17 @@ namespace System.Reflection.Emit
         public static System.Reflection.Emit.UnmanagedMarshal DefineUnmanagedMarshal(System.Runtime.InteropServices.UnmanagedType unmanagedType) { throw null; }
     }
 }
+namespace System.Text.RegularExpressions
+{
+    public partial class RegexCompilationInfo
+    {
+        public RegexCompilationInfo(string pattern, System.Text.RegularExpressions.RegexOptions options, string name, string fullnamespace, bool ispublic) { }
+        public RegexCompilationInfo(string pattern, System.Text.RegularExpressions.RegexOptions options, string name, string fullnamespace, bool ispublic, System.TimeSpan matchTimeout) { }
+        public bool IsPublic { get { throw null; } set { } }
+        public System.TimeSpan MatchTimeout { get { throw null; } set { } }
+        public string Name { get { throw null; } set { } }
+        public string Namespace { get { throw null; } set { } }
+        public System.Text.RegularExpressions.RegexOptions Options { get { throw null; } set { } }
+        public string Pattern { get { throw null; } set { } }
+    }
+}
