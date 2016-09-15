@@ -12,3 +12,7 @@ We need a .NET Standard review body. We make the following proposal:
 
 Please note that this list isn't meant to be closed: as more platform vendors
 and API drivers appear, the review board will expand accordingly.
+
+## Reviews
+
+Decisions made by the review body will be made public and posted here.
