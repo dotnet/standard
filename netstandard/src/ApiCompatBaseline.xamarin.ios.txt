@@ -22,11 +22,6 @@ CannotRemoveBaseTypeOrInterface : Type 'System.Diagnostics.ProcessModuleCollecti
 CannotRemoveBaseTypeOrInterface : Type 'System.Diagnostics.ProcessThreadCollection' does not inherit from base type 'System.Collections.ReadOnlyCollectionBase' in the implementation but it does in the contract.
 TypesMustExist : Type 'System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.Tracing.EventSourceException..ctor(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Globalization.CompareInfo.Version.get()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Globalization.CultureInfo.CultureTypes.get()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Globalization.CultureInfo.GetConsoleFallbackUICulture()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Globalization.CultureInfo.IetfLanguageTag.get()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Globalization.CultureInfo.KeyboardLayoutId.get()' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.BufferedStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.DirectoryInfo' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.IO.File.Create(System.String, System.Int32, System.IO.FileOptions, System.Security.AccessControl.FileSecurity)' does not exist in the implementation but it does exist in the contract.
@@ -178,8 +173,6 @@ EnumTypesMustMatch : Enum type for 'System.Security.AccessControl.AceType' is 'S
 MembersMustExist : Member 'System.Byte System.Security.AccessControl.AceType.value__' does not exist in the implementation but it does exist in the contract.
 CannotMakeMoreVisible : Visibility of member 'System.Security.AccessControl.ObjectSecurity<T>.Persist(System.Runtime.InteropServices.SafeHandle)' is 'Family' in the implementation but 'FamilyOrAssembly' in the contract.
 CannotMakeMoreVisible : Visibility of member 'System.Security.AccessControl.ObjectSecurity<T>.Persist(System.String)' is 'Family' in the implementation but 'FamilyOrAssembly' in the contract.
-MembersMustExist : Member 'System.Security.Cryptography.CryptoConfig.AddAlgorithm(System.Type, System.String[])' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Security.Cryptography.CryptoConfig.AddOID(System.String, System.String[])' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Security.Cryptography.CryptoStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.X509Certificates.X509Certificate2..ctor(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Principal.WindowsIdentity..ctor(System.Security.Principal.WindowsIdentity)' does not exist in the implementation but it does exist in the contract.
@@ -201,4 +194,4 @@ MembersMustExist : Member 'System.Xml.Serialization.XmlSerializerFactory.CreateS
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo, System.Byte[], System.Type[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Type)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable, System.Xml.Xsl.XsltArgumentList, System.Xml.XmlWriter, System.Xml.XmlResolver)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 202
+Total Issues: 195
