@@ -1,6 +1,6 @@
 # Missing APIs
 
-This document lists all the APIs that are available in .NET Standard 1.7 but
+This document lists all the APIs that are available in .NET Standard 1.6 but
 aren't implemented yet by platforms we need to support:
 
 * [.NET Framework 4.6.1](#missing-from-net-framework-461)
