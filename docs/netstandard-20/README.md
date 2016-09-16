@@ -176,8 +176,8 @@ functionality can be shared across all the .NET flavors. This mostly means
 filling in existing APIs as .NET Core didn't bring those when it was created.
 
 This allows us to make .NET Standard much bigger. Unfortunately, some of the
-existing .NET flavors do not support all the APIs we have already added in .NET
-Standard 1.7. We've two options:
+existing .NET flavors do not support all the APIs we have already added since
+.NET Standard 1.5. We've two options:
 
 1. We can update the existing platforms to include those APIs
 2. Perform a breaking change in .NET Standard and remove those APIs from .NET
@@ -193,7 +193,7 @@ At the time we ship .NET Standard 2 we expect .NET Framework 4.6.1 to have
 enough adoption to make this a viable prerequisite for .NET Standard 2.
 
 [This document](NetStandardAPIs_MissingFromPlatforms.md) inlcudes all the APIs
-that are available in .NET Standard 1.7 but aren't implemented yet in:
+that are available in .NET Standard 1.6 but aren't implemented yet in:
 
 * [.NET Framework 4.6.1](NetStandardAPIs_MissingFromPlatforms.md#missing-from-net-framework-461)
 * [Xamarin iOS](NetStandardAPIs_MissingFromPlatforms.md#missing-from-ios)
