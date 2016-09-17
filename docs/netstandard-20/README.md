@@ -35,10 +35,6 @@ For .NET Standard 2 we decided to make a breaking change to allow .NET Framework
 
 ## Goals
 
-Before we go into the details I'd like to explicitly state the goals of .NET
-Standard and how it differs from previous efforts, such as portable class
-libraries (PCLs):
-
 * **Driving force for consistency**. We want to have an agreed upon set of
   required APIs that all .NET platforms have to implement in order to get access
   to the .NET library ecosystem.
