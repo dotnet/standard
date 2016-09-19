@@ -188,18 +188,15 @@ Framework.
 At the time we ship .NET Standard 2 we expect .NET Framework 4.6.1 to have
 enough adoption to make this a viable prerequisite for .NET Standard 2.
 
-[This document](NetStandardAPIs_MissingFromPlatforms.md) inlcudes all the APIs
-that are available in .NET Standard 1.6 but aren't implemented yet in:
-
-* [.NET Framework 4.6.1](NetStandardAPIs_MissingFromPlatforms.md#missing-from-net-framework-461)
-* [Xamarin iOS](NetStandardAPIs_MissingFromPlatforms.md#missing-from-ios)
-* [Xamarin Android](NetStandardAPIs_MissingFromPlatforms.md#missing-from-android)
+[This document](netstandard-20-removals.md) lists all the APIs that
+are available in .NET Standard 1.6 but weren't implemented yet .NET Framework
+4.6.1.
 
 Since updating the Xamarin platforms is mostly an SDK problem (since the .NET
 plaform doesn't ship with iOS or Android itself) we hope we can update those
 platform to simply include those missing APIs. But as outlined above, this isn't
 a viable plan for .NET Framework so we plan on removing the APIs from .NET
-Standard 2 that [.NET Framework 4.6.1 doesn't implement](NetStandardAPIs_MissingFromPlatforms.md#missing-from-net-framework-461).
+Standard 2 that [.NET Framework 4.6.1 doesn't implement](netstandard-20-removals.md).
 
 We ran an analysis of all packages on NuGet.org that target .NET Standard and
 use any of these APIs. At time of this writing we only found six non-Microsoft
