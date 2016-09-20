@@ -1,9 +1,8 @@
 
 namespace System
 {
-    public sealed partial class Activator
+    public static partial class Activator
     {
-        internal Activator() { }
 //REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateComInstanceFrom(string assemblyName, string typeName) { throw null; }
 //REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateComInstanceFrom(string assemblyName, string typeName, byte[] hashValue, System.Configuration.Assemblies.AssemblyHashAlgorithm hashAlgorithm) { throw null; }
 //REMOTING        public static System.Runtime.Remoting.ObjectHandle CreateInstance(System.ActivationContext activationContext) { throw null; }
