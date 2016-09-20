@@ -24,19 +24,8 @@ TypesMustExist : Type 'System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAt
 MembersMustExist : Member 'System.Diagnostics.Tracing.EventSourceException..ctor(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.BufferedStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.DirectoryInfo' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
-MembersMustExist : Member 'System.IO.File.Create(System.String, System.Int32, System.IO.FileOptions, System.Security.AccessControl.FileSecurity)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.IO.File.GetAccessControl(System.String)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.IO.File.GetAccessControl(System.String, System.Security.AccessControl.AccessControlSections)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.IO.File.SetAccessControl(System.String, System.Security.AccessControl.FileSecurity)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.FileInfo' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
-MembersMustExist : Member 'System.IO.FileInfo.GetAccessControl()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.IO.FileInfo.GetAccessControl(System.Security.AccessControl.AccessControlSections)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.IO.FileInfo.SetAccessControl(System.Security.AccessControl.FileSecurity)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.FileStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
-MembersMustExist : Member 'System.IO.FileStream..ctor(System.String, System.IO.FileMode, System.Security.AccessControl.FileSystemRights, System.IO.FileShare, System.Int32, System.IO.FileOptions)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.IO.FileStream..ctor(System.String, System.IO.FileMode, System.Security.AccessControl.FileSystemRights, System.IO.FileShare, System.Int32, System.IO.FileOptions, System.Security.AccessControl.FileSecurity)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.IO.FileStream.GetAccessControl()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.IO.FileStream.SetAccessControl(System.Security.AccessControl.FileSecurity)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.FileSystemInfo' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.FileSystemWatcher' does not inherit from base type 'System.ComponentModel.Component' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.IO.FileSystemWatcher.BeginInit()' does not exist in the implementation but it does exist in the contract.
@@ -60,29 +49,20 @@ CannotRemoveBaseTypeOrInterface : Type 'System.IO.IsolatedStorage.IsolatedStorag
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.MemoryMappedFiles.MemoryMappedViewStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.Pipes.AnonymousPipeClientStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.Pipes.AnonymousPipeServerStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
-MembersMustExist : Member 'System.IO.Pipes.AnonymousPipeServerStream..ctor(System.IO.Pipes.PipeDirection, System.IO.HandleInheritability, System.Int32, System.IO.Pipes.PipeSecurity)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.Pipes.NamedPipeClientStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.IO.Pipes.NamedPipeClientStream..ctor(System.String, System.String, System.IO.Pipes.PipeAccessRights, System.IO.Pipes.PipeOptions, System.Security.Principal.TokenImpersonationLevel, System.IO.HandleInheritability)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Pipes.NamedPipeClientStream.CheckPipePropertyOperations()' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.Pipes.NamedPipeServerStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
-MembersMustExist : Member 'System.IO.Pipes.NamedPipeServerStream..ctor(System.String, System.IO.Pipes.PipeDirection, System.Int32, System.IO.Pipes.PipeTransmissionMode, System.IO.Pipes.PipeOptions, System.Int32, System.Int32, System.IO.Pipes.PipeSecurity)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.IO.Pipes.NamedPipeServerStream..ctor(System.String, System.IO.Pipes.PipeDirection, System.Int32, System.IO.Pipes.PipeTransmissionMode, System.IO.Pipes.PipeOptions, System.Int32, System.Int32, System.IO.Pipes.PipeSecurity, System.IO.HandleInheritability)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.IO.Pipes.NamedPipeServerStream..ctor(System.String, System.IO.Pipes.PipeDirection, System.Int32, System.IO.Pipes.PipeTransmissionMode, System.IO.Pipes.PipeOptions, System.Int32, System.Int32, System.IO.Pipes.PipeSecurity, System.IO.HandleInheritability, System.IO.Pipes.PipeAccessRights)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Pipes.NamedPipeServerStream.BeginWaitForConnection(System.AsyncCallback, System.Object)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Pipes.NamedPipeServerStream.EndWaitForConnection(System.IAsyncResult)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Pipes.NamedPipeServerStream.RunAsClient(System.IO.Pipes.PipeStreamImpersonationWorker)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Pipes.PipeAccessRights' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Pipes.PipeAccessRule' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Pipes.PipeAuditRule' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Pipes.PipeSecurity' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.IO.Pipes.PipeStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.IO.Pipes.PipeStream.CheckPipePropertyOperations()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Pipes.PipeStream.CheckReadOperations()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Pipes.PipeStream.CheckWriteOperations()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.IO.Pipes.PipeStream.GetAccessControl()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Pipes.PipeStream.InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle, System.Boolean, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Pipes.PipeStream.IsHandleExposed.get()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.IO.Pipes.PipeStream.SetAccessControl(System.IO.Pipes.PipeSecurity)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Pipes.PipeStreamImpersonationWorker' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.HttpListener.DefaultServiceNames.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.HttpListener.ExtendedProtectionPolicy.get()' does not exist in the implementation but it does exist in the contract.
@@ -169,10 +149,6 @@ TypesMustExist : Type 'System.Runtime.Serialization.XsdDataContractExporter' doe
 CannotRemoveBaseTypeOrInterface : Type 'System.Runtime.Serialization.Formatters.Binary.BinaryFormatter' does not implement interface 'System.Runtime.Remoting.Messaging.IRemotingFormatter' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Security.SecurityCriticalAttribute..ctor(System.Security.SecurityCriticalScope)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.SecurityCriticalAttribute.Scope.get()' does not exist in the implementation but it does exist in the contract.
-EnumTypesMustMatch : Enum type for 'System.Security.AccessControl.AceType' is 'System.Int32' in implementation but 'System.Byte' in the contract.
-MembersMustExist : Member 'System.Byte System.Security.AccessControl.AceType.value__' does not exist in the implementation but it does exist in the contract.
-CannotMakeMoreVisible : Visibility of member 'System.Security.AccessControl.ObjectSecurity<T>.Persist(System.Runtime.InteropServices.SafeHandle)' is 'Family' in the implementation but 'FamilyOrAssembly' in the contract.
-CannotMakeMoreVisible : Visibility of member 'System.Security.AccessControl.ObjectSecurity<T>.Persist(System.String)' is 'Family' in the implementation but 'FamilyOrAssembly' in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Security.Cryptography.CryptoStream' does not inherit from base type 'System.MarshalByRefObject' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.X509Certificates.X509Certificate2..ctor(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Principal.WindowsIdentity..ctor(System.Security.Principal.WindowsIdentity)' does not exist in the implementation but it does exist in the contract.
@@ -181,10 +157,6 @@ MembersMustExist : Member 'System.Security.Principal.WindowsIdentity.UserClaims.
 MembersMustExist : Member 'System.Security.Principal.WindowsPrincipal.DeviceClaims.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Principal.WindowsPrincipal.UserClaims.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.RegularExpressions.Regex.UseOptionC()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Threading.EventWaitHandle.GetAccessControl()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Threading.EventWaitHandle.SetAccessControl(System.Security.AccessControl.EventWaitHandleSecurity)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Threading.Mutex.GetAccessControl()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Threading.Mutex.SetAccessControl(System.Security.AccessControl.MutexSecurity)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.Thread.DisableComObjectEagerCleanup()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.ThreadAbortException.ExceptionState.get()' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Windows.Markup.ValueSerializerAttribute' does not exist in the implementation but it does exist in the contract.
@@ -194,4 +166,4 @@ MembersMustExist : Member 'System.Xml.Serialization.XmlSerializerFactory.CreateS
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo, System.Byte[], System.Type[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Type)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable, System.Xml.Xsl.XsltArgumentList, System.Xml.XmlWriter, System.Xml.XmlResolver)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 195
+Total Issues: 167

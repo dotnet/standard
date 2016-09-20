@@ -9,8 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\netstandard\ref\netstandard.csproj" />
-    <ProjectReference Include="..\accesscontrols\accesscontrols.csproj" />
-    <Compile Include="cas.cs" />
+    <Compile Include="*.cs" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>

@@ -7998,52 +7998,6 @@ namespace System.Runtime.Versioning
         public override string ToString() { throw null; }
     }
 }
-namespace System.Security.AccessControl
-{
-    public sealed partial class SemaphoreAccessRule : System.Security.AccessControl.AccessRule
-    {
-        public SemaphoreAccessRule(System.Security.Principal.IdentityReference identity, System.Security.AccessControl.SemaphoreRights eventRights, System.Security.AccessControl.AccessControlType type) : base (default(System.Security.Principal.IdentityReference), default(int), default(bool), default(System.Security.AccessControl.InheritanceFlags), default(System.Security.AccessControl.PropagationFlags), default(System.Security.AccessControl.AccessControlType)) { }
-        public SemaphoreAccessRule(string identity, System.Security.AccessControl.SemaphoreRights eventRights, System.Security.AccessControl.AccessControlType type) : base (default(System.Security.Principal.IdentityReference), default(int), default(bool), default(System.Security.AccessControl.InheritanceFlags), default(System.Security.AccessControl.PropagationFlags), default(System.Security.AccessControl.AccessControlType)) { }
-        public System.Security.AccessControl.SemaphoreRights SemaphoreRights { get { throw null; } }
-    }
-    public sealed partial class SemaphoreAuditRule : System.Security.AccessControl.AuditRule
-    {
-        public SemaphoreAuditRule(System.Security.Principal.IdentityReference identity, System.Security.AccessControl.SemaphoreRights eventRights, System.Security.AccessControl.AuditFlags flags) : base (default(System.Security.Principal.IdentityReference), default(int), default(bool), default(System.Security.AccessControl.InheritanceFlags), default(System.Security.AccessControl.PropagationFlags), default(System.Security.AccessControl.AuditFlags)) { }
-        public System.Security.AccessControl.SemaphoreRights SemaphoreRights { get { throw null; } }
-    }
-    [System.FlagsAttribute]
-    public enum SemaphoreRights
-    {
-        ChangePermissions = 262144,
-        Delete = 65536,
-        FullControl = 2031619,
-        Modify = 2,
-        ReadPermissions = 131072,
-        Synchronize = 1048576,
-        TakeOwnership = 524288,
-    }
-    public sealed partial class SemaphoreSecurity : System.Security.AccessControl.NativeObjectSecurity
-    {
-        public SemaphoreSecurity() : base (default(bool), default(System.Security.AccessControl.ResourceType)) { }
-        public SemaphoreSecurity(string name, System.Security.AccessControl.AccessControlSections includeSections) : base (default(bool), default(System.Security.AccessControl.ResourceType)) { }
-        public override System.Type AccessRightType { get { throw null; } }
-        public override System.Type AccessRuleType { get { throw null; } }
-        public override System.Type AuditRuleType { get { throw null; } }
-        public override System.Security.AccessControl.AccessRule AccessRuleFactory(System.Security.Principal.IdentityReference identityReference, int accessMask, bool isInherited, System.Security.AccessControl.InheritanceFlags inheritanceFlags, System.Security.AccessControl.PropagationFlags propagationFlags, System.Security.AccessControl.AccessControlType type) { throw null; }
-        public void AddAccessRule(System.Security.AccessControl.SemaphoreAccessRule rule) { }
-        public void AddAuditRule(System.Security.AccessControl.SemaphoreAuditRule rule) { }
-        public override System.Security.AccessControl.AuditRule AuditRuleFactory(System.Security.Principal.IdentityReference identityReference, int accessMask, bool isInherited, System.Security.AccessControl.InheritanceFlags inheritanceFlags, System.Security.AccessControl.PropagationFlags propagationFlags, System.Security.AccessControl.AuditFlags flags) { throw null; }
-        public bool RemoveAccessRule(System.Security.AccessControl.SemaphoreAccessRule rule) { throw null; }
-        public void RemoveAccessRuleAll(System.Security.AccessControl.SemaphoreAccessRule rule) { }
-        public void RemoveAccessRuleSpecific(System.Security.AccessControl.SemaphoreAccessRule rule) { }
-        public bool RemoveAuditRule(System.Security.AccessControl.SemaphoreAuditRule rule) { throw null; }
-        public void RemoveAuditRuleAll(System.Security.AccessControl.SemaphoreAuditRule rule) { }
-        public void RemoveAuditRuleSpecific(System.Security.AccessControl.SemaphoreAuditRule rule) { }
-        public void ResetAccessRule(System.Security.AccessControl.SemaphoreAccessRule rule) { }
-        public void SetAccessRule(System.Security.AccessControl.SemaphoreAccessRule rule) { }
-        public void SetAuditRule(System.Security.AccessControl.SemaphoreAuditRule rule) { }
-    }
-}
 namespace System.Security.Authentication
 {
     public partial class AuthenticationException : System.SystemException
@@ -8922,15 +8876,15 @@ namespace System.Threading
         public Semaphore(int initialCount, int maximumCount) { }
         public Semaphore(int initialCount, int maximumCount, string name) { }
         public Semaphore(int initialCount, int maximumCount, string name, out bool createdNew) { createdNew = default(bool); }
-        public Semaphore(int initialCount, int maximumCount, string name, out bool createdNew, System.Security.AccessControl.SemaphoreSecurity semaphoreSecurity) { createdNew = default(bool); }
-        public System.Security.AccessControl.SemaphoreSecurity GetAccessControl() { throw null; }
+//ACLS        public Semaphore(int initialCount, int maximumCount, string name, out bool createdNew, System.Security.AccessControl.SemaphoreSecurity semaphoreSecurity) { createdNew = default(bool); }
+//ACLS        public System.Security.AccessControl.SemaphoreSecurity GetAccessControl() { throw null; }
         public static System.Threading.Semaphore OpenExisting(string name) { throw null; }
-        public static System.Threading.Semaphore OpenExisting(string name, System.Security.AccessControl.SemaphoreRights rights) { throw null; }
+//ACLS        public static System.Threading.Semaphore OpenExisting(string name, System.Security.AccessControl.SemaphoreRights rights) { throw null; }
         [System.Runtime.ConstrainedExecution.PrePrepareMethodAttribute]
         public int Release() { throw null; }
         public int Release(int releaseCount) { throw null; }
-        public void SetAccessControl(System.Security.AccessControl.SemaphoreSecurity semaphoreSecurity) { }
-        public static bool TryOpenExisting(string name, System.Security.AccessControl.SemaphoreRights rights, out System.Threading.Semaphore result) { result = default(System.Threading.Semaphore); throw null; }
+//ACLS        public void SetAccessControl(System.Security.AccessControl.SemaphoreSecurity semaphoreSecurity) { }
+//ACLS        public static bool TryOpenExisting(string name, System.Security.AccessControl.SemaphoreRights rights, out System.Threading.Semaphore result) { result = default(System.Threading.Semaphore); throw null; }
         public static bool TryOpenExisting(string name, out System.Threading.Semaphore result) { result = default(System.Threading.Semaphore); throw null; }
     }
     public partial class ThreadExceptionEventArgs : System.EventArgs
