@@ -20,6 +20,7 @@
     <Compile Include="System.Net.Http.cs" />
     <Compile Include="System.Numerics.cs" />
     <Compile Include="System.Runtime.Serialization.cs" />
+    <Compile Include="System.Web.cs" />
     <Compile Include="System.Xml.cs" />
     <Compile Include="System.Xml.Linq.cs" />
   </ItemGroup>

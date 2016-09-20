@@ -26,5 +26,11 @@
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.xml.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.xml.linq.csproj" />
   </ItemGroup>
+  <ItemGroup Condition="'$(TargetGroup)'=='net461'">
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.web.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetGroup)'=='xamarin.ios'">
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.web.services.csproj" />
+  </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>
