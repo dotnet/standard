@@ -27,3 +27,14 @@ namespace System.Security.Claims
         public static void AddDynamicRoleClaims(System.Security.Claims.ClaimsIdentity claimsIdentity, System.Collections.Generic.IEnumerable<System.Security.Claims.Claim> claims) { }
     }
 }
+namespace System.Windows.Markup
+{
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1244), AllowMultiple=false, Inherited=true)]
+    public sealed partial class ValueSerializerAttribute : System.Attribute
+    {
+        public ValueSerializerAttribute(string valueSerializerTypeName) { }
+        public ValueSerializerAttribute(System.Type valueSerializerType) { }
+        public System.Type ValueSerializerType { get { throw null; } }
+        public string ValueSerializerTypeName { get { throw null; } }
+    }
+}

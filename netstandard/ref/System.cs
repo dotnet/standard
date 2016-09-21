@@ -8945,22 +8945,10 @@ namespace System.Timers
 }
 namespace System.Windows.Input
 {
-    [System.Windows.Markup.ValueSerializerAttribute("System.Windows.Input.CommandValueSerializer, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, Custom=null")]
     public partial interface ICommand
     {
         event System.EventHandler CanExecuteChanged;
         bool CanExecute(object parameter);
         void Execute(object parameter);
-    }
-}
-namespace System.Windows.Markup
-{
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1244), AllowMultiple=false, Inherited=true)]
-    public sealed partial class ValueSerializerAttribute : System.Attribute
-    {
-        public ValueSerializerAttribute(string valueSerializerTypeName) { }
-        public ValueSerializerAttribute(System.Type valueSerializerType) { }
-        public System.Type ValueSerializerType { get { throw null; } }
-        public string ValueSerializerTypeName { get { throw null; } }
     }
 }

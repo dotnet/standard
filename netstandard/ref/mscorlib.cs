@@ -9089,12 +9089,6 @@ namespace System.Runtime.CompilerServices
     {
         void UnsafeOnCompleted(System.Action continuation);
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(2304), Inherited=false)]
-    public sealed partial class IDispatchConstantAttribute : System.Runtime.CompilerServices.CustomConstantAttribute
-    {
-        public IDispatchConstantAttribute() { }
-        public override object Value { get { throw null; } }
-    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(128), Inherited=true)]
     public sealed partial class IndexerNameAttribute : System.Attribute
     {

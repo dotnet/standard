@@ -75,6 +75,15 @@ APIs removed/broken by this factoring:
     }
 
 */
+namespace System.Runtime.CompilerServices
+{
+    [System.AttributeUsageAttribute((System.AttributeTargets)(2304), Inherited=false)]
+    public sealed partial class IDispatchConstantAttribute : System.Runtime.CompilerServices.CustomConstantAttribute
+    {
+        public IDispatchConstantAttribute() { }
+        public override object Value { get { throw null; } }
+    }
+}
 namespace System.Runtime.DesignerServices
 {
     public sealed partial class WindowsRuntimeDesignerContext
