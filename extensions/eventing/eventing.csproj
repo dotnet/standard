@@ -9,6 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\netstandard\ref\netstandard.csproj" />
+    <ProjectReference Include="..\windowsidentity\windowsidentity.csproj" />
     <Compile Include="eventing.cs" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
