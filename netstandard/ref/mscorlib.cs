@@ -8854,11 +8854,6 @@ namespace System.Runtime
         public void Dispose() { }
         ~MemoryFailPoint() { }
     }
-    public static partial class ProfileOptimization
-    {
-        public static void SetProfileRoot(string directoryPath) { }
-        public static void StartProfile(string profile) { }
-    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(96), AllowMultiple=false, Inherited=false)]
     public sealed partial class TargetedPatchingOptOutAttribute : System.Attribute
     {

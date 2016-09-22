@@ -2120,13 +2120,6 @@ namespace System.Runtime.CompilerServices
         [System.ObsoleteAttribute("do not use this method", true)]
         public static void UpdateRules<T>(System.Runtime.CompilerServices.CallSite<T> @this, int matched) where T : class { }
     }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    public sealed partial class Closure
-    {
-        public readonly object[] Constants;
-        public readonly object[] Locals;
-        public Closure(object[] constants, object[] locals) { }
-    }
     public abstract partial class DebugInfoGenerator
     {
         protected DebugInfoGenerator() { }

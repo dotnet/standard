@@ -136,8 +136,6 @@ CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.TargetException' does 
 CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.TargetInvocationException' does not inherit from base type 'System.ApplicationException' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.TargetParameterCountException' does not inherit from base type 'System.ApplicationException' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Runtime.GCLatencyMode System.Runtime.GCLatencyMode.NoGCRegion' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.ProfileOptimization' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.CompilerServices.Closure' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.DebugInfoGenerator.CreatePdbGenerator()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeOps.CreateRuntimeVariables()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeOps.CreateRuntimeVariables(System.Object[], System.Int64[])' does not exist in the implementation but it does exist in the contract.
@@ -164,4 +162,4 @@ MembersMustExist : Member 'System.Xml.Serialization.XmlSerializerFactory.CreateS
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Reflection.MethodInfo, System.Byte[], System.Type[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Load(System.Type)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Xsl.XslCompiledTransform.Transform(System.Xml.XPath.IXPathNavigable, System.Xml.Xsl.XsltArgumentList, System.Xml.XmlWriter, System.Xml.XmlResolver)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 165
+Total Issues: 163

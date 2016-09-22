@@ -18,6 +18,24 @@ namespace System.Reflection
         System.Type GetCustomType();
     }
 }
+namespace System.Runtime
+{
+    public static partial class ProfileOptimization
+    {
+        public static void SetProfileRoot(string directoryPath) { }
+        public static void StartProfile(string profile) { }
+    }
+}
+namespace System.Runtime.CompilerServices
+{
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    public sealed partial class Closure
+    {
+        public readonly object[] Constants;
+        public readonly object[] Locals;
+        public Closure(object[] constants, object[] locals) { }
+    }
+}
 namespace System.Security.Claims
 {
     public static partial class DynamicRoleClaimProvider
