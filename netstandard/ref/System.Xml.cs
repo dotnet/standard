@@ -22,14 +22,6 @@ namespace System.Xml
         Indented = 1,
         None = 0,
     }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-    public partial interface IApplicationResourceStreamResolver
-    {
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        System.IO.Stream GetApplicationResourceStream(System.Uri relativeUri);
-    }
     public partial interface IHasXmlNode
     {
         System.Xml.XmlNode GetNode();
@@ -885,9 +877,6 @@ namespace System.Xml
     public sealed partial class XmlReaderSettings
     {
         public XmlReaderSettings() { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        public XmlReaderSettings(System.Xml.XmlResolver resolver) { }
         public bool Async { get { throw null; } set { } }
         public bool CheckCharacters { get { throw null; } set { } }
         public bool CloseInput { get { throw null; } set { } }
@@ -1311,19 +1300,6 @@ namespace System.Xml
         public bool WriteEndDocumentOnClose { get { throw null; } set { } }
         public System.Xml.XmlWriterSettings Clone() { throw null; }
         public void Reset() { }
-    }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-    public partial class XmlXapResolver : System.Xml.XmlResolver
-    {
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        public XmlXapResolver() { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        public override object GetEntity(System.Uri absoluteUri, string role, System.Type ofObjectToReturn) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        public static void RegisterApplicationResourceStreamResolver(System.Xml.IApplicationResourceStreamResolver appStreamResolver) { }
     }
 }
 namespace System.Xml.Resolvers

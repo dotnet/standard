@@ -1070,9 +1070,6 @@ namespace System.ComponentModel
     }
     public partial class AsyncCompletedEventArgs : System.EventArgs
     {
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        public AsyncCompletedEventArgs() { }
         public AsyncCompletedEventArgs(System.Exception error, bool cancelled, object userState) { }
         public bool Cancelled { get { throw null; } }
         public System.Exception Error { get { throw null; } }
@@ -5275,9 +5272,6 @@ namespace System.Net
     }
     public partial class HttpWebRequest : System.Net.WebRequest, System.Runtime.Serialization.ISerializable
     {
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        public HttpWebRequest() { }
         [System.ObsoleteAttribute("Serialization is obsoleted for this type.  http://go.microsoft.com/fwlink/?linkid=14202")]
         protected HttpWebRequest(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
         public string Accept { get { throw null; } set { } }
@@ -5347,9 +5341,6 @@ namespace System.Net
     }
     public partial class HttpWebResponse : System.Net.WebResponse, System.Runtime.Serialization.ISerializable
     {
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        public HttpWebResponse() { }
         [System.ObsoleteAttribute("Serialization is obsoleted for this type.  http://go.microsoft.com/fwlink/?linkid=14202")]
         protected HttpWebResponse(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
         public string CharacterSet { get { throw null; } }
@@ -5626,12 +5617,6 @@ namespace System.Net
     public partial class WebClient : System.ComponentModel.Component
     {
         public WebClient() { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        public bool AllowReadStreamBuffering { get { throw null; } set { } }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        public bool AllowWriteStreamBuffering { get { throw null; } set { } }
         public string BaseAddress { get { throw null; } set { } }
         public System.Net.Cache.RequestCachePolicy CachePolicy { get { throw null; } set { } }
         public System.Net.ICredentials Credentials { get { throw null; } set { } }
@@ -5653,9 +5638,6 @@ namespace System.Net
         public event System.Net.UploadProgressChangedEventHandler UploadProgressChanged { add { } remove { } }
         public event System.Net.UploadStringCompletedEventHandler UploadStringCompleted { add { } remove { } }
         public event System.Net.UploadValuesCompletedEventHandler UploadValuesCompleted { add { } remove { } }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        public event System.Net.WriteStreamClosedEventHandler WriteStreamClosed { add { } remove { } }
         public void CancelAsync() { }
         public byte[] DownloadData(string address) { throw null; }
         public byte[] DownloadData(System.Uri address) { throw null; }
@@ -5689,9 +5671,6 @@ namespace System.Net
         protected virtual void OnUploadProgressChanged(System.Net.UploadProgressChangedEventArgs e) { }
         protected virtual void OnUploadStringCompleted(System.Net.UploadStringCompletedEventArgs e) { }
         protected virtual void OnUploadValuesCompleted(System.Net.UploadValuesCompletedEventArgs e) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        protected virtual void OnWriteStreamClosed(System.Net.WriteStreamClosedEventArgs e) { }
         public System.IO.Stream OpenRead(string address) { throw null; }
         public System.IO.Stream OpenRead(System.Uri address) { throw null; }
         public void OpenReadAsync(System.Uri address) { }
@@ -5861,9 +5840,6 @@ namespace System.Net
         public virtual string ConnectionGroupName { get { throw null; } set { } }
         public virtual long ContentLength { get { throw null; } set { } }
         public virtual string ContentType { get { throw null; } set { } }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        public virtual System.Net.IWebRequestCreate CreatorInstance { get { throw null; } }
         public virtual System.Net.ICredentials Credentials { get { throw null; } set { } }
         public static System.Net.Cache.RequestCachePolicy DefaultCachePolicy { get { throw null; } set { } }
         public static System.Net.IWebProxy DefaultWebProxy { get { throw null; } set { } }
@@ -5891,9 +5867,6 @@ namespace System.Net
         public virtual System.Net.WebResponse GetResponse() { throw null; }
         public virtual System.Threading.Tasks.Task<System.Net.WebResponse> GetResponseAsync() { throw null; }
         public static System.Net.IWebProxy GetSystemWebProxy() { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        public static void RegisterPortableWebRequestCreator(System.Net.IWebRequestCreate creator) { }
         public static bool RegisterPrefix(string prefix, System.Net.IWebRequestCreate creator) { throw null; }
         void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
     }
@@ -5959,18 +5932,6 @@ namespace System.Net
         public static string UrlEncode(string value) { throw null; }
         public static byte[] UrlEncodeToBytes(byte[] value, int offset, int count) { throw null; }
     }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    public partial class WriteStreamClosedEventArgs : System.EventArgs
-    {
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        public WriteStreamClosedEventArgs() { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        public System.Exception Error { get { throw null; } }
-    }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    public delegate void WriteStreamClosedEventHandler(object sender, System.Net.WriteStreamClosedEventArgs e);
 }
 namespace System.Net.Cache
 {
@@ -6674,16 +6635,10 @@ namespace System.Net.NetworkInformation
         internal NetworkAvailabilityEventArgs() { }
         public bool IsAvailable { get { throw null; } }
     }
-    public partial class NetworkChange
+    public static partial class NetworkChange
     {
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        public NetworkChange() { }
         public static event System.Net.NetworkInformation.NetworkAddressChangedEventHandler NetworkAddressChanged { add { } remove { } }
         public static event System.Net.NetworkInformation.NetworkAvailabilityChangedEventHandler NetworkAvailabilityChanged { add { } remove { } }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        public static void RegisterNetworkChange(System.Net.NetworkInformation.NetworkChange nc) { }
     }
     [System.FlagsAttribute]
     public enum NetworkInformationAccess
@@ -7478,9 +7433,6 @@ namespace System.Net.Sockets
         public System.Net.Sockets.SendPacketsElement[] SendPacketsElements { get { throw null; } set { } }
         public System.Net.Sockets.TransmitFileOptions SendPacketsFlags { get { throw null; } set { } }
         public int SendPacketsSendSize { get { throw null; } set { } }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-        public System.Net.Sockets.SocketClientAccessPolicyProtocol SocketClientAccessPolicyProtocol { get { throw null; } set { } }
         public System.Net.Sockets.SocketError SocketError { get { throw null; } set { } }
         public System.Net.Sockets.SocketFlags SocketFlags { get { throw null; } set { } }
         public object UserToken { get { throw null; } set { } }
@@ -7503,13 +7455,6 @@ namespace System.Net.Sockets
         Send = 7,
         SendPackets = 8,
         SendTo = 9,
-    }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
-    public enum SocketClientAccessPolicyProtocol
-    {
-        Http = 1,
-        Tcp = 0,
     }
     public enum SocketError
     {

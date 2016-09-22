@@ -4975,11 +4975,9 @@ namespace System.Diagnostics
             None = 0,
         }
     }
-    public sealed partial class Debugger
+    public static partial class Debugger
     {
         public static readonly string DefaultCategory;
-        [System.ObsoleteAttribute("Do not create instances of the Debugger class.  Call the static methods directly on this type instead", true)]
-        public Debugger() { }
         public static bool IsAttached { get { throw null; } }
         public static void Break() { }
         public static bool IsLogging() { throw null; }
@@ -10011,10 +10009,8 @@ namespace System.Runtime.InteropServices
         Surrogate = 8,
         Suspended = 4,
     }
-    public partial class RuntimeEnvironment
+    public static partial class RuntimeEnvironment
     {
-        [System.ObsoleteAttribute("Do not create instances of the RuntimeEnvironment class.  Call the static methods directly on this type instead", true)]
-        public RuntimeEnvironment() { }
         public static string SystemConfigurationFile { get { throw null; } }
         public static bool FromGlobalAccessCache(System.Reflection.Assembly a) { throw null; }
         public static string GetRuntimeDirectory() { throw null; }
