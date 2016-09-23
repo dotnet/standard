@@ -9375,30 +9375,12 @@ namespace System.Runtime.InteropServices
         public static bool operator ==(System.Runtime.InteropServices.ArrayWithOffset a, System.Runtime.InteropServices.ArrayWithOffset b) { throw null; }
         public static bool operator !=(System.Runtime.InteropServices.ArrayWithOffset a, System.Runtime.InteropServices.ArrayWithOffset b) { throw null; }
     }
-    [System.FlagsAttribute]
-    public enum AssemblyRegistrationFlags
-    {
-        None = 0,
-        SetCodeBase = 1,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1029), Inherited=false)]
-    public sealed partial class AutomationProxyAttribute : System.Attribute
-    {
-        public AutomationProxyAttribute(bool val) { }
-        public bool Value { get { throw null; } }
-    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(1037), Inherited=false)]
     public sealed partial class BestFitMappingAttribute : System.Attribute
     {
         public bool ThrowOnUnmappableChar;
         public BestFitMappingAttribute(bool BestFitMapping) { }
         public bool BestFitMapping { get { throw null; } }
-    }
-    public sealed partial class BStrWrapper
-    {
-        public BStrWrapper(object value) { }
-        public BStrWrapper(string value) { }
-        public string WrappedObject { get { throw null; } }
     }
     public enum CallingConvention
     {
@@ -9415,111 +9397,8 @@ namespace System.Runtime.InteropServices
         None = 1,
         Unicode = 3,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(5), Inherited=false)]
-    public sealed partial class ClassInterfaceAttribute : System.Attribute
-    {
-        public ClassInterfaceAttribute(short classInterfaceType) { }
-        public ClassInterfaceAttribute(System.Runtime.InteropServices.ClassInterfaceType classInterfaceType) { }
-        public System.Runtime.InteropServices.ClassInterfaceType Value { get { throw null; } }
-    }
-    public enum ClassInterfaceType
-    {
-        AutoDispatch = 1,
-        AutoDual = 2,
-        None = 0,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited=false)]
-    public sealed partial class CoClassAttribute : System.Attribute
-    {
-        public CoClassAttribute(System.Type coClass) { }
-        public System.Type CoClass { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(10624), Inherited=false)]
-    public sealed partial class ComAliasNameAttribute : System.Attribute
-    {
-        public ComAliasNameAttribute(string alias) { }
-        public string Value { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
-    public sealed partial class ComCompatibleVersionAttribute : System.Attribute
-    {
-        public ComCompatibleVersionAttribute(int major, int minor, int build, int revision) { }
-        public int BuildNumber { get { throw null; } }
-        public int MajorVersion { get { throw null; } }
-        public int MinorVersion { get { throw null; } }
-        public int RevisionNumber { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767), Inherited=false)]
-    public sealed partial class ComConversionLossAttribute : System.Attribute
-    {
-        public ComConversionLossAttribute() { }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=false)]
-    public sealed partial class ComDefaultInterfaceAttribute : System.Attribute
-    {
-        public ComDefaultInterfaceAttribute(System.Type defaultInterface) { }
-        public System.Type Value { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited=false)]
-    public sealed partial class ComEventInterfaceAttribute : System.Attribute
-    {
-        public ComEventInterfaceAttribute(System.Type SourceInterface, System.Type EventProvider) { }
-        public System.Type EventProvider { get { throw null; } }
-        public System.Type SourceInterface { get { throw null; } }
-    }
-    public static partial class ComEventsHelper
-    {
-        public static void Combine(object rcw, System.Guid iid, int dispid, System.Delegate d) { }
-        public static System.Delegate Remove(object rcw, System.Guid iid, int dispid, System.Delegate d) { throw null; }
-    }
-    public partial class COMException : System.Runtime.InteropServices.ExternalException
-    {
-        public COMException() { }
-        protected COMException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public COMException(string message) { }
-        public COMException(string message, System.Exception inner) { }
-        public COMException(string message, int errorCode) { }
-        public override string ToString() { throw null; }
-    }
-    public enum ComInterfaceType
-    {
-        InterfaceIsDual = 0,
-        InterfaceIsIDispatch = 2,
-        InterfaceIsIInspectable = 3,
-        InterfaceIsIUnknown = 1,
-    }
-    public enum ComMemberType
-    {
-        Method = 0,
-        PropGet = 1,
-        PropSet = 2,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
-    public sealed partial class ComRegisterFunctionAttribute : System.Attribute
-    {
-        public ComRegisterFunctionAttribute() { }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=true)]
-    public sealed partial class ComSourceInterfacesAttribute : System.Attribute
-    {
-        public ComSourceInterfacesAttribute(string sourceInterfaces) { }
-        public ComSourceInterfacesAttribute(System.Type sourceInterface) { }
-        public ComSourceInterfacesAttribute(System.Type sourceInterface1, System.Type sourceInterface2) { }
-        public ComSourceInterfacesAttribute(System.Type sourceInterface1, System.Type sourceInterface2, System.Type sourceInterface3) { }
-        public ComSourceInterfacesAttribute(System.Type sourceInterface1, System.Type sourceInterface2, System.Type sourceInterface3, System.Type sourceInterface4) { }
-        public string Value { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
-    public sealed partial class ComUnregisterFunctionAttribute : System.Attribute
-    {
-        public ComUnregisterFunctionAttribute() { }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(5597), Inherited=false)]
-    public sealed partial class ComVisibleAttribute : System.Attribute
-    {
-        public ComVisibleAttribute(bool visibility) { }
-        public bool Value { get { throw null; } }
-    }
+    
+
     public abstract partial class CriticalHandle : System.Runtime.ConstrainedExecution.CriticalFinalizerObject, System.IDisposable
     {
         protected System.IntPtr handle;
@@ -9534,22 +9413,11 @@ namespace System.Runtime.InteropServices
         protected void SetHandle(System.IntPtr handle) { }
         public void SetHandleAsInvalid() { }
     }
-    public sealed partial class CurrencyWrapper
+    [System.AttributeUsageAttribute((System.AttributeTargets)(960), Inherited=false)]
+    public sealed partial class DispIdAttribute : System.Attribute
     {
-        public CurrencyWrapper(decimal obj) { }
-        public CurrencyWrapper(object obj) { }
-        public decimal WrappedObject { get { throw null; } }
-    }
-    public enum CustomQueryInterfaceMode
-    {
-        Allow = 1,
-        Ignore = 0,
-    }
-    public enum CustomQueryInterfaceResult
-    {
-        Failed = 2,
-        Handled = 0,
-        NotHandled = 1,
+        public DispIdAttribute(int dispId) { }
+        public int Value { get { throw null; } }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(2), Inherited=false)]
     public sealed partial class DefaultCharSetAttribute : System.Attribute
@@ -9562,12 +9430,6 @@ namespace System.Runtime.InteropServices
     {
         public DefaultDllImportSearchPathsAttribute(System.Runtime.InteropServices.DllImportSearchPath paths) { }
         public System.Runtime.InteropServices.DllImportSearchPath Paths { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(960), Inherited=false)]
-    public sealed partial class DispIdAttribute : System.Attribute
-    {
-        public DispIdAttribute(int dispId) { }
-        public int Value { get { throw null; } }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
     public sealed partial class DllImportAttribute : System.Attribute
@@ -9593,17 +9455,6 @@ namespace System.Runtime.InteropServices
         System32 = 2048,
         UseDllDirectoryForDependencies = 256,
         UserDirectories = 1024,
-    }
-    public enum ExporterEventKind
-    {
-        ERROR_REFTOINVALIDASSEMBLY = 2,
-        NOTIF_CONVERTWARNING = 1,
-        NOTIF_TYPECONVERTED = 0,
-    }
-    public sealed partial class ExtensibleClassFactory
-    {
-        internal ExtensibleClassFactory() { }
-        public static void RegisterObjectCreationCallback(System.Runtime.InteropServices.ObjectCreationDelegate callback) { }
     }
     public partial class ExternalException : System.SystemException
     {
@@ -9661,14 +9512,6 @@ namespace System.Runtime.InteropServices
         public static explicit operator System.IntPtr (System.Runtime.InteropServices.HandleRef value) { throw null; }
         public static System.IntPtr ToIntPtr(System.Runtime.InteropServices.HandleRef value) { throw null; }
     }
-    public partial interface ICustomAdapter
-    {
-        object GetUnderlyingObject();
-    }
-    public partial interface ICustomFactory
-    {
-        System.MarshalByRefObject CreateInstance(System.Type serverType);
-    }
     public partial interface ICustomMarshaler
     {
         void CleanUpManagedData(object ManagedObj);
@@ -9677,50 +9520,10 @@ namespace System.Runtime.InteropServices
         System.IntPtr MarshalManagedToNative(object ManagedObj);
         object MarshalNativeToManaged(System.IntPtr pNativeData);
     }
-    public partial interface ICustomQueryInterface
-    {
-        System.Runtime.InteropServices.CustomQueryInterfaceResult GetInterface(ref System.Guid iid, out System.IntPtr ppv);
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(5), Inherited=false)]
-    [System.ObsoleteAttribute("This attribute is deprecated and will be removed in a future version.", false)]
-    public sealed partial class IDispatchImplAttribute : System.Attribute
-    {
-        public IDispatchImplAttribute(short implType) { }
-        public IDispatchImplAttribute(System.Runtime.InteropServices.IDispatchImplType implType) { }
-        public System.Runtime.InteropServices.IDispatchImplType Value { get { throw null; } }
-    }
-    [System.ObsoleteAttribute("The IDispatchImplAttribute is deprecated.", false)]
-    public enum IDispatchImplType
-    {
-        CompatibleImpl = 2,
-        InternalImpl = 1,
-        SystemDefinedImpl = 0,
-    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(2048), Inherited=false)]
     public sealed partial class InAttribute : System.Attribute
     {
         public InAttribute() { }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited=false)]
-    public sealed partial class InterfaceTypeAttribute : System.Attribute
-    {
-        public InterfaceTypeAttribute(short interfaceType) { }
-        public InterfaceTypeAttribute(System.Runtime.InteropServices.ComInterfaceType interfaceType) { }
-        public System.Runtime.InteropServices.ComInterfaceType Value { get { throw null; } }
-    }
-    public partial class InvalidComObjectException : System.SystemException
-    {
-        public InvalidComObjectException() { }
-        protected InvalidComObjectException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public InvalidComObjectException(string message) { }
-        public InvalidComObjectException(string message, System.Exception inner) { }
-    }
-    public partial class InvalidOleVariantTypeException : System.SystemException
-    {
-        public InvalidOleVariantTypeException() { }
-        protected InvalidOleVariantTypeException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public InvalidOleVariantTypeException(string message) { }
-        public InvalidOleVariantTypeException(string message, System.Exception inner) { }
     }
     public enum LayoutKind
     {
@@ -9965,50 +9768,6 @@ namespace System.Runtime.InteropServices
     {
         public PreserveSigAttribute() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false, AllowMultiple=true)]
-    public sealed partial class PrimaryInteropAssemblyAttribute : System.Attribute
-    {
-        public PrimaryInteropAssemblyAttribute(int major, int minor) { }
-        public int MajorVersion { get { throw null; } }
-        public int MinorVersion { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=false)]
-    public sealed partial class ProgIdAttribute : System.Attribute
-    {
-        public ProgIdAttribute(string progId) { }
-        public string Value { get { throw null; } }
-    }
-    [System.FlagsAttribute]
-    public enum RegistrationClassContext
-    {
-        DisableActivateAsActivator = 32768,
-        EnableActivateAsActivator = 65536,
-        EnableCodeDownload = 8192,
-        FromDefaultContext = 131072,
-        InProcessHandler = 2,
-        InProcessHandler16 = 32,
-        InProcessServer = 1,
-        InProcessServer16 = 8,
-        LocalServer = 4,
-        NoCodeDownload = 1024,
-        NoCustomMarshal = 4096,
-        NoFailureLog = 16384,
-        RemoteServer = 16,
-        Reserved1 = 64,
-        Reserved2 = 128,
-        Reserved3 = 256,
-        Reserved4 = 512,
-        Reserved5 = 2048,
-    }
-    [System.FlagsAttribute]
-    public enum RegistrationConnectionType
-    {
-        MultipleUse = 1,
-        MultiSeparate = 2,
-        SingleUse = 0,
-        Surrogate = 8,
-        Suspended = 4,
-    }
     public static partial class RuntimeEnvironment
     {
         public static string SystemConfigurationFile { get { throw null; } }
@@ -10017,20 +9776,6 @@ namespace System.Runtime.InteropServices
 //INTEROP        public static System.IntPtr GetRuntimeInterfaceAsIntPtr(System.Guid clsid, System.Guid riid) { throw null; }
 //INTEROP        public static object GetRuntimeInterfaceAsObject(System.Guid clsid, System.Guid riid) { throw null; }
         public static string GetSystemVersion() { throw null; }
-    }
-    public partial class SafeArrayRankMismatchException : System.SystemException
-    {
-        public SafeArrayRankMismatchException() { }
-        protected SafeArrayRankMismatchException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public SafeArrayRankMismatchException(string message) { }
-        public SafeArrayRankMismatchException(string message, System.Exception inner) { }
-    }
-    public partial class SafeArrayTypeMismatchException : System.SystemException
-    {
-        public SafeArrayTypeMismatchException() { }
-        protected SafeArrayTypeMismatchException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public SafeArrayTypeMismatchException(string message) { }
-        public SafeArrayTypeMismatchException(string message, System.Exception inner) { }
     }
     public abstract partial class SafeBuffer : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid
     {
@@ -10072,20 +9817,6 @@ namespace System.Runtime.InteropServices
         protected void SetHandle(System.IntPtr handle) { }
         public void SetHandleAsInvalid() { }
     }
-    public partial class SEHException : System.Runtime.InteropServices.ExternalException
-    {
-        public SEHException() { }
-        protected SEHException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public SEHException(string message) { }
-        public SEHException(string message, System.Exception inner) { }
-        public virtual bool CanResume() { throw null; }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
-    [System.ObsoleteAttribute("This attribute has been deprecated.  Application Domains no longer respect Activation Context boundaries in IDispatch calls.", false)]
-    public sealed partial class SetWin32ContextInIDispatchAttribute : System.Attribute
-    {
-        public SetWin32ContextInIDispatchAttribute() { }
-    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited=false)]
     public sealed partial class StructLayoutAttribute : System.Attribute
     {
@@ -10103,24 +9834,6 @@ namespace System.Runtime.InteropServices
         public TypeIdentifierAttribute(string scope, string identifier) { }
         public string Identifier { get { throw null; } }
         public string Scope { get { throw null; } }
-    }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.TYPEKIND instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
-    public enum TYPEKIND
-    {
-        TKIND_ALIAS = 6,
-        TKIND_COCLASS = 5,
-        TKIND_DISPATCH = 4,
-        TKIND_ENUM = 0,
-        TKIND_INTERFACE = 3,
-        TKIND_MAX = 8,
-        TKIND_MODULE = 2,
-        TKIND_RECORD = 1,
-        TKIND_UNION = 7,
-    }
-    public sealed partial class UnknownWrapper
-    {
-        public UnknownWrapper(object obj) { }
-        public object WrappedObject { get { throw null; } }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(4096), AllowMultiple=false, Inherited=false)]
     public sealed partial class UnmanagedFunctionPointerAttribute : System.Attribute
@@ -10218,107 +9931,6 @@ namespace System.Runtime.InteropServices
         VT_VARIANT = 12,
         VT_VECTOR = 4096,
         VT_VOID = 24,
-    }
-    public sealed partial class VariantWrapper
-    {
-        public VariantWrapper(object obj) { }
-        public object WrappedObject { get { throw null; } }
-    }
-}
-namespace System.Runtime.InteropServices.Expando
-{
-    public partial interface IExpando : System.Reflection.IReflect
-    {
-        System.Reflection.FieldInfo AddField(string name);
-        System.Reflection.MethodInfo AddMethod(string name, System.Delegate method);
-        System.Reflection.PropertyInfo AddProperty(string name);
-        void RemoveMember(System.Reflection.MemberInfo m);
-    }
-}
-namespace System.Runtime.InteropServices.WindowsRuntime
-{
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), AllowMultiple=false, Inherited=false)]
-    public sealed partial class DefaultInterfaceAttribute : System.Attribute
-    {
-        public DefaultInterfaceAttribute(System.Type defaultInterface) { }
-        public System.Type DefaultInterface { get { throw null; } }
-    }
-    public partial class DesignerNamespaceResolveEventArgs : System.EventArgs
-    {
-        public DesignerNamespaceResolveEventArgs(string namespaceName) { }
-        public string NamespaceName { get { throw null; } }
-        public System.Collections.ObjectModel.Collection<string> ResolvedAssemblyFiles { get { throw null; } }
-    }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct EventRegistrationToken
-    {
-        public override bool Equals(object obj) { throw null; }
-        public override int GetHashCode() { throw null; }
-        public static bool operator ==(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken left, System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken right) { throw null; }
-        public static bool operator !=(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken left, System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken right) { throw null; }
-    }
-    public sealed partial class EventRegistrationTokenTable<T> where T : class
-    {
-        public EventRegistrationTokenTable() { }
-        public T InvocationList { get { throw null; } set { } }
-        public System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken AddEventHandler(T handler) { throw null; }
-        public static System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable<T> GetOrCreateEventRegistrationTokenTable(ref System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable<T> refEventTable) { throw null; }
-        public void RemoveEventHandler(T handler) { }
-        public void RemoveEventHandler(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken token) { }
-    }
-    public partial interface IActivationFactory
-    {
-        object ActivateInstance();
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), Inherited=false, AllowMultiple=true)]
-    public sealed partial class InterfaceImplementedInVersionAttribute : System.Attribute
-    {
-        public InterfaceImplementedInVersionAttribute(System.Type interfaceType, byte majorVersion, byte minorVersion, byte buildVersion, byte revisionVersion) { }
-        public byte BuildVersion { get { throw null; } }
-        public System.Type InterfaceType { get { throw null; } }
-        public byte MajorVersion { get { throw null; } }
-        public byte MinorVersion { get { throw null; } }
-        public byte RevisionVersion { get { throw null; } }
-    }
-    public partial class NamespaceResolveEventArgs : System.EventArgs
-    {
-        public NamespaceResolveEventArgs(string namespaceName, System.Reflection.Assembly requestingAssembly) { }
-        public string NamespaceName { get { throw null; } }
-        public System.Reflection.Assembly RequestingAssembly { get { throw null; } }
-        public System.Collections.ObjectModel.Collection<System.Reflection.Assembly> ResolvedAssemblies { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(2048), Inherited=false, AllowMultiple=false)]
-    public sealed partial class ReadOnlyArrayAttribute : System.Attribute
-    {
-        public ReadOnlyArrayAttribute() { }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(12288), AllowMultiple=false, Inherited=false)]
-    public sealed partial class ReturnValueNameAttribute : System.Attribute
-    {
-        public ReturnValueNameAttribute(string name) { }
-        public string Name { get { throw null; } }
-    }
-    public static partial class WindowsRuntimeMarshal
-    {
-        public static void AddEventHandler<T>(System.Func<T, System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken> addMethod, System.Action<System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken> removeMethod, T handler) { }
-        public static void FreeHString(System.IntPtr ptr) { }
-        public static System.Runtime.InteropServices.WindowsRuntime.IActivationFactory GetActivationFactory(System.Type type) { throw null; }
-        public static string PtrToStringHString(System.IntPtr ptr) { throw null; }
-        public static void RemoveAllEventHandlers(System.Action<System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken> removeMethod) { }
-        public static void RemoveEventHandler<T>(System.Action<System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken> removeMethod, T handler) { }
-        public static System.IntPtr StringToHString(string s) { throw null; }
-    }
-    public static partial class WindowsRuntimeMetadata
-    {
-        public static event System.EventHandler<System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs> DesignerNamespaceResolve { add { } remove { } }
-        public static event System.EventHandler<System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs> ReflectionOnlyNamespaceResolve { add { } remove { } }
-        public static System.Collections.Generic.IEnumerable<string> ResolveNamespace(string namespaceName, System.Collections.Generic.IEnumerable<string> packageGraphFilePaths) { throw null; }
-        public static System.Collections.Generic.IEnumerable<string> ResolveNamespace(string namespaceName, string windowsSdkFilePath, System.Collections.Generic.IEnumerable<string> packageGraphFilePaths) { throw null; }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(2048), Inherited=false, AllowMultiple=false)]
-    public sealed partial class WriteOnlyArrayAttribute : System.Attribute
-    {
-        public WriteOnlyArrayAttribute() { }
     }
 }
 namespace System.Runtime.Remoting

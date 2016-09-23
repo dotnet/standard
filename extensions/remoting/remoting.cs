@@ -217,6 +217,13 @@ namespace System.Runtime.Hosting
         protected static System.Runtime.Remoting.ObjectHandle CreateInstanceHelper(System.AppDomainSetup adSetup) { throw null; }
     }
 }
+namespace System.Runtime.InteropServices
+{
+    public partial interface ICustomFactory
+    {
+        System.MarshalByRefObject CreateInstance(System.Type serverType);
+    }    
+}
 namespace System.Runtime.Remoting
 {
     public partial class ActivatedClientTypeEntry : System.Runtime.Remoting.TypeEntry
