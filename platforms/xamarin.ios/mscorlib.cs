@@ -5,7 +5,7 @@ namespace Microsoft.Win32
         public static readonly Microsoft.Win32.RegistryKey ClassesRoot;
         public static readonly Microsoft.Win32.RegistryKey CurrentConfig;
         public static readonly Microsoft.Win32.RegistryKey CurrentUser;
-        [System.ObsoleteAttribute("The DynData registry key only works on Win9x, which is no longer supported by the CLR.  On NT-based operating systems, use the PerformanceData registry key instead.")]
+        [System.ObsoleteAttribute("Use PerformanceData instead")]
         public static readonly Microsoft.Win32.RegistryKey DynData;
         public static readonly Microsoft.Win32.RegistryKey LocalMachine;
         public static readonly Microsoft.Win32.RegistryKey PerformanceData;
@@ -102,7 +102,8 @@ namespace Microsoft.Win32.SafeHandles
     }
     public sealed partial class SafeAccessTokenHandle : System.Runtime.InteropServices.SafeHandle
     {
-        public SafeAccessTokenHandle() { }
+        public SafeAccessTokenHandle(System.IntPtr handle) { }
+        public static Microsoft.Win32.SafeHandles.SafeAccessTokenHandle InvalidHandle { get { throw null; } }
         public override bool IsInvalid { get { throw null; } }
         protected override bool ReleaseHandle() { throw null; }
     }
@@ -324,12 +325,12 @@ namespace System
         public event System.ResolveEventHandler ResourceResolve { add { } remove { } }
         public event System.ResolveEventHandler TypeResolve { add { } remove { } }
         public event System.UnhandledExceptionEventHandler UnhandledException { add { } remove { } }
-        [System.ObsoleteAttribute("AppDomain.AppendPrivatePath has been deprecated. Please investigate the use of AppDomainSetup.PrivateBinPath instead. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("AppDomain.AppendPrivatePath has been deprecated. Please investigate the use of AppDomainSetup.PrivateBinPath instead.")]
         public void AppendPrivatePath(string path) { }
         public string ApplyPolicy(string assemblyName) { throw null; }
-        [System.ObsoleteAttribute("AppDomain.ClearPrivatePath has been deprecated. Please investigate the use of AppDomainSetup.PrivateBinPath instead. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("AppDomain.ClearPrivatePath has been deprecated. Please investigate the use of AppDomainSetup.PrivateBinPath instead.")]
         public void ClearPrivatePath() { }
-        [System.ObsoleteAttribute("AppDomain.ClearShadowCopyPath has been deprecated. Please investigate the use of AppDomainSetup.ShadowCopyDirectories instead. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("Use AppDomainSetup.ShadowCopyDirectories")]
         public void ClearShadowCopyPath() { }
         public static System.AppDomain CreateDomain(string friendlyName) { throw null; }
         public static System.AppDomain CreateDomain(string friendlyName, System.Security.Policy.Evidence securityInfo) { throw null; }
@@ -338,45 +339,45 @@ namespace System
         public static System.AppDomain CreateDomain(string friendlyName, System.Security.Policy.Evidence securityInfo, string appBasePath, string appRelativeSearchPath, bool shadowCopyFiles, System.AppDomainInitializer adInit, string[] adInitArgs) { throw null; }
         public System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName) { throw null; }
         public System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
-        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateInstance which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("Use an overload that does not take an Evidence parameter")]
         public System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes) { throw null; }
         public System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, object[] activationAttributes) { throw null; }
         public object CreateInstanceAndUnwrap(string assemblyName, string typeName) { throw null; }
         public object CreateInstanceAndUnwrap(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
-        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateInstanceAndUnwrap which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("Use an overload that does not take an Evidence parameter")]
         public object CreateInstanceAndUnwrap(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes) { throw null; }
         public object CreateInstanceAndUnwrap(string assemblyName, string typeName, object[] activationAttributes) { throw null; }
         public System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName) { throw null; }
         public System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
-        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateInstanceFrom which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("Use an overload that does not take an Evidence parameter")]
         public System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes) { throw null; }
         public System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, object[] activationAttributes) { throw null; }
         public object CreateInstanceFromAndUnwrap(string assemblyName, string typeName) { throw null; }
         public object CreateInstanceFromAndUnwrap(string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
-        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateInstanceFromAndUnwrap which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("Use an overload that does not take an Evidence parameter")]
         public object CreateInstanceFromAndUnwrap(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes) { throw null; }
         public object CreateInstanceFromAndUnwrap(string assemblyName, string typeName, object[] activationAttributes) { throw null; }
         public void DoCallBack(System.CrossAppDomainDelegate callBackDelegate) { }
         public int ExecuteAssembly(string assemblyFile) { throw null; }
-        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of ExecuteAssembly which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("Use an overload that does not take an Evidence parameter")]
         public int ExecuteAssembly(string assemblyFile, System.Security.Policy.Evidence assemblySecurity) { throw null; }
-        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of ExecuteAssembly which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("Use an overload that does not take an Evidence parameter")]
         public int ExecuteAssembly(string assemblyFile, System.Security.Policy.Evidence assemblySecurity, string[] args) { throw null; }
-        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of ExecuteAssembly which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("Use an overload that does not take an Evidence parameter")]
         public int ExecuteAssembly(string assemblyFile, System.Security.Policy.Evidence assemblySecurity, string[] args, byte[] hashValue, System.Configuration.Assemblies.AssemblyHashAlgorithm hashAlgorithm) { throw null; }
         public int ExecuteAssembly(string assemblyFile, string[] args) { throw null; }
         public int ExecuteAssembly(string assemblyFile, string[] args, byte[] hashValue, System.Configuration.Assemblies.AssemblyHashAlgorithm hashAlgorithm) { throw null; }
-        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of ExecuteAssemblyByName which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("Use an overload that does not take an Evidence parameter")]
         public int ExecuteAssemblyByName(System.Reflection.AssemblyName assemblyName, System.Security.Policy.Evidence assemblySecurity, params string[] args) { throw null; }
         public int ExecuteAssemblyByName(System.Reflection.AssemblyName assemblyName, params string[] args) { throw null; }
         public int ExecuteAssemblyByName(string assemblyName) { throw null; }
-        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of ExecuteAssemblyByName which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("Use an overload that does not take an Evidence parameter")]
         public int ExecuteAssemblyByName(string assemblyName, System.Security.Policy.Evidence assemblySecurity) { throw null; }
-        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of ExecuteAssemblyByName which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("Use an overload that does not take an Evidence parameter")]
         public int ExecuteAssemblyByName(string assemblyName, System.Security.Policy.Evidence assemblySecurity, params string[] args) { throw null; }
         public int ExecuteAssemblyByName(string assemblyName, params string[] args) { throw null; }
         public System.Reflection.Assembly[] GetAssemblies() { throw null; }
-        [System.ObsoleteAttribute("AppDomain.GetCurrentThreadId has been deprecated because it does not provide a stable Id when managed threads are running on fibers (aka lightweight threads). To get a stable identifier for a managed thread, use the ManagedThreadId property on Thread.  http://go.microsoft.com/fwlink/?linkid=14202", false)]
+        [System.ObsoleteAttribute("AppDomain.GetCurrentThreadId has been deprecated because it does not provide a stable Id when managed threads are running on fibers (aka lightweight threads). To get a stable identifier for a managed thread, use the ManagedThreadId property on Thread.'")]
         public static int GetCurrentThreadId() { throw null; }
         public object GetData(string name) { throw null; }
         public new System.Type GetType() { throw null; }
@@ -386,25 +387,25 @@ namespace System
         public bool IsFinalizingForUnload() { throw null; }
         public System.Reflection.Assembly Load(byte[] rawAssembly) { throw null; }
         public System.Reflection.Assembly Load(byte[] rawAssembly, byte[] rawSymbolStore) { throw null; }
-        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of Load which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkId=155570 for more information.")]
+        [System.ObsoleteAttribute("Use an overload that does not take an Evidence parameter")]
         public System.Reflection.Assembly Load(byte[] rawAssembly, byte[] rawSymbolStore, System.Security.Policy.Evidence securityEvidence) { throw null; }
         public System.Reflection.Assembly Load(System.Reflection.AssemblyName assemblyRef) { throw null; }
-        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of Load which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("Use an overload that does not take an Evidence parameter")]
         public System.Reflection.Assembly Load(System.Reflection.AssemblyName assemblyRef, System.Security.Policy.Evidence assemblySecurity) { throw null; }
         public System.Reflection.Assembly Load(string assemblyString) { throw null; }
-        [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of Load which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("Use an overload that does not take an Evidence parameter")]
         public System.Reflection.Assembly Load(string assemblyString, System.Security.Policy.Evidence assemblySecurity) { throw null; }
         public System.Reflection.Assembly[] ReflectionOnlyGetAssemblies() { throw null; }
-        [System.ObsoleteAttribute("AppDomain policy levels are obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("AppDomain policy levels are obsolete")]
         public void SetAppDomainPolicy(System.Security.Policy.PolicyLevel domainPolicy) { }
-        [System.ObsoleteAttribute("AppDomain.SetCachePath has been deprecated. Please investigate the use of AppDomainSetup.CachePath instead. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("Use AppDomainSetup.SetCachePath")]
         public void SetCachePath(string path) { }
         public void SetData(string name, object data) { }
         public void SetData(string name, object data, System.Security.IPermission permission) { }
         public void SetPrincipalPolicy(System.Security.Principal.PrincipalPolicy policy) { }
-        [System.ObsoleteAttribute("AppDomain.SetShadowCopyFiles has been deprecated. Please investigate the use of AppDomainSetup.ShadowCopyFiles instead. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("Use AppDomainSetup.ShadowCopyFiles")]
         public void SetShadowCopyFiles() { }
-        [System.ObsoleteAttribute("AppDomain.SetShadowCopyPath has been deprecated. Please investigate the use of AppDomainSetup.ShadowCopyDirectories instead. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("Use AppDomainSetup.ShadowCopyDirectories")]
         public void SetShadowCopyPath(string path) { }
         public void SetThreadPrincipal(System.Security.Principal.IPrincipal principal) { }
         public override string ToString() { throw null; }
@@ -1302,7 +1303,7 @@ namespace System
         ControlBreak = 1,
         ControlC = 0,
     }
-    public abstract partial class ContextBoundObject
+    public abstract partial class ContextBoundObject : System.MarshalByRefObject
     {
         protected ContextBoundObject() { }
     }
@@ -2313,6 +2314,7 @@ namespace System
         public static System.OperatingSystem OSVersion { get { throw null; } }
         public static int ProcessorCount { get { throw null; } }
         public static string StackTrace { get { throw null; } }
+        public static string SystemDirectory { get { throw null; } }
         public static int SystemPageSize { get { throw null; } }
         public static int TickCount { get { throw null; } }
         public static string UserDomainName { get { throw null; } }
@@ -2326,11 +2328,14 @@ namespace System
         public static void FailFast(string message, System.Exception exception) { }
         public static string[] GetCommandLineArgs() { throw null; }
         public static string GetEnvironmentVariable(string variable) { throw null; }
+        public static string GetEnvironmentVariable(string variable, System.EnvironmentVariableTarget target) { throw null; }
         public static System.Collections.IDictionary GetEnvironmentVariables() { throw null; }
+        public static System.Collections.IDictionary GetEnvironmentVariables(System.EnvironmentVariableTarget target) { throw null; }
         public static string GetFolderPath(System.Environment.SpecialFolder folder) { throw null; }
         public static string GetFolderPath(System.Environment.SpecialFolder folder, System.Environment.SpecialFolderOption option) { throw null; }
         public static string[] GetLogicalDrives() { throw null; }
         public static void SetEnvironmentVariable(string variable, string value) { }
+        public static void SetEnvironmentVariable(string variable, string value, System.EnvironmentVariableTarget target) { }
         public enum SpecialFolder
         {
             AdminTools = 48,
@@ -2477,7 +2482,9 @@ namespace System
         public static void Collect(int generation) { }
         public static void Collect(int generation, System.GCCollectionMode mode) { }
         public static void Collect(int generation, System.GCCollectionMode mode, bool blocking) { }
+        public static void Collect(int generation, System.GCCollectionMode mode, bool blocking, bool compacting) { }
         public static int CollectionCount(int generation) { throw null; }
+        public static void EndNoGCRegion() { }
         public static int GetGeneration(object obj) { throw null; }
         public static int GetGeneration(System.WeakReference wo) { throw null; }
         public static long GetTotalMemory(bool forceFullCollection) { throw null; }
@@ -2486,6 +2493,10 @@ namespace System
         public static void RemoveMemoryPressure(long bytesAllocated) { }
         public static void ReRegisterForFinalize(object obj) { }
         public static void SuppressFinalize(object obj) { }
+        public static bool TryStartNoGCRegion(long totalSize) { throw null; }
+        public static bool TryStartNoGCRegion(long totalSize, bool disallowFullBlockingGC) { throw null; }
+        public static bool TryStartNoGCRegion(long totalSize, long lohSize) { throw null; }
+        public static bool TryStartNoGCRegion(long totalSize, long lohSize, bool disallowFullBlockingGC) { throw null; }
         public static System.GCNotificationStatus WaitForFullGCApproach() { throw null; }
         public static System.GCNotificationStatus WaitForFullGCApproach(int millisecondsTimeout) { throw null; }
         public static System.GCNotificationStatus WaitForFullGCComplete() { throw null; }
@@ -5352,23 +5363,23 @@ namespace System.Collections.ObjectModel
 }
 namespace System.Configuration.Assemblies
 {
-    [System.ObsoleteAttribute("The AssemblyHash class has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202")]
+    [System.ObsoleteAttribute]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct AssemblyHash : System.ICloneable
     {
-        [System.ObsoleteAttribute("The AssemblyHash class has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute]
         public static readonly System.Configuration.Assemblies.AssemblyHash Empty;
-        [System.ObsoleteAttribute("The AssemblyHash class has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute]
         public AssemblyHash(byte[] value) { throw null;}
-        [System.ObsoleteAttribute("The AssemblyHash class has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute]
         public AssemblyHash(System.Configuration.Assemblies.AssemblyHashAlgorithm algorithm, byte[] value) { throw null;}
-        [System.ObsoleteAttribute("The AssemblyHash class has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute]
         public System.Configuration.Assemblies.AssemblyHashAlgorithm Algorithm { get { throw null; } set { } }
-        [System.ObsoleteAttribute("The AssemblyHash class has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute]
         public object Clone() { throw null; }
-        [System.ObsoleteAttribute("The AssemblyHash class has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute]
         public byte[] GetValue() { throw null; }
-        [System.ObsoleteAttribute("The AssemblyHash class has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute]
         public void SetValue(byte[] value) { }
     }
     public enum AssemblyHashAlgorithm
@@ -5433,7 +5444,7 @@ namespace System.Diagnostics
     public sealed partial class Debugger
     {
         public static readonly string DefaultCategory;
-        [System.ObsoleteAttribute("Do not create instances of the Debugger class.  Call the static methods directly on this type instead", true)]
+        [System.ObsoleteAttribute("Call the static methods directly on this type", true)]
         public Debugger() { }
         public static bool IsAttached { get { throw null; } }
         public static void Break() { }
@@ -5537,7 +5548,7 @@ namespace System.Diagnostics
         public StackTrace(System.Exception e, int skipFrames, bool fNeedFileInfo) { }
         public StackTrace(int skipFrames) { }
         public StackTrace(int skipFrames, bool fNeedFileInfo) { }
-        [System.ObsoleteAttribute("This constructor has been deprecated.  Please use a constructor that does not require a Thread parameter.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute]
         public StackTrace(System.Threading.Thread targetThread, bool needFileInfo) { }
         public virtual int FrameCount { get { throw null; } }
         public virtual System.Diagnostics.StackFrame GetFrame(int index) { throw null; }
@@ -5715,7 +5726,7 @@ namespace System.Diagnostics.SymbolStore
 {
     public partial interface ISymbolBinder
     {
-        [System.ObsoleteAttribute("The recommended alternative is ISymbolBinder1.GetReader. ISymbolBinder1.GetReader takes the importer interface pointer as an IntPtr instead of an Int32, and thus works on both 32-bit and 64-bit architectures. http://go.microsoft.com/fwlink/?linkid=14202=14202")]
+        [System.ObsoleteAttribute("This interface is not 64-bit clean.  Use ISymbolBinder1 instead")]
         System.Diagnostics.SymbolStore.ISymbolReader GetReader(int importer, string filename, string searchPath);
     }
     public partial interface ISymbolBinder1
@@ -6084,6 +6095,7 @@ namespace System.Diagnostics.Tracing
     public partial class EventSourceException : System.Exception
     {
         public EventSourceException() { }
+        protected EventSourceException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public EventSourceException(string message) { }
         public EventSourceException(string message, System.Exception innerException) { }
     }
@@ -7227,11 +7239,14 @@ namespace System.IO
         public static System.IO.FileStream Create(string path) { throw null; }
         public static System.IO.FileStream Create(string path, int bufferSize) { throw null; }
         public static System.IO.FileStream Create(string path, int bufferSize, System.IO.FileOptions options) { throw null; }
+        public static System.IO.FileStream Create(string path, int bufferSize, System.IO.FileOptions options, System.Security.AccessControl.FileSecurity fileSecurity) { throw null; }
         public static System.IO.StreamWriter CreateText(string path) { throw null; }
         public static void Decrypt(string path) { }
         public static void Delete(string path) { }
         public static void Encrypt(string path) { }
         public static bool Exists(string path) { throw null; }
+        public static System.Security.AccessControl.FileSecurity GetAccessControl(string path) { throw null; }
+        public static System.Security.AccessControl.FileSecurity GetAccessControl(string path, System.Security.AccessControl.AccessControlSections includeSections) { throw null; }
         public static System.IO.FileAttributes GetAttributes(string path) { throw null; }
         public static System.DateTime GetCreationTime(string path) { throw null; }
         public static System.DateTime GetCreationTimeUtc(string path) { throw null; }
@@ -7255,6 +7270,7 @@ namespace System.IO
         public static System.Collections.Generic.IEnumerable<string> ReadLines(string path, System.Text.Encoding encoding) { throw null; }
         public static void Replace(string sourceFileName, string destinationFileName, string destinationBackupFileName) { }
         public static void Replace(string sourceFileName, string destinationFileName, string destinationBackupFileName, bool ignoreMetadataErrors) { }
+        public static void SetAccessControl(string path, System.Security.AccessControl.FileSecurity fileSecurity) { }
         public static void SetAttributes(string path, System.IO.FileAttributes fileAttributes) { }
         public static void SetCreationTime(string path, System.DateTime creationTime) { }
         public static void SetCreationTimeUtc(string path, System.DateTime creationTimeUtc) { }
@@ -7314,6 +7330,8 @@ namespace System.IO
         public void Decrypt() { }
         public override void Delete() { }
         public void Encrypt() { }
+        public System.Security.AccessControl.FileSecurity GetAccessControl() { throw null; }
+        public System.Security.AccessControl.FileSecurity GetAccessControl(System.Security.AccessControl.AccessControlSections includeSections) { throw null; }
         public void MoveTo(string destFileName) { }
         public System.IO.FileStream Open(System.IO.FileMode mode) { throw null; }
         public System.IO.FileStream Open(System.IO.FileMode mode, System.IO.FileAccess access) { throw null; }
@@ -7323,6 +7341,7 @@ namespace System.IO
         public System.IO.FileStream OpenWrite() { throw null; }
         public System.IO.FileInfo Replace(string destinationFileName, string destinationBackupFileName) { throw null; }
         public System.IO.FileInfo Replace(string destinationFileName, string destinationBackupFileName, bool ignoreMetadataErrors) { throw null; }
+        public void SetAccessControl(System.Security.AccessControl.FileSecurity fileSecurity) { }
         public override string ToString() { throw null; }
     }
     public partial class FileLoadException : System.IO.IOException
@@ -7388,13 +7407,13 @@ namespace System.IO
         public FileStream(Microsoft.Win32.SafeHandles.SafeFileHandle handle, System.IO.FileAccess access) { }
         public FileStream(Microsoft.Win32.SafeHandles.SafeFileHandle handle, System.IO.FileAccess access, int bufferSize) { }
         public FileStream(Microsoft.Win32.SafeHandles.SafeFileHandle handle, System.IO.FileAccess access, int bufferSize, bool isAsync) { }
-        [System.ObsoleteAttribute("This constructor has been deprecated.  Please use new FileStream(SafeFileHandle handle, FileAccess access) instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("Use FileStream(SafeFileHandle handle, FileAccess access) instead")]
         public FileStream(System.IntPtr handle, System.IO.FileAccess access) { }
-        [System.ObsoleteAttribute("This constructor has been deprecated.  Please use new FileStream(SafeFileHandle handle, FileAccess access) instead, and optionally make a new SafeFileHandle with ownsHandle=false if needed.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("Use FileStream(SafeFileHandle handle, FileAccess access) instead")]
         public FileStream(System.IntPtr handle, System.IO.FileAccess access, bool ownsHandle) { }
-        [System.ObsoleteAttribute("This constructor has been deprecated.  Please use new FileStream(SafeFileHandle handle, FileAccess access, int bufferSize) instead, and optionally make a new SafeFileHandle with ownsHandle=false if needed.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("Use FileStream(SafeFileHandle handle, FileAccess access, int bufferSize) instead")]
         public FileStream(System.IntPtr handle, System.IO.FileAccess access, bool ownsHandle, int bufferSize) { }
-        [System.ObsoleteAttribute("This constructor has been deprecated.  Please use new FileStream(SafeFileHandle handle, FileAccess access, int bufferSize, bool isAsync) instead, and optionally make a new SafeFileHandle with ownsHandle=false if needed.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("Use FileStream(SafeFileHandle handle, FileAccess access, int bufferSize, bool isAsync) instead")]
         public FileStream(System.IntPtr handle, System.IO.FileAccess access, bool ownsHandle, int bufferSize, bool isAsync) { }
         public FileStream(string path, System.IO.FileMode mode) { }
         public FileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access) { }
@@ -7402,10 +7421,12 @@ namespace System.IO
         public FileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, int bufferSize) { }
         public FileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, int bufferSize, bool useAsync) { }
         public FileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, int bufferSize, System.IO.FileOptions options) { }
+        public FileStream(string path, System.IO.FileMode mode, System.Security.AccessControl.FileSystemRights rights, System.IO.FileShare share, int bufferSize, System.IO.FileOptions options) { }
+        public FileStream(string path, System.IO.FileMode mode, System.Security.AccessControl.FileSystemRights rights, System.IO.FileShare share, int bufferSize, System.IO.FileOptions options, System.Security.AccessControl.FileSecurity fileSecurity) { }
         public override bool CanRead { get { throw null; } }
         public override bool CanSeek { get { throw null; } }
         public override bool CanWrite { get { throw null; } }
-        [System.ObsoleteAttribute("This property has been deprecated.  Please use FileStream's SafeFileHandle property instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("Use SafeFileHandle instead")]
         public virtual System.IntPtr Handle { get { throw null; } }
         public virtual bool IsAsync { get { throw null; } }
         public override long Length { get { throw null; } }
@@ -7421,18 +7442,20 @@ namespace System.IO
         public override void Flush() { }
         public virtual void Flush(bool flushToDisk) { }
         public override System.Threading.Tasks.Task FlushAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Security.AccessControl.FileSecurity GetAccessControl() { throw null; }
         public virtual void Lock(long position, long length) { }
         public override int Read(byte[] array, int offset, int count) { array = default(byte[]); throw null; }
         public override System.Threading.Tasks.Task<int> ReadAsync(byte[] buffer, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
         public override int ReadByte() { throw null; }
         public override long Seek(long offset, System.IO.SeekOrigin origin) { throw null; }
+        public void SetAccessControl(System.Security.AccessControl.FileSecurity fileSecurity) { }
         public override void SetLength(long value) { }
         public virtual void Unlock(long position, long length) { }
         public override void Write(byte[] array, int offset, int count) { }
         public override System.Threading.Tasks.Task WriteAsync(byte[] buffer, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
         public override void WriteByte(byte value) { }
     }
-    public abstract partial class FileSystemInfo : System.Runtime.Serialization.ISerializable
+    public abstract partial class FileSystemInfo : System.MarshalByRefObject, System.Runtime.Serialization.ISerializable
     {
         protected string FullPath;
         protected string OriginalPath;
@@ -7497,7 +7520,7 @@ namespace System.IO
     {
         public static readonly char AltDirectorySeparatorChar;
         public static readonly char DirectorySeparatorChar;
-        [System.ObsoleteAttribute("Please use GetInvalidPathChars or GetInvalidFileNameChars instead.")]
+        [System.ObsoleteAttribute("see GetInvalidPathChars and GetInvalidFileNameChars methods.")]
         public static readonly char[] InvalidPathChars;
         public static readonly char PathSeparator;
         public static readonly char VolumeSeparatorChar;
@@ -7538,7 +7561,7 @@ namespace System.IO
         Current = 1,
         End = 2,
     }
-    public abstract partial class Stream : System.IDisposable
+    public abstract partial class Stream : System.MarshalByRefObject, System.IDisposable
     {
         public static readonly System.IO.Stream Null;
         protected Stream() { }
@@ -7679,7 +7702,7 @@ namespace System.IO
         public override System.Threading.Tasks.Task WriteLineAsync(char[] buffer, int index, int count) { throw null; }
         public override System.Threading.Tasks.Task WriteLineAsync(string value) { throw null; }
     }
-    public abstract partial class TextReader : System.IDisposable
+    public abstract partial class TextReader : System.MarshalByRefObject, System.IDisposable
     {
         public static readonly System.IO.TextReader Null;
         protected TextReader() { }
@@ -7698,7 +7721,7 @@ namespace System.IO
         public virtual System.Threading.Tasks.Task<string> ReadToEndAsync() { throw null; }
         public static System.IO.TextReader Synchronized(System.IO.TextReader reader) { throw null; }
     }
-    public abstract partial class TextWriter : System.IDisposable
+    public abstract partial class TextWriter : System.MarshalByRefObject, System.IDisposable
     {
         protected char[] CoreNewLine;
         public static readonly System.IO.TextWriter Null;
@@ -7859,11 +7882,11 @@ namespace System.IO.IsolatedStorage
         public object AssemblyIdentity { get { throw null; } }
         public virtual long AvailableFreeSpace { get { throw null; } }
         [System.CLSCompliantAttribute(false)]
-        [System.ObsoleteAttribute("IsolatedStorage.CurrentSize has been deprecated because it is not CLS Compliant.  To get the current size use IsolatedStorage.UsedSize")]
+        [System.ObsoleteAttribute]
         public virtual ulong CurrentSize { get { throw null; } }
         public object DomainIdentity { get { throw null; } }
         [System.CLSCompliantAttribute(false)]
-        [System.ObsoleteAttribute("IsolatedStorage.MaximumSize has been deprecated because it is not CLS Compliant.  To get the maximum size use IsolatedStorage.Quota")]
+        [System.ObsoleteAttribute]
         public virtual ulong MaximumSize { get { throw null; } }
         public virtual long Quota { get { throw null; } }
         public System.IO.IsolatedStorage.IsolatedStorageScope Scope { get { throw null; } }
@@ -7888,11 +7911,11 @@ namespace System.IO.IsolatedStorage
         internal IsolatedStorageFile() { }
         public override long AvailableFreeSpace { get { throw null; } }
         [System.CLSCompliantAttribute(false)]
-        [System.ObsoleteAttribute("IsolatedStorageFile.CurrentSize has been deprecated because it is not CLS Compliant.  To get the current size use IsolatedStorageFile.UsedSize")]
+        [System.ObsoleteAttribute]
         public override ulong CurrentSize { get { throw null; } }
         public static bool IsEnabled { get { throw null; } }
         [System.CLSCompliantAttribute(false)]
-        [System.ObsoleteAttribute("IsolatedStorageFile.MaximumSize has been deprecated because it is not CLS Compliant.  To get the maximum size use IsolatedStorageFile.Quota")]
+        [System.ObsoleteAttribute]
         public override ulong MaximumSize { get { throw null; } }
         public override long Quota { get { throw null; } }
         public override long UsedSize { get { throw null; } }
@@ -7950,7 +7973,7 @@ namespace System.IO.IsolatedStorage
         public override bool CanRead { get { throw null; } }
         public override bool CanSeek { get { throw null; } }
         public override bool CanWrite { get { throw null; } }
-        [System.ObsoleteAttribute("This property has been deprecated.  Please use IsolatedStorageFileStream's SafeFileHandle property instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("Use SafeFileHandle - once available")]
         public override System.IntPtr Handle { get { throw null; } }
         public override bool IsAsync { get { throw null; } }
         public override long Length { get { throw null; } }
@@ -8002,7 +8025,7 @@ namespace System.Reflection
         public AmbiguousMatchException(string message) { }
         public AmbiguousMatchException(string message, System.Exception inner) { }
     }
-    public partial class Assembly : System.Reflection.ICustomAttributeProvider
+    public partial class Assembly : System.Reflection.ICustomAttributeProvider, System.Runtime.Serialization.ISerializable
     {
         protected Assembly() { }
         public virtual string CodeBase { get { throw null; } }
@@ -8022,7 +8045,8 @@ namespace System.Reflection
         public virtual System.Reflection.Module ManifestModule { get { throw null; } }
         public virtual System.Collections.Generic.IEnumerable<System.Reflection.Module> Modules { get { throw null; } }
         public virtual bool ReflectionOnly { get { throw null; } }
-        public event System.Reflection.ModuleResolveEventHandler ModuleResolve { add { } remove { } }
+        public virtual System.Security.SecurityRuleSet SecurityRuleSet { get { throw null; } }
+        public virtual event System.Reflection.ModuleResolveEventHandler ModuleResolve { add { } remove { } }
         public object CreateInstance(string typeName) { throw null; }
         public object CreateInstance(string typeName, bool ignoreCase) { throw null; }
         public virtual object CreateInstance(string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
@@ -8062,29 +8086,29 @@ namespace System.Reflection
         public virtual bool IsDefined(System.Type attributeType, bool inherit) { throw null; }
         public static System.Reflection.Assembly Load(byte[] rawAssembly) { throw null; }
         public static System.Reflection.Assembly Load(byte[] rawAssembly, byte[] rawSymbolStore) { throw null; }
-        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. Please use an overload of Load which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute]
         public static System.Reflection.Assembly Load(byte[] rawAssembly, byte[] rawSymbolStore, System.Security.Policy.Evidence securityEvidence) { throw null; }
         public static System.Reflection.Assembly Load(byte[] rawAssembly, byte[] rawSymbolStore, System.Security.SecurityContextSource securityContextSource) { throw null; }
         public static System.Reflection.Assembly Load(System.Reflection.AssemblyName assemblyRef) { throw null; }
-        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. Please use an overload of Load which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute]
         public static System.Reflection.Assembly Load(System.Reflection.AssemblyName assemblyRef, System.Security.Policy.Evidence assemblySecurity) { throw null; }
         public static System.Reflection.Assembly Load(string assemblyString) { throw null; }
-        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. Please use an overload of Load which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute]
         public static System.Reflection.Assembly Load(string assemblyString, System.Security.Policy.Evidence assemblySecurity) { throw null; }
         public static System.Reflection.Assembly LoadFile(string path) { throw null; }
-        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. Please use an overload of LoadFile which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute]
         public static System.Reflection.Assembly LoadFile(string path, System.Security.Policy.Evidence securityEvidence) { throw null; }
         public static System.Reflection.Assembly LoadFrom(string assemblyFile) { throw null; }
         public static System.Reflection.Assembly LoadFrom(string assemblyFile, byte[] hashValue, System.Configuration.Assemblies.AssemblyHashAlgorithm hashAlgorithm) { throw null; }
-        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. Please use an overload of LoadFrom which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute]
         public static System.Reflection.Assembly LoadFrom(string assemblyFile, System.Security.Policy.Evidence securityEvidence) { throw null; }
-        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. Please use an overload of LoadFrom which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute]
         public static System.Reflection.Assembly LoadFrom(string assemblyFile, System.Security.Policy.Evidence securityEvidence, byte[] hashValue, System.Configuration.Assemblies.AssemblyHashAlgorithm hashAlgorithm) { throw null; }
         public System.Reflection.Module LoadModule(string moduleName, byte[] rawModule) { throw null; }
         public virtual System.Reflection.Module LoadModule(string moduleName, byte[] rawModule, byte[] rawSymbolStore) { throw null; }
-        [System.ObsoleteAttribute("This method has been deprecated. Please use Assembly.Load() instead. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute]
         public static System.Reflection.Assembly LoadWithPartialName(string partialName) { throw null; }
-        [System.ObsoleteAttribute("This method has been deprecated. Please use Assembly.Load() instead. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute]
         public static System.Reflection.Assembly LoadWithPartialName(string partialName, System.Security.Policy.Evidence securityEvidence) { throw null; }
         public static bool operator ==(System.Reflection.Assembly left, System.Reflection.Assembly right) { throw null; }
         public static bool operator !=(System.Reflection.Assembly left, System.Reflection.Assembly right) { throw null; }
@@ -9039,19 +9063,19 @@ namespace System.Reflection
         void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender) { }
         void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
     }
-    public partial class TargetException : System.Exception
+    public partial class TargetException : System.ApplicationException
     {
         public TargetException() { }
         protected TargetException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public TargetException(string message) { }
         public TargetException(string message, System.Exception inner) { }
     }
-    public sealed partial class TargetInvocationException : System.Exception
+    public sealed partial class TargetInvocationException : System.ApplicationException
     {
         public TargetInvocationException(System.Exception inner) { }
         public TargetInvocationException(string message, System.Exception inner) { }
     }
-    public sealed partial class TargetParameterCountException : System.Exception
+    public sealed partial class TargetParameterCountException : System.ApplicationException
     {
         public TargetParameterCountException() { }
         public TargetParameterCountException(string message) { }
@@ -9169,6 +9193,75 @@ namespace System.Reflection
 }
 namespace System.Reflection.Emit
 {
+    public partial class AssemblyBuilder : System.Reflection.Assembly
+    {
+        public AssemblyBuilder() { }
+        public static System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access) { throw null; }
+        public static System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, System.Collections.Generic.IEnumerable<System.Reflection.Emit.CustomAttributeBuilder> assemblyAttributes) { throw null; }
+        public System.Reflection.Emit.ModuleBuilder DefineDynamicModule(string name) { throw null; }
+        public System.Reflection.Emit.ModuleBuilder GetDynamicModule(string name) { throw null; }
+        public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
+        public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
+    }
+    [System.FlagsAttribute]
+    public enum AssemblyBuilderAccess
+    {
+        ReflectionOnly = 6,
+        Run = 1,
+        RunAndCollect = 9,
+        RunAndSave = 3,
+        Save = 2,
+    }
+    public abstract partial class ConstructorBuilder : System.Reflection.ConstructorInfo
+    {
+        protected ConstructorBuilder() { }
+        public override System.Reflection.MethodAttributes Attributes { get { throw null; } }
+        public override System.Type DeclaringType { get { throw null; } }
+        public bool InitLocals { get { throw null; } set { } }
+        public override string Name { get { throw null; } }
+        public System.Reflection.Emit.ParameterBuilder DefineParameter(int iSequence, System.Reflection.ParameterAttributes attributes, string strParamName) { throw null; }
+        public System.Reflection.Emit.ILGenerator GetILGenerator() { throw null; }
+        public System.Reflection.Emit.ILGenerator GetILGenerator(int streamSize) { throw null; }
+        public override System.Reflection.ParameterInfo[] GetParameters() { throw null; }
+        public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
+        public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
+        public void SetImplementationFlags(System.Reflection.MethodImplAttributes attributes) { }
+    }
+    public partial class CustomAttributeBuilder
+    {
+        public CustomAttributeBuilder(System.Reflection.ConstructorInfo con, object[] constructorArgs) { }
+        public CustomAttributeBuilder(System.Reflection.ConstructorInfo con, object[] constructorArgs, System.Reflection.FieldInfo[] namedFields, object[] fieldValues) { }
+        public CustomAttributeBuilder(System.Reflection.ConstructorInfo con, object[] constructorArgs, System.Reflection.PropertyInfo[] namedProperties, object[] propertyValues) { }
+        public CustomAttributeBuilder(System.Reflection.ConstructorInfo con, object[] constructorArgs, System.Reflection.PropertyInfo[] namedProperties, object[] propertyValues, System.Reflection.FieldInfo[] namedFields, object[] fieldValues) { }
+    }
+    public abstract partial class EnumBuilder : System.Reflection.TypeInfo
+    {
+        protected EnumBuilder() { }
+        public override System.Reflection.Assembly Assembly { get { throw null; } }
+        public override string AssemblyQualifiedName { get { throw null; } }
+        public override System.Type BaseType { get { throw null; } }
+        public override string FullName { get { throw null; } }
+        public override System.Guid GUID { get { throw null; } }
+        public override System.Reflection.Module Module { get { throw null; } }
+        public override string Name { get { throw null; } }
+        public override string Namespace { get { throw null; } }
+        public System.Reflection.Emit.FieldBuilder UnderlyingField { get { throw null; } }
+        public System.Reflection.TypeInfo CreateTypeInfo() { throw null; }
+        public System.Reflection.Emit.FieldBuilder DefineLiteral(string literalName, object literalValue) { throw null; }
+        public override System.Type GetElementType() { throw null; }
+        public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
+        public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
+    }
+    public partial class EventBuilder
+    {
+        public EventBuilder() { }
+        public void AddOtherMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
+        public void SetAddOnMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
+        public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
+        public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
+        public void SetRaiseMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
+        public void SetRemoveOnMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
+    }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct ExceptionHandler : System.IEquatable<System.Reflection.Emit.ExceptionHandler>
     {
@@ -9186,6 +9279,19 @@ namespace System.Reflection.Emit
         public static bool operator ==(System.Reflection.Emit.ExceptionHandler left, System.Reflection.Emit.ExceptionHandler right) { throw null; }
         public static bool operator !=(System.Reflection.Emit.ExceptionHandler left, System.Reflection.Emit.ExceptionHandler right) { throw null; }
     }
+    public abstract partial class FieldBuilder : System.Reflection.FieldInfo
+    {
+        protected FieldBuilder() { }
+        public override System.Reflection.FieldAttributes Attributes { get { throw null; } }
+        public override System.Type DeclaringType { get { throw null; } }
+        public override System.Type FieldType { get { throw null; } }
+        public override string Name { get { throw null; } }
+        public override object GetValue(object obj) { throw null; }
+        public void SetConstant(object defaultValue) { }
+        public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
+        public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
+        public void SetOffset(int iOffset) { }
+    }
     public enum FlowControl
     {
         Branch = 0,
@@ -9194,10 +9300,128 @@ namespace System.Reflection.Emit
         Cond_Branch = 3,
         Meta = 4,
         Next = 5,
-        [System.ObsoleteAttribute("This API has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This API has been deprecated.")]
         Phi = 6,
         Return = 7,
         Throw = 8,
+    }
+    public abstract partial class GenericTypeParameterBuilder : System.Reflection.TypeInfo
+    {
+        protected GenericTypeParameterBuilder() { }
+        public override System.Reflection.Assembly Assembly { get { throw null; } }
+        public override string AssemblyQualifiedName { get { throw null; } }
+        public override System.Type BaseType { get { throw null; } }
+        public override string FullName { get { throw null; } }
+        public override System.Guid GUID { get { throw null; } }
+        public override System.Reflection.Module Module { get { throw null; } }
+        public override string Name { get { throw null; } }
+        public override string Namespace { get { throw null; } }
+        public override System.Type GetElementType() { throw null; }
+        public void SetBaseTypeConstraint(System.Type baseTypeConstraint) { }
+        public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
+        public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
+        public void SetGenericParameterAttributes(System.Reflection.GenericParameterAttributes genericParameterAttributes) { }
+        public void SetInterfaceConstraints(System.Type[] interfaceConstraints) { }
+    }
+    public partial class ILGenerator
+    {
+        internal ILGenerator() { }
+        public int ILOffset { get { throw null; } }
+        public virtual void BeginCatchBlock(System.Type exceptionType) { }
+        public virtual void BeginExceptFilterBlock() { }
+        public virtual System.Reflection.Emit.Label BeginExceptionBlock() { throw null; }
+        public virtual void BeginFaultBlock() { }
+        public virtual void BeginFinallyBlock() { }
+        public virtual void BeginScope() { }
+        public virtual System.Reflection.Emit.LocalBuilder DeclareLocal(System.Type localType) { throw null; }
+        public virtual System.Reflection.Emit.LocalBuilder DeclareLocal(System.Type localType, bool pinned) { throw null; }
+        public virtual System.Reflection.Emit.Label DefineLabel() { throw null; }
+        public virtual void Emit(System.Reflection.Emit.OpCode opcode) { }
+        public virtual void Emit(System.Reflection.Emit.OpCode opcode, byte arg) { }
+        public virtual void Emit(System.Reflection.Emit.OpCode opcode, double arg) { }
+        public virtual void Emit(System.Reflection.Emit.OpCode opcode, short arg) { }
+        public virtual void Emit(System.Reflection.Emit.OpCode opcode, int arg) { }
+        public virtual void Emit(System.Reflection.Emit.OpCode opcode, long arg) { }
+        public virtual void Emit(System.Reflection.Emit.OpCode opcode, System.Reflection.ConstructorInfo con) { }
+        public virtual void Emit(System.Reflection.Emit.OpCode opcode, System.Reflection.Emit.Label label) { }
+        public virtual void Emit(System.Reflection.Emit.OpCode opcode, System.Reflection.Emit.Label[] labels) { }
+        public virtual void Emit(System.Reflection.Emit.OpCode opcode, System.Reflection.Emit.LocalBuilder local) { }
+        public virtual void Emit(System.Reflection.Emit.OpCode opcode, System.Reflection.Emit.SignatureHelper signature) { }
+        public virtual void Emit(System.Reflection.Emit.OpCode opcode, System.Reflection.FieldInfo field) { }
+        public virtual void Emit(System.Reflection.Emit.OpCode opcode, System.Reflection.MethodInfo meth) { }
+        [System.CLSCompliantAttribute(false)]
+        public void Emit(System.Reflection.Emit.OpCode opcode, sbyte arg) { }
+        public virtual void Emit(System.Reflection.Emit.OpCode opcode, float arg) { }
+        public virtual void Emit(System.Reflection.Emit.OpCode opcode, string str) { }
+        public virtual void Emit(System.Reflection.Emit.OpCode opcode, System.Type cls) { }
+        public virtual void EmitCall(System.Reflection.Emit.OpCode opcode, System.Reflection.MethodInfo methodInfo, System.Type[] optionalParameterTypes) { }
+        public virtual void EmitCalli(System.Reflection.Emit.OpCode opcode, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] parameterTypes, System.Type[] optionalParameterTypes) { }
+        public virtual void EmitWriteLine(System.Reflection.Emit.LocalBuilder localBuilder) { }
+        public virtual void EmitWriteLine(System.Reflection.FieldInfo fld) { }
+        public virtual void EmitWriteLine(string value) { }
+        public virtual void EndExceptionBlock() { }
+        public virtual void EndScope() { }
+        public virtual void MarkLabel(System.Reflection.Emit.Label loc) { }
+        public virtual void ThrowException(System.Type excType) { }
+        public virtual void UsingNamespace(string usingNamespace) { }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct Label
+    {
+        public override bool Equals(object obj) { throw null; }
+        public bool Equals(System.Reflection.Emit.Label obj) { throw null; }
+        public override int GetHashCode() { throw null; }
+        public static bool operator ==(System.Reflection.Emit.Label a, System.Reflection.Emit.Label b) { throw null; }
+        public static bool operator !=(System.Reflection.Emit.Label a, System.Reflection.Emit.Label b) { throw null; }
+    }
+    public sealed partial class LocalBuilder : System.Reflection.LocalVariableInfo
+    {
+        internal LocalBuilder() { }
+        public override bool IsPinned { get { throw null; } }
+        public override int LocalIndex { get { throw null; } }
+        public override System.Type LocalType { get { throw null; } }
+        public void SetLocalSymInfo(string name) { }
+        public void SetLocalSymInfo(string name, int startOffset, int endOffset) { }
+    }
+    public abstract partial class MethodBuilder : System.Reflection.MethodInfo
+    {
+        protected MethodBuilder() { }
+        public override System.Reflection.MethodAttributes Attributes { get { throw null; } }
+        public override System.Type DeclaringType { get { throw null; } }
+        public bool InitLocals { get { throw null; } set { } }
+        public override string Name { get { throw null; } }
+        public System.Reflection.Emit.GenericTypeParameterBuilder[] DefineGenericParameters(string[] names) { throw null; }
+        public System.Reflection.Emit.ParameterBuilder DefineParameter(int position, System.Reflection.ParameterAttributes attributes, string strParamName) { throw null; }
+        public System.Reflection.Emit.ILGenerator GetILGenerator() { throw null; }
+        public System.Reflection.Emit.ILGenerator GetILGenerator(int size) { throw null; }
+        public override System.Reflection.ParameterInfo[] GetParameters() { throw null; }
+        public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
+        public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
+        public void SetImplementationFlags(System.Reflection.MethodImplAttributes attributes) { }
+        public void SetParameters(System.Type[] parameterTypes) { }
+        public void SetReturnType(System.Type returnType) { }
+        public void SetSignature(System.Type returnType, System.Type[] returnTypeRequiredCustomModifiers, System.Type[] returnTypeOptionalCustomModifiers, System.Type[] parameterTypes, System.Type[][] parameterTypeRequiredCustomModifiers, System.Type[][] parameterTypeOptionalCustomModifiers) { }
+    }
+    public abstract partial class ModuleBuilder : System.Reflection.Module
+    {
+        protected ModuleBuilder() { }
+        public void CreateGlobalFunctions() { }
+        public System.Reflection.Emit.EnumBuilder DefineEnum(string name, System.Reflection.TypeAttributes visibility, System.Type underlyingType) { throw null; }
+        public System.Reflection.Emit.MethodBuilder DefineGlobalMethod(string name, System.Reflection.MethodAttributes attributes, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] parameterTypes) { throw null; }
+        public System.Reflection.Emit.MethodBuilder DefineGlobalMethod(string name, System.Reflection.MethodAttributes attributes, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] requiredReturnTypeCustomModifiers, System.Type[] optionalReturnTypeCustomModifiers, System.Type[] parameterTypes, System.Type[][] requiredParameterTypeCustomModifiers, System.Type[][] optionalParameterTypeCustomModifiers) { throw null; }
+        public System.Reflection.Emit.MethodBuilder DefineGlobalMethod(string name, System.Reflection.MethodAttributes attributes, System.Type returnType, System.Type[] parameterTypes) { throw null; }
+        public System.Reflection.Emit.FieldBuilder DefineInitializedData(string name, byte[] data, System.Reflection.FieldAttributes attributes) { throw null; }
+        public System.Reflection.Emit.TypeBuilder DefineType(string name) { throw null; }
+        public System.Reflection.Emit.TypeBuilder DefineType(string name, System.Reflection.TypeAttributes attr) { throw null; }
+        public System.Reflection.Emit.TypeBuilder DefineType(string name, System.Reflection.TypeAttributes attr, System.Type parent) { throw null; }
+        public System.Reflection.Emit.TypeBuilder DefineType(string name, System.Reflection.TypeAttributes attr, System.Type parent, int typesize) { throw null; }
+        public System.Reflection.Emit.TypeBuilder DefineType(string name, System.Reflection.TypeAttributes attr, System.Type parent, System.Reflection.Emit.PackingSize packsize) { throw null; }
+        public System.Reflection.Emit.TypeBuilder DefineType(string name, System.Reflection.TypeAttributes attr, System.Type parent, System.Reflection.Emit.PackingSize packingSize, int typesize) { throw null; }
+        public System.Reflection.Emit.TypeBuilder DefineType(string name, System.Reflection.TypeAttributes attr, System.Type parent, System.Type[] interfaces) { throw null; }
+        public System.Reflection.Emit.FieldBuilder DefineUninitializedData(string name, int size, System.Reflection.FieldAttributes attributes) { throw null; }
+        public System.Reflection.MethodInfo GetArrayMethod(System.Type arrayClass, string methodName, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] parameterTypes) { throw null; }
+        public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
+        public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct OpCode
@@ -9450,7 +9674,7 @@ namespace System.Reflection.Emit
     }
     public enum OpCodeType
     {
-        [System.ObsoleteAttribute("This API has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This API has been deprecated.")]
         Annotation = 0,
         Macro = 1,
         Nternal = 2,
@@ -9466,7 +9690,7 @@ namespace System.Reflection.Emit
         InlineI8 = 3,
         InlineMethod = 4,
         InlineNone = 5,
-        [System.ObsoleteAttribute("This API has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This API has been deprecated.")]
         InlinePhi = 6,
         InlineR = 7,
         InlineSig = 9,
@@ -9491,6 +9715,55 @@ namespace System.Reflection.Emit
         Size64 = 64,
         Size8 = 8,
         Unspecified = 0,
+    }
+    public partial class ParameterBuilder
+    {
+        internal ParameterBuilder() { }
+        public int Attributes { get { throw null; } }
+        public bool IsIn { get { throw null; } }
+        public bool IsOptional { get { throw null; } }
+        public bool IsOut { get { throw null; } }
+        public string Name { get { throw null; } }
+        public int Position { get { throw null; } }
+        public virtual void SetConstant(object defaultValue) { }
+        public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
+        public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
+    }
+    public abstract partial class PropertyBuilder : System.Reflection.PropertyInfo
+    {
+        protected PropertyBuilder() { }
+        public override System.Reflection.PropertyAttributes Attributes { get { throw null; } }
+        public override bool CanRead { get { throw null; } }
+        public override bool CanWrite { get { throw null; } }
+        public override System.Type DeclaringType { get { throw null; } }
+        public override string Name { get { throw null; } }
+        public override System.Type PropertyType { get { throw null; } }
+        public void AddOtherMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
+        public override System.Reflection.ParameterInfo[] GetIndexParameters() { throw null; }
+        public void SetConstant(object defaultValue) { }
+        public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
+        public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
+        public void SetGetMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
+        public void SetSetMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
+    }
+    public partial class SignatureHelper
+    {
+        internal SignatureHelper() { }
+        public void AddArgument(System.Type clsArgument) { }
+        public void AddArgument(System.Type argument, bool pinned) { }
+        public void AddArgument(System.Type argument, System.Type[] requiredCustomModifiers, System.Type[] optionalCustomModifiers) { }
+        public void AddArguments(System.Type[] arguments, System.Type[][] requiredCustomModifiers, System.Type[][] optionalCustomModifiers) { }
+        public void AddSentinel() { }
+        public static System.Reflection.Emit.SignatureHelper GetFieldSigHelper(System.Reflection.Module mod) { throw null; }
+        public static System.Reflection.Emit.SignatureHelper GetLocalVarSigHelper() { throw null; }
+        public static System.Reflection.Emit.SignatureHelper GetLocalVarSigHelper(System.Reflection.Module mod) { throw null; }
+        public static System.Reflection.Emit.SignatureHelper GetMethodSigHelper(System.Reflection.CallingConventions callingConvention, System.Type returnType) { throw null; }
+        public static System.Reflection.Emit.SignatureHelper GetMethodSigHelper(System.Reflection.Module mod, System.Reflection.CallingConventions callingConvention, System.Type returnType) { throw null; }
+        public static System.Reflection.Emit.SignatureHelper GetMethodSigHelper(System.Reflection.Module mod, System.Type returnType, System.Type[] parameterTypes) { throw null; }
+        public static System.Reflection.Emit.SignatureHelper GetPropertySigHelper(System.Reflection.Module mod, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] requiredReturnTypeCustomModifiers, System.Type[] optionalReturnTypeCustomModifiers, System.Type[] parameterTypes, System.Type[][] requiredParameterTypeCustomModifiers, System.Type[][] optionalParameterTypeCustomModifiers) { throw null; }
+        public static System.Reflection.Emit.SignatureHelper GetPropertySigHelper(System.Reflection.Module mod, System.Type returnType, System.Type[] parameterTypes) { throw null; }
+        public static System.Reflection.Emit.SignatureHelper GetPropertySigHelper(System.Reflection.Module mod, System.Type returnType, System.Type[] requiredReturnTypeCustomModifiers, System.Type[] optionalReturnTypeCustomModifiers, System.Type[] parameterTypes, System.Type[][] requiredParameterTypeCustomModifiers, System.Type[][] optionalParameterTypeCustomModifiers) { throw null; }
+        public byte[] GetSignature() { throw null; }
     }
     public enum StackBehaviour
     {
@@ -9523,6 +9796,58 @@ namespace System.Reflection.Emit
         Pushref = 25,
         Varpop = 26,
         Varpush = 27,
+    }
+    public abstract partial class TypeBuilder : System.Reflection.TypeInfo
+    {
+        public const int UnspecifiedTypeSize = 0;
+        protected TypeBuilder() { }
+        public override System.Reflection.Assembly Assembly { get { throw null; } }
+        public override string AssemblyQualifiedName { get { throw null; } }
+        public override System.Type BaseType { get { throw null; } }
+        public override string FullName { get { throw null; } }
+        public override System.Guid GUID { get { throw null; } }
+        public override System.Reflection.Module Module { get { throw null; } }
+        public override string Name { get { throw null; } }
+        public override string Namespace { get { throw null; } }
+        public System.Reflection.Emit.PackingSize PackingSize { get { throw null; } }
+        public int Size { get { throw null; } }
+        public void AddInterfaceImplementation(System.Type interfaceType) { }
+        public System.Reflection.TypeInfo CreateTypeInfo() { throw null; }
+        public System.Reflection.Emit.ConstructorBuilder DefineConstructor(System.Reflection.MethodAttributes attributes, System.Reflection.CallingConventions callingConvention, System.Type[] parameterTypes) { throw null; }
+        public System.Reflection.Emit.ConstructorBuilder DefineConstructor(System.Reflection.MethodAttributes attributes, System.Reflection.CallingConventions callingConvention, System.Type[] parameterTypes, System.Type[][] requiredCustomModifiers, System.Type[][] optionalCustomModifiers) { throw null; }
+        public System.Reflection.Emit.ConstructorBuilder DefineDefaultConstructor(System.Reflection.MethodAttributes attributes) { throw null; }
+        public System.Reflection.Emit.EventBuilder DefineEvent(string name, System.Reflection.EventAttributes attributes, System.Type eventtype) { throw null; }
+        public System.Reflection.Emit.FieldBuilder DefineField(string fieldName, System.Type type, System.Reflection.FieldAttributes attributes) { throw null; }
+        public System.Reflection.Emit.FieldBuilder DefineField(string fieldName, System.Type type, System.Type[] requiredCustomModifiers, System.Type[] optionalCustomModifiers, System.Reflection.FieldAttributes attributes) { throw null; }
+        public System.Reflection.Emit.GenericTypeParameterBuilder[] DefineGenericParameters(string[] names) { throw null; }
+        public System.Reflection.Emit.FieldBuilder DefineInitializedData(string name, byte[] data, System.Reflection.FieldAttributes attributes) { throw null; }
+        public System.Reflection.Emit.MethodBuilder DefineMethod(string name, System.Reflection.MethodAttributes attributes) { throw null; }
+        public System.Reflection.Emit.MethodBuilder DefineMethod(string name, System.Reflection.MethodAttributes attributes, System.Reflection.CallingConventions callingConvention) { throw null; }
+        public System.Reflection.Emit.MethodBuilder DefineMethod(string name, System.Reflection.MethodAttributes attributes, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] parameterTypes) { throw null; }
+        public System.Reflection.Emit.MethodBuilder DefineMethod(string name, System.Reflection.MethodAttributes attributes, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] returnTypeRequiredCustomModifiers, System.Type[] returnTypeOptionalCustomModifiers, System.Type[] parameterTypes, System.Type[][] parameterTypeRequiredCustomModifiers, System.Type[][] parameterTypeOptionalCustomModifiers) { throw null; }
+        public System.Reflection.Emit.MethodBuilder DefineMethod(string name, System.Reflection.MethodAttributes attributes, System.Type returnType, System.Type[] parameterTypes) { throw null; }
+        public void DefineMethodOverride(System.Reflection.MethodInfo methodInfoBody, System.Reflection.MethodInfo methodInfoDeclaration) { }
+        public System.Reflection.Emit.TypeBuilder DefineNestedType(string name) { throw null; }
+        public System.Reflection.Emit.TypeBuilder DefineNestedType(string name, System.Reflection.TypeAttributes attr) { throw null; }
+        public System.Reflection.Emit.TypeBuilder DefineNestedType(string name, System.Reflection.TypeAttributes attr, System.Type parent) { throw null; }
+        public System.Reflection.Emit.TypeBuilder DefineNestedType(string name, System.Reflection.TypeAttributes attr, System.Type parent, int typeSize) { throw null; }
+        public System.Reflection.Emit.TypeBuilder DefineNestedType(string name, System.Reflection.TypeAttributes attr, System.Type parent, System.Reflection.Emit.PackingSize packSize) { throw null; }
+        public System.Reflection.Emit.TypeBuilder DefineNestedType(string name, System.Reflection.TypeAttributes attr, System.Type parent, System.Reflection.Emit.PackingSize packSize, int typeSize) { throw null; }
+        public System.Reflection.Emit.TypeBuilder DefineNestedType(string name, System.Reflection.TypeAttributes attr, System.Type parent, System.Type[] interfaces) { throw null; }
+        public System.Reflection.Emit.PropertyBuilder DefineProperty(string name, System.Reflection.PropertyAttributes attributes, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] parameterTypes) { throw null; }
+        public System.Reflection.Emit.PropertyBuilder DefineProperty(string name, System.Reflection.PropertyAttributes attributes, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] returnTypeRequiredCustomModifiers, System.Type[] returnTypeOptionalCustomModifiers, System.Type[] parameterTypes, System.Type[][] parameterTypeRequiredCustomModifiers, System.Type[][] parameterTypeOptionalCustomModifiers) { throw null; }
+        public System.Reflection.Emit.PropertyBuilder DefineProperty(string name, System.Reflection.PropertyAttributes attributes, System.Type returnType, System.Type[] parameterTypes) { throw null; }
+        public System.Reflection.Emit.PropertyBuilder DefineProperty(string name, System.Reflection.PropertyAttributes attributes, System.Type returnType, System.Type[] returnTypeRequiredCustomModifiers, System.Type[] returnTypeOptionalCustomModifiers, System.Type[] parameterTypes, System.Type[][] parameterTypeRequiredCustomModifiers, System.Type[][] parameterTypeOptionalCustomModifiers) { throw null; }
+        public System.Reflection.Emit.ConstructorBuilder DefineTypeInitializer() { throw null; }
+        public System.Reflection.Emit.FieldBuilder DefineUninitializedData(string name, int size, System.Reflection.FieldAttributes attributes) { throw null; }
+        public static System.Reflection.ConstructorInfo GetConstructor(System.Type type, System.Reflection.ConstructorInfo constructor) { throw null; }
+        public override System.Type GetElementType() { throw null; }
+        public static System.Reflection.FieldInfo GetField(System.Type type, System.Reflection.FieldInfo field) { throw null; }
+        public static System.Reflection.MethodInfo GetMethod(System.Type type, System.Reflection.MethodInfo method) { throw null; }
+        public bool IsCreated() { throw null; }
+        public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
+        public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
+        public void SetParent(System.Type parent) { }
     }
 }
 namespace System.Reflection.Metadata
@@ -9678,6 +10003,7 @@ namespace System.Runtime
         Batch = 0,
         Interactive = 1,
         LowLatency = 2,
+        NoGCRegion = 4,
         SustainedLowLatency = 3,
     }
     public static partial class GCSettings
@@ -9921,6 +10247,12 @@ namespace System.Runtime.CompilerServices
     public partial interface ICriticalNotifyCompletion : System.Runtime.CompilerServices.INotifyCompletion
     {
         void UnsafeOnCompleted(System.Action continuation);
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(2304), Inherited=false)]
+    public sealed partial class IDispatchConstantAttribute : System.Runtime.CompilerServices.CustomConstantAttribute
+    {
+        public IDispatchConstantAttribute() { }
+        public override object Value { get { throw null; } }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(128), Inherited=true)]
     public sealed partial class IndexerNameAttribute : System.Attribute
@@ -10741,7 +11073,7 @@ namespace System.Runtime.InteropServices
         public BestFitMappingAttribute(bool BestFitMapping) { }
         public bool BestFitMapping { get { throw null; } }
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.BIND_OPTS instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct BIND_OPTS
     {
@@ -10750,7 +11082,7 @@ namespace System.Runtime.InteropServices
         public int grfFlags;
         public int grfMode;
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.BINDPTR instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Explicit)]
     public partial struct BINDPTR
     {
@@ -10767,7 +11099,7 @@ namespace System.Runtime.InteropServices
         public BStrWrapper(string value) { }
         public string WrappedObject { get { throw null; } }
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.CALLCONV instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     public enum CALLCONV
     {
         CC_CDECL = 1,
@@ -10878,6 +11210,11 @@ namespace System.Runtime.InteropServices
         public COMException(string message, int errorCode) { }
         public override string ToString() { throw null; }
     }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), Inherited=false)]
+    public sealed partial class ComImportAttribute : System.Attribute
+    {
+        public ComImportAttribute() { }
+    }
     public enum ComInterfaceType
     {
         InterfaceIsDual = 0,
@@ -10967,7 +11304,7 @@ namespace System.Runtime.InteropServices
         public DefaultDllImportSearchPathsAttribute(System.Runtime.InteropServices.DllImportSearchPath paths) { }
         public System.Runtime.InteropServices.DllImportSearchPath Paths { get { throw null; } }
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.DESCKIND instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     public enum DESCKIND
     {
         DESCKIND_FUNCDESC = 1,
@@ -10977,13 +11314,18 @@ namespace System.Runtime.InteropServices
         DESCKIND_TYPECOMP = 3,
         DESCKIND_VARDESC = 2,
     }
+    public sealed partial class DispatchWrapper
+    {
+        public DispatchWrapper(object obj) { }
+        public object WrappedObject { get { throw null; } }
+    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(960), Inherited=false)]
     public sealed partial class DispIdAttribute : System.Attribute
     {
         public DispIdAttribute(int dispId) { }
         public int Value { get { throw null; } }
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.DISPPARAMS instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct DISPPARAMS
     {
@@ -11017,7 +11359,7 @@ namespace System.Runtime.InteropServices
         UseDllDirectoryForDependencies = 256,
         UserDirectories = 1024,
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.ELEMDESC instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct ELEMDESC
     {
@@ -11031,6 +11373,13 @@ namespace System.Runtime.InteropServices
             [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
             public System.Runtime.InteropServices.PARAMDESC paramdesc;
         }
+    }
+    public sealed partial class ErrorWrapper
+    {
+        public ErrorWrapper(System.Exception e) { }
+        public ErrorWrapper(int errorCode) { }
+        public ErrorWrapper(object errorCode) { }
+        public int ErrorCode { get { throw null; } }
     }
     public enum ExporterEventKind
     {
@@ -11059,14 +11408,14 @@ namespace System.Runtime.InteropServices
         public FieldOffsetAttribute(int offset) { }
         public int Value { get { throw null; } }
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.FILETIME instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct FILETIME
     {
         public int dwHighDateTime;
         public int dwLowDateTime;
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.FUNCDESC instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct FUNCDESC
     {
@@ -11084,7 +11433,7 @@ namespace System.Runtime.InteropServices
         public short wFuncFlags;
     }
     [System.FlagsAttribute]
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.FUNCFLAGS instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     public enum FUNCFLAGS
     {
         FUNCFLAG_FBINDABLE = 4,
@@ -11101,7 +11450,7 @@ namespace System.Runtime.InteropServices
         FUNCFLAG_FUIDEFAULT = 512,
         FUNCFLAG_FUSESGETLASTERROR = 128,
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.FUNCKIND instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     public enum FUNCKIND
     {
         FUNC_DISPATCH = 4,
@@ -11185,7 +11534,7 @@ namespace System.Runtime.InteropServices
         InternalImpl = 1,
         SystemDefinedImpl = 0,
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.IDLDESC instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct IDLDESC
     {
@@ -11193,7 +11542,7 @@ namespace System.Runtime.InteropServices
         public System.Runtime.InteropServices.IDLFLAG wIDLFlags;
     }
     [System.FlagsAttribute]
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.IDLFLAG instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     public enum IDLFLAG
     {
         IDLFLAG_FIN = 1,
@@ -11203,7 +11552,7 @@ namespace System.Runtime.InteropServices
         IDLFLAG_NONE = 0,
     }
     [System.FlagsAttribute]
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.IMPLTYPEFLAGS instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     public enum IMPLTYPEFLAGS
     {
         IMPLTYPEFLAG_FDEFAULT = 1,
@@ -11249,7 +11598,7 @@ namespace System.Runtime.InteropServices
         public InvalidOleVariantTypeException(string message) { }
         public InvalidOleVariantTypeException(string message, System.Exception inner) { }
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.INVOKEKIND instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     public enum INVOKEKIND
     {
         INVOKE_FUNC = 1,
@@ -11281,7 +11630,7 @@ namespace System.Runtime.InteropServices
         public int Value { get { throw null; } }
     }
     [System.FlagsAttribute]
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.LIBFLAGS instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     public enum LIBFLAGS
     {
         LIBFLAG_FCONTROL = 2,
@@ -11306,6 +11655,7 @@ namespace System.Runtime.InteropServices
         public static System.IntPtr AllocHGlobal(System.IntPtr cb) { throw null; }
         public static bool AreComObjectsAvailableForCleanup() { throw null; }
         public static object BindToMoniker(string monikerName) { throw null; }
+        public static System.IntPtr BufferToBSTR(System.Array ptr, int slen) { throw null; }
         public static void ChangeWrapperHandleStrength(object otp, bool fIsWeak) { }
         public static void Copy(byte[] source, int startIndex, System.IntPtr destination, int length) { }
         public static void Copy(char[] source, int startIndex, System.IntPtr destination, int length) { }
@@ -11325,18 +11675,40 @@ namespace System.Runtime.InteropServices
         public static void Copy(float[] source, int startIndex, System.IntPtr destination, int length) { }
         public static System.IntPtr CreateAggregatedObject(System.IntPtr pOuter, object o) { throw null; }
         public static System.IntPtr CreateAggregatedObject<T>(System.IntPtr pOuter, T o) { throw null; }
+        public static object CreateWrapperOfType(object o, System.Type t) { throw null; }
+        public static TWrapper CreateWrapperOfType<T, TWrapper>(T o) { throw null; }
         public static void DestroyStructure(System.IntPtr ptr, System.Type structuretype) { }
         public static void DestroyStructure<T>(System.IntPtr ptr) { }
+        public static int FinalReleaseComObject(object o) { throw null; }
         public static void FreeBSTR(System.IntPtr ptr) { }
         public static void FreeCoTaskMem(System.IntPtr ptr) { }
         public static void FreeHGlobal(System.IntPtr hglobal) { }
+        public static System.IntPtr GetComInterfaceForObject(object o, System.Type T) { throw null; }
+        public static System.IntPtr GetComInterfaceForObject(object o, System.Type T, System.Runtime.InteropServices.CustomQueryInterfaceMode mode) { throw null; }
+        public static System.IntPtr GetComInterfaceForObject<T, TInterface>(T o) { throw null; }
         public static System.Delegate GetDelegateForFunctionPointer(System.IntPtr ptr, System.Type t) { throw null; }
         public static TDelegate GetDelegateForFunctionPointer<TDelegate>(System.IntPtr ptr) { throw null; }
+        public static int GetExceptionCode() { throw null; }
         public static System.Exception GetExceptionForHR(int errorCode) { throw null; }
         public static System.Exception GetExceptionForHR(int errorCode, System.IntPtr errorInfo) { throw null; }
         public static System.IntPtr GetFunctionPointerForDelegate(System.Delegate d) { throw null; }
         public static System.IntPtr GetFunctionPointerForDelegate<TDelegate>(TDelegate d) { throw null; }
+        public static int GetHRForException(System.Exception e) { throw null; }
+        public static int GetHRForLastWin32Error() { throw null; }
+        public static System.IntPtr GetIUnknownForObject(object o) { throw null; }
         public static int GetLastWin32Error() { throw null; }
+        public static void GetNativeVariantForObject(object obj, System.IntPtr pDstNativeVariant) { }
+        public static void GetNativeVariantForObject<T>(T obj, System.IntPtr pDstNativeVariant) { }
+        public static object GetObjectForIUnknown(System.IntPtr pUnk) { throw null; }
+        public static object GetObjectForNativeVariant(System.IntPtr pSrcNativeVariant) { throw null; }
+        public static T GetObjectForNativeVariant<T>(System.IntPtr pSrcNativeVariant) { throw null; }
+        public static object[] GetObjectsForNativeVariants(System.IntPtr aSrcNativeVariant, int cVars) { throw null; }
+        public static T[] GetObjectsForNativeVariants<T>(System.IntPtr aSrcNativeVariant, int cVars) { throw null; }
+        public static int GetStartComSlot(System.Type t) { throw null; }
+        public static System.Type GetTypeFromCLSID(System.Guid clsid) { throw null; }
+        public static string GetTypeInfoName(System.Runtime.InteropServices.ComTypes.ITypeInfo typeInfo) { throw null; }
+        public static object GetUniqueObjectForIUnknown(System.IntPtr unknown) { throw null; }
+        public static bool IsComObject(object o) { throw null; }
         public static System.IntPtr OffsetOf(System.Type t, string fieldName) { throw null; }
         public static System.IntPtr OffsetOf<T>(string fieldName) { throw null; }
         public static void Prelink(System.Reflection.MethodInfo m) { }
@@ -11371,6 +11743,7 @@ namespace System.Runtime.InteropServices
         public static System.IntPtr ReAllocCoTaskMem(System.IntPtr pv, int cb) { throw null; }
         public static System.IntPtr ReAllocHGlobal(System.IntPtr pv, System.IntPtr cb) { throw null; }
         public static int Release(System.IntPtr pUnk) { throw null; }
+        public static int ReleaseComObject(object o) { throw null; }
         public static System.IntPtr SecureStringToBSTR(System.Security.SecureString s) { throw null; }
         public static System.IntPtr SecureStringToCoTaskMemAnsi(System.Security.SecureString s) { throw null; }
         public static System.IntPtr SecureStringToCoTaskMemUnicode(System.Security.SecureString s) { throw null; }
@@ -11451,7 +11824,7 @@ namespace System.Runtime.InteropServices
     {
         public OutAttribute() { }
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.PARAMDESC instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct PARAMDESC
     {
@@ -11459,7 +11832,7 @@ namespace System.Runtime.InteropServices
         public System.Runtime.InteropServices.PARAMFLAG wParamFlags;
     }
     [System.FlagsAttribute]
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.PARAMFLAG instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     public enum PARAMFLAG
     {
         PARAMFLAG_FHASCUSTDATA = 64,
@@ -11598,7 +11971,7 @@ namespace System.Runtime.InteropServices
     {
         public SetWin32ContextInIDispatchAttribute() { }
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.STATSTG instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct STATSTG
     {
@@ -11624,14 +11997,14 @@ namespace System.Runtime.InteropServices
         public StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind layoutKind) { }
         public System.Runtime.InteropServices.LayoutKind Value { get { throw null; } }
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.SYSKIND instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     public enum SYSKIND
     {
         SYS_MAC = 2,
         SYS_WIN16 = 0,
         SYS_WIN32 = 1,
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.TYPEATTR instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct TYPEATTR
     {
@@ -11655,7 +12028,7 @@ namespace System.Runtime.InteropServices
         public short wMinorVerNum;
         public System.Runtime.InteropServices.TYPEFLAGS wTypeFlags;
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.TYPEDESC instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct TYPEDESC
     {
@@ -11663,7 +12036,7 @@ namespace System.Runtime.InteropServices
         public short vt;
     }
     [System.FlagsAttribute]
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.TYPEFLAGS instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     public enum TYPEFLAGS
     {
         TYPEFLAG_FAGGREGATABLE = 1024,
@@ -11690,7 +12063,7 @@ namespace System.Runtime.InteropServices
         public string Identifier { get { throw null; } }
         public string Scope { get { throw null; } }
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.TYPEKIND instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     public enum TYPEKIND
     {
         TKIND_ALIAS = 6,
@@ -11703,7 +12076,7 @@ namespace System.Runtime.InteropServices
         TKIND_RECORD = 1,
         TKIND_UNION = 7,
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.TYPELIBATTR instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct TYPELIBATTR
     {
@@ -11855,7 +12228,7 @@ namespace System.Runtime.InteropServices
         VariantBool = 37,
         VBByRefStr = 34,
     }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.VARDESC instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct VARDESC
     {
@@ -11921,7 +12294,7 @@ namespace System.Runtime.InteropServices
         VT_VOID = 24,
     }
     [System.FlagsAttribute]
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.VARFLAGS instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.ObsoleteAttribute]
     public enum VARFLAGS
     {
         VARFLAG_FBINDABLE = 4,
@@ -12678,7 +13051,7 @@ namespace System.Runtime.Remoting
         public static string ApplicationName { get { throw null; } set { } }
         public static System.Runtime.Remoting.CustomErrorsModes CustomErrorsMode { get { throw null; } set { } }
         public static string ProcessId { get { throw null; } }
-        [System.ObsoleteAttribute("Use System.Runtime.Remoting.RemotingConfiguration.Configure(string fileName, bool ensureSecurity) instead.", false)]
+        [System.ObsoleteAttribute("Use Configure(String,Boolean)")]
         public static void Configure(string filename) { }
         public static void Configure(string filename, bool ensureSecurity) { }
         public static bool CustomErrorsEnabled(bool isLocalRequest) { throw null; }
@@ -12728,7 +13101,7 @@ namespace System.Runtime.Remoting
         public static bool IsOneWay(System.Reflection.MethodBase method) { throw null; }
         public static bool IsTransparentProxy(object proxy) { throw null; }
         [System.Diagnostics.ConditionalAttribute("REMOTING_PERF")]
-        [System.ObsoleteAttribute("Use of this method is not recommended. The LogRemotingStage existed for internal diagnostic purposes only.")]
+        [System.ObsoleteAttribute("It existed for only internal use in .NET and unimplemented in mono")]
         public static void LogRemotingStage(int stage) { }
         public static System.Runtime.Remoting.ObjRef Marshal(System.MarshalByRefObject Obj) { throw null; }
         public static System.Runtime.Remoting.ObjRef Marshal(System.MarshalByRefObject Obj, string URI) { throw null; }
@@ -12893,7 +13266,7 @@ namespace System.Runtime.Remoting.Channels
         public static System.Runtime.Remoting.Channels.IChannel GetChannel(string name) { throw null; }
         public static System.Collections.IDictionary GetChannelSinkProperties(object obj) { throw null; }
         public static string[] GetUrlsForObject(System.MarshalByRefObject obj) { throw null; }
-        [System.ObsoleteAttribute("Use System.Runtime.Remoting.ChannelServices.RegisterChannel(IChannel chnl, bool ensureSecurity) instead.", false)]
+        [System.ObsoleteAttribute("Use RegisterChannel(IChannel,Boolean)")]
         public static void RegisterChannel(System.Runtime.Remoting.Channels.IChannel chnl) { }
         public static void RegisterChannel(System.Runtime.Remoting.Channels.IChannel chnl, bool ensureSecurity) { }
         public static System.Runtime.Remoting.Messaging.IMessage SyncDispatchMessage(System.Runtime.Remoting.Messaging.IMessage msg) { throw null; }
@@ -13191,7 +13564,7 @@ namespace System.Runtime.Remoting.Lifetime
     }
     public sealed partial class LifetimeServices
     {
-        [System.ObsoleteAttribute("Do not create instances of the LifetimeServices class.  Call the static methods directly on this type instead", true)]
+        [System.ObsoleteAttribute("Call the static methods directly on this type instead", true)]
         public LifetimeServices() { }
         public static System.TimeSpan LeaseManagerPollTime { get { throw null; } set { } }
         public static System.TimeSpan LeaseTime { get { throw null; } set { } }
@@ -14300,7 +14673,7 @@ namespace System.Runtime.Serialization.Formatters
 }
 namespace System.Runtime.Serialization.Formatters.Binary
 {
-    public sealed partial class BinaryFormatter : System.Runtime.Serialization.IFormatter
+    public sealed partial class BinaryFormatter : System.Runtime.Remoting.Messaging.IRemotingFormatter, System.Runtime.Serialization.IFormatter
     {
         public BinaryFormatter() { }
         public BinaryFormatter(System.Runtime.Serialization.ISurrogateSelector selector, System.Runtime.Serialization.StreamingContext context) { }
@@ -14437,7 +14810,6 @@ namespace System.Security
     public partial class HostSecurityManager
     {
         public HostSecurityManager() { }
-        [System.ObsoleteAttribute("AppDomain policy levels are obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
         public virtual System.Security.Policy.PolicyLevel DomainPolicy { get { throw null; } }
         public virtual System.Security.HostSecurityManagerOptions Flags { get { throw null; } }
         public virtual System.Security.Policy.ApplicationTrust DetermineApplicationTrust(System.Security.Policy.Evidence applicationEvidence, System.Security.Policy.Evidence activatorEvidence, System.Security.Policy.TrustManagerContext context) { throw null; }
@@ -14452,7 +14824,6 @@ namespace System.Security
         HostAppDomainEvidence = 1,
         HostAssemblyEvidence = 4,
         HostDetermineApplicationTrust = 8,
-        [System.ObsoleteAttribute("AppDomain policy levels are obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
         HostPolicyLevel = 2,
         HostResolvePolicy = 16,
         None = 0,
@@ -14517,12 +14888,10 @@ namespace System.Security
         public System.Security.IPermission AddPermission(System.Security.IPermission perm) { throw null; }
         public void Assert() { }
         public bool ContainsNonCodeAccessPermissions() { throw null; }
-        [System.ObsoleteAttribute("This method is obsolete and shoud no longer be used.")]
         public static byte[] ConvertPermissionSet(string inFormat, byte[] inData, string outFormat) { throw null; }
         public virtual System.Security.PermissionSet Copy() { throw null; }
         public virtual void CopyTo(System.Array array, int index) { }
         public void Demand() { }
-        [System.ObsoleteAttribute("Deny is obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
         public void Deny() { }
         public override bool Equals(object obj) { throw null; }
         public virtual void FromXml(System.Security.SecurityElement et) { }
@@ -14591,6 +14960,9 @@ namespace System.Security
     public sealed partial class SecurityCriticalAttribute : System.Attribute
     {
         public SecurityCriticalAttribute() { }
+        public SecurityCriticalAttribute(System.Security.SecurityCriticalScope scope) { }
+        [System.ObsoleteAttribute("SecurityCriticalScope is only used for .NET 2.0 transparency compatibility.")]
+        public System.Security.SecurityCriticalScope Scope { get { throw null; } }
     }
     [System.ObsoleteAttribute("SecurityCriticalScope is only used for .NET 2.0 transparency compatibility.")]
     public enum SecurityCriticalScope
@@ -14648,34 +15020,34 @@ namespace System.Security
     }
     public static partial class SecurityManager
     {
-        [System.ObsoleteAttribute("Because execution permission checks can no longer be turned off, the CheckExecutionRights property no longer has any effect.")]
+        [System.ObsoleteAttribute]
         public static bool CheckExecutionRights { get { throw null; } set { } }
-        [System.ObsoleteAttribute("Because security can no longer be turned off, the SecurityEnabled property no longer has any effect.")]
+        [System.ObsoleteAttribute("The security manager cannot be turned off on MS runtime")]
         public static bool SecurityEnabled { get { throw null; } set { } }
         public static bool CurrentThreadRequiresSecurityContextCapture() { throw null; }
         public static System.Security.PermissionSet GetStandardSandbox(System.Security.Policy.Evidence evidence) { throw null; }
         public static void GetZoneAndOrigin(out System.Collections.ArrayList zone, out System.Collections.ArrayList origin) { zone = default(System.Collections.ArrayList); origin = default(System.Collections.ArrayList); }
-        [System.ObsoleteAttribute("IsGranted is obsolete and will be removed in a future release of the .NET Framework.  Please use the PermissionSet property of either AppDomain or Assembly instead.")]
+        [System.ObsoleteAttribute]
         public static bool IsGranted(System.Security.IPermission perm) { throw null; }
-        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute]
         public static System.Security.Policy.PolicyLevel LoadPolicyLevelFromFile(string path, System.Security.PolicyLevelType type) { throw null; }
-        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute]
         public static System.Security.Policy.PolicyLevel LoadPolicyLevelFromString(string str, System.Security.PolicyLevelType type) { throw null; }
-        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute]
         public static System.Collections.IEnumerator PolicyHierarchy() { throw null; }
-        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute]
         public static System.Security.PermissionSet ResolvePolicy(System.Security.Policy.Evidence evidence) { throw null; }
-        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute]
         public static System.Security.PermissionSet ResolvePolicy(System.Security.Policy.Evidence evidence, System.Security.PermissionSet reqdPset, System.Security.PermissionSet optPset, System.Security.PermissionSet denyPset, out System.Security.PermissionSet denied) { denied = default(System.Security.PermissionSet); throw null; }
-        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute]
         public static System.Security.PermissionSet ResolvePolicy(System.Security.Policy.Evidence[] evidences) { throw null; }
-        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute]
         public static System.Collections.IEnumerator ResolvePolicyGroups(System.Security.Policy.Evidence evidence) { throw null; }
-        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute]
         public static System.Security.PermissionSet ResolveSystemPolicy(System.Security.Policy.Evidence evidence) { throw null; }
-        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute]
         public static void SavePolicy() { }
-        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute]
         public static void SavePolicyLevel(System.Security.Policy.PolicyLevel level) { }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(1), AllowMultiple=false)]
@@ -15958,8 +16330,16 @@ namespace System.Security.Cryptography
         public abstract byte[] CreateSignature(byte[] rgbHash);
         public abstract System.Security.Cryptography.DSAParameters ExportParameters(bool includePrivateParameters);
         public override void FromXmlString(string xmlString) { }
+        protected virtual byte[] HashData(byte[] data, int offset, int count, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
+        protected virtual byte[] HashData(System.IO.Stream data, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         public abstract void ImportParameters(System.Security.Cryptography.DSAParameters parameters);
+        public virtual byte[] SignData(byte[] data, int offset, int count, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
+        public byte[] SignData(byte[] data, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
+        public virtual byte[] SignData(System.IO.Stream data, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         public override string ToXmlString(bool includePrivateParameters) { throw null; }
+        public bool VerifyData(byte[] data, byte[] signature, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
+        public virtual bool VerifyData(byte[] data, int offset, int count, byte[] signature, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
+        public virtual bool VerifyData(System.IO.Stream data, byte[] signature, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         public abstract bool VerifySignature(byte[] rgbHash, byte[] rgbSignature);
     }
     public sealed partial class DSACryptoServiceProvider : System.Security.Cryptography.DSA, System.Security.Cryptography.ICspAsymmetricAlgorithm
@@ -16357,20 +16737,26 @@ namespace System.Security.Cryptography
         public override string SignatureAlgorithm { get { throw null; } }
         public static bool UseMachineKeyStore { get { throw null; } set { } }
         public byte[] Decrypt(byte[] rgb, bool fOAEP) { throw null; }
+        public override byte[] Decrypt(byte[] data, System.Security.Cryptography.RSAEncryptionPadding padding) { throw null; }
         public override byte[] DecryptValue(byte[] rgb) { throw null; }
         protected override void Dispose(bool disposing) { }
         public byte[] Encrypt(byte[] rgb, bool fOAEP) { throw null; }
+        public override byte[] Encrypt(byte[] data, System.Security.Cryptography.RSAEncryptionPadding padding) { throw null; }
         public override byte[] EncryptValue(byte[] rgb) { throw null; }
         public byte[] ExportCspBlob(bool includePrivateParameters) { throw null; }
         public override System.Security.Cryptography.RSAParameters ExportParameters(bool includePrivateParameters) { throw null; }
         ~RSACryptoServiceProvider() { }
+        protected override byte[] HashData(byte[] data, int offset, int count, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
+        protected override byte[] HashData(System.IO.Stream data, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         public void ImportCspBlob(byte[] keyBlob) { }
         public override void ImportParameters(System.Security.Cryptography.RSAParameters parameters) { }
         public byte[] SignData(byte[] buffer, int offset, int count, object halg) { throw null; }
         public byte[] SignData(byte[] buffer, object halg) { throw null; }
         public byte[] SignData(System.IO.Stream inputStream, object halg) { throw null; }
+        public override byte[] SignHash(byte[] hash, System.Security.Cryptography.HashAlgorithmName hashAlgorithm, System.Security.Cryptography.RSASignaturePadding padding) { throw null; }
         public byte[] SignHash(byte[] rgbHash, string str) { throw null; }
         public bool VerifyData(byte[] buffer, object halg, byte[] signature) { throw null; }
+        public override bool VerifyHash(byte[] hash, byte[] signature, System.Security.Cryptography.HashAlgorithmName hashAlgorithm, System.Security.Cryptography.RSASignaturePadding padding) { throw null; }
         public bool VerifyHash(byte[] rgbHash, string str, byte[] rgbSignature) { throw null; }
     }
     public sealed partial class RSAEncryptionPadding : System.IEquatable<System.Security.Cryptography.RSAEncryptionPadding>
@@ -16663,12 +17049,12 @@ namespace System.Security.Cryptography.X509Certificates
         public virtual string GetExpirationDateString() { throw null; }
         public virtual string GetFormat() { throw null; }
         public override int GetHashCode() { throw null; }
-        [System.ObsoleteAttribute("This method has been deprecated.  Please use the Issuer property instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("Use the Issuer property.")]
         public virtual string GetIssuerName() { throw null; }
         public virtual string GetKeyAlgorithm() { throw null; }
         public virtual byte[] GetKeyAlgorithmParameters() { throw null; }
         public virtual string GetKeyAlgorithmParametersString() { throw null; }
-        [System.ObsoleteAttribute("This method has been deprecated.  Please use the Subject property instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("Use the Subject property.")]
         public virtual string GetName() { throw null; }
         public virtual byte[] GetPublicKey() { throw null; }
         public virtual string GetPublicKeyString() { throw null; }
@@ -16816,7 +17202,7 @@ namespace System.Security.Permissions
     public sealed partial class FileIOPermissionAttribute : System.Security.Permissions.CodeAccessSecurityAttribute
     {
         public FileIOPermissionAttribute(System.Security.Permissions.SecurityAction action) : base (default(System.Security.Permissions.SecurityAction)) { }
-        [System.ObsoleteAttribute("Please use the ViewAndModify property instead.")]
+        [System.ObsoleteAttribute("use newer properties")]
         public string All { get { throw null; } set { } }
         public System.Security.Permissions.FileIOPermissionAccess AllFiles { get { throw null; } set { } }
         public System.Security.Permissions.FileIOPermissionAccess AllLocalFiles { get { throw null; } set { } }
@@ -17091,24 +17477,24 @@ namespace System.Security.Permissions
         public ReflectionPermissionAttribute(System.Security.Permissions.SecurityAction action) : base (default(System.Security.Permissions.SecurityAction)) { }
         public System.Security.Permissions.ReflectionPermissionFlag Flags { get { throw null; } set { } }
         public bool MemberAccess { get { throw null; } set { } }
-        [System.ObsoleteAttribute("This permission is no longer used by the CLR.")]
+        [System.ObsoleteAttribute]
         public bool ReflectionEmit { get { throw null; } set { } }
         public bool RestrictedMemberAccess { get { throw null; } set { } }
-        [System.ObsoleteAttribute("This API has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("not enforced in 2.0+")]
         public bool TypeInformation { get { throw null; } set { } }
         public override System.Security.IPermission CreatePermission() { throw null; }
     }
     [System.FlagsAttribute]
     public enum ReflectionPermissionFlag
     {
-        [System.ObsoleteAttribute("This permission has been deprecated. Use PermissionState.Unrestricted to get full access.")]
+        [System.ObsoleteAttribute]
         AllFlags = 7,
         MemberAccess = 2,
         NoFlags = 0,
-        [System.ObsoleteAttribute("This permission is no longer used by the CLR.")]
+        [System.ObsoleteAttribute]
         ReflectionEmit = 4,
         RestrictedMemberAccess = 8,
-        [System.ObsoleteAttribute("This API has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("not used anymore")]
         TypeInformation = 1,
     }
     public sealed partial class RegistryPermission : System.Security.CodeAccessPermission, System.Security.Permissions.IUnrestrictedPermission
@@ -17141,7 +17527,7 @@ namespace System.Security.Permissions
     public sealed partial class RegistryPermissionAttribute : System.Security.Permissions.CodeAccessSecurityAttribute
     {
         public RegistryPermissionAttribute(System.Security.Permissions.SecurityAction action) : base (default(System.Security.Permissions.SecurityAction)) { }
-        [System.ObsoleteAttribute("Please use the ViewAndModify property instead.")]
+        [System.ObsoleteAttribute("use newer properties")]
         public string All { get { throw null; } set { } }
         public string ChangeAccessControl { get { throw null; } set { } }
         public string Create { get { throw null; } set { } }
@@ -17155,16 +17541,16 @@ namespace System.Security.Permissions
     {
         Assert = 3,
         Demand = 2,
-        [System.ObsoleteAttribute("Deny is obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("This requests should not be used")]
         Deny = 4,
         InheritanceDemand = 7,
         LinkDemand = 6,
         PermitOnly = 5,
-        [System.ObsoleteAttribute("Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("This requests should not be used")]
         RequestMinimum = 8,
-        [System.ObsoleteAttribute("Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("This requests should not be used")]
         RequestOptional = 9,
-        [System.ObsoleteAttribute("Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
+        [System.ObsoleteAttribute("This requests should not be used")]
         RequestRefuse = 10,
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(109), AllowMultiple=true, Inherited=false)]
@@ -17497,25 +17883,25 @@ namespace System.Security.Policy
     public sealed partial class Evidence : System.Collections.ICollection, System.Collections.IEnumerable
     {
         public Evidence() { }
-        [System.ObsoleteAttribute("This constructor is obsolete. Please use the constructor which takes arrays of EvidenceBase instead.")]
+        [System.ObsoleteAttribute]
         public Evidence(object[] hostEvidence, object[] assemblyEvidence) { }
         public Evidence(System.Security.Policy.Evidence evidence) { }
-        [System.ObsoleteAttribute("Evidence should not be treated as an ICollection. Please use GetHostEnumerator and GetAssemblyEnumerator to iterate over the evidence to collect a count.")]
+        [System.ObsoleteAttribute]
         public int Count { get { throw null; } }
         public bool IsReadOnly { get { throw null; } }
         public bool IsSynchronized { get { throw null; } }
         public bool Locked { get { throw null; } set { } }
         public object SyncRoot { get { throw null; } }
-        [System.ObsoleteAttribute("This method is obsolete. Please use AddAssemblyEvidence instead.")]
+        [System.ObsoleteAttribute]
         public void AddAssembly(object id) { }
-        [System.ObsoleteAttribute("This method is obsolete. Please use AddHostEvidence instead.")]
+        [System.ObsoleteAttribute]
         public void AddHost(object id) { }
         public void Clear() { }
         public System.Security.Policy.Evidence Clone() { throw null; }
-        [System.ObsoleteAttribute("Evidence should not be treated as an ICollection. Please use the GetHostEnumerator and GetAssemblyEnumerator methods rather than using CopyTo.")]
+        [System.ObsoleteAttribute]
         public void CopyTo(System.Array array, int index) { }
         public System.Collections.IEnumerator GetAssemblyEnumerator() { throw null; }
-        [System.ObsoleteAttribute("GetEnumerator is obsolete. Please use GetAssemblyEnumerator and GetHostEnumerator instead.")]
+        [System.ObsoleteAttribute]
         public System.Collections.IEnumerator GetEnumerator() { throw null; }
         public System.Collections.IEnumerator GetHostEnumerator() { throw null; }
         public void Merge(System.Security.Policy.Evidence evidence) { }
@@ -17540,7 +17926,6 @@ namespace System.Security.Policy
         public override System.Security.Policy.PolicyStatement Resolve(System.Security.Policy.Evidence evidence) { throw null; }
         public override System.Security.Policy.CodeGroup ResolveMatchingCodeGroups(System.Security.Policy.Evidence evidence) { throw null; }
     }
-    [System.ObsoleteAttribute("This type is obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
     public sealed partial class FirstMatchCodeGroup : System.Security.Policy.CodeGroup
     {
         public FirstMatchCodeGroup(System.Security.Policy.IMembershipCondition membershipCondition, System.Security.Policy.PolicyStatement policy) : base (default(System.Security.Policy.IMembershipCondition), default(System.Security.Policy.PolicyStatement)) { }
@@ -17633,7 +18018,6 @@ namespace System.Security.Policy
         public override System.Security.Policy.PolicyStatement Resolve(System.Security.Policy.Evidence evidence) { throw null; }
         public override System.Security.Policy.CodeGroup ResolveMatchingCodeGroups(System.Security.Policy.Evidence evidence) { throw null; }
     }
-    [System.ObsoleteAttribute("Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
     public sealed partial class PermissionRequestEvidence : System.Security.Policy.EvidenceBase
     {
         public PermissionRequestEvidence(System.Security.PermissionSet request, System.Security.PermissionSet optional, System.Security.PermissionSet denied) { }
@@ -17653,27 +18037,26 @@ namespace System.Security.Policy
     public sealed partial class PolicyLevel
     {
         internal PolicyLevel() { }
-        [System.ObsoleteAttribute("Because all GAC assemblies always get full trust, the full trust list is no longer meaningful. You should install any assemblies that are used in security policy in the GAC to ensure they are trusted.")]
+        [System.ObsoleteAttribute("All GACed assemblies are now fully trusted and all permissions now succeed on fully trusted code.")]
         public System.Collections.IList FullTrustAssemblies { get { throw null; } }
         public string Label { get { throw null; } }
         public System.Collections.IList NamedPermissionSets { get { throw null; } }
         public System.Security.Policy.CodeGroup RootCodeGroup { get { throw null; } set { } }
         public string StoreLocation { get { throw null; } }
         public System.Security.PolicyLevelType Type { get { throw null; } }
-        [System.ObsoleteAttribute("Because all GAC assemblies always get full trust, the full trust list is no longer meaningful. You should install any assemblies that are used in security policy in the GAC to ensure they are trusted.")]
+        [System.ObsoleteAttribute("All GACed assemblies are now fully trusted and all permissions now succeed on fully trusted code.")]
         public void AddFullTrustAssembly(System.Security.Policy.StrongName sn) { }
-        [System.ObsoleteAttribute("Because all GAC assemblies always get full trust, the full trust list is no longer meaningful. You should install any assemblies that are used in security policy in the GAC to ensure they are trusted.")]
+        [System.ObsoleteAttribute("All GACed assemblies are now fully trusted and all permissions now succeed on fully trusted code.")]
         public void AddFullTrustAssembly(System.Security.Policy.StrongNameMembershipCondition snMC) { }
         public void AddNamedPermissionSet(System.Security.NamedPermissionSet permSet) { }
         public System.Security.NamedPermissionSet ChangeNamedPermissionSet(string name, System.Security.PermissionSet pSet) { throw null; }
-        [System.ObsoleteAttribute("AppDomain policy levels are obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
         public static System.Security.Policy.PolicyLevel CreateAppDomainLevel() { throw null; }
         public void FromXml(System.Security.SecurityElement e) { }
         public System.Security.NamedPermissionSet GetNamedPermissionSet(string name) { throw null; }
         public void Recover() { }
-        [System.ObsoleteAttribute("Because all GAC assemblies always get full trust, the full trust list is no longer meaningful. You should install any assemblies that are used in security policy in the GAC to ensure they are trusted.")]
+        [System.ObsoleteAttribute("All GACed assemblies are now fully trusted and all permissions now succeed on fully trusted code.")]
         public void RemoveFullTrustAssembly(System.Security.Policy.StrongName sn) { }
-        [System.ObsoleteAttribute("Because all GAC assemblies always get full trust, the full trust list is no longer meaningful. You should install any assemblies that are used in security policy in the GAC to ensure they are trusted.")]
+        [System.ObsoleteAttribute("All GACed assemblies are now fully trusted and all permissions now succeed on fully trusted code.")]
         public void RemoveFullTrustAssembly(System.Security.Policy.StrongNameMembershipCondition snMC) { }
         public System.Security.NamedPermissionSet RemoveNamedPermissionSet(System.Security.NamedPermissionSet permSet) { throw null; }
         public System.Security.NamedPermissionSet RemoveNamedPermissionSet(string name) { throw null; }
@@ -17799,7 +18182,6 @@ namespace System.Security.Policy
         Run = 2,
         Upgrade = 1,
     }
-    [System.ObsoleteAttribute("This type is obsolete and will be removed in a future release of the .NET Framework. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
     public sealed partial class UnionCodeGroup : System.Security.Policy.CodeGroup
     {
         public UnionCodeGroup(System.Security.Policy.IMembershipCondition membershipCondition, System.Security.Policy.PolicyStatement policy) : base (default(System.Security.Policy.IMembershipCondition), default(System.Security.Policy.PolicyStatement)) { }
@@ -18745,7 +19127,7 @@ namespace System.Threading
         public EventWaitHandle(bool initialState, System.Threading.EventResetMode mode, string name) { }
         public EventWaitHandle(bool initialState, System.Threading.EventResetMode mode, string name, out bool createdNew) { createdNew = default(bool); }
         public EventWaitHandle(bool initialState, System.Threading.EventResetMode mode, string name, out bool createdNew, System.Security.AccessControl.EventWaitHandleSecurity eventSecurity) { createdNew = default(bool); }
-        protected override void Dispose(bool explicitDisposing) { }
+        public System.Security.AccessControl.EventWaitHandleSecurity GetAccessControl() { throw null; }
         public static System.Threading.EventWaitHandle OpenExisting(string name) { throw null; }
         public static System.Threading.EventWaitHandle OpenExisting(string name, System.Security.AccessControl.EventWaitHandleRights rights) { throw null; }
         public bool Reset() { throw null; }
@@ -18905,11 +19287,11 @@ namespace System.Threading
     public partial class Overlapped
     {
         public Overlapped() { }
-        [System.ObsoleteAttribute("This constructor is not 64-bit compatible.  Use the constructor that takes an IntPtr for the event handle.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("Not 64bit compatible.  Please use the constructor that takes IntPtr for the event handle")]
         public Overlapped(int offsetLo, int offsetHi, int hEvent, System.IAsyncResult ar) { }
         public Overlapped(int offsetLo, int offsetHi, System.IntPtr hEvent, System.IAsyncResult ar) { }
         public System.IAsyncResult AsyncResult { get { throw null; } set { } }
-        [System.ObsoleteAttribute("This property is not 64-bit compatible.  Use EventHandleIntPtr instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("Not 64bit compatible.  Use EventHandleIntPtr instead.")]
         public int EventHandle { get { throw null; } set { } }
         public System.IntPtr EventHandleIntPtr { get { throw null; } set { } }
         public int OffsetHigh { get { throw null; } set { } }
@@ -18917,14 +19299,14 @@ namespace System.Threading
         [System.CLSCompliantAttribute(false)]
         public unsafe static void Free(System.Threading.NativeOverlapped* nativeOverlappedPtr) { }
         [System.CLSCompliantAttribute(false)]
-        [System.ObsoleteAttribute("This method is not safe.  Use Pack (iocb, userData) instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("Use Pack(iocb, userData) instead")]
         public unsafe System.Threading.NativeOverlapped* Pack(System.Threading.IOCompletionCallback iocb) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public unsafe System.Threading.NativeOverlapped* Pack(System.Threading.IOCompletionCallback iocb, object userData) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public unsafe static System.Threading.Overlapped Unpack(System.Threading.NativeOverlapped* nativeOverlappedPtr) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        [System.ObsoleteAttribute("This method is not safe.  Use UnsafePack (iocb, userData) instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("Use UnsafePack(iocb, userData) instead")]
         public unsafe System.Threading.NativeOverlapped* UnsafePack(System.Threading.IOCompletionCallback iocb) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public unsafe System.Threading.NativeOverlapped* UnsafePack(System.Threading.IOCompletionCallback iocb, object userData) { throw null; }
@@ -19045,7 +19427,7 @@ namespace System.Threading
         public Thread(System.Threading.ParameterizedThreadStart start, int maxStackSize) { }
         public Thread(System.Threading.ThreadStart start) { }
         public Thread(System.Threading.ThreadStart start, int maxStackSize) { }
-        [System.ObsoleteAttribute("The ApartmentState property has been deprecated.  Use GetApartmentState, SetApartmentState or TrySetApartmentState instead.", false)]
+        [System.ObsoleteAttribute("Deprecated in favor of GetApartmentState, SetApartmentState and TrySetApartmentState.")]
         public System.Threading.ApartmentState ApartmentState { get { throw null; } set { } }
         public static System.Runtime.Remoting.Contexts.Context CurrentContext { get { throw null; } }
         public System.Globalization.CultureInfo CurrentCulture { get { throw null; } set { } }
@@ -19066,6 +19448,7 @@ namespace System.Threading
         public static System.LocalDataStoreSlot AllocateNamedDataSlot(string name) { throw null; }
         public static void BeginCriticalRegion() { }
         public static void BeginThreadAffinity() { }
+        public void DisableComObjectEagerCleanup() { }
         public static void EndCriticalRegion() { }
         public static void EndThreadAffinity() { }
         ~Thread() { }
@@ -19139,6 +19522,7 @@ namespace System.Threading
     public sealed partial class ThreadAbortException : System.SystemException
     {
         internal ThreadAbortException() { }
+        public object ExceptionState { get { throw null; } }
     }
     public partial class ThreadInterruptedException : System.SystemException
     {

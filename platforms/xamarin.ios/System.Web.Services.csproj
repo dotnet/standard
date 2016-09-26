@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="mscorlib.csproj" />
     <ProjectReference Include="system.csproj" />
+    <ProjectReference Include="system.xml.csproj" />
     <Compile Include="system.web.services.cs" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
