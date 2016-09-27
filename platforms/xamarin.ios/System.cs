@@ -5,10 +5,9 @@ namespace Microsoft.Win32.SafeHandles
         public SafeProcessHandle(System.IntPtr existingHandle, bool ownsHandle) : base (default(bool)) { }
         protected override bool ReleaseHandle() { throw null; }
     }
-    public sealed partial class SafeX509ChainHandle : System.Runtime.InteropServices.SafeHandle
+    public sealed partial class SafeX509ChainHandle : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid
     {
-        internal SafeX509ChainHandle() { }
-        public override bool IsInvalid { get { throw null; } }
+        internal SafeX509ChainHandle() : base (default(bool)) { }
         protected override bool ReleaseHandle() { throw null; }
     }
 }
@@ -456,6 +455,7 @@ namespace Mono.Security.Interface
         public Mono.Security.Interface.CipherSuiteCode CipherSuiteCode { get { throw null; } set { } }
         public Mono.Security.Interface.ExchangeAlgorithmType ExchangeAlgorithmType { get { throw null; } set { } }
         public Mono.Security.Interface.HashAlgorithmType HashAlgorithmType { get { throw null; } set { } }
+        public string PeerDomainName { get { throw null; } set { } }
         public Mono.Security.Interface.TlsProtocols ProtocolVersion { get { throw null; } set { } }
         public override string ToString() { throw null; }
     }
@@ -3285,7 +3285,7 @@ namespace System.ComponentModel
     }
     public partial class RunWorkerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        public RunWorkerCompletedEventArgs(object result, System.Exception error, bool cancelled) : base(null, false, null) { }
+        public RunWorkerCompletedEventArgs(object result, System.Exception error, bool cancelled) : base (default(System.Exception), default(bool), default(object)) { }
         public object Result { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
@@ -4644,20 +4644,100 @@ namespace System.Diagnostics
         public string ModuleName { get { throw null; } }
         public override string ToString() { throw null; }
     }
-    public partial class ProcessModuleCollection : System.Diagnostics.ProcessModuleCollectionBase
+    public partial class ProcessModuleCollection : System.Collections.ReadOnlyCollectionBase
     {
         protected ProcessModuleCollection() { }
         public ProcessModuleCollection(System.Diagnostics.ProcessModule[] processModules) { }
-        public new System.Diagnostics.ProcessModule this[int index] { get { throw null; } }
-        public new bool Contains(System.Diagnostics.ProcessModule module) { throw null; }
-        public new void CopyTo(System.Diagnostics.ProcessModule[] array, int index) { }
-        public new int IndexOf(System.Diagnostics.ProcessModule module) { throw null; }
-    }
-    public partial class ProcessModuleCollectionBase : System.Collections.Generic.List<System.Diagnostics.ProcessModule>
-    {
-        public ProcessModuleCollectionBase() { }
-        protected System.Diagnostics.ProcessModuleCollectionBase InnerList { get { throw null; } }
-        public new System.Collections.IEnumerator GetEnumerator() { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int Capacity { get { throw null; } set { } }
+        public System.Diagnostics.ProcessModule this[int index] { get { throw null; } }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void Add(System.Diagnostics.ProcessModule item) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void AddRange(System.Collections.Generic.IEnumerable<System.Diagnostics.ProcessModule> collection) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public System.Collections.ObjectModel.ReadOnlyCollection<System.Diagnostics.ProcessModule> AsReadOnly() { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int BinarySearch(System.Diagnostics.ProcessModule item) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int BinarySearch(System.Diagnostics.ProcessModule item, System.Collections.Generic.IComparer<System.Diagnostics.ProcessModule> comparer) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int BinarySearch(int index, int count, System.Diagnostics.ProcessModule item, System.Collections.Generic.IComparer<System.Diagnostics.ProcessModule> comparer) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void Clear() { }
+        public bool Contains(System.Diagnostics.ProcessModule module) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public System.Collections.Generic.List<TOutput> ConvertAll<TOutput>(System.Converter<System.Diagnostics.ProcessModule, TOutput> converter) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void CopyTo(System.Diagnostics.ProcessModule[] array) { }
+        public void CopyTo(System.Diagnostics.ProcessModule[] array, int index) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void CopyTo(int index, System.Diagnostics.ProcessModule[] array, int arrayIndex, int count) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public bool Exists(System.Predicate<System.Diagnostics.ProcessModule> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public System.Diagnostics.ProcessModule Find(System.Predicate<System.Diagnostics.ProcessModule> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public System.Collections.Generic.List<System.Diagnostics.ProcessModule> FindAll(System.Predicate<System.Diagnostics.ProcessModule> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int FindIndex(int startIndex, int count, System.Predicate<System.Diagnostics.ProcessModule> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int FindIndex(int startIndex, System.Predicate<System.Diagnostics.ProcessModule> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int FindIndex(System.Predicate<System.Diagnostics.ProcessModule> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public System.Diagnostics.ProcessModule FindLast(System.Predicate<System.Diagnostics.ProcessModule> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int FindLastIndex(int startIndex, int count, System.Predicate<System.Diagnostics.ProcessModule> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int FindLastIndex(int startIndex, System.Predicate<System.Diagnostics.ProcessModule> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int FindLastIndex(System.Predicate<System.Diagnostics.ProcessModule> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void ForEach(System.Action<System.Diagnostics.ProcessModule> action) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public System.Collections.Generic.List<System.Diagnostics.ProcessModule> GetRange(int index, int count) { throw null; }
+        public int IndexOf(System.Diagnostics.ProcessModule module) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int IndexOf(System.Diagnostics.ProcessModule item, int index) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int IndexOf(System.Diagnostics.ProcessModule item, int index, int count) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void Insert(int index, System.Diagnostics.ProcessModule item) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void InsertRange(int index, System.Collections.Generic.IEnumerable<System.Diagnostics.ProcessModule> collection) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int LastIndexOf(System.Diagnostics.ProcessModule item) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int LastIndexOf(System.Diagnostics.ProcessModule item, int index) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int LastIndexOf(System.Diagnostics.ProcessModule item, int index, int count) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public bool Remove(System.Diagnostics.ProcessModule item) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int RemoveAll(System.Predicate<System.Diagnostics.ProcessModule> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void RemoveAt(int index) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void RemoveRange(int index, int count) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void Reverse() { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void Reverse(int index, int count) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void Sort() { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void Sort(System.Collections.Generic.IComparer<System.Diagnostics.ProcessModule> comparer) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void Sort(System.Comparison<System.Diagnostics.ProcessModule> comparison) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void Sort(int index, int count, System.Collections.Generic.IComparer<System.Diagnostics.ProcessModule> comparer) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public System.Diagnostics.ProcessModule[] ToArray() { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void TrimExcess() { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public bool TrueForAll(System.Predicate<System.Diagnostics.ProcessModule> match) { throw null; }
     }
     public enum ProcessPriorityClass
     {
@@ -4757,24 +4837,97 @@ namespace System.Diagnostics
         public System.Diagnostics.ThreadWaitReason WaitReason { get { throw null; } }
         public void ResetIdealProcessor() { }
     }
-    public partial class ProcessThreadCollection : System.Diagnostics.ProcessThreadCollectionBase
+    public partial class ProcessThreadCollection : System.Collections.ReadOnlyCollectionBase
     {
         protected ProcessThreadCollection() { }
         public ProcessThreadCollection(System.Diagnostics.ProcessThread[] processThreads) { }
-        public new System.Diagnostics.ProcessThread this[int index] { get { throw null; } }
-        public new int Add(System.Diagnostics.ProcessThread thread) { throw null; }
-        public new bool Contains(System.Diagnostics.ProcessThread thread) { throw null; }
-        public new void CopyTo(System.Diagnostics.ProcessThread[] array, int index) { }
-        public new int IndexOf(System.Diagnostics.ProcessThread thread) { throw null; }
-        public new void Insert(int index, System.Diagnostics.ProcessThread thread) { }
-        public new void Remove(System.Diagnostics.ProcessThread thread) { }
-    }
-    public partial class ProcessThreadCollectionBase : System.Collections.Generic.List<System.Diagnostics.ProcessThread>
-    {
-        public ProcessThreadCollectionBase() { }
-        protected System.Diagnostics.ProcessThreadCollectionBase InnerList { get { throw null; } }
-        public new int Add(System.Diagnostics.ProcessThread thread) { throw null; }
-        public new System.Collections.IEnumerator GetEnumerator() { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int Capacity { get { throw null; } set { } }
+        public System.Diagnostics.ProcessThread this[int index] { get { throw null; } }
+        public int Add(System.Diagnostics.ProcessThread thread) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void AddRange(System.Collections.Generic.IEnumerable<System.Diagnostics.ProcessThread> collection) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public System.Collections.ObjectModel.ReadOnlyCollection<System.Diagnostics.ProcessThread> AsReadOnly() { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int BinarySearch(System.Diagnostics.ProcessThread item) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int BinarySearch(System.Diagnostics.ProcessThread item, System.Collections.Generic.IComparer<System.Diagnostics.ProcessThread> comparer) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int BinarySearch(int index, int count, System.Diagnostics.ProcessThread item, System.Collections.Generic.IComparer<System.Diagnostics.ProcessThread> comparer) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void Clear() { }
+        public bool Contains(System.Diagnostics.ProcessThread thread) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public System.Collections.Generic.List<TOutput> ConvertAll<TOutput>(System.Converter<System.Diagnostics.ProcessThread, TOutput> converter) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void CopyTo(System.Diagnostics.ProcessThread[] array) { }
+        public void CopyTo(System.Diagnostics.ProcessThread[] array, int index) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void CopyTo(int index, System.Diagnostics.ProcessThread[] array, int arrayIndex, int count) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public bool Exists(System.Predicate<System.Diagnostics.ProcessThread> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public System.Diagnostics.ProcessThread Find(System.Predicate<System.Diagnostics.ProcessThread> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public System.Collections.Generic.List<System.Diagnostics.ProcessThread> FindAll(System.Predicate<System.Diagnostics.ProcessThread> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int FindIndex(int startIndex, int count, System.Predicate<System.Diagnostics.ProcessThread> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int FindIndex(int startIndex, System.Predicate<System.Diagnostics.ProcessThread> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int FindIndex(System.Predicate<System.Diagnostics.ProcessThread> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public System.Diagnostics.ProcessThread FindLast(System.Predicate<System.Diagnostics.ProcessThread> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int FindLastIndex(int startIndex, int count, System.Predicate<System.Diagnostics.ProcessThread> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int FindLastIndex(int startIndex, System.Predicate<System.Diagnostics.ProcessThread> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int FindLastIndex(System.Predicate<System.Diagnostics.ProcessThread> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void ForEach(System.Action<System.Diagnostics.ProcessThread> action) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public System.Collections.Generic.List<System.Diagnostics.ProcessThread> GetRange(int index, int count) { throw null; }
+        public int IndexOf(System.Diagnostics.ProcessThread thread) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int IndexOf(System.Diagnostics.ProcessThread item, int index) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int IndexOf(System.Diagnostics.ProcessThread item, int index, int count) { throw null; }
+        public void Insert(int index, System.Diagnostics.ProcessThread thread) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void InsertRange(int index, System.Collections.Generic.IEnumerable<System.Diagnostics.ProcessThread> collection) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int LastIndexOf(System.Diagnostics.ProcessThread item) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int LastIndexOf(System.Diagnostics.ProcessThread item, int index) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int LastIndexOf(System.Diagnostics.ProcessThread item, int index, int count) { throw null; }
+        public void Remove(System.Diagnostics.ProcessThread thread) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public int RemoveAll(System.Predicate<System.Diagnostics.ProcessThread> match) { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void RemoveAt(int index) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void RemoveRange(int index, int count) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void Reverse() { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void Reverse(int index, int count) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void Sort() { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void Sort(System.Collections.Generic.IComparer<System.Diagnostics.ProcessThread> comparer) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void Sort(System.Comparison<System.Diagnostics.ProcessThread> comparison) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void Sort(int index, int count, System.Collections.Generic.IComparer<System.Diagnostics.ProcessThread> comparer) { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public System.Diagnostics.ProcessThread[] ToArray() { throw null; }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public void TrimExcess() { }
+        [System.ObsoleteAttribute("This API is no longer available", true)]
+        public bool TrueForAll(System.Predicate<System.Diagnostics.ProcessThread> match) { throw null; }
     }
     public enum ProcessWindowStyle
     {
@@ -5140,6 +5293,14 @@ namespace System.Diagnostics
         protected override void OnValueChanged() { }
     }
 }
+namespace System.Diagnostics.CodeAnalysis
+{
+    [System.AttributeUsageAttribute((System.AttributeTargets)(748), Inherited=false, AllowMultiple=false)]
+    public sealed partial class ExcludeFromCodeCoverageAttribute : System.Attribute
+    {
+        public ExcludeFromCodeCoverageAttribute() { }
+    }
+}
 namespace System.IO
 {
     public partial class ErrorEventArgs : System.EventArgs
@@ -5156,7 +5317,7 @@ namespace System.IO
         public string Name { get { throw null; } }
     }
     public delegate void FileSystemEventHandler(object sender, System.IO.FileSystemEventArgs e);
-    public partial class FileSystemWatcher : System.IDisposable
+    public partial class FileSystemWatcher : System.ComponentModel.Component, System.ComponentModel.ISupportInitialize, System.IDisposable
     {
         public FileSystemWatcher() { }
         public FileSystemWatcher(string path) { }
@@ -5167,13 +5328,17 @@ namespace System.IO
         public int InternalBufferSize { get { throw null; } set { } }
         public System.IO.NotifyFilters NotifyFilter { get { throw null; } set { } }
         public string Path { get { throw null; } set { } }
+        public override System.ComponentModel.ISite Site { get { throw null; } set { } }
+        public System.ComponentModel.ISynchronizeInvoke SynchronizingObject { get { throw null; } set { } }
         public event System.IO.FileSystemEventHandler Changed { add { } remove { } }
         public event System.IO.FileSystemEventHandler Created { add { } remove { } }
         public event System.IO.FileSystemEventHandler Deleted { add { } remove { } }
         public event System.IO.ErrorEventHandler Error { add { } remove { } }
         public event System.IO.RenamedEventHandler Renamed { add { } remove { } }
-        public virtual void Dispose() { }
-        protected virtual void Dispose(bool disposing) { }
+        public void BeginInit() { }
+        public virtual new void Dispose() { }
+        protected override void Dispose(bool disposing) { }
+        public void EndInit() { }
         protected void OnChanged(System.IO.FileSystemEventArgs e) { }
         protected void OnCreated(System.IO.FileSystemEventArgs e) { }
         protected void OnDeleted(System.IO.FileSystemEventArgs e) { }
@@ -5194,6 +5359,12 @@ namespace System.IO
         public InvalidDataException() { }
         public InvalidDataException(string message) { }
         public InvalidDataException(string message, System.Exception innerException) { }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    public partial class IODescriptionAttribute : System.ComponentModel.DescriptionAttribute
+    {
+        public IODescriptionAttribute(string description) { }
+        public override string Description { get { throw null; } }
     }
     [System.FlagsAttribute]
     public enum NotifyFilters
@@ -5249,8 +5420,8 @@ namespace System.IO.Compression
     {
         public DeflateStream(System.IO.Stream stream, System.IO.Compression.CompressionLevel compressionLevel) { }
         public DeflateStream(System.IO.Stream stream, System.IO.Compression.CompressionLevel compressionLevel, bool leaveOpen) { }
-        public DeflateStream(System.IO.Stream compressedStream, System.IO.Compression.CompressionMode mode) { }
-        public DeflateStream(System.IO.Stream compressedStream, System.IO.Compression.CompressionMode mode, bool leaveOpen) { }
+        public DeflateStream(System.IO.Stream stream, System.IO.Compression.CompressionMode mode) { }
+        public DeflateStream(System.IO.Stream stream, System.IO.Compression.CompressionMode mode, bool leaveOpen) { }
         public System.IO.Stream BaseStream { get { throw null; } }
         public override bool CanRead { get { throw null; } }
         public override bool CanSeek { get { throw null; } }
@@ -5263,10 +5434,10 @@ namespace System.IO.Compression
         public override int EndRead(System.IAsyncResult async_result) { throw null; }
         public override void EndWrite(System.IAsyncResult async_result) { }
         public override void Flush() { }
-        public override int Read(byte[] dest, int dest_offset, int count) { throw null; }
+        public override int Read(byte[] array, int offset, int count) { throw null; }
         public override long Seek(long offset, System.IO.SeekOrigin origin) { throw null; }
         public override void SetLength(long value) { }
-        public override void Write(byte[] src, int src_offset, int count) { }
+        public override void Write(byte[] array, int offset, int count) { }
     }
     public partial class GZipStream : System.IO.Stream
     {
@@ -5286,10 +5457,10 @@ namespace System.IO.Compression
         public override int EndRead(System.IAsyncResult async_result) { throw null; }
         public override void EndWrite(System.IAsyncResult async_result) { }
         public override void Flush() { }
-        public override int Read(byte[] dest, int dest_offset, int count) { throw null; }
+        public override int Read(byte[] array, int offset, int count) { throw null; }
         public override long Seek(long offset, System.IO.SeekOrigin origin) { throw null; }
         public override void SetLength(long value) { }
-        public override void Write(byte[] src, int src_offset, int count) { }
+        public override void Write(byte[] array, int offset, int count) { }
     }
 }
 namespace System.Net
@@ -5462,7 +5633,7 @@ namespace System.Net
     }
     public partial class DownloadDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal DownloadDataCompletedEventArgs() : base(null, false, null) { }
+        internal DownloadDataCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public byte[] Result { get { throw null; } }
     }
     public delegate void DownloadDataCompletedEventHandler(object sender, System.Net.DownloadDataCompletedEventArgs e);
@@ -5475,7 +5646,7 @@ namespace System.Net
     public delegate void DownloadProgressChangedEventHandler(object sender, System.Net.DownloadProgressChangedEventArgs e);
     public partial class DownloadStringCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal DownloadStringCompletedEventArgs() : base(null, false, null) { }
+        internal DownloadStringCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public string Result { get { throw null; } }
     }
     public delegate void DownloadStringCompletedEventHandler(object sender, System.Net.DownloadStringCompletedEventArgs e);
@@ -5622,7 +5793,7 @@ namespace System.Net
         public override void Close() { }
         public override System.IO.Stream GetResponseStream() { throw null; }
     }
-    [System.ObsoleteAttribute("Use WebRequest.DefaultProxy instead")]
+    [System.ObsoleteAttribute("This class has been deprecated. Please use WebRequest.DefaultWebProxy instead to access and set the global default proxy. Use 'null' instead of GetEmptyWebProxy. http://go.microsoft.com/fwlink/?linkid=14202")]
     public partial class GlobalProxySelection
     {
         public GlobalProxySelection() { }
@@ -5635,11 +5806,15 @@ namespace System.Net
         public HttpListener() { }
         public System.Net.AuthenticationSchemes AuthenticationSchemes { get { throw null; } set { } }
         public System.Net.AuthenticationSchemeSelector AuthenticationSchemeSelectorDelegate { get { throw null; } set { } }
+        public System.Security.Authentication.ExtendedProtection.ServiceNameCollection DefaultServiceNames { get { throw null; } }
+        public System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy ExtendedProtectionPolicy { get { throw null; } set { } }
+        public System.Net.HttpListener.ExtendedProtectionSelector ExtendedProtectionSelectorDelegate { get { throw null; } set { } }
         public bool IgnoreWriteExceptions { get { throw null; } set { } }
         public bool IsListening { get { throw null; } }
         public static bool IsSupported { get { throw null; } }
         public System.Net.HttpListenerPrefixCollection Prefixes { get { throw null; } }
         public string Realm { get { throw null; } set { } }
+        public System.Net.HttpListenerTimeoutManager TimeoutManager { get { throw null; } }
         public bool UnsafeConnectionNtlmAuthentication { get { throw null; } set { } }
         public void Abort() { }
         public System.IAsyncResult BeginGetContext(System.AsyncCallback callback, object state) { throw null; }
@@ -5650,6 +5825,7 @@ namespace System.Net
         public void Start() { }
         public void Stop() { }
         void System.IDisposable.Dispose() { }
+        public delegate System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy ExtendedProtectionSelector(System.Net.HttpListenerRequest request);
     }
     public partial class HttpListenerBasicIdentity : System.Security.Principal.GenericIdentity
     {
@@ -5665,6 +5841,7 @@ namespace System.Net
         public System.Threading.Tasks.Task<System.Net.WebSockets.HttpListenerWebSocketContext> AcceptWebSocketAsync(string subProtocol) { throw null; }
         public System.Threading.Tasks.Task<System.Net.WebSockets.HttpListenerWebSocketContext> AcceptWebSocketAsync(string subProtocol, int receiveBufferSize, System.TimeSpan keepAliveInterval) { throw null; }
         public System.Threading.Tasks.Task<System.Net.WebSockets.HttpListenerWebSocketContext> AcceptWebSocketAsync(string subProtocol, int receiveBufferSize, System.TimeSpan keepAliveInterval, System.ArraySegment<byte> internalBuffer) { throw null; }
+        public System.Threading.Tasks.Task<System.Net.WebSockets.HttpListenerWebSocketContext> AcceptWebSocketAsync(string subProtocol, System.TimeSpan keepAliveInterval) { throw null; }
     }
     public partial class HttpListenerException : System.ComponentModel.Win32Exception
     {
@@ -5755,6 +5932,12 @@ namespace System.Net
     public partial class HttpListenerTimeoutManager
     {
         public HttpListenerTimeoutManager() { }
+        public System.TimeSpan DrainEntityBody { get { throw null; } set { } }
+        public System.TimeSpan EntityBody { get { throw null; } set { } }
+        public System.TimeSpan HeaderWait { get { throw null; } set { } }
+        public System.TimeSpan IdleConnection { get { throw null; } set { } }
+        public long MinSendBytesPerSecond { get { throw null; } set { } }
+        public System.TimeSpan RequestQueue { get { throw null; } set { } }
     }
     public enum HttpRequestHeader
     {
@@ -5896,9 +6079,9 @@ namespace System.Net
         public HttpWebRequest(System.Uri uri) { }
         public string Accept { get { throw null; } set { } }
         public System.Uri Address { get { throw null; } }
-        public bool AllowAutoRedirect { get { throw null; } set { } }
+        public virtual bool AllowAutoRedirect { get { throw null; } set { } }
         public virtual bool AllowReadStreamBuffering { get { throw null; } set { } }
-        public bool AllowWriteStreamBuffering { get { throw null; } set { } }
+        public virtual bool AllowWriteStreamBuffering { get { throw null; } set { } }
         public System.Net.DecompressionMethods AutomaticDecompression { get { throw null; } set { } }
         public System.Security.Cryptography.X509Certificates.X509CertificateCollection ClientCertificates { get { throw null; } set { } }
         public string Connection { get { throw null; } set { } }
@@ -5954,6 +6137,7 @@ namespace System.Net
         public override System.Net.WebResponse EndGetResponse(System.IAsyncResult asyncResult) { throw null; }
         protected override void GetObjectData(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
         public override System.IO.Stream GetRequestStream() { throw null; }
+        public System.IO.Stream GetRequestStream(out System.Net.TransportContext context) { context = default(System.Net.TransportContext); throw null; }
         public override System.Net.WebResponse GetResponse() { throw null; }
         void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
     }
@@ -6104,13 +6288,13 @@ namespace System.Net
     }
     public partial class OpenReadCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal OpenReadCompletedEventArgs() : base(null, false, null) { }
+        internal OpenReadCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public System.IO.Stream Result { get { throw null; } }
     }
     public delegate void OpenReadCompletedEventHandler(object sender, System.Net.OpenReadCompletedEventArgs e);
     public partial class OpenWriteCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal OpenWriteCompletedEventArgs() : base(null, false, null) { }
+        internal OpenWriteCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public System.IO.Stream Result { get { throw null; } }
     }
     public delegate void OpenWriteCompletedEventHandler(object sender, System.Net.OpenWriteCompletedEventArgs e);
@@ -6164,9 +6348,11 @@ namespace System.Net
         public static int DefaultConnectionLimit { get { throw null; } set { } }
         public static int DnsRefreshTimeout { get { throw null; } set { } }
         public static bool EnableDnsRoundRobin { get { throw null; } set { } }
+        public static System.Net.Security.EncryptionPolicy EncryptionPolicy { get { throw null; } }
         public static bool Expect100Continue { get { throw null; } set { } }
         public static int MaxServicePointIdleTime { get { throw null; } set { } }
         public static int MaxServicePoints { get { throw null; } set { } }
+        public static bool ReusePort { get { throw null; } set { } }
         public static System.Net.SecurityProtocolType SecurityProtocol { get { throw null; } set { } }
         public static System.Net.Security.RemoteCertificateValidationCallback ServerCertificateValidationCallback { get { throw null; } set { } }
         [System.ObsoleteAttribute("This API is no longer supported.", true)]
@@ -6230,13 +6416,13 @@ namespace System.Net
     }
     public partial class UploadDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal UploadDataCompletedEventArgs() : base(null, false, null) { }
+        internal UploadDataCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public byte[] Result { get { throw null; } }
     }
     public delegate void UploadDataCompletedEventHandler(object sender, System.Net.UploadDataCompletedEventArgs e);
     public partial class UploadFileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal UploadFileCompletedEventArgs() : base(null, false, null) { }
+        internal UploadFileCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public byte[] Result { get { throw null; } }
     }
     public delegate void UploadFileCompletedEventHandler(object sender, System.Net.UploadFileCompletedEventArgs e);
@@ -6251,13 +6437,13 @@ namespace System.Net
     public delegate void UploadProgressChangedEventHandler(object sender, System.Net.UploadProgressChangedEventArgs e);
     public partial class UploadStringCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal UploadStringCompletedEventArgs() : base(null, false, null) { }
+        internal UploadStringCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public string Result { get { throw null; } }
     }
     public delegate void UploadStringCompletedEventHandler(object sender, System.Net.UploadStringCompletedEventArgs e);
     public partial class UploadValuesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal UploadValuesCompletedEventArgs() : base(null, false, null) { }
+        internal UploadValuesCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public byte[] Result { get { throw null; } }
     }
     public delegate void UploadValuesCompletedEventHandler(object sender, System.Net.UploadValuesCompletedEventArgs e);
@@ -6496,22 +6682,23 @@ namespace System.Net
     {
         public WebProxy() { }
         protected WebProxy(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
-        public WebProxy(string address) { }
-        public WebProxy(string address, bool bypassOnLocal) { }
-        public WebProxy(string address, bool bypassOnLocal, string[] bypassList) { }
-        public WebProxy(string address, bool bypassOnLocal, string[] bypassList, System.Net.ICredentials credentials) { }
-        public WebProxy(string host, int port) { }
-        public WebProxy(System.Uri address) { }
-        public WebProxy(System.Uri address, bool bypassOnLocal) { }
-        public WebProxy(System.Uri address, bool bypassOnLocal, string[] bypassList) { }
-        public WebProxy(System.Uri address, bool bypassOnLocal, string[] bypassList, System.Net.ICredentials credentials) { }
+        public WebProxy(string Address) { }
+        public WebProxy(string Address, bool BypassOnLocal) { }
+        public WebProxy(string Address, bool BypassOnLocal, string[] BypassList) { }
+        public WebProxy(string Address, bool BypassOnLocal, string[] BypassList, System.Net.ICredentials Credentials) { }
+        public WebProxy(string Host, int Port) { }
+        public WebProxy(System.Uri Address) { }
+        public WebProxy(System.Uri Address, bool BypassOnLocal) { }
+        public WebProxy(System.Uri Address, bool BypassOnLocal, string[] BypassList) { }
+        public WebProxy(System.Uri Address, bool BypassOnLocal, string[] BypassList, System.Net.ICredentials Credentials) { }
         public System.Uri Address { get { throw null; } set { } }
         public System.Collections.ArrayList BypassArrayList { get { throw null; } }
         public string[] BypassList { get { throw null; } set { } }
         public bool BypassProxyOnLocal { get { throw null; } set { } }
         public System.Net.ICredentials Credentials { get { throw null; } set { } }
         public bool UseDefaultCredentials { get { throw null; } set { } }
-        [System.ObsoleteAttribute("This method has been deprecated", false)]
+        public static System.Net.IWebProxy CreateDefaultProxy() { throw null; }
+        [System.ObsoleteAttribute("This method has been deprecated. Please use the proxy selected for you by default. http://go.microsoft.com/fwlink/?linkid=14202")]
         public static System.Net.WebProxy GetDefaultProxy() { throw null; }
         protected virtual void GetObjectData(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
         public System.Uri GetProxy(System.Uri destination) { throw null; }
@@ -6527,6 +6714,9 @@ namespace System.Net
         public virtual string ConnectionGroupName { get { throw null; } set { } }
         public virtual long ContentLength { get { throw null; } set { } }
         public virtual string ContentType { get { throw null; } set { } }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
+        public virtual System.Net.IWebRequestCreate CreatorInstance { get { throw null; } }
         public virtual System.Net.ICredentials Credentials { get { throw null; } set { } }
         public static System.Net.Cache.RequestCachePolicy DefaultCachePolicy { get { throw null; } set { } }
         public static System.Net.IWebProxy DefaultWebProxy { get { throw null; } set { } }
@@ -6554,6 +6744,9 @@ namespace System.Net
         public virtual System.Net.WebResponse GetResponse() { throw null; }
         public virtual System.Threading.Tasks.Task<System.Net.WebResponse> GetResponseAsync() { throw null; }
         public static System.Net.IWebProxy GetSystemWebProxy() { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
+        public static void RegisterPortableWebRequestCreator(System.Net.IWebRequestCreate creator) { }
         public static bool RegisterPrefix(string prefix, System.Net.IWebRequestCreate creator) { throw null; }
         void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
     }
@@ -6816,6 +7009,7 @@ namespace System.Net.Mail
         public System.Net.Mail.MailAddressCollection Bcc { get { throw null; } }
         public string Body { get { throw null; } set { } }
         public System.Text.Encoding BodyEncoding { get { throw null; } set { } }
+        public System.Net.Mime.TransferEncoding BodyTransferEncoding { get { throw null; } set { } }
         public System.Net.Mail.MailAddressCollection CC { get { throw null; } }
         public System.Net.Mail.DeliveryNotificationOptions DeliveryNotificationOptions { get { throw null; } set { } }
         public System.Net.Mail.MailAddress From { get { throw null; } set { } }
@@ -6854,6 +7048,7 @@ namespace System.Net.Mail
         public SmtpClient(string host, int port) { }
         public System.Security.Cryptography.X509Certificates.X509CertificateCollection ClientCertificates { get { throw null; } }
         public System.Net.ICredentialsByHost Credentials { get { throw null; } set { } }
+        public System.Net.Mail.SmtpDeliveryFormat DeliveryFormat { get { throw null; } set { } }
         public System.Net.Mail.SmtpDeliveryMethod DeliveryMethod { get { throw null; } set { } }
         public bool EnableSsl { get { throw null; } set { } }
         public string Host { get { throw null; } set { } }
@@ -7485,7 +7680,7 @@ namespace System.Net.NetworkInformation
     }
     public partial class PingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal PingCompletedEventArgs() : base(null, false, null) { }
+        internal PingCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public System.Net.NetworkInformation.PingReply Reply { get { throw null; } }
     }
     public delegate void PingCompletedEventHandler(object sender, System.Net.NetworkInformation.PingCompletedEventArgs e);
@@ -7663,6 +7858,8 @@ namespace System.Net.Security
         public virtual System.Security.Principal.IIdentity RemoteIdentity { get { throw null; } }
         public override int WriteTimeout { get { throw null; } set { } }
         public virtual void AuthenticateAsClient() { }
+        public virtual void AuthenticateAsClient(System.Net.NetworkCredential credential, System.Security.Authentication.ExtendedProtection.ChannelBinding binding, string targetName) { }
+        public virtual void AuthenticateAsClient(System.Net.NetworkCredential credential, System.Security.Authentication.ExtendedProtection.ChannelBinding binding, string targetName, System.Net.Security.ProtectionLevel requiredProtectionLevel, System.Security.Principal.TokenImpersonationLevel allowedImpersonationLevel) { }
         public virtual void AuthenticateAsClient(System.Net.NetworkCredential credential, string targetName) { }
         public virtual void AuthenticateAsClient(System.Net.NetworkCredential credential, string targetName, System.Net.Security.ProtectionLevel requiredProtectionLevel, System.Security.Principal.TokenImpersonationLevel allowedImpersonationLevel) { }
         public virtual System.Threading.Tasks.Task AuthenticateAsClientAsync() { throw null; }
@@ -7672,15 +7869,21 @@ namespace System.Net.Security
         public virtual System.Threading.Tasks.Task AuthenticateAsClientAsync(System.Net.NetworkCredential credential, string targetName, System.Net.Security.ProtectionLevel requiredProtectionLevel, System.Security.Principal.TokenImpersonationLevel allowedImpersonationLevel) { throw null; }
         public virtual void AuthenticateAsServer() { }
         public virtual void AuthenticateAsServer(System.Net.NetworkCredential credential, System.Net.Security.ProtectionLevel requiredProtectionLevel, System.Security.Principal.TokenImpersonationLevel requiredImpersonationLevel) { }
+        public virtual void AuthenticateAsServer(System.Net.NetworkCredential credential, System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy policy, System.Net.Security.ProtectionLevel requiredProtectionLevel, System.Security.Principal.TokenImpersonationLevel requiredImpersonationLevel) { }
+        public virtual void AuthenticateAsServer(System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy policy) { }
         public virtual System.Threading.Tasks.Task AuthenticateAsServerAsync() { throw null; }
         public virtual System.Threading.Tasks.Task AuthenticateAsServerAsync(System.Net.NetworkCredential credential, System.Net.Security.ProtectionLevel requiredProtectionLevel, System.Security.Principal.TokenImpersonationLevel requiredImpersonationLevel) { throw null; }
         public virtual System.Threading.Tasks.Task AuthenticateAsServerAsync(System.Net.NetworkCredential credential, System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy policy, System.Net.Security.ProtectionLevel requiredProtectionLevel, System.Security.Principal.TokenImpersonationLevel requiredImpersonationLevel) { throw null; }
         public virtual System.Threading.Tasks.Task AuthenticateAsServerAsync(System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy policy) { throw null; }
         public virtual System.IAsyncResult BeginAuthenticateAsClient(System.AsyncCallback asyncCallback, object asyncState) { throw null; }
+        public virtual System.IAsyncResult BeginAuthenticateAsClient(System.Net.NetworkCredential credential, System.Security.Authentication.ExtendedProtection.ChannelBinding binding, string targetName, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
+        public virtual System.IAsyncResult BeginAuthenticateAsClient(System.Net.NetworkCredential credential, System.Security.Authentication.ExtendedProtection.ChannelBinding binding, string targetName, System.Net.Security.ProtectionLevel requiredProtectionLevel, System.Security.Principal.TokenImpersonationLevel allowedImpersonationLevel, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
         public virtual System.IAsyncResult BeginAuthenticateAsClient(System.Net.NetworkCredential credential, string targetName, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
         public virtual System.IAsyncResult BeginAuthenticateAsClient(System.Net.NetworkCredential credential, string targetName, System.Net.Security.ProtectionLevel requiredProtectionLevel, System.Security.Principal.TokenImpersonationLevel allowedImpersonationLevel, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
         public virtual System.IAsyncResult BeginAuthenticateAsServer(System.AsyncCallback asyncCallback, object asyncState) { throw null; }
         public virtual System.IAsyncResult BeginAuthenticateAsServer(System.Net.NetworkCredential credential, System.Net.Security.ProtectionLevel requiredProtectionLevel, System.Security.Principal.TokenImpersonationLevel requiredImpersonationLevel, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
+        public virtual System.IAsyncResult BeginAuthenticateAsServer(System.Net.NetworkCredential credential, System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy policy, System.Net.Security.ProtectionLevel requiredProtectionLevel, System.Security.Principal.TokenImpersonationLevel requiredImpersonationLevel, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
+        public virtual System.IAsyncResult BeginAuthenticateAsServer(System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy policy, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
         public override System.IAsyncResult BeginRead(byte[] buffer, int offset, int count, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
         public override System.IAsyncResult BeginWrite(byte[] buffer, int offset, int count, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
         protected override void Dispose(bool disposing) { }
@@ -7996,6 +8199,7 @@ namespace System.Net.Sockets
     public partial class Socket : System.IDisposable
     {
         public Socket(System.Net.Sockets.AddressFamily addressFamily, System.Net.Sockets.SocketType socketType, System.Net.Sockets.ProtocolType protocolType) { }
+        public Socket(System.Net.Sockets.SocketInformation socketInformation) { }
         public Socket(System.Net.Sockets.SocketType socketType, System.Net.Sockets.ProtocolType protocolType) { }
         public System.Net.Sockets.AddressFamily AddressFamily { get { throw null; } }
         public int Available { get { throw null; } }
@@ -8032,19 +8236,18 @@ namespace System.Net.Sockets
         public System.IAsyncResult BeginAccept(int receiveSize, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginAccept(System.Net.Sockets.Socket acceptSocket, int receiveSize, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginConnect(System.Net.EndPoint end_point, System.AsyncCallback callback, object state) { throw null; }
-        public System.IAsyncResult BeginConnect(System.Net.IPAddress address, int port, System.AsyncCallback callback, object state) { throw null; }
+        public System.IAsyncResult BeginConnect(System.Net.IPAddress address, int port, System.AsyncCallback requestCallback, object state) { throw null; }
         public System.IAsyncResult BeginConnect(System.Net.IPAddress[] addresses, int port, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginConnect(string host, int port, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginDisconnect(bool reuseSocket, System.AsyncCallback callback, object state) { throw null; }
-        public System.IAsyncResult BeginReceive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socket_flags, System.AsyncCallback callback, object state) { throw null; }
-        public System.IAsyncResult BeginReceive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags flags, out System.Net.Sockets.SocketError error, System.AsyncCallback callback, object state) { error = default(System.Net.Sockets.SocketError); throw null; }
-        [System.CLSCompliantAttribute(false)]
+        public System.IAsyncResult BeginReceive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, System.AsyncCallback callback, object state) { throw null; }
+        public System.IAsyncResult BeginReceive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode, System.AsyncCallback callback, object state) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
         public System.IAsyncResult BeginReceive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags, System.AsyncCallback callback, object state) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public System.IAsyncResult BeginReceive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode, System.AsyncCallback callback, object state) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
         public System.IAsyncResult BeginReceiveFrom(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socket_flags, ref System.Net.EndPoint remote_end, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginReceiveMessageFrom(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, ref System.Net.EndPoint remoteEP, System.AsyncCallback callback, object state) { throw null; }
-        public System.IAsyncResult BeginSend(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socket_flags, System.AsyncCallback callback, object state) { throw null; }
+        public System.IAsyncResult BeginSend(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginSend(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode, System.AsyncCallback callback, object state) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
         public System.IAsyncResult BeginSend(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags, System.AsyncCallback callback, object state) { throw null; }
         [System.CLSCompliantAttribute(false)]
@@ -8052,7 +8255,7 @@ namespace System.Net.Sockets
         public System.IAsyncResult BeginSendFile(string fileName, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginSendFile(string fileName, byte[] preBuffer, byte[] postBuffer, System.Net.Sockets.TransmitFileOptions flags, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginSendTo(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socket_flags, System.Net.EndPoint remote_end, System.AsyncCallback callback, object state) { throw null; }
-        public void Bind(System.Net.EndPoint local_end) { }
+        public void Bind(System.Net.EndPoint localEP) { }
         public static void CancelConnectAsync(System.Net.Sockets.SocketAsyncEventArgs e) { }
         public void Close() { }
         public void Close(int timeout) { }
@@ -8066,51 +8269,51 @@ namespace System.Net.Sockets
         public bool DisconnectAsync(System.Net.Sockets.SocketAsyncEventArgs e) { throw null; }
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
+        public System.Net.Sockets.SocketInformation DuplicateAndClose(int targetProcessId) { throw null; }
         public System.Net.Sockets.Socket EndAccept(out byte[] buffer, System.IAsyncResult asyncResult) { buffer = default(byte[]); throw null; }
         public System.Net.Sockets.Socket EndAccept(out byte[] buffer, out int bytesTransferred, System.IAsyncResult asyncResult) { buffer = default(byte[]); bytesTransferred = default(int); throw null; }
         public System.Net.Sockets.Socket EndAccept(System.IAsyncResult result) { throw null; }
         public void EndConnect(System.IAsyncResult result) { }
         public void EndDisconnect(System.IAsyncResult asyncResult) { }
-        public int EndReceive(System.IAsyncResult result) { throw null; }
+        public int EndReceive(System.IAsyncResult asyncResult) { throw null; }
         public int EndReceive(System.IAsyncResult asyncResult, out System.Net.Sockets.SocketError errorCode) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
         public int EndReceiveFrom(System.IAsyncResult result, ref System.Net.EndPoint end_point) { throw null; }
         public int EndReceiveMessageFrom(System.IAsyncResult asyncResult, ref System.Net.Sockets.SocketFlags socketFlags, ref System.Net.EndPoint endPoint, out System.Net.Sockets.IPPacketInformation ipPacketInformation) { ipPacketInformation = default(System.Net.Sockets.IPPacketInformation); throw null; }
-        public int EndSend(System.IAsyncResult result) { throw null; }
+        public int EndSend(System.IAsyncResult asyncResult) { throw null; }
         public int EndSend(System.IAsyncResult asyncResult, out System.Net.Sockets.SocketError errorCode) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
         public void EndSendFile(System.IAsyncResult asyncResult) { }
         public int EndSendTo(System.IAsyncResult result) { throw null; }
         ~Socket() { }
         public object GetSocketOption(System.Net.Sockets.SocketOptionLevel optionLevel, System.Net.Sockets.SocketOptionName optionName) { throw null; }
         public void GetSocketOption(System.Net.Sockets.SocketOptionLevel optionLevel, System.Net.Sockets.SocketOptionName optionName, byte[] optionValue) { }
-        public byte[] GetSocketOption(System.Net.Sockets.SocketOptionLevel optionLevel, System.Net.Sockets.SocketOptionName optionName, int length) { throw null; }
-        public int IOControl(int ioctl_code, byte[] in_value, byte[] out_value) { throw null; }
+        public byte[] GetSocketOption(System.Net.Sockets.SocketOptionLevel optionLevel, System.Net.Sockets.SocketOptionName optionName, int optionLength) { throw null; }
+        public int IOControl(int ioControlCode, byte[] optionInValue, byte[] optionOutValue) { throw null; }
         public int IOControl(System.Net.Sockets.IOControlCode ioControlCode, byte[] optionInValue, byte[] optionOutValue) { throw null; }
         public void Listen(int backlog) { }
-        public bool Poll(int time_us, System.Net.Sockets.SelectMode mode) { throw null; }
+        public bool Poll(int microSeconds, System.Net.Sockets.SelectMode mode) { throw null; }
         public int Receive(byte[] buffer) { throw null; }
-        public int Receive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags flags) { throw null; }
-        public int Receive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags flags, out System.Net.Sockets.SocketError error) { error = default(System.Net.Sockets.SocketError); throw null; }
-        public int Receive(byte[] buffer, int size, System.Net.Sockets.SocketFlags flags) { throw null; }
-        public int Receive(byte[] buffer, System.Net.Sockets.SocketFlags flags) { throw null; }
+        public int Receive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
+        public int Receive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
+        public int Receive(byte[] buffer, int size, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
+        public int Receive(byte[] buffer, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
         public int Receive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers) { throw null; }
-        [System.CLSCompliantAttribute(false)]
         public int Receive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public int Receive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
         public bool ReceiveAsync(System.Net.Sockets.SocketAsyncEventArgs e) { throw null; }
-        public int ReceiveFrom(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags flags, ref System.Net.EndPoint remoteEP) { throw null; }
-        public int ReceiveFrom(byte[] buffer, int size, System.Net.Sockets.SocketFlags flags, ref System.Net.EndPoint remoteEP) { throw null; }
+        public int ReceiveFrom(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, ref System.Net.EndPoint remoteEP) { throw null; }
+        public int ReceiveFrom(byte[] buffer, int size, System.Net.Sockets.SocketFlags socketFlags, ref System.Net.EndPoint remoteEP) { throw null; }
         public int ReceiveFrom(byte[] buffer, ref System.Net.EndPoint remoteEP) { throw null; }
-        public int ReceiveFrom(byte[] buffer, System.Net.Sockets.SocketFlags flags, ref System.Net.EndPoint remoteEP) { throw null; }
+        public int ReceiveFrom(byte[] buffer, System.Net.Sockets.SocketFlags socketFlags, ref System.Net.EndPoint remoteEP) { throw null; }
         public bool ReceiveFromAsync(System.Net.Sockets.SocketAsyncEventArgs e) { throw null; }
         public int ReceiveMessageFrom(byte[] buffer, int offset, int size, ref System.Net.Sockets.SocketFlags socketFlags, ref System.Net.EndPoint remoteEP, out System.Net.Sockets.IPPacketInformation ipPacketInformation) { ipPacketInformation = default(System.Net.Sockets.IPPacketInformation); throw null; }
         public bool ReceiveMessageFromAsync(System.Net.Sockets.SocketAsyncEventArgs e) { throw null; }
         public static void Select(System.Collections.IList checkRead, System.Collections.IList checkWrite, System.Collections.IList checkError, int microSeconds) { }
         public int Send(byte[] buffer) { throw null; }
-        public int Send(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags flags) { throw null; }
-        public int Send(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags flags, out System.Net.Sockets.SocketError error) { error = default(System.Net.Sockets.SocketError); throw null; }
-        public int Send(byte[] buffer, int size, System.Net.Sockets.SocketFlags flags) { throw null; }
-        public int Send(byte[] buffer, System.Net.Sockets.SocketFlags flags) { throw null; }
+        public int Send(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
+        public int Send(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
+        public int Send(byte[] buffer, int size, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
+        public int Send(byte[] buffer, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
         public int Send(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers) { throw null; }
         public int Send(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
         [System.CLSCompliantAttribute(false)]
@@ -8119,11 +8322,12 @@ namespace System.Net.Sockets
         public void SendFile(string fileName) { }
         public void SendFile(string fileName, byte[] preBuffer, byte[] postBuffer, System.Net.Sockets.TransmitFileOptions flags) { }
         public bool SendPacketsAsync(System.Net.Sockets.SocketAsyncEventArgs e) { throw null; }
-        public int SendTo(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags flags, System.Net.EndPoint remote_end) { throw null; }
-        public int SendTo(byte[] buffer, int size, System.Net.Sockets.SocketFlags flags, System.Net.EndPoint remote_end) { throw null; }
-        public int SendTo(byte[] buffer, System.Net.EndPoint remote_end) { throw null; }
-        public int SendTo(byte[] buffer, System.Net.Sockets.SocketFlags flags, System.Net.EndPoint remote_end) { throw null; }
+        public int SendTo(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, System.Net.EndPoint remoteEP) { throw null; }
+        public int SendTo(byte[] buffer, int size, System.Net.Sockets.SocketFlags socketFlags, System.Net.EndPoint remoteEP) { throw null; }
+        public int SendTo(byte[] buffer, System.Net.EndPoint remoteEP) { throw null; }
+        public int SendTo(byte[] buffer, System.Net.Sockets.SocketFlags socketFlags, System.Net.EndPoint remoteEP) { throw null; }
         public bool SendToAsync(System.Net.Sockets.SocketAsyncEventArgs e) { throw null; }
+        public void SetIPProtectionLevel(System.Net.Sockets.IPProtectionLevel level) { }
         public void SetSocketOption(System.Net.Sockets.SocketOptionLevel optionLevel, System.Net.Sockets.SocketOptionName optionName, bool optionValue) { }
         public void SetSocketOption(System.Net.Sockets.SocketOptionLevel optionLevel, System.Net.Sockets.SocketOptionName optionName, byte[] optionValue) { }
         public void SetSocketOption(System.Net.Sockets.SocketOptionLevel optionLevel, System.Net.Sockets.SocketOptionName optionName, int optionValue) { }
@@ -8146,6 +8350,7 @@ namespace System.Net.Sockets
         public System.Net.Sockets.IPPacketInformation ReceiveMessageFromPacketInfo { get { throw null; } }
         public System.Net.EndPoint RemoteEndPoint { get { throw null; } set { } }
         public System.Net.Sockets.SendPacketsElement[] SendPacketsElements { get { throw null; } set { } }
+        public System.Net.Sockets.TransmitFileOptions SendPacketsFlags { get { throw null; } set { } }
         public int SendPacketsSendSize { get { throw null; } set { } }
         public System.Net.Sockets.SocketError SocketError { get { throw null; } set { } }
         public System.Net.Sockets.SocketFlags SocketFlags { get { throw null; } set { } }
@@ -8377,8 +8582,10 @@ namespace System.Net.Sockets
         public System.Threading.Tasks.Task<System.Net.Sockets.Socket> AcceptSocketAsync() { throw null; }
         public System.Net.Sockets.TcpClient AcceptTcpClient() { throw null; }
         public System.Threading.Tasks.Task<System.Net.Sockets.TcpClient> AcceptTcpClientAsync() { throw null; }
+        public void AllowNatTraversal(bool allowed) { }
         public System.IAsyncResult BeginAcceptSocket(System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginAcceptTcpClient(System.AsyncCallback callback, object state) { throw null; }
+        public static System.Net.Sockets.TcpListener Create(int port) { throw null; }
         public System.Net.Sockets.Socket EndAcceptSocket(System.IAsyncResult asyncResult) { throw null; }
         public System.Net.Sockets.TcpClient EndAcceptTcpClient(System.IAsyncResult asyncResult) { throw null; }
         ~TcpListener() { }
@@ -8413,6 +8620,7 @@ namespace System.Net.Sockets
         public bool ExclusiveAddressUse { get { throw null; } set { } }
         public bool MulticastLoopback { get { throw null; } set { } }
         public short Ttl { get { throw null; } set { } }
+        public void AllowNatTraversal(bool allowed) { }
         public System.IAsyncResult BeginReceive(System.AsyncCallback requestCallback, object state) { throw null; }
         public System.IAsyncResult BeginSend(byte[] datagram, int bytes, System.AsyncCallback requestCallback, object state) { throw null; }
         public System.IAsyncResult BeginSend(byte[] datagram, int bytes, System.Net.IPEndPoint endPoint, System.AsyncCallback requestCallback, object state) { throw null; }
@@ -8752,13 +8960,13 @@ namespace System.Security.AccessControl
 {
     public sealed partial class SemaphoreAccessRule : System.Security.AccessControl.AccessRule
     {
-        public SemaphoreAccessRule(System.Security.Principal.IdentityReference identity, System.Security.AccessControl.SemaphoreRights semaphoreRights, System.Security.AccessControl.AccessControlType type) : base (default(System.Security.Principal.IdentityReference), default(int), default(bool), default(System.Security.AccessControl.InheritanceFlags), default(System.Security.AccessControl.PropagationFlags), default(System.Security.AccessControl.AccessControlType)) { }
-        public SemaphoreAccessRule(string identity, System.Security.AccessControl.SemaphoreRights semaphoreRights, System.Security.AccessControl.AccessControlType type) : base (default(System.Security.Principal.IdentityReference), default(int), default(bool), default(System.Security.AccessControl.InheritanceFlags), default(System.Security.AccessControl.PropagationFlags), default(System.Security.AccessControl.AccessControlType)) { }
+        public SemaphoreAccessRule(System.Security.Principal.IdentityReference identity, System.Security.AccessControl.SemaphoreRights eventRights, System.Security.AccessControl.AccessControlType type) : base (default(System.Security.Principal.IdentityReference), default(int), default(bool), default(System.Security.AccessControl.InheritanceFlags), default(System.Security.AccessControl.PropagationFlags), default(System.Security.AccessControl.AccessControlType)) { }
+        public SemaphoreAccessRule(string identity, System.Security.AccessControl.SemaphoreRights eventRights, System.Security.AccessControl.AccessControlType type) : base (default(System.Security.Principal.IdentityReference), default(int), default(bool), default(System.Security.AccessControl.InheritanceFlags), default(System.Security.AccessControl.PropagationFlags), default(System.Security.AccessControl.AccessControlType)) { }
         public System.Security.AccessControl.SemaphoreRights SemaphoreRights { get { throw null; } }
     }
     public sealed partial class SemaphoreAuditRule : System.Security.AccessControl.AuditRule
     {
-        public SemaphoreAuditRule(System.Security.Principal.IdentityReference identity, System.Security.AccessControl.SemaphoreRights semaphoreRights, System.Security.AccessControl.AuditFlags flags) : base (default(System.Security.Principal.IdentityReference), default(int), default(bool), default(System.Security.AccessControl.InheritanceFlags), default(System.Security.AccessControl.PropagationFlags), default(System.Security.AccessControl.AuditFlags)) { }
+        public SemaphoreAuditRule(System.Security.Principal.IdentityReference identity, System.Security.AccessControl.SemaphoreRights eventRights, System.Security.AccessControl.AuditFlags flags) : base (default(System.Security.Principal.IdentityReference), default(int), default(bool), default(System.Security.AccessControl.InheritanceFlags), default(System.Security.AccessControl.PropagationFlags), default(System.Security.AccessControl.AuditFlags)) { }
         public System.Security.AccessControl.SemaphoreRights SemaphoreRights { get { throw null; } }
     }
     [System.FlagsAttribute]
@@ -9077,6 +9285,7 @@ namespace System.Security.Cryptography.X509Certificates
         public X509Certificate2(byte[] rawData, string password) { }
         public X509Certificate2(byte[] rawData, string password, System.Security.Cryptography.X509Certificates.X509KeyStorageFlags keyStorageFlags) { }
         public X509Certificate2(System.IntPtr handle) { }
+        protected X509Certificate2(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public X509Certificate2(System.Security.Cryptography.X509Certificates.X509Certificate certificate) { }
         public X509Certificate2(string fileName) { }
         public X509Certificate2(string fileName, System.Security.SecureString password) { }
@@ -9337,7 +9546,7 @@ namespace System.Security.Cryptography.X509Certificates
         public X509KeyUsageExtension(System.Security.Cryptography.AsnEncodedData encodedKeyUsage, bool critical) { }
         public X509KeyUsageExtension(System.Security.Cryptography.X509Certificates.X509KeyUsageFlags keyUsages, bool critical) { }
         public System.Security.Cryptography.X509Certificates.X509KeyUsageFlags KeyUsages { get { throw null; } }
-        public override void CopyFrom(System.Security.Cryptography.AsnEncodedData encodedData) { }
+        public override void CopyFrom(System.Security.Cryptography.AsnEncodedData asnEncodedData) { }
     }
     [System.FlagsAttribute]
     public enum X509KeyUsageFlags
@@ -9404,7 +9613,7 @@ namespace System.Security.Cryptography.X509Certificates
         public X509SubjectKeyIdentifierExtension(System.Security.Cryptography.X509Certificates.PublicKey key, System.Security.Cryptography.X509Certificates.X509SubjectKeyIdentifierHashAlgorithm algorithm, bool critical) { }
         public X509SubjectKeyIdentifierExtension(string subjectKeyIdentifier, bool critical) { }
         public string SubjectKeyIdentifier { get { throw null; } }
-        public override void CopyFrom(System.Security.Cryptography.AsnEncodedData encodedData) { }
+        public override void CopyFrom(System.Security.Cryptography.AsnEncodedData asnEncodedData) { }
     }
     public enum X509SubjectKeyIdentifierHashAlgorithm
     {
@@ -9582,6 +9791,7 @@ namespace System.Text.RegularExpressions
         void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo si, System.Runtime.Serialization.StreamingContext context) { }
         public override string ToString() { throw null; }
         public static string Unescape(string str) { throw null; }
+        protected bool UseOptionC() { throw null; }
         protected bool UseOptionR() { throw null; }
         protected internal static void ValidateMatchTimeout(System.TimeSpan matchTimeout) { }
     }
@@ -9780,5 +9990,16 @@ namespace System.Windows.Input
         event System.EventHandler CanExecuteChanged;
         bool CanExecute(object parameter);
         void Execute(object parameter);
+    }
+}
+namespace System.Windows.Markup
+{
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1244), AllowMultiple=false, Inherited=true)]
+    public sealed partial class ValueSerializerAttribute : System.Attribute
+    {
+        public ValueSerializerAttribute(string valueSerializerTypeName) { }
+        public ValueSerializerAttribute(System.Type valueSerializerType) { }
+        public System.Type ValueSerializerType { get { throw null; } }
+        public string ValueSerializerTypeName { get { throw null; } }
     }
 }

@@ -2822,6 +2822,7 @@ namespace System.Xml.Serialization
         protected object ReadReferencingElement(string name, string ns, out string fixupReference) { fixupReference = default(string); throw null; }
         protected object ReadReferencingElement(out string fixupReference) { fixupReference = default(string); throw null; }
         protected System.Xml.Serialization.IXmlSerializable ReadSerializable(System.Xml.Serialization.IXmlSerializable serializable) { throw null; }
+        protected System.Xml.Serialization.IXmlSerializable ReadSerializable(System.Xml.Serialization.IXmlSerializable serializable, bool wrappedAny) { throw null; }
         protected string ReadString(string value) { throw null; }
         protected string ReadString(string value, bool trim) { throw null; }
         protected object ReadTypedNull(System.Xml.XmlQualifiedName type) { throw null; }
@@ -2975,6 +2976,7 @@ namespace System.Xml.Serialization
         public XmlSerializer(System.Type type, System.Type[] extraTypes) { }
         public XmlSerializer(System.Type type, System.Xml.Serialization.XmlAttributeOverrides overrides) { }
         public XmlSerializer(System.Type type, System.Xml.Serialization.XmlAttributeOverrides overrides, System.Type[] extraTypes, System.Xml.Serialization.XmlRootAttribute root, string defaultNamespace) { }
+        public XmlSerializer(System.Type type, System.Xml.Serialization.XmlAttributeOverrides overrides, System.Type[] extraTypes, System.Xml.Serialization.XmlRootAttribute root, string defaultNamespace, string location) { }
         public XmlSerializer(System.Type type, System.Xml.Serialization.XmlAttributeOverrides overrides, System.Type[] extraTypes, System.Xml.Serialization.XmlRootAttribute root, string defaultNamespace, string location, System.Security.Policy.Evidence evidence) { }
         public XmlSerializer(System.Type type, System.Xml.Serialization.XmlRootAttribute root) { }
         public XmlSerializer(System.Xml.Serialization.XmlTypeMapping xmlTypeMapping) { }
@@ -3025,6 +3027,7 @@ namespace System.Xml.Serialization
         public System.Xml.Serialization.XmlSerializer CreateSerializer(System.Type type, System.Type[] extraTypes) { throw null; }
         public System.Xml.Serialization.XmlSerializer CreateSerializer(System.Type type, System.Xml.Serialization.XmlAttributeOverrides overrides) { throw null; }
         public System.Xml.Serialization.XmlSerializer CreateSerializer(System.Type type, System.Xml.Serialization.XmlAttributeOverrides overrides, System.Type[] extraTypes, System.Xml.Serialization.XmlRootAttribute root, string defaultNamespace) { throw null; }
+        public System.Xml.Serialization.XmlSerializer CreateSerializer(System.Type type, System.Xml.Serialization.XmlAttributeOverrides overrides, System.Type[] extraTypes, System.Xml.Serialization.XmlRootAttribute root, string defaultNamespace, string location) { throw null; }
         public System.Xml.Serialization.XmlSerializer CreateSerializer(System.Type type, System.Xml.Serialization.XmlAttributeOverrides overrides, System.Type[] extraTypes, System.Xml.Serialization.XmlRootAttribute root, string defaultNamespace, string location, System.Security.Policy.Evidence evidence) { throw null; }
         public System.Xml.Serialization.XmlSerializer CreateSerializer(System.Type type, System.Xml.Serialization.XmlRootAttribute root) { throw null; }
         public System.Xml.Serialization.XmlSerializer CreateSerializer(System.Xml.Serialization.XmlTypeMapping xmlTypeMapping) { throw null; }
@@ -3351,8 +3354,10 @@ namespace System.Xml.Xsl
         public XslCompiledTransform() { }
         public XslCompiledTransform(bool enableDebug) { }
         public System.Xml.XmlWriterSettings OutputSettings { get { throw null; } }
+        public void Load(System.Reflection.MethodInfo executeMethod, byte[] queryData, System.Type[] earlyBoundTypes) { }
         public void Load(string stylesheetUri) { }
         public void Load(string stylesheetUri, System.Xml.Xsl.XsltSettings settings, System.Xml.XmlResolver stylesheetResolver) { }
+        public void Load(System.Type compiledStylesheet) { }
         public void Load(System.Xml.XmlReader stylesheet) { }
         public void Load(System.Xml.XmlReader stylesheet, System.Xml.Xsl.XsltSettings settings, System.Xml.XmlResolver stylesheetResolver) { }
         public void Load(System.Xml.XPath.IXPathNavigable stylesheet) { }
@@ -3371,6 +3376,7 @@ namespace System.Xml.Xsl
         public void Transform(System.Xml.XPath.IXPathNavigable input, System.Xml.Xsl.XsltArgumentList arguments, System.IO.Stream results) { }
         public void Transform(System.Xml.XPath.IXPathNavigable input, System.Xml.Xsl.XsltArgumentList arguments, System.IO.TextWriter results) { }
         public void Transform(System.Xml.XPath.IXPathNavigable input, System.Xml.Xsl.XsltArgumentList arguments, System.Xml.XmlWriter results) { }
+        public void Transform(System.Xml.XPath.IXPathNavigable input, System.Xml.Xsl.XsltArgumentList arguments, System.Xml.XmlWriter results, System.Xml.XmlResolver documentResolver) { }
     }
     public partial class XsltArgumentList
     {

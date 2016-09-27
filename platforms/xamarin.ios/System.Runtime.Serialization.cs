@@ -218,6 +218,7 @@ namespace System.Runtime.Serialization
     }
     public static partial class XmlSerializableServices
     {
+        public static void AddDefaultSchema(System.Xml.Schema.XmlSchemaSet schemas, System.Xml.XmlQualifiedName typeQName) { }
         public static System.Xml.XmlNode[] ReadNodes(System.Xml.XmlReader xmlReader) { throw null; }
         public static void WriteNodes(System.Xml.XmlWriter xmlWriter, System.Xml.XmlNode[] nodes) { }
     }
@@ -225,6 +226,22 @@ namespace System.Runtime.Serialization
     {
         public static string CreateFromDataContractSerializer(System.Type type, System.Reflection.MemberInfo[] pathToMember, System.Text.StringBuilder rootElementXpath, out System.Xml.XmlNamespaceManager namespaces) { namespaces = default(System.Xml.XmlNamespaceManager); throw null; }
         public static string CreateFromDataContractSerializer(System.Type type, System.Reflection.MemberInfo[] pathToMember, out System.Xml.XmlNamespaceManager namespaces) { namespaces = default(System.Xml.XmlNamespaceManager); throw null; }
+    }
+    public partial class XsdDataContractExporter
+    {
+        public XsdDataContractExporter() { }
+        public XsdDataContractExporter(System.Xml.Schema.XmlSchemaSet schemas) { }
+        public System.Runtime.Serialization.ExportOptions Options { get { throw null; } set { } }
+        public System.Xml.Schema.XmlSchemaSet Schemas { get { throw null; } }
+        public bool CanExport(System.Collections.Generic.ICollection<System.Reflection.Assembly> assemblies) { throw null; }
+        public bool CanExport(System.Collections.Generic.ICollection<System.Type> types) { throw null; }
+        public bool CanExport(System.Type type) { throw null; }
+        public void Export(System.Collections.Generic.ICollection<System.Reflection.Assembly> assemblies) { }
+        public void Export(System.Collections.Generic.ICollection<System.Type> types) { }
+        public void Export(System.Type type) { }
+        public System.Xml.XmlQualifiedName GetRootElementName(System.Type type) { throw null; }
+        public System.Xml.Schema.XmlSchemaType GetSchemaType(System.Type type) { throw null; }
+        public System.Xml.XmlQualifiedName GetSchemaTypeName(System.Type type) { throw null; }
     }
 }
 namespace System.Runtime.Serialization.Json
