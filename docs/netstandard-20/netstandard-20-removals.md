@@ -10,9 +10,9 @@ However, We plan on re-exposing these APIs in a later version of .NET Standard.
 * `M:System.AppContext.GetData(System.String)`
 * `M:System.Diagnostics.Tracing.EventSource.add_EventCommandExecuted(System.EventHandler{System.Diagnostics.Tracing.EventCommandEventArgs})`
 * `M:System.Diagnostics.Tracing.EventSource.remove_EventCommandExecuted(System.EventHandler{System.Diagnostics.Tracing.EventCommandEventArgs})`
-* `M:System.Linq.Enumerable.Append``1(System.Collections.Generic.IEnumerable{``0},``0)`
-* `M:System.Linq.Enumerable.Prepend``1(System.Collections.Generic.IEnumerable{``0},``0)`
-* `M:System.Linq.Expressions.Expression`1.Compile(System.Boolean)`
+* <code>M:System.Linq.Enumerable.Append\`1(System.Collections.Generic.IEnumerable{\`0},\`0)</code>
+* <code>M:System.Linq.Enumerable.Prepend\`1(System.Collections.Generic.IEnumerable{\`0},\`0)</code>
+* <code>M:System.Linq.Expressions.Expression\`1.Compile(System.Boolean)</code>
 * `M:System.Linq.Expressions.LambdaExpression.Compile(System.Boolean)`
 * `M:System.Runtime.InteropServices.Marshal.PtrToStringUTF8(System.IntPtr)`
 * `M:System.Runtime.InteropServices.Marshal.PtrToStringUTF8(System.IntPtr,System.Int32)`
