@@ -70,7 +70,7 @@ The scenarios above result in these requirements:
 * We’ll not necessarily bring all the types that .NET Framework has, but that
   **we’ll bring types in their entirety without subsetting members**.
 * Focus on APIs that are available everywhere, but
-  *allow for platform specific extensions**
+  **allow for platform specific extensions**.
 
 ## Assembly Unification
 
