@@ -5061,8 +5061,6 @@ namespace System.Diagnostics
         public StackTrace(System.Exception e, int skipFrames, bool fNeedFileInfo) { }
         public StackTrace(int skipFrames) { }
         public StackTrace(int skipFrames, bool fNeedFileInfo) { }
-        [System.ObsoleteAttribute("This constructor has been deprecated.  Please use a constructor that does not require a Thread parameter.  http://go.microsoft.com/fwlink/?linkid=14202")]
-        public StackTrace(System.Threading.Thread targetThread, bool needFileInfo) { }
         public virtual int FrameCount { get { throw null; } }
         public virtual System.Diagnostics.StackFrame GetFrame(int index) { throw null; }
         public virtual System.Diagnostics.StackFrame[] GetFrames() { throw null; }
