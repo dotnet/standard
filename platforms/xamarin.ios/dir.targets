@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile Condition="'$(UseSilverlightKey)' == 'true'">..\silverlight.pub</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile Condition="'$(UseWinFxKey)' == 'true'">..\winfx.pub</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory)\.., dir.targets))\dir.targets" />
+</Project>
