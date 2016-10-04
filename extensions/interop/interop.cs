@@ -98,6 +98,18 @@ namespace System.Runtime.DesignerServices
 }
 namespace System.Runtime.InteropServices
 {
+    [System.FlagsAttribute]
+    public enum AssemblyRegistrationFlags
+    {
+        None = 0,
+        SetCodeBase = 1,
+    }             
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1029), Inherited=false)]
+    public sealed partial class AutomationProxyAttribute : System.Attribute
+    {
+        public AutomationProxyAttribute(bool val) { }
+        public bool Value { get { throw null; } }
+    }             
     [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.BIND_OPTS instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct BIND_OPTS
@@ -132,10 +144,35 @@ namespace System.Runtime.InteropServices
         CC_STDCALL = 4,
         CC_SYSCALL = 6,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), Inherited=false)]
-    public sealed partial class ComImportAttribute : System.Attribute
+    [System.AttributeUsageAttribute((System.AttributeTargets)(10624), Inherited=false)]
+    public sealed partial class ComAliasNameAttribute : System.Attribute
     {
-        public ComImportAttribute() { }
+        public ComAliasNameAttribute(string alias) { }
+        public string Value { get { throw null; } }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
+    public sealed partial class ComCompatibleVersionAttribute : System.Attribute
+    {
+        public ComCompatibleVersionAttribute(int major, int minor, int build, int revision) { }
+        public int BuildNumber { get { throw null; } }
+        public int MajorVersion { get { throw null; } }
+        public int MinorVersion { get { throw null; } }
+        public int RevisionNumber { get { throw null; } }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(32767), Inherited=false)]
+    public sealed partial class ComConversionLossAttribute : System.Attribute
+    {
+        public ComConversionLossAttribute() { }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
+    public sealed partial class ComRegisterFunctionAttribute : System.Attribute
+    {
+        public ComRegisterFunctionAttribute() { }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
+    public sealed partial class ComUnregisterFunctionAttribute : System.Attribute
+    {
+        public ComUnregisterFunctionAttribute() { }
     }
     [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.CONNECTDATA instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -153,11 +190,6 @@ namespace System.Runtime.InteropServices
         DESCKIND_NONE = 0,
         DESCKIND_TYPECOMP = 3,
         DESCKIND_VARDESC = 2,
-    }
-    public sealed partial class DispatchWrapper
-    {
-        public DispatchWrapper(object obj) { }
-        public object WrappedObject { get { throw null; } }
     }
     [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.DISPPARAMS instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -183,13 +215,6 @@ namespace System.Runtime.InteropServices
             public System.Runtime.InteropServices.PARAMDESC paramdesc;
         }
     }
-    public sealed partial class ErrorWrapper
-    {
-        public ErrorWrapper(System.Exception e) { }
-        public ErrorWrapper(int errorCode) { }
-        public ErrorWrapper(object errorCode) { }
-        public int ErrorCode { get { throw null; } }
-    }
     [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.EXCEPINFO instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct EXCEPINFO
@@ -203,6 +228,17 @@ namespace System.Runtime.InteropServices
         public short wCode;
         public short wReserved;
     }
+    public enum ExporterEventKind
+    {
+        ERROR_REFTOINVALIDASSEMBLY = 2,
+        NOTIF_CONVERTWARNING = 1,
+        NOTIF_TYPECONVERTED = 0,
+    }
+    public sealed partial class ExtensibleClassFactory
+    {
+        internal ExtensibleClassFactory() { }
+        public static void RegisterObjectCreationCallback(System.Runtime.InteropServices.ObjectCreationDelegate callback) { }
+    }      
     [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.FILETIME instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct FILETIME
@@ -253,13 +289,22 @@ namespace System.Runtime.InteropServices
         FUNC_PUREVIRTUAL = 1,
         FUNC_STATIC = 3,
         FUNC_VIRTUAL = 0,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
-    public sealed partial class ImportedFromTypeLibAttribute : System.Attribute
+    }    
+    [System.AttributeUsageAttribute((System.AttributeTargets)(5), Inherited=false)]
+    [System.ObsoleteAttribute("This attribute is deprecated and will be removed in a future version.", false)]
+    public sealed partial class IDispatchImplAttribute : System.Attribute
     {
-        public ImportedFromTypeLibAttribute(string tlbFile) { }
-        public string Value { get { throw null; } }
+        public IDispatchImplAttribute(short implType) { }
+        public IDispatchImplAttribute(System.Runtime.InteropServices.IDispatchImplType implType) { }
+        public System.Runtime.InteropServices.IDispatchImplType Value { get { throw null; } }
     }
+    [System.ObsoleteAttribute("The IDispatchImplAttribute is deprecated.", false)]
+    public enum IDispatchImplType
+    {
+        CompatibleImpl = 2,
+        InternalImpl = 1,
+        SystemDefinedImpl = 0,
+    }      
     [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.IDLDESC instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct IDLDESC
@@ -286,6 +331,12 @@ namespace System.Runtime.InteropServices
         IMPLTYPEFLAG_FRESTRICTED = 4,
         IMPLTYPEFLAG_FSOURCE = 2,
     }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
+    public sealed partial class ImportedFromTypeLibAttribute : System.Attribute
+    {
+        public ImportedFromTypeLibAttribute(string tlbFile) { }
+        public string Value { get { throw null; } }
+    }                           
     public enum ImporterEventKind
     {
         ERROR_REFTOINVALIDTYPELIB = 2,
@@ -332,6 +383,12 @@ namespace System.Runtime.InteropServices
         void ReportEvent(System.Runtime.InteropServices.ImporterEventKind eventKind, int eventCode, string eventMsg);
         System.Reflection.Assembly ResolveRef(object typeLib);
     }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
+    public sealed partial class LCIDConversionAttribute : System.Attribute
+    {
+        public LCIDConversionAttribute(int lcid) { }
+        public int Value { get { throw null; } }
+    }    
     [System.FlagsAttribute]
     [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.LIBFLAGS instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
     public enum LIBFLAGS : short
@@ -341,6 +398,13 @@ namespace System.Runtime.InteropServices
         LIBFLAG_FHIDDEN = (short)4,
         LIBFLAG_FRESTRICTED = (short)1,
     }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false, AllowMultiple=false)]
+    public sealed partial class ManagedToNativeComInteropStubAttribute : System.Attribute
+    {
+        public ManagedToNativeComInteropStubAttribute(System.Type classType, string methodName) { }
+        public System.Type ClassType { get { throw null; } }
+        public string MethodName { get { throw null; } }
+    }    
     [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.PARAMDESC instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct PARAMDESC
@@ -361,6 +425,50 @@ namespace System.Runtime.InteropServices
         PARAMFLAG_FRETVAL = (short)8,
         PARAMFLAG_NONE = (short)0,
     }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false, AllowMultiple=true)]
+    public sealed partial class PrimaryInteropAssemblyAttribute : System.Attribute
+    {
+        public PrimaryInteropAssemblyAttribute(int major, int minor) { }
+        public int MajorVersion { get { throw null; } }
+        public int MinorVersion { get { throw null; } }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=false)]
+    public sealed partial class ProgIdAttribute : System.Attribute
+    {
+        public ProgIdAttribute(string progId) { }
+        public string Value { get { throw null; } }
+    }
+    [System.FlagsAttribute]
+    public enum RegistrationClassContext
+    {
+        DisableActivateAsActivator = 32768,
+        EnableActivateAsActivator = 65536,
+        EnableCodeDownload = 8192,
+        FromDefaultContext = 131072,
+        InProcessHandler = 2,
+        InProcessHandler16 = 32,
+        InProcessServer = 1,
+        InProcessServer16 = 8,
+        LocalServer = 4,
+        NoCodeDownload = 1024,
+        NoCustomMarshal = 4096,
+        NoFailureLog = 16384,
+        RemoteServer = 16,
+        Reserved1 = 64,
+        Reserved2 = 128,
+        Reserved3 = 256,
+        Reserved4 = 512,
+        Reserved5 = 2048,
+    }
+    [System.FlagsAttribute]
+    public enum RegistrationConnectionType
+    {
+        MultipleUse = 1,
+        MultiSeparate = 2,
+        SingleUse = 0,
+        Surrogate = 8,
+        Suspended = 4,
+    }     
     public partial class RegistrationServices : System.Runtime.InteropServices.IRegistrationServices
     {
         public RegistrationServices() { }
@@ -374,7 +482,13 @@ namespace System.Runtime.InteropServices
         public virtual bool TypeRequiresRegistration(System.Type type) { throw null; }
         public virtual bool UnregisterAssembly(System.Reflection.Assembly assembly) { throw null; }
         public virtual void UnregisterTypeForComClients(int cookie) { }
-    }
+    }    
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
+    [System.ObsoleteAttribute("This attribute has been deprecated.  Application Domains no longer respect Activation Context boundaries in IDispatch calls.", false)]
+    public sealed partial class SetWin32ContextInIDispatchAttribute : System.Attribute
+    {
+        public SetWin32ContextInIDispatchAttribute() { }
+    }    
     public partial class StandardOleMarshalObject : System.MarshalByRefObject
     {
         protected StandardOleMarshalObject() { }
@@ -453,6 +567,19 @@ namespace System.Runtime.InteropServices
         TYPEFLAG_FRESTRICTED = (short)512,
         TYPEFLAG_FREVERSEBIND = (short)8192,
     }
+    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.TYPEKIND instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    public enum TYPEKIND
+    {
+        TKIND_ALIAS = 6,
+        TKIND_COCLASS = 5,
+        TKIND_DISPATCH = 4,
+        TKIND_ENUM = 0,
+        TKIND_INTERFACE = 3,
+        TKIND_MAX = 8,
+        TKIND_MODULE = 2,
+        TKIND_RECORD = 1,
+        TKIND_UNION = 7,
+    }    
     [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.TYPELIBATTR instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct TYPELIBATTR
@@ -1265,18 +1392,6 @@ namespace System.Runtime.InteropServices.ComTypes
         TYPEFLAG_FRESTRICTED = (short)512,
         TYPEFLAG_FREVERSEBIND = (short)8192,
     }
-    public enum TYPEKIND
-    {
-        TKIND_ALIAS = 6,
-        TKIND_COCLASS = 5,
-        TKIND_DISPATCH = 4,
-        TKIND_ENUM = 0,
-        TKIND_INTERFACE = 3,
-        TKIND_MAX = 8,
-        TKIND_MODULE = 2,
-        TKIND_RECORD = 1,
-        TKIND_UNION = 7,
-    }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct TYPELIBATTR
     {
@@ -1425,5 +1540,113 @@ namespace System.Runtime.InteropServices.ComTypes
         TYMED_ISTREAM = 4,
         TYMED_MFPICT = 32,
         TYMED_NULL = 0,
+    }
+    public enum TYPEKIND
+    {
+        TKIND_ALIAS = 6,
+        TKIND_COCLASS = 5,
+        TKIND_DISPATCH = 4,
+        TKIND_ENUM = 0,
+        TKIND_INTERFACE = 3,
+        TKIND_MAX = 8,
+        TKIND_MODULE = 2,
+        TKIND_RECORD = 1,
+        TKIND_UNION = 7,
+    }
+}
+namespace System.Runtime.InteropServices.Expando
+{
+    public partial interface IExpando : System.Reflection.IReflect
+    {
+        System.Reflection.FieldInfo AddField(string name);
+        System.Reflection.MethodInfo AddMethod(string name, System.Delegate method);
+        System.Reflection.PropertyInfo AddProperty(string name);
+        void RemoveMember(System.Reflection.MemberInfo m);
+    }
+}
+namespace System.Runtime.InteropServices.WindowsRuntime
+{
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), AllowMultiple=false, Inherited=false)]
+    public sealed partial class DefaultInterfaceAttribute : System.Attribute
+    {
+        public DefaultInterfaceAttribute(System.Type defaultInterface) { }
+        public System.Type DefaultInterface { get { throw null; } }
+    }
+    public partial class DesignerNamespaceResolveEventArgs : System.EventArgs
+    {
+        public DesignerNamespaceResolveEventArgs(string namespaceName) { }
+        public string NamespaceName { get { throw null; } }
+        public System.Collections.ObjectModel.Collection<string> ResolvedAssemblyFiles { get { throw null; } }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct EventRegistrationToken
+    {
+        public override bool Equals(object obj) { throw null; }
+        public override int GetHashCode() { throw null; }
+        public static bool operator ==(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken left, System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken right) { throw null; }
+        public static bool operator !=(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken left, System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken right) { throw null; }
+    }
+    public sealed partial class EventRegistrationTokenTable<T> where T : class
+    {
+        public EventRegistrationTokenTable() { }
+        public T InvocationList { get { throw null; } set { } }
+        public System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken AddEventHandler(T handler) { throw null; }
+        public static System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable<T> GetOrCreateEventRegistrationTokenTable(ref System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable<T> refEventTable) { throw null; }
+        public void RemoveEventHandler(T handler) { }
+        public void RemoveEventHandler(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken token) { }
+    }
+    public partial interface IActivationFactory
+    {
+        object ActivateInstance();
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), Inherited=false, AllowMultiple=true)]
+    public sealed partial class InterfaceImplementedInVersionAttribute : System.Attribute
+    {
+        public InterfaceImplementedInVersionAttribute(System.Type interfaceType, byte majorVersion, byte minorVersion, byte buildVersion, byte revisionVersion) { }
+        public byte BuildVersion { get { throw null; } }
+        public System.Type InterfaceType { get { throw null; } }
+        public byte MajorVersion { get { throw null; } }
+        public byte MinorVersion { get { throw null; } }
+        public byte RevisionVersion { get { throw null; } }
+    }
+    public partial class NamespaceResolveEventArgs : System.EventArgs
+    {
+        public NamespaceResolveEventArgs(string namespaceName, System.Reflection.Assembly requestingAssembly) { }
+        public string NamespaceName { get { throw null; } }
+        public System.Reflection.Assembly RequestingAssembly { get { throw null; } }
+        public System.Collections.ObjectModel.Collection<System.Reflection.Assembly> ResolvedAssemblies { get { throw null; } }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(2048), Inherited=false, AllowMultiple=false)]
+    public sealed partial class ReadOnlyArrayAttribute : System.Attribute
+    {
+        public ReadOnlyArrayAttribute() { }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(12288), AllowMultiple=false, Inherited=false)]
+    public sealed partial class ReturnValueNameAttribute : System.Attribute
+    {
+        public ReturnValueNameAttribute(string name) { }
+        public string Name { get { throw null; } }
+    }
+    public static partial class WindowsRuntimeMarshal
+    {
+        public static void AddEventHandler<T>(System.Func<T, System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken> addMethod, System.Action<System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken> removeMethod, T handler) { }
+        public static void FreeHString(System.IntPtr ptr) { }
+        public static System.Runtime.InteropServices.WindowsRuntime.IActivationFactory GetActivationFactory(System.Type type) { throw null; }
+        public static string PtrToStringHString(System.IntPtr ptr) { throw null; }
+        public static void RemoveAllEventHandlers(System.Action<System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken> removeMethod) { }
+        public static void RemoveEventHandler<T>(System.Action<System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken> removeMethod, T handler) { }
+        public static System.IntPtr StringToHString(string s) { throw null; }
+    }
+    public static partial class WindowsRuntimeMetadata
+    {
+        public static event System.EventHandler<System.Runtime.InteropServices.WindowsRuntime.DesignerNamespaceResolveEventArgs> DesignerNamespaceResolve { add { } remove { } }
+        public static event System.EventHandler<System.Runtime.InteropServices.WindowsRuntime.NamespaceResolveEventArgs> ReflectionOnlyNamespaceResolve { add { } remove { } }
+        public static System.Collections.Generic.IEnumerable<string> ResolveNamespace(string namespaceName, System.Collections.Generic.IEnumerable<string> packageGraphFilePaths) { throw null; }
+        public static System.Collections.Generic.IEnumerable<string> ResolveNamespace(string namespaceName, string windowsSdkFilePath, System.Collections.Generic.IEnumerable<string> packageGraphFilePaths) { throw null; }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(2048), Inherited=false, AllowMultiple=false)]
+    public sealed partial class WriteOnlyArrayAttribute : System.Attribute
+    {
+        public WriteOnlyArrayAttribute() { }
     }
 }
