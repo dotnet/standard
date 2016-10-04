@@ -8712,12 +8712,8 @@ namespace System.Resources
     }
     public partial class ResourceManager
     {
-        protected string BaseNameField;
         public static readonly int HeaderVersionNumber;
         public static readonly int MagicNumber;
-        protected System.Reflection.Assembly MainAssembly;
-        [System.ObsoleteAttribute("call InternalGetResourceSet instead")]
-        protected System.Collections.Hashtable ResourceSets;
         protected ResourceManager() { }
         public ResourceManager(string baseName, System.Reflection.Assembly assembly) { }
         public ResourceManager(string baseName, System.Reflection.Assembly assembly, System.Type usingResourceSet) { }
@@ -8752,8 +8748,6 @@ namespace System.Resources
     }
     public partial class ResourceSet : System.Collections.IEnumerable, System.IDisposable
     {
-        protected System.Resources.IResourceReader Reader;
-        protected System.Collections.Hashtable Table;
         protected ResourceSet() { }
         public ResourceSet(System.IO.Stream stream) { }
         public ResourceSet(System.Resources.IResourceReader reader) { }
