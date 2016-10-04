@@ -2,7 +2,6 @@ Compat issues between implementation set D:\git\standard\bin/\ref\netstandard\2.
 MembersMustExist : Member 'System.AppContext.GetData(System.String)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.AppContext.TargetFrameworkName.get()' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Lazy<T, TMetadata>' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.GeneratedCodeAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.Tracing.EventCounter' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.Tracing.EventSource.add_EventCommandExecuted(System.EventHandler<System.Diagnostics.Tracing.EventCommandEventArgs>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.Tracing.EventSource.remove_EventCommandExecuted(System.EventHandler<System.Diagnostics.Tracing.EventCommandEventArgs>)' does not exist in the implementation but it does exist in the contract.
@@ -132,4 +131,4 @@ MembersMustExist : Member 'System.Text.RegularExpressions.Regex.CapNames.get()' 
 MembersMustExist : Member 'System.Text.RegularExpressions.Regex.CapNames.set(System.Collections.IDictionary)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.RegularExpressions.Regex.Caps.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.RegularExpressions.Regex.Caps.set(System.Collections.IDictionary)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 133
+Total Issues: 132

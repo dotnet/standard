@@ -55,7 +55,6 @@ TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.StaticLocalInitFla
 TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.Utils' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Lazy<T, TMetadata>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.WindowsRuntimeSystemExtensions' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.GeneratedCodeAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.AssociationAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.ConcurrencyCheckAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.CustomValidationAttribute' does not exist in the implementation but it does exist in the contract.
@@ -379,4 +378,4 @@ TypesMustExist : Type 'Windows.UI.Xaml.Media.Animation.KeyTime' does not exist i
 TypesMustExist : Type 'Windows.UI.Xaml.Media.Animation.RepeatBehavior' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Windows.UI.Xaml.Media.Animation.RepeatBehaviorType' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Windows.UI.Xaml.Media.Media3D.Matrix3D' does not exist in the implementation but it does exist in the contract.
-Total Issues: 348
+Total Issues: 347

@@ -1186,13 +1186,6 @@ namespace System.CodeDom.Compiler
         public static int ExecWaitWithCapture(string cmd, System.CodeDom.Compiler.TempFileCollection tempFiles, ref string outputName, ref string errorName) { throw null; }
         public static int ExecWaitWithCapture(string cmd, string currentDir, System.CodeDom.Compiler.TempFileCollection tempFiles, ref string outputName, ref string errorName) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767), Inherited=false, AllowMultiple=false)]
-    public sealed partial class GeneratedCodeAttribute : System.Attribute
-    {
-        public GeneratedCodeAttribute(string tool, string version) { }
-        public string Tool { get { throw null; } }
-        public string Version { get { throw null; } }
-    }
     [System.FlagsAttribute]
     public enum GeneratorSupport
     {

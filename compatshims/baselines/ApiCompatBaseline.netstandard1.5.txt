@@ -1,6 +1,5 @@
 Compat issues between implementation set D:\git\standard\bin/\ref\netstandard\2.0.0.0\,D:\git\standard\bin/CompatShims/facades and contract set D:\git\standard\bin/ApiCompat/baselines//netstandard1.5:
 TypesMustExist : Type 'System.Lazy<T, TMetadata>' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.GeneratedCodeAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.Tracing.EventCounter' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.Tracing.EventSource.add_EventCommandExecuted(System.EventHandler<System.Diagnostics.Tracing.EventCommandEventArgs>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.Tracing.EventSource.remove_EventCommandExecuted(System.EventHandler<System.Diagnostics.Tracing.EventCommandEventArgs>)' does not exist in the implementation but it does exist in the contract.
@@ -113,4 +112,4 @@ TypesMustExist : Type 'System.Runtime.InteropServices.ComTypes.VARDESC' does not
 TypesMustExist : Type 'System.Runtime.InteropServices.ComTypes.VARFLAGS' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.ComTypes.VARKIND' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Security.Cryptography.IncrementalHash' does not exist in the implementation but it does exist in the contract.
-Total Issues: 114
+Total Issues: 113

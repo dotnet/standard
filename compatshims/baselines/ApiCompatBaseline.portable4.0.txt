@@ -21,7 +21,6 @@ TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags' does no
 TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.RuntimeBinderException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Lazy<T, TMetadata>' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.CodeDom.Compiler.GeneratedCodeAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.Composition.AttributedModelServices' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.Composition.ChangeRejectedException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.Composition.CompositionContractMismatchException' does not exist in the implementation but it does exist in the contract.
@@ -287,4 +286,4 @@ TypesMustExist : Type 'System.ServiceModel.Dispatcher.IDispatchMessageFormatter'
 TypesMustExist : Type 'System.ServiceModel.Security.MessageSecurityException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.Security.SecurityAccessDeniedException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.Security.UserNamePasswordClientCredential' does not exist in the implementation but it does exist in the contract.
-Total Issues: 273
+Total Issues: 272
