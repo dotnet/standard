@@ -4,5 +4,6 @@
   <PropertyGroup>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <IsReferenceAssembly>true</IsReferenceAssembly>
+    <ReferenceAssemblyOutputPath>$(BaseOutputPath)ref/extensions-not-standard/</ReferenceAssemblyOutputPath>
   </PropertyGroup>
 </Project>
