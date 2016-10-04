@@ -1,5 +1,4 @@
 Compat issues between implementation set D:\git\standard\bin/\ref\netstandard\2.0.0.0\,D:\git\standard\bin/CompatShims/facades and contract set D:\git\standard\bin/ApiCompat/baselines//netstandard1.2:
-TypesMustExist : Type 'System.Lazy<T, TMetadata>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.Architecture' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.ComImportAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.DispatchWrapper' does not exist in the implementation but it does exist in the contract.
@@ -84,4 +83,4 @@ TypesMustExist : Type 'System.Runtime.InteropServices.ComTypes.TYPELIBATTR' does
 TypesMustExist : Type 'System.Runtime.InteropServices.ComTypes.VARDESC' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.ComTypes.VARFLAGS' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.ComTypes.VARKIND' does not exist in the implementation but it does exist in the contract.
-Total Issues: 85
+Total Issues: 84

@@ -53,7 +53,6 @@ TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.ProjectData' does 
 TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.StandardModuleAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.StaticLocalInitFlag' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.Utils' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Lazy<T, TMetadata>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.AssociationAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.ConcurrencyCheckAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.CustomValidationAttribute' does not exist in the implementation but it does exist in the contract.
@@ -347,4 +346,4 @@ TypesMustExist : Type 'System.ServiceModel.Security.Tokens.SecureConversationSec
 TypesMustExist : Type 'System.ServiceModel.Security.Tokens.SecurityTokenParameters' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.Security.Tokens.SupportingTokenParameters' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters' does not exist in the implementation but it does exist in the contract.
-Total Issues: 316
+Total Issues: 315

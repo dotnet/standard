@@ -2410,6 +2410,16 @@ namespace System
         public T Value { get { throw null; } }
         public override string ToString() { throw null; }
     }
+    public partial class Lazy<T, TMetadata> : System.Lazy<T>
+    {
+        public Lazy(TMetadata metadata) { }
+        public Lazy(TMetadata metadata, bool isThreadSafe) { }
+        public Lazy(TMetadata metadata, System.Threading.LazyThreadSafetyMode mode) { }
+        public Lazy(System.Func<T> valueFactory, TMetadata metadata) { }
+        public Lazy(System.Func<T> valueFactory, TMetadata metadata, bool isThreadSafe) { }
+        public Lazy(System.Func<T> valueFactory, TMetadata metadata, System.Threading.LazyThreadSafetyMode mode) { }
+        public TMetadata Metadata { get { return default(TMetadata); } }
+    }
     public enum LoaderOptimization
     {
         [System.ObsoleteAttribute("This method has been deprecated. Please use Assembly.Load() instead. http://go.microsoft.com/fwlink/?linkid=14202")]

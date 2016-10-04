@@ -1,5 +1,4 @@
 Compat issues between implementation set D:\git\standard\bin/\ref\netstandard\2.0.0.0\,D:\git\standard\bin/CompatShims/facades and contract set D:\git\standard\bin/ApiCompat/baselines//netstandard1.4:
-TypesMustExist : Type 'System.Lazy<T, TMetadata>' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Http.HttpClientHandler.CheckCertificateRevocationList.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Http.HttpClientHandler.CheckCertificateRevocationList.set(System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Http.HttpClientHandler.ClientCertificates.get()' does not exist in the implementation but it does exist in the contract.
@@ -102,4 +101,4 @@ TypesMustExist : Type 'System.Runtime.InteropServices.ComTypes.VARDESC' does not
 TypesMustExist : Type 'System.Runtime.InteropServices.ComTypes.VARFLAGS' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.ComTypes.VARKIND' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Security.Cryptography.IncrementalHash' does not exist in the implementation but it does exist in the contract.
-Total Issues: 103
+Total Issues: 102
