@@ -16,21 +16,21 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\mscorlib.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.core.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.io.compression.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.io.compression.filesystem.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.net.http.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.numerics.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.runtime.serialization.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.xml.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.xml.linq.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Core.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.IO.Compression.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.IO.Compression.FileSystem.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Net.Http.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Numerics.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Runtime.Serialization.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Xml.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Xml.linq.csproj" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)'=='net461'">
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.web.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.csproj" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)'=='xamarin.ios'">
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\system.web.services.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.Services.csproj" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>

@@ -9,8 +9,8 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="mscorlib.csproj" />
-    <ProjectReference Include="system.xml.csproj" />
-    <Compile Include="system.xml.linq.cs" />
+    <ProjectReference Include="System.Xml.csproj" />
+    <Compile Include="System.Xml.linq.cs" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>

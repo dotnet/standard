@@ -9,8 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="mscorlib.csproj" />
-    <ProjectReference Include="system.csproj" />
-    <Compile Include="system.xml.cs" />
+    <Compile Include="System.Numerics.cs" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>

@@ -9,7 +9,8 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="mscorlib.csproj" />
-    <Compile Include="system.numerics.cs" />
+    <ProjectReference Include="System.csproj" />
+    <Compile Include="System.Net.Http.cs" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>

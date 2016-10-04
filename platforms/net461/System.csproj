@@ -9,9 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="mscorlib.csproj" />
-    <ProjectReference Include="system.csproj" />
-    <ProjectReference Include="system.io.compression.csproj" />
-    <Compile Include="system.io.compression.filesystem.cs" />
+    <Compile Include="System.cs" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>
