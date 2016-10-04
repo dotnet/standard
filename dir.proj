@@ -6,6 +6,7 @@
     <Project Include="netstandard/src/*.builds" />
     <Project Include="extensions/dir.proj" />
     <Project Include="platforms/dir.proj" />
+    <Project Include="compatshims/shims.proj" />
   </ItemGroup>
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.traversal.targets))\dir.traversal.targets" />

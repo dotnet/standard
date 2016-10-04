@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.props))\dir.props" />
+
+  <UsingTask TaskName="PrereleaseResolveNuGetPackageAssets" AssemblyFile="$(BuildToolsTaskDir)Microsoft.DotNet.Build.Tasks.dll"/>
+
+  <ItemGroup>
+    <!-- classic assembly refs -->
+    <ShimAssembly Include="mscorlib" />
+    <ShimAssembly Include="System" />
+    <ShimAssembly Include="System.Core" />
+    <ShimAssembly Include="System.Drawing" />
+    <ShimAssembly Include="System.Numerics" />
+    <ShimAssembly Include="System.Runtime.Serialization" />
+    <ShimAssembly Include="System.Xml" />
+    <ShimAssembly Include="System.Xml.Linq" />
+    <ShimAssembly Include="System.Web" />
+
+    <!-- netstandard 1.6 refs -->
+    <ShimAssembly Include="Microsoft.Win32.Primitives" />
+    <ShimAssembly Include="System.AppContext" />
+    <ShimAssembly Include="System.Collections.Concurrent" />
+    <ShimAssembly Include="System.Collections" />
+    <ShimAssembly Include="System.Console" />
+    <ShimAssembly Include="System.Diagnostics.Debug" />
+    <ShimAssembly Include="System.Diagnostics.Tools" />
+    <ShimAssembly Include="System.Diagnostics.Tracing" />
+    <ShimAssembly Include="System.Globalization.Calendars" />
+    <ShimAssembly Include="System.Globalization" />
+    <ShimAssembly Include="System.IO.Compression" />
+    <ShimAssembly Include="System.IO.Compression.ZipFile" />
+    <ShimAssembly Include="System.IO" />
+    <ShimAssembly Include="System.IO.FileSystem" />
+    <ShimAssembly Include="System.IO.FileSystem.Primitives" />
+    <ShimAssembly Include="System.Linq" />
+    <ShimAssembly Include="System.Linq.Expressions" />
+    <ShimAssembly Include="System.Net.Http" />
+    <ShimAssembly Include="System.Net.Primitives" />
+    <ShimAssembly Include="System.Net.Sockets" />
+    <ShimAssembly Include="System.ObjectModel" />
+    <ShimAssembly Include="System.Reflection" />
+    <ShimAssembly Include="System.Reflection.Extensions" />
+    <ShimAssembly Include="System.Reflection.Primitives" />
+    <ShimAssembly Include="System.Resources.ResourceManager" />
+    <ShimAssembly Include="System.Runtime" />
+    <ShimAssembly Include="System.Runtime.Extensions" />
+    <ShimAssembly Include="System.Runtime.Handles" />
+    <ShimAssembly Include="System.Runtime.InteropServices" />
+    <ShimAssembly Include="System.Runtime.InteropServices.RuntimeInformation" />
+    <ShimAssembly Include="System.Runtime.Numerics" />
+    <ShimAssembly Include="System.Security.Cryptography.Algorithms" />
+    <ShimAssembly Include="System.Security.Cryptography.Encoding" />
+    <ShimAssembly Include="System.Security.Cryptography.Primitives" />
+    <ShimAssembly Include="System.Security.Cryptography.X509Certificates" />
+    <ShimAssembly Include="System.Text.Encoding" />
+    <ShimAssembly Include="System.Text.Encoding.Extensions" />
+    <ShimAssembly Include="System.Text.RegularExpressions" />
+    <ShimAssembly Include="System.Threading" />
+    <ShimAssembly Include="System.Threading.Tasks" />
+    <ShimAssembly Include="System.Threading.Timer" />
+    <ShimAssembly Include="System.Xml.ReaderWriter" />
+    <ShimAssembly Include="System.Xml.XDocument" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <CompatShimsRootPath>$(BinDir)CompatShims/</CompatShimsRootPath>
+    <RestoredRefPath>$(CompatShimsRootPath)ref/</RestoredRefPath>
+    <GenFacadesOutputPath>$(CompatShimsRootPath)facades</GenFacadesOutputPath>
+    <NetstandardRefPath>$(BinDir)\ref\netstandard\2.0.0.0\</NetstandardRefPath>
+  </PropertyGroup>
+
+  <Target Name="RestoreAndPublishForShims">
+
+    <PropertyGroup>
+      <ProjectJson>$(MSBuildThisFileDirectory)project.json</ProjectJson>
+      <ProjectLockJson>$(MSBuildThisFileDirectory)project.lock.json</ProjectLockJson>
+      <TargetFrameworkMoniker>.NETStandard,Version=v1.7</TargetFrameworkMoniker>
+    </PropertyGroup>
+
+    <Exec Command="$(DotnetRestoreCommand) $(ProjectJson)"
+          StandardOutputImportance="Low"
+          CustomErrorRegularExpression="(^Unable to locate .*)|(^Updating the invalid lock file with .*)" />
+
+    <PrereleaseResolveNuGetPackageAssets
+         IncludeFrameworkReferences="false"
+         NuGetPackagesDirectory="$(PackagesDir)"
+         RuntimeIdentifier="$(TargetRuntimeIdentifier)"
+         ProjectLockFile="$(ProjectLockJson)"
+         TargetMonikers="$(TargetFrameworkMoniker)">
+
+      <Output TaskParameter="ResolvedReferences" ItemName="ResolvedTargetingPackReference" />
+    </PrereleaseResolveNuGetPackageAssets>
+
+    <ItemGroup>
+      <ResolvedTargetingPackReferenceFilename Include="@(ResolvedTargetingPackReference -> '%(Filename)')">
+        <OriginalIdentity>%(Identity)</OriginalIdentity>
+      </ResolvedTargetingPackReferenceFilename>
+      <ResolvedTargetingPackReferenceFilename Remove="@(ShimAssembly)" />
+      <PackageReferencesToRemove Include="@(ResolvedTargetingPackReferenceFilename -> '%(OriginalIdentity)')" />
+      <ResolvedTargetingPackReference Remove="@(PackageReferencesToRemove)" />
+    </ItemGroup>
+    <!-- ResolvedReferences corresponds to library contracts -->
+    <Copy SourceFiles="@(ResolvedTargetingPackReference)"
+      DestinationFolder="$(RestoredRefPath)"
+      SkipUnchangedFiles="true" />
+
+  </Target>
+
+  <!-- Generate Facades -->
+  <Target Name="GenerateFacades" DependsOnTargets="RestoreAndPublishForShims" AfterTargets="Build">
+
+    <PropertyGroup>
+      <GenFacadesInputPath>$(IntermediateOutputPath)PreGenFacades/</GenFacadesInputPath>
+      <GenFacadesResponseFile>$(GenFacadesInputPath)genfacades.rsp</GenFacadesResponseFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <GenFacadesContracts Include="$(RestoredRefPath)*.dll" />
+      <GenFacadesSeeds Include="$(NetstandardRefPath)\netstandard.dll" />
+    </ItemGroup>
+
+    <PropertyGroup>
+      <GenFacadesArgs>$(GenFacadesArgs) -contracts:"@(GenFacadesContracts, ',')"</GenFacadesArgs>
+      <GenFacadesArgs>$(GenFacadesArgs) -seeds:"@(GenFacadesSeeds, ',')"</GenFacadesArgs>
+      <GenFacadesArgs>$(GenFacadesArgs) -facadePath:"$(GenFacadesOutputPath)"</GenFacadesArgs>
+      <GenFacadesArgs>$(GenFacadesArgs) -producePdb:false</GenFacadesArgs>
+      <GenFacadesArgs>$(GenFacadesArgs) -ignoreMissingTypes</GenFacadesArgs>
+    </PropertyGroup>
+
+    <MakeDir Directories="$(GenFacadesInputPath)" />
+    <WriteLinesToFile File="$(GenFacadesResponseFile)" Lines="$(GenFacadesArgs)" Overwrite="true" />
+
+    <PropertyGroup>
+      <GenFacadesCmd>$(ToolHostCmd) "$(ToolsDir)GenFacades.exe"</GenFacadesCmd>
+    </PropertyGroup>
+
+    <Exec Command="$(GenFacadesCmd) @&quot;$(GenFacadesResponseFile)&quot;" WorkingDirectory="$(ToolRuntimePath)" />
+  </Target>
+
+  <PropertyGroup>
+    <ApiCompatProfileRootPath>$(BinDir)ApiCompat/baselines/</ApiCompatProfileRootPath>
+    <ApiCompatBaseline>ApiCompatBaseline.compatshims.txt</ApiCompatBaseline>
+    <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
+    <PortableProfileRootPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETPortable\</PortableProfileRootPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)/netstandard1.0">
+      <TargetGroup>netstandard1.0</TargetGroup>
+      <TargetFramework>.NETStandard,Version=v1.0</TargetFramework>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)/netstandard1.1">
+      <TargetGroup>netstandard1.1</TargetGroup>
+      <TargetFramework>.NETStandard,Version=v1.1</TargetFramework>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)/netstandard1.2">
+      <TargetGroup>netstandard1.2</TargetGroup>
+      <TargetFramework>.NETStandard,Version=v1.2</TargetFramework>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)/netstandard1.3">
+      <TargetGroup>netstandard1.3</TargetGroup>
+      <TargetFramework>.NETStandard,Version=v1.3</TargetFramework>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)/netstandard1.4">
+      <TargetGroup>netstandard1.4</TargetGroup>
+      <TargetFramework>.NETStandard,Version=v1.4</TargetFramework>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)/netstandard1.5">
+      <TargetGroup>netstandard1.5</TargetGroup>
+      <TargetFramework>.NETStandard,Version=v1.5</TargetFramework>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)/netstandard1.6">
+      <TargetGroup>netstandard1.6</TargetGroup>
+      <TargetFramework>.NETStandard,Version=v1.6</TargetFramework>
+    </ApiCompatProfile>
+
+<!--
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5\Profile\Profile7">
+      <TargetGroup>Profile7</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile31">
+      <TargetGroup>Profile31</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile32">
+      <TargetGroup>Profile32</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile44">
+      <TargetGroup>Profile44</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5\Profile\Profile49">
+      <TargetGroup>Profile49</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5\Profile\Profile78">
+      <TargetGroup>Profile78</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile84">
+      <TargetGroup>Profile84</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5\Profile\Profile111">
+      <TargetGroup>Profile111</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile151">
+      <TargetGroup>Profile151</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile157">
+      <TargetGroup>Profile157</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5\Profile\Profile259">
+      <TargetGroup>Profile259</TargetGroup>
+    </ApiCompatProfile>
+-->
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0">
+      <TargetGroup>portable4.0</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5">
+      <TargetGroup>portable4.5</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6">
+      <TargetGroup>portable4.6</TargetGroup>
+    </ApiCompatProfile>
+
+  </ItemGroup>
+
+  <Target Name="PublishApiCompatProfile"
+    Inputs="%(ApiCompatProfile.TargetFramework)"
+    Outputs="%(ApiCompatProfile.Identity)"
+    >
+    <PropertyGroup>
+      <ProjectLockJson>$(MSBuildThisFileDirectory)project.lock.json</ProjectLockJson>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ApiCompatResolvedReferences Remove="@(ApiCompatResolvedReferences)" />
+    </ItemGroup>
+
+    <PrereleaseResolveNuGetPackageAssets
+         IncludeFrameworkReferences="false"
+         NuGetPackagesDirectory="$(PackagesDir)"
+         RuntimeIdentifier="$(TargetRuntimeIdentifier)"
+         ProjectLockFile="$(ProjectLockJson)"
+         TargetMonikers="%(ApiCompatProfile.TargetFramework)">
+
+      <Output TaskParameter="ResolvedReferences" ItemName="ApiCompatResolvedReferences" />
+    </PrereleaseResolveNuGetPackageAssets>
+
+    <MakeDir Directories="%(ApiCompatProfile.Identity)" />
+    <!-- ResolvedReferences corresponds to library contracts -->
+    <Copy SourceFiles="@(ApiCompatResolvedReferences)"
+      DestinationFolder="%(ApiCompatProfile.Identity)"
+      SkipUnchangedFiles="true" />
+  </Target>
+
+  <!-- Run ApiCompat -->
+  <Target Name="RunApiCompat"
+    Inputs="%(ApiCompatProfile.Identity)"
+    Outputs="%(ApiCompatProfile.Identity).onlyforbatching"
+    >
+    <PropertyGroup>
+      <ApiCompatContracts>%(ApiCompatProfile.Identity)</ApiCompatContracts>
+      <ApiCompatResponseFile>$(IntermediateOutputPath)%(ApiCompatProfile.TargetGroup)/apicompat.rsp</ApiCompatResponseFile>
+      <ApiCompatBaselineFile>$(MSBuildThisFileDirectory)baselines/ApiCompatBaseline.%(ApiCompatProfile.TargetGroup).txt</ApiCompatBaselineFile>
+    </PropertyGroup>
+
+    <PropertyGroup>
+      <ApiCompatArgs>$(ApiCompatArgs) "$(ApiCompatContracts)"</ApiCompatArgs>
+      <ApiCompatArgs>$(ApiCompatArgs) -contractDepends:"$(ApiCompatContracts)"</ApiCompatArgs>
+      <ApiCompatArgs>$(ApiCompatArgs) -implDirs:"$(NetstandardRefPath),$(GenFacadesOutputPath)"</ApiCompatArgs>
+      <ApiCompatArgs>$(ApiCompatArgs) -groupByAssembly:false</ApiCompatArgs>
+      <!--<ApiCompatArgs>$(ApiCompatArgs) -baseline:"$(ApiCompatBaselineFile)"</ApiCompatArgs>-->
+      <ApiCompatBaselineAll>&gt; $(ApiCompatBaselineFile)</ApiCompatBaselineAll>
+      <ApiCompatExitCode>0</ApiCompatExitCode>
+
+      <ApiCompatCmd>$(ToolHostCmd) "$(ToolsDir)ApiCompat.exe"</ApiCompatCmd>
+    </PropertyGroup>
+
+    <MakeDir Directories="$(IntermediateOutputPath)%(ApiCompatProfile.TargetGroup)" />
+    <WriteLinesToFile File="$(ApiCompatResponseFile)" Lines="$(ApiCompatArgs)" Overwrite="true" />
+
+    <Exec Condition="Exists('$(ApiCompatContracts)')"
+          Command="$(ApiCompatCmd) @&quot;$(ApiCompatResponseFile)&quot; $(ApiCompatBaselineAll)"
+          CustomErrorRegularExpression="^[a-zA-Z]+ :"
+          StandardOutputImportance="Low"
+          IgnoreExitCode="true"
+    >
+      <Output TaskParameter="ExitCode" PropertyName="ApiCompatExitCode" />
+    </Exec>
+
+  </Target>
+
+  <Target Name="ApiCompat" DependsOnTargets="PublishApiCompatProfile;RunApiCompat" AfterTargets="Build" />
+
+  <Target Name="Build" />
+  <Target Name="Clean">
+    <RemoveDir Directories="$(CompatShimsRootPath);$(IntermediateOutputPath);$(BinDir)ApiCompat;" />
+  </Target>
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
+
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
+</Project>

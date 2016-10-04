@@ -2,6 +2,15 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Condition="Exists('..\dir.props')" Project="..\dir.props" />
 
+  <!--
+    $(OS) is set to Unix/Windows_NT. This comes from an environment variable on Windows and MSBuild on Unix.
+  -->
+  <PropertyGroup>
+    <!-- Temp change to make OS X build behave as a Linux build -->
+    <OsEnvironment Condition="'$(OsEnvironment)'=='' AND '$(OS)'=='OSX'">Unix</OsEnvironment>
+    <OsEnvironment Condition="'$(OsEnvironment)'==''">$(OS)</OsEnvironment>
+  </PropertyGroup>
+
   <PropertyGroup>
     <BuildToolsTargets45>true</BuildToolsTargets45>
   </PropertyGroup>
@@ -39,6 +48,21 @@
   <!-- Import packaging props -->
   <Import Project="$(MSBuildThisFileDirectory)Packaging.props"/>
 
+  <!-- list of nuget package sources passed to dotnet -->
+  <ItemGroup Condition="'$(ExcludeInternetFeeds)' != 'true'">
+    <DotnetSourceList Include="https:%2F%2Fdotnet.myget.org/F/dotnet-core/api/v3/index.json" />
+    <DotnetSourceList Include="https:%2F%api.nuget.org/v3/index.json" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <DotnetToolCommand Condition="'$(DotnetToolCommand)' == '' and '$(OsEnvironment)'!='Unix'">$(DotnetCliPath)dotnet.exe</DotnetToolCommand>
+    <DotnetToolCommand Condition="'$(DotnetToolCommand)' == '' and '$(OsEnvironment)'=='Unix'">$(DotnetCliPath)dotnet</DotnetToolCommand>
+    <DotnetRestoreSource>@(DotnetSourceList -> '--source %(Identity)', ' ')</DotnetRestoreSource>
+    <DotnetRestoreCommand>"$(DotnetToolCommand)"</DotnetRestoreCommand>
+    <DotnetRestoreCommand>$(DotnetRestoreCommand) restore</DotnetRestoreCommand>
+    <DotnetRestoreCommand>$(DotnetRestoreCommand) --packages "$(PackagesDir.TrimEnd('/\'.ToCharArray()))" $(DotnetRestoreSource)</DotnetRestoreCommand>
+    <DnuRestoreCommand>$(DotnetRestoreCommand)</DnuRestoreCommand>
+  </PropertyGroup>
 
   <PropertyGroup>
     <!-- By default make all libraries to be AnyCPU but individual projects can override it if they need to -->
