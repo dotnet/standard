@@ -83,8 +83,17 @@ TypesMustExist : Type 'System.IO.WindowsRuntimeStorageExtensions' does not exist
 TypesMustExist : Type 'System.IO.WindowsRuntimeStreamExtensions' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Reflection.Context.CustomReflectionContext' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.AsyncInfo' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.IActivationFactory' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.ActionNotSupportedException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.BasicHttpBinding' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.BasicHttpMessageCredentialType' does not exist in the implementation but it does exist in the contract.
@@ -289,4 +298,4 @@ TypesMustExist : Type 'Windows.UI.Xaml.Media.Animation.KeyTime' does not exist i
 TypesMustExist : Type 'Windows.UI.Xaml.Media.Animation.RepeatBehavior' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Windows.UI.Xaml.Media.Animation.RepeatBehaviorType' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Windows.UI.Xaml.Media.Media3D.Matrix3D' does not exist in the implementation but it does exist in the contract.
-Total Issues: 258
+Total Issues: 267

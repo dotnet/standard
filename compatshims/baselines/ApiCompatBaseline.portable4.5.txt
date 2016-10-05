@@ -86,6 +86,15 @@ TypesMustExist : Type 'System.Reflection.Emit.Label' does not exist in the imple
 TypesMustExist : Type 'System.Reflection.Emit.LocalBuilder' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Reflection.Emit.ParameterBuilder' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Reflection.Emit.SignatureHelper' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.IActivationFactory' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.ActionNotSupportedException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.BasicHttpBinding' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.BasicHttpMessageCredentialType' does not exist in the implementation but it does exist in the contract.
@@ -270,4 +279,4 @@ TypesMustExist : Type 'System.ServiceModel.Security.Tokens.SecureConversationSec
 TypesMustExist : Type 'System.ServiceModel.Security.Tokens.SecurityTokenParameters' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.Security.Tokens.SupportingTokenParameters' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters' does not exist in the implementation but it does exist in the contract.
-Total Issues: 239
+Total Issues: 248
