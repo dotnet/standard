@@ -156,36 +156,6 @@ namespace System.Runtime.Serialization
         public string MethodName { get { throw null; } }
         public System.Type Type { get { throw null; } }
     }
-    public sealed partial class NetDataContractSerializer : System.Runtime.Serialization.XmlObjectSerializer, System.Runtime.Serialization.IFormatter
-    {
-        public NetDataContractSerializer() { }
-        public NetDataContractSerializer(System.Runtime.Serialization.StreamingContext context) { }
-        public NetDataContractSerializer(System.Runtime.Serialization.StreamingContext context, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, System.Runtime.Serialization.Formatters.FormatterAssemblyStyle assemblyFormat, System.Runtime.Serialization.ISurrogateSelector surrogateSelector) { }
-        public NetDataContractSerializer(string rootName, string rootNamespace) { }
-        public NetDataContractSerializer(string rootName, string rootNamespace, System.Runtime.Serialization.StreamingContext context, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, System.Runtime.Serialization.Formatters.FormatterAssemblyStyle assemblyFormat, System.Runtime.Serialization.ISurrogateSelector surrogateSelector) { }
-        public NetDataContractSerializer(System.Xml.XmlDictionaryString rootName, System.Xml.XmlDictionaryString rootNamespace) { }
-        public NetDataContractSerializer(System.Xml.XmlDictionaryString rootName, System.Xml.XmlDictionaryString rootNamespace, System.Runtime.Serialization.StreamingContext context, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, System.Runtime.Serialization.Formatters.FormatterAssemblyStyle assemblyFormat, System.Runtime.Serialization.ISurrogateSelector surrogateSelector) { }
-        public System.Runtime.Serialization.Formatters.FormatterAssemblyStyle AssemblyFormat { get { throw null; } set { } }
-        public System.Runtime.Serialization.SerializationBinder Binder { get { throw null; } set { } }
-        public System.Runtime.Serialization.StreamingContext Context { get { throw null; } set { } }
-        public bool IgnoreExtensionDataObject { get { throw null; } }
-        public int MaxItemsInObjectGraph { get { throw null; } }
-        public System.Runtime.Serialization.ISurrogateSelector SurrogateSelector { get { throw null; } set { } }
-        public object Deserialize(System.IO.Stream stream) { throw null; }
-        public override bool IsStartObject(System.Xml.XmlDictionaryReader reader) { throw null; }
-        public override bool IsStartObject(System.Xml.XmlReader reader) { throw null; }
-        public override object ReadObject(System.Xml.XmlDictionaryReader reader, bool verifyObjectName) { throw null; }
-        public override object ReadObject(System.Xml.XmlReader reader) { throw null; }
-        public override object ReadObject(System.Xml.XmlReader reader, bool verifyObjectName) { throw null; }
-        public void Serialize(System.IO.Stream stream, object graph) { }
-        public override void WriteEndObject(System.Xml.XmlDictionaryWriter writer) { }
-        public override void WriteEndObject(System.Xml.XmlWriter writer) { }
-        public override void WriteObject(System.Xml.XmlWriter writer, object graph) { }
-        public override void WriteObjectContent(System.Xml.XmlDictionaryWriter writer, object graph) { }
-        public override void WriteObjectContent(System.Xml.XmlWriter writer, object graph) { }
-        public override void WriteStartObject(System.Xml.XmlDictionaryWriter writer, object graph) { }
-        public override void WriteStartObject(System.Xml.XmlWriter writer, object graph) { }
-    }
     public abstract partial class XmlObjectSerializer
     {
         protected XmlObjectSerializer() { }
