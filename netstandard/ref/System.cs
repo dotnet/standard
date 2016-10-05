@@ -222,12 +222,6 @@ namespace System
         IPv6 = 4,
         Unknown = 0,
     }
-    public enum UriIdnScope
-    {
-        All = 2,
-        AllExceptIntranet = 1,
-        None = 0,
-    }
     public enum UriKind
     {
         Absolute = 1,
