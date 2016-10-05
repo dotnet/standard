@@ -24,7 +24,21 @@ APIs removed/broken by this factoring:
 */
 namespace System.Security.Cryptography
 {
-        public abstract partial class ECDiffieHellman : System.Security.Cryptography.AsymmetricAlgorithm
+    public sealed partial class CryptoAPITransform : System.IDisposable, System.Security.Cryptography.ICryptoTransform
+    {
+        internal CryptoAPITransform() { }
+        public bool CanReuseTransform { get { throw null; } }
+        public bool CanTransformMultipleBlocks { get { throw null; } }
+        public int InputBlockSize { get { throw null; } }
+        public System.IntPtr KeyHandle { get { throw null; } }
+        public int OutputBlockSize { get { throw null; } }
+        public void Clear() { }
+        public void Dispose() { }
+        public void Reset() { }
+        public int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset) { throw null; }
+        public byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount) { throw null; }
+    }
+    public abstract partial class ECDiffieHellman : System.Security.Cryptography.AsymmetricAlgorithm
     {
         protected ECDiffieHellman() { }
         public override string KeyExchangeAlgorithm { get { throw null; } }
@@ -125,6 +139,20 @@ namespace System.Security.Cryptography
         protected override void HashCore(byte[] array, int ibStart, int cbSize) { }
         protected override byte[] HashFinal() { throw null; }
         public override void Initialize() { }
+    }
+    public sealed partial class RijndaelManagedTransform : System.IDisposable, System.Security.Cryptography.ICryptoTransform
+    {
+        internal RijndaelManagedTransform() { }
+        public int BlockSizeValue { get { throw null; } }
+        public bool CanReuseTransform { get { throw null; } }
+        public bool CanTransformMultipleBlocks { get { throw null; } }
+        public int InputBlockSize { get { throw null; } }
+        public int OutputBlockSize { get { throw null; } }
+        public void Clear() { }
+        public void Dispose() { }
+        public void Reset() { }
+        public int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset) { throw null; }
+        public byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount) { throw null; }
     }
     public abstract partial class RIPEMD160 : System.Security.Cryptography.HashAlgorithm
     {

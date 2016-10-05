@@ -12013,20 +12013,6 @@ namespace System.Security.Cryptography
         ECB = 2,
         OFB = 3,
     }
-    public sealed partial class CryptoAPITransform : System.IDisposable, System.Security.Cryptography.ICryptoTransform
-    {
-        internal CryptoAPITransform() { }
-        public bool CanReuseTransform { get { throw null; } }
-        public bool CanTransformMultipleBlocks { get { throw null; } }
-        public int InputBlockSize { get { throw null; } }
-        public System.IntPtr KeyHandle { get { throw null; } }
-        public int OutputBlockSize { get { throw null; } }
-        public void Clear() { }
-        public void Dispose() { }
-        public void Reset() { }
-        public int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset) { throw null; }
-        public byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount) { throw null; }
-    }
     public partial class CryptoConfig
     {
         public CryptoConfig() { }
@@ -12469,20 +12455,6 @@ namespace System.Security.Cryptography
         public override System.Security.Cryptography.ICryptoTransform CreateEncryptor(byte[] rgbKey, byte[] rgbIV) { throw null; }
         public override void GenerateIV() { }
         public override void GenerateKey() { }
-    }
-    public sealed partial class RijndaelManagedTransform : System.IDisposable, System.Security.Cryptography.ICryptoTransform
-    {
-        internal RijndaelManagedTransform() { }
-        public int BlockSizeValue { get { throw null; } }
-        public bool CanReuseTransform { get { throw null; } }
-        public bool CanTransformMultipleBlocks { get { throw null; } }
-        public int InputBlockSize { get { throw null; } }
-        public int OutputBlockSize { get { throw null; } }
-        public void Clear() { }
-        public void Dispose() { }
-        public void Reset() { }
-        public int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset) { throw null; }
-        public byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount) { throw null; }
     }
     public sealed partial class RNGCryptoServiceProvider : System.Security.Cryptography.RandomNumberGenerator
     {
