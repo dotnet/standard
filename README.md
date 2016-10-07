@@ -39,4 +39,4 @@ as well as the videos below.
 
 **Discussion and Q & A**
 
-[![](docs/img/c9-netstandard-discussion.jpg)](https://channel9.msdn.com/Shows/On-NET/Immo-Landwerth-Net-Standard-20)
+[![](docs/img/c9-netstandard-discussion.jpg)](https://channel9.msdn.com/Shows/On-NET/Immo-Landwerth-Net-Standard)
