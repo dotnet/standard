@@ -65,7 +65,7 @@ namespace System
         public event System.EventHandler DomainUnload { add { } remove { } }
         public event System.EventHandler<System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs> FirstChanceException { add { } remove { } }
         public event System.EventHandler ProcessExit { add { } remove { } }
-//XCOMPAT        public event System.ResolveEventHandler ReflectionOnlyAssemblyResolve { add { } remove { } }
+        public event System.ResolveEventHandler ReflectionOnlyAssemblyResolve { add { } remove { } }
         public event System.ResolveEventHandler ResourceResolve { add { } remove { } }
         public event System.ResolveEventHandler TypeResolve { add { } remove { } }
         public event System.UnhandledExceptionEventHandler UnhandledException { add { } remove { } }
@@ -170,8 +170,8 @@ namespace System
         public void SetCachePath(string path) { }
         public void SetData(string name, object data) { }
 //CAS        public void SetData(string name, object data, System.Security.IPermission permission) { }
-//XCOMPAT        [System.ObsoleteAttribute("AppDomain.SetDynamicBase has been deprecated. Please investigate the use of AppDomainSetup.DynamicBase instead. http://go.microsoft.com/fwlink/?linkid=14202")]
-//XCOMPAT        public void SetDynamicBase(string path) { }
+        [System.ObsoleteAttribute("AppDomain.SetDynamicBase has been deprecated. Please investigate the use of AppDomainSetup.DynamicBase instead. http://go.microsoft.com/fwlink/?linkid=14202")]
+        public void SetDynamicBase(string path) { }
         public void SetPrincipalPolicy(System.Security.Principal.PrincipalPolicy policy) { }
         [System.ObsoleteAttribute("AppDomain.SetShadowCopyFiles has been deprecated. Please investigate the use of AppDomainSetup.ShadowCopyFiles instead. http://go.microsoft.com/fwlink/?linkid=14202")]
         public void SetShadowCopyFiles() { }

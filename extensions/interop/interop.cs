@@ -45,11 +45,6 @@ APIs removed/broken by this factoring:
 //INTEROP        public static void ReleaseThreadCache() { }
 //INTEROP        public static bool SetComObjectData(object obj, object key, object data) { throw null; }
     }
-    public partial class RuntimeEnvironment
-    {
-//INTEROP        public static System.IntPtr GetRuntimeInterfaceAsIntPtr(System.Guid clsid, System.Guid riid) { throw null; }
-//INTEROP        public static object GetRuntimeInterfaceAsObject(System.Guid clsid, System.Guid riid) { throw null; }
-    }
 
 */
 namespace System.Runtime.CompilerServices

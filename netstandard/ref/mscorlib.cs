@@ -5762,7 +5762,7 @@ namespace System.Globalization
         internal CompareInfo() { }
         public int LCID { get { throw null; } }
         public virtual string Name { get { throw null; } }
-//XCOMPAT        public System.Globalization.SortVersion Version { get { throw null; } }
+        public System.Globalization.SortVersion Version { get { throw null; } }
         public virtual int Compare(string string1, int offset1, int length1, string string2, int offset2, int length2) { throw null; }
         public virtual int Compare(string string1, int offset1, int length1, string string2, int offset2, int length2, System.Globalization.CompareOptions options) { throw null; }
         public virtual int Compare(string string1, int offset1, string string2, int offset2) { throw null; }
@@ -5832,7 +5832,7 @@ namespace System.Globalization
         public CultureInfo(string name, bool useUserOverride) { }
         public virtual System.Globalization.Calendar Calendar { get { throw null; } }
         public virtual System.Globalization.CompareInfo CompareInfo { get { throw null; } }
-//XCOMPAT        public System.Globalization.CultureTypes CultureTypes { get { throw null; } }
+        public System.Globalization.CultureTypes CultureTypes { get { throw null; } }
         public static System.Globalization.CultureInfo CurrentCulture { get { throw null; } set { } }
         public static System.Globalization.CultureInfo CurrentUICulture { get { throw null; } set { } }
         public virtual System.Globalization.DateTimeFormatInfo DateTimeFormat { get { throw null; } set { } }
@@ -5840,12 +5840,12 @@ namespace System.Globalization
         public static System.Globalization.CultureInfo DefaultThreadCurrentUICulture { get { throw null; } set { } }
         public virtual string DisplayName { get { throw null; } }
         public virtual string EnglishName { get { throw null; } }
-//XCOMPAT        public string IetfLanguageTag { get { throw null; } }
+        public string IetfLanguageTag { get { throw null; } }
         public static System.Globalization.CultureInfo InstalledUICulture { get { throw null; } }
         public static System.Globalization.CultureInfo InvariantCulture { get { throw null; } }
         public virtual bool IsNeutralCulture { get { throw null; } }
         public bool IsReadOnly { get { throw null; } }
-//XCOMPAT        public virtual int KeyboardLayoutId { get { throw null; } }
+        public virtual int KeyboardLayoutId { get { throw null; } }
         public virtual int LCID { get { throw null; } }
         public virtual string Name { get { throw null; } }
         public virtual string NativeName { get { throw null; } }
@@ -5861,7 +5861,7 @@ namespace System.Globalization
         public virtual object Clone() { throw null; }
         public static System.Globalization.CultureInfo CreateSpecificCulture(string name) { throw null; }
         public override bool Equals(object value) { throw null; }
-//XCOMPAT        public System.Globalization.CultureInfo GetConsoleFallbackUICulture() { throw null; }
+        public System.Globalization.CultureInfo GetConsoleFallbackUICulture() { throw null; }
         public static System.Globalization.CultureInfo GetCultureInfo(int culture) { throw null; }
         public static System.Globalization.CultureInfo GetCultureInfo(string name) { throw null; }
         public static System.Globalization.CultureInfo GetCultureInfo(string name, string altName) { throw null; }
@@ -10279,8 +10279,8 @@ namespace System.Runtime.InteropServices
         public static string SystemConfigurationFile { get { throw null; } }
         public static bool FromGlobalAccessCache(System.Reflection.Assembly a) { throw null; }
         public static string GetRuntimeDirectory() { throw null; }
-//INTEROP        public static System.IntPtr GetRuntimeInterfaceAsIntPtr(System.Guid clsid, System.Guid riid) { throw null; }
-//INTEROP        public static object GetRuntimeInterfaceAsObject(System.Guid clsid, System.Guid riid) { throw null; }
+        public static System.IntPtr GetRuntimeInterfaceAsIntPtr(System.Guid clsid, System.Guid riid) { throw null; }
+        public static object GetRuntimeInterfaceAsObject(System.Guid clsid, System.Guid riid) { throw null; }
         public static string GetSystemVersion() { throw null; }
     }
     public partial class SafeArrayRankMismatchException : System.SystemException
@@ -12017,8 +12017,8 @@ namespace System.Security.Cryptography
     {
         public CryptoConfig() { }
         public static bool AllowOnlyFipsAlgorithms { get { throw null; } }
-//XCOMPAT        public static void AddAlgorithm(System.Type algorithm, params string[] names) { }
-//XCOMPAT        public static void AddOID(string oid, params string[] names) { }
+        public static void AddAlgorithm(System.Type algorithm, params string[] names) { }
+        public static void AddOID(string oid, params string[] names) { }
         public static object CreateFromName(string name) { throw null; }
         public static object CreateFromName(string name, params object[] args) { throw null; }
         public static byte[] EncodeOID(string str) { throw null; }
@@ -12422,7 +12422,7 @@ namespace System.Security.Cryptography
     {
         public RC2CryptoServiceProvider() { }
         public override int EffectiveKeySize { get { throw null; } set { } }
-//XCOMPAT        public bool UseSalt { get { throw null; } set { } }
+        public bool UseSalt { get { throw null; } set { } }
         public override System.Security.Cryptography.ICryptoTransform CreateDecryptor(byte[] rgbKey, byte[] rgbIV) { throw null; }
         public override System.Security.Cryptography.ICryptoTransform CreateEncryptor(byte[] rgbKey, byte[] rgbIV) { throw null; }
         public override void GenerateIV() { }
@@ -12437,7 +12437,7 @@ namespace System.Security.Cryptography
         public Rfc2898DeriveBytes(string password, int saltSize, int iterations) { }
         public int IterationCount { get { throw null; } set { } }
         public byte[] Salt { get { throw null; } set { } }
-//XCOMPAT        public byte[] CryptDeriveKey(string algname, string alghashname, int keySize, byte[] rgbIV) { throw null; }
+        public byte[] CryptDeriveKey(string algname, string alghashname, int keySize, byte[] rgbIV) { throw null; }
         protected override void Dispose(bool disposing) { }
         public override byte[] GetBytes(int cb) { throw null; }
         public override void Reset() { }
@@ -12459,9 +12459,9 @@ namespace System.Security.Cryptography
     public sealed partial class RNGCryptoServiceProvider : System.Security.Cryptography.RandomNumberGenerator
     {
         public RNGCryptoServiceProvider() { }
-//XCOMPAT        public RNGCryptoServiceProvider(byte[] rgb) { }
-//XCOMPAT        public RNGCryptoServiceProvider(System.Security.Cryptography.CspParameters cspParams) { }
-//XCOMPAT        public RNGCryptoServiceProvider(string str) { }
+        public RNGCryptoServiceProvider(byte[] rgb) { }
+        public RNGCryptoServiceProvider(System.Security.Cryptography.CspParameters cspParams) { }
+        public RNGCryptoServiceProvider(string str) { }
         protected override void Dispose(bool disposing) { }
         public override void GetBytes(byte[] data) { }
         public override void GetNonZeroBytes(byte[] data) { }
