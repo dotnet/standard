@@ -1912,6 +1912,7 @@ namespace System.Drawing
         public static System.Drawing.Image GetImageFromResource(System.Type t, string imageName, bool large) { throw null; }
     }
 }
+/*
 namespace System.Drawing.Configuration
 {
     public sealed partial class SystemDrawingSection : System.Configuration.ConfigurationSection
@@ -1921,6 +1922,7 @@ namespace System.Drawing.Configuration
         protected override System.Configuration.ConfigurationPropertyCollection Properties { get { throw null; } }
     }
 }
+*/
 namespace System.Drawing.Design
 {
     public sealed partial class CategoryNameCollection : System.Collections.ReadOnlyCollectionBase

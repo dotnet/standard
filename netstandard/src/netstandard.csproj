@@ -10,7 +10,7 @@
     <ContractProject>..\ref\netstandard.csproj</ContractProject>
     <IsPartialFacadeAssembly>true</IsPartialFacadeAssembly>
     <RunApiCompatForSrc>true</RunApiCompatForSrc>
-    <GenFacadesArgs>$(GenFacadesArgs) -ignoreMissingTypes</GenFacadesArgs>
+    <!--<GenFacadesArgs>$(GenFacadesArgs) -ignoreMissingTypes</GenFacadesArgs>-->
     <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
     <ApiCompatBaseline>$(MSBuildProjectDirectory)\ApiCompatBaseline.$(TargetGroup).txt</ApiCompatBaseline>
   </PropertyGroup>
@@ -29,9 +29,12 @@
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)'=='net461'">
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Drawing.csproj" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)'=='xamarin.ios'">
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\OpenTK-1.0.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.Services.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\Xamarin.iOS.csproj" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>
