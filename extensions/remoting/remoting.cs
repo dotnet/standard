@@ -57,6 +57,10 @@ APIs removed/broken by this factoring:
 //REMOTING        public object CreateInstanceFromAndUnwrap(string assemblyName, string typeName, object[] activationAttributes) { throw null; }
 //REMOTING        public void DoCallBack(System.CrossAppDomainDelegate callBackDelegate) { }
     }
+    public abstract partial class MarshalByRefObject
+    {
+//REMOTING        public virtual System.Runtime.Remoting.ObjRef CreateObjRef(System.Type requestedType) { throw null; }
+    }
     public sealed partial class Thread : System.Runtime.ConstrainedExecution.CriticalFinalizerObject
     {
 //REMOTING        public static System.Runtime.Remoting.Contexts.Context CurrentContext { get { throw null; } }
@@ -242,6 +246,14 @@ namespace System.Runtime.Remoting
         On = 0,
         RemoteOnly = 2,
     }
+    public partial interface IChannelInfo
+    {
+        object[] ChannelData { get; set; }
+    }
+    public partial interface IEnvoyInfo
+    {
+        System.Runtime.Remoting.Messaging.IMessageSink EnvoySinks { get; set; }
+    }
     public partial class InternalRemotingServices
     {
         public InternalRemotingServices() { }
@@ -259,11 +271,30 @@ namespace System.Runtime.Remoting
     {
         object Unwrap();
     }
+    public partial interface IRemotingTypeInfo
+    {
+        string TypeName { get; set; }
+        bool CanCastTo(System.Type fromType, object o);
+    }
     public partial class ObjectHandle : System.MarshalByRefObject, System.Runtime.Remoting.IObjectHandle
     {
         public ObjectHandle(object o) { }
         public override object InitializeLifetimeService() { throw null; }
         public object Unwrap() { throw null; }
+    }
+    public partial class ObjRef : System.Runtime.Serialization.IObjectReference, System.Runtime.Serialization.ISerializable
+    {
+        public ObjRef() { }
+        public ObjRef(System.MarshalByRefObject o, System.Type requestedType) { }
+        protected ObjRef(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public virtual System.Runtime.Remoting.IChannelInfo ChannelInfo { get { throw null; } set { } }
+        public virtual System.Runtime.Remoting.IEnvoyInfo EnvoyInfo { get { throw null; } set { } }
+        public virtual System.Runtime.Remoting.IRemotingTypeInfo TypeInfo { get { throw null; } set { } }
+        public virtual string URI { get { throw null; } set { } }
+        public virtual void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public virtual object GetRealObject(System.Runtime.Serialization.StreamingContext context) { throw null; }
+        public bool IsFromThisAppDomain() { throw null; }
+        public bool IsFromThisProcess() { throw null; }
     }
     public static partial class RemotingConfiguration
     {
@@ -841,6 +872,16 @@ namespace System.Runtime.Remoting.Messaging
     }
     public partial interface ILogicalThreadAffinative
     {
+    }
+    public partial interface IMessageCtrl
+    {
+        void Cancel(int msToCancel);
+    }
+    public partial interface IMessageSink
+    {
+        System.Runtime.Remoting.Messaging.IMessageSink NextSink { get; }
+        System.Runtime.Remoting.Messaging.IMessageCtrl AsyncProcessMessage(System.Runtime.Remoting.Messaging.IMessage msg, System.Runtime.Remoting.Messaging.IMessageSink replySink);
+        System.Runtime.Remoting.Messaging.IMessage SyncProcessMessage(System.Runtime.Remoting.Messaging.IMessage msg);
     }
     public partial interface IMethodReturnMessage : System.Runtime.Remoting.Messaging.IMessage, System.Runtime.Remoting.Messaging.IMethodMessage
     {
