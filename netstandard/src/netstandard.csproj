@@ -19,6 +19,7 @@
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.ComponentModel.Composition.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Core.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Data.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.IO.Compression.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.IO.Compression.FileSystem.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Net.Http.csproj" />
