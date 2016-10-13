@@ -341,6 +341,7 @@ namespace System.Runtime.InteropServices
         public System.Type ClassType { get { throw null; } }
         public string MethodName { get { throw null; } }
     }
+    public delegate System.IntPtr ObjectCreationDelegate(System.IntPtr aggregator);
     [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.PARAMDESC instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct PARAMDESC

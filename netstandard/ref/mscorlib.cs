@@ -10242,7 +10242,6 @@ namespace System.Runtime.InteropServices
         public MarshalDirectiveException(string message) { }
         public MarshalDirectiveException(string message, System.Exception inner) { }
     }
-    public delegate System.IntPtr ObjectCreationDelegate(System.IntPtr aggregator);
     [System.AttributeUsageAttribute((System.AttributeTargets)(2048), Inherited=false)]
     public sealed partial class OptionalAttribute : System.Attribute
     {
