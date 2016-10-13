@@ -9061,6 +9061,7 @@ namespace System.Resources
     {
         public static readonly int HeaderVersionNumber;
         public static readonly int MagicNumber;
+        protected System.Reflection.Assembly MainAssembly;
         protected ResourceManager() { }
         public ResourceManager(string baseName, System.Reflection.Assembly assembly) { }
         public ResourceManager(string baseName, System.Reflection.Assembly assembly, System.Type usingResourceSet) { }
