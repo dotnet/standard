@@ -65,6 +65,12 @@ The [version document][netstandard-versions] will help inform your decision.
 Think of the .NET Standard versions as concentric circles: higher versions
 incorporate all APIs from previous versions.
 
+## What about the breaking change between .NET Standard 1.x and 2.0?
+
+Based on your feedback we've decided to make .NET Standard 2.0 a strict superset
+of .NET Standard 1.6. The plan for handling .NET Framework 4.6.1 and .NET
+Standard 2.0 is outlined in the [spec](netstandard-20/README.md).
+
 ## Is the API set of a .NET Standard version fixed?
 
 Yes. A specific version of .NET Standard remains frozen once shipped. New APIs
