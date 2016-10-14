@@ -67,9 +67,10 @@ incorporate all APIs from previous versions.
 
 ## What about the breaking change between .NET Standard 1.x and 2.0?
 
-Based on community feedback, we decided not to make .NET Standard 2.0 be a breaking change from 1.x.
-Instead, .NET Standard 2.0 is a strict superset of .NET Standard 1.6. The plan for handling .NET Framework 4.6.1 and .NET
-Standard 2.0 is outlined in the [spec][netstandard-461].
+Based on community feedback, we decided not to make .NET Standard 2.0 be a
+breaking change from 1.x. Instead, .NET Standard 2.0 is a strict superset of
+.NET Standard 1.6. The plan for handling .NET Framework 4.6.1 and .NET Standard
+2.0 is outlined in the [spec][netstandard-461].
 
 ## Is the API set of a .NET Standard version fixed?
 
