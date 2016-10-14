@@ -29,14 +29,5 @@ Conduct](http://www.dotnetfoundation.org/code-of-conduct).
 
 ## Learning More
 
-If you're new to .NET Standard, you should check out the
-[blog post on .NET Standard](https://blogs.msdn.microsoft.com/dotnet/2016/09/26/introducing-net-standard/)
-as well as the videos below.
-
-**Intro to .NET Standard**
-
-[![](docs/img/c9-netstandard-intro.jpg)](https://channel9.msdn.com/Blogs/Seth-Juarez/What-is-NET-Standard)
-
-**Discussion and Q & A**
-
-[![](docs/img/c9-netstandard-discussion.jpg)](https://channel9.msdn.com/Shows/On-NET/Immo-Landwerth-Net-Standard)
+Check out the [FAQ](docs/faq.md). It should answer most, if not all, the
+questions you have.
