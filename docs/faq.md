@@ -79,7 +79,7 @@ bumping the major version is justified:
 
 * We more than doubled the API surface
 * We added a compat shim that allows referencing existing binaries, even if
-  there weren't built against .NET Standard or Portable Class Libraries
+  they weren't built against .NET Standard or Portable Class Libraries
 
 | Version |  #APIs | Increase Factor |
 |:--------|-------:|----------------:|
