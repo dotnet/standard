@@ -9,7 +9,7 @@ The table below lists all versions of .NET Standard:
 * The arrows indicate that the platform supports a higher version of .NET
   Standard. For instance, .NET Core 1.0 supports the .NET Standard version 1.6,
   which is why there are arrows pointing to the right for the lower versions 1.0
-  - 1.5.
+  \- 1.5.
 
 You can use this table to understand what the highest version of .NET Standard
 is that you can target, based on which .NET platforms you intend to run on. For
