@@ -4,35 +4,6 @@ This document describes the plan for .NET Standard 2, which includes the
 definition of its API surface as well as the principles we use to extend and
 review those additions.
 
-## Support Matrix
-
-This table shows which version of .NET Standard 1.x a given platform implements:
-
-|Platform Name              |Alias      |   1.0|   1.1|   1.2|   1.3|   1.4|   1.5|   1.6|
-|:--------------------------|:----------|-----:|-----:|-----:|-----:|-----:|-----:|-----:|
-|.NET Core                  |netcoreapp |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|   1.0|
-|.NET Framework             |net        |&rarr;|  4.5 | 4.5.1|   4.6| 4.6.1| 4.6.2| vNext|
-|Xamarin.iOS                |           |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|     *|
-|Xamarin.Android            |           |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|     *|
-|Universal Windows Platform |uap        |&rarr;|&rarr;|&rarr;|&rarr;|  10.0|      |      |
-|Windows                    |win        |&rarr;|   8.0|   8.1|      |      |      |      |
-|Windows Phone              |wpa        |&rarr;|&rarr;|   8.1|      |      |      |      |
-|Windows Phone Silverlight  |wp         |   8.0|      |      |      |      |      |      |
-
-For .NET Standard 2 we decided to make a breaking change to allow .NET Framework
-4.6.1 to support it. More details in [this section](#breaking-change-to-net-standard-1x):
-
-|Platform Name              |Alias      |   2.0|
-|:--------------------------|:----------|-----:|
-|.NET Core                  |netcoreapp |   1.1|
-|.NET Framework             |net        | 4.6.1|
-|Xamarin.iOS                |           |     *|
-|Xamarin.Android            |           |     *|
-|Universal Windows Platform |uap        |      |
-|Windows                    |win        |      |
-|Windows Phone              |wpa        |      |
-|Windows Phone Silverlight  |wp         |      |
-
 ## Goals
 
 * **Driving force for consistency**. We want to have an agreed upon set of
@@ -165,124 +136,41 @@ We'll provide another document that goes into more detail on how the user
 experience in Visual Studio can be improved to make developers aware of
 portability issues.
 
-## Breaking Change to .NET Standard 1.x
+## .NET Framework 4.6.1 supporting .NET Standard 2.0
 
-Our goal for .NET Core is to significantly extend its surface area so that more
-functionality can be shared across all the .NET flavors. This mostly means
-filling in existing APIs as .NET Core didn't bring those when it was created.
+.NET Framework 4.6.1 has the highest adoption, which makes it the most
+attractive version of .NET Framework to target.
 
-This allows us to make .NET Standard much bigger. Unfortunately, some of the
-existing .NET flavors do not support all the APIs we have already added since
-.NET Standard 1.5. We've two options:
+By following normal versioning rules one would expect that .NET Standard 2.0
+would only be supported by a newer version of .NET Framework, given that .NET
+Framework 4.6.1 only implements .NET Standard 1.4.
 
-1. We can update the existing platforms to include those APIs
-2. Perform a breaking change in .NET Standard and remove those APIs from .NET
-   Standard 2 and re-introduce them in a later version of .NET Standard.
+This would mean that the libraries compiled against .NET Standard 2.0 would not
+run on the vast majority of .NET Framework installations.
 
-At first, it seems much more logical to go with option (1). Unfortunately,
-updating existing platforms means shipping a new version of that platform.
-This doesn't help our adoption problem as those new platforms aren't necessarily
-available to target in all circumstances. This is in particular true for .NET
-Framework.
+On the other hand, .NET Standard 2.0 adds many APIs that .NET Framework 4.6.1
+already supports. The delta looks as follows:
 
-At the time we ship .NET Standard 2 we expect .NET Framework 4.6.1 to have
-enough adoption to make this a viable prerequisite for .NET Standard 2.
+* .NET Standard 2.0 adds **14,994 APIs** that .NET Framework 4.6.1 already
+  supports
+* .NET Standard 2.0 only has **43 APIs** that .NET Framework 4.6.1 doesn't
+  support
 
-[This document](netstandard-20-removals.md) lists all the APIs that
-are available in .NET Standard 1.6 but weren't implemented yet .NET Framework
-4.6.1.
+Originally, we planned to simply elide those APIs from .NET Standard 2.0 in
+order to make it easier to understand what will work on .NET Framework 4.6.1.
 
-Since updating the Xamarin platforms is mostly an SDK problem (since the .NET
-plaform doesn't ship with iOS or Android itself) we hope we can update those
-platform to simply include those missing APIs. But as outlined above, this isn't
-a viable plan for .NET Framework so we plan on removing the APIs from .NET
-Standard 2 that [.NET Framework 4.6.1 doesn't implement](netstandard-20-removals.md).
+However, we got a lot of feedback around this. You told us that this decision
+makes it really hard to reason about .NET Standard versioning rules. Thus, we
+decided to simplify this:
 
-We ran an analysis of all packages on NuGet.org that target .NET Standard and
-use any of these APIs. At time of this writing we only found six non-Microsoft
-owned packages that are impacted. We'll reach out to those package owners and
-work with them to mitigate the issue.
+* .NET Standard 2.0 will be a strict superset of .NET Standard 1.6. In other
+  words, no breaking changes will happen between .NET Standard 2.0 and 1.x.
+* .NET Framework 4.6.1 will allow referencing binaries that are compiled against
+  .NET Standard 2.0.
 
-The mitigation for these packages is as follows:
+Considering the number of APIs that .NET Framework 4.6.1 will not support is
+low and that these are all brand-new APIs with low adoption we believe this is
+a much better trade-off.
 
-* If they absolutely require the APIs, they will have to require .NET Standard
-  2.1.
-* If they can replace the dependency with other APIs we added in .NET Standard
-  2, they can cross-compile and add a specific target to .NET Standard 2 and
-  continue to support .NET Standard 1.x.
-
-## Inclusion Principles
-
-In order to decide which APIs will be required by .NET Standard we use the
-following principles:
-
-1. All types that are part of the intersection between .NET Framework,
-   Xamarin.iOS, and Xamarin.Android are subject to be added to .NET Core.
-   Please note that this doesn't mean that these types will become part of
-   .NET Standard.
-
-2. APIs that should be required need to be exposed in `netstandard.dll`.
-
-3. Problematic and legacy technologies that we only want to provide for
-   backwards compatibility default to being optional components. That means a
-   separate assembly per component that sit on top `netstandard.dll`.
-
-4. Any members on types added in (1) and (2) that prevent (3) are subject to be
-   removed.
-
-5. All removals in (4) will be reviewed by the .NET Standard's body
-
-## Composition
-
-Based on the list of assemblies that are part of the intersection we're
-currently aiming to cover the following assemblies as part of .NET Standard:
-
-| Included                         | Excluded                              |
-| -------------------------------- |---------------------------------------|
-| Microsoft.CSharp                 | System.ComponentModel.Composition     |
-| mscorlib                         | System.ComponentModel.DataAnnotations |
-| System                           | System.Data                           |
-| System.Core                      | System.Data.Services.Client           |
-| System.Drawing                   | System.Data.SqlXml                    |
-| System.IO.Compression            | System.ServiceModel                   |
-| System.IO.Compression.FileSystem | System.ServiceModel.Web               |
-| System.Net                       | System.Transaction                    |
-| System.Net.Http                  | System.Web                            |
-| System.Numerics                  | System.Web.Services                   |
-| System.Runtime.Serialization     |                                       |
-| System.Xml                       |                                       |
-| System.Xml.Linq                  |                                       |
-
-**Please note:** Just because an assembly is marked as excluded doesn't mean
-it's not available on .NET Core. It simply means it's not part of .NET Standard
-and thus .NET platforms supporting .NET Standard aren't obligated to provide
-implementations for those.
-
-To the included assemblies we applied the following steps:
-
-* Filter to just types
-    - Assumption is that if a type is included all members are also included
-* Mark Types:
-    - **No**. These are things we shouldn’t include
-    - **Required**. These are required APIs in .NET Standard
-    - **[Feature]** These are buckets for features we should probably make as
-      optional extensions as opposed to required.
-
-This is how it looks like at a high level:
-
-| Component       | # Types |
-|-----------------|--------:|
-| No              |      19 |
-| Required        |   1,939 |
-| AppDomain       |       8 |
-| CAS             |     201 |
-| RefEmit         |      23 |
-| Registry        |       2 |
-| Remoting        |     142 |
-| WindowsIdentity |       3 |
-
-Our plan is to review the actual reference assemblies with the .NET Standard
-review body.
-
-More details about our classification can be found in
-[this document](netstandard-20-apis.md).
+You can use API Port to scan a given application to make sure no code in your
+application depends on these APIs.
