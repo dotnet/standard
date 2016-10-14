@@ -69,7 +69,7 @@ incorporate all APIs from previous versions.
 
 Based on your feedback we've decided to make .NET Standard 2.0 a strict superset
 of .NET Standard 1.6. The plan for handling .NET Framework 4.6.1 and .NET
-Standard 2.0 is outlined in the [spec](netstandard-20/README.md).
+Standard 2.0 is outlined in the [spec][netstandard-461].
 
 ## Is the API set of a .NET Standard version fixed?
 
@@ -208,4 +208,5 @@ it has some diagrams.
 [netstandard-analogy]: https://gist.github.com/davidfowl/8939f305567e1755412d6dc0b8baf1b7
 [netstandard-versions]: versions.md
 [netstandard-targeting]: versions.md#how-do-i-know-which-net-standard-version-i-should-target
+[netstandard-461]: netstandard-20/README.md#net-framework-461-supporting-net-standard-20
 [issue]: https://github.com/dotnet/standard/issues/new
