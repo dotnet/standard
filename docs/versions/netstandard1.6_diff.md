@@ -1,5 +1,7 @@
 # .NET Standard 1.6 vs. 1.5
 
+[Overview](netstandard1.6.md) | [Previous](netstandard1.5_diff.md) | [Next](netstandard2.0_diff.md)
+
 ```diff
  namespace System {
      public static class AppContext {

@@ -1,5 +1,7 @@
 # .NET Standard 1.0
 
+[Overview](../versions.md) | [Next](netstandard1.1.md)
+
 * [APIs](netstandard1.0_ref.md)
 
 ## Platform Support

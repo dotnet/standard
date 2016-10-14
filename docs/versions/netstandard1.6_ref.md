@@ -1,6 +1,8 @@
 # .NET Standard 1.6
 
-```diff
+[Overview](netstandard1.6.md) | [Previous](netstandard1.5_ref.md) | [Next](netstandard2.0_ref.md)
+
+```C#
  namespace System {
      public delegate void Action(); {
          public Action(object @object, IntPtr method);

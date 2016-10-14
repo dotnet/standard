@@ -1,5 +1,7 @@
 # .NET Standard 1.1
 
+[Overview](../versions.md) | [Previous](netstandard1.0.md) | [Next](netstandard1.2.md)
+
 * [APIs](netstandard1.1_ref.md)
 * [Diff with 1.0](netstandard1.1_diff.md)
 
@@ -7,9 +9,9 @@
 
 * .NET Core 1.0
 * .NET Framework 4.5
-* Mono
-* Xamarin.iOS
-* Xamarin.Android
+* Mono 4.6
+* Xamarin.iOS 10.0
+* Xamarin.Android 7.0
 * Universal Windows Platform 10
 * Windows 8.0
 * Windows Phone 8.1

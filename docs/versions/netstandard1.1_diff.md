@@ -1,5 +1,7 @@
 # .NET Standard 1.1 vs. 1.0
 
+[Overview](netstandard1.1.md) | [Next](netstandard1.2_diff.md)
+
 ```diff
  namespace System {
 +    public sealed class DataMisalignedException : Exception {

@@ -4,7 +4,7 @@ The table below lists all versions of .NET Standard:
 
 * The columns represent .NET Standard versions. The header is a link to a
   document that shows which APIs got added in that version of .NET Standard.
-* The rows indicate which version of a given .NET platform implemens a given
+* The rows indicate which version of a given .NET platform implements a given
   .NET Standard version.
 * The arrows indicate that the platform supports a higher version of .NET
   Standard. For instance, .NET Core 1.0 supports the .NET Standard version 1.6,
@@ -20,9 +20,9 @@ most target .NET Standard 1.1.
 |:--------------------------|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|
 |.NET Core                  |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|   1.0| vNext|
 |.NET Framework             |&rarr;|  4.5 | 4.5.1|   4.6|&rarr;|&rarr;|&rarr;| 4.6.1|
-|Mono                       |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;| vNext|
-|Xamarin.iOS                |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;| vNext|
-|Xamarin.Android            |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;| vNext|
+|Mono                       |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|   4.6| vNext|
+|Xamarin.iOS                |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|  10.0| vNext|
+|Xamarin.Android            |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|   7.0| vNext|
 |Universal Windows Platform |&rarr;|&rarr;|&rarr;|&rarr;|  10.0|&rarr;|&rarr;| vNext|
 |Windows                    |&rarr;|   8.0|   8.1|      |      |      |      |      |
 |Windows Phone              |&rarr;|&rarr;|   8.1|      |      |      |      |      |
@@ -39,16 +39,16 @@ most target .NET Standard 1.1.
 
 ## How do I know which .NET Standard version I should target?
 
-When choosing a .NET Standard version you should consider this trade-off:
+When choosing a .NET Standard version, you should consider this trade-off:
 
 * The higher the version, the more APIs are available to you.
 * The lower the version, the more platforms implement it.
 
 So generally speaking, you should target the lowest version you get away with.
 To inform your decision, you should consider the compatibility matrix and the
-APIs additions linked fromt the table above.
+APIs additions linked from the table above.
 
-# Versining rules
+# Versioning rules
 
 There are two primary versioning rules:
 
@@ -57,7 +57,7 @@ There are two primary versioning rules:
    changes between versions.
 2. **Immutable**. Once shipped, .NET Standard versions are frozen.
 
-New APIs will first become availabe in specific .NET platforms, such as .NET
+New APIs will first become available in specific .NET platforms, such as .NET
 Core. If the [.NET Standard review board][netstandard-board] believes the new
 APIs should be made available everywhere, they'll be added in a new .NET
 Standard version.

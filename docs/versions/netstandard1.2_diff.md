@@ -1,5 +1,7 @@
 # .NET Standard 1.2 vs. 1.1
 
+[Overview](netstandard1.2.md) | [Previous](netstandard1.1_diff.md) | [Next](netstandard1.3_diff.md)
+
 ```diff
  namespace System {
 -    public sealed class String : IComparable, IComparable<string>, IEnumerable, IEquatable<string> {

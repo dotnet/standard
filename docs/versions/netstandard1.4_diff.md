@@ -1,5 +1,7 @@
 # .NET Standard 1.4 vs. 1.3
 
+[Overview](netstandard1.4.md) | [Previous](netstandard1.3_diff.md) | [Next](netstandard1.5_diff.md)
+
 ```diff
  namespace System.Security.Cryptography {
 +    public abstract class ECDsa : AsymmetricAlgorithm {

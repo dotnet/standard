@@ -1,5 +1,7 @@
 # .NET Standard 1.5 vs. 1.4
 
+[Overview](netstandard1.5.md) | [Previous](netstandard1.4_diff.md) | [Next](netstandard1.6_diff.md)
+
 ```diff
  namespace System {
      public static class Activator {

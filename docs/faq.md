@@ -4,6 +4,7 @@
 
 ## What are good resources to learn about .NET Standard?
 
+* [Documentation](https://docs.microsoft.com/en-us/dotnet/articles/standard/library)
 * [Introducing .NET Standard][netstandard-post] blog post
 * [Intro to .NET Standard](https://channel9.msdn.com/Blogs/Seth-Juarez/What-is-NET-Standard) video
 * [Q&A](https://channel9.msdn.com/Shows/On-NET/Immo-Landwerth-Net-Standard) video
@@ -67,7 +68,7 @@ incorporate all APIs from previous versions.
 ## Is the API set of a .NET Standard version fixed?
 
 Yes. A specific version of .NET Standard remains frozen once shipped. New APIs
-will first become availabe in specific .NET platforms, such as .NET Core. If we
+will first become available in specific .NET platforms, such as .NET Core. If we
 believe the new APIs should be made available everywhere, we'll create a new
 .NET Standard version.
 
@@ -75,8 +76,8 @@ believe the new APIs should be made available everywhere, we'll create a new
 
 There is nothing language specific about .NET Standard. From a language view
 point, the only tie-in to .NET Standard are the language-specific runtime APIs
-(e.g. `Mirosoft.CSharp`, `Microsoft.VisualBasic`, `FSharp.Core` etc) and the
-project templates that allow you to target .NET Standard.
+(for example `Mirosoft.CSharp`, `Microsoft.VisualBasic`, `FSharp.Core` etc.) and
+the project templates that allow you to target .NET Standard.
 
 We don't plan to add any language-specific runtime APIs to .NET Standard. The
 expectation is that they sit on top of .NET Standard and are referenced as
@@ -92,7 +93,7 @@ the creation of new app domains, for example, .NET Core will not, so the method
 The primary reason we expose this type in .NET Standard is because the usage is
 fairly high and typically not associated with creating new app domains but for
 interacting with the current app domain, such as registering an unhandled
-exception handla or asking for the application's base directory.
+exception handler or asking for the application's base directory.
 
 ## Is `MarshalByRefObject` (remoting) part of .NET Standard?
 
@@ -104,25 +105,25 @@ members on it, such as `CreateObjRef`.
 ## Is `System.Data` part of .NET Standard?
 
 .NET Standard will contain the abstractions (`DbProvider`,
-`DbProviderFactories`, `DbConnection`, `IDbConnection` etc) as well as the the
-general ADO.NET facilities (`DataSet`, `DataTable` etc) APIs.
+`DbProviderFactories`, `DbConnection`, `IDbConnection` etc.) as well as the
+general ADO.NET facilities (`DataSet`, `DataTable` etc.) APIs.
 
 We don't plan on adding any specific providers to .NET Standard as their
-applicability varies (e.g. it's a highly unlikely scenario to use the SQL Server
-client from an iOS device, but it would make sense to use a provider that can
-store data on the device, such as SQLite). The expectation is that those sit on
-top of .NET Standard or remain platform-specific.
+applicability varies (for example, it's a highly unlikely scenario to use the
+SQL Server client from an iOS device, but it would make sense to use a provider
+that can store data on the device, such as SQLite). The expectation is that
+those sit on top of .NET Standard or remain platform-specific.
 
 ## Why is JSON.NET not part of .NET Standard?
 
-Today, the best library for dealing with JSON is JSON.NET. But by adding it to
-the .NET Standard we'd do the community a disservice. What matters is that the
-JSON support is widely available. And James, the author of JSON.NET, does a
-great job making sure that JSON.NET is available everywhere. His ability to do
-this successfully is a function of how hard it is for him to make changes. The
-best way to do this is by creating a library that targets .NET Standard because
-it can be updated independently from the standard itself and everyone
-immediately benefits.
+Today, one of the most popular libraries for dealing with JSON is JSON.NET. But
+by adding it to the .NET Standard we'd do the community a disservice. What
+matters is that the JSON support is widely available. And James, the author of
+JSON.NET, does a great job making sure that JSON.NET is available everywhere.
+His ability to do this successfully is a function of how hard it is for him to
+make changes. The best way to do this is by creating a library that targets .NET
+Standard because it can be updated independently from the standard itself and
+everyone immediately benefits.
 
 Of course, this doesn't mean we can't or shouldn't provide some built-in JSON
 support. We've talked with James about this in the past and I believe there is a
@@ -137,8 +138,8 @@ merit, rather than by who wrote it. That's what open source is all about.
 We generally don't include APIs in .NET Standard that don't work everywhere, and
 instead provide them as libraries that sit above .NET Standard.
 
-But if you think about it: we can't make *type members* (e.g. methods,
-properties, etc) additive. The only thing you can make additive are *types*, as
+But if you think about it: we can't make *type members* (for example, methods,
+properties, etc.) additive. The only thing you can make additive are *types*, as
 two different types can live in separate assemblies but we don't have a
 mechanism to split a single type across two different assemblies. In those
 cases, we leave the members on the type and let platforms that cannot
@@ -155,8 +156,8 @@ independent packages that sit on top of .NET Standard. In some cases, certain
 APIs will not be supported everywhere and throw `PlatformNotSupportedException`.
 While that isn't ideal, it's much simpler than the alternatives, which are:
 
-* Using `#if`, i.e. cross-compile
-* Write complicated reflection code, i.e. runtime light-up
+* Using `#if`, also called cross-compiling
+* Write complicated reflection code, also called runtime light-up
 
 A simple `if` statement with a platform check is much easier to express. Of
 course, there are limits to this. Exceptions are only acceptable for corner
@@ -169,8 +170,8 @@ for example, providing Roslyn analyzers that can give you squiggles in the IDE.
 ## Will Unity implement .NET Standard?
 
 Yes. We're working with Unity to make sure this is a smooth experience. In
-general, since Unity is a fork of Mono and it will mostly get .NET Standard
-support for free. The work to support Unity is mostly in tooling.
+general, since Unity is a fork of Mono it will mostly get .NET Standard support
+for free. The work to support Unity is mostly in tooling.
 
 ## I saw your video and I like your watch. What is it?
 
@@ -191,7 +192,7 @@ The upcoming version of Xamarin Studio will support this.
 These were terms we used in earlier discussions. We only have one concept today
 called *.NET Standard*.
 
-## Can you explain the assemblies and type fowarding in more detail?
+## Can you explain the assemblies and type forwarding in more detail?
 
 Yes. For now, take a look at the [.NET Standard 2.0 spec][netstandard-spec], as
 it has some diagrams.
