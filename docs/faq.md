@@ -77,7 +77,7 @@ breaking change from 1.x. Instead, .NET Standard 2.0 is a strict superset of
 We think [.NET Standard 2.0][netstandard-spec] is such a large change that
 bumping the major version is justified:
 
-* We more than dobuled the API surface
+* We more than doubled the API surface
 * We added a compat shim that allows referencing existing binaries, even if
   there weren't built against .NET Standard or Portable Class Libraries
 
