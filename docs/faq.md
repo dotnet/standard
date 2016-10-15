@@ -160,6 +160,15 @@ with him rather than just building "another" JSON.NET. We want a strong
 ecosystem for .NET, but this can only happen if we embrace libraries based on
 merit, rather than by who wrote it. That's what open source is all about.
 
+## Why is XYZ not part of .NET Standard?
+
+As explained in the JSON.NET example above, there is a trade-off between adding
+components to .NET Standard and having components that are on top of .NET
+Standard and can be updated independently.
+
+Check out the [.NET Standard inclusion principles][netstandard-principles] to
+see how we approach this.
+
 ## Why do you include APIs that don't work everywhere?
 
 We generally don't include APIs in .NET Standard that don't work everywhere, and
@@ -229,5 +238,6 @@ it has some diagrams.
 [netstandard-analogy]: https://gist.github.com/davidfowl/8939f305567e1755412d6dc0b8baf1b7
 [netstandard-versions]: versions.md
 [netstandard-targeting]: versions.md#how-do-i-know-which-net-standard-version-i-should-target
+[netstandard-principles]: review-board/README.md#inclusion-principles
 [netstandard-461]: netstandard-20/README.md#net-framework-461-supporting-net-standard-20
 [issue]: https://github.com/dotnet/standard/issues/new
