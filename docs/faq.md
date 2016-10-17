@@ -73,8 +73,8 @@ Standard 1.6, you'll be able to use packages that are targeting any version from
 is targeting a higher version, for example, .NET Standard 2.0.
 
 From a project that is targeting a specific .NET platform, the .NET Standard
-version you can use depends on on which version of .NET Standard the platform
-[is implementing][netstandard-versions].
+versions you can reference depends on which version of .NET Standard the
+platform [is implementing][netstandard-versions].
 
 Starting with .NET Standard 2.0 we also enable referencing binaries compiled
 for .NET Framework through a [compat shim][netstandard-spec].
