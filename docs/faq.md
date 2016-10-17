@@ -65,6 +65,20 @@ The [version document][netstandard-versions] will help inform your decision.
 Think of the .NET Standard versions as concentric circles: higher versions
 incorporate all APIs from previous versions.
 
+From a project that targets .NET Standard *version x* you'll be able to
+reference other libraries and NuGet packages that reference .NET Standard from
+1.0 up to, and including, *version X*. For example, when you target .NET
+Standard 1.6, you'll be able to use packages that are targeting any version from
+.NET Standard 1.0 up to 1.6. However, you'll not be able to use a package that
+is targeting a higher version, for example, .NET Standard 2.0.
+
+From a project that is targeting a specific .NET platform, the .NET Standard
+version you can use depends on on which version of .NET Standard the platform
+[is implementing][netstandard-versions].
+
+Starting with .NET Standard 2.0 we also enable referencing binaries compiled
+for .NET Framework through a [compat shim][netstandard-spec].
+
 ## What about the breaking change between .NET Standard 1.x and 2.0?
 
 Based on community feedback, we decided not to make .NET Standard 2.0 be a
