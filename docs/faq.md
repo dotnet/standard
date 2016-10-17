@@ -4,7 +4,7 @@
 
 ## What are good resources to learn about .NET Standard?
 
-* [Documentation](https://docs.microsoft.com/en-us/dotnet/articles/standard/library)
+* [Documentation][netstandard-docs]
 * [Introducing .NET Standard][netstandard-post] blog post
 * [Intro to .NET Standard](https://channel9.msdn.com/Blogs/Seth-Juarez/What-is-NET-Standard) video
 * [Q&A](https://channel9.msdn.com/Shows/On-NET/Immo-Landwerth-Net-Standard) video
@@ -233,6 +233,7 @@ called *.NET Standard*.
 Yes. For now, take a look at the [.NET Standard 2.0 spec][netstandard-spec], as
 it has some diagrams.
 
+[netstandard-docs]: https://docs.microsoft.com/en-us/dotnet/articles/standard/library
 [netstandard-post]: https://blogs.msdn.microsoft.com/dotnet/2016/09/26/introducing-net-standard/
 [netstandard-spec]: netstandard-20/README.md
 [netstandard-analogy]: https://gist.github.com/davidfowl/8939f305567e1755412d6dc0b8baf1b7
