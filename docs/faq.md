@@ -79,6 +79,14 @@ version you can use depends on on which version of .NET Standard the platform
 Starting with .NET Standard 2.0 we also enable referencing binaries compiled
 for .NET Framework through a [compat shim][netstandard-spec].
 
+## How does .NET Standard work with Portable Class Libraries (PCLs)?
+
+Certain PCL profiles are mapped to .NET Standard versions. The mapping can be
+found in [our documentation][netstandard-docs].
+
+For profiles that have a mapping, these two library types will be able to
+reference each other.
+
 ## What about the breaking change between .NET Standard 1.x and 2.0?
 
 Based on community feedback, we decided not to make .NET Standard 2.0 be a
