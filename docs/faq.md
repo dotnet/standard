@@ -103,16 +103,16 @@ bumping the major version is justified:
 * We added a compat shim that allows referencing existing binaries, even if
   they weren't built against .NET Standard or Portable Class Libraries
 
-| Version |  #APIs | Growth Factor | Growth % |
-|:--------|-------:|--------------:|---------:|
-| 1.0     |  7,949 |               |          |
-| 1.1     | 10,239 |          1.29 |      29% |
-| 1.2     | 10,285 |          1.00 |       0% |
-| 1.3     | 13,122 |          1.28 |      28% |
-| 1.4     | 13,140 |          1.00 |       0% |
-| 1.5     | 13,355 |          1.02 |       2% |
-| 1.6     | 13,501 |          1.01 |       1% |
-| 2.0     | 32,638 |          2.42 |     142% |
+| Version |  #APIs | Growth % |
+|:--------|-------:|---------:|
+| 1.0     |  7,949 |          |
+| 1.1     | 10,239 |     +29% |
+| 1.2     | 10,285 |      +0% |
+| 1.3     | 13,122 |     +28% |
+| 1.4     | 13,140 |      +0% |
+| 1.5     | 13,355 |      +2% |
+| 1.6     | 13,501 |      +1% |
+| 2.0     | 32,638 |    +142% |
 
 ## Is the API set of a .NET Standard version fixed?
 
