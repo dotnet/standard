@@ -4854,16 +4854,6 @@ namespace System.Net
         public virtual System.Net.EndPoint Create(System.Net.SocketAddress socketAddress) { throw null; }
         public virtual System.Net.SocketAddress Serialize() { throw null; }
     }
-    public partial class EndpointPermission
-    {
-        internal EndpointPermission() { }
-        public string Hostname { get { throw null; } }
-        public int Port { get { throw null; } }
-        public System.Net.TransportType Transport { get { throw null; } }
-        public override bool Equals(object obj) { throw null; }
-        public override int GetHashCode() { throw null; }
-        public override string ToString() { throw null; }
-    }
     public partial class FileWebRequest : System.Net.WebRequest, System.Runtime.Serialization.ISerializable
     {
         [System.ObsoleteAttribute("Serialization is obsoleted for this type. http://go.microsoft.com/fwlink/?linkid=14202")]
@@ -5459,12 +5449,6 @@ namespace System.Net
     public partial interface IWebRequestCreate
     {
         System.Net.WebRequest Create(System.Uri uri);
-    }
-    [System.FlagsAttribute]
-    public enum NetworkAccess
-    {
-        Accept = 128,
-        Connect = 64,
     }
     public partial class NetworkCredential : System.Net.ICredentials, System.Net.ICredentialsByHost
     {

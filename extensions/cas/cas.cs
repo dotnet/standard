@@ -266,6 +266,22 @@ namespace System.Net
         public DnsPermissionAttribute(System.Security.Permissions.SecurityAction action) : base (default(System.Security.Permissions.SecurityAction)) { }
         public override System.Security.IPermission CreatePermission() { throw null; }
     }
+    public partial class EndpointPermission
+    {
+        internal EndpointPermission() { }
+        public string Hostname { get { throw null; } }
+        public int Port { get { throw null; } }
+        public System.Net.TransportType Transport { get { throw null; } }
+        public override bool Equals(object obj) { throw null; }
+        public override int GetHashCode() { throw null; }
+        public override string ToString() { throw null; }
+    }
+    [System.FlagsAttribute]
+    public enum NetworkAccess
+    {
+        Accept = 128,
+        Connect = 64,
+    }
     public sealed partial class SocketPermission : System.Security.CodeAccessPermission, System.Security.Permissions.IUnrestrictedPermission
     {
         public const int AllPorts = -1;
