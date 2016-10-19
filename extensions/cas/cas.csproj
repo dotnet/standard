@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\netstandard\ref\netstandard.csproj" />
     <ProjectReference Include="..\accesscontrols\accesscontrols.csproj" />
+    <ProjectReference Include="..\remoting\remoting.csproj" />
     <Compile Include="cas.cs" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />

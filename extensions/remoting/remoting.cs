@@ -152,6 +152,14 @@ namespace System
         public void SetConfigurationBytes(byte[] value) { }
         public void SetNativeFunction(string functionName, int functionVersion, System.IntPtr functionPointer) { }
     }
+    public sealed partial class ApplicationIdentity : System.Runtime.Serialization.ISerializable
+    {
+        public ApplicationIdentity(string applicationIdentityFullName) { }
+        public string CodeBase { get { throw null; } }
+        public string FullName { get { throw null; } }
+        void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public override string ToString() { throw null; }
+    }
     public delegate void CrossAppDomainDelegate();
     public partial interface IAppDomainSetup
     {

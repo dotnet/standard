@@ -100,14 +100,6 @@ namespace System
         public override int GetHashCode() { throw null; }
         public override string ToString() { throw null; }
     }
-    public sealed partial class ApplicationIdentity : System.Runtime.Serialization.ISerializable
-    {
-        public ApplicationIdentity(string applicationIdentityFullName) { }
-        public string CodeBase { get { throw null; } }
-        public string FullName { get { throw null; } }
-        void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public override string ToString() { throw null; }
-    }
     public partial class ArgumentException : System.SystemException, System.Runtime.Serialization.ISerializable
     {
         public ArgumentException() { }
