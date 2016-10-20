@@ -25,9 +25,6 @@ MembersMustExist : Member 'System.Net.Http.HttpClientHandler.SslProtocols.set(Sy
 TypesMustExist : Type 'System.Net.Sockets.SocketReceiveFromResult' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.Sockets.SocketReceiveMessageFromResult' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.Sockets.SocketTaskExtensions' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.Architecture' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.OSPlatform' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.RuntimeInformation' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Security.Cryptography.ECCurve' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.ECDsa.Create(System.Security.Cryptography.ECCurve)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.ECDsa.Create(System.Security.Cryptography.ECParameters)' does not exist in the implementation but it does exist in the contract.
@@ -42,4 +39,4 @@ MembersMustExist : Member 'System.Text.RegularExpressions.Regex.CapNames.get()' 
 MembersMustExist : Member 'System.Text.RegularExpressions.Regex.CapNames.set(System.Collections.IDictionary)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.RegularExpressions.Regex.Caps.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.RegularExpressions.Regex.Caps.set(System.Collections.IDictionary)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 43
+Total Issues: 40

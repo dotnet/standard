@@ -19,8 +19,5 @@ MembersMustExist : Member 'System.Net.Http.HttpClientHandler.SslProtocols.set(Sy
 TypesMustExist : Type 'System.Net.Sockets.SocketReceiveFromResult' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.Sockets.SocketReceiveMessageFromResult' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.Sockets.SocketTaskExtensions' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.Architecture' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.OSPlatform' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.RuntimeInformation' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Security.Cryptography.IncrementalHash' does not exist in the implementation but it does exist in the contract.
-Total Issues: 24
+Total Issues: 21

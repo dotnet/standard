@@ -1,5 +1,1 @@
-Compat issues between implementation set D:\git\standard\bin/\ref\netstandard\2.0.0.0\,D:\git\standard\bin/CompatShims/facades and contract set D:\git\standard\bin/ApiCompat/baselines//netstandard1.2:
-TypesMustExist : Type 'System.Runtime.InteropServices.Architecture' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.OSPlatform' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.RuntimeInformation' does not exist in the implementation but it does exist in the contract.
-Total Issues: 3
+Total Issues: 0

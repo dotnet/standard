@@ -46,7 +46,6 @@
     <ShimAssembly Include="System.Runtime.Extensions" />
     <ShimAssembly Include="System.Runtime.Handles" />
     <ShimAssembly Include="System.Runtime.InteropServices" />
-    <ShimAssembly Include="System.Runtime.InteropServices.RuntimeInformation" />
     <ShimAssembly Include="System.Runtime.Numerics" />
     <ShimAssembly Include="System.Security.Cryptography.Algorithms" />
     <ShimAssembly Include="System.Security.Cryptography.Encoding" />
@@ -218,7 +217,6 @@
     <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6">
       <TargetGroup>portable4.6</TargetGroup>
     </ApiCompatProfile>
-
   </ItemGroup>
 
   <Target Name="PublishApiCompatProfile"
@@ -230,6 +228,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <!-- Clear the item group from the last batched run of this target -->
       <ApiCompatResolvedReferences Remove="@(ApiCompatResolvedReferences)" />
     </ItemGroup>
 
@@ -242,6 +241,14 @@
 
       <Output TaskParameter="ResolvedReferences" ItemName="ApiCompatResolvedReferences" />
     </PrereleaseResolveNuGetPackageAssets>
+
+    <ItemGroup>
+      <!--
+        Remove OOB assemblies from compat considerations because we will continue
+        to ship them as OOB assemblies
+      -->
+      <ApiCompatResolvedReferences Condition="'%(Filename)'=='System.Runtime.InteropServices.RuntimeInformation'" Remove="@(ApiCompatResolvedReferences)"/>
+    </ItemGroup>
 
     <MakeDir Directories="%(ApiCompatProfile.Identity)" />
     <!-- ResolvedReferences corresponds to library contracts -->
