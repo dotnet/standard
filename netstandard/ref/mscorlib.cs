@@ -76,10 +76,13 @@ namespace System
     public static partial class AppContext
     {
         public static string BaseDirectory { get { throw null; } }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public static string TargetFrameworkName { get { throw null; } }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public static object GetData(string name) { throw null; }
         public static void SetSwitch(string switchName, bool isEnabled) { }
         public static bool TryGetSwitch(string switchName, out bool isEnabled) { isEnabled = default(bool); throw null; }
     }
-
     public partial class ApplicationException : System.Exception
     {
         public ApplicationException() { }
@@ -5435,6 +5438,12 @@ namespace System.Diagnostics.Tracing
         public bool DisableEvent(int eventId) { throw null; }
         public bool EnableEvent(int eventId) { throw null; }
     }
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public class EventCounter
+    {
+        public EventCounter(string name, System.Diagnostics.Tracing.EventSource eventSource) { }
+        public void WriteMetric(float value) { }
+    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited=false)]
     public partial class EventDataAttribute : System.Attribute
     {
@@ -5540,6 +5549,8 @@ namespace System.Diagnostics.Tracing
         public System.Guid Guid { get { throw null; } }
         public string Name { get { throw null; } }
         public System.Diagnostics.Tracing.EventSourceSettings Settings { get { throw null; } }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public event System.EventHandler<System.Diagnostics.Tracing.EventCommandEventArgs> EventCommandExecuted { add { } remove { } }
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
         ~EventSource() { }
@@ -12272,6 +12283,17 @@ namespace System.Security.Cryptography
         System.Security.Cryptography.CspKeyContainerInfo CspKeyContainerInfo { get; }
         byte[] ExportCspBlob(bool includePrivateParameters);
         void ImportCspBlob(byte[] rawData);
+    }
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public sealed partial class IncrementalHash : System.IDisposable
+    {
+        public System.Security.Cryptography.HashAlgorithmName AlgorithmName { get { throw null; } }
+        public void AppendData(byte[] data) { }
+        public void AppendData(byte[] data, int offset, int count) { }
+        public static System.Security.Cryptography.IncrementalHash CreateHash(System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
+        public static System.Security.Cryptography.IncrementalHash CreateHMAC(System.Security.Cryptography.HashAlgorithmName hashAlgorithm, byte[] key) { throw null; }
+        public void Dispose() { }
+        public byte[] GetHashAndReset() { throw null; }
     }
     public abstract partial class KeyedHashAlgorithm : System.Security.Cryptography.HashAlgorithm
     {

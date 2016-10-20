@@ -579,6 +579,8 @@ namespace System.Linq
         public static bool All<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, bool> predicate) { throw null; }
         public static bool Any<TSource>(this System.Collections.Generic.IEnumerable<TSource> source) { throw null; }
         public static bool Any<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, bool> predicate) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public static System.Collections.Generic.IEnumerable<TSource> Append<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, TSource element) { throw null;}
         public static System.Collections.Generic.IEnumerable<TSource> AsEnumerable<TSource>(this System.Collections.Generic.IEnumerable<TSource> source) { throw null; }
         public static decimal Average(this System.Collections.Generic.IEnumerable<decimal> source) { throw null; }
         public static double Average(this System.Collections.Generic.IEnumerable<double> source) { throw null; }
@@ -688,6 +690,8 @@ namespace System.Linq
         public static System.Linq.IOrderedEnumerable<TSource> OrderBy<TSource, TKey>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, TKey> keySelector, System.Collections.Generic.IComparer<TKey> comparer) { throw null; }
         public static System.Linq.IOrderedEnumerable<TSource> OrderByDescending<TSource, TKey>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, TKey> keySelector) { throw null; }
         public static System.Linq.IOrderedEnumerable<TSource> OrderByDescending<TSource, TKey>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, TKey> keySelector, System.Collections.Generic.IComparer<TKey> comparer) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public static System.Collections.Generic.IEnumerable<TSource> Prepend<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, TSource element) { throw null; }
         public static System.Collections.Generic.IEnumerable<int> Range(int start, int count) { throw null; }
         public static System.Collections.Generic.IEnumerable<TResult> Repeat<TResult>(TResult element, int count) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> Reverse<TSource>(this System.Collections.Generic.IEnumerable<TSource> source) { throw null; }
@@ -1643,6 +1647,8 @@ namespace System.Linq.Expressions
         internal Expression() { }
         protected internal override System.Linq.Expressions.Expression Accept(System.Linq.Expressions.ExpressionVisitor visitor) { throw null; }
         public new TDelegate Compile() { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public new TDelegate Compile(bool preferInterpretation) { throw null; }
         public new TDelegate Compile(System.Runtime.CompilerServices.DebugInfoGenerator debugInfoGenerator) { throw null; }
         public System.Linq.Expressions.Expression<TDelegate> Update(System.Linq.Expressions.Expression body, System.Collections.Generic.IEnumerable<System.Linq.Expressions.ParameterExpression> parameters) { throw null; }
     }
@@ -1859,6 +1865,8 @@ namespace System.Linq.Expressions
         public bool TailCall { get { throw null; } }
         public sealed override System.Type Type { get { throw null; } }
         public System.Delegate Compile() { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public Delegate Compile(bool preferInterpretation) { throw null; }
         public System.Delegate Compile(System.Runtime.CompilerServices.DebugInfoGenerator debugInfoGenerator) { throw null; }
 //REFEMIT        public void CompileToMethod(System.Reflection.Emit.MethodBuilder method) { }
 //REFEMIT        public void CompileToMethod(System.Reflection.Emit.MethodBuilder method, System.Runtime.CompilerServices.DebugInfoGenerator debugInfoGenerator) { }
@@ -2403,6 +2411,59 @@ namespace System.Security.Cryptography
         None = 0,
         ProtectKey = 1,
     }
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct ECCurve
+    {
+        public byte[] A;
+        public byte[] B;
+        public byte[] Cofactor;
+        public System.Security.Cryptography.ECCurve.ECCurveType CurveType;
+        public System.Security.Cryptography.ECPoint G;
+        public System.Nullable<System.Security.Cryptography.HashAlgorithmName> Hash;
+        public byte[] Order;
+        public byte[] Polynomial;
+        public byte[] Prime;
+        public byte[] Seed;
+        public bool IsCharacteristic2 { get { throw null; } }
+        public bool IsExplicit { get { throw null; } }
+        public bool IsNamed { get { throw null; } }
+        public bool IsPrime { get { throw null; } }
+        public System.Security.Cryptography.Oid Oid { get { throw null; } }
+        public static System.Security.Cryptography.ECCurve CreateFromFriendlyName(string oidFriendlyName) { throw null; }
+        public static System.Security.Cryptography.ECCurve CreateFromOid(System.Security.Cryptography.Oid curveOid) { throw null; }
+        public static System.Security.Cryptography.ECCurve CreateFromValue(string oidValue) { throw null; }
+        public void Validate() { }
+        public enum ECCurveType
+        {
+            Characteristic2 = 4,
+            Implicit = 0,
+            Named = 5,
+            PrimeMontgomery = 3,
+            PrimeShortWeierstrass = 1,
+            PrimeTwistedEdwards = 2,
+        }
+        public static partial class NamedCurves
+        {
+            public static System.Security.Cryptography.ECCurve brainpoolP160r1 { get { throw null; } }
+            public static System.Security.Cryptography.ECCurve brainpoolP160t1 { get { throw null; } }
+            public static System.Security.Cryptography.ECCurve brainpoolP192r1 { get { throw null; } }
+            public static System.Security.Cryptography.ECCurve brainpoolP192t1 { get { throw null; } }
+            public static System.Security.Cryptography.ECCurve brainpoolP224r1 { get { throw null; } }
+            public static System.Security.Cryptography.ECCurve brainpoolP224t1 { get { throw null; } }
+            public static System.Security.Cryptography.ECCurve brainpoolP256r1 { get { throw null; } }
+            public static System.Security.Cryptography.ECCurve brainpoolP256t1 { get { throw null; } }
+            public static System.Security.Cryptography.ECCurve brainpoolP320r1 { get { throw null; } }
+            public static System.Security.Cryptography.ECCurve brainpoolP320t1 { get { throw null; } }
+            public static System.Security.Cryptography.ECCurve brainpoolP384r1 { get { throw null; } }
+            public static System.Security.Cryptography.ECCurve brainpoolP384t1 { get { throw null; } }
+            public static System.Security.Cryptography.ECCurve brainpoolP512r1 { get { throw null; } }
+            public static System.Security.Cryptography.ECCurve brainpoolP512t1 { get { throw null; } }
+            public static System.Security.Cryptography.ECCurve nistP256 { get { throw null; } }
+            public static System.Security.Cryptography.ECCurve nistP384 { get { throw null; } }
+            public static System.Security.Cryptography.ECCurve nistP521 { get { throw null; } }
+        }
+    }
     public abstract partial class ECDiffieHellmanPublicKey : System.IDisposable
     {
         protected ECDiffieHellmanPublicKey(byte[] keyBlob) { }
@@ -2417,9 +2478,21 @@ namespace System.Security.Cryptography
         public override string KeyExchangeAlgorithm { get { throw null; } }
         public override string SignatureAlgorithm { get { throw null; } }
         public static new System.Security.Cryptography.ECDsa Create() { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public static System.Security.Cryptography.ECDsa Create(System.Security.Cryptography.ECCurve curve) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public static System.Security.Cryptography.ECDsa Create(System.Security.Cryptography.ECParameters parameters) { throw null; }
         public static new System.Security.Cryptography.ECDsa Create(string algorithm) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public virtual System.Security.Cryptography.ECParameters ExportExplicitParameters(bool includePrivateParameters) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public virtual System.Security.Cryptography.ECParameters ExportParameters(bool includePrivateParameters) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public virtual void GenerateKey(System.Security.Cryptography.ECCurve curve) { }
         protected virtual byte[] HashData(byte[] data, int offset, int count, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         protected virtual byte[] HashData(System.IO.Stream data, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public virtual void ImportParameters(System.Security.Cryptography.ECParameters parameters) { }
         public virtual byte[] SignData(byte[] data, int offset, int count, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         public virtual byte[] SignData(byte[] data, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         public virtual byte[] SignData(System.IO.Stream data, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
@@ -2428,6 +2501,22 @@ namespace System.Security.Cryptography
         public virtual bool VerifyData(byte[] data, int offset, int count, byte[] signature, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         public bool VerifyData(System.IO.Stream data, byte[] signature, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         public abstract bool VerifyHash(byte[] hash, byte[] signature);
+    }
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct ECParameters
+    {
+        public System.Security.Cryptography.ECCurve Curve;
+        public byte[] D;
+        public System.Security.Cryptography.ECPoint Q;
+        public void Validate() { }
+    }
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct ECPoint
+    {
+        public byte[] X;
+        public byte[] Y;
     }
     public sealed partial class RSACng : System.Security.Cryptography.RSA
     {
