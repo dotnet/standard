@@ -251,15 +251,16 @@ be that:
 
 1. If multiple packages provide the same assembly but in different versions, we
    should unify them to the highest version.
-2. If multiple packages provide the same version of an assembly and version, we
-   should prefer the ones coming from a package marked as a *platform package*.
-   If no such package exist, it should result in build time warning or even an
+2. If multiple packages provide the same version of an assembly, we should
+   prefer the ones coming from a package marked as a *platform package*. If no
+   such package exist, it should result in a build time warning or even an
    error.
 
 We currently don't have the notion of a platform package, but intuitively these
 are packages like `NETStandard.Library` and `Microsoft.NETCore.App`. It's likely
 that these packages already have to provide static MSBuild metadata that
-specifies which TFMs it provides. We could designate that metadata as the
-indicator for being a platform package.
+specifies which target framework versions (TFVs) it provides. We could designate
+that metadata as the indicator for being a platform package.
+
 
 [netstandard-spec]: README.md
