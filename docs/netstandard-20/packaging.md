@@ -206,6 +206,12 @@ We don't plan to update these packages. Instead we'll rely on [MSBuild conflict
 resolution](#msbuild-conflict-resolution) for package graphs that include the
 old packages.
 
+## Layout of out-of-band packages (e.g. `System.Collections.Immutable`)
+
+Components that don't have APIs that ship with any platform (i.e. are fully
+out-of-band) will remain as individual packages. We'll update them to target
+.NET Standard so that they can be used across all .NET platforms.
+
 ### Layout of PCL Compat package (`Microsoft.Portable.Compat`)
 
 Similar to the existing `System.*` packages this package will be discontinued as
