@@ -1,7 +1,7 @@
 # Packaging for .NET Standard 2.0
 
 This document outlines how packaging for .NET Standard 2.0 will work. This
-convers package layout, versioning semantics, compatiblity with existing
+covers package layout, versioning semantics, compatiblity with existing
 packages, and how package consumption will work.
 
 ## Requirements
@@ -152,9 +152,9 @@ static references to all these assemblies.
 In order to simplify packaging updates, we'll continue to make the
 `NETStandard.Library` package cumulative, which means it contains the assets for
 all previous .NET Standard versions. This makes it safe to always update this
-package to the latest without. However, we don't want to have to download the
-entire history of .NET Standard every time, which is why we'll split the package
-by TFM:
+package to the latest version without losing support for platforms. However, we
+don't want to have to download the entire history of .NET Standard every time,
+which is why we'll split the package by TFM:
 
     NETStandard.Library
         ├───NETStandard.Library10
@@ -226,17 +226,17 @@ package.
     - All implementation pieces are in RID-specific packages
     - The implementation will contain pieces we don't expose to the developer
       (i.e. Roslyn, Immutable, native LibUV)
-    - The continue to live in OOB packages the developer has to add a reference
+    - They continue to live in OOB packages the developer has to add a reference
       to
 
 ## MSBuild conflict resolution
 
 Currently, we assume that a given package graph will not produce assembly assets
 with the same simple name but with different versions. That holds true because
-ensure that a given framework assembly ships only in one package. This way, the
-unification is performed by NuGet as a side-effect of package unification.
+we ensure that a given framework assembly ships only in one package. This way,
+the unification is performed by NuGet as a side-effect of package unification.
 
-However, since we don't want to ship grandular packages for the .NET platform,
+However, since we don't want to ship granular packages for the .NET platform,
 we need to deal with situations where multiple packages contain the same
 assembly.
 
