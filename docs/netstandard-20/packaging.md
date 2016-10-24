@@ -20,6 +20,90 @@ packages, and how package consumption will work.
 * **Compatible with .NET Standard 1.x**. The package for .NET Standard 2.0 needs
   to work with packages that were built against .NET Standard 1.x.
 
+## Experience
+
+Moving forward we plan on having two types of packages:
+
+* **Platform packages**. These are monolithic packages that represent a given
+  .NET platform. This includes .NET Core (`Microsoft.NETCore.App`) as well as
+  .NET Standard (`NETStandard.Library`).
+
+* **Library packages**. These are ibraries that target .NET Standard and are
+  thus shared components across all .NET platforms. This includes some `System`
+  packages (such as `System.Collections.Immutable`) but also inlcudes all other
+  libraries on NuGet (such as `Newtonsoft.Json`).
+
+*Platform packages* will be referenced by projects but not by packages (except
+for very specialized tooling packages). Instead, *library packages* will express
+their dependency on the platform by the folder name convention that already
+exists today, such as `lib/net45` and `lib/netstandard16`.
+
+The version of the platform package represents the version of its
+implementation, not the API surface. For example, it's possible to depend on the
+latest version of a platform package and still target an earlier version. That's
+because projects expresses them as separate pieces of configuration:
+
+* The `<TargetFramework>` property (and also `<TargetFrameworks>` if you compile
+  for multiple frameworks). This expresses which version of the API surface you
+  can target.
+
+* The `<PackageReference />` item. Expresses which version of the platform
+  package you are using.
+
+Since platform packages are cumulative, you can always upgrade to the latest
+version and continue to target the current version. This is especially useful
+for .NET Standard, as the API version controls on which platforms you can run.
+
+> ***Note***: You might ask yourself what *implementation* means for the .NET
+> Standard package since it's an API spec but not an actualy implementation. The
+> package also contains tooling support, for example, the list of available .NET
+> Standard versions and, in some cases, even the necessary support for targeting
+> existing .NET platforms that were shipped before a given version of .NET
+> Standard. So in that context *implementation* includes tooling.
+
+Below are the examples how the project files for .NET Standard and .NET Core
+might look like:
+
+**.NET Standard**
+
+```xml
+<Project>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netstandard1.6</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="**\*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NETStandard.Library" Version="2.1.3" />
+    <PackageReference Include="Microsoft.NET.SDK" Version="1.0.0" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
+```
+
+**.NET Core**
+
+```xml
+<Project>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="**\*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.App" Version="1.0.0" />
+    <PackageReference Include="Microsoft.NET.SDK" Version="1.0.0" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
+```
+
 ## Compatiblity with .NET Standard 1.x
 
 The reference assemblies for .NET Standard 1.x use a fine grained factoring.
