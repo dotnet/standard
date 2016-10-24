@@ -364,6 +364,13 @@ namespace System.Net.Mail
 }
 namespace System.Net.NetworkInformation
 {
+    [System.FlagsAttribute]
+    public enum NetworkInformationAccess
+    {
+        None = 0,
+        Ping = 4,
+        Read = 1,
+    }
     public sealed partial class NetworkInformationPermission : System.Security.CodeAccessPermission, System.Security.Permissions.IUnrestrictedPermission
     {
         public NetworkInformationPermission(System.Net.NetworkInformation.NetworkInformationAccess access) { }

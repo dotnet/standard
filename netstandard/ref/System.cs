@@ -6619,13 +6619,6 @@ namespace System.Net.NetworkInformation
         public static event System.Net.NetworkInformation.NetworkAddressChangedEventHandler NetworkAddressChanged { add { } remove { } }
         public static event System.Net.NetworkInformation.NetworkAvailabilityChangedEventHandler NetworkAvailabilityChanged { add { } remove { } }
     }
-    [System.FlagsAttribute]
-    public enum NetworkInformationAccess
-    {
-        None = 0,
-        Ping = 4,
-        Read = 1,
-    }
     public partial class NetworkInformationException : System.ComponentModel.Win32Exception
     {
         public NetworkInformationException() { }
