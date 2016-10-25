@@ -5931,6 +5931,11 @@ namespace System.Diagnostics.Tracing
         public bool DisableEvent(int eventId) { throw null; }
         public bool EnableEvent(int eventId) { throw null; }
     }
+    public partial class EventCounter
+    {
+        public EventCounter(string name, System.Diagnostics.Tracing.EventSource eventSource) { }
+        public void WriteMetric(float value) { }
+    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited=false)]
     public partial class EventDataAttribute : System.Attribute
     {
@@ -16535,6 +16540,17 @@ namespace System.Security.Cryptography
         System.Security.Cryptography.CspKeyContainerInfo CspKeyContainerInfo { get; }
         byte[] ExportCspBlob(bool includePrivateParameters);
         void ImportCspBlob(byte[] rawData);
+    }
+    public sealed partial class IncrementalHash : System.IDisposable
+    {
+        public IncrementalHash() { }
+        public System.Security.Cryptography.HashAlgorithmName AlgorithmName { get { throw null; } }
+        public void AppendData(byte[] data) { }
+        public void AppendData(byte[] data, int offset, int count) { }
+        public static System.Security.Cryptography.IncrementalHash CreateHash(System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
+        public static System.Security.Cryptography.IncrementalHash CreateHMAC(System.Security.Cryptography.HashAlgorithmName hashAlgorithm, byte[] key) { throw null; }
+        public void Dispose() { }
+        public byte[] GetHashAndReset() { throw null; }
     }
     public abstract partial class KeyedHashAlgorithm : System.Security.Cryptography.HashAlgorithm
     {
