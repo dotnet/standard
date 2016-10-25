@@ -1,7 +1,1 @@
-Compat issues with assembly netstandard:
-TypesMustExist : Type 'System.Diagnostics.Tracing.EventCounter' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.Sockets.SocketReceiveFromResult' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.Sockets.SocketReceiveMessageFromResult' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.Sockets.SocketTaskExtensions' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Security.Cryptography.IncrementalHash..ctor()' does not exist in the implementation but it does exist in the contract.
-Total Issues: 5
+Total Issues: 0
