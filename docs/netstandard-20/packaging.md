@@ -13,7 +13,7 @@ packages, and how package consumption will work.
 * **Packages don't need to depend on the .NET Standard package**. This makes
   building packages that target .NET Standard similar to how it works for other
   .NET platforms (such as .NET Framework).
-* **Indepedent from platform implementations**. The .NET Standard package
+* **Independent from platform implementations**. The .NET Standard package
   shouldn't need to know about the platforms implementing the standard. This
   avoids having to update the .NET Standard package every time a platform is
   updated or added.
@@ -28,7 +28,7 @@ Moving forward we plan on having two types of packages:
   .NET platform. This includes .NET Core (`Microsoft.NETCore.App`) as well as
   .NET Standard (`NETStandard.Library`).
 
-* **Library packages**. These are ibraries that target .NET Standard and are
+* **Library packages**. These are libraries that target .NET Standard and are
   thus shared components across all .NET platforms. This includes some `System`
   packages (such as `System.Collections.Immutable`) but also inlcudes all other
   libraries on NuGet (such as `Newtonsoft.Json`).
@@ -41,7 +41,7 @@ exists today, such as `lib/net45` and `lib/netstandard16`.
 The version of the platform package represents the version of its
 implementation, not the API surface. For example, it's possible to depend on the
 latest version of a platform package and still target an earlier version. That's
-because projects expresses them as separate pieces of configuration:
+because projects express them as separate pieces of configuration:
 
 * The `<TargetFramework>` property (and also `<TargetFrameworks>` if you compile
   for multiple frameworks). This expresses which version of the API surface you
@@ -186,8 +186,8 @@ These come from the following sources:
 1. Any assemblies that are part of .NET Framework and Portable Class Libraries
    that contain types that are also in .NET Standard 2.0.
 2. All assemblies that are part of `NETStandard.Library` 1.x
-3. All assemblies that are in packages that only depend on `NETStandard.Library`
-   1.x but contain types that are also in .NET Standard 2.0.
+3. All assemblies that are outside of `NETStandard.Library` 1.x but contain
+   types that are also in .NET Standard 2.0.
 
 Please note that (3) implies that our package compatibilty also has to support
 packages that are outside of the closure of `NETStandard.Library` 1.x.
@@ -210,7 +210,8 @@ The expectation is that .NET Core vNext has built-in support for .NET Standard
 For .NET Core 1.x, the `Microsoft.NETCore.App` package has a dependency on the
 `NETStandard.Library`. We want to continue doing this for .NET Standard 2.0
 because it will "lift" package references to .NET Standard 1.6 to 2.0. This will
-simplify the package graph.
+simplify the package graph. It also provides a clear indicator of what version
+of .NET Standard it supports.
 
 ## Compatiblity with .NET Framework 4.6.1
 
@@ -283,8 +284,8 @@ in order to provide the support for .NET Framework 4.6.1:
 
 ### Layout of contract packages (`System.*`)
 
-Our goal is to discontinue the existing fine-grained packages we have been using
-for .NET Standard 1.x as well as for .NET Core.
+Our goal is to discontinue the existing fine-grained contract packages we have
+been using for .NET Standard 1.x as well as for .NET Core.
 
 We don't plan to update these packages. Instead we'll rely on [MSBuild conflict
 resolution](#msbuild-conflict-resolution) for package graphs that include the
@@ -307,7 +308,7 @@ package.
 
 ### Layout of `Microsoft.NETCore.App`
 
-* No dependency to `NETStandard.Library` 
+* Has a dependency to `NETStandard.Library` 
 * `ref/netcoreapp{vNext}`
     - Contains `netstandard.dll` facade type forwarding to `System.Runtime`
     - Contains `mscorlib`-based facade type forwarding to `System.Runtime`
