@@ -30,7 +30,7 @@ Moving forward we plan on having two types of packages:
 
 * **Library packages**. These are libraries that target .NET Standard and are
   thus shared components across all .NET platforms. This includes some `System`
-  packages (such as `System.Collections.Immutable`) but also inlcudes all other
+  packages (such as `System.Collections.Immutable`) but also includes all other
   libraries on NuGet (such as `Newtonsoft.Json`).
 
 *Platform packages* will be referenced by projects but not by packages (except
