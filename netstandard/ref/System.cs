@@ -7493,7 +7493,8 @@ namespace System.Net.Sockets
         Broadcast = 1024,
         ControlDataTruncated = 512,
         DontRoute = 4,
-        MaxIOVectorLength = 16,
+// Enum value isn't used but keeping commented out so we don't reuse the slot in the future
+//        MaxIOVectorLength = 16,
         Multicast = 2048,
         None = 0,
         OutOfBand = 1,
