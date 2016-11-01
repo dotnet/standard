@@ -5551,7 +5551,6 @@ namespace System.Net
     {
         protected TransportContext() { }
         public abstract System.Security.Authentication.ExtendedProtection.ChannelBinding GetChannelBinding(System.Security.Authentication.ExtendedProtection.ChannelBindingKind kind);
-        public virtual System.Collections.Generic.IEnumerable<System.Security.Authentication.ExtendedProtection.TokenBinding> GetTlsTokenBindings() { throw null; }
     }
     public enum TransportType
     {
@@ -8067,17 +8066,6 @@ namespace System.Security.Authentication.ExtendedProtection
         public bool Contains(string searchServiceName) { throw null; }
         public System.Security.Authentication.ExtendedProtection.ServiceNameCollection Merge(System.Collections.IEnumerable serviceNames) { throw null; }
         public System.Security.Authentication.ExtendedProtection.ServiceNameCollection Merge(string serviceName) { throw null; }
-    }
-    public partial class TokenBinding
-    {
-        internal TokenBinding() { }
-        public System.Security.Authentication.ExtendedProtection.TokenBindingType BindingType { get { throw null; } }
-        public byte[] GetRawTokenBindingId() { throw null; }
-    }
-    public enum TokenBindingType
-    {
-        Provided = 0,
-        Referred = 1,
     }
 }
 namespace System.Security.Cryptography
