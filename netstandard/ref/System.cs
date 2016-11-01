@@ -5256,11 +5256,10 @@ namespace System.Net
         UpgradeRequired = 426,
         UseProxy = 305,
     }
-    public partial class HttpVersion
+    public static partial class HttpVersion
     {
         public static readonly System.Version Version10;
         public static readonly System.Version Version11;
-        public HttpVersion() { }
     }
     public partial class HttpWebRequest : System.Net.WebRequest, System.Runtime.Serialization.ISerializable
     {
