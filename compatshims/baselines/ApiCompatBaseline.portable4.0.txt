@@ -91,6 +91,7 @@ TypesMustExist : Type 'System.ComponentModel.DataAnnotations.ValidationResult' d
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.Validator' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Contracts.Internal.ContractHelper' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.ActionNotSupportedException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.BasicHttpBinding' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.BasicHttpMessageCredentialType' does not exist in the implementation but it does exist in the contract.
@@ -220,4 +221,4 @@ TypesMustExist : Type 'System.ServiceModel.Dispatcher.IDispatchMessageFormatter'
 TypesMustExist : Type 'System.ServiceModel.Security.MessageSecurityException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.Security.SecurityAccessDeniedException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.Security.UserNamePasswordClientCredential' does not exist in the implementation but it does exist in the contract.
-Total Issues: 206
+Total Issues: 207

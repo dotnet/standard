@@ -5225,15 +5225,6 @@ namespace System.Diagnostics.Contracts
         public PureAttribute() { }
     }
 }
-namespace System.Diagnostics.Contracts.Internal
-{
-    [System.ObsoleteAttribute("Use the ContractHelper class in the System.Runtime.CompilerServices namespace instead.")]
-    public static partial class ContractHelper
-    {
-        public static string RaiseContractFailedEvent(System.Diagnostics.Contracts.ContractFailureKind failureKind, string userMessage, string conditionText, System.Exception innerException) { throw null; }
-        public static void TriggerFailure(System.Diagnostics.Contracts.ContractFailureKind kind, string displayMessage, string userMessage, string conditionText, System.Exception innerException) { }
-    }
-}
 namespace System.Diagnostics.SymbolStore
 {
     public partial interface ISymbolBinder
