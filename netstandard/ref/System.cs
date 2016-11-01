@@ -3700,7 +3700,8 @@ namespace System.Diagnostics
         public static bool AutoFlush { get { throw null; } set { } }
         public static int IndentLevel { get { throw null; } set { } }
         public static int IndentSize { get { throw null; } set { } }
-        public static System.Diagnostics.TraceListenerCollection Listeners { get { throw null; } }
+// Removed to break dependency on the larger TraceListener set of APIs
+//        public static System.Diagnostics.TraceListenerCollection Listeners { get { throw null; } }
         [System.Diagnostics.ConditionalAttribute("DEBUG")]
         public static void Assert(bool condition) { }
         [System.Diagnostics.ConditionalAttribute("DEBUG")]
