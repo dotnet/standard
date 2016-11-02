@@ -213,6 +213,10 @@ because it will "lift" package references to .NET Standard 1.6 to 2.0. This will
 simplify the package graph. It also provides a clear indicator of what version
 of .NET Standard it supports.
 
+However, the `NETStandard.Library` 2.0 package will contribute *zero* assets to
+`netcoreapp1.2` because the facade for `netstandard.dll` is provided by
+`Microsoft.NETCore.App`.
+
 ## Compatiblity with .NET Framework 4.6.1
 
 Even in the upcoming version of Visual Studio ("Dev15"), the NuGet story for
