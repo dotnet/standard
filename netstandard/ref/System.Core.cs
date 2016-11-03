@@ -452,7 +452,7 @@ namespace System.IO.Pipes
         public NamedPipeClientStream(System.IO.Pipes.PipeDirection direction, bool isAsync, bool isConnected, Microsoft.Win32.SafeHandles.SafePipeHandle safePipeHandle) : base (default(System.IO.Pipes.PipeDirection), default(int)) { }
         public NamedPipeClientStream(string pipeName) : base (default(System.IO.Pipes.PipeDirection), default(int)) { }
         public NamedPipeClientStream(string serverName, string pipeName) : base (default(System.IO.Pipes.PipeDirection), default(int)) { }
-        public NamedPipeClientStream(string serverName, string pipeName, System.IO.Pipes.PipeAccessRights desiredAccessRights, System.IO.Pipes.PipeOptions options, System.Security.Principal.TokenImpersonationLevel impersonationLevel, System.IO.HandleInheritability inheritability) : base (default(System.IO.Pipes.PipeDirection), default(int)) { }
+//ACLS        public NamedPipeClientStream(string serverName, string pipeName, System.IO.Pipes.PipeAccessRights desiredAccessRights, System.IO.Pipes.PipeOptions options, System.Security.Principal.TokenImpersonationLevel impersonationLevel, System.IO.HandleInheritability inheritability) : base (default(System.IO.Pipes.PipeDirection), default(int)) { }
         public NamedPipeClientStream(string serverName, string pipeName, System.IO.Pipes.PipeDirection direction) : base (default(System.IO.Pipes.PipeDirection), default(int)) { }
         public NamedPipeClientStream(string serverName, string pipeName, System.IO.Pipes.PipeDirection direction, System.IO.Pipes.PipeOptions options) : base (default(System.IO.Pipes.PipeDirection), default(int)) { }
         public NamedPipeClientStream(string serverName, string pipeName, System.IO.Pipes.PipeDirection direction, System.IO.Pipes.PipeOptions options, System.Security.Principal.TokenImpersonationLevel impersonationLevel) : base (default(System.IO.Pipes.PipeDirection), default(int)) { }
@@ -489,27 +489,6 @@ namespace System.IO.Pipes
         public void WaitForConnection() { }
         public System.Threading.Tasks.Task WaitForConnectionAsync() { throw null; }
         public System.Threading.Tasks.Task WaitForConnectionAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
-    }
-    [System.FlagsAttribute]
-    public enum PipeAccessRights
-    {
-        AccessSystemSecurity = 16777216,
-        ChangePermissions = 262144,
-        CreateNewInstance = 4,
-        Delete = 65536,
-        FullControl = 2032031,
-        Read = 131209,
-        ReadAttributes = 128,
-        ReadData = 1,
-        ReadExtendedAttributes = 8,
-        ReadPermissions = 131072,
-        ReadWrite = 131483,
-        Synchronize = 1048576,
-        TakeOwnership = 524288,
-        Write = 274,
-        WriteAttributes = 256,
-        WriteData = 2,
-        WriteExtendedAttributes = 16,
     }
     public enum PipeDirection
     {

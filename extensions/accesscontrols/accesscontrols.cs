@@ -82,6 +82,10 @@ APIs removed/broken by this factoring:
     {
 //ACLS        public AnonymousPipeServerStream(System.IO.Pipes.PipeDirection direction, System.IO.HandleInheritability inheritability, int bufferSize, System.IO.Pipes.PipeSecurity pipeSecurity) : base (default(System.IO.Pipes.PipeDirection), default(int)) { }
     }
+    public sealed partial class NamedPipeClientStream : System.IO.Pipes.PipeStream
+    {
+//ACLS        public NamedPipeClientStream(string serverName, string pipeName, System.IO.Pipes.PipeAccessRights desiredAccessRights, System.IO.Pipes.PipeOptions options, System.Security.Principal.TokenImpersonationLevel impersonationLevel, System.IO.HandleInheritability inheritability) : base (default(System.IO.Pipes.PipeDirection), default(int)) { }
+    }
     public sealed partial class NamedPipeServerStream : System.IO.Pipes.PipeStream
     {
 //ACLS        public NamedPipeServerStream(string pipeName, System.IO.Pipes.PipeDirection direction, int maxNumberOfServerInstances, System.IO.Pipes.PipeTransmissionMode transmissionMode, System.IO.Pipes.PipeOptions options, int inBufferSize, int outBufferSize, System.IO.Pipes.PipeSecurity pipeSecurity) : base (default(System.IO.Pipes.PipeDirection), default(int)) { }
@@ -93,7 +97,6 @@ APIs removed/broken by this factoring:
 //ACLS        public System.IO.Pipes.PipeSecurity GetAccessControl() { throw null; }
 //ACLS        public void SetAccessControl(System.IO.Pipes.PipeSecurity pipeSecurity) { }
     }
-
 
 */
 namespace System.Security.AccessControl
@@ -962,6 +965,27 @@ namespace System.IO.MemoryMappedFiles
 }
 namespace System.IO.Pipes
 {
+    [System.FlagsAttribute]
+    public enum PipeAccessRights
+    {
+        AccessSystemSecurity = 16777216,
+        ChangePermissions = 262144,
+        CreateNewInstance = 4,
+        Delete = 65536,
+        FullControl = 2032031,
+        Read = 131209,
+        ReadAttributes = 128,
+        ReadData = 1,
+        ReadExtendedAttributes = 8,
+        ReadPermissions = 131072,
+        ReadWrite = 131483,
+        Synchronize = 1048576,
+        TakeOwnership = 524288,
+        Write = 274,
+        WriteAttributes = 256,
+        WriteData = 2,
+        WriteExtendedAttributes = 16,
+    }
     public sealed partial class PipeAccessRule : System.Security.AccessControl.AccessRule
     {
         public PipeAccessRule(System.Security.Principal.IdentityReference identity, System.IO.Pipes.PipeAccessRights rights, System.Security.AccessControl.AccessControlType type) : base (default(System.Security.Principal.IdentityReference), default(int), default(bool), default(System.Security.AccessControl.InheritanceFlags), default(System.Security.AccessControl.PropagationFlags), default(System.Security.AccessControl.AccessControlType)) { }
