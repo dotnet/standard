@@ -62,17 +62,18 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <CompatShimsRootPath>$(BinDir)CompatShims/</CompatShimsRootPath>
-    <RestoredRefPath>$(CompatShimsRootPath)ref/</RestoredRefPath>
-    <GenFacadesOutputPath>$(CompatShimsRootPath)facades</GenFacadesOutputPath>
-    <NetstandardRefPath>$(BinDir)\ref\netstandard\2.0.0.0\</NetstandardRefPath>
+    <RestoredRefPath>$(IntermediateOutputPath)CompatShims/ref/</RestoredRefPath>
+    <GenFacadesOutputPath>$(BinDir)CompatShims/facades/</GenFacadesOutputPath>
+    <NetstandardRefPath>$(BinDir)ref/netstandard/2.0.0.0/</NetstandardRefPath>
+    <ProjectJson>$(MSBuildThisFileDirectory)project.json</ProjectJson>
+    <ProjectLockJson>$(MSBuildThisFileDirectory)project.lock.json</ProjectLockJson>
   </PropertyGroup>
 
-  <Target Name="RestoreAndPublishForShims">
+  <Target Name="RestoreAndPublishForShims"
+          Inputs="$(ProjectJson)"
+          Outputs="$(ProjectLockJson);$(RestoredRefPath)">
 
     <PropertyGroup>
-      <ProjectJson>$(MSBuildThisFileDirectory)project.json</ProjectJson>
-      <ProjectLockJson>$(MSBuildThisFileDirectory)project.lock.json</ProjectLockJson>
       <TargetFrameworkMoniker>.NETStandard,Version=v1.7</TargetFrameworkMoniker>
     </PropertyGroup>
 
@@ -103,20 +104,36 @@
       DestinationFolder="$(RestoredRefPath)"
       SkipUnchangedFiles="true" />
 
-  </Target>
-
-  <!-- Generate Facades -->
-  <Target Name="GenerateFacades" DependsOnTargets="RestoreAndPublishForShims" AfterTargets="Build">
-
-    <PropertyGroup>
-      <GenFacadesInputPath>$(IntermediateOutputPath)PreGenFacades/</GenFacadesInputPath>
-      <GenFacadesResponseFile>$(GenFacadesInputPath)genfacades.rsp</GenFacadesResponseFile>
-    </PropertyGroup>
-
     <ItemGroup>
       <GenFacadesContracts Include="$(RestoredRefPath)*.dll" />
       <GenFacadesSeeds Include="$(NetstandardRefPath)\netstandard.dll" />
     </ItemGroup>
+
+  </Target>
+
+  <Target Name="FacadesToPackage"
+          AfterTargets="RunGenFacades">
+    <ItemGroup>
+      <FilesToPackage Include="$(GenFacadesOutputPath)\*.dll">
+        <TargetFramework>.NETStandard,Version=v2.0</TargetFramework>
+        <TargetPath>lib/netstandard2.0</TargetPath>
+        <IsReferenceAsset>true</IsReferenceAsset>
+      </FilesToPackage>
+    </ItemGroup>
+  </Target>
+
+  <PropertyGroup>
+    <GenFacadesInputPath>$(IntermediateOutputPath)PreGenFacades/</GenFacadesInputPath>
+    <GenFacadesResponseFile>$(GenFacadesInputPath)genfacades.rsp</GenFacadesResponseFile>
+    <GenFacadesSemaphoreFile>$(GenFacadesInputPath)genfacades.sempahore</GenFacadesSemaphoreFile>
+  </PropertyGroup>
+
+  <!-- Generate Facades -->
+  <Target Name="RunGenFacades"
+          DependsOnTargets="RestoreAndPublishForShims"
+          AfterTargets="Build"
+          Inputs="@(GenFacadesContracts);@(GenFacadeSeeds)"
+          Outputs="$(GenFacadesSemaphoreFile)">
 
     <PropertyGroup>
       <GenFacadesArgs>$(GenFacadesArgs) -contracts:"@(GenFacadesContracts, ',')"</GenFacadesArgs>
@@ -134,10 +151,12 @@
     </PropertyGroup>
 
     <Exec Command="$(GenFacadesCmd) @&quot;$(GenFacadesResponseFile)&quot;" WorkingDirectory="$(ToolRuntimePath)" />
+
+    <Touch Files="$(GenFacadesSemaphoreFile)" AlwaysCreate="true" />
   </Target>
 
   <PropertyGroup>
-    <ApiCompatProfileRootPath>$(BinDir)ApiCompat/baselines/</ApiCompatProfileRootPath>
+    <ApiCompatProfileRootPath>$(IntermediateOutputPath)ApiCompat/baselines/</ApiCompatProfileRootPath>
     <ApiCompatBaseline>ApiCompatBaseline.compatshims.txt</ApiCompatBaseline>
     <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
     <PortableProfileRootPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETPortable\</PortableProfileRootPath>
@@ -172,42 +191,6 @@
       <TargetGroup>netstandard1.6</TargetGroup>
       <TargetFramework>.NETStandard,Version=v1.6</TargetFramework>
     </ApiCompatProfile>
-
-<!--
-    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5\Profile\Profile7">
-      <TargetGroup>Profile7</TargetGroup>
-    </ApiCompatProfile>
-    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile31">
-      <TargetGroup>Profile31</TargetGroup>
-    </ApiCompatProfile>
-    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile32">
-      <TargetGroup>Profile32</TargetGroup>
-    </ApiCompatProfile>
-    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile44">
-      <TargetGroup>Profile44</TargetGroup>
-    </ApiCompatProfile>
-    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5\Profile\Profile49">
-      <TargetGroup>Profile49</TargetGroup>
-    </ApiCompatProfile>
-    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5\Profile\Profile78">
-      <TargetGroup>Profile78</TargetGroup>
-    </ApiCompatProfile>
-    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile84">
-      <TargetGroup>Profile84</TargetGroup>
-    </ApiCompatProfile>
-    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5\Profile\Profile111">
-      <TargetGroup>Profile111</TargetGroup>
-    </ApiCompatProfile>
-    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile151">
-      <TargetGroup>Profile151</TargetGroup>
-    </ApiCompatProfile>
-    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile157">
-      <TargetGroup>Profile157</TargetGroup>
-    </ApiCompatProfile>
-    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5\Profile\Profile259">
-      <TargetGroup>Profile259</TargetGroup>
-    </ApiCompatProfile>
--->
     <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0">
       <TargetGroup>portable4.0</TargetGroup>
     </ApiCompatProfile>
@@ -220,8 +203,8 @@
   </ItemGroup>
 
   <Target Name="PublishApiCompatProfile"
-    Inputs="%(ApiCompatProfile.TargetFramework)"
-    Outputs="%(ApiCompatProfile.Identity)"
+          Inputs="$(ProjectLockJson)"
+          Outputs="%(ApiCompatProfile.Identity)"
     >
     <PropertyGroup>
       <ProjectLockJson>$(MSBuildThisFileDirectory)project.lock.json</ProjectLockJson>
@@ -233,6 +216,7 @@
     </ItemGroup>
 
     <PrereleaseResolveNuGetPackageAssets
+         Condition="'%(ApiCompatProfile.TargetFramework)' != ''"
          IncludeFrameworkReferences="false"
          NuGetPackagesDirectory="$(PackagesDir)"
          RuntimeIdentifier="$(TargetRuntimeIdentifier)"
@@ -252,15 +236,17 @@
 
     <MakeDir Directories="%(ApiCompatProfile.Identity)" />
     <!-- ResolvedReferences corresponds to library contracts -->
-    <Copy SourceFiles="@(ApiCompatResolvedReferences)"
+    <Copy
+      Condition="'%(ApiCompatProfile.TargetFramework)' != ''"
+      SourceFiles="@(ApiCompatResolvedReferences)"
       DestinationFolder="%(ApiCompatProfile.Identity)"
       SkipUnchangedFiles="true" />
   </Target>
 
   <!-- Run ApiCompat -->
   <Target Name="RunApiCompat"
-    Inputs="%(ApiCompatProfile.Identity)"
-    Outputs="%(ApiCompatProfile.Identity).onlyforbatching"
+          Inputs="$(IntermediateOutputPath)%(ApiCompatProfile.TargetGroup)/apicompat.rsp"
+          Outputs="$(MSBuildThisFileDirectory)baselines/ApiCompatBaseline.%(ApiCompatProfile.TargetGroup).txt"
     >
     <PropertyGroup>
       <ApiCompatContracts>%(ApiCompatProfile.Identity)</ApiCompatContracts>
@@ -294,11 +280,13 @@
 
   </Target>
 
-  <Target Name="ApiCompat" DependsOnTargets="PublishApiCompatProfile;RunApiCompat" AfterTargets="Build" />
+  <Target Name="RunApiCompatOnAll"
+          DependsOnTargets="PublishApiCompatProfile;RunApiCompat"
+          AfterTargets="RunGenFacades" />
 
   <Target Name="Build" />
   <Target Name="Clean">
-    <RemoveDir Directories="$(CompatShimsRootPath);$(IntermediateOutputPath);$(BinDir)ApiCompat;" />
+    <RemoveDir Directories="$(IntermediateOutputPath);$(GenFacadesOutputPath);" />
   </Target>
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
 

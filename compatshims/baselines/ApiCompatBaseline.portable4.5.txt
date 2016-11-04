@@ -30,7 +30,7 @@ DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Thre
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Windows'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Xml.Serialization'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Xml.XmlSerializer'.
-Compat issues between implementation set D:\git\standard\bin/\ref\netstandard\2.0.0.0\,D:\git\standard\bin/CompatShims/facades and contract set C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETPortable\v4.5:
+Compat issues between implementation set D:\git\standard\bin/ref/netstandard/2.0.0.0/,D:\git\standard\bin/CompatShims/facades/ and contract set C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETPortable\v4.5:
 TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.Binder' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags' does not exist in the implementation but it does exist in the contract.
