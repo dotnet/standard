@@ -125,7 +125,7 @@ believe the new APIs should be made available everywhere, we'll create a new
 
 There is nothing language specific about .NET Standard. From a language view
 point, the only tie-in to .NET Standard are the language-specific runtime APIs
-(for example `Mirosoft.CSharp`, `Microsoft.VisualBasic`, `FSharp.Core` etc.) and
+(for example `Microsoft.CSharp`, `Microsoft.VisualBasic`, `FSharp.Core` etc.) and
 the project templates that allow you to target .NET Standard.
 
 We don't plan to add any language-specific runtime APIs to .NET Standard. The
