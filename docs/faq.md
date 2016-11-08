@@ -7,6 +7,7 @@
 * [Documentation][netstandard-docs]
 * [Introducing .NET Standard][netstandard-post] blog post
 * [Intro to .NET Standard](https://channel9.msdn.com/Blogs/Seth-Juarez/What-is-NET-Standard) video
+* [Podcast episode on .NET Rocks!](http://dotnetrocks.com/?show=1371)
 * [Q&A](https://channel9.msdn.com/Shows/On-NET/Immo-Landwerth-Net-Standard) video
 
 ## What is .NET Standard?
