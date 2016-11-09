@@ -117,7 +117,7 @@
       <!-- Temporarily target ns17 until we get ns20 mapping https://github.com/NuGet/Home/issues/3576 -->
       <FilesToPackage Include="$(GenFacadesOutputPath)\*.dll">
         <TargetFramework>.NETStandard,Version=v1.7</TargetFramework>
-        <TargetPath>lib/netstandard1.7</TargetPath>
+        <TargetPath>ref/netstandard1.7</TargetPath>
         <IsReferenceAsset>true</IsReferenceAsset>
       </FilesToPackage>
     </ItemGroup>
