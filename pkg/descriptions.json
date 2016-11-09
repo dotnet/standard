@@ -5,7 +5,7 @@
         "CommonTypes": [ ]
     },
     {
-        "Name": "NETStandard.Library",
+        "Name": "NETStandard.Library2",
         "Description": "A set of standard .NET APIs that are prescribed to be used and supported together.",
         "CommonTypes": [
         ]
