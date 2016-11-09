@@ -114,9 +114,10 @@
   <Target Name="FacadesToPackage"
           AfterTargets="RunGenFacades">
     <ItemGroup>
+      <!-- Temporarily target ns17 until we get ns20 mapping https://github.com/NuGet/Home/issues/3576 -->
       <FilesToPackage Include="$(GenFacadesOutputPath)\*.dll">
-        <TargetFramework>.NETStandard,Version=v2.0</TargetFramework>
-        <TargetPath>lib/netstandard2.0</TargetPath>
+        <TargetFramework>.NETStandard,Version=v1.7</TargetFramework>
+        <TargetPath>lib/netstandard1.7</TargetPath>
         <IsReferenceAsset>true</IsReferenceAsset>
       </FilesToPackage>
     </ItemGroup>
