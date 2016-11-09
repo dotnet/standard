@@ -12,7 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="mscorlib.csproj" />
     <ProjectReference Include="System.csproj" />
-    <Compile Include="OpenTK-1.0.cs" />
+    <Compile Include="OpenTK.cs" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>

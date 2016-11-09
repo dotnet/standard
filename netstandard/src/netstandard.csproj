@@ -37,5 +37,23 @@
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.Services.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\Xamarin.iOS.csproj" />
   </ItemGroup>
+  <ItemGroup Condition="'$(TargetGroup)'=='xamarin.watchos'">
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.Services.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\Xamarin.WatchOS.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetGroup)'=='xamarin.tvos'">
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\OpenTK-1.0.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.Services.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\Xamarin.TVOS.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetGroup)'=='xamarin.mac'">
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\OpenTK.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.Services.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\Xamarin.Mac.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetGroup)'=='xamarin.android'">
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.Services.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\Mono.Android.csproj" />
+  </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>
