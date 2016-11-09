@@ -2864,42 +2864,24 @@ namespace System.Data.SqlClient
         public SqlClientPermissionAttribute(System.Security.Permissions.SecurityAction action) : base (default(System.Security.Permissions.SecurityAction)) { }
         public override System.Security.IPermission CreatePermission() { throw null; }
     }
-    [System.ComponentModel.DefaultEventAttribute("RecordsAffected")]
-    [System.ComponentModel.ToolboxItemAttribute("System.Drawing.Design.ToolboxItem, System.Drawing, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     public sealed partial class SqlCommand : System.Data.Common.DbCommand, System.Data.IDbCommand, System.ICloneable, System.IDisposable
     {
         public SqlCommand() { }
         public SqlCommand(string cmdText) { }
         public SqlCommand(string cmdText, System.Data.SqlClient.SqlConnection connection) { }
         public SqlCommand(string cmdText, System.Data.SqlClient.SqlConnection connection, System.Data.SqlClient.SqlTransaction transaction) { }
-        [System.ComponentModel.DefaultValueAttribute("")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public override string CommandText { get { throw null; } set { } }
         public override int CommandTimeout { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute((System.Data.CommandType)(1))]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public override System.Data.CommandType CommandType { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute(null)]
         public new System.Data.SqlClient.SqlConnection Connection { get { throw null; } set { } }
         protected override System.Data.Common.DbConnection DbConnection { get { throw null; } set { } }
         protected override System.Data.Common.DbParameterCollection DbParameterCollection { get { throw null; } }
         protected override System.Data.Common.DbTransaction DbTransaction { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DefaultValueAttribute(true)]
-        [System.ComponentModel.DesignOnlyAttribute(true)]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override bool DesignTimeVisible { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public System.Data.Sql.SqlNotificationRequest Notification { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute(true)]
         public bool NotificationAutoEnlist { get { throw null; } set { } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(2))]
         public new System.Data.SqlClient.SqlParameterCollection Parameters { get { throw null; } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public new System.Data.SqlClient.SqlTransaction Transaction { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute((System.Data.UpdateRowSource)(3))]
         public override System.Data.UpdateRowSource UpdatedRowSource { get { throw null; } set { } }
         public event System.Data.StatementCompletedEventHandler StatementCompleted { add { } remove { } }
         public System.IAsyncResult BeginExecuteNonQuery() { throw null; }
@@ -2934,31 +2916,15 @@ namespace System.Data.SqlClient
         public void ResetCommandTimeout() { }
         object System.ICloneable.Clone() { throw null; }
     }
-    public sealed partial class SqlCommandBuilder : System.Data.Common.DbCommandBuilder
+    public partial class SqlCommandBuilder : System.Data.Common.DbCommandBuilder
     {
         public SqlCommandBuilder() { }
         public SqlCommandBuilder(System.Data.SqlClient.SqlDataAdapter adapter) { }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override System.Data.Common.CatalogLocation CatalogLocation { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override string CatalogSeparator { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute(null)]
         public new System.Data.SqlClient.SqlDataAdapter DataAdapter { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override string QuotePrefix { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override string QuoteSuffix { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override string SchemaSeparator { get { throw null; } set { } }
         protected override void ApplyParameterInfo(System.Data.Common.DbParameter parameter, System.Data.DataRow datarow, System.Data.StatementType statementType, bool whereClause) { }
         public static void DeriveParameters(System.Data.SqlClient.SqlCommand command) { }
@@ -2984,38 +2950,23 @@ namespace System.Data.SqlClient
         ResultSetOnly = 2,
         UseConnectionSetting = 0,
     }
-    [System.ComponentModel.DefaultEventAttribute("InfoMessage")]
     public sealed partial class SqlConnection : System.Data.Common.DbConnection, System.Data.IDbConnection, System.ICloneable, System.IDisposable
     {
         public SqlConnection() { }
         public SqlConnection(string connectionString) { }
         public SqlConnection(string connectionString, System.Data.SqlClient.SqlCredential cred) { }
         public System.Guid ClientConnectionId { get { throw null; } }
-        [System.ComponentModel.DefaultValueAttribute("")]
-        [System.ComponentModel.RecommendedAsConfigurableAttribute(true)]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public override string ConnectionString { get { throw null; } set { } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public override int ConnectionTimeout { get { throw null; } }
         public System.Data.SqlClient.SqlCredential Credentials { get { throw null; } set { } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public override string Database { get { throw null; } }
-        [System.ComponentModel.BrowsableAttribute(true)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public override string DataSource { get { throw null; } }
         protected override System.Data.Common.DbProviderFactory DbProviderFactory { get { throw null; } }
         public bool FireInfoMessageEventOnUserErrors { get { throw null; } set { } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public int PacketSize { get { throw null; } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public override string ServerVersion { get { throw null; } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public override System.Data.ConnectionState State { get { throw null; } }
-        [System.ComponentModel.DefaultValueAttribute(false)]
         public bool StatisticsEnabled { get { throw null; } set { } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public string WorkstationId { get { throw null; } }
         public event System.Data.SqlClient.SqlInfoMessageEventHandler InfoMessage { add { } remove { } }
         protected override System.Data.Common.DbTransaction BeginDbTransaction(System.Data.IsolationLevel isolationLevel) { throw null; }
@@ -3231,7 +3182,6 @@ namespace System.Data.SqlClient
         public override bool GetBoolean(int i) { throw null; }
         public override byte GetByte(int i) { throw null; }
         public override long GetBytes(int i, long dataIndex, byte[] buffer, int bufferIndex, int length) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override char GetChar(int i) { throw null; }
         public override long GetChars(int i, long dataIndex, char[] buffer, int bufferIndex, int length) { throw null; }
         public override string GetDataTypeName(int i) { throw null; }
@@ -3328,12 +3278,11 @@ namespace System.Data.SqlClient
         public void CopyTo(System.Data.SqlClient.SqlError[] array, int index) { }
         public System.Collections.IEnumerator GetEnumerator() { throw null; }
     }
-    public sealed partial class SqlException : System.Data.Common.DbException
+    public partial class SqlException : System.Data.Common.DbException
     {
         internal SqlException() { }
         public byte Class { get { throw null; } }
         public System.Guid ClientConnectionId { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(2))]
         public System.Data.SqlClient.SqlErrorCollection Errors { get { throw null; } }
         public int LineNumber { get { throw null; } }
         public override string Message { get { throw null; } }
@@ -3401,47 +3350,32 @@ namespace System.Data.SqlClient
         Subscribe = 1,
         Unknown = -1,
     }
-    public sealed partial class SqlParameter : System.Data.Common.DbParameter, System.Data.IDataParameter, System.Data.IDbDataParameter, System.ICloneable
+    public partial class SqlParameter : System.Data.Common.DbParameter, System.Data.IDataParameter, System.Data.IDbDataParameter, System.ICloneable
     {
         public SqlParameter() { }
         public SqlParameter(string parameterName, System.Data.SqlDbType dbType) { }
         public SqlParameter(string parameterName, System.Data.SqlDbType dbType, int size) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
         public SqlParameter(string parameterName, System.Data.SqlDbType dbType, int size, System.Data.ParameterDirection direction, bool isNullable, byte precision, byte scale, string sourceColumn, System.Data.DataRowVersion sourceVersion, object value) { }
         public SqlParameter(string parameterName, System.Data.SqlDbType dbType, int size, System.Data.ParameterDirection direction, byte precision, byte scale, string sourceColumn, System.Data.DataRowVersion sourceVersion, bool sourceColumnNullMapping, object value, string xmlSchemaCollectionDatabase, string xmlSchemaCollectionOwningSchema, string xmlSchemaCollectionName) { }
         public SqlParameter(string parameterName, System.Data.SqlDbType dbType, int size, string sourceColumn) { }
         public SqlParameter(string parameterName, object value) { }
-        [System.ComponentModel.BrowsableAttribute(false)]
         public System.Data.SqlTypes.SqlCompareOptions CompareInfo { get { throw null; } set { } }
         public override System.Data.DbType DbType { get { throw null; } set { } }
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public override System.Data.ParameterDirection Direction { get { throw null; } set { } }
         public override bool IsNullable { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
         public int LocaleId { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
         public int Offset { get { throw null; } set { } }
         public override string ParameterName { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute(0)]
         public new byte Precision { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute(0)]
         public new byte Scale { get { throw null; } set { } }
         public override int Size { get { throw null; } set { } }
         public override string SourceColumn { get { throw null; } set { } }
         public override bool SourceColumnNullMapping { get { throw null; } set { } }
         public override System.Data.DataRowVersion SourceVersion { get { throw null; } set { } }
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
-        [System.Data.Common.DbProviderSpecificTypePropertyAttribute(true)]
         public System.Data.SqlDbType SqlDbType { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public object SqlValue { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
         public string TypeName { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
         public string UdtTypeName { get { throw null; } set { } }
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public override object Value { get { throw null; } set { } }
         public string XmlSchemaCollectionDatabase { get { throw null; } set { } }
         public string XmlSchemaCollectionName { get { throw null; } set { } }
@@ -3451,29 +3385,21 @@ namespace System.Data.SqlClient
         object System.ICloneable.Clone() { throw null; }
         public override string ToString() { throw null; }
     }
-    [System.ComponentModel.ListBindableAttribute(false)]
-    public sealed partial class SqlParameterCollection : System.Data.Common.DbParameterCollection, System.Collections.ICollection, System.Collections.IEnumerable, System.Collections.IList, System.Data.IDataParameterCollection
+    public partial class SqlParameterCollection : System.Data.Common.DbParameterCollection, System.Collections.ICollection, System.Collections.IEnumerable, System.Collections.IList, System.Data.IDataParameterCollection
     {
         internal SqlParameterCollection() { }
         public override int Count { get { throw null; } }
         public override bool IsFixedSize { get { throw null; } }
         public override bool IsReadOnly { get { throw null; } }
         public override bool IsSynchronized { get { throw null; } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public new System.Data.SqlClient.SqlParameter this[int index] { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public new System.Data.SqlClient.SqlParameter this[string parameterName] { get { throw null; } set { } }
         public override object SyncRoot { get { throw null; } }
         public System.Data.SqlClient.SqlParameter Add(System.Data.SqlClient.SqlParameter value) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override int Add(object value) { throw null; }
         public System.Data.SqlClient.SqlParameter Add(string parameterName, System.Data.SqlDbType sqlDbType) { throw null; }
         public System.Data.SqlClient.SqlParameter Add(string parameterName, System.Data.SqlDbType sqlDbType, int size) { throw null; }
         public System.Data.SqlClient.SqlParameter Add(string parameterName, System.Data.SqlDbType sqlDbType, int size, string sourceColumn) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("Do not call this method.")]
         public System.Data.SqlClient.SqlParameter Add(string parameterName, object value) { throw null; }
         public override void AddRange(System.Array values) { }
         public void AddRange(System.Data.SqlClient.SqlParameter[] values) { }
@@ -3519,7 +3445,7 @@ namespace System.Data.SqlClient
         public new System.Data.SqlClient.SqlCommand Command { get { throw null; } set { } }
     }
     public delegate void SqlRowUpdatingEventHandler(object sender, System.Data.SqlClient.SqlRowUpdatingEventArgs e);
-    public sealed partial class SqlTransaction : System.Data.Common.DbTransaction, System.Data.IDbTransaction, System.IDisposable
+    public partial class SqlTransaction : System.Data.Common.DbTransaction, System.Data.IDbTransaction, System.IDisposable
     {
         internal SqlTransaction() { }
         public new System.Data.SqlClient.SqlConnection Connection { get { throw null; } }

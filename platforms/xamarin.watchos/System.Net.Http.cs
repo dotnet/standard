@@ -8,15 +8,6 @@ namespace System.Net.Http
         protected internal override System.Threading.Tasks.Task SerializeToStreamAsync(System.IO.Stream stream, System.Net.TransportContext context) { throw null; }
         protected internal override bool TryComputeLength(out long length) { length = default(long); throw null; }
     }
-    public partial class CFNetworkHandler : System.Net.Http.HttpMessageHandler
-    {
-        public CFNetworkHandler() { }
-        public bool AllowAutoRedirect { get { throw null; } set { } }
-        public System.Net.CookieContainer CookieContainer { get { throw null; } set { } }
-        public bool UseSystemProxy { get { throw null; } set { } }
-        protected override void Dispose(bool disposing) { }
-        protected internal override System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> SendAsync(System.Net.Http.HttpRequestMessage request, System.Threading.CancellationToken cancellationToken) { throw null; }
-    }
     public enum ClientCertificateOption
     {
         Automatic = 1,
@@ -92,7 +83,7 @@ namespace System.Net.Http
         public long MaxRequestContentBufferSize { get { throw null; } set { } }
         public int MaxResponseHeadersLength { get { throw null; } set { } }
         public bool PreAuthenticate { get { throw null; } set { } }
-        public System.Collections.Generic.IDictionary<string, object> Properties { get { throw null; } }
+        public System.Collections.Generic.IDictionary<string, object> Properties { get { throw null; } set { } }
         public System.Net.IWebProxy Proxy { get { throw null; } set { } }
         public System.Func<System.Net.Http.HttpRequestMessage, System.Security.Cryptography.X509Certificates.X509Certificate2, System.Security.Cryptography.X509Certificates.X509Chain, System.Net.Security.SslPolicyErrors, bool> ServerCertificateCustomValidationCallback { get { throw null; } set { } }
         public System.Security.Authentication.SslProtocols SslProtocols { get { throw null; } set { } }
