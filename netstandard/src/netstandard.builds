@@ -6,6 +6,18 @@
       <TargetGroup>xamarin.ios</TargetGroup>
     </Project>
     <Project Include="netstandard.csproj">
+      <TargetGroup>xamarin.watchos</TargetGroup>
+    </Project>
+    <Project Include="netstandard.csproj">
+      <TargetGroup>xamarin.tvos</TargetGroup>
+    </Project>
+    <Project Include="netstandard.csproj">
+      <TargetGroup>xamarin.mac</TargetGroup>
+    </Project>
+    <Project Include="netstandard.csproj">
+      <TargetGroup>xamarin.android</TargetGroup>
+    </Project>
+    <Project Include="netstandard.csproj">
       <TargetGroup>net461</TargetGroup>
     </Project>
   </ItemGroup>
