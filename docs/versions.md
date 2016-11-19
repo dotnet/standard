@@ -48,7 +48,7 @@ So generally speaking, you should target the lowest version you get away with.
 To inform your decision, you should consider the compatibility matrix and the
 APIs additions linked from the table above.
 
-# Versioning rules
+## Versioning rules
 
 There are two primary versioning rules:
 
