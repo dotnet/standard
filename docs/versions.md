@@ -63,3 +63,26 @@ APIs should be made available everywhere, they'll be added in a new .NET
 Standard version.
 
 [netstandard-board]: review-board/README.md
+
+## Mapping PCL Profiles to .NET Standard
+
+.NET Standard is also compatible with Portable Class Libraries (PCLs). The
+mapping from PCL profiles to .NET Standard versions is listed in below.
+
+For example, if your PCL is configured to target .NET Framework 4.5.1 and
+Windows 8.1, it uses profile Profile 44. Using the table below, that you can
+convert your PCL to .NET Standard 1.2.
+
+| PCL Profile | .NET Standard | PCL Platforms
+|:-----------:|:-------------:|------------------------------------------------------------------------------
+| 7           | 1.1           | .NET Framework 4.5, Windows 8
+| 31          | 1.0           | Windows 8.1, Windows Phone Silverlight 8.1
+| 32          | 1.2           | Windows 8.1, Windows Phone 8.1
+| 44          | 1.2           | .NET Framework 4.5.1, Windows 8.1
+| 49          | 1.0           | .NET Framework 4.5, Windows Phone Silverlight 8
+| 78          | 1.0           | .NET Framework 4.5, Windows 8, Windows Phone Silverlight 8
+| 84          | 1.0           | Windows Phone 8.1, Windows Phone Silverlight 8.1
+| 111         | 1.1           | .NET Framework 4.5, Windows 8, Windows Phone 8.1
+| 151         | 1.2           | .NET Framework 4.5.1, Windows 8.1, Windows Phone 8.1
+| 157         | 1.0           | Windows 8.1, Windows Phone 8.1, Windows Phone Silverlight 8.1
+| 259         | 1.0           | .NET Framework 4.5, Windows 8, Windows Phone 8.1, Windows Phone Silverlight 8
