@@ -2,6 +2,16 @@
 APIs removed/broken by this factoring:
 
 */
+namespace Microsoft.Win32.SafeHandles
+{
+    public sealed partial class SafeAccessTokenHandle : System.Runtime.InteropServices.SafeHandle
+    {
+        public SafeAccessTokenHandle(System.IntPtr handle) : base (default(System.IntPtr), default(bool)) { }
+        public static Microsoft.Win32.SafeHandles.SafeAccessTokenHandle InvalidHandle { get { throw null; } }
+        public override bool IsInvalid { get { throw null; } }
+        protected override bool ReleaseHandle() { throw null; }
+    }
+}
 namespace System.Security.Principal
 {
     public sealed partial class IdentityNotMappedException : System.SystemException
