@@ -619,7 +619,6 @@ namespace System.Reflection.Emit
         public override void GetPEKind(out System.Reflection.PortableExecutableKinds peKind, out System.Reflection.ImageFileMachine machine) { peKind = default(System.Reflection.PortableExecutableKinds); machine = default(System.Reflection.ImageFileMachine); }
         public System.Reflection.Emit.SignatureToken GetSignatureToken(byte[] sigBytes, int sigLength) { throw null; }
         public System.Reflection.Emit.SignatureToken GetSignatureToken(System.Reflection.Emit.SignatureHelper sigHelper) { throw null; }
-        public override System.Security.Cryptography.X509Certificates.X509Certificate GetSignerCertificate() { throw null; }
         public System.Reflection.Emit.StringToken GetStringConstant(string str) { throw null; }
         public System.Diagnostics.SymbolStore.ISymbolWriter GetSymWriter() { throw null; }
         public override System.Type GetType(string className) { throw null; }

@@ -8328,7 +8328,6 @@ namespace System.Reflection
         public virtual System.Reflection.MethodInfo[] GetMethods(System.Reflection.BindingFlags bindingFlags) { throw null; }
         public virtual void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public virtual void GetPEKind(out System.Reflection.PortableExecutableKinds peKind, out System.Reflection.ImageFileMachine machine) { peKind = default(System.Reflection.PortableExecutableKinds); machine = default(System.Reflection.ImageFileMachine); }
-        public virtual System.Security.Cryptography.X509Certificates.X509Certificate GetSignerCertificate() { throw null; }
         public virtual System.Type GetType(string className) { throw null; }
         public virtual System.Type GetType(string className, bool ignoreCase) { throw null; }
         public virtual System.Type GetType(string className, bool throwOnError, bool ignoreCase) { throw null; }
