@@ -9,12 +9,10 @@
     "netstandard1.3": { },
     "netstandard1.4": { },
     "netstandard1.5": { },
-    "netstandard1.6": { },
-    "netstandard1.7": {
-      "dependencies" : {
-        "Microsoft.TargetingPack.NETFramework.v4.6.1": "1.0.1",
-        },
-        "imports": ["netstandard1.6", "net461"]
+    "netstandard1.6": {
+      "dependencies": {
+        "System.Diagnostics.Process": "4.1.0"
+      }
     }
   }
 }
