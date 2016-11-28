@@ -69,6 +69,8 @@
     <Platform>AnyCPU</Platform>
     <OutputType>Library</OutputType>
     <RunApiCompat>true</RunApiCompat>
+    <!-- Default to using the open public key -->
+    <AssemblyOriginatorKeyFile>$(ToolsDir)Open.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <!--
