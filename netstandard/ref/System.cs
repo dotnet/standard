@@ -5555,14 +5555,6 @@ namespace System.Net
         protected TransportContext() { }
         public abstract System.Security.Authentication.ExtendedProtection.ChannelBinding GetChannelBinding(System.Security.Authentication.ExtendedProtection.ChannelBindingKind kind);
     }
-    public enum TransportType
-    {
-        All = 3,
-        Connectionless = 1,
-        ConnectionOriented = 2,
-        Tcp = 2,
-        Udp = 1,
-    }
     public partial class UploadDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
         internal UploadDataCompletedEventArgs() : base(null, false, null) { }
