@@ -1,0 +1,211 @@
+{
+  "build": [
+    {
+      "enabled": true,
+      "continueOnError": false,
+      "alwaysRun": false,
+      "displayName": "Run git",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
+        "versionSpec": "1.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "filename": "git",
+        "arguments": "checkout $(SourceBranch)",
+        "workingFolder": "",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": false,
+      "alwaysRun": false,
+      "displayName": "Install Signing Plugin",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "30666190-6959-11e5-9f96-f56098202fef",
+        "versionSpec": "1.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "signType": "$(SignType)",
+        "zipSources": "false",
+        "version": "1.0.268",
+        "feedSource": "https://devdiv.pkgs.visualstudio.com/DefaultCollection/_packaging/MicroBuildToolset/nuget/v3/index.json"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": true,
+      "alwaysRun": false,
+      "displayName": "Run script build.cmd",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "bfc8bf76-e7ac-4a8c-9a55-a944a9f632fd",
+        "versionSpec": "1.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "filename": "build.cmd",
+        "arguments": "-OfficialBuildId=$(OfficialBuildId) -- /p:SkipSigning=false /p:SignType=real /p:MicroBuild_SigningEnabled=true",
+        "modifyEnvironment": "false",
+        "workingFolder": "",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
+      "continueOnError": false,
+      "alwaysRun": false,
+      "displayName": "NuGet Publisher ",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "333b11bd-d341-40d9-afcf-b32d5ce6f25b",
+        "versionSpec": "0.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "searchPattern": "bin/packages/**/*.nupkg;-:bin/packages/**/*.symbols.nupkg",
+        "nuGetFeedType": "external",
+        "connectedServiceName": "e3b269d4-5b99-4a32-a6ff-2c2feb920051",
+        "feedName": "",
+        "nuGetAdditionalArgs": "",
+        "verbosity": "Detailed",
+        "nuGetVersion": "3.3.0",
+        "nuGetPath": ""
+      }
+    }
+  ],
+  "options": [
+    {
+      "enabled": false,
+      "definition": {
+        "id": "7c555368-ca64-4199-add6-9ebaf0b0137d"
+      },
+      "inputs": {
+        "multipliers": "[]",
+        "parallel": "false",
+        "continueOnError": "true",
+        "additionalFields": "{}"
+      }
+    },
+    {
+      "enabled": false,
+      "definition": {
+        "id": "a9db38f9-9fdc-478c-b0f9-464221e58316"
+      },
+      "inputs": {
+        "workItemType": "234347",
+        "assignToRequestor": "true",
+        "additionalFields": "{}"
+      }
+    },
+    {
+      "enabled": true,
+      "definition": {
+        "id": "57578776-4c22-4526-aeb0-86b6da17ee9c"
+      },
+      "inputs": {
+        "additionalFields": "{}"
+      }
+    }
+  ],
+  "variables": {
+    "system.debug": {
+      "value": "false",
+      "allowOverride": true
+    },
+    "TeamName": {
+      "value": "DotNetCore"
+    },
+    "CloudDropAccountName": {
+      "value": "dotnetbuildoutput"
+    },
+    "OfficialBuildId": {
+      "value": "$(Build.BuildNumber)"
+    },
+    "Label": {
+      "value": "$(Build.BuildNumber)"
+    },
+    "VsoAccountName": {
+      "value": "dn-bot"
+    },
+    "VsoPassword": {
+      "value": null,
+      "isSecret": true
+    },
+    "CloudDropAccessToken": {
+      "value": ""
+    },
+    "SignType": {
+      "value": "real"
+    },
+    "SourceBranch": {
+      "value": "master"
+    }
+  },
+  "demands": [
+    "Agent.OS -equals windows_nt"
+  ],
+  "retentionRules": [
+    {
+      "branches": [
+        "+refs/heads/*"
+      ],
+      "artifacts": [],
+      "artifactTypesToDelete": [
+        "FilePath",
+        "SymbolStore"
+      ],
+      "daysToKeep": 10,
+      "minimumToKeep": 1,
+      "deleteBuildRecord": true,
+      "deleteTestResults": true
+    }
+  ],
+  "buildNumberFormat": "$(date:yyyyMMdd)$(rev:-rr)",
+  "jobAuthorizationScope": "projectCollection",
+  "jobTimeoutInMinutes": 180,
+  "repository": {
+    "properties": {
+      "labelSources": "0",
+      "reportBuildStatus": "false",
+      "fetchDepth": "0",
+      "gitLfsSupport": "false",
+      "skipSyncSource": "false",
+      "cleanOptions": "0"
+    },
+    "id": "529ccf9f-5708-47fb-a9ac-09c0fc4071dd",
+    "type": "TfsGit",
+    "name": "DotNet-Standard-Trusted",
+    "url": "https://devdiv.visualstudio.com/DevDiv/_git/DotNet-Standard-Trusted",
+    "defaultBranch": "master",
+    "clean": "true",
+    "checkoutSubmodules": false
+  },
+  "quality": "definition",
+  "defaultBranch": "master",
+  "queue": {
+    "pool": {
+      "id": 39,
+      "name": "DotNet-Build"
+    },
+    "id": 36,
+    "name": "DotNet-Build"
+  },
+  "path": "\\",
+  "type": "build",
+  "id": 4998,
+  "name": "dotnet-standard-win",
+  "url": "https://devdiv.visualstudio.com/DefaultCollection/0bdbc590-a062-4c3f-b0f6-9383f67865ee/_apis/build/Definitions/4998",
+  "project": {
+    "id": "0bdbc590-a062-4c3f-b0f6-9383f67865ee",
+    "name": "DevDiv",
+    "description": "Visual Studio and DevDiv team project for git source code repositories.  Work items will be added for Adams, Dev14 work items are tracked in vstfdevdiv.  ",
+    "url": "https://devdiv.visualstudio.com/DefaultCollection/_apis/projects/0bdbc590-a062-4c3f-b0f6-9383f67865ee",
+    "state": "wellFormed",
+    "revision": 418097435
+  }
+}

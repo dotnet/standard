@@ -1,10 +1,46 @@
 ﻿{
   "settings": {
+    "OfficialBuildId": {
+      "description": "Specifies the SeedDate and the revision of the build to generate the version of the libraries.",
+      "valueType": "property",
+      "values": [],
+      "defaultValue": ""
+    },
+    "FilterToOSGroup": {
+      "description": "FilterToOSGroup for result binaries.",
+      "valueType": "property",
+      "values": ["Windows_NT", "Linux", "OSX", "FreeBSD", "NetBSD"],
+      "defaultValue": "${OSRid}"
+    },
     "ConfigurationGroup": {
       "description": "Sets the configuration group as Release or Debug",
       "valueType": "property",
       "values": ["Release", "Debug"],
       "defaultValue": "Debug"
+    },
+    "BuildPackageLibraryReferences": {
+      "description": "Enables/Disables building libraries referenced by packages.",
+      "valueType": "property",
+      "values": ["True", "False"],
+      "defaultValue": true
+    },
+    "CloudDropAccountName": {
+      "description": "Azure account name.",
+      "valueType": "property",
+      "values": [],
+      "defaultValue": ""
+    },
+    "CloudDropAccessToken": {
+      "description": "Azure access token",
+      "valueType": "property",
+      "values": [],
+      "defaultValue": ""
+    },
+    "ContainerName": {
+      "description": "Azure container name",
+      "valueType": "property",
+      "values": [],
+      "defaultValue": ""
     },
     "ExtraParameters": {
       "description": "Extra parameters will be passed to the selected command.",
@@ -84,6 +120,14 @@
             "BuildPackages": false
           }
         },
+        "packages": {
+          "description": "Builds the NuGet packages.",
+          "settings": {
+            "Project": "netstandard/package.builds",
+            "FilterToOSGroup":"default",
+            "MsBuildLogging":"/flp:v=normal;LogFile=build-packages.log"
+          }
+        },
         "debug":{
           "description": "Sets ConfigurationGroup=Debug or the value passed by the user.",
           "settings":{
@@ -150,7 +194,7 @@
     "msbuild": {
       "osSpecific": {
         "windows": {
-          "defaultParameters": "/nologo /verbosity:minimal /clp:Summary /maxcpucount /nodeReuse:false /l:BinClashLogger,Tools\\net45\\Microsoft.DotNet.Build.Tasks.dll;LogFile=binclash.log",
+          "defaultParameters": "/nologo /v:minimal /flp:v=normal /clp:Summary /maxcpucount /nodeReuse:false /l:BinClashLogger,Tools\\net45\\Microsoft.DotNet.Build.Tasks.dll;LogFile=binclash.log",
           "path": "Tools/msbuild.cmd"
         },
         "unix": {
