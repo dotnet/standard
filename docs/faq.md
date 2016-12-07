@@ -5,10 +5,10 @@
 ## What are good resources to learn about .NET Standard?
 
 * [Documentation][netstandard-docs]
-* [Super quick intro to .NET Standard 2.0](https://www.youtube.com/watch?v=gNUUAIGHupc)
+* [Video Series on .NET Standard](https://www.youtube.com/playlist?list=PLRAdsfhKI4OWx321A_pr-7HhRNk7wOLLY)
 * [Introducing .NET Standard][netstandard-post] blog post
-* [Intro to .NET Standard](https://channel9.msdn.com/Blogs/Seth-Juarez/What-is-NET-Standard) video
-* [Podcast episode on .NET Rocks!](http://dotnetrocks.com/?show=1371)
+* [Channel 9: Whiteboarding .NET Standard](https://channel9.msdn.com/Blogs/Seth-Juarez/What-is-NET-Standard)
+* [Podcast Episode on .NET Rocks!](http://dotnetrocks.com/?show=1371)
 * [Q&A](https://channel9.msdn.com/Shows/On-NET/Immo-Landwerth-Net-Standard) video
 
 ## What is .NET Standard?
