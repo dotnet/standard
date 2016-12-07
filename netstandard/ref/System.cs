@@ -3784,7 +3784,7 @@ namespace System.Diagnostics
         public DelimitedListTraceListener(string fileName) { }
         public DelimitedListTraceListener(string fileName, string name) { }
         public string Delimiter { get { throw null; } set { } }
-        protected internal override string[] GetSupportedAttributes() { throw null; }
+        protected override string[] GetSupportedAttributes() { throw null; }
         public override void TraceData(System.Diagnostics.TraceEventCache eventCache, string source, System.Diagnostics.TraceEventType eventType, int id, object data) { }
         public override void TraceData(System.Diagnostics.TraceEventCache eventCache, string source, System.Diagnostics.TraceEventType eventType, int id, params object[] data) { }
         public override void TraceEvent(System.Diagnostics.TraceEventCache eventCache, string source, System.Diagnostics.TraceEventType eventType, int id, string message) { }
@@ -4185,7 +4185,7 @@ namespace System.Diagnostics
         public string DisplayName { get { throw null; } }
         protected int SwitchSetting { get { throw null; } set { } }
         protected string Value { get { throw null; } set { } }
-        protected internal virtual string[] GetSupportedAttributes() { throw null; }
+        protected virtual string[] GetSupportedAttributes() { throw null; }
         protected virtual void OnSwitchSettingChanged() { }
         protected virtual void OnValueChanged() { }
     }
@@ -4390,7 +4390,7 @@ namespace System.Diagnostics
         public virtual void Fail(string message) { }
         public virtual void Fail(string message, string detailMessage) { }
         public virtual void Flush() { }
-        protected internal virtual string[] GetSupportedAttributes() { throw null; }
+        protected virtual string[] GetSupportedAttributes() { throw null; }
         public virtual void TraceData(System.Diagnostics.TraceEventCache eventCache, string source, System.Diagnostics.TraceEventType eventType, int id, object data) { }
         public virtual void TraceData(System.Diagnostics.TraceEventCache eventCache, string source, System.Diagnostics.TraceEventType eventType, int id, params object[] data) { }
         public virtual void TraceEvent(System.Diagnostics.TraceEventCache eventCache, string source, System.Diagnostics.TraceEventType eventType, int id) { }
@@ -4458,7 +4458,7 @@ namespace System.Diagnostics
         public System.Diagnostics.SourceSwitch Switch { get { throw null; } set { } }
         public void Close() { }
         public void Flush() { }
-        protected internal virtual string[] GetSupportedAttributes() { throw null; }
+        protected virtual string[] GetSupportedAttributes() { throw null; }
         [System.Diagnostics.ConditionalAttribute("TRACE")]
         public void TraceData(System.Diagnostics.TraceEventType eventType, int id, object data) { }
         [System.Diagnostics.ConditionalAttribute("TRACE")]
