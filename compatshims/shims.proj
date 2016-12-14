@@ -70,7 +70,7 @@
     <ApiCompatProfileRootPath>$(RestoredRefRootPath)</ApiCompatProfileRootPath>
     <ApiCompatBaseline>ApiCompatBaseline.compatshims.txt</ApiCompatBaseline>
     <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
-    <PortableProfileRootPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETPortable\</PortableProfileRootPath>
+    <PortableProfileRootPath>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory),dir.props))../Tools/Microsoft.Portable.Targets/0.1.1-dev/contentFiles/any/any/Extensions/Microsoft/Portable/</PortableProfileRootPath>
   </PropertyGroup>
 
   <ItemGroup>
