@@ -132,8 +132,6 @@
     <MakeDir Directories="$(IntermediateOutputPath)%(ApiCompatProfile.TargetGroup)" />
     <WriteLinesToFile File="$(ApiCompatResponseFile)" Lines="$(ApiCompatArgs)" Overwrite="true" />
 
-    <Error Condition="!Exists('$(ApiCompatContracts)')" Text="$(ApiCompatContracts) doesn't exist" />
-
     <Exec Condition="Exists('$(ApiCompatContracts)')"
           Command="$(ApiCompatCmd) @&quot;$(ApiCompatResponseFile)&quot; $(ApiCompatBaselineAll)"
           CustomErrorRegularExpression="^[a-zA-Z]+ :"
