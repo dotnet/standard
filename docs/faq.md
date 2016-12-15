@@ -133,6 +133,30 @@ We don't plan to add any language-specific runtime APIs to .NET Standard. The
 expectation is that they sit on top of .NET Standard and are referenced as
 needed, for example, from the project template.
 
+## Who decides what is in .NET Standard?
+
+The current versions of .NET Standard (1.x - 2.0) were mostly computed:
+
+* The 1.x version range was effectively constraint by what was available in
+  .NET Core.
+* For 2.0, we've started with the intersection of .NET Framework and Xamarin,
+  deliberately excluding .NET Core to make sure the resulting set isn't held
+  back by it. We decided we'll simply add the delta to .NET Core.
+
+So for the most part, the decision maker was Microsoft, although as explained
+above, with very little degrees of freedom as the problem was mostly a result
+of what was feasible at the time.
+
+Moving forward, we want to open up .NET Standard to be driven by the [.NET
+Standard review board][netstandard-review-board]. The board is comprised of
+implementers of .NET.
+
+The idea being that the standard doesn't drive new APIs: rather, the work of the
+standard body is to decide which of the APIs available on some .NET platforms
+should be available on all .NET platform and thus be added to the standard. In
+other words, the innovation happens in the context of a particular .NET platform
+and standardization follows afterwards.
+
 ## Is `AppDomain` part of .NET Standard?
 
 The `AppDomain` type is part of .NET Standard. Not all platforms will support
@@ -262,6 +286,7 @@ it has some diagrams.
 [netstandard-analogy]: https://gist.github.com/davidfowl/8939f305567e1755412d6dc0b8baf1b7
 [netstandard-versions]: versions.md
 [netstandard-targeting]: versions.md#how-do-i-know-which-net-standard-version-i-should-target
+[netstandard-review-board]: review-board/README.md
 [netstandard-principles]: review-board/README.md#inclusion-principles
 [netstandard-461]: netstandard-20/README.md#net-framework-461-supporting-net-standard-20
 [issue]: https://github.com/dotnet/standard/issues/new
