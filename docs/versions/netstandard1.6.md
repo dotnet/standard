@@ -12,12 +12,11 @@
 * Mono 4.6
 * Xamarin.iOS 10.0
 * Xamarin.Android 7.0
-* Universal Windows Platform 10.0
 
 ## What's new?
 
 | Namespace                      | #APIs |
-|:-------------------------------|------:| 
+|:-------------------------------|------:|
 | System                         |     3 |
 | System.Linq                    |     2 |
 | System.Linq.Expressions        |     2 |
