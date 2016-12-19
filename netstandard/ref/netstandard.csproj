@@ -9,7 +9,10 @@
     <NuGetTargetMoniker>.NETStandard,Version=v1.7</NuGetTargetMoniker>
     <IsCoreAssembly>true</IsCoreAssembly>
     <!-- disable obsolete warnings/errors -->
-    <NoWarn>$(NoWarn);0618;0619;0809</NoWarn>
+    <NoWarn>$(NoWarn);0618;0619;0809</NoWarn>  
+
+    <DefaultBuildAllTarget>Build</DefaultBuildAllTarget>
+    <BuildAllProjects>true</BuildAllProjects>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="mscorlib.cs" />
