@@ -123,6 +123,19 @@ will first become available in specific .NET platforms, such as .NET Core. If we
 believe the new APIs should be made available everywhere, we'll create a new
 .NET Standard version.
 
+## What's the difference between targeting, implementing and supporting?
+
+* A library **targets** a specific framework. .NET Standard is a synthetic
+  framework, which represents a standardized set of APIs across all .NET
+  platforms. A library can also target a specific .NET platform, in which case
+  it gets access to platform-specific APIs. For example, when targeting
+  Xamarin.iOS you also get access to iOS APIs.
+* A .NET platform **implements** a specific .NET Standard version.
+* A .NET platform **supports** all .NET Standard versions that are equal to or
+  lower than the version it implements. For instance, if a .NET platform
+  implements .NET Standard 1.5, it supports 1.0 - 1.5. If it implements .NET
+  Standard 2.0, it supports 1.0 - 2.0.
+
 ## Is .NET Standard specific to C#?
 
 There is nothing language specific about .NET Standard. From a language view
