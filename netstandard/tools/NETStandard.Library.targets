@@ -1,0 +1,43 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup Condition="'$(NETStandardToolsTaskDirectory)' == ''">
+    <NETStandardToolsTaskDirectory>$(MSBuildThisFileDirectory)</NETStandardToolsTaskDirectory>
+    <NETStandardToolsTaskDirectory Condition="'$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)desktop/</NETStandardToolsTaskDirectory>
+  </PropertyGroup>
+
+  <Choose>
+    <When Condition="'$(ResolvePackageDependenciesForBuild)' == 'true' and '$(EnableResolvePackageDependencies)' == 'true' and Exists('$(ProjectAssetsFile)')">
+      <!-- NuGet 4, run after the target that constructs items from deps -->
+      <PropertyGroup>
+        <HandlePackageFileConflictsAfter>ResolvePackageDependenciesForBuild</HandlePackageFileConflictsAfter>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(ResolveNuGetPackages)' == 'true' and Exists('$(ProjectLockFile)')">
+      <!-- NuGet 4, run after the target that constructs items from lock file -->
+      <PropertyGroup>
+        <HandlePackageFileConflictsAfter>ResolveNuGetPackageAssets</HandlePackageFileConflictsAfter>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <!-- NuGet 2, run before targets that consume references -->
+      <PropertyGroup>
+        <ResolveAssemblyReferencesDependsOn>$(ResolveAssemblyReferencesDependsOn);HandlePackageFileConflicts</ResolveAssemblyReferencesDependsOn>
+        <PrepareResourcesDependsOn>HandlePackageFileConflicts;$(PrepareResourcesDependsOn)</PrepareResourcesDependsOn>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+
+  <UsingTask TaskName="HandlePackageFileConflicts" AssemblyFile="$(NETStandardToolsTaskDirectory)NETStandard.Tools.dll" />
+  <Target Name="HandlePackageConflicts" AfterTargets="$(HandlePackageFileConflictsAfter)">
+    <HandlePackageConflicts ResolvedReferences="@(Reference)"
+                            ResolvedCopyLocalItems="@(ReferenceCopyLocalPaths)">
+      <Output TaskParameter="ConflictingReferences" ItemName="_ReferenceToRemove" />
+      <Output TaskParameter="ConflictingCopyLocalItems" ItemName="_ReferenceCopyLocalPathsToRemove" />
+    </HandlePackageConflicts>
+
+    <ItemGroup>
+      <Reference Remove="@(_ReferenceToRemove)" />
+      <ReferenceCopyLocalPaths Remove="@(_ReferenceCopyLocalPathsToRemove)" />
+    </ItemGroup>
+  </Target>
+</Project>
