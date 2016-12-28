@@ -14,33 +14,36 @@ namespace Microsoft.DotNet.Build.Tasks
     public partial class HandlePackageFileConflicts : Task
     {
         [Required]
-        public ITaskItem[] ResolvedReferences { get; set; }
+        public ITaskItem[] References { get; set; }
 
         [Required]
-        public ITaskItem[] ResolvedCopyLocalItems { get; set; }
+        public ITaskItem[] ReferenceCopyLocalPaths { get; set; }
 
         [Output]
-        public ITaskItem[] ConflictingReferences { get; set; }
+        public ITaskItem[] ReferencesWithoutConflicts { get; set; }
 
         [Output]
-        public ITaskItem[] ConflictingCopyLocalItems { get; set; }
+        public ITaskItem[] ReferenceCopyLocalPathsWithoutConflicts { get; set; }
 
         public override bool Execute()
         {
-            var conflictingReferences = new List<ITaskItem>();
-            HandleConflicts(ResolvedReferences, conflictingReferences);
-            ConflictingReferences = conflictingReferences.ToArray();
+            ReferencesWithoutConflicts = HandleConflicts(References);
 
-            var conflictingCopyLocalItems = new List<ITaskItem>();
-            HandleConflicts(ResolvedCopyLocalItems, conflictingCopyLocalItems);
-            ConflictingCopyLocalItems = conflictingCopyLocalItems.ToArray();
+            ReferenceCopyLocalPathsWithoutConflicts = HandleConflicts(ReferenceCopyLocalPaths);
 
             return !Log.HasLoggedErrors;
         }
 
-        void HandleConflicts(ITaskItem[] items, ICollection<ITaskItem> conflicts)
+        /// <summary>
+        /// Examines items for conflicting targetpath and chooses the best item.
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        private ITaskItem[] HandleConflicts(ITaskItem[] items)
         {
             var targetPathToItem = new Dictionary<string, ITaskItem>(StringComparer.OrdinalIgnoreCase);
+            var conflicts = new HashSet<ITaskItem>();
+
             foreach (var item in items)
             {
                 var targetPath = GetTargetPath(item);
@@ -76,6 +79,8 @@ namespace Microsoft.DotNet.Build.Tasks
                     targetPathToItem[targetPath] = item;
                 }
             }
+
+            return RemoveConflicts(items, conflicts);
         }
 
         private Version GetFileVersion(string sourcePath)
@@ -197,6 +202,37 @@ namespace Microsoft.DotNet.Build.Tasks
 
             Log.LogMessage($"{conflictMessage}.  Could not determine winner due to equal file and assembly versions.");
             return null;
+        }
+
+        /// <summary>
+        /// Filters conflicts from original, maintaining order.
+        /// </summary>
+        /// <param name="original"></param>
+        /// <param name="conflicts"></param>
+        /// <returns></returns>
+        private ITaskItem[] RemoveConflicts(ITaskItem[] original, ICollection<ITaskItem> conflicts)
+        {
+            if (conflicts.Count == 0)
+            {
+                return original;
+            }
+
+            var result = new ITaskItem[original.Length - conflicts.Count];
+            int index = 0;
+
+            foreach(var originalItem in original)
+            {
+                if (!conflicts.Contains(originalItem))
+                {
+                    if (index >= result.Length)
+                    {
+                        throw new ArgumentException($"Items from {nameof(conflicts)} were missing from {nameof(original)}");
+                    }
+                    result[index++] = originalItem;
+                }
+            }
+
+            return result;
         }
     }
 }

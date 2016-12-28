@@ -13,7 +13,7 @@
       </PropertyGroup>
     </When>
     <When Condition="'$(ResolveNuGetPackages)' == 'true' and Exists('$(ProjectLockFile)')">
-      <!-- NuGet 4, run after the target that constructs items from lock file -->
+      <!-- NuGet 3, run after the target that constructs items from lock file -->
       <PropertyGroup>
         <HandlePackageFileConflictsAfter>ResolveNuGetPackageAssets</HandlePackageFileConflictsAfter>
       </PropertyGroup>
@@ -29,15 +29,21 @@
 
   <UsingTask TaskName="HandlePackageFileConflicts" AssemblyFile="$(NETStandardToolsTaskDirectory)NETStandard.Tools.dll" />
   <Target Name="HandlePackageConflicts" AfterTargets="$(HandlePackageFileConflictsAfter)">
-    <HandlePackageConflicts ResolvedReferences="@(Reference)"
-                            ResolvedCopyLocalItems="@(ReferenceCopyLocalPaths)">
-      <Output TaskParameter="ConflictingReferences" ItemName="_ReferenceToRemove" />
-      <Output TaskParameter="ConflictingCopyLocalItems" ItemName="_ReferenceCopyLocalPathsToRemove" />
+    <HandlePackageConflicts References="@(Reference)"
+                            ReferenceCopyLocalPaths="@(ReferenceCopyLocalPaths)">
+      <Output TaskParameter="ReferencesWithoutConflicts" ItemName="_ReferencesWithoutConflicts" />
+      <Output TaskParameter="ReferenceCopyLocalPathsWithoutConflicts" ItemName="_ReferenceCopyLocalPathsWithoutConflicts" />
     </HandlePackageConflicts>
 
+    <!-- Replace Reference / ReferenceCopyLocalPaths with the filtered lists.
+         We must remove all and include rather than just remove since removal is based
+         only on ItemSpec and duplicate ItemSpecs may exist with different metadata 
+         (eg: HintPath) -->
     <ItemGroup>
-      <Reference Remove="@(_ReferenceToRemove)" />
-      <ReferenceCopyLocalPaths Remove="@(_ReferenceCopyLocalPathsToRemove)" />
+      <Reference Remove="@(Reference)" />
+      <Reference Include="@(_ReferencesWithoutConflicts)" />
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" />
+      <ReferenceCopyLocalPaths Include="@(_ReferenceCopyLocalPathsWithoutConflicts)" />
     </ItemGroup>
   </Target>
 </Project>
