@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <Choose>
-    <When Condition="'$(ResolvePackageDependenciesForBuild)' == 'true' and '$(EnableResolvePackageDependencies)' == 'true' and Exists('$(ProjectAssetsFile)')">
+    <When Condition="'$(ResolvePackageDependenciesForBuild)' == 'true' and Exists('$(ProjectAssetsFile)')">
       <!-- NuGet 4, run after the target that constructs items from deps -->
       <PropertyGroup>
         <HandlePackageFileConflictsAfter>ResolvePackageDependenciesForBuild</HandlePackageFileConflictsAfter>
