@@ -148,8 +148,8 @@ namespace Microsoft.DotNet.Build.Tasks
                 return null;
             }
             
-            var assemblyVersion1 = GetAssemblyVersion(sourcePath1);
-            var assemblyVersion2 = GetAssemblyVersion(sourcePath2);
+            var assemblyVersion1 = TryGetAssemblyVersion(sourcePath1);
+            var assemblyVersion2 = TryGetAssemblyVersion(sourcePath2);
 
             // if only one is missing version
             if (assemblyVersion1 == null ^ assemblyVersion2 == null)
@@ -233,6 +233,15 @@ namespace Microsoft.DotNet.Build.Tasks
             }
 
             return result;
+        }
+
+
+        static readonly HashSet<string> s_assemblyExtensions = new HashSet<string>(new[] { ".dll", ".exe", ".winmd" }, StringComparer.OrdinalIgnoreCase);
+        private static Version TryGetAssemblyVersion(string sourcePath)
+        {
+            var extension = Path.GetExtension(sourcePath);
+
+            return s_assemblyExtensions.Contains(extension) ? GetAssemblyVersion(sourcePath) : null;
         }
     }
 }

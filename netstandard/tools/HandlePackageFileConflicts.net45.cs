@@ -10,7 +10,7 @@ namespace Microsoft.DotNet.Build.Tasks
 {
     public partial class HandlePackageFileConflicts : Task
     {
-        private Version GetAssemblyVersion(string sourcePath)
+        private static Version GetAssemblyVersion(string sourcePath)
         {
             return AssemblyName.GetAssemblyName(sourcePath)?.Version;
         }

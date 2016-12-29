@@ -12,7 +12,7 @@ namespace Microsoft.DotNet.Build.Tasks
 {
     public partial class HandlePackageFileConflicts : Task
     {
-        private Version GetAssemblyVersion(string sourcePath)
+        private static Version GetAssemblyVersion(string sourcePath)
         {
             using (var assemblyStream = new FileStream(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Delete | FileShare.Read))
             {
