@@ -13,11 +13,18 @@ namespace Microsoft.DotNet.Build.Tasks
 {
     public partial class HandlePackageFileConflicts : Task
     {
+        private Dictionary<string, int> packageRanks = null;
+
         [Required]
         public ITaskItem[] References { get; set; }
 
         [Required]
         public ITaskItem[] ReferenceCopyLocalPaths { get; set; }
+
+        /// <summary>
+        /// NuGet3 and later only.  In the case of a conflict with identical file version information a file from the most preferred package will be chosen.
+        /// </summary>
+        public string[] PreferredPackages { get; set; }
 
         [Output]
         public ITaskItem[] ReferencesWithoutConflicts { get; set; }
@@ -32,6 +39,31 @@ namespace Microsoft.DotNet.Build.Tasks
             ReferenceCopyLocalPathsWithoutConflicts = HandleConflicts(ReferenceCopyLocalPaths);
 
             return !Log.HasLoggedErrors;
+        }
+
+        private void EnsurePackageRanks()
+        {
+            if (packageRanks == null)
+            {
+                var numPrefferredPackages = PreferredPackages?.Length ?? 0;
+
+                // cache ranks for fast lookup
+                packageRanks = new Dictionary<string, int>(numPrefferredPackages, StringComparer.OrdinalIgnoreCase);
+
+                for (int i = 0; i < numPrefferredPackages; i++)
+                {
+                    var prefferedPackageId = PreferredPackages[i];
+
+                    if (!String.IsNullOrWhiteSpace(prefferedPackageId))
+                    {
+                        // handle duplicates
+                        if (!packageRanks.ContainsKey(prefferedPackageId))
+                        {
+                            packageRanks.Add(prefferedPackageId, i);
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -93,6 +125,36 @@ namespace Microsoft.DotNet.Build.Tasks
             }
 
             return null;
+        }
+
+        private int GetPackageRank(ITaskItem item)
+        {
+            int rank = int.MaxValue;
+
+            // NuGet 3
+            var packageId = item.GetMetadata("NuGetPackageId");
+
+            if (String.IsNullOrWhiteSpace(packageId))
+            {
+                // NuGet 4
+                packageId = item.GetMetadata("ParentPackage");
+
+                var versionSeperatorIndex = packageId.IndexOf('/');
+
+                if (versionSeperatorIndex != -1)
+                {
+                    packageId = packageId.Substring(0, versionSeperatorIndex);
+                }
+            }
+
+            if (!String.IsNullOrWhiteSpace(packageId) && PreferredPackages != null)
+            {
+                EnsurePackageRanks();
+
+                packageRanks.TryGetValue(packageId, out rank);
+            }
+
+            return rank;
         }
 
         private static string GetSourcePath(ITaskItem item)
@@ -200,6 +262,21 @@ namespace Microsoft.DotNet.Build.Tasks
                 }
             }
 
+            var packageRank1 = GetPackageRank(item1);
+            var packageRank2 = GetPackageRank(item2);
+
+            if (packageRank1 < packageRank2)
+            {
+                Log.LogMessage($"{conflictMessage}.  Choosing {item1.ItemSpec} because package it comes from a package that is prefferred.");
+                return item1;
+            }
+
+            if (packageRank2 < packageRank1)
+            {
+                Log.LogMessage($"{conflictMessage}.  Choosing {item2.ItemSpec} because package it comes from a package that is prefferred.");
+                return item2;
+            }
+
             Log.LogMessage($"{conflictMessage}.  Could not determine winner due to equal file and assembly versions.");
             return null;
         }
@@ -234,7 +311,6 @@ namespace Microsoft.DotNet.Build.Tasks
 
             return result;
         }
-
 
         static readonly HashSet<string> s_assemblyExtensions = new HashSet<string>(new[] { ".dll", ".exe", ".winmd" }, StringComparer.OrdinalIgnoreCase);
         private static Version TryGetAssemblyVersion(string sourcePath)

@@ -30,7 +30,8 @@
   <UsingTask TaskName="HandlePackageFileConflicts" AssemblyFile="$(NETStandardToolsTaskDirectory)NETStandard.Tools.dll" />
   <Target Name="HandlePackageConflicts" AfterTargets="$(HandlePackageFileConflictsAfter)">
     <HandlePackageConflicts References="@(Reference)"
-                            ReferenceCopyLocalPaths="@(ReferenceCopyLocalPaths)">
+                            ReferenceCopyLocalPaths="@(ReferenceCopyLocalPaths)"
+                            PrefferedPackages="$(PackageConflictPreferredPackages)">
       <Output TaskParameter="ReferencesWithoutConflicts" ItemName="_ReferencesWithoutConflicts" />
       <Output TaskParameter="ReferenceCopyLocalPathsWithoutConflicts" ItemName="_ReferenceCopyLocalPathsWithoutConflicts" />
     </HandlePackageConflicts>
