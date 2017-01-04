@@ -12,7 +12,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ref\netstandard.csproj" />
+    <ProjectReference Include="..\tools\NETStandard.tools.builds" />
     <ProjectReference Include="..\..\compatshims\shims.proj" />
+    
+    <File Include="..\tools\NETStandard.Library.targets">
+      <TargetPath>build/$(Id).targets</TargetPath>
+    </File>
   </ItemGroup>
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
