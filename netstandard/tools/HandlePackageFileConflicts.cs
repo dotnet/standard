@@ -45,22 +45,19 @@ namespace Microsoft.DotNet.Build.Tasks
         {
             if (packageRanks == null)
             {
-                var numPrefferredPackages = PreferredPackages?.Length ?? 0;
+                var numPreferredPackages = PreferredPackages?.Length ?? 0;
 
                 // cache ranks for fast lookup
-                packageRanks = new Dictionary<string, int>(numPrefferredPackages, StringComparer.OrdinalIgnoreCase);
+                packageRanks = new Dictionary<string, int>(numPreferredPackages, StringComparer.OrdinalIgnoreCase);
 
-                for (int i = 0; i < numPrefferredPackages; i++)
+                for (int i = numPreferredPackages - 1; i >= 0 ; i--)
                 {
-                    var prefferedPackageId = PreferredPackages[i];
+                    var preferredPackageId = PreferredPackages[i].Trim();
 
-                    if (!String.IsNullOrWhiteSpace(prefferedPackageId))
+                    if (preferredPackageId.Length != 0)
                     {
-                        // handle duplicates
-                        if (!packageRanks.ContainsKey(prefferedPackageId))
-                        {
-                            packageRanks.Add(prefferedPackageId, i);
-                        }
+                        // overwrite any duplicates, lowest rank will win.
+                        packageRanks[preferredPackageId] = i;
                     }
                 }
             }
@@ -73,8 +70,9 @@ namespace Microsoft.DotNet.Build.Tasks
         /// <returns></returns>
         private ITaskItem[] HandleConflicts(ITaskItem[] items)
         {
-            var targetPathToItem = new Dictionary<string, ITaskItem>(StringComparer.OrdinalIgnoreCase);
-            var conflicts = new HashSet<ITaskItem>();
+            var winningItems = new Dictionary<string, ITaskItem>(StringComparer.OrdinalIgnoreCase);
+            // ensure we use reference equality and not any overridden equality operators on items
+            var conflictsToRemove = new HashSet<ITaskItem>(ReferenceComparer<ITaskItem>.Instance);
 
             foreach (var item in items)
             {
@@ -82,7 +80,7 @@ namespace Microsoft.DotNet.Build.Tasks
 
                 ITaskItem existingItem;
 
-                if (targetPathToItem.TryGetValue(targetPath, out existingItem))
+                if (winningItems.TryGetValue(itemKey, out existingItem))
                 {
                     // a conflict was found, determine the winner.
                     var winner = HandleConflict(existingItem, item);
@@ -97,22 +95,22 @@ namespace Microsoft.DotNet.Build.Tasks
                     if (winner != existingItem)
                     {
                         // replace existing item and add it to conflict list.
-                        targetPathToItem[targetPath] = item;
-                        conflicts.Add(existingItem);
+                        winningItems[itemKey] = item;
+                        conflictsToRemove.Add(existingItem);
                     }
                     else
                     {
                         // no need to replace item, just add new item to conflict list.
-                        conflicts.Add(item);
+                        conflictsToRemove.Add(item);
                     }
                 }
                 else
                 {
-                    targetPathToItem[targetPath] = item;
+                    winningItems[itemKey] = item;
                 }
             }
 
-            return RemoveConflicts(items, conflicts);
+            return RemoveConflicts(items, conflictsToRemove);
         }
 
         private Version GetFileVersion(string sourcePath)
@@ -139,11 +137,11 @@ namespace Microsoft.DotNet.Build.Tasks
                 // NuGet 4
                 packageId = item.GetMetadata("ParentPackage");
 
-                var versionSeperatorIndex = packageId.IndexOf('/');
+                var versionSeparatorIndex = packageId.IndexOf('/');
 
-                if (versionSeperatorIndex != -1)
+                if (versionSeparatorIndex != -1)
                 {
-                    packageId = packageId.Substring(0, versionSeperatorIndex);
+                    packageId = packageId.Substring(0, versionSeparatorIndex);
                 }
             }
 
@@ -163,6 +161,9 @@ namespace Microsoft.DotNet.Build.Tasks
 
             if (String.IsNullOrWhiteSpace(sourcePath))
             {
+                // assume item-spec points to the file.
+                // this won't work if it comes from a targeting pack or SDK, but
+                // in that case the file won't exist and we'll skip it.
                 sourcePath = item.ItemSpec;
             }
 
@@ -179,6 +180,7 @@ namespace Microsoft.DotNet.Build.Tasks
 
                 if (!String.IsNullOrWhiteSpace(value))
                 {
+                    // normalize path
                     return value.Replace('\\', '/');
                 }
             }
@@ -213,7 +215,7 @@ namespace Microsoft.DotNet.Build.Tasks
             var assemblyVersion1 = TryGetAssemblyVersion(sourcePath1);
             var assemblyVersion2 = TryGetAssemblyVersion(sourcePath2);
 
-            // if only one is missing version
+            // if only one is missing version stop: something is wrong when we have a conflict between assembly and non-assembly
             if (assemblyVersion1 == null ^ assemblyVersion2 == null)
             {
                 var nonAssembly = assemblyVersion1 == null ? item1.ItemSpec : item2.ItemSpec;
@@ -221,6 +223,7 @@ namespace Microsoft.DotNet.Build.Tasks
                 return null;
             }
 
+            // only handle cases where assembly version is different, and not null (implicit here due to xor above)
             if (assemblyVersion1 != assemblyVersion2)
             {
                 if (assemblyVersion1 > assemblyVersion2)
@@ -267,13 +270,13 @@ namespace Microsoft.DotNet.Build.Tasks
 
             if (packageRank1 < packageRank2)
             {
-                Log.LogMessage($"{conflictMessage}.  Choosing {item1.ItemSpec} because package it comes from a package that is prefferred.");
+                Log.LogMessage($"{conflictMessage}.  Choosing {item1.ItemSpec} because package it comes from a package that is preferred.");
                 return item1;
             }
 
             if (packageRank2 < packageRank1)
             {
-                Log.LogMessage($"{conflictMessage}.  Choosing {item2.ItemSpec} because package it comes from a package that is prefferred.");
+                Log.LogMessage($"{conflictMessage}.  Choosing {item2.ItemSpec} because package it comes from a package that is preferred.");
                 return item2;
             }
 

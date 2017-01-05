@@ -31,7 +31,7 @@
   <Target Name="HandlePackageConflicts" AfterTargets="$(HandlePackageFileConflictsAfter)">
     <HandlePackageConflicts References="@(Reference)"
                             ReferenceCopyLocalPaths="@(ReferenceCopyLocalPaths)"
-                            PrefferedPackages="$(PackageConflictPreferredPackages)">
+                            PreferredPackages="$(PackageConflictPreferredPackages)">
       <Output TaskParameter="ReferencesWithoutConflicts" ItemName="_ReferencesWithoutConflicts" />
       <Output TaskParameter="ReferenceCopyLocalPathsWithoutConflicts" ItemName="_ReferenceCopyLocalPathsWithoutConflicts" />
     </HandlePackageConflicts>
