@@ -5,9 +5,11 @@
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 
 namespace Microsoft.DotNet.Build.Tasks
 {
@@ -34,9 +36,9 @@ namespace Microsoft.DotNet.Build.Tasks
 
         public override bool Execute()
         {
-            ReferencesWithoutConflicts = HandleConflicts(References);
+            ReferencesWithoutConflicts = HandleConflicts(References, GetReferenceKey);
 
-            ReferenceCopyLocalPathsWithoutConflicts = HandleConflicts(ReferenceCopyLocalPaths);
+            ReferenceCopyLocalPathsWithoutConflicts = HandleConflicts(ReferenceCopyLocalPaths, GetTargetPath);
 
             return !Log.HasLoggedErrors;
         }
@@ -68,7 +70,7 @@ namespace Microsoft.DotNet.Build.Tasks
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        private ITaskItem[] HandleConflicts(ITaskItem[] items)
+        private ITaskItem[] HandleConflicts(ITaskItem[] items, Func<ITaskItem, string> getItemKey)
         {
             var winningItems = new Dictionary<string, ITaskItem>(StringComparer.OrdinalIgnoreCase);
             // ensure we use reference equality and not any overridden equality operators on items
@@ -76,7 +78,12 @@ namespace Microsoft.DotNet.Build.Tasks
 
             foreach (var item in items)
             {
-                var targetPath = GetTargetPath(item);
+                var itemKey = getItemKey(item);
+
+                if (itemKey == null)
+                {
+                    continue;
+                }
 
                 ITaskItem existingItem;
 
@@ -153,6 +160,57 @@ namespace Microsoft.DotNet.Build.Tasks
             }
 
             return rank;
+        }
+
+        /// <summary>
+        /// Get's the key to use for identifying reference conflicts
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private static string GetReferenceKey(ITaskItem item)
+        {
+            var aliases = item.GetMetadata("Aliases");
+
+            if (!String.IsNullOrEmpty(aliases))
+            {
+                // skip conflict detection for aliased assemblies
+                return null;
+            }
+
+            // We only handle references that have path information since we're only concerned
+            // with resolving conflicts between file references.  If conflicts exist between 
+            // named references that are found from AssemblySearchPaths we'll leave those to
+            // RAR to handle or not as it sees fit.
+            var sourcePath = GetSourcePath(item);
+
+            if (String.IsNullOrEmpty(sourcePath))
+            {
+                return null;
+            }
+
+            // The following is similar to Path.GetFileName but does not throw and returns null
+            // rather than empty for a directory.
+            var length = sourcePath.Length;
+            for (int i = length - 1; --i >= 0;)
+            {
+                var ch = sourcePath[i];
+
+                if (ch == Path.DirectorySeparatorChar || ch == Path.AltDirectorySeparatorChar || ch == Path.VolumeSeparatorChar)
+                {
+                    // string terminated with a separator: we were given a directory, ignore it.
+                    if (i == length - 1)
+                    {
+                        return null;
+                    }
+
+                    // we found a separator, return filename portion.
+                    var startOfFileName = i + 1;
+                    return sourcePath.Substring(startOfFileName);
+                }
+            }
+
+            // could not find a separator, return source path
+            return sourcePath;
         }
 
         private static string GetSourcePath(ITaskItem item)
