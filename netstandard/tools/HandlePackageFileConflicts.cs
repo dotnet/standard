@@ -34,9 +34,22 @@ namespace Microsoft.DotNet.Build.Tasks
 
         public override bool Execute()
         {
-            ReferencesWithoutConflicts = HandleConflicts(References);
+            // remove References that will conflict at compile
+            var referencesWithoutConflicts = HandleConflicts(References, GetReferenceKey);
 
-            ReferenceCopyLocalPathsWithoutConflicts = HandleConflicts(ReferenceCopyLocalPaths);
+            // remove References that will conflict in output
+            Dictionary<string, ITaskItem> referencesByTargetPath;
+            referencesWithoutConflicts = HandleConflicts(referencesWithoutConflicts, GetReferenceTargetPath, out referencesByTargetPath);
+
+            // remove ReferenceCopyLocalPaths that will conflict in output.
+            Dictionary<string, ITaskItem> referenceCopyLocalPathsByTargetPath;
+            var referenceCopyLocalPathsWithoutConflicts = HandleConflicts(ReferenceCopyLocalPaths, GetTargetPath, out referenceCopyLocalPathsByTargetPath);
+
+            // remove ReferenceCopyLocalPaths & set References to Private=false that will conflict in output.
+            referenceCopyLocalPathsWithoutConflicts = HandleConflicts(referenceCopyLocalPathsWithoutConflicts, referenceCopyLocalPathsByTargetPath, referencesByTargetPath);
+
+            ReferencesWithoutConflicts = referencesWithoutConflicts;
+            ReferenceCopyLocalPathsWithoutConflicts = referenceCopyLocalPathsWithoutConflicts;
 
             return !Log.HasLoggedErrors;
         }
@@ -64,23 +77,43 @@ namespace Microsoft.DotNet.Build.Tasks
         }
 
         /// <summary>
-        /// Examines items for conflicting targetpath and chooses the best item.
+        /// Examines items for conflicting keys and chooses the best item.
         /// </summary>
-        /// <param name="items"></param>
-        /// <returns></returns>
-        private ITaskItem[] HandleConflicts(ITaskItem[] items)
+        /// <param name="items">Items from which to remove conflicts</param>
+        /// <param name="getItemKey">Delegate to calculate key for an item</param>
+        /// <returns>Items without conflicts</returns>
+        private ITaskItem[] HandleConflicts(ITaskItem[] items, Func<ITaskItem, string> getItemKey)
         {
-            var winningItems = new Dictionary<string, ITaskItem>(StringComparer.OrdinalIgnoreCase);
+            Dictionary<string, ITaskItem> itemsByKeyUnused;
+
+            return HandleConflicts(items, getItemKey, out itemsByKeyUnused);
+        }
+
+        /// <summary>
+        /// Examines items for conflicting keys and chooses the best item.
+        /// </summary>
+        /// <param name="items">Items from which to remove conflicts</param>
+        /// <param name="getItemKey">Delegate to calculate key for an item</param>
+        /// <param name="winningItemsByKey">Dictionary of items by key without conflicts</param>
+        /// <returns>Items without conflicts</returns>
+        private ITaskItem[] HandleConflicts(ITaskItem[] items, Func<ITaskItem, string> getItemKey, out Dictionary<string, ITaskItem> winningItemsByKey)
+        {
+            winningItemsByKey = new Dictionary<string, ITaskItem>(StringComparer.OrdinalIgnoreCase);
             // ensure we use reference equality and not any overridden equality operators on items
             var conflictsToRemove = new HashSet<ITaskItem>(ReferenceComparer<ITaskItem>.Instance);
 
             foreach (var item in items)
             {
-                var targetPath = GetTargetPath(item);
+                var itemKey = getItemKey(item);
+
+                if (String.IsNullOrEmpty(itemKey))
+                {
+                    continue;
+                }
 
                 ITaskItem existingItem;
 
-                if (winningItems.TryGetValue(itemKey, out existingItem))
+                if (winningItemsByKey.TryGetValue(itemKey, out existingItem))
                 {
                     // a conflict was found, determine the winner.
                     var winner = HandleConflict(existingItem, item);
@@ -92,10 +125,10 @@ namespace Microsoft.DotNet.Build.Tasks
                         continue;
                     }
 
-                    if (winner != existingItem)
+                    if (!ReferenceEquals(winner, existingItem))
                     {
                         // replace existing item and add it to conflict list.
-                        winningItems[itemKey] = item;
+                        winningItemsByKey[itemKey] = item;
                         conflictsToRemove.Add(existingItem);
                     }
                     else
@@ -106,11 +139,65 @@ namespace Microsoft.DotNet.Build.Tasks
                 }
                 else
                 {
-                    winningItems[itemKey] = item;
+                    winningItemsByKey[itemKey] = item;
                 }
             }
 
             return RemoveConflicts(items, conflictsToRemove);
+        }
+
+        /// <summary>
+        /// Examines private (copy-local) references amd referenceCopyLocalPaths for inter-conflicts and
+        /// demotes references to non-private or removes items from referenceCopyLocalPaths.
+        /// </summary>
+        /// <param name="referenceCopyLocalPaths">ReferenceCopyLocalPaths item, already filtered for intra-conflicts</param>
+        /// <param name="referenceCopyLocalPathsByTargetPath">ReferenceCopyLocalPaths already filtered for intra-conflicts, indexed by TargetPath</param>
+        /// <param name="referencesByTargetPath">References item for private references, already filtered for compile-time intra-conflicts and copy-local intra-conflicts, indexed by TargetPath.  Items within this collection will be modified as neecessary to handle conflicts with ReferenceCopyLocalPaths by making the reference Private=false.</param>
+        /// <returns>ReferenceCopyLocalPaths item filtered for inter-conflicts with References</returns>
+        private ITaskItem[] HandleConflicts(ITaskItem[] referenceCopyLocalPaths, Dictionary<string, ITaskItem> referenceCopyLocalPathsByTargetPath, Dictionary<string, ITaskItem> referencesByTargetPath)
+        {
+            if (referencesByTargetPath.Count == 0 || referenceCopyLocalPathsByTargetPath.Count == 0)
+            {
+                // nothing to do if either item set doesn't have targetpaths
+                return referenceCopyLocalPaths;
+            }
+
+            // ensure we use reference equality and not any overridden equality operators on items
+            var conflictsToRemove = new HashSet<ITaskItem>(ReferenceComparer<ITaskItem>.Instance);
+
+            // find conflicts between the two, arbitrarily choose ref to iterate over
+            foreach (var referenceByTargetPath in referencesByTargetPath)
+            {
+                var targetPath = referenceByTargetPath.Key;
+                var reference = referenceByTargetPath.Value;
+
+                ITaskItem referenceCopyLocalPath = null;
+
+                if (referenceCopyLocalPathsByTargetPath.TryGetValue(targetPath, out referenceCopyLocalPath))
+                {
+                    // a conflict was found, determine the winner.
+                    var winner = HandleConflict(reference, referenceCopyLocalPath);
+
+                    if (winner == null)
+                    {
+                        // no winner, skip it.
+                        continue;
+                    }
+
+                    if (ReferenceEquals(winner, referenceCopyLocalPath))
+                    {
+                        // ReferenceCopyLocalPath won, make the reference not private, so that it will not copy-local
+                        reference.SetMetadata("Private", "False");
+                    }
+                    else
+                    {
+                        // Reference won, remove the copy-local item.
+                        conflictsToRemove.Add(referenceCopyLocalPath);
+                    }
+                }
+            }
+            
+            return RemoveConflicts(referenceCopyLocalPaths, conflictsToRemove);
         }
 
         private Version GetFileVersion(string sourcePath)
@@ -154,6 +241,67 @@ namespace Microsoft.DotNet.Build.Tasks
 
             return rank;
         }
+
+        /// <summary>
+        /// Get's the key to use for identifying reference conflicts
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private static string GetReferenceKey(ITaskItem item)
+        {
+            var aliases = item.GetMetadata("Aliases");
+
+            if (!String.IsNullOrEmpty(aliases))
+            {
+                // skip compile-time conflict detection for aliased assemblies.
+                // An alias is the way to avoid a conflict
+                //   eg: System, v1.0.0.0 in global will not conflict with System, v2.0.0.0 in `private` alias
+                // We could model each alias scope and try to check for conflicts within that scope,
+                // but this is a ton of complexity for a fringe feature.
+                // Instead, we'll treat an alias as an indication that the developer has opted out of 
+                // conflict resolution.
+                return null;
+            }
+
+            // We only handle references that have path information since we're only concerned
+            // with resolving conflicts between file references.  If conflicts exist between 
+            // named references that are found from AssemblySearchPaths we'll leave those to
+            // RAR to handle or not as it sees fit.
+            var sourcePath = GetSourcePath(item);
+
+            if (String.IsNullOrEmpty(sourcePath))
+            {
+                return null;
+            }
+
+            try
+            {
+                return Path.GetFileName(sourcePath);
+            }
+            catch(ArgumentException)
+            {
+                // We won't even try to resolve a conflict if we can't open the file, so ignore invalid paths
+                return null;
+            }
+        }
+
+        private static string GetReferenceTargetPath(ITaskItem item)
+        {
+            // Determine if the reference will be copied local.  
+            // We're only dealing with primary file references.  For these RAR will 
+            // copy local if Private is true or unset.
+
+            var isPrivate = MSBuildUtilities.ConvertStringToBool(item.GetMetadata("Private"), defaultValue: true);
+
+            if (!isPrivate)
+            {
+                // Private = false means the reference shouldn't be copied.
+                return null;
+            }
+
+            return GetTargetPath(item);
+        }
+
 
         private static string GetSourcePath(ITaskItem item)
         {
