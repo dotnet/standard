@@ -28,13 +28,13 @@
   </Choose>
 
   <UsingTask TaskName="HandlePackageFileConflicts" AssemblyFile="$(NETStandardToolsTaskDirectory)NETStandard.Tools.dll" />
-  <Target Name="HandlePackageConflicts" AfterTargets="$(HandlePackageFileConflictsAfter)">
-    <HandlePackageConflicts References="@(Reference)"
+  <Target Name="HandlePackageFileConflicts" AfterTargets="$(HandlePackageFileConflictsAfter)">
+    <HandlePackageFileConflicts References="@(Reference)"
                             ReferenceCopyLocalPaths="@(ReferenceCopyLocalPaths)"
                             PreferredPackages="$(PackageConflictPreferredPackages)">
       <Output TaskParameter="ReferencesWithoutConflicts" ItemName="_ReferencesWithoutConflicts" />
       <Output TaskParameter="ReferenceCopyLocalPathsWithoutConflicts" ItemName="_ReferenceCopyLocalPathsWithoutConflicts" />
-    </HandlePackageConflicts>
+    </HandlePackageFileConflicts>
 
     <!-- Replace Reference / ReferenceCopyLocalPaths with the filtered lists.
          We must remove all and include rather than just remove since removal is based
