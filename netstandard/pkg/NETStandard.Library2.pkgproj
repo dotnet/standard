@@ -8,17 +8,38 @@
     <SkipPackageFileCheck>true</SkipPackageFileCheck>
     <OmitDependencies>true</OmitDependencies>
     <SkipValidatePackage>true</SkipValidatePackage>
+    <TargetsFileName>NETStandard.Library.targets</TargetsFileName>
+    <RootTargetsTemplate>..\tools\targets\$(TargetsFileName)</RootTargetsTemplate>
+    <RootTargetsSource>$(IntermediateOutputPath)$(TargetsFileName)</RootTargetsSource>
+    <NETStandardVersion>netstandard2.0</NETStandardVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ref\netstandard.csproj" />
     <ProjectReference Include="..\tools\NETStandard.tools.builds" />
     <ProjectReference Include="..\..\compatshims\shims.proj" />
-    
-    <File Include="..\tools\NETStandard.Library.targets">
+
+    <File Include="$(RootTargetsSource)">
       <TargetPath>build/$(Id).targets</TargetPath>
     </File>
+
+    <File Include="..\tools\targets\netstandard\$(TargetsFileName)">
+      <TargetPath>build/$(NETStandardVersion)/$(Id).targets</TargetPath>
+    </File>
+
+    <!-- Temporarily map ns17 to the ns20 refs https://github.com/NuGet/Home/issues/3576 -->
+    <File Include="..\tools\targets\netstandard1.7\$(TargetsFileName)">
+      <TargetPath>build/netstandard1.7/$(Id).targets</TargetPath>
+    </File>
   </ItemGroup>
+  
+  <Target Name="StampPackageVersionInTargets" BeforeTargets="GenerateNuSpec">
+    <MakeDir Directories="$(IntermediateOutputPath)" />
+
+    <WriteLinesToFile File="$(RootTargetsSource)"
+                      Lines="$([System.IO.File]::ReadAllText('$(RootTargetsTemplate)').Replace('#VERSION#', '$(PackageVersion)'))"
+                      Overwrite="true" />
+  </Target>
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>

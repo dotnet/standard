@@ -1,0 +1,12 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Only add references if we're actually targeting .NETStandard.
+       If the project is targeting some other TFM that is compatible with NETStandard we expect
+       that framework to provide all references for NETStandard, mscorlib, System.* in their own
+       targeting pack / SDK. -->
+  <PropertyGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETStandard'">
+    <_NetStandardLibraryRefPath>$(MSBuildThisFileDirectory)\ref\</_NetStandardLibraryRefPath>
+  </PropertyGroup>
+
+  <!-- import the TFM-agnostic targets -->
+  <Import Project="..\$(MSBuildThisFile)"/>
+</Project>
