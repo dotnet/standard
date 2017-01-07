@@ -4,7 +4,7 @@
        that framework to provide all references for NETStandard, mscorlib, System.* in their own
        targeting pack / SDK. -->
   <PropertyGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETStandard'">
-    <!-- temporarily workaround -->
+    <!-- Temporarily target ns17 until we get ns20 mapping https://github.com/NuGet/Home/issues/3576 -->
     <_NetStandardLibraryRefPath>$(MSBuildThisFileDirectory)..\netstandard2.0\ref\</_NetStandardLibraryRefPath>
   </PropertyGroup>
 

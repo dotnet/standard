@@ -10,10 +10,12 @@
   </PropertyGroup>
 
   <Choose>
-    <When Condition="'$(ResolvePackageDependenciesForBuild)' == 'true' and Exists('$(ProjectAssetsFile)')">
-      <!-- NuGet 4, run after the target that constructs items from deps -->
+    <!-- Condition here is a hack until https://github.com/dotnet/sdk/issues/534 is fixed -->
+    <When Condition="'$(TargetFramework)' != '' or '$(TargetFrameworks)' != ''">
+      <!-- NuGet 4, run after the targets that construct items from deps -->
       <PropertyGroup>
         <HandlePackageFileConflictsAfter>ResolvePackageDependenciesForBuild</HandlePackageFileConflictsAfter>
+        <HandlePublishFileConflictsAfter>RunResolvePublishAssemblies</HandlePublishFileConflictsAfter>
       </PropertyGroup>
     </When>
     <When Condition="'$(ResolveNuGetPackages)' == 'true' and Exists('$(ProjectLockFile)')">
@@ -52,8 +54,8 @@
   <UsingTask TaskName="HandlePackageFileConflicts" AssemblyFile="$(NETStandardToolsTaskDirectory)NETStandard.Tools.dll" />
   <Target Name="HandlePackageFileConflicts" AfterTargets="$(HandlePackageFileConflictsAfter)">
     <HandlePackageFileConflicts References="@(Reference)"
-                            ReferenceCopyLocalPaths="@(ReferenceCopyLocalPaths)"
-                            PreferredPackages="$(PackageConflictPreferredPackages)">
+                                ReferenceCopyLocalPaths="@(ReferenceCopyLocalPaths)"
+                                PreferredPackages="$(PackageConflictPreferredPackages)">
       <Output TaskParameter="ReferencesWithoutConflicts" ItemName="_ReferencesWithoutConflicts" />
       <Output TaskParameter="ReferenceCopyLocalPathsWithoutConflicts" ItemName="_ReferenceCopyLocalPathsWithoutConflicts" />
     </HandlePackageFileConflicts>
@@ -67,6 +69,17 @@
       <Reference Include="@(_ReferencesWithoutConflicts)" />
       <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" />
       <ReferenceCopyLocalPaths Include="@(_ReferenceCopyLocalPathsWithoutConflicts)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="HandlePublishFileConflicts" AfterTargets="$(HandlePublishFileConflictsAfter)">
+    <HandlePackageFileConflicts ReferenceCopyLocalPaths="@(ResolvedAssembliesToPublish)"
+                                PreferredPackages="$(PackageConflictPreferredPackages)">
+      <Output TaskParameter="ReferenceCopyLocalPathsWithoutConflicts" ItemName="_ResolvedAssembliesToPublishWithoutConflicts" />
+    </HandlePackageFileConflicts>
+    <ItemGroup>
+      <ResolvedAssembliesToPublish Remove="@(ResolvedAssembliesToPublish)" />
+      <ResolvedAssembliesToPublish Include="@(_ResolvedAssembliesToPublishWithoutConflicts)" />
     </ItemGroup>
   </Target>
 </Project>
