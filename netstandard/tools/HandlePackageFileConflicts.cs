@@ -15,10 +15,8 @@ namespace Microsoft.DotNet.Build.Tasks
     {
         private Dictionary<string, int> packageRanks = null;
 
-        [Required]
         public ITaskItem[] References { get; set; }
-
-        [Required]
+        
         public ITaskItem[] ReferenceCopyLocalPaths { get; set; }
 
         /// <summary>
@@ -99,6 +97,12 @@ namespace Microsoft.DotNet.Build.Tasks
         private ITaskItem[] HandleConflicts(ITaskItem[] items, Func<ITaskItem, string> getItemKey, out Dictionary<string, ITaskItem> winningItemsByKey)
         {
             winningItemsByKey = new Dictionary<string, ITaskItem>(StringComparer.OrdinalIgnoreCase);
+
+            if (items == null)
+            {
+                return items;
+            }
+
             // ensure we use reference equality and not any overridden equality operators on items
             var conflictsToRemove = new HashSet<ITaskItem>(ReferenceComparer<ITaskItem>.Instance);
 
@@ -318,10 +322,10 @@ namespace Microsoft.DotNet.Build.Tasks
             return sourcePath;
         }
 
-        static readonly string[] s_targetPathMetadata = new[] { "TargetPath", "Path" };
+        static readonly string[] s_targetPathMetadata = new[] { "TargetPath", "DestinationSubPath", "Path" };
         private static string GetTargetPath(ITaskItem item)
         {
-            // first use TargetPath, then Path, then fallback to filename+extension alone
+            // first use TargetPath, DestinationSubPath, then Path, then fallback to filename+extension alone
             foreach (var metadata in s_targetPathMetadata)
             {
                 var value = item.GetMetadata(metadata);

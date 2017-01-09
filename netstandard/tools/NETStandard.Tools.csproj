@@ -29,7 +29,9 @@
     <PackageDestination Include="build/desktop" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="NETStandard.Library.targets" />
+    <None Include="targets\netstandard1.7\NETStandard.Library.targets" />
+    <None Include="targets\netstandard\NETStandard.Library.targets" />
+    <None Include="targets\NETStandard.Library.targets" />
     <None Include="project.json" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />

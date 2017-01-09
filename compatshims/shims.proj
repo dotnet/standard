@@ -8,15 +8,15 @@
     <NetstandardRefPath>$(BinDir)ref/netstandard/2.0.0.0/</NetstandardRefPath>
     <ProjectJson>$(MSBuildThisFileDirectory)project.json</ProjectJson>
     <ProjectLockJson>$(MSBuildThisFileDirectory)project.lock.json</ProjectLockJson>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <Target Name="FacadesToPackage"
           AfterTargets="RunGenFacades">
     <ItemGroup>
-      <!-- Temporarily target ns17 until we get ns20 mapping https://github.com/NuGet/Home/issues/3576 -->
       <FilesToPackage Include="$(GenFacadesOutputPath)\*.dll">
-        <TargetFramework>.NETStandard,Version=v1.7</TargetFramework>
-        <TargetPath>ref/netstandard1.7</TargetPath>
+        <TargetFramework>$(TargetFramework)</TargetFramework>
+        <TargetPath>build/$(TargetFramework)/ref</TargetPath>
         <IsReferenceAsset>true</IsReferenceAsset>
       </FilesToPackage>
     </ItemGroup>
