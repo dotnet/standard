@@ -14,6 +14,8 @@
     <NETStandardVersion>netstandard2.0</NETStandardVersion>
   </PropertyGroup>
 
+  <Import Project="NETStandard.Library.dependencies.props" />
+
   <ItemGroup>
     <ProjectReference Include="..\ref\netstandard.csproj" />
     <ProjectReference Include="..\tools\NETStandard.tools.builds" />
@@ -31,6 +33,10 @@
     <File Include="..\tools\targets\netstandard1.7\$(TargetsFileName)">
       <TargetPath>build/netstandard1.7/$(Id).targets</TargetPath>
     </File>
+
+    <Dependency Include="_._">
+      <TargetFramework>netstandard1.7</TargetFramework>
+    </Dependency>
   </ItemGroup>
   
   <Target Name="StampPackageVersionInTargets" BeforeTargets="GenerateNuSpec">
