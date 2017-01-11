@@ -8,16 +8,19 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <IsCoreAssembly>true</IsCoreAssembly>
     <!-- disable obsolete warnings/errors -->
-    <NoWarn>$(NoWarn);0618;0619;0809</NoWarn>  
-
+    <NoWarn>$(NoWarn);0618;0619;0809</NoWarn>
     <DefaultBuildAllTarget>Build</DefaultBuildAllTarget>
     <BuildAllProjects>true</BuildAllProjects>
+    <UseOpenKey>true</UseOpenKey>
+    <SignType>oss</SignType>
   </PropertyGroup>
+  
   <ItemGroup>
     <PackageDestination Include="build/$(TargetFramework)/ref">
       <TargetFramework>$(TargetFramework)</TargetFramework>
     </PackageDestination>
   </ItemGroup>
+
   <ItemGroup>
     <Compile Include="mscorlib.cs" />
     <Compile Include="mscorlib.appdomain.cs" />
@@ -30,9 +33,11 @@
     <Compile Include="System.Net.Http.cs" />
     <Compile Include="System.Numerics.cs" />
     <Compile Include="System.Runtime.Serialization.cs" />
+    <Compile Include="System.Transactions.cs" />
     <Compile Include="System.Web.cs" />
     <Compile Include="System.Xml.cs" />
     <Compile Include="System.Xml.Linq.cs" />
   </ItemGroup>
+
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>

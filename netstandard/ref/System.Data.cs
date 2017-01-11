@@ -1769,7 +1769,7 @@ namespace System.Data.Common
         public abstract void Close();
         public System.Data.Common.DbCommand CreateCommand() { throw null; }
         protected abstract System.Data.Common.DbCommand CreateDbCommand();
-//TRANSACTIONS        public virtual void EnlistTransaction(System.Transactions.Transaction transaction) { }
+        public virtual void EnlistTransaction(System.Transactions.Transaction transaction) { }
         public virtual System.Data.DataTable GetSchema() { throw null; }
         public virtual System.Data.DataTable GetSchema(string collectionName) { throw null; }
         public virtual System.Data.DataTable GetSchema(string collectionName, string[] restrictionValues) { throw null; }

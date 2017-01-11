@@ -4,6 +4,8 @@
   <PropertyGroup>
     <AssemblyVersion>0.0.0.0</AssemblyVersion>
     <UseXamarinProductsKey>true</UseXamarinProductsKey>
+    <SignType>oss</SignType>
+    
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <OutputType>Library</OutputType>
     <!-- disable obsolete warnings/errors -->

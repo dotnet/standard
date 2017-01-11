@@ -1087,7 +1087,6 @@ namespace System.ComponentModel
         internal AsyncOperation() { }
         public System.Threading.SynchronizationContext SynchronizationContext { get { throw null; } }
         public object UserSuppliedState { get { throw null; } }
-        ~AsyncOperation() { }
         public void OperationCompleted() { }
         public void Post(System.Threading.SendOrPostCallback d, object arg) { }
         public void PostOperationCompleted(System.Threading.SendOrPostCallback d, object arg) { }

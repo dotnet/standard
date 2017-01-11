@@ -2,7 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.Build.Utilities;
 using System;
 using System.IO;
 using System.Reflection.Metadata;
@@ -10,7 +9,7 @@ using System.Reflection.PortableExecutable;
 
 namespace Microsoft.DotNet.Build.Tasks
 {
-    public partial class HandlePackageFileConflicts : Task
+    static partial class FileUtilities
     {
         private static Version GetAssemblyVersion(string sourcePath)
         {

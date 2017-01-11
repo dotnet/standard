@@ -5,5 +5,7 @@
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <IsReferenceAssembly>true</IsReferenceAssembly>
     <ReferenceAssemblyOutputPath>$(BaseOutputPath)ref/extensions-not-standard/</ReferenceAssemblyOutputPath>
+    <!-- Don't sign any extensions -->
+    <SkipSigning>true</SkipSigning>
   </PropertyGroup>
 </Project>

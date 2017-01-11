@@ -6,18 +6,23 @@ using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
+using System.Linq;
 
 namespace Microsoft.DotNet.Build.Tasks
 {
     public partial class HandlePackageFileConflicts : Task
     {
-        private Dictionary<string, int> packageRanks = null;
+        HashSet<ITaskItem> referenceConflicts = new HashSet<ITaskItem>();
+        HashSet<ITaskItem> copyLocalConflicts = new HashSet<ITaskItem>();
+        HashSet<ConflictItem> allConflicts = new HashSet<ConflictItem>();
 
         public ITaskItem[] References { get; set; }
-        
+
         public ITaskItem[] ReferenceCopyLocalPaths { get; set; }
+
+        public ITaskItem[] OtherRuntimeItems { get; set; }
+
+        public ITaskItem[] PlatformManifests { get; set; }
 
         /// <summary>
         /// NuGet3 and later only.  In the case of a conflict with identical file version information a file from the most preferred package will be chosen.
@@ -30,410 +35,119 @@ namespace Microsoft.DotNet.Build.Tasks
         [Output]
         public ITaskItem[] ReferenceCopyLocalPathsWithoutConflicts { get; set; }
 
+        [Output]
+        public ITaskItem[] Conflicts { get; set; }
+
         public override bool Execute()
         {
-            // remove References that will conflict at compile
-            var referencesWithoutConflicts = HandleConflicts(References, GetReferenceKey);
+            var log = new MSBuildLog(Log);
+            var packageRanks = new PackageRank(PreferredPackages);
 
-            // remove References that will conflict in output
-            Dictionary<string, ITaskItem> referencesByTargetPath;
-            referencesWithoutConflicts = HandleConflicts(referencesWithoutConflicts, GetReferenceTargetPath, out referencesByTargetPath);
+            // resolve conflicts at compile time
+            var referenceItems = GetConflictTaskItems(References, ConflictItemType.Reference).ToArray();
 
-            // remove ReferenceCopyLocalPaths that will conflict in output.
-            Dictionary<string, ITaskItem> referenceCopyLocalPathsByTargetPath;
-            var referenceCopyLocalPathsWithoutConflicts = HandleConflicts(ReferenceCopyLocalPaths, GetTargetPath, out referenceCopyLocalPathsByTargetPath);
+            var compileConflictScope = new ConflictResolver(packageRanks, log);
 
-            // remove ReferenceCopyLocalPaths & set References to Private=false that will conflict in output.
-            referenceCopyLocalPathsWithoutConflicts = HandleConflicts(referenceCopyLocalPathsWithoutConflicts, referenceCopyLocalPathsByTargetPath, referencesByTargetPath);
+            compileConflictScope.ResolveConflicts(referenceItems,
+                ci => ItemUtilities.GetReferenceFileName(ci.OriginalItem),
+                HandleCompileConflict);
 
-            ReferencesWithoutConflicts = referencesWithoutConflicts;
-            ReferenceCopyLocalPathsWithoutConflicts = referenceCopyLocalPathsWithoutConflicts;
+            // resolve conflicts that class in output
+            var runtimeConflictScope = new ConflictResolver(packageRanks, log);
+
+            runtimeConflictScope.ResolveConflicts(referenceItems,
+                ci => ItemUtilities.GetReferenceTargetPath(ci.OriginalItem),
+                HandleRuntimeConflict);
+
+            var copyLocalItems = GetConflictTaskItems(ReferenceCopyLocalPaths, ConflictItemType.CopyLocal).ToArray();
+
+            runtimeConflictScope.ResolveConflicts(copyLocalItems,
+                ci => ItemUtilities.GetTargetPath(ci.OriginalItem),
+                HandleRuntimeConflict);
+
+            var otherRuntimeItems = GetConflictTaskItems(OtherRuntimeItems, ConflictItemType.Runtime).ToArray();
+
+            runtimeConflictScope.ResolveConflicts(otherRuntimeItems,
+                ci => ItemUtilities.GetTargetPath(ci.OriginalItem),
+                HandleRuntimeConflict);
+
+
+            // resolve conflicts with platform (eg: shared framework) items
+            // we only commit the platform items since its not a conflict if other items share the same filename.
+            var platformConflictScope = new ConflictResolver(packageRanks, log);
+            var platformItems = PlatformManifests?.SelectMany(pm => PlatformManifestReader.LoadConflictItems(pm.ItemSpec, log)) ?? Enumerable.Empty<ConflictItem>();
+
+            platformConflictScope.ResolveConflicts(platformItems, pi => pi.FileName, pi => { });
+            platformConflictScope.ResolveConflicts(referenceItems.Where(ri => !referenceConflicts.Contains(ri.OriginalItem)),
+                                                   ri => ItemUtilities.GetReferenceTargetFileName(ri.OriginalItem),
+                                                   HandleRuntimeConflict,
+                                                   commitWinner:false);
+            platformConflictScope.ResolveConflicts(copyLocalItems.Where(ci => !copyLocalConflicts.Contains(ci.OriginalItem)),
+                                                   ri => ri.FileName,
+                                                   HandleRuntimeConflict,
+                                                   commitWinner: false);
+            platformConflictScope.ResolveConflicts(otherRuntimeItems,
+                                                   ri => ri.FileName,
+                                                   HandleRuntimeConflict,
+                                                   commitWinner: false);
+
+            ReferencesWithoutConflicts = RemoveConflicts(References, referenceConflicts);
+            ReferenceCopyLocalPathsWithoutConflicts = RemoveConflicts(ReferenceCopyLocalPaths, copyLocalConflicts);
+            Conflicts = CreateConflictTaskItems(allConflicts);
 
             return !Log.HasLoggedErrors;
         }
 
-        private void EnsurePackageRanks()
+        private ITaskItem[] CreateConflictTaskItems(ICollection<ConflictItem> conflicts)
         {
-            if (packageRanks == null)
+            var conflictItems = new ITaskItem[conflicts.Count];
+
+            int i = 0;
+            foreach(var conflict in conflicts)
             {
-                var numPreferredPackages = PreferredPackages?.Length ?? 0;
-
-                // cache ranks for fast lookup
-                packageRanks = new Dictionary<string, int>(numPreferredPackages, StringComparer.OrdinalIgnoreCase);
-
-                for (int i = numPreferredPackages - 1; i >= 0 ; i--)
-                {
-                    var preferredPackageId = PreferredPackages[i].Trim();
-
-                    if (preferredPackageId.Length != 0)
-                    {
-                        // overwrite any duplicates, lowest rank will win.
-                        packageRanks[preferredPackageId] = i;
-                    }
-                }
+                conflictItems[i++] = CreateConflictTaskItem(conflict);
             }
+
+            return conflictItems;
         }
 
-        /// <summary>
-        /// Examines items for conflicting keys and chooses the best item.
-        /// </summary>
-        /// <param name="items">Items from which to remove conflicts</param>
-        /// <param name="getItemKey">Delegate to calculate key for an item</param>
-        /// <returns>Items without conflicts</returns>
-        private ITaskItem[] HandleConflicts(ITaskItem[] items, Func<ITaskItem, string> getItemKey)
+        private ITaskItem CreateConflictTaskItem(ConflictItem conflict)
         {
-            Dictionary<string, ITaskItem> itemsByKeyUnused;
+            var item = new TaskItem(conflict.SourcePath);
 
-            return HandleConflicts(items, getItemKey, out itemsByKeyUnused);
+            if (conflict.PackageId != null)
+            {
+                item.SetMetadata(nameof(ConflictItemType), conflict.ItemType.ToString());
+            }
+
+            return item;
         }
 
-        /// <summary>
-        /// Examines items for conflicting keys and chooses the best item.
-        /// </summary>
-        /// <param name="items">Items from which to remove conflicts</param>
-        /// <param name="getItemKey">Delegate to calculate key for an item</param>
-        /// <param name="winningItemsByKey">Dictionary of items by key without conflicts</param>
-        /// <returns>Items without conflicts</returns>
-        private ITaskItem[] HandleConflicts(ITaskItem[] items, Func<ITaskItem, string> getItemKey, out Dictionary<string, ITaskItem> winningItemsByKey)
+        private IEnumerable<ConflictItem> GetConflictTaskItems(ITaskItem[] items, ConflictItemType itemType)
         {
-            winningItemsByKey = new Dictionary<string, ITaskItem>(StringComparer.OrdinalIgnoreCase);
-
-            if (items == null)
-            {
-                return items;
-            }
-
-            // ensure we use reference equality and not any overridden equality operators on items
-            var conflictsToRemove = new HashSet<ITaskItem>(ReferenceComparer<ITaskItem>.Instance);
-
-            foreach (var item in items)
-            {
-                var itemKey = getItemKey(item);
-
-                if (String.IsNullOrEmpty(itemKey))
-                {
-                    continue;
-                }
-
-                ITaskItem existingItem;
-
-                if (winningItemsByKey.TryGetValue(itemKey, out existingItem))
-                {
-                    // a conflict was found, determine the winner.
-                    var winner = HandleConflict(existingItem, item);
-
-                    if (winner == null)
-                    {
-                        // no winner, skip it.
-                        // don't add to conflict list and just use the existing item for future conflicts.
-                        continue;
-                    }
-
-                    if (!ReferenceEquals(winner, existingItem))
-                    {
-                        // replace existing item and add it to conflict list.
-                        winningItemsByKey[itemKey] = item;
-                        conflictsToRemove.Add(existingItem);
-                    }
-                    else
-                    {
-                        // no need to replace item, just add new item to conflict list.
-                        conflictsToRemove.Add(item);
-                    }
-                }
-                else
-                {
-                    winningItemsByKey[itemKey] = item;
-                }
-            }
-
-            return RemoveConflicts(items, conflictsToRemove);
+            return (items != null) ? items.Select(i => new ConflictItem(i, itemType)) : Enumerable.Empty<ConflictItem>();
         }
 
-        /// <summary>
-        /// Examines private (copy-local) references amd referenceCopyLocalPaths for inter-conflicts and
-        /// demotes references to non-private or removes items from referenceCopyLocalPaths.
-        /// </summary>
-        /// <param name="referenceCopyLocalPaths">ReferenceCopyLocalPaths item, already filtered for intra-conflicts</param>
-        /// <param name="referenceCopyLocalPathsByTargetPath">ReferenceCopyLocalPaths already filtered for intra-conflicts, indexed by TargetPath</param>
-        /// <param name="referencesByTargetPath">References item for private references, already filtered for compile-time intra-conflicts and copy-local intra-conflicts, indexed by TargetPath.  Items within this collection will be modified as neecessary to handle conflicts with ReferenceCopyLocalPaths by making the reference Private=false.</param>
-        /// <returns>ReferenceCopyLocalPaths item filtered for inter-conflicts with References</returns>
-        private ITaskItem[] HandleConflicts(ITaskItem[] referenceCopyLocalPaths, Dictionary<string, ITaskItem> referenceCopyLocalPathsByTargetPath, Dictionary<string, ITaskItem> referencesByTargetPath)
+        private void HandleCompileConflict(ConflictItem conflictItem)
         {
-            if (referencesByTargetPath.Count == 0 || referenceCopyLocalPathsByTargetPath.Count == 0)
+            if (conflictItem.ItemType == ConflictItemType.Reference)
             {
-                // nothing to do if either item set doesn't have targetpaths
-                return referenceCopyLocalPaths;
+                referenceConflicts.Add(conflictItem.OriginalItem);
             }
-
-            // ensure we use reference equality and not any overridden equality operators on items
-            var conflictsToRemove = new HashSet<ITaskItem>(ReferenceComparer<ITaskItem>.Instance);
-
-            // find conflicts between the two, arbitrarily choose ref to iterate over
-            foreach (var referenceByTargetPath in referencesByTargetPath)
-            {
-                var targetPath = referenceByTargetPath.Key;
-                var reference = referenceByTargetPath.Value;
-
-                ITaskItem referenceCopyLocalPath = null;
-
-                if (referenceCopyLocalPathsByTargetPath.TryGetValue(targetPath, out referenceCopyLocalPath))
-                {
-                    // a conflict was found, determine the winner.
-                    var winner = HandleConflict(reference, referenceCopyLocalPath);
-
-                    if (winner == null)
-                    {
-                        // no winner, skip it.
-                        continue;
-                    }
-
-                    if (ReferenceEquals(winner, referenceCopyLocalPath))
-                    {
-                        // ReferenceCopyLocalPath won, make the reference not private, so that it will not copy-local
-                        reference.SetMetadata("Private", "False");
-                    }
-                    else
-                    {
-                        // Reference won, remove the copy-local item.
-                        conflictsToRemove.Add(referenceCopyLocalPath);
-                    }
-                }
-            }
-            
-            return RemoveConflicts(referenceCopyLocalPaths, conflictsToRemove);
+            allConflicts.Add(conflictItem);
         }
 
-        private Version GetFileVersion(string sourcePath)
+        private void HandleRuntimeConflict(ConflictItem conflictItem)
         {
-            var fvi = FileVersionInfo.GetVersionInfo(sourcePath);
-
-            if (fvi != null)
+            if (conflictItem.ItemType == ConflictItemType.Reference)
             {
-                return new Version(fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart);
+                conflictItem.OriginalItem.SetMetadata(MetadataNames.Private, "False");
             }
-
-            return null;
-        }
-
-        private int GetPackageRank(ITaskItem item)
-        {
-            int rank = int.MaxValue;
-
-            // NuGet 3
-            var packageId = item.GetMetadata("NuGetPackageId");
-
-            if (String.IsNullOrWhiteSpace(packageId))
+            else if (conflictItem.ItemType == ConflictItemType.CopyLocal)
             {
-                // NuGet 4
-                packageId = item.GetMetadata("ParentPackage");
-
-                var versionSeparatorIndex = packageId.IndexOf('/');
-
-                if (versionSeparatorIndex != -1)
-                {
-                    packageId = packageId.Substring(0, versionSeparatorIndex);
-                }
+                copyLocalConflicts.Add(conflictItem.OriginalItem);
             }
-
-            if (!String.IsNullOrWhiteSpace(packageId) && PreferredPackages != null)
-            {
-                EnsurePackageRanks();
-
-                packageRanks.TryGetValue(packageId, out rank);
-            }
-
-            return rank;
-        }
-
-        /// <summary>
-        /// Get's the key to use for identifying reference conflicts
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        private static string GetReferenceKey(ITaskItem item)
-        {
-            var aliases = item.GetMetadata("Aliases");
-
-            if (!String.IsNullOrEmpty(aliases))
-            {
-                // skip compile-time conflict detection for aliased assemblies.
-                // An alias is the way to avoid a conflict
-                //   eg: System, v1.0.0.0 in global will not conflict with System, v2.0.0.0 in `private` alias
-                // We could model each alias scope and try to check for conflicts within that scope,
-                // but this is a ton of complexity for a fringe feature.
-                // Instead, we'll treat an alias as an indication that the developer has opted out of 
-                // conflict resolution.
-                return null;
-            }
-
-            // We only handle references that have path information since we're only concerned
-            // with resolving conflicts between file references.  If conflicts exist between 
-            // named references that are found from AssemblySearchPaths we'll leave those to
-            // RAR to handle or not as it sees fit.
-            var sourcePath = GetSourcePath(item);
-
-            if (String.IsNullOrEmpty(sourcePath))
-            {
-                return null;
-            }
-
-            try
-            {
-                return Path.GetFileName(sourcePath);
-            }
-            catch(ArgumentException)
-            {
-                // We won't even try to resolve a conflict if we can't open the file, so ignore invalid paths
-                return null;
-            }
-        }
-
-        private static string GetReferenceTargetPath(ITaskItem item)
-        {
-            // Determine if the reference will be copied local.  
-            // We're only dealing with primary file references.  For these RAR will 
-            // copy local if Private is true or unset.
-
-            var isPrivate = MSBuildUtilities.ConvertStringToBool(item.GetMetadata("Private"), defaultValue: true);
-
-            if (!isPrivate)
-            {
-                // Private = false means the reference shouldn't be copied.
-                return null;
-            }
-
-            return GetTargetPath(item);
-        }
-
-
-        private static string GetSourcePath(ITaskItem item)
-        {
-            var sourcePath = item.GetMetadata("HintPath");
-
-            if (String.IsNullOrWhiteSpace(sourcePath))
-            {
-                // assume item-spec points to the file.
-                // this won't work if it comes from a targeting pack or SDK, but
-                // in that case the file won't exist and we'll skip it.
-                sourcePath = item.ItemSpec;
-            }
-
-            return sourcePath;
-        }
-
-        static readonly string[] s_targetPathMetadata = new[] { "TargetPath", "DestinationSubPath", "Path" };
-        private static string GetTargetPath(ITaskItem item)
-        {
-            // first use TargetPath, DestinationSubPath, then Path, then fallback to filename+extension alone
-            foreach (var metadata in s_targetPathMetadata)
-            {
-                var value = item.GetMetadata(metadata);
-
-                if (!String.IsNullOrWhiteSpace(value))
-                {
-                    // normalize path
-                    return value.Replace('\\', '/');
-                }
-            }
-
-            var sourcePath = GetSourcePath(item);
-
-            return Path.GetFileName(sourcePath);
-        }
-
-        private ITaskItem HandleConflict(ITaskItem item1, ITaskItem item2)
-        {
-            var conflictMessage = $"Encountered conflict between {item1.ItemSpec} and {item2.ItemSpec}.";
-
-            var sourcePath1 = GetSourcePath(item1);
-            var sourcePath2 = GetSourcePath(item2);
-
-            var exists1 = File.Exists(sourcePath1);
-            var exists2 = File.Exists(sourcePath2);
-
-            if (!exists1 || !exists2)
-            {
-                var fileMessage = !exists1 ?
-                                    !exists2 ? 
-                                      "both files do" :
-                                      $"{item1.ItemSpec} does" :
-                                  $"{item2.ItemSpec} does";
-
-                Log.LogMessage($"{conflictMessage}.  Could not determine winner because {fileMessage} not exist.");
-                return null;
-            }
-            
-            var assemblyVersion1 = TryGetAssemblyVersion(sourcePath1);
-            var assemblyVersion2 = TryGetAssemblyVersion(sourcePath2);
-
-            // if only one is missing version stop: something is wrong when we have a conflict between assembly and non-assembly
-            if (assemblyVersion1 == null ^ assemblyVersion2 == null)
-            {
-                var nonAssembly = assemblyVersion1 == null ? item1.ItemSpec : item2.ItemSpec;
-                Log.LogMessage($"{conflictMessage}. Could not determine a winner because {nonAssembly} is not an assembly.");
-                return null;
-            }
-
-            // only handle cases where assembly version is different, and not null (implicit here due to xor above)
-            if (assemblyVersion1 != assemblyVersion2)
-            {
-                if (assemblyVersion1 > assemblyVersion2)
-                {
-                    Log.LogMessage($"{conflictMessage}.  Choosing {item1.ItemSpec} because AssemblyVersion {assemblyVersion1} is greater than {assemblyVersion2}.");
-                    return item1;
-                }
-
-                if (assemblyVersion2 > assemblyVersion1)
-                {
-                    Log.LogMessage($"{conflictMessage}.  Choosing {item2.ItemSpec} because AssemblyVersion {assemblyVersion2} is greater than {assemblyVersion1}.");
-                    return item2;
-                }
-            }
-
-            var fileVersion1 = GetFileVersion(sourcePath1);
-            var fileVersion2 = GetFileVersion(sourcePath2);
-
-            // if only one is missing version
-            if (fileVersion1 == null ^ fileVersion2 == null)
-            {
-                var nonVersion = fileVersion1 == null ? item1.ItemSpec : item2.ItemSpec;
-                Log.LogMessage($"{conflictMessage}. Could not determine a winner because {nonVersion} has no file version.");
-                return null;
-            }
-
-            if (fileVersion1 != fileVersion2)
-            {
-                if (fileVersion1 > fileVersion2)
-                {
-                    Log.LogMessage($"{conflictMessage}.  Choosing {item1.ItemSpec} because file version {fileVersion1} is greater than {fileVersion2}.");
-                    return item1;
-                }
-
-                if (fileVersion2 > fileVersion1)
-                {
-                    Log.LogMessage($"{conflictMessage}.  Choosing {item2.ItemSpec} because file version {fileVersion2} is greater than {fileVersion1}.");
-                    return item2;
-                }
-            }
-
-            var packageRank1 = GetPackageRank(item1);
-            var packageRank2 = GetPackageRank(item2);
-
-            if (packageRank1 < packageRank2)
-            {
-                Log.LogMessage($"{conflictMessage}.  Choosing {item1.ItemSpec} because package it comes from a package that is preferred.");
-                return item1;
-            }
-
-            if (packageRank2 < packageRank1)
-            {
-                Log.LogMessage($"{conflictMessage}.  Choosing {item2.ItemSpec} because package it comes from a package that is preferred.");
-                return item2;
-            }
-
-            Log.LogMessage($"{conflictMessage}.  Could not determine winner due to equal file and assembly versions.");
-            return null;
+            allConflicts.Add(conflictItem);
         }
 
         /// <summary>
@@ -467,12 +181,24 @@ namespace Microsoft.DotNet.Build.Tasks
             return result;
         }
 
-        static readonly HashSet<string> s_assemblyExtensions = new HashSet<string>(new[] { ".dll", ".exe", ".winmd" }, StringComparer.OrdinalIgnoreCase);
-        private static Version TryGetAssemblyVersion(string sourcePath)
+        private class MSBuildLog : ILog
         {
-            var extension = Path.GetExtension(sourcePath);
+            private TaskLoggingHelper logger;
+            public MSBuildLog(TaskLoggingHelper logger)
+            {
+                this.logger = logger;
+            }
 
-            return s_assemblyExtensions.Contains(extension) ? GetAssemblyVersion(sourcePath) : null;
+            public void LogError(string errorMessage)
+            {
+                logger.LogError(errorMessage);
+            }
+
+            public void LogMessage(string message)
+            {
+                logger.LogMessage(message);
+            }
         }
+
     }
 }

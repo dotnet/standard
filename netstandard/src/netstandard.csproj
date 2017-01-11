@@ -13,6 +13,8 @@
     <GenFacadesArgs>$(GenFacadesArgs) -ignoreMissingTypes</GenFacadesArgs>
     <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
     <ApiCompatBaseline>$(MSBuildProjectDirectory)\ApiCompatBaseline.$(TargetGroup).txt</ApiCompatBaseline>
+    <UseOpenKey>true</UseOpenKey>
+    <SignType>oss</SignType>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\mscorlib.csproj" />
@@ -31,6 +33,7 @@
   <ItemGroup Condition="'$(TargetGroup)'=='net461'">
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Drawing.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Transactions.csproj" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)'=='xamarin.ios'">
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\OpenTK-1.0.csproj" />
