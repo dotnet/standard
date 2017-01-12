@@ -6,7 +6,6 @@ using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 
 namespace Microsoft.DotNet.Build.Tasks
@@ -33,15 +32,15 @@ namespace Microsoft.DotNet.Build.Tasks
         public override bool Execute()
         {
             // remove References that will conflict at compile
-            var referencesWithoutConflicts = HandleConflicts(References, GetReferenceKey);
+            var referencesWithoutConflicts = HandleConflicts(References, ItemUtilities.GetReferenceFileName);
 
             // remove References that will conflict in output
             Dictionary<string, ITaskItem> referencesByTargetPath;
-            referencesWithoutConflicts = HandleConflicts(referencesWithoutConflicts, GetReferenceTargetPath, out referencesByTargetPath);
+            referencesWithoutConflicts = HandleConflicts(referencesWithoutConflicts, ItemUtilities.GetReferenceTargetPath, out referencesByTargetPath);
 
             // remove ReferenceCopyLocalPaths that will conflict in output.
             Dictionary<string, ITaskItem> referenceCopyLocalPathsByTargetPath;
-            var referenceCopyLocalPathsWithoutConflicts = HandleConflicts(ReferenceCopyLocalPaths, GetTargetPath, out referenceCopyLocalPathsByTargetPath);
+            var referenceCopyLocalPathsWithoutConflicts = HandleConflicts(ReferenceCopyLocalPaths, ItemUtilities.GetTargetPath, out referenceCopyLocalPathsByTargetPath);
 
             // remove ReferenceCopyLocalPaths & set References to Private=false that will conflict in output.
             referenceCopyLocalPathsWithoutConflicts = HandleConflicts(referenceCopyLocalPathsWithoutConflicts, referenceCopyLocalPathsByTargetPath, referencesByTargetPath);
@@ -72,6 +71,36 @@ namespace Microsoft.DotNet.Build.Tasks
                     }
                 }
             }
+        }
+
+        private int GetPackageRank(ITaskItem item)
+        {
+            int rank = int.MaxValue;
+
+            // NuGet 3
+            var packageId = item.GetMetadata("NuGetPackageId");
+
+            if (String.IsNullOrWhiteSpace(packageId))
+            {
+                // NuGet 4
+                packageId = item.GetMetadata("ParentPackage");
+
+                var versionSeparatorIndex = packageId.IndexOf('/');
+
+                if (versionSeparatorIndex != -1)
+                {
+                    packageId = packageId.Substring(0, versionSeparatorIndex);
+                }
+            }
+
+            if (!String.IsNullOrWhiteSpace(packageId) && PreferredPackages != null)
+            {
+                EnsurePackageRanks();
+
+                packageRanks.TryGetValue(packageId, out rank);
+            }
+
+            return rank;
         }
 
         /// <summary>
@@ -204,150 +233,12 @@ namespace Microsoft.DotNet.Build.Tasks
             return RemoveConflicts(referenceCopyLocalPaths, conflictsToRemove);
         }
 
-        private Version GetFileVersion(string sourcePath)
-        {
-            var fvi = FileVersionInfo.GetVersionInfo(sourcePath);
-
-            if (fvi != null)
-            {
-                return new Version(fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart);
-            }
-
-            return null;
-        }
-
-        private int GetPackageRank(ITaskItem item)
-        {
-            int rank = int.MaxValue;
-
-            // NuGet 3
-            var packageId = item.GetMetadata("NuGetPackageId");
-
-            if (String.IsNullOrWhiteSpace(packageId))
-            {
-                // NuGet 4
-                packageId = item.GetMetadata("ParentPackage");
-
-                var versionSeparatorIndex = packageId.IndexOf('/');
-
-                if (versionSeparatorIndex != -1)
-                {
-                    packageId = packageId.Substring(0, versionSeparatorIndex);
-                }
-            }
-
-            if (!String.IsNullOrWhiteSpace(packageId) && PreferredPackages != null)
-            {
-                EnsurePackageRanks();
-
-                packageRanks.TryGetValue(packageId, out rank);
-            }
-
-            return rank;
-        }
-
-        /// <summary>
-        /// Get's the key to use for identifying reference conflicts
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        private static string GetReferenceKey(ITaskItem item)
-        {
-            var aliases = item.GetMetadata("Aliases");
-
-            if (!String.IsNullOrEmpty(aliases))
-            {
-                // skip compile-time conflict detection for aliased assemblies.
-                // An alias is the way to avoid a conflict
-                //   eg: System, v1.0.0.0 in global will not conflict with System, v2.0.0.0 in `private` alias
-                // We could model each alias scope and try to check for conflicts within that scope,
-                // but this is a ton of complexity for a fringe feature.
-                // Instead, we'll treat an alias as an indication that the developer has opted out of 
-                // conflict resolution.
-                return null;
-            }
-
-            // We only handle references that have path information since we're only concerned
-            // with resolving conflicts between file references.  If conflicts exist between 
-            // named references that are found from AssemblySearchPaths we'll leave those to
-            // RAR to handle or not as it sees fit.
-            var sourcePath = GetSourcePath(item);
-
-            if (String.IsNullOrEmpty(sourcePath))
-            {
-                return null;
-            }
-
-            try
-            {
-                return Path.GetFileName(sourcePath);
-            }
-            catch(ArgumentException)
-            {
-                // We won't even try to resolve a conflict if we can't open the file, so ignore invalid paths
-                return null;
-            }
-        }
-
-        private static string GetReferenceTargetPath(ITaskItem item)
-        {
-            // Determine if the reference will be copied local.  
-            // We're only dealing with primary file references.  For these RAR will 
-            // copy local if Private is true or unset.
-
-            var isPrivate = MSBuildUtilities.ConvertStringToBool(item.GetMetadata("Private"), defaultValue: true);
-
-            if (!isPrivate)
-            {
-                // Private = false means the reference shouldn't be copied.
-                return null;
-            }
-
-            return GetTargetPath(item);
-        }
-
-
-        private static string GetSourcePath(ITaskItem item)
-        {
-            var sourcePath = item.GetMetadata("HintPath");
-
-            if (String.IsNullOrWhiteSpace(sourcePath))
-            {
-                // assume item-spec points to the file.
-                // this won't work if it comes from a targeting pack or SDK, but
-                // in that case the file won't exist and we'll skip it.
-                sourcePath = item.ItemSpec;
-            }
-
-            return sourcePath;
-        }
-
-        static readonly string[] s_targetPathMetadata = new[] { "TargetPath", "DestinationSubPath", "Path" };
-        private static string GetTargetPath(ITaskItem item)
-        {
-            // first use TargetPath, DestinationSubPath, then Path, then fallback to filename+extension alone
-            foreach (var metadata in s_targetPathMetadata)
-            {
-                var value = item.GetMetadata(metadata);
-
-                if (!String.IsNullOrWhiteSpace(value))
-                {
-                    // normalize path
-                    return value.Replace('\\', '/');
-                }
-            }
-
-            var sourcePath = GetSourcePath(item);
-
-            return Path.GetFileName(sourcePath);
-        }
-
         private ITaskItem HandleConflict(ITaskItem item1, ITaskItem item2)
         {
             var conflictMessage = $"Encountered conflict between {item1.ItemSpec} and {item2.ItemSpec}.";
 
-            var sourcePath1 = GetSourcePath(item1);
-            var sourcePath2 = GetSourcePath(item2);
+            var sourcePath1 = ItemUtilities.GetSourcePath(item1);
+            var sourcePath2 = ItemUtilities.GetSourcePath(item2);
 
             var exists1 = File.Exists(sourcePath1);
             var exists2 = File.Exists(sourcePath2);
@@ -364,8 +255,8 @@ namespace Microsoft.DotNet.Build.Tasks
                 return null;
             }
             
-            var assemblyVersion1 = TryGetAssemblyVersion(sourcePath1);
-            var assemblyVersion2 = TryGetAssemblyVersion(sourcePath2);
+            var assemblyVersion1 = FileUtilities.TryGetAssemblyVersion(sourcePath1);
+            var assemblyVersion2 = FileUtilities.TryGetAssemblyVersion(sourcePath2);
 
             // if only one is missing version stop: something is wrong when we have a conflict between assembly and non-assembly
             if (assemblyVersion1 == null ^ assemblyVersion2 == null)
@@ -391,8 +282,8 @@ namespace Microsoft.DotNet.Build.Tasks
                 }
             }
 
-            var fileVersion1 = GetFileVersion(sourcePath1);
-            var fileVersion2 = GetFileVersion(sourcePath2);
+            var fileVersion1 = FileUtilities.GetFileVersion(sourcePath1);
+            var fileVersion2 = FileUtilities.GetFileVersion(sourcePath2);
 
             // if only one is missing version
             if (fileVersion1 == null ^ fileVersion2 == null)
@@ -467,12 +358,5 @@ namespace Microsoft.DotNet.Build.Tasks
             return result;
         }
 
-        static readonly HashSet<string> s_assemblyExtensions = new HashSet<string>(new[] { ".dll", ".exe", ".winmd" }, StringComparer.OrdinalIgnoreCase);
-        private static Version TryGetAssemblyVersion(string sourcePath)
-        {
-            var extension = Path.GetExtension(sourcePath);
-
-            return s_assemblyExtensions.Contains(extension) ? GetAssemblyVersion(sourcePath) : null;
-        }
     }
 }
