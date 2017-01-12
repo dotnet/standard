@@ -77,21 +77,7 @@ namespace Microsoft.DotNet.Build.Tasks
         {
             int rank = int.MaxValue;
 
-            // NuGet 3
             var packageId = item.GetMetadata("NuGetPackageId");
-
-            if (String.IsNullOrWhiteSpace(packageId))
-            {
-                // NuGet 4
-                packageId = item.GetMetadata("ParentPackage");
-
-                var versionSeparatorIndex = packageId.IndexOf('/');
-
-                if (versionSeparatorIndex != -1)
-                {
-                    packageId = packageId.Substring(0, versionSeparatorIndex);
-                }
-            }
 
             if (!String.IsNullOrWhiteSpace(packageId) && PreferredPackages != null)
             {
