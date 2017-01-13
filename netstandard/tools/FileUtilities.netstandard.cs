@@ -10,7 +10,7 @@ using System.Reflection.PortableExecutable;
 
 namespace Microsoft.DotNet.Build.Tasks
 {
-    public partial class HandlePackageFileConflicts : Task
+    static partial class FileUtilities
     {
         private static Version GetAssemblyVersion(string sourcePath)
         {
