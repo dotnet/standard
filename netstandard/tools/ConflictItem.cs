@@ -12,7 +12,7 @@ namespace Microsoft.DotNet.Build.Tasks
     {
         Reference,
         CopyLocal,
-        External
+        Platform
     }
 
     // Wraps an ITask item and adds lazy evaluated properties used by Conflict resolution.
@@ -24,6 +24,17 @@ namespace Microsoft.DotNet.Build.Tasks
             ItemType = itemType;
         }
 
+        public ConflictItem(string fileName, string packageId, Version assemblyVersion, Version fileVersion)
+        {
+            OriginalItem = null;
+            ItemType = ConflictItemType.Platform;
+            FileName = fileName;
+            SourcePath = fileName;
+            PackageId = packageId;
+            AssemblyVersion = assemblyVersion;
+            FileVersion = fileVersion;
+        }
+
         private bool hasAssemblyVersion;
         private Version assemblyVersion;
         public Version AssemblyVersion
@@ -32,16 +43,13 @@ namespace Microsoft.DotNet.Build.Tasks
             {
                 if (!hasAssemblyVersion)
                 {
-                    if (ItemType == ConflictItemType.External)
+                    assemblyVersion = null;
+
+                    var assemblyVersionString = OriginalItem?.GetMetadata(nameof(AssemblyVersion)) ?? String.Empty;
+
+                    if (assemblyVersionString.Length != 0)
                     {
-                        assemblyVersion = null;
-
-                        var assemblyVersionString = OriginalItem.GetMetadata(nameof(AssemblyVersion));
-
-                        if (assemblyVersionString.Length != 0)
-                        {
-                            Version.TryParse(assemblyVersionString, out assemblyVersion);
-                        }
+                        Version.TryParse(assemblyVersionString, out assemblyVersion);
                     }
                     else
                     {
@@ -54,6 +62,11 @@ namespace Microsoft.DotNet.Build.Tasks
 
                 return assemblyVersion;
             }
+            private set
+            {
+                assemblyVersion = value;
+                hasAssemblyVersion = true;
+            }
         }
 
         public ConflictItemType ItemType { get; }
@@ -65,7 +78,7 @@ namespace Microsoft.DotNet.Build.Tasks
             {
                 if (exists == null)
                 {
-                    exists = ItemType == ConflictItemType.External || File.Exists(SourcePath);
+                    exists = ItemType == ConflictItemType.Platform || File.Exists(SourcePath);
                 }
 
                 return exists.Value;
@@ -79,10 +92,11 @@ namespace Microsoft.DotNet.Build.Tasks
             {
                 if (fileName == null)
                 {
-                    fileName = OriginalItem.GetMetadata("FileName") + OriginalItem.GetMetadata("Extension");
+                    fileName = OriginalItem == null ? String.Empty : OriginalItem.GetMetadata("FileName") + OriginalItem.GetMetadata("Extension");
                 }
                 return fileName;
             }
+            private set { fileName = value; }
         }
 
         private bool hasFileVersion;
@@ -93,16 +107,13 @@ namespace Microsoft.DotNet.Build.Tasks
             {
                 if (!hasFileVersion)
                 {
-                    if (ItemType == ConflictItemType.External)
+                    fileVersion = null;
+
+                    var fileVersionString = OriginalItem?.GetMetadata(nameof(FileVersion)) ?? String.Empty;
+
+                    if (fileVersionString.Length != 0)
                     {
-                        fileVersion = null;
-
-                        var fileVersionString = OriginalItem.GetMetadata(nameof(FileVersion));
-
-                        if (fileVersionString.Length != 0)
-                        {
-                            Version.TryParse(fileVersionString, out fileVersion);
-                        }
+                        Version.TryParse(fileVersionString, out fileVersion);
                     }
                     else
                     {
@@ -115,6 +126,11 @@ namespace Microsoft.DotNet.Build.Tasks
 
                 return fileVersion;
             }
+            private set
+            {
+                fileVersion = value;
+                hasFileVersion = true;
+            }
         }
 
         public ITaskItem OriginalItem { get; }
@@ -126,11 +142,12 @@ namespace Microsoft.DotNet.Build.Tasks
             {
                 if (packageId == null)
                 {
-                    packageId = OriginalItem.GetMetadata("NuGetPackageId") ?? String.Empty;
+                    packageId = OriginalItem?.GetMetadata("NuGetPackageId") ?? String.Empty;
                 }
 
                 return packageId.Length == 0 ? null : packageId;
             }
+            private set { packageId = value; }
         }
         
 
@@ -146,6 +163,7 @@ namespace Microsoft.DotNet.Build.Tasks
 
                 return sourcePath.Length == 0 ? null : sourcePath;
             }
+            private set { sourcePath = value; }
         }
         
         public string displayName;
@@ -155,7 +173,8 @@ namespace Microsoft.DotNet.Build.Tasks
             {
                 if (displayName == null)
                 {
-                    displayName = $"{ItemType}:{OriginalItem.ItemSpec}";
+                    var itemSpec = OriginalItem == null ? FileName : OriginalItem.ItemSpec;
+                    displayName = $"{ItemType}:{itemSpec}";
                 }
                 return displayName;
             }

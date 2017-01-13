@@ -11,7 +11,14 @@ namespace Microsoft.DotNet.Build.Tasks
     {
         private static Version GetAssemblyVersion(string sourcePath)
         {
-            return AssemblyName.GetAssemblyName(sourcePath)?.Version;
+            try
+            {
+                return AssemblyName.GetAssemblyName(sourcePath)?.Version;
+            }
+            catch(BadImageFormatException)
+            {
+                return null;
+            }
         }
     }
 }

@@ -6,20 +6,25 @@ using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace Microsoft.DotNet.Build.Tasks
 {
     public partial class HandlePackageFileConflicts : Task
     {
+        static readonly char[] s_manifestLineSeparator = new[] { '|' };
         private Dictionary<string, int> packageRanks = null;
-        private Dictionary<string, ConflictItem> externalRuntimeByFileName = new Dictionary<string, ConflictItem>(StringComparer.OrdinalIgnoreCase);
+        private Dictionary<string, ConflictItem> platformRuntimeByFileName = new Dictionary<string, ConflictItem>(StringComparer.OrdinalIgnoreCase);
         private Dictionary<string, ConflictItem> runtimeItemsByTargetPath = new Dictionary<string, ConflictItem>(StringComparer.OrdinalIgnoreCase);
 
         public ITaskItem[] References { get; set; }
-        
+
         public ITaskItem[] ReferenceCopyLocalPaths { get; set; }
 
-        public ITaskItem[] ExternalRuntimeItems { get; set; }
+        public ITaskItem[] PlatformItems { get; set; }
+
+        public ITaskItem[] PlatformManifests { get; set; }
 
         /// <summary>
         /// NuGet3 and later only.  In the case of a conflict with identical file version information a file from the most preferred package will be chosen.
@@ -37,12 +42,12 @@ namespace Microsoft.DotNet.Build.Tasks
             // remove References that will conflict at compile
             var referencesWithoutConflicts = HandleReferenceConflicts(References);
 
-            LoadExternal();
+            LoadPlatform();
 
-            // remove References that will conflict in output or with externals.
+            // remove References that will conflict in output or with platform items.
             referencesWithoutConflicts = HandleRuntimeConflicts(referencesWithoutConflicts, ConflictItemType.Reference, ItemUtilities.GetReferenceTargetPath);
 
-            // remove ReferenceCopyLocalPaths that will conflict in output or with externals.
+            // remove ReferenceCopyLocalPaths that will conflict in output or with platform items.
             var referenceCopyLocalPathsWithoutConflicts = HandleRuntimeConflicts(ReferenceCopyLocalPaths, ConflictItemType.CopyLocal, ItemUtilities.GetTargetPath);
 
             ReferencesWithoutConflicts = referencesWithoutConflicts;
@@ -108,7 +113,7 @@ namespace Microsoft.DotNet.Build.Tasks
         /// <returns>Items without conflicts</returns>
         private ITaskItem[] HandleRuntimeConflicts(ITaskItem[] items, ConflictItemType itemType, Func<ITaskItem, string> getItemKey)
         {
-            return HandleConflicts(items, itemType, getItemKey, runtimeItemsByTargetPath, checkExternal:true);
+            return HandleConflicts(items, itemType, getItemKey, runtimeItemsByTargetPath, checkPlatform:true);
         }
 
         /// <summary>
@@ -118,13 +123,13 @@ namespace Microsoft.DotNet.Build.Tasks
         /// <param name="itemType">Type of items represented by <paramref name="items"/></param>
         /// <param name="getItemKey">Delegate to calculate key for an item</param>
         /// <param name="winningItemsByKey">Dictionary of items by key without conflicts</param>
-        /// <param name="checkExternal">If items should be checked for conflicts against external items</param>
+        /// <param name="checkPlatform">If items should be checked for conflicts against platform items</param>
         /// <returns>Items without conflicts</returns>
         private ITaskItem[] HandleConflicts(ITaskItem[] items,
                                             ConflictItemType itemType,
                                             Func<ITaskItem, string> getItemKey,
                                             Dictionary<string, ConflictItem> winningItemsByKey,
-                                            bool checkExternal = false)
+                                            bool checkPlatform = false)
         {
             if (items == null)
             {
@@ -145,7 +150,7 @@ namespace Microsoft.DotNet.Build.Tasks
 
                 ConflictItem existingItem, conflictItem = new ConflictItem(item, itemType);
 
-                if (checkExternal && HandleExternalConflict(conflictItem))
+                if (checkPlatform && HandleExternalConflict(conflictItem))
                 {
                     conflictsToRemove.Add(item);
                     continue;
@@ -170,14 +175,20 @@ namespace Microsoft.DotNet.Build.Tasks
 
                         if (existingItem.ItemType == itemType)
                         {
-                            // same type as we're currently processing remove it from item list
-                            conflictsToRemove.Add(existingItem.OriginalItem);
+                            if (existingItem.OriginalItem != null)
+                            {
+                                // same type as we're currently processing remove it from item list
+                                conflictsToRemove.Add(existingItem.OriginalItem);
+                            }
                         }
                         else if (existingItem.ItemType == ConflictItemType.Reference)
                         {
-                            // Existing item is a Reference and winning item is CopyLocal or External
-                            // make the Reference not private, so that it will not copy-local
-                            existingItem.OriginalItem.SetMetadata("Private", "False");
+                            if (existingItem.OriginalItem != null)
+                            {
+                                // Existing item is a Reference and winning item is CopyLocal or External
+                                // make the Reference not private, so that it will not copy-local
+                                existingItem.OriginalItem.SetMetadata("Private", "False");
+                            }
                         }
                         else
                         {
@@ -300,44 +311,106 @@ namespace Microsoft.DotNet.Build.Tasks
 
         private bool HandleExternalConflict(ConflictItem item)
         {
-            ConflictItem externalItem;
+            ConflictItem platformItem;
 
-            if (externalRuntimeByFileName.TryGetValue(item.FileName, out externalItem))
+            if (platformRuntimeByFileName.TryGetValue(item.FileName, out platformItem))
             {
                 bool equal;
-                var winner = HandleConflict(item, externalItem, out equal);
+                var winner = HandleConflict(item, platformItem, out equal);
 
-                if (winner == externalItem || equal)
+                if (winner == platformItem || equal)
                 {
                     return true;
                 }
                 else if (winner == item)
                 {
-                    externalRuntimeByFileName.Remove(item.FileName);
+                    platformRuntimeByFileName.Remove(item.FileName);
                 }
             }
 
             return false;
         }
 
-        private void LoadExternal()
+        private void LoadPlatform()
         {
-            if (ExternalRuntimeItems == null)
+            IEnumerable<ConflictItem> platformItems = Enumerable.Empty<ConflictItem>();
+
+            if (PlatformItems != null)
             {
-                return;
+                platformItems = platformItems.Concat(PlatformItems.Select(e => new ConflictItem(e, ConflictItemType.Platform)));
             }
 
-            foreach(var externalItem in ExternalRuntimeItems)
+            if (PlatformManifests != null)
             {
-                ConflictItem existingItem, conflictItem = new ConflictItem(externalItem, ConflictItemType.External);
+                platformItems = platformItems.Concat(PlatformManifests.SelectMany(manifestItem => LoadPlatformManifest(manifestItem.GetMetadata("FullPath"))));
+            }
 
-                if (!externalRuntimeByFileName.TryGetValue(conflictItem.FileName, out existingItem) ||
-                    HandleConflict(existingItem, conflictItem) == conflictItem)
+            foreach (var platformItem in platformItems)
+            {
+                ConflictItem existingItem;
+
+                if (!platformRuntimeByFileName.TryGetValue(platformItem.FileName, out existingItem) ||
+                    HandleConflict(existingItem, platformItem) == platformItem)
                 {
-                    // we only care about the winners for external items
+                    // we only care about the winners for platform items
                     // the losers are redundant since we only use this map
                     // to determine if Reference/CopyLocal should be trimmed.
-                    externalRuntimeByFileName[conflictItem.FileName] = conflictItem;
+                    platformRuntimeByFileName[platformItem.FileName] = platformItem;
+                }
+            }
+        }
+
+        private IEnumerable<ConflictItem> LoadPlatformManifest(string manifestPath)
+        {
+            if (manifestPath == null)
+            {
+                throw new ArgumentNullException(nameof(manifestPath));
+            }
+
+            if (!File.Exists(manifestPath))
+            {
+                Log.LogError($"Could not load {nameof(PlatformManifests)} from {manifestPath} because it did not exist");
+                yield break;
+            }
+
+            using (var manfiestStream = File.Open(manifestPath, FileMode.Open, FileAccess.Read, FileShare.Read | FileShare.Delete))
+            using (var manifestReader = new StreamReader(manfiestStream))
+            {
+                for (int lineNumber = 0; !manifestReader.EndOfStream; lineNumber++)
+                {
+                    var line = manifestReader.ReadLine().Trim();
+
+                    if (line.Length == 0 || line[0] == '#')
+                    {
+                        continue;
+                    }
+
+                    var lineParts = line.Split(s_manifestLineSeparator);
+
+                    if (lineParts.Length != 4)
+                    {
+                        Log.LogError($"Error parsing {nameof(PlatformManifests)} from {manifestPath} line {lineNumber}.  Lines must have the format fileName|packageId|assemblyVersion|fileVersion");
+                        yield break;
+                    }
+
+                    var fileName = lineParts[0].Trim();
+                    var packageId = lineParts[1].Trim();
+                    var assemblyVersionString = lineParts[2].Trim();
+                    var fileVersionString = lineParts[3].Trim();
+
+                    Version assemblyVersion = null, fileVersion = null;
+
+                    if (assemblyVersionString.Length != 0 && !Version.TryParse(assemblyVersionString, out assemblyVersion))
+                    {
+                        Log.LogError($"Error parsing {nameof(PlatformManifests)} from {manifestPath} line {lineNumber}.  AssemblyVersion {assemblyVersionString} was invalid.");
+                    }
+
+                    if (fileVersionString.Length != 0 && !Version.TryParse(fileVersionString, out fileVersion))
+                    {
+                        Log.LogError($"Error parsing {nameof(PlatformManifests)} from {manifestPath} line {lineNumber}.  FileVersion {fileVersionString} was invalid.");
+                    }
+
+                    yield return new ConflictItem(fileName, packageId, assemblyVersion, fileVersion);
                 }
             }
         }
