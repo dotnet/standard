@@ -55,6 +55,7 @@
   <Target Name="HandlePackageFileConflicts" AfterTargets="$(HandlePackageFileConflictsAfter)">
     <HandlePackageFileConflicts References="@(Reference)"
                                 ReferenceCopyLocalPaths="@(ReferenceCopyLocalPaths)"
+                                ExternalRuntimeItems="@(PackageConflictExternalRuntimeItems)"
                                 PreferredPackages="$(PackageConflictPreferredPackages)">
       <Output TaskParameter="ReferencesWithoutConflicts" ItemName="_ReferencesWithoutConflicts" />
       <Output TaskParameter="ReferenceCopyLocalPathsWithoutConflicts" ItemName="_ReferenceCopyLocalPathsWithoutConflicts" />

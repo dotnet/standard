@@ -12,6 +12,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'net45_Debug'" />
   <ItemGroup>
     <Compile Include="ItemUtilities.cs" />
+    <Compile Include="ConflictItem.cs" />
     <Compile Include="HandlePackageFileConflicts.cs" />
     <Compile Include="FileUtilities.cs" />
     <Compile Include="MSBuildUtilities.cs" />
