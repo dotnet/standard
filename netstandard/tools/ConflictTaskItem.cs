@@ -11,7 +11,8 @@ namespace Microsoft.DotNet.Build.Tasks
     internal enum ConflictItemType
     {
         Reference,
-        CopyLocal
+        CopyLocal,
+        Runtime
     }
 
     // An IConflictItem that represents an MSBuild ITaskItem, either a reference or a copy-local item.
@@ -133,6 +134,11 @@ namespace Microsoft.DotNet.Build.Tasks
                 if (packageId == null)
                 {
                     packageId = OriginalItem?.GetMetadata("NuGetPackageId") ?? String.Empty;
+
+                    if (packageId.Length == 0)
+                    {
+                        packageId = NuGetUtilities.GetPackageIdFromSourcePath(SourcePath) ?? String.Empty;
+                    }
                 }
 
                 return packageId.Length == 0 ? null : packageId;

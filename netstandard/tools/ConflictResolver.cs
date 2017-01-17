@@ -20,7 +20,7 @@ namespace Microsoft.DotNet.Build.Tasks
             this.packageRank = packageRank;
         }
 
-        public void ResolveConflicts<T>(IEnumerable<T> conflictItems, Func<T, string> getItemKey, Action<IConflictItem> foundConflict) where T: IConflictItem
+        public void ResolveConflicts<T>(IEnumerable<T> conflictItems, Func<T, string> getItemKey, Action<IConflictItem> foundConflict, bool commitWinner = true) where T: IConflictItem
         {
             if (conflictItems == null)
             {
@@ -54,14 +54,21 @@ namespace Microsoft.DotNet.Build.Tasks
                     if (!ReferenceEquals(winner, existingItem))
                     {
                         // replace existing item
-                        winningItemsByKey[itemKey] = conflictItem;
+                        if (commitWinner)
+                        {
+                            winningItemsByKey[itemKey] = conflictItem;
+                        }
+                        else
+                        {
+                            winningItemsByKey.Remove(itemKey);
+                        }
                         loser = existingItem;
 
                     }
 
                     foundConflict(loser);
                 }
-                else
+                else if (commitWinner)
                 {
                     winningItemsByKey[itemKey] = conflictItem;
                 }

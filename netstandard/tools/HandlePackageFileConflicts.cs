@@ -14,11 +14,14 @@ namespace Microsoft.DotNet.Build.Tasks
     {
         HashSet<ITaskItem> referenceConflicts = new HashSet<ITaskItem>(ReferenceComparer<ITaskItem>.Instance);
         HashSet<ITaskItem> copyLocalConflicts = new HashSet<ITaskItem>(ReferenceComparer<ITaskItem>.Instance);
+        HashSet<string> conflictPackages = new HashSet<string>();
 
         public ITaskItem[] References { get; set; }
 
         public ITaskItem[] ReferenceCopyLocalPaths { get; set; }
-        
+
+        public ITaskItem[] OtherRuntimeItems { get; set; }
+
         public ITaskItem[] PlatformManifests { get; set; }
 
         /// <summary>
@@ -32,12 +35,16 @@ namespace Microsoft.DotNet.Build.Tasks
         [Output]
         public ITaskItem[] ReferenceCopyLocalPathsWithoutConflicts { get; set; }
 
+        [Output]
+        public ITaskItem[] ConflictPackages { get; set; }
+
         public override bool Execute()
         {
             var log = new MSBuildLog(Log);
             var packageRanks = new PackageRank(PreferredPackages);
 
-            var referenceItems = References.Select(r => new ConflictTaskItem(r, ConflictItemType.Reference)).ToArray();
+            // resolve conflicts at compile time
+            var referenceItems = GetConflictTaskItems(References, ConflictItemType.Reference).ToArray();
 
             var compileConflictScope = new ConflictResolver(packageRanks, log);
 
@@ -45,33 +52,55 @@ namespace Microsoft.DotNet.Build.Tasks
                 ci => ItemUtilities.GetReferenceFileName(ci.OriginalItem),
                 HandleCompileConflict);
 
+            // resolve conflicts that class in output
             var runtimeConflictScope = new ConflictResolver(packageRanks, log);
 
             runtimeConflictScope.ResolveConflicts(referenceItems,
                 ci => ItemUtilities.GetReferenceTargetPath(ci.OriginalItem),
                 HandleRuntimeConflict);
 
-            var copyLocalItems = ReferenceCopyLocalPaths.Select(c => new ConflictTaskItem(c, ConflictItemType.CopyLocal)).ToArray();
+            var copyLocalItems = GetConflictTaskItems(ReferenceCopyLocalPaths, ConflictItemType.CopyLocal).ToArray();
 
             runtimeConflictScope.ResolveConflicts(copyLocalItems,
                 ci => ItemUtilities.GetTargetPath(ci.OriginalItem),
                 HandleRuntimeConflict);
 
+            var otherRuntimeItems = GetConflictTaskItems(OtherRuntimeItems, ConflictItemType.Runtime).ToArray();
+
+            runtimeConflictScope.ResolveConflicts(otherRuntimeItems,
+                ci => ItemUtilities.GetTargetPath(ci.OriginalItem),
+                HandleRuntimeConflict);
+
+
+            // resolve conflicts with platform (eg: shared framework) items
+            // we only commit the platform items since its not a conflict if other items share the same filename.
             var platformConflictScope = new ConflictResolver(packageRanks, log);
-            var platformItems = PlatformManifests.SelectMany(pm => ConflictPlatformItem.LoadPlatformManifest(pm.ItemSpec, log));
+            var platformItems = PlatformManifests?.SelectMany(pm => ConflictPlatformItem.LoadPlatformManifest(pm.ItemSpec, log)) ?? Enumerable.Empty<ConflictPlatformItem>();
 
             platformConflictScope.ResolveConflicts(platformItems, pi => pi.FileName, pi => { });
             platformConflictScope.ResolveConflicts(referenceItems.Where(ri => !referenceConflicts.Contains(ri.OriginalItem)),
-                                                   ri => ri.FileName,
-                                                   HandleRuntimeConflict);
+                                                   ri => ItemUtilities.GetReferenceTargetFileName(ri.OriginalItem),
+                                                   HandleRuntimeConflict,
+                                                   commitWinner:false);
             platformConflictScope.ResolveConflicts(copyLocalItems.Where(ci => !copyLocalConflicts.Contains(ci.OriginalItem)),
                                                    ri => ri.FileName,
-                                                   HandleRuntimeConflict);
+                                                   HandleRuntimeConflict,
+                                                   commitWinner: false);
+            platformConflictScope.ResolveConflicts(otherRuntimeItems,
+                                                   ri => ri.FileName,
+                                                   HandleRuntimeConflict,
+                                                   commitWinner: false);
 
             ReferencesWithoutConflicts = RemoveConflicts(References, referenceConflicts);
             ReferenceCopyLocalPathsWithoutConflicts = RemoveConflicts(ReferenceCopyLocalPaths, copyLocalConflicts);
+            ConflictPackages = conflictPackages.Select(p => new TaskItem(p)).ToArray();
 
             return !Log.HasLoggedErrors;
+        }
+
+        private IEnumerable<ConflictTaskItem> GetConflictTaskItems(ITaskItem[] items, ConflictItemType itemType)
+        {
+            return (items != null) ? items.Select(i => new ConflictTaskItem(i, itemType)) : Enumerable.Empty<ConflictTaskItem>();
         }
 
         private void HandleCompileConflict(IConflictItem conflictItem)
@@ -84,6 +113,11 @@ namespace Microsoft.DotNet.Build.Tasks
                     referenceConflicts.Add(conflictTaskItem.OriginalItem);
                 }
             }
+
+            if (conflictItem.PackageId != null)
+            {
+                conflictPackages.Add(conflictItem.PackageId);
+            }
         }
 
         private void HandleRuntimeConflict(IConflictItem conflictItem)
@@ -95,10 +129,15 @@ namespace Microsoft.DotNet.Build.Tasks
                 {
                     conflictTaskItem.OriginalItem.SetMetadata("Private", "False");
                 }
-                else
+                else if (conflictTaskItem.ItemType == ConflictItemType.CopyLocal)
                 {
                     copyLocalConflicts.Add(conflictTaskItem.OriginalItem);
                 }
+            }
+
+            if (conflictItem.PackageId != null)
+            {
+                conflictPackages.Add(conflictItem.PackageId);
             }
         }
 

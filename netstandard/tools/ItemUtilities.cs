@@ -70,6 +70,13 @@ namespace Microsoft.DotNet.Build.Tasks
             return GetTargetPath(item);
         }
 
+        public static string GetReferenceTargetFileName(ITaskItem item)
+        {
+            var targetPath = GetReferenceTargetPath(item);
+
+            return targetPath != null ? Path.GetFileName(targetPath) : null;
+        }
+
         public static string GetSourcePath(ITaskItem item)
         {
             var sourcePath = item.GetMetadata("HintPath");
