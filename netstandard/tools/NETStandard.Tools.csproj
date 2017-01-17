@@ -11,11 +11,16 @@
   <PropertyGroup Condition="'$(Configuration)' == 'netstandard1.5_Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'net45_Debug'" />
   <ItemGroup>
+    <Compile Include="ConflictResolver.cs" />
+    <Compile Include="ConflictPlatformItem.cs" />
+    <Compile Include="IConflictItem.cs" />
+    <Compile Include="ILog.cs" />
     <Compile Include="ItemUtilities.cs" />
-    <Compile Include="ConflictItem.cs" />
+    <Compile Include="ConflictTaskItem.cs" />
     <Compile Include="HandlePackageFileConflicts.cs" />
     <Compile Include="FileUtilities.cs" />
     <Compile Include="MSBuildUtilities.cs" />
+    <Compile Include="PackageRank.cs" />
     <Compile Include="ReferenceComparer.cs" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)' != 'net45'">
