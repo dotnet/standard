@@ -73,7 +73,7 @@
         "feedName": "",
         "nuGetAdditionalArgs": "",
         "verbosity": "Detailed",
-        "nuGetVersion": "3.3.0",
+        "nuGetVersion": "3.5.0.1829",
         "nuGetPath": ""
       }
     }
