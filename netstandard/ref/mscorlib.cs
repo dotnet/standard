@@ -100,6 +100,22 @@ namespace System
         public override int GetHashCode() { throw null; }
         public override string ToString() { throw null; }
     }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct ArgIterator
+    {
+        public ArgIterator(System.RuntimeArgumentHandle arglist) { throw null;}
+        [System.CLSCompliantAttribute(false)]
+        public unsafe ArgIterator(System.RuntimeArgumentHandle arglist, void* ptr) { throw null;}
+        public void End() { }
+        public override bool Equals(object o) { throw null; }
+        public override int GetHashCode() { throw null; }
+        [System.CLSCompliantAttribute(false)]
+        public System.TypedReference GetNextArg() { throw null; }
+        [System.CLSCompliantAttribute(false)]
+        public System.TypedReference GetNextArg(System.RuntimeTypeHandle rth) { throw null; }
+        public System.RuntimeTypeHandle GetNextArgType() { throw null; }
+        public int GetRemainingCount() { throw null; }
+    }
     public partial class ArgumentException : System.SystemException, System.Runtime.Serialization.ISerializable
     {
         public ArgumentException() { }
@@ -658,6 +674,8 @@ namespace System
         public static void Write(string format, object arg0) { }
         public static void Write(string format, object arg0, object arg1) { }
         public static void Write(string format, object arg0, object arg1, object arg2) { }
+        [System.CLSCompliantAttribute(false)]
+        public static void Write(string format, object arg0, object arg1, object arg2, object arg3, __arglist) { }
         public static void Write(string format, params object[] arg) { }
         [System.CLSCompliantAttribute(false)]
         public static void Write(uint value) { }
@@ -678,6 +696,8 @@ namespace System
         public static void WriteLine(string format, object arg0) { }
         public static void WriteLine(string format, object arg0, object arg1) { }
         public static void WriteLine(string format, object arg0, object arg1, object arg2) { }
+        [System.CLSCompliantAttribute(false)]
+        public static void WriteLine(string format, object arg0, object arg1, object arg2, object arg3, __arglist) { }
         public static void WriteLine(string format, params object[] arg) { }
         [System.CLSCompliantAttribute(false)]
         public static void WriteLine(uint value) { }
@@ -2992,6 +3012,8 @@ namespace System
         public static System.String Concat(object arg0) { throw null; }
         public static System.String Concat(object arg0, object arg1) { throw null; }
         public static System.String Concat(object arg0, object arg1, object arg2) { throw null; }
+        [System.CLSCompliantAttribute(false)]
+        public static System.String Concat(object arg0, object arg1, object arg2, object arg3, __arglist) { throw null; }
         public static System.String Concat(params object[] args) { throw null; }
         public static System.String Concat(System.String str0, System.String str1) { throw null; }
         public static System.String Concat(System.String str0, System.String str1, System.String str2) { throw null; }
@@ -3672,6 +3694,20 @@ namespace System
         UInt16 = 8,
         UInt32 = 10,
         UInt64 = 12,
+    }
+    [System.CLSCompliantAttribute(false)]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct TypedReference
+    {
+        public override bool Equals(object o) { throw null; }
+        public override int GetHashCode() { throw null; }
+        public static System.Type GetTargetType(System.TypedReference value) { throw null; }
+        [System.CLSCompliantAttribute(false)]
+        public static System.TypedReference MakeTypedReference(object target, System.Reflection.FieldInfo[] flds) { throw null; }
+        [System.CLSCompliantAttribute(false)]
+        public static void SetTypedReference(System.TypedReference target, object value) { }
+        public static System.RuntimeTypeHandle TargetTypeToken(System.TypedReference value) { throw null; }
+        public static object ToObject(System.TypedReference value) { throw null; }
     }
     public sealed partial class TypeInitializationException : System.SystemException
     {
@@ -8056,10 +8092,14 @@ namespace System.Reflection
         public virtual object GetRawConstantValue() { throw null; }
         public virtual System.Type[] GetRequiredCustomModifiers() { throw null; }
         public abstract object GetValue(object obj);
+        [System.CLSCompliantAttribute(false)]
+        public virtual object GetValueDirect(System.TypedReference obj) { throw null; }
         public static bool operator ==(System.Reflection.FieldInfo left, System.Reflection.FieldInfo right) { throw null; }
         public static bool operator !=(System.Reflection.FieldInfo left, System.Reflection.FieldInfo right) { throw null; }
         public void SetValue(object obj, object value) { }
         public abstract void SetValue(object obj, object value, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Globalization.CultureInfo culture);
+        [System.CLSCompliantAttribute(false)]
+        public virtual void SetValueDirect(System.TypedReference obj, object value) { }
     }
     [System.FlagsAttribute]
     public enum GenericParameterAttributes
