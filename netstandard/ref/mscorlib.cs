@@ -2826,6 +2826,10 @@ namespace System
     }
     public delegate System.Reflection.Assembly ResolveEventHandler(object sender, System.ResolveEventArgs args);
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct RuntimeArgumentHandle
+    {
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct RuntimeFieldHandle : System.Runtime.Serialization.ISerializable
     {
         public System.IntPtr Value { get { throw null; } }
