@@ -1,6 +1,7 @@
 Compat issues with assembly netstandard:
 MembersMustExist : Member 'System.AppContext.GetData(System.String)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.AppContext.TargetFrameworkName.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.EnlistTransaction(System.Transactions.Transaction)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.Tracing.EventCounter' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.Tracing.EventSource.add_EventCommandExecuted(System.EventHandler<System.Diagnostics.Tracing.EventCommandEventArgs>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.Tracing.EventSource.remove_EventCommandExecuted(System.EventHandler<System.Diagnostics.Tracing.EventCommandEventArgs>)' does not exist in the implementation but it does exist in the contract.
@@ -39,4 +40,4 @@ MembersMustExist : Member 'System.Text.RegularExpressions.Regex.CapNames.get()' 
 MembersMustExist : Member 'System.Text.RegularExpressions.Regex.CapNames.set(System.Collections.IDictionary)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.RegularExpressions.Regex.Caps.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.RegularExpressions.Regex.Caps.set(System.Collections.IDictionary)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 40
+Total Issues: 41
