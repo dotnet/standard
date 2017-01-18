@@ -12,27 +12,16 @@ namespace Microsoft.DotNet.Build.Tasks
     {
         Reference,
         CopyLocal,
-        Platform
+        Runtime
     }
 
-    // Wraps an ITask item and adds lazy evaluated properties used by Conflict resolution.
-    internal class ConflictItem
+    // An IConflictItem that represents an MSBuild ITaskItem, either a reference or a copy-local item.
+    internal class ConflictTaskItem : IConflictItem
     {
-        public ConflictItem(ITaskItem originalItem, ConflictItemType itemType)
+        public ConflictTaskItem(ITaskItem originalItem, ConflictItemType itemType)
         {
             OriginalItem = originalItem;
             ItemType = itemType;
-        }
-
-        public ConflictItem(string fileName, string packageId, Version assemblyVersion, Version fileVersion)
-        {
-            OriginalItem = null;
-            ItemType = ConflictItemType.Platform;
-            FileName = fileName;
-            SourcePath = fileName;
-            PackageId = packageId;
-            AssemblyVersion = assemblyVersion;
-            FileVersion = fileVersion;
         }
 
         private bool hasAssemblyVersion;
@@ -78,7 +67,7 @@ namespace Microsoft.DotNet.Build.Tasks
             {
                 if (exists == null)
                 {
-                    exists = ItemType == ConflictItemType.Platform || File.Exists(SourcePath);
+                    exists = File.Exists(SourcePath);
                 }
 
                 return exists.Value;
@@ -133,6 +122,8 @@ namespace Microsoft.DotNet.Build.Tasks
             }
         }
 
+        public bool IsPlatform { get { return false; } }
+
         public ITaskItem OriginalItem { get; }
 
         private string packageId;
@@ -143,6 +134,11 @@ namespace Microsoft.DotNet.Build.Tasks
                 if (packageId == null)
                 {
                     packageId = OriginalItem?.GetMetadata("NuGetPackageId") ?? String.Empty;
+
+                    if (packageId.Length == 0)
+                    {
+                        packageId = NuGetUtilities.GetPackageIdFromSourcePath(SourcePath) ?? String.Empty;
+                    }
                 }
 
                 return packageId.Length == 0 ? null : packageId;

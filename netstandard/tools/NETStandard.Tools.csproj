@@ -4,25 +4,32 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <NuGetTargetMoniker>.NETStandard,Version=v1.5</NuGetTargetMoniker>
-    <NuGetTargetMoniker Condition="'$(TargetGroup)' == 'net45'">.NETFramework,Version=v4.5</NuGetTargetMoniker>
+    <NuGetTargetMoniker Condition="'$(TargetGroup)' == 'net451'">.NETFramework,Version=v4.5.1</NuGetTargetMoniker>
     <CLSCompliant>false</CLSCompliant>
     <ProjectGuid>{65E58605-AE96-46C2-8C6C-F28A5EB9B565}</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'netstandard1.5_Debug'" />
-  <PropertyGroup Condition="'$(Configuration)' == 'net45_Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'net451_Debug'" />
   <ItemGroup>
+    <Compile Include="ConflictResolver.cs" />
+    <Compile Include="ConflictPlatformItem.cs" />
+    <Compile Include="IConflictItem.cs" />
+    <Compile Include="ILog.cs" />
     <Compile Include="ItemUtilities.cs" />
-    <Compile Include="ConflictItem.cs" />
+    <Compile Include="ConflictTaskItem.cs" />
     <Compile Include="HandlePackageFileConflicts.cs" />
+    <Compile Include="RemoveDepsFileConflicts.cs" />
     <Compile Include="FileUtilities.cs" />
     <Compile Include="MSBuildUtilities.cs" />
+    <Compile Include="NuGetUtilities.cs" />
+    <Compile Include="PackageRank.cs" />
     <Compile Include="ReferenceComparer.cs" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetGroup)' != 'net45'">
+  <ItemGroup Condition="'$(TargetGroup)' != 'net451'">
     <Compile Include="FileUtilities.netstandard.cs" />
     <PackageDestination Include="build" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetGroup)' == 'net45'">
+  <ItemGroup Condition="'$(TargetGroup)' == 'net451'">
     <Compile Include="FileUtilities.net45.cs" />
     <TargetingPackReference Include="System" />
     <TargetingPackReference Include="System.Core" />
