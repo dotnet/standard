@@ -19,6 +19,7 @@
         <HandlePackageFileConflictsAfter>ResolvePackageDependenciesForBuild</HandlePackageFileConflictsAfter>
         <HandlePublishFileConflictsAfter>RunResolvePublishAssemblies</HandlePublishFileConflictsAfter>
         <RemoveDepsFileConflictsAfter>GenerateBuildDependencyFile</RemoveDepsFileConflictsAfter>
+        <RemovePublishDepsFileConflictsAfter>GeneratePublishDependencyFile</RemovePublishDepsFileConflictsAfter>
         <!-- If CopyLocalLockFileAssemblies is not true the host will run from packages,
              but we still need to consider those package items for conflicts -->
         <HandlePackageFileConflictsDependsOn Condition="'$(CopyLocalLockFileAssemblies)' != 'true'">_GetLockFileAssemblies</HandlePackageFileConflictsDependsOn>
@@ -113,14 +114,26 @@
 
   <Target Name="HandlePublishFileConflicts" AfterTargets="$(HandlePublishFileConflictsAfter)">
     <HandlePackageFileConflicts ReferenceCopyLocalPaths="@(ResolvedAssembliesToPublish)"
-                                PlatformItems="@(PackageConflictPlatformItems)"
                                 PlatformManifests="@(PackageConflictPlatformManifests)"
                                 PreferredPackages="$(PackageConflictPreferredPackages)">
       <Output TaskParameter="ReferenceCopyLocalPathsWithoutConflicts" ItemName="_ResolvedAssembliesToPublishWithoutConflicts" />
+      <Output TaskParameter="Conflicts" ItemName="_PublishConflictPackageFiles" />
     </HandlePackageFileConflicts>
     <ItemGroup>
       <ResolvedAssembliesToPublish Remove="@(ResolvedAssembliesToPublish)" />
       <ResolvedAssembliesToPublish Include="@(_ResolvedAssembliesToPublishWithoutConflicts)" />
     </ItemGroup>
+  </Target>
+
+  <PropertyGroup>
+    <_RemovePublishDepsFileConflictsSemaphore>$(IntermediateOutputPath)\RemovePublishDepsFileConflicts.semaphore</_RemovePublishDepsFileConflictsSemaphore>
+  </PropertyGroup>
+  <Target Name="RemovePublishDepsFileConflicts" AfterTargets="$(RemovePublishDepsFileConflictsAfter)"
+          Inputs="$(PublishDepsFilePath)" Outputs="$(_RemovePublishDepsFileConflictsSemaphore)">
+    <RemoveDepsFileConflicts DepsFilePath="$(PublishDepsFilePath)" Conflicts="@(_ConflictPackageFiles);@(_PublishConflictPackageFiles)" />
+
+    <Touch Files="$(_RemovePublishDepsFileConflictsSemaphore)" AlwaysCreate="true">
+      <Output TaskParameter="TouchedFiles" ItemName="FileWrites" />
+    </Touch>
   </Target>
 </Project>
