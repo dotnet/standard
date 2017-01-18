@@ -17,7 +17,7 @@ namespace Microsoft.DotNet.Build.Tasks
         /// <returns></returns>
         public static string GetReferenceFileName(ITaskItem item)
         {
-            var aliases = item.GetMetadata("Aliases");
+            var aliases = item.GetMetadata(MetadataNames.Aliases);
 
             if (!String.IsNullOrEmpty(aliases))
             {
@@ -59,7 +59,7 @@ namespace Microsoft.DotNet.Build.Tasks
             // We're only dealing with primary file references.  For these RAR will 
             // copy local if Private is true or unset.
 
-            var isPrivate = MSBuildUtilities.ConvertStringToBool(item.GetMetadata("Private"), defaultValue: true);
+            var isPrivate = MSBuildUtilities.ConvertStringToBool(item.GetMetadata(MetadataNames.Private), defaultValue: true);
 
             if (!isPrivate)
             {
@@ -70,9 +70,16 @@ namespace Microsoft.DotNet.Build.Tasks
             return GetTargetPath(item);
         }
 
+        public static string GetReferenceTargetFileName(ITaskItem item)
+        {
+            var targetPath = GetReferenceTargetPath(item);
+
+            return targetPath != null ? Path.GetFileName(targetPath) : null;
+        }
+
         public static string GetSourcePath(ITaskItem item)
         {
-            var sourcePath = item.GetMetadata("HintPath");
+            var sourcePath = item.GetMetadata(MetadataNames.HintPath);
 
             if (String.IsNullOrWhiteSpace(sourcePath))
             {
@@ -85,7 +92,7 @@ namespace Microsoft.DotNet.Build.Tasks
             return sourcePath;
         }
 
-        static readonly string[] s_targetPathMetadata = new[] { "TargetPath", "DestinationSubPath", "Path" };
+        static readonly string[] s_targetPathMetadata = new[] { MetadataNames.TargetPath, MetadataNames.DestinationSubPath, MetadataNames.Path };
         public static string GetTargetPath(ITaskItem item)
         {
             // first use TargetPath, DestinationSubPath, then Path, then fallback to filename+extension alone

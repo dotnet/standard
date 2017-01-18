@@ -18,6 +18,10 @@
       <PropertyGroup>
         <HandlePackageFileConflictsAfter>ResolvePackageDependenciesForBuild</HandlePackageFileConflictsAfter>
         <HandlePublishFileConflictsAfter>RunResolvePublishAssemblies</HandlePublishFileConflictsAfter>
+        <RemoveDepsFileConflictsAfter>GenerateBuildDependencyFile</RemoveDepsFileConflictsAfter>
+        <!-- If CopyLocalLockFileAssemblies is not true the host will run from packages,
+             but we still need to consider those package items for conflicts -->
+        <HandlePackageFileConflictsDependsOn Condition="'$(CopyLocalLockFileAssemblies)' != 'true'">_GetLockFileAssemblies</HandlePackageFileConflictsDependsOn>
       </PropertyGroup>
     </When>
     <When Condition="'$(ResolveNuGetPackages)' == 'true' and Exists('$(ProjectLockFile)')">
@@ -53,15 +57,33 @@
     </ReferenceCopyLocalPaths>
   </ItemGroup>
 
+  <Target Name="_GetLockFileAssemblies"
+          DependsOnTargets="ComputePrivateAssetsPackageReferences;
+                            _DefaultMicrosoftNETPlatformLibrary">
+    <!-- Essentially a copy of the SDKs RunResolvePublishAssemblies.
+         We need to find all the files that will be loaded from deps for conflict resolution.-->
+    <ResolvePublishAssemblies ProjectPath="$(MSBuildProjectFullPath)"
+                              AssetsFilePath="$(ProjectAssetsFile)"
+                              TargetFramework="$(TargetFrameworkMoniker)"
+                              RuntimeIdentifier="$(RuntimeIdentifier)"
+                              PlatformLibraryName="$(MicrosoftNETPlatformLibrary)"
+                              PrivateAssetsPackageReferences="@(PrivateAssetsPackageReference)">
+
+      <Output TaskParameter="AssembliesToPublish" ItemName="_LockFileAssemblies" />
+
+    </ResolvePublishAssemblies>
+  </Target>
+
   <UsingTask TaskName="HandlePackageFileConflicts" AssemblyFile="$(NETStandardToolsTaskDirectory)NETStandard.Tools.dll" />
-  <Target Name="HandlePackageFileConflicts" AfterTargets="$(HandlePackageFileConflictsAfter)">
+  <Target Name="HandlePackageFileConflicts" AfterTargets="$(HandlePackageFileConflictsAfter)" DependsOnTargets="$(HandlePackageFileConflictsDependsOn)">
     <HandlePackageFileConflicts References="@(Reference)"
                                 ReferenceCopyLocalPaths="@(ReferenceCopyLocalPaths)"
-                                PlatformItems="@(PackageConflictPlatformItems)"
+                                OtherRuntimeItems="@(_LockFileAssemblies)"
                                 PlatformManifests="@(PackageConflictPlatformManifests)"
                                 PreferredPackages="$(PackageConflictPreferredPackages)">
       <Output TaskParameter="ReferencesWithoutConflicts" ItemName="_ReferencesWithoutConflicts" />
       <Output TaskParameter="ReferenceCopyLocalPathsWithoutConflicts" ItemName="_ReferenceCopyLocalPathsWithoutConflicts" />
+      <Output TaskParameter="Conflicts" ItemName="_ConflictPackageFiles" />
     </HandlePackageFileConflicts>
 
     <!-- Replace Reference / ReferenceCopyLocalPaths with the filtered lists.
@@ -74,6 +96,19 @@
       <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" />
       <ReferenceCopyLocalPaths Include="@(_ReferenceCopyLocalPathsWithoutConflicts)" />
     </ItemGroup>
+  </Target>
+
+  <PropertyGroup>
+    <_RemoveDepsFileConflictsSemaphore>$(IntermediateOutputPath)\RemoveDepsFileConflicts.semaphore</_RemoveDepsFileConflictsSemaphore>
+  </PropertyGroup>
+  <UsingTask TaskName="RemoveDepsFileConflicts" AssemblyFile="$(NETStandardToolsTaskDirectory)NETStandard.Tools.dll" />
+  <Target Name="RemoveDepsFileConflicts" AfterTargets="$(RemoveDepsFileConflictsAfter)"
+          Inputs="$(ProjectDepsFilePath)" Outputs="$(_RemoveDepsFileConflictsSemaphore)">
+    <RemoveDepsFileConflicts DepsFilePath="$(ProjectDepsFilePath)" Conflicts="@(_ConflictPackageFiles)" />
+
+    <Touch Files="$(_RemoveDepsFileConflictsSemaphore)" AlwaysCreate="true">
+      <Output TaskParameter="TouchedFiles" ItemName="FileWrites" />
+    </Touch>
   </Target>
 
   <Target Name="HandlePublishFileConflicts" AfterTargets="$(HandlePublishFileConflictsAfter)">

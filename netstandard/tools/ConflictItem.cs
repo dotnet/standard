@@ -12,9 +12,9 @@ namespace Microsoft.DotNet.Build.Tasks
     {
         Reference,
         CopyLocal,
+        Runtime,
         Platform
     }
-
     // Wraps an ITask item and adds lazy evaluated properties used by Conflict resolution.
     internal class ConflictItem
     {
@@ -92,7 +92,7 @@ namespace Microsoft.DotNet.Build.Tasks
             {
                 if (fileName == null)
                 {
-                    fileName = OriginalItem == null ? String.Empty : OriginalItem.GetMetadata("FileName") + OriginalItem.GetMetadata("Extension");
+                    fileName = OriginalItem == null ? String.Empty : OriginalItem.GetMetadata(MetadataNames.FileName) + OriginalItem.GetMetadata(MetadataNames.Extension);
                 }
                 return fileName;
             }
@@ -142,7 +142,12 @@ namespace Microsoft.DotNet.Build.Tasks
             {
                 if (packageId == null)
                 {
-                    packageId = OriginalItem?.GetMetadata("NuGetPackageId") ?? String.Empty;
+                    packageId = OriginalItem?.GetMetadata(MetadataNames.NuGetPackageId) ?? String.Empty;
+
+                    if (packageId.Length == 0)
+                    {
+                        packageId = NuGetUtilities.GetPackageIdFromSourcePath(SourcePath) ?? String.Empty;
+                    }
                 }
 
                 return packageId.Length == 0 ? null : packageId;
