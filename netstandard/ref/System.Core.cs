@@ -433,7 +433,6 @@ namespace System.IO.Pipes
         public AnonymousPipeClientStream(string pipeHandleAsString) : base (default(System.IO.Pipes.PipeDirection), default(int)) { }
         public override System.IO.Pipes.PipeTransmissionMode ReadMode { set { } }
         public override System.IO.Pipes.PipeTransmissionMode TransmissionMode { get { throw null; } }
-        ~AnonymousPipeClientStream() { }
     }
     public sealed partial class AnonymousPipeServerStream : System.IO.Pipes.PipeStream
     {
@@ -448,7 +447,6 @@ namespace System.IO.Pipes
         public override System.IO.Pipes.PipeTransmissionMode TransmissionMode { get { throw null; } }
         protected override void Dispose(bool disposing) { }
         public void DisposeLocalCopyOfClientHandle() { }
-        ~AnonymousPipeServerStream() { }
         public string GetClientHandleAsString() { throw null; }
     }
     public sealed partial class NamedPipeClientStream : System.IO.Pipes.PipeStream
@@ -469,7 +467,6 @@ namespace System.IO.Pipes
         public System.Threading.Tasks.Task ConnectAsync(int timeout) { throw null; }
         public System.Threading.Tasks.Task ConnectAsync(int timeout, System.Threading.CancellationToken cancellationToken) { throw null; }
         public System.Threading.Tasks.Task ConnectAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
-        ~NamedPipeClientStream() { }
     }
     public sealed partial class NamedPipeServerStream : System.IO.Pipes.PipeStream
     {
@@ -487,7 +484,6 @@ namespace System.IO.Pipes
         public System.IAsyncResult BeginWaitForConnection(System.AsyncCallback callback, object state) { throw null; }
         public void Disconnect() { }
         public void EndWaitForConnection(System.IAsyncResult asyncResult) { }
-        ~NamedPipeServerStream() { }
         public string GetImpersonationUserName() { throw null; }
         public void RunAsClient(System.IO.Pipes.PipeStreamImpersonationWorker impersonationWorker) { }
         public void WaitForConnection() { }

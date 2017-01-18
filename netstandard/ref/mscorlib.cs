@@ -2433,7 +2433,6 @@ namespace System
     public sealed partial class LocalDataStoreSlot
     {
         internal LocalDataStoreSlot() { }
-        ~LocalDataStoreSlot() { }
     }
     public abstract partial class MarshalByRefObject
     {
@@ -3931,7 +3930,6 @@ namespace System
     {
         public WeakReference(T target) { }
         public WeakReference(T target, bool trackResurrection) { }
-        ~WeakReference() { }
         public void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public void SetTarget(T target) { }
         public bool TryGetTarget(out T target) { target = default(T); throw null; }
@@ -7443,7 +7441,6 @@ namespace System.IO.IsolatedStorage
         public bool DirectoryExists(string path) { throw null; }
         public void Dispose() { }
         public bool FileExists(string path) { throw null; }
-        ~IsolatedStorageFile() { }
         public System.DateTimeOffset GetCreationTime(string path) { throw null; }
         public string[] GetDirectoryNames() { throw null; }
         public string[] GetDirectoryNames(string searchPattern) { throw null; }
@@ -9162,7 +9159,6 @@ namespace System.Runtime
     {
         public MemoryFailPoint(int sizeInMegabytes) { }
         public void Dispose() { }
-        ~MemoryFailPoint() { }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(96), AllowMultiple=false, Inherited=false)]
     public sealed partial class TargetedPatchingOptOutAttribute : System.Attribute
@@ -9279,7 +9275,6 @@ namespace System.Runtime.CompilerServices
     {
         public ConditionalWeakTable() { }
         public void Add(TKey key, TValue value) { }
-        ~ConditionalWeakTable() { }
         public TValue GetOrCreateValue(TKey key) { throw null; }
         public TValue GetValue(TKey key, System.Runtime.CompilerServices.ConditionalWeakTable<TKey, TValue>.CreateValueCallback createValueCallback) { throw null; }
         public bool Remove(TKey key) { throw null; }
@@ -13693,7 +13688,6 @@ namespace System.Threading
         public void AcquireWriterLock(System.TimeSpan timeout) { }
         public bool AnyWritersSince(int seqNum) { throw null; }
         public void DowngradeFromWriterLock(ref System.Threading.LockCookie lockCookie) { }
-        ~ReaderWriterLock() { }
         public System.Threading.LockCookie ReleaseLock() { throw null; }
         public void ReleaseReaderLock() { }
         public void ReleaseWriterLock() { }
@@ -13818,7 +13812,6 @@ namespace System.Threading
         public void DisableComObjectEagerCleanup() { }
         public static void EndCriticalRegion() { }
         public static void EndThreadAffinity() { }
-        ~Thread() { }
         public static void FreeNamedDataSlot(string name) { }
         public System.Threading.ApartmentState GetApartmentState() { throw null; }
         [System.ObsoleteAttribute("Thread.GetCompressedStack is no longer supported. Please use the System.Threading.CompressedStack class")]
