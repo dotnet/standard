@@ -1,0 +1,6 @@
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.CspKeyContainerInfo))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.CspParameters))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.CspProviderFlags))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.ICspAsymmetricAlgorithm))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.KeyNumber))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.RSACryptoServiceProvider))]

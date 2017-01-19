@@ -1,0 +1,7 @@
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Claims.Claim))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Claims.ClaimsIdentity))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Claims.ClaimsPrincipal))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Claims.ClaimTypes))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Claims.ClaimValueTypes))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Principal.GenericIdentity))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Principal.GenericPrincipal))]

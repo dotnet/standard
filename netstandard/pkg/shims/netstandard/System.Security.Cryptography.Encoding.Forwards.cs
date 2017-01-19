@@ -1,0 +1,7 @@
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.AsnEncodedData))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.AsnEncodedDataCollection))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.AsnEncodedDataEnumerator))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.Oid))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.OidCollection))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.OidEnumerator))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.OidGroup))]
