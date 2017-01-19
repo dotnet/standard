@@ -479,7 +479,7 @@ namespace Mono.Security.Interface
         public static bool IsInitialized { get { throw null; } }
         public static System.Net.HttpListener CreateHttpListener(System.Security.Cryptography.X509Certificates.X509Certificate certificate, Mono.Security.Interface.MonoTlsProvider provider=null, Mono.Security.Interface.MonoTlsSettings settings=null) { throw null; }
         public static System.Net.HttpWebRequest CreateHttpsRequest(System.Uri requestUri, Mono.Security.Interface.MonoTlsProvider provider, Mono.Security.Interface.MonoTlsSettings settings=null) { throw null; }
-        [System.ObsoleteAttribute]
+        [System.ObsoleteAttribute("Use GetProvider() instead.")]
         public static Mono.Security.Interface.MonoTlsProvider GetDefaultProvider() { throw null; }
         public static Mono.Security.Interface.IMonoSslStream GetMonoSslStream(System.Net.Security.SslStream stream) { throw null; }
         public static Mono.Security.Interface.MonoTlsProvider GetProvider() { throw null; }
@@ -487,7 +487,7 @@ namespace Mono.Security.Interface
         public static void Initialize() { }
         public static void Initialize(string provider) { }
         public static bool IsProviderSupported(string provider) { throw null; }
-        [System.ObsoleteAttribute]
+        [System.ObsoleteAttribute("Use Initialize(string provider) instead.")]
         public static void SetDefaultProvider(string name) { }
     }
     public sealed partial class MonoTlsSettings
