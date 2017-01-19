@@ -10,10 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="mscorlib.csproj" />
-    <ProjectReference Include="System.csproj" />
-    <ProjectReference Include="System.Transactions.csproj" />
-    <ProjectReference Include="System.Xml.csproj" />
-    <Compile Include="System.Data.cs" />
+    <Compile Include="System.Transactions.cs" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>
