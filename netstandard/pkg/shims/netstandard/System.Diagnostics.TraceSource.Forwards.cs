@@ -1,6 +1,5 @@
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Diagnostics.BooleanSwitch))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Diagnostics.DefaultTraceListener))]
-[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Diagnostics.EventTypeFilter))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Diagnostics.SourceFilter))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Diagnostics.SourceLevels))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Diagnostics.SourceSwitch))]

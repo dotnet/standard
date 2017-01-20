@@ -65,7 +65,7 @@ foreach ($shim in $shimList)
         Write-Error "Don't know which key is token $asmToken";
     }
 
-    #& $genapi -writer:TypeForwards -assembly:"$shimContract" -apiList:"$netstandardAPIList" -out:"$shimForwards" -libpath:"$refPath"
-    & $genapi -writer:TypeForwards -assembly:"$shimContract" -out:"$shimForwards" -libpath:"$refPath"
+    & $genapi -writer:TypeForwards -assembly:"$shimContract" -apiList:"$netstandardAPIList" -out:"$shimForwards" -libpath:"$refPath"
+    #& $genapi -writer:TypeForwards -assembly:"$shimContract" -out:"$shimForwards" -libpath:"$refPath"
     $projTemplate.Replace("[SHIM]", $shim).Replace("[TOKEN]", $token).Replace("[VERSION]", $asmVersion) | sc "$shimProject"
 }
