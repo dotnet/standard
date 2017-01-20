@@ -5,6 +5,7 @@
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Runtime.Serialization.EnumMemberAttribute))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Runtime.Serialization.IgnoreDataMemberAttribute))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Runtime.Serialization.InvalidDataContractException))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Runtime.Serialization.ISerializationSurrogateProvider))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Runtime.Serialization.KnownTypeAttribute))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Runtime.Serialization.OnDeserializedAttribute))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Runtime.Serialization.OnDeserializingAttribute))]

@@ -82,6 +82,12 @@ namespace System.Runtime.Serialization
         public override void WriteStartObject(System.Xml.XmlDictionaryWriter writer, object graph) { }
         public override void WriteStartObject(System.Xml.XmlWriter writer, object graph) { }
     }
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public static partial class DataContractSerializerExtensions
+    {
+        public static System.Runtime.Serialization.ISerializationSurrogateProvider GetSerializationSurrogateProvider(this System.Runtime.Serialization.DataContractSerializer serializer) { throw null; }
+        public static void SetSerializationSurrogateProvider(this System.Runtime.Serialization.DataContractSerializer serializer, System.Runtime.Serialization.ISerializationSurrogateProvider provider) { }
+    }
     public partial class DataContractSerializerSettings
     {
         public DataContractSerializerSettings() { }
@@ -151,6 +157,13 @@ namespace System.Runtime.Serialization
         protected InvalidDataContractException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public InvalidDataContractException(string message) { }
         public InvalidDataContractException(string message, System.Exception innerException) { }
+    }
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public partial interface ISerializationSurrogateProvider
+    {
+        object GetDeserializedObject(object obj, System.Type targetType);
+        object GetObjectToSerialize(object obj, System.Type targetType);
+        System.Type GetSurrogateType(System.Type type);
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited=true, AllowMultiple=true)]
     public sealed partial class KnownTypeAttribute : System.Attribute
