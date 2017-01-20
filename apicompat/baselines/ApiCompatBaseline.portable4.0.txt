@@ -1,6 +1,6 @@
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'Microsoft.CSharp'.
 DEFAULT_APPNAME Warning: 0 : Found 'mscorlib' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ComponentModel.Composition'.
+DEFAULT_APPNAME Warning: 0 : Found 'System.ComponentModel.Composition' with PublicKeyToken 'b77a5c561934e089' instead of '31bf3856ad364e35'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ComponentModel.DataAnnotations'.
 DEFAULT_APPNAME Warning: 0 : Found 'System.Core' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
 DEFAULT_APPNAME Warning: 0 : Found 'System' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
@@ -23,7 +23,6 @@ TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompi
 Compat issues with assembly mscorlib:
 TypesMustExist : Type 'System.Diagnostics.Contracts.Internal.ContractHelper' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly System.ComponentModel.Composition:
-TypesMustExist : Type 'System.Lazy<T, TMetadata>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.Composition.AttributedModelServices' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.Composition.ChangeRejectedException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.Composition.CompositionContractMismatchException' does not exist in the implementation but it does exist in the contract.
@@ -269,4 +268,4 @@ TypesMustExist : Type 'System.Xml.Serialization.XmlMappingAccess' does not exist
 TypesMustExist : Type 'System.Xml.Serialization.XmlSerializer' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.Serialization.XmlSerializerNamespaces' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.Serialization.XmlTypeMapping' does not exist in the implementation but it does exist in the contract.
-Total Issues: 247
+Total Issues: 246

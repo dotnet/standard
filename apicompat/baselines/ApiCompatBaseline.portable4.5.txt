@@ -7,8 +7,6 @@ DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Refl
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Reflection.Emit.ILGeneration'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Reflection.Emit.Lightweight'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Runtime.InteropServices.WindowsRuntime'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Runtime.Serialization.Primitives'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Runtime.Serialization.Xml'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Duplex'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Http'.
@@ -104,8 +102,6 @@ TypesMustExist : Type 'System.ComponentModel.DataAnnotations.ValidationResult' d
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.Validator' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption' does not exist in the implementation but it does exist in the contract.
-Compat issues with assembly System.Dynamic.Runtime:
-TypesMustExist : Type 'System.Runtime.CompilerServices.ConditionalWeakTable<TKey, TValue>' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly System.Net:
 TypesMustExist : Type 'System.Net.Cookie' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.CookieCollection' does not exist in the implementation but it does exist in the contract.
@@ -127,9 +123,6 @@ TypesMustExist : Type 'System.Net.WebResponse' does not exist in the implementat
 TypesMustExist : Type 'System.Net.NetworkInformation.NetworkAddressChangedEventHandler' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.NetworkInformation.NetworkChange' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.NetworkInformation.NetworkInterface' does not exist in the implementation but it does exist in the contract.
-Compat issues with assembly System.Net.Requests:
-TypesMustExist : Type 'System.Net.HttpRequestHeader' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.WebHeaderCollection' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly System.Reflection.Context:
 TypesMustExist : Type 'System.Reflection.Context.CustomReflectionContext' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly System.Reflection.Emit.ILGeneration:
@@ -151,35 +144,6 @@ TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArr
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute' does not exist in the implementation but it does exist in the contract.
-Compat issues with assembly System.Runtime.Serialization.Primitives:
-TypesMustExist : Type 'System.Runtime.Serialization.CollectionDataContractAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.ContractNamespaceAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.DataContractAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.DataMemberAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.EnumMemberAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.IgnoreDataMemberAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.KnownTypeAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.OnDeserializedAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.OnDeserializingAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.OnSerializedAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.OnSerializingAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.SerializationException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.StreamingContext' does not exist in the implementation but it does exist in the contract.
-Compat issues with assembly System.Runtime.Serialization.Xml:
-TypesMustExist : Type 'System.Runtime.Serialization.DataContractResolver' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.DataContractSerializer' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.DataContractSerializerSettings' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.InvalidDataContractException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.Serialization.XmlObjectSerializer' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.IXmlDictionary' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.UniqueId' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.XmlBinaryReaderSession' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.XmlBinaryWriterSession' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.XmlDictionary' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.XmlDictionaryReader' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.XmlDictionaryReaderQuotas' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.XmlDictionaryString' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.XmlDictionaryWriter' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly System.ServiceModel:
 TypesMustExist : Type 'System.ServiceModel.ActionNotSupportedException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.BasicHttpBinding' does not exist in the implementation but it does exist in the contract.
@@ -575,17 +539,4 @@ TypesMustExist : Type 'System.Xml.Serialization.XmlAttributes' does not exist in
 TypesMustExist : Type 'System.Xml.Serialization.XmlElementAttributes' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.Serialization.XmlSerializer' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.Serialization.XmlSerializerNamespaces' does not exist in the implementation but it does exist in the contract.
-Compat issues with assembly System.Xml.XmlSerializer:
-TypesMustExist : Type 'System.Xml.Serialization.IXmlSerializable' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlAnyAttributeAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlAnyElementAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlAttributeAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlElementAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlEnumAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlIgnoreAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlRootAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlSchemaProviderAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlSerializerNamespaces' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlTextAttribute' does not exist in the implementation but it does exist in the contract.
-Total Issues: 546
+Total Issues: 504
