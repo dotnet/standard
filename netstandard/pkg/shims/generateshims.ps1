@@ -13,7 +13,7 @@ elseif ($shims -eq "netfx")
     $refPath = "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1"
 }
 
-$shimOutput = "netstandard";
+$shimOutput = $shims;
 $shimlistFile = "$shims.shimlist.txt";
 
 if (!(Test-Path $shimlistFile))
@@ -32,6 +32,8 @@ $netstandardAPIList = "netstandardAPIList.txt";
 
 foreach ($shim in $shimList)
 {
+    if ($shim[0] -eq '#') { continue; }
+
     $shimForwards = "$shimOutput\$shim.Forwards.cs";
     $shimProject = "$shimOutput\$shim.csproj";
     $shimContract = "$refPath\$shim.dll";
