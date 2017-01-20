@@ -14,6 +14,11 @@
     <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
     <ApiCompatBaseline>$(MSBuildProjectDirectory)\ApiCompatBaseline.$(TargetGroup).txt</ApiCompatBaseline>
   </PropertyGroup>
+  <ItemGroup Condition="'$(TargetGroup)' == 'net461'">
+    <PackageDestination Include="build/$(TargetGroup)/ref">
+      <TargetFramework>$(TargetGroup)</TargetFramework>
+    </PackageDestination>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\mscorlib.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.csproj" />

@@ -19,7 +19,11 @@
   <ItemGroup>
     <ProjectReference Include="..\ref\netstandard.csproj" />
     <ProjectReference Include="..\tools\NETStandard.tools.builds" />
-    <ProjectReference Include="..\..\compatshims\shims.proj" />
+    <ProjectReference Include="shims\netstandard\dir.builds" />
+    <ProjectReference Include="shims\netfx\dir.builds" />
+    <ProjectReference Include="..\src\netstandard.csproj">
+      <AdditionalProperties>%(ProjectReference.AdditionalProperties);TargetGroup=net461</AdditionalProperties>
+    </ProjectReference>
 
     <File Include="$(RootTargetsSource)">
       <TargetPath>build/$(Id).targets</TargetPath>
@@ -27,6 +31,10 @@
 
     <File Include="..\tools\targets\netstandard\$(TargetsFileName)">
       <TargetPath>build/$(NETStandardVersion)/$(Id).targets</TargetPath>
+    </File>
+
+    <File Include="..\tools\targets\netfx\$(TargetsFileName)">
+      <TargetPath>build/net461/$(Id).targets</TargetPath>
     </File>
 
     <!-- Temporarily map ns17 to the ns20 refs https://github.com/NuGet/Home/issues/3576 -->
@@ -38,7 +46,7 @@
       <TargetFramework>netstandard1.7</TargetFramework>
     </Dependency>
   </ItemGroup>
-  
+
   <Target Name="StampPackageVersionInTargets" BeforeTargets="GenerateNuSpec">
     <MakeDir Directories="$(IntermediateOutputPath)" />
 
