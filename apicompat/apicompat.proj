@@ -4,67 +4,10 @@
 
   <PropertyGroup>
     <RestoredRefPath>$(IntermediateOutputPath)CompatShims/ref/</RestoredRefPath>
-    <GenFacadesOutputPath>$(BinDir)CompatShims/facades/</GenFacadesOutputPath>
     <NetstandardRefPath>$(BinDir)ref/netstandard/2.0.0.0/</NetstandardRefPath>
-    <ProjectJson>$(MSBuildThisFileDirectory)project.json</ProjectJson>
-    <ProjectLockJson>$(MSBuildThisFileDirectory)project.lock.json</ProjectLockJson>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <NetstandardShimsPath>$(BinDir)shims/netstandard</NetstandardShimsPath>
+    <NetfxShimsPath>$(BinDir)shims/netfx</NetfxShimsPath>
   </PropertyGroup>
-
-  <Target Name="FacadesToPackage"
-          AfterTargets="RunGenFacades">
-    <ItemGroup>
-      <FilesToPackage Include="$(GenFacadesOutputPath)\*.dll">
-        <TargetFramework>$(TargetFramework)</TargetFramework>
-        <TargetPath>build/$(TargetFramework)/ref</TargetPath>
-        <IsReferenceAsset>true</IsReferenceAsset>
-      </FilesToPackage>
-    </ItemGroup>
-  </Target>
-
-  <Target Name="GetGenFacadesInputs">
-    <ItemGroup>
-      <GenFacadesInputs Include="$(RestoredRefRootPath)net461/*.dll" />
-      <GenFacadesInputs Include="$(RestoredRefRootPath)netstandard1.6/*.dll" />
-      <GenFacadesInputs Include="$(NetstandardRefPath)*.dll" />
-      <GenFacadesSeeds Include="$(NetstandardRefPath)*.dll" />
-    </ItemGroup>
-  </Target>
-
-  <PropertyGroup>
-    <GenFacadesInputPath>$(IntermediateOutputPath)PreGenFacades/</GenFacadesInputPath>
-    <GenFacadesResponseFile>$(GenFacadesInputPath)genfacades.rsp</GenFacadesResponseFile>
-    <GenFacadesSemaphoreFile>$(GenFacadesInputPath)genfacades.sempahore</GenFacadesSemaphoreFile>
-  </PropertyGroup>
-
-  <!-- Generate Facades -->
-  <Target Name="RunGenFacades"
-          DependsOnTargets="GetGenFacadesInputs"
-          Inputs="@(GenFacadesInputs)"
-          Outputs="$(GenFacadesSemaphoreFile)">
-
-    <PropertyGroup>
-      <!--
-        <GenFacadesArgs>$(GenFacadesArgs) -contracts:"@(GenFacadesContracts, ',')"</GenFacadesArgs>-->
-      <GenFacadesArgs>$(GenFacadesArgs) -seeds:"@(GenFacadesSeeds, ',')"</GenFacadesArgs>
-      <GenFacadesArgs>$(GenFacadesArgs) -facadePath:"$(GenFacadesOutputPath)"</GenFacadesArgs>
-      <GenFacadesArgs>$(GenFacadesArgs) -producePdb:false</GenFacadesArgs>
-      <GenFacadesArgs>$(GenFacadesArgs) -ignoreMissingTypes</GenFacadesArgs>
-    </PropertyGroup>
-
-    <MakeDir Directories="$(GenFacadesInputPath)" />
-    <WriteLinesToFile File="$(GenFacadesResponseFile)" Lines="$(GenFacadesArgs)" Overwrite="true" />
-
-    <PropertyGroup>
-      <GenFacadesCmd>$(ToolHostCmd) "$(ToolsDir)GenFacades.exe"</GenFacadesCmd>
-    </PropertyGroup>
-
-    <Exec Command="$(GenFacadesCmd) -contracts:&quot;$(RestoredRefRootPath)net461&quot; @&quot;$(GenFacadesResponseFile)&quot;" WorkingDirectory="$(ToolRuntimePath)" />
-
-    <Exec Command="$(GenFacadesCmd) -contracts:&quot;$(RestoredRefRootPath)netstandard1.6&quot; @&quot;$(GenFacadesResponseFile)&quot;" WorkingDirectory="$(ToolRuntimePath)" />
-
-    <Touch Files="$(GenFacadesSemaphoreFile)" AlwaysCreate="true" />
-  </Target>
 
   <PropertyGroup>
     <ApiCompatProfileRootPath>$(RestoredRefRootPath)</ApiCompatProfileRootPath>
@@ -120,8 +63,8 @@
     <PropertyGroup>
       <ApiCompatArgs>$(ApiCompatArgs) "$(ApiCompatContracts)"</ApiCompatArgs>
       <ApiCompatArgs>$(ApiCompatArgs) -contractDepends:"$(ApiCompatContracts)"</ApiCompatArgs>
-      <ApiCompatArgs>$(ApiCompatArgs) -implDirs:"$(NetstandardRefPath),$(GenFacadesOutputPath)"</ApiCompatArgs>
-      <ApiCompatArgs>$(ApiCompatArgs) -groupByAssembly:false</ApiCompatArgs>
+      <ApiCompatArgs>$(ApiCompatArgs) -implDirs:"$(NetstandardRefPath),$(NetstandardShimsPath),$(NetfxShimsPath)"</ApiCompatArgs>
+      <!--<ApiCompatArgs>$(ApiCompatArgs) -groupByAssembly:false</ApiCompatArgs>-->
       <!--<ApiCompatArgs>$(ApiCompatArgs) -baseline:"$(ApiCompatBaselineFile)"</ApiCompatArgs>-->
       <ApiCompatBaselineAll>&gt; $(ApiCompatBaselineFile)</ApiCompatBaselineAll>
       <ApiCompatExitCode>0</ApiCompatExitCode>
@@ -145,12 +88,14 @@
 
   <Target Name="RunApiCompatOnAll" DependsOnTargets="RunApiCompat" />
 
-  <Target Name="CleanFacades">
-    <RemoveDir Directories="$(RestoredRefRootPath);$(IntermediateOutputPath);$(GenFacadesOutputPath)" />
+  <Target Name="CleanOutputs">
+    <RemoveDir Directories="$(RestoredRefRootPath);$(IntermediateOutputPath)" />
   </Target>
 
   <ItemGroup>
     <Project Include="../netstandard/ref/netstandard.csproj" />
+    <Project Include="../netstandard/pkg/shims/netfx/dir.builds" />
+    <Project Include="../netstandard/pkg/shims/netstandard/dir.builds" />
     <Project Include="net461/net461.depproj" />
     <Project Include="netstandard1x/netstandard.builds" />
   </ItemGroup>
@@ -158,13 +103,12 @@
   <PropertyGroup>
     <TraversalBuildDependsOn>
       $(TraversalBuildDependsOn);
-      RunGenFacades;
       RunApiCompatOnAll;
     </TraversalBuildDependsOn>
 
     <TraversalCleanDependsOn>
       $(TraversalCleanDependsOn);
-      CleanFacades;
+      CleanOutputs;
     </TraversalCleanDependsOn>
   </PropertyGroup>
 
