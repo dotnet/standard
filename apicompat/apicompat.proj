@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.props))\dir.props" />
+
+  <PropertyGroup>
+    <RestoredRefPath>$(IntermediateOutputPath)CompatShims/ref/</RestoredRefPath>
+    <NetstandardRefPath>$(BinDir)ref/netstandard/2.0.0.0/</NetstandardRefPath>
+    <NetstandardShimsPath>$(BinDir)shims/netstandard</NetstandardShimsPath>
+    <NetfxShimsPath>$(BinDir)shims/netfx</NetfxShimsPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ApiCompatProfileRootPath>$(RestoredRefRootPath)</ApiCompatProfileRootPath>
+    <ApiCompatBaseline>ApiCompatBaseline.compatshims.txt</ApiCompatBaseline>
+    <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
+    <PortableProfileRootPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETPortable\</PortableProfileRootPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)netstandard1.0">
+      <TargetGroup>netstandard1.0</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)netstandard1.1">
+      <TargetGroup>netstandard1.1</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)netstandard1.2">
+      <TargetGroup>netstandard1.2</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)netstandard1.3">
+      <TargetGroup>netstandard1.3</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)netstandard1.4">
+      <TargetGroup>netstandard1.4</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)netstandard1.5">
+      <TargetGroup>netstandard1.5</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)netstandard1.6">
+      <TargetGroup>netstandard1.6</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0">
+      <TargetGroup>portable4.0</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5">
+      <TargetGroup>portable4.5</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6">
+      <TargetGroup>portable4.6</TargetGroup>
+    </ApiCompatProfile>
+  </ItemGroup>
+
+  <!-- Run ApiCompat -->
+  <Target Name="RunApiCompat"
+          Inputs="$(IntermediateOutputPath)%(ApiCompatProfile.TargetGroup)/apicompat.rsp"
+          Outputs="$(MSBuildThisFileDirectory)baselines/ApiCompatBaseline.%(ApiCompatProfile.TargetGroup).txt"
+    >
+    <PropertyGroup>
+      <ApiCompatContracts>%(ApiCompatProfile.Identity)</ApiCompatContracts>
+      <ApiCompatResponseFile>$(IntermediateOutputPath)%(ApiCompatProfile.TargetGroup)/apicompat.rsp</ApiCompatResponseFile>
+      <ApiCompatBaselineFile>$(MSBuildThisFileDirectory)baselines/ApiCompatBaseline.%(ApiCompatProfile.TargetGroup).txt</ApiCompatBaselineFile>
+    </PropertyGroup>
+
+    <PropertyGroup>
+      <ApiCompatArgs>$(ApiCompatArgs) "$(ApiCompatContracts)"</ApiCompatArgs>
+      <ApiCompatArgs>$(ApiCompatArgs) -contractDepends:"$(ApiCompatContracts)"</ApiCompatArgs>
+      <ApiCompatArgs>$(ApiCompatArgs) -implDirs:"$(NetstandardRefPath),$(NetstandardShimsPath),$(NetfxShimsPath)"</ApiCompatArgs>
+      <!--<ApiCompatArgs>$(ApiCompatArgs) -groupByAssembly:false</ApiCompatArgs>-->
+      <!--<ApiCompatArgs>$(ApiCompatArgs) -baseline:"$(ApiCompatBaselineFile)"</ApiCompatArgs>-->
+      <ApiCompatBaselineAll>&gt; $(ApiCompatBaselineFile)</ApiCompatBaselineAll>
+      <ApiCompatExitCode>0</ApiCompatExitCode>
+
+      <ApiCompatCmd>$(ToolHostCmd) "$(ToolsDir)ApiCompat.exe"</ApiCompatCmd>
+    </PropertyGroup>
+
+    <MakeDir Directories="$(IntermediateOutputPath)%(ApiCompatProfile.TargetGroup)" />
+    <WriteLinesToFile File="$(ApiCompatResponseFile)" Lines="$(ApiCompatArgs)" Overwrite="true" />
+
+    <Exec Condition="Exists('$(ApiCompatContracts)')"
+          Command="$(ApiCompatCmd) @&quot;$(ApiCompatResponseFile)&quot; $(ApiCompatBaselineAll)"
+          CustomErrorRegularExpression="^[a-zA-Z]+ :"
+          StandardOutputImportance="Low"
+          IgnoreExitCode="true"
+    >
+      <Output TaskParameter="ExitCode" PropertyName="ApiCompatExitCode" />
+    </Exec>
+
+  </Target>
+
+  <Target Name="RunApiCompatOnAll" DependsOnTargets="RunApiCompat" />
+
+  <Target Name="CleanOutputs">
+    <RemoveDir Directories="$(RestoredRefRootPath);$(IntermediateOutputPath)" />
+  </Target>
+
+  <ItemGroup>
+    <Project Include="../netstandard/ref/netstandard.csproj" />
+    <Project Include="../netstandard/pkg/shims/netfx/dir.builds" />
+    <Project Include="../netstandard/pkg/shims/netstandard/dir.builds" />
+    <Project Include="net461/net461.depproj" />
+    <Project Include="netstandard1x/netstandard.builds" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TraversalBuildDependsOn>
+      $(TraversalBuildDependsOn);
+      RunApiCompatOnAll;
+    </TraversalBuildDependsOn>
+
+    <TraversalCleanDependsOn>
+      $(TraversalCleanDependsOn);
+      CleanOutputs;
+    </TraversalCleanDependsOn>
+  </PropertyGroup>
+
+  <Import Project="..\dir.traversal.targets" />
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
+</Project>

@@ -1,0 +1,5 @@
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Linq.EnumerableExecutor))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Linq.EnumerableExecutor<>))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Linq.EnumerableQuery))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Linq.EnumerableQuery<>))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Linq.Queryable))]

@@ -1,0 +1,6 @@
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.ParameterizedThreadStart))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.Thread))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.ThreadStart))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.ThreadStartException))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.ThreadState))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.ThreadStateException))]

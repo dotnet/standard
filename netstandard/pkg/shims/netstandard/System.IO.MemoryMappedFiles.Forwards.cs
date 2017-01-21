@@ -1,0 +1,8 @@
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(Microsoft.Win32.SafeHandles.SafeMemoryMappedFileHandle))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.IO.MemoryMappedFiles.MemoryMappedFile))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.IO.MemoryMappedFiles.MemoryMappedFileAccess))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.IO.MemoryMappedFiles.MemoryMappedFileOptions))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.IO.MemoryMappedFiles.MemoryMappedFileRights))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.IO.MemoryMappedFiles.MemoryMappedViewAccessor))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.IO.MemoryMappedFiles.MemoryMappedViewStream))]

@@ -1,0 +1,7 @@
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Net.WebSockets.WebSocket))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Net.WebSockets.WebSocketCloseStatus))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Net.WebSockets.WebSocketError))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Net.WebSockets.WebSocketException))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Net.WebSockets.WebSocketMessageType))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Net.WebSockets.WebSocketReceiveResult))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Net.WebSockets.WebSocketState))]
