@@ -1,0 +1,19 @@
+DEFAULT_APPNAME Warning: 0 : Found 'mscorlib' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
+DEFAULT_APPNAME Warning: 0 : Found 'System.Core' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
+DEFAULT_APPNAME Warning: 0 : Found 'System' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
+DEFAULT_APPNAME Warning: 0 : Found 'System.Xml' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
+DEFAULT_APPNAME Warning: 0 : Found 'System.Xml.Linq' with PublicKeyToken 'b77a5c561934e089' instead of '31bf3856ad364e35'.
+DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Xml.Serialization'.
+Compat issues with assembly System.Xml.Serialization:
+TypesMustExist : Type 'System.ServiceModel.XmlSerializerFormatAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Xml.Serialization.XmlAnyElementAttributes' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Xml.Serialization.XmlArrayItemAttributes' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Xml.Serialization.XmlAttributeOverrides' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Xml.Serialization.XmlAttributes' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Xml.Serialization.XmlElementAttributes' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Xml.Serialization.XmlMapping' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Xml.Serialization.XmlMappingAccess' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Xml.Serialization.XmlSerializer' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Xml.Serialization.XmlSerializerNamespaces' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Xml.Serialization.XmlTypeMapping' does not exist in the implementation but it does exist in the contract.
+Total Issues: 11

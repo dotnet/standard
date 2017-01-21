@@ -1,0 +1,124 @@
+DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'Microsoft.CSharp'.
+DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'Microsoft.VisualBasic'.
+DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Net'.
+DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Runtime.InteropServices.WindowsRuntime'.
+DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Runtime.WindowsRuntime'.
+DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Runtime.WindowsRuntime.UI.Xaml'.
+DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Web'.
+DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Windows'.
+DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Xml.Serialization'.
+DEFAULT_APPNAME Error: 0 : Unable to resolve assembly 'Assembly(Name=System.ServiceModel.Primitives, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the contract assembly 'Assembly(Name=System.Xml.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
+Compat issues with assembly Microsoft.CSharp:
+TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.Binder' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.RuntimeBinderException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly Microsoft.VisualBasic:
+TypesMustExist : Type 'Microsoft.VisualBasic.CallType' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.Constants' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.HideModuleNameAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.Strings' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.Conversions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.DesignerGeneratedAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.IncompleteInitialization' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.NewLateBinding' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.ObjectFlowControl' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.Operators' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.OptionCompareAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.OptionTextAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.ProjectData' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.StandardModuleAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.StaticLocalInitFlag' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.Utils' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly mscorlib:
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.IActivationFactory' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.Net:
+TypesMustExist : Type 'System.Net.Cookie' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.CookieCollection' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.CookieContainer' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.CookieException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.HttpRequestHeader' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.HttpStatusCode' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.HttpWebRequest' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.HttpWebResponse' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.ICredentials' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.IWebRequestCreate' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.NetworkCredential' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.ProtocolViolationException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.WebException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.WebExceptionStatus' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.WebHeaderCollection' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.WebRequest' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.WebResponse' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.NetworkInformation.NetworkAddressChangedEventHandler' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.NetworkInformation.NetworkChange' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.NetworkInformation.NetworkInterface' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.Runtime.InteropServices.WindowsRuntime:
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.IActivationFactory' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.Runtime.WindowsRuntime:
+TypesMustExist : Type 'System.WindowsRuntimeSystemExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.WindowsRuntimeStorageExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.WindowsRuntimeStreamExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.AsyncInfo' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.Foundation.Point' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.Foundation.Rect' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.Foundation.Size' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Color' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.Runtime.WindowsRuntime.UI.Xaml:
+TypesMustExist : Type 'Windows.UI.Xaml.CornerRadius' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Duration' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.DurationType' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.GridLength' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.GridUnitType' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.LayoutCycleException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Thickness' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Automation.ElementNotAvailableException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Automation.ElementNotEnabledException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Controls.Primitives.GeneratorPosition' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Markup.XamlParseException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Media.Matrix' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Media.Animation.KeyTime' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Media.Animation.RepeatBehavior' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Media.Animation.RepeatBehaviorType' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Media.Media3D.Matrix3D' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.ServiceModel.Web:
+TypesMustExist : Type 'System.Runtime.Serialization.Json.DataContractJsonSerializer' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.Windows:
+TypesMustExist : Type 'System.Collections.ObjectModel.ObservableCollection<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Collections.ObjectModel.ReadOnlyObservableCollection<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Collections.Specialized.INotifyCollectionChanged' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Collections.Specialized.NotifyCollectionChangedAction' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Collections.Specialized.NotifyCollectionChangedEventArgs' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Collections.Specialized.NotifyCollectionChangedEventHandler' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.ComponentModel.DataErrorsChangedEventArgs' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.ComponentModel.INotifyDataErrorInfo' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Windows.Input.ICommand' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.Xml.Serialization:
+TypesMustExist : Type 'System.Xml.Serialization.XmlAnyElementAttributes' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Xml.Serialization.XmlArrayItemAttributes' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Xml.Serialization.XmlAttributeOverrides' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Xml.Serialization.XmlAttributes' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Xml.Serialization.XmlElementAttributes' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Xml.Serialization.XmlSerializer' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Xml.Serialization.XmlSerializerNamespaces' does not exist in the implementation but it does exist in the contract.
+Total Issues: 103
