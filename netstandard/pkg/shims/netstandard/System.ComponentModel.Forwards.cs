@@ -1,0 +1,5 @@
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.IServiceProvider))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.ComponentModel.CancelEventArgs))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.ComponentModel.IChangeTracking))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.ComponentModel.IEditableObject))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.ComponentModel.IRevertibleChangeTracking))]
