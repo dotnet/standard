@@ -7,7 +7,6 @@
     <NuGetTargetMoniker Condition="'$(TargetGroup)' == 'net451'">.NETFramework,Version=v4.5.1</NuGetTargetMoniker>
     <CLSCompliant>false</CLSCompliant>
     <ProjectGuid>{65E58605-AE96-46C2-8C6C-F28A5EB9B565}</ProjectGuid>
-    <SkipSigning>true</SkipSigning>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'netstandard1.5_Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'net451_Debug'" />

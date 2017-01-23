@@ -13,8 +13,6 @@
     <GenFacadesArgs>$(GenFacadesArgs) -ignoreMissingTypes</GenFacadesArgs>
     <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
     <ApiCompatBaseline>$(MSBuildProjectDirectory)\ApiCompatBaseline.$(TargetGroup).txt</ApiCompatBaseline>
-    <UseOpenKey>true</UseOpenKey>
-    <SignType>oss</SignType>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetGroup)' == 'net461'">
     <PackageDestination Include="build/$(TargetGroup)/ref">

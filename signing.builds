@@ -10,15 +10,6 @@
 
   <UsingTask AssemblyFile="$(BuildToolsTaskDir)Microsoft.DotNet.Build.Tasks.dll" TaskName="ReadSigningRequired" />
 
-  <!-- apply the default signing certificates (defined in sign.targets) -->
-  <ItemDefinitionGroup>
-    <FilesToSign>
-      <Authenticode>$(AuthenticodeSig)</Authenticode>
-      <StrongName>$(StrongNameSig)</StrongName>
-    </FilesToSign>
-  </ItemDefinitionGroup>
-
-
   <!-- populates item group FilesToSign with the list of files to sign -->
   <Target Name="GetFilesToSignItems">
     <Message Text="MicroBuild plugins : $(MicroBuildPluginDirectory)" Importance="High" />
@@ -34,7 +25,7 @@
   <Target Name="Build"
           Condition="'$(SkipSigning)' != 'true' and '$(SignType)' != 'oss'"
           DependsOnTargets="GetFilesToSignItems">
-    <Message Text="Files to sign... @(FilesToSign)" Importance="High" />
+    <Message Text="Submitting the following items for signing: @(FilesToSign)" Importance="High" />
     <CallTarget Targets="SignFiles" />
     <!-- now that the files have been signed delete the marker files -->
     <Delete Files="@(SignMarkerFile)" />
