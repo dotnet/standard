@@ -13,4 +13,8 @@
   </PropertyGroup>
 
   <Import Condition="Exists('..\dir.targets')" Project="..\dir.targets" />
+  
+  <!-- We don't need full signing for these so not writing the required signing file -->
+  <Target Name="WriteSigningRequired" />
+
 </Project>

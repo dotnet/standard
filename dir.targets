@@ -58,4 +58,8 @@
     </SupplementalTestData>
   </ItemGroup>
 
+  <PropertyGroup Condition="$(AssemblyOriginatorKeyFile.Contains('Open.snk'))">
+    <StrongNameSig />
+    <DelaySign>false</DelaySign>
+  </PropertyGroup> 
 </Project>
