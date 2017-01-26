@@ -61,5 +61,6 @@
   <PropertyGroup Condition="$(AssemblyOriginatorKeyFile.Contains('Open.snk'))">
     <StrongNameSig />
     <DelaySign>false</DelaySign>
-  </PropertyGroup> 
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+  </PropertyGroup>
 </Project>
