@@ -5,8 +5,6 @@ DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Comp
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Net'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Reflection.Context'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Runtime.InteropServices.WindowsRuntime'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Runtime.WindowsRuntime'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Runtime.WindowsRuntime.UI.Xaml'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Duplex'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Http'.
@@ -135,34 +133,6 @@ TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArr
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute' does not exist in the implementation but it does exist in the contract.
-Compat issues with assembly System.Runtime.WindowsRuntime:
-TypesMustExist : Type 'System.WindowsRuntimeSystemExtensions' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.WindowsRuntimeStorageExtensions' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.WindowsRuntimeStreamExtensions' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.AsyncInfo' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.Foundation.Point' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.Foundation.Rect' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.Foundation.Size' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.UI.Color' does not exist in the implementation but it does exist in the contract.
-Compat issues with assembly System.Runtime.WindowsRuntime.UI.Xaml:
-TypesMustExist : Type 'Windows.UI.Xaml.CornerRadius' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.UI.Xaml.Duration' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.UI.Xaml.DurationType' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.UI.Xaml.GridLength' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.UI.Xaml.GridUnitType' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.UI.Xaml.LayoutCycleException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.UI.Xaml.Thickness' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.UI.Xaml.Automation.ElementNotAvailableException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.UI.Xaml.Automation.ElementNotEnabledException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.UI.Xaml.Controls.Primitives.GeneratorPosition' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.UI.Xaml.Markup.XamlParseException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.UI.Xaml.Media.Matrix' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.UI.Xaml.Media.Animation.KeyTime' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.UI.Xaml.Media.Animation.RepeatBehavior' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.UI.Xaml.Media.Animation.RepeatBehaviorType' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'Windows.UI.Xaml.Media.Media3D.Matrix3D' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly System.ServiceModel:
 TypesMustExist : Type 'System.ServiceModel.ActionNotSupportedException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.BasicHttpBinding' does not exist in the implementation but it does exist in the contract.
@@ -558,4 +528,4 @@ TypesMustExist : Type 'System.Xml.Serialization.XmlAttributes' does not exist in
 TypesMustExist : Type 'System.Xml.Serialization.XmlElementAttributes' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.Serialization.XmlSerializer' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.Serialization.XmlSerializerNamespaces' does not exist in the implementation but it does exist in the contract.
-Total Issues: 523
+Total Issues: 497
