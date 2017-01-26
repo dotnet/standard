@@ -30,13 +30,13 @@
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Net.Http.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Numerics.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Runtime.Serialization.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Transactions.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Xml.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Xml.Linq.csproj" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)'=='net461'">
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Drawing.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Transactions.csproj" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)'=='xamarin.ios'">
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\OpenTK-1.0.csproj" />

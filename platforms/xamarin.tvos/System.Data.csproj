@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="mscorlib.csproj" />
     <ProjectReference Include="System.csproj" />
+    <ProjectReference Include="System.Transactions.csproj" />
     <ProjectReference Include="System.Xml.csproj" />
     <Compile Include="System.Data.cs" />
   </ItemGroup>

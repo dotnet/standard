@@ -1,38 +1,17 @@
 Compat issues with assembly netstandard:
-MembersMustExist : Member 'System.Data.Common.DbConnection.EnlistTransaction(System.Transactions.Transaction)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.CleanupUnusedObjectsInCurrentContext()' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.CommittableTransaction' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.DependentCloneOption' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.DependentTransaction' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.Enlistment' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.EnlistmentOptions' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.EnterpriseServicesInteropOption' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.HostCurrentTransactionCallback' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.IDtcTransaction' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.IEnlistmentNotification' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.IPromotableSinglePhaseNotification' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.ISimpleTransactionSuperior' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.ISinglePhaseNotification' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.IsolationLevel' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.ITransactionPromoter' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.PreparingEnlistment' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.SinglePhaseEnlistment' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.SubordinateTransaction' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.Transaction' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.TransactionAbortedException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.TransactionCompletedEventHandler' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.TransactionEventArgs' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.TransactionException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.TransactionInDoubtException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.TransactionInformation' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.TransactionInterop' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.TransactionManager' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.TransactionManagerCommunicationException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.TransactionOptions' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.TransactionPromotionException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.TransactionScope' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.TransactionScopeAsyncFlowOption' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.TransactionScopeOption' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.TransactionStartedEventHandler' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Transactions.TransactionStatus' does not exist in the implementation but it does exist in the contract.
-Total Issues: 36
+MembersMustExist : Member 'System.Transactions.Transaction.EnlistPromotableSinglePhase(System.Transactions.IPromotableSinglePhaseNotification, System.Guid)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Transactions.Transaction.GetPromotedToken()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Transactions.Transaction.PromoteAndEnlistDurable(System.Guid, System.Transactions.IPromotableSinglePhaseNotification, System.Transactions.ISinglePhaseNotification, System.Transactions.EnlistmentOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Transactions.Transaction.PromoterType.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Transactions.Transaction.SetDistributedTransactionIdentifier(System.Transactions.IPromotableSinglePhaseNotification, System.Guid)' does not exist in the implementation but it does exist in the contract.
+DelegateParamNameMustMatch : Parameter name on delegate 'System.Transactions.TransactionCompletedEventHandler' is 'o' in the implementation but 'sender' in the contract.
+CannotMakeMoreVisible : Visibility of member 'System.Transactions.TransactionException..ctor()' is 'Family' in the implementation but 'Public' in the contract.
+CannotMakeMoreVisible : Visibility of member 'System.Transactions.TransactionInDoubtException..ctor()' is 'Family' in the implementation but 'Public' in the contract.
+MembersMustExist : Member 'System.Guid System.Transactions.TransactionInterop.PromoterTypeDtc' does not exist in the implementation but it does exist in the contract.
+CannotMakeMoreVisible : Visibility of member 'System.Transactions.TransactionManagerCommunicationException..ctor()' is 'Family' in the implementation but 'Public' in the contract.
+CannotMakeMoreVisible : Visibility of member 'System.Transactions.TransactionPromotionException..ctor()' is 'Family' in the implementation but 'Public' in the contract.
+MembersMustExist : Member 'System.Transactions.TransactionScope..ctor(System.Transactions.Transaction, System.TimeSpan, System.Transactions.TransactionScopeAsyncFlowOption)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Transactions.TransactionScope..ctor(System.Transactions.Transaction, System.Transactions.TransactionScopeAsyncFlowOption)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Transactions.TransactionScope..ctor(System.Transactions.TransactionScopeOption, System.Transactions.TransactionOptions, System.Transactions.TransactionScopeAsyncFlowOption)' does not exist in the implementation but it does exist in the contract.
+DelegateParamNameMustMatch : Parameter name on delegate 'System.Transactions.TransactionStartedEventHandler' is 'o' in the implementation but 'sender' in the contract.
+Total Issues: 15

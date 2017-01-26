@@ -11186,22 +11186,6 @@ namespace System.Runtime.InteropServices
         public ComAliasNameAttribute(string alias) { }
         public string Value { get { throw null; } }
     }
-    public partial class ComAwareEventInfo : System.Reflection.EventInfo
-    {
-        public ComAwareEventInfo(System.Type type, string eventName) { }
-        public override System.Reflection.EventAttributes Attributes { get { throw null; } }
-        public override System.Type DeclaringType { get { throw null; } }
-        public override string Name { get { throw null; } }
-        public override System.Type ReflectedType { get { throw null; } }
-        public override void AddEventHandler(object target, System.Delegate handler) { }
-        public override System.Reflection.MethodInfo GetAddMethod(bool nonPublic) { throw null; }
-        public override object[] GetCustomAttributes(bool inherit) { throw null; }
-        public override object[] GetCustomAttributes(System.Type attributeType, bool inherit) { throw null; }
-        public override System.Reflection.MethodInfo GetRaiseMethod(bool nonPublic) { throw null; }
-        public override System.Reflection.MethodInfo GetRemoveMethod(bool nonPublic) { throw null; }
-        public override bool IsDefined(System.Type attributeType, bool inherit) { throw null; }
-        public override void RemoveEventHandler(object target, System.Delegate handler) { }
-    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
     public sealed partial class ComCompatibleVersionAttribute : System.Attribute
     {
@@ -11690,6 +11674,7 @@ namespace System.Runtime.InteropServices
         public static object BindToMoniker(string monikerName) { throw null; }
         public static System.IntPtr BufferToBSTR(System.Array ptr, int slen) { throw null; }
         public static void ChangeWrapperHandleStrength(object otp, bool fIsWeak) { }
+        public static void CleanupUnusedObjectsInCurrentContext() { }
         public static void Copy(byte[] source, int startIndex, System.IntPtr destination, int length) { }
         public static void Copy(char[] source, int startIndex, System.IntPtr destination, int length) { }
         public static void Copy(double[] source, int startIndex, System.IntPtr destination, int length) { }
@@ -16562,7 +16547,7 @@ namespace System.Security.Cryptography
     }
     public sealed partial class IncrementalHash : System.IDisposable
     {
-        public IncrementalHash() { }
+        internal IncrementalHash() { }
         public System.Security.Cryptography.HashAlgorithmName AlgorithmName { get { throw null; } }
         public void AppendData(byte[] data) { }
         public void AppendData(byte[] data, int offset, int count) { }

@@ -2284,6 +2284,25 @@ namespace System.Runtime.CompilerServices
         object System.Runtime.CompilerServices.IStrongBox.Value { get { throw null; } set { } }
     }
 }
+namespace System.Runtime.InteropServices
+{
+    public partial class ComAwareEventInfo : System.Reflection.EventInfo
+    {
+        public ComAwareEventInfo(System.Type type, string eventName) { }
+        public override System.Reflection.EventAttributes Attributes { get { throw null; } }
+        public override System.Type DeclaringType { get { throw null; } }
+        public override string Name { get { throw null; } }
+        public override System.Type ReflectedType { get { throw null; } }
+        public override void AddEventHandler(object target, System.Delegate handler) { }
+        public override System.Reflection.MethodInfo GetAddMethod(bool nonPublic) { throw null; }
+        public override object[] GetCustomAttributes(bool inherit) { throw null; }
+        public override object[] GetCustomAttributes(System.Type attributeType, bool inherit) { throw null; }
+        public override System.Reflection.MethodInfo GetRaiseMethod(bool nonPublic) { throw null; }
+        public override System.Reflection.MethodInfo GetRemoveMethod(bool nonPublic) { throw null; }
+        public override bool IsDefined(System.Type attributeType, bool inherit) { throw null; }
+        public override void RemoveEventHandler(object target, System.Delegate handler) { }
+    }
+}
 namespace System.Security.Cryptography
 {
     public sealed partial class AesCng : System.Security.Cryptography.Aes
