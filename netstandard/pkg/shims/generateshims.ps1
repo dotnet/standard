@@ -6,7 +6,7 @@ $genapi = "\\fxcore\tools\others\GenAPI\GenAPI.exe";
 
 if ($shims -eq "netstandard")
 {
-    $refPath = "d:\git\standard\bin\netstandard16"
+    $refPath = Resolve-Path "..\..\..\bin\obj\CompatShims\ref\netstandard1.6"
 }
 elseif ($shims -eq "netfx")
 {
