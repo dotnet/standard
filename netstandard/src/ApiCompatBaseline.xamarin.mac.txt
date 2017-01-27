@@ -1,4 +1,17 @@
 Compat issues with assembly netstandard:
+TypesMustExist : Type 'System.StringNormalizationExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Data.Common.DbColumn' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Data.Common.DbDataReaderExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Data.Common.IDbColumnSchemaGenerator' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.StackFrameExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Globalization.GlobalizationExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Numerics.Vector' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Numerics.Vector<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.Serialization.DataContractSerializerExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.Serialization.ISerializationSurrogateProvider' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.SecureStringMarshal' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Threading.PreAllocatedOverlapped' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Threading.ThreadPoolBoundHandle' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Transactions.Transaction.EnlistPromotableSinglePhase(System.Transactions.IPromotableSinglePhaseNotification, System.Guid)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Transactions.Transaction.GetPromotedToken()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Transactions.Transaction.PromoteAndEnlistDurable(System.Guid, System.Transactions.IPromotableSinglePhaseNotification, System.Transactions.ISinglePhaseNotification, System.Transactions.EnlistmentOptions)' does not exist in the implementation but it does exist in the contract.
@@ -14,4 +27,5 @@ MembersMustExist : Member 'System.Transactions.TransactionScope..ctor(System.Tra
 MembersMustExist : Member 'System.Transactions.TransactionScope..ctor(System.Transactions.Transaction, System.Transactions.TransactionScopeAsyncFlowOption)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Transactions.TransactionScope..ctor(System.Transactions.TransactionScopeOption, System.Transactions.TransactionOptions, System.Transactions.TransactionScopeAsyncFlowOption)' does not exist in the implementation but it does exist in the contract.
 DelegateParamNameMustMatch : Parameter name on delegate 'System.Transactions.TransactionStartedEventHandler' is 'o' in the implementation but 'sender' in the contract.
-Total Issues: 15
+TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
+Total Issues: 29

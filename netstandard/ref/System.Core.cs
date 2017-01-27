@@ -2161,6 +2161,23 @@ namespace System.Runtime.InteropServices
 }
 namespace System.Security.Cryptography
 {
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public sealed partial class AesCng : System.Security.Cryptography.Aes
+    {
+        public AesCng() { }
+        public AesCng(string keyName) { }
+        public AesCng(string keyName, System.Security.Cryptography.CngProvider provider) { }
+        public AesCng(string keyName, System.Security.Cryptography.CngProvider provider, System.Security.Cryptography.CngKeyOpenOptions openOptions) { }
+        public override byte[] Key { get { throw null; } set { } }
+        public override int KeySize { get { throw null; } set { } }
+        public override System.Security.Cryptography.ICryptoTransform CreateDecryptor() { throw null; }
+        public override System.Security.Cryptography.ICryptoTransform CreateDecryptor(byte[] rgbKey, byte[] rgbIV) { throw null; }
+        public override System.Security.Cryptography.ICryptoTransform CreateEncryptor() { throw null; }
+        public override System.Security.Cryptography.ICryptoTransform CreateEncryptor(byte[] rgbKey, byte[] rgbIV) { throw null; }
+        protected override void Dispose(bool disposing) { }
+        public override void GenerateIV() { }
+        public override void GenerateKey() { }
+    }
     public sealed partial class AesCryptoServiceProvider : System.Security.Cryptography.Aes
     {
         public AesCryptoServiceProvider() { }
@@ -2195,9 +2212,13 @@ namespace System.Security.Cryptography
     {
         public CngAlgorithm(string algorithm) { }
         public string Algorithm { get { throw null; } }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public static System.Security.Cryptography.CngAlgorithm ECDiffieHellman { get { throw null; } }
         public static System.Security.Cryptography.CngAlgorithm ECDiffieHellmanP256 { get { throw null; } }
         public static System.Security.Cryptography.CngAlgorithm ECDiffieHellmanP384 { get { throw null; } }
         public static System.Security.Cryptography.CngAlgorithm ECDiffieHellmanP521 { get { throw null; } }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public static System.Security.Cryptography.CngAlgorithm ECDsa { get { throw null; } }
         public static System.Security.Cryptography.CngAlgorithm ECDsaP256 { get { throw null; } }
         public static System.Security.Cryptography.CngAlgorithm ECDsaP384 { get { throw null; } }
         public static System.Security.Cryptography.CngAlgorithm ECDsaP521 { get { throw null; } }
@@ -2278,6 +2299,10 @@ namespace System.Security.Cryptography
     public sealed partial class CngKeyBlobFormat : System.IEquatable<System.Security.Cryptography.CngKeyBlobFormat>
     {
         public CngKeyBlobFormat(string format) { }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public static System.Security.Cryptography.CngKeyBlobFormat EccFullPrivateBlob { get { throw null; } }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public static System.Security.Cryptography.CngKeyBlobFormat EccFullPublicBlob { get { throw null; } }
         public static System.Security.Cryptography.CngKeyBlobFormat EccPrivateBlob { get { throw null; } }
         public static System.Security.Cryptography.CngKeyBlobFormat EccPublicBlob { get { throw null; } }
         public string Format { get { throw null; } }
@@ -2481,6 +2506,30 @@ namespace System.Security.Cryptography
         public bool VerifyData(System.IO.Stream data, byte[] signature, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         public abstract bool VerifyHash(byte[] hash, byte[] signature);
     }
+    public sealed partial class ECDsaCng : System.Security.Cryptography.ECDsa
+    {
+        public ECDsaCng() { }
+        public ECDsaCng(int keySize) { }
+        public ECDsaCng(System.Security.Cryptography.CngKey key) { }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public ECDsaCng(System.Security.Cryptography.ECCurve curve) { }
+        public System.Security.Cryptography.CngKey Key { get { throw null; } }
+        public override int KeySize { get { throw null; } set { } }
+        public override System.Security.Cryptography.KeySizes[] LegalKeySizes { get { throw null; } }
+        protected override void Dispose(bool disposing) { }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override System.Security.Cryptography.ECParameters ExportExplicitParameters(bool includePrivateParameters) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override System.Security.Cryptography.ECParameters ExportParameters(bool includePrivateParameters) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override void GenerateKey(System.Security.Cryptography.ECCurve curve) { }
+        protected override byte[] HashData(byte[] data, int offset, int count, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
+        protected override byte[] HashData(System.IO.Stream data, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+        public override void ImportParameters(System.Security.Cryptography.ECParameters parameters) { }
+        public override byte[] SignHash(byte[] hash) { throw null; }
+        public override bool VerifyHash(byte[] hash, byte[] signature) { throw null; }
+    }
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct ECParameters
@@ -2512,6 +2561,24 @@ namespace System.Security.Cryptography
         public override void ImportParameters(System.Security.Cryptography.RSAParameters parameters) { }
         public override byte[] SignHash(byte[] hash, System.Security.Cryptography.HashAlgorithmName hashAlgorithm, System.Security.Cryptography.RSASignaturePadding padding) { throw null; }
         public override bool VerifyHash(byte[] hash, byte[] signature, System.Security.Cryptography.HashAlgorithmName hashAlgorithm, System.Security.Cryptography.RSASignaturePadding padding) { throw null; }
+    }
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public sealed partial class TripleDESCng : System.Security.Cryptography.TripleDES
+    {
+        public TripleDESCng() { }
+        public TripleDESCng(string keyName) { }
+        public TripleDESCng(string keyName, System.Security.Cryptography.CngProvider provider) { }
+        public TripleDESCng(string keyName, System.Security.Cryptography.CngProvider provider, System.Security.Cryptography.CngKeyOpenOptions openOptions) { }
+        public override byte[] Key { get { throw null; } set { } }
+        public override int KeySize { get { throw null; } set { } }
+        public override System.Security.Cryptography.KeySizes[] LegalKeySizes { get { throw null; } }
+        public override System.Security.Cryptography.ICryptoTransform CreateDecryptor() { throw null; }
+        public override System.Security.Cryptography.ICryptoTransform CreateDecryptor(byte[] rgbKey, byte[] rgbIV) { throw null; }
+        public override System.Security.Cryptography.ICryptoTransform CreateEncryptor() { throw null; }
+        public override System.Security.Cryptography.ICryptoTransform CreateEncryptor(byte[] rgbKey, byte[] rgbIV) { throw null; }
+        protected override void Dispose(bool disposing) { }
+        public override void GenerateIV() { }
+        public override void GenerateKey() { }
     }
 }
 namespace System.Security.Cryptography.X509Certificates

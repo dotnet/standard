@@ -3789,6 +3789,12 @@ namespace System.Diagnostics
         public override void TraceEvent(System.Diagnostics.TraceEventCache eventCache, string source, System.Diagnostics.TraceEventType eventType, int id, string message) { }
         public override void TraceEvent(System.Diagnostics.TraceEventCache eventCache, string source, System.Diagnostics.TraceEventType eventType, int id, string format, params object[] args) { }
     }
+    public partial class EventTypeFilter : System.Diagnostics.TraceFilter
+    {
+        public EventTypeFilter(System.Diagnostics.SourceLevels level) { }
+        public System.Diagnostics.SourceLevels EventType { get { throw null; } set { } }
+        public override bool ShouldTrace(System.Diagnostics.TraceEventCache cache, string source, System.Diagnostics.TraceEventType eventType, int id, string formatOrMessage, object[] args, object data1, object[] data) { throw null; }
+    }
     public sealed partial class FileVersionInfo
     {
         internal FileVersionInfo() { }

@@ -3175,6 +3175,14 @@ namespace System
         public SystemException(string message) { }
         public SystemException(string message, System.Exception innerException) { }
     }
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public static partial class StringNormalizationExtensions
+    {
+        public static bool IsNormalized(this string value) { throw null; }
+        public static bool IsNormalized(this string value, System.Text.NormalizationForm normalizationForm) { throw null; }
+        public static string Normalize(this string value) { throw null; }
+        public static string Normalize(this string value, System.Text.NormalizationForm normalizationForm) { throw null; }
+    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(256), Inherited=false)]
     public partial class ThreadStaticAttribute : System.Attribute
     {
@@ -5086,6 +5094,16 @@ namespace System.Diagnostics
         public virtual int GetNativeOffset() { throw null; }
         public override string ToString() { throw null; }
     }
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public static partial class StackFrameExtensions
+    {
+        public static System.IntPtr GetNativeImageBase(this System.Diagnostics.StackFrame stackFrame) { throw null; }
+        public static System.IntPtr GetNativeIP(this System.Diagnostics.StackFrame stackFrame) { throw null; }
+        public static bool HasILOffset(this System.Diagnostics.StackFrame stackFrame) { throw null; }
+        public static bool HasMethod(this System.Diagnostics.StackFrame stackFrame) { throw null; }
+        public static bool HasNativeImage(this System.Diagnostics.StackFrame stackFrame) { throw null; }
+        public static bool HasSource(this System.Diagnostics.StackFrame stackFrame) { throw null; }
+    }
     public partial class StackTrace
     {
         public const int METHODS_TO_SKIP = 0;
@@ -6026,6 +6044,11 @@ namespace System.Globalization
         public override bool IsLeapYear(int year, int era) { throw null; }
         public override System.DateTime ToDateTime(int year, int month, int day, int hour, int minute, int second, int millisecond, int era) { throw null; }
         public override int ToFourDigitYear(int year) { throw null; }
+    }
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public static partial class GlobalizationExtensions
+    {
+        public static System.StringComparer GetStringComparer(this System.Globalization.CompareInfo compareInfo, System.Globalization.CompareOptions options) { throw null; }
     }
     public partial class GregorianCalendar : System.Globalization.Calendar
     {
@@ -11582,6 +11605,14 @@ namespace System.Security
         [System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute]
         public void SetAt(int index, char c) { }
     }
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public static partial class SecureStringMarshal
+    {
+        public static System.IntPtr SecureStringToCoTaskMemAnsi(System.Security.SecureString s) { throw null; }
+        public static System.IntPtr SecureStringToCoTaskMemUnicode(System.Security.SecureString s) { throw null; }
+        public static System.IntPtr SecureStringToGlobalAllocAnsi(System.Security.SecureString s) { throw null; }
+        public static System.IntPtr SecureStringToGlobalAllocUnicode(System.Security.SecureString s) { throw null; }
+    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(5501), AllowMultiple=false, Inherited=false)]
     public sealed partial class SecurityCriticalAttribute : System.Attribute
     {
@@ -13720,6 +13751,13 @@ namespace System.Threading
         public unsafe System.Threading.NativeOverlapped* UnsafePack(System.Threading.IOCompletionCallback iocb, object userData) { throw null; }
     }
     public delegate void ParameterizedThreadStart(object obj);
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public sealed partial class PreAllocatedOverlapped : System.IDisposable
+    {
+        [System.CLSCompliantAttribute(false)]
+        public PreAllocatedOverlapped(System.Threading.IOCompletionCallback callback, object state, object pinData) { }
+        public void Dispose() { }
+    }
     public sealed partial class ReaderWriterLock : System.Runtime.ConstrainedExecution.CriticalFinalizerObject
     {
         public ReaderWriterLock() { }
@@ -13974,6 +14012,22 @@ namespace System.Threading
         public static System.Threading.RegisteredWaitHandle UnsafeRegisterWaitForSingleObject(System.Threading.WaitHandle waitObject, System.Threading.WaitOrTimerCallback callBack, object state, System.TimeSpan timeout, bool executeOnlyOnce) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static System.Threading.RegisteredWaitHandle UnsafeRegisterWaitForSingleObject(System.Threading.WaitHandle waitObject, System.Threading.WaitOrTimerCallback callBack, object state, uint millisecondsTimeOutInterval, bool executeOnlyOnce) { throw null; }
+    }
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+    public sealed partial class ThreadPoolBoundHandle : System.IDisposable
+    {
+        internal ThreadPoolBoundHandle() { }
+        public System.Runtime.InteropServices.SafeHandle Handle { get { throw null; } }
+        [System.CLSCompliantAttribute(false)]
+        public unsafe System.Threading.NativeOverlapped* AllocateNativeOverlapped(System.Threading.IOCompletionCallback callback, object state, object pinData) { throw null; }
+        [System.CLSCompliantAttribute(false)]
+        public unsafe System.Threading.NativeOverlapped* AllocateNativeOverlapped(System.Threading.PreAllocatedOverlapped preAllocated) { throw null; }
+        public static System.Threading.ThreadPoolBoundHandle BindHandle(System.Runtime.InteropServices.SafeHandle handle) { throw null; }
+        public void Dispose() { }
+        [System.CLSCompliantAttribute(false)]
+        public unsafe void FreeNativeOverlapped(System.Threading.NativeOverlapped* overlapped) { }
+        [System.CLSCompliantAttribute(false)]
+        public unsafe static object GetNativeOverlappedState(System.Threading.NativeOverlapped* overlapped) { throw null; }
     }
     public enum ThreadPriority
     {
