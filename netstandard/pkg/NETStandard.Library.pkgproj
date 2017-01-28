@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ref\netstandard.csproj" />
-    <ProjectReference Include="..\tools\NETStandard.tools.builds" />
+    <ProjectReference Include="..\tools\NETStandard.Tools.builds" />
     <ProjectReference Include="shims\netstandard\dir.builds" />
     <ProjectReference Include="shims\netfx\dir.builds" />
     <ProjectReference Include="..\src\netstandard.csproj">
