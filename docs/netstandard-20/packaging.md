@@ -146,7 +146,7 @@ Standard 2.0. Logically, this requires the following steps:
 
 We could use NuGet to model this:
 
-1. We'd have to ship updates to all the fine grained packages to incude a type
+1. We'd have to ship updates to all the fine grained packages to include a type
    forwarding facade for .NET Standard 2.0.
 
 2. To ensure these higher versions are used, the package for .NET Standard 2.0
@@ -162,12 +162,12 @@ Standard as well as .NET Core:
 
 * **.NET Core**. While the `System.Runtime` based factoring will continue to be
   used for .NET Core we don't expect .NET Core to ship these assemblies as
-  indiviudal packages either. Instead, we'd like to follow .NET Standard and
+  individual packages either. Instead, we'd like to follow .NET Standard and
   ship a monolithic package that contains most of the .NET Core assembly set.
 
 In order to solve this problem, we'll instead:
 
-* Ship the type fowarding facades directly in the `NETStandard.Library`
+* Ship the type forwarding facades directly in the `NETStandard.Library`
   package.
 * Add a feature to MSBuild that allows resolving conflicts when multiple
   packages provide a given assembly. This is outlined in more detail in the
