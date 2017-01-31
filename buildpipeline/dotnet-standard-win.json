@@ -57,6 +57,25 @@
     },
     {
       "enabled": true,
+      "continueOnError": true,
+      "alwaysRun": false,
+      "displayName": "Update dotnet/versions",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "bfc8bf76-e7ac-4a8c-9a55-a944a9f632fd",
+        "versionSpec": "1.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "filename": "build.cmd",
+        "arguments": "-- /v:diagnostic /t:UpdatePublishedVersions /p:GitHubUser=\"dotnet-build-bot\" /p:GitHubEmail=\"dotnet-build-bot@microsoft.com\"  /p:GitHubAuthToken=\"$(PB_GitHubAuthToken)\" /p:VersionsRepoOwner=\"$(VersionsRepoOwner)\" /p:VersionsRepo=\"versions\" /p:VersionsRepoPath=\"build-info/dotnet/$(PB_GitHubRepositoryName)/master\" /p:ShippedNuGetPackageGlobPath=\"bin/packages/Debug/*.nupkg\"",
+        "modifyEnvironment": "false",
+        "workingFolder": "",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "enabled": true,
       "continueOnError": false,
       "alwaysRun": false,
       "displayName": "NuGet Publisher ",
