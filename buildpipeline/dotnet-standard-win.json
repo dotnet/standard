@@ -163,6 +163,10 @@
     },
     "SourceBranch": {
       "value": "master"
+    },
+    "PB_GitHubAuthToken": {
+      "value": null,
+      "isSecret": true
     }
   },
   "demands": [
