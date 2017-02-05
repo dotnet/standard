@@ -20,7 +20,7 @@ services:
 
 ## How to Engage, Contribute and Provide Feedback
 
-You also encouraged to start a discussion by filing an issue.
+You are also encouraged to start a discussion by filing an issue.
 
 This project has adopted the code of conduct defined by the [Contributor
 Covenant](http://contributor-covenant.org/) to clarify expected behavior in our
