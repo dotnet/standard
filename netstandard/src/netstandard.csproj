@@ -10,7 +10,7 @@
     <ContractProject>..\ref\netstandard.csproj</ContractProject>
     <IsPartialFacadeAssembly>true</IsPartialFacadeAssembly>
     <RunApiCompatForSrc>true</RunApiCompatForSrc>
-    <GenFacadesArgs>$(GenFacadesArgs) -ignoreMissingTypes</GenFacadesArgs>
+    <GenFacadesIgnoreMissingTypes>true</GenFacadesIgnoreMissingTypes>
     <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
     <ApiCompatBaseline>$(MSBuildProjectDirectory)\ApiCompatBaseline.$(TargetGroup).txt</ApiCompatBaseline>
   </PropertyGroup>
