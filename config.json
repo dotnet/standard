@@ -76,7 +76,7 @@
       "description": "MsBuild Bin clash logger options for Windows.",
       "valueType": "passThrough",
       "values": [],
-      "defaultValue": "/l:BinClashLogger,Tools\\net46\\Microsoft.DotNet.Build.Tasks.dll;LogFile=binclash.log"
+      "defaultValue": "/l:BinClashLogger,Tools\\net45\\Microsoft.DotNet.Build.Tasks.dll;LogFile=binclash.log"
     },
     "Project": {
       "description": "Project where the commands are going to be applied.",
@@ -194,7 +194,7 @@
     "msbuild": {
       "osSpecific": {
         "windows": {
-          "defaultParameters": "/nologo /v:minimal /flp:v=normal /clp:Summary /maxcpucount /nodeReuse:false /l:BinClashLogger,Tools\\net46\\Microsoft.DotNet.Build.Tasks.dll;LogFile=binclash.log",
+          "defaultParameters": "/nologo /v:minimal /flp:v=normal /clp:Summary /maxcpucount /nodeReuse:false /l:BinClashLogger,Tools\\net45\\Microsoft.DotNet.Build.Tasks.dll;LogFile=binclash.log",
           "path": "Tools/msbuild.cmd"
         },
         "unix": {
