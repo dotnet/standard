@@ -38,7 +38,7 @@ echo Installing dotnet cli...
 if NOT exist "%DOTNET_PATH%" mkdir "%DOTNET_PATH%"
 set /p DOTNET_VERSION=< "%~dp0DotnetCLIVersion.txt"
 set DOTNET_ZIP_NAME=dotnet-dev-win-x64.%DOTNET_VERSION%.zip
-set DOTNET_REMOTE_PATH=https://dotnetcli.blob.core.windows.net/dotnet/Sdk/%DOTNET_VERSION%/%DOTNET_ZIP_NAME%
+set DOTNET_REMOTE_PATH=https://dotnetcli.blob.core.windows.net/dotnet/preview/Binaries/%DOTNET_VERSION%/%DOTNET_ZIP_NAME%
 set DOTNET_LOCAL_PATH=%DOTNET_PATH%%DOTNET_ZIP_NAME%
 echo Installing '%DOTNET_REMOTE_PATH%' to '%DOTNET_LOCAL_PATH%' >> "%INIT_TOOLS_LOG%"
 powershell -NoProfile -ExecutionPolicy unrestricted -Command "$retryCount = 0; $success = $false; do { try { (New-Object Net.WebClient).DownloadFile('%DOTNET_REMOTE_PATH%', '%DOTNET_LOCAL_PATH%'); $success = $true; } catch { if ($retryCount -ge 6) { throw; } else { $retryCount++; Start-Sleep -Seconds (5 * $retryCount); } } } while ($success -eq $false); Add-Type -Assembly 'System.IO.Compression.FileSystem' -ErrorVariable AddTypeErrors; if ($AddTypeErrors.Count -eq 0) { [System.IO.Compression.ZipFile]::ExtractToDirectory('%DOTNET_LOCAL_PATH%', '%DOTNET_PATH%') } else { (New-Object -com shell.application).namespace('%DOTNET_PATH%').CopyHere((new-object -com shell.application).namespace('%DOTNET_LOCAL_PATH%').Items(),16) }" >> "%INIT_TOOLS_LOG%"
@@ -68,6 +68,9 @@ if not [%INIT_TOOLS_ERRORLEVEL%]==[0] (
 	echo ERROR: An error occured when trying to initialize the tools. Please check '%INIT_TOOLS_LOG%' for more details.
 	exit /b %INIT_TOOLS_ERRORLEVEL%
 )
+
+echo Copying supplemental overrides from Tools-Override.
+copy %~dp0Tools-Override\* %~dp0Tools
 
 :: Create sempahore file
 echo Done initializing tools.
