@@ -63,3 +63,10 @@ With .NET Standard 2.0 we are using a specialized form of contract assemblies wh
 
 ![](object-example-netstandard.png)
 <BR/>*Figure 7 - Object example with netstandard*
+
+##Use the right assemblies for the job
+Now that we have looked at different types of assemblies and how they work we should spend a little time talking about when to use which type of assembly. In general, when building your projects, you should stick to the assemblies in the design time assembly set for the platform or platforms that you want your library or application to run on. Doing that will give you a much greater chance of your code to continue to work in the future as that is the public API contract that the platform providers are giving you and claim they will support in future versions. If you take a dependency directly on the implementation assemblies, there is no guarantee that it will work in the future.
+
+For example in .NET Core the core assembly in the implementation is System.Private.CoreLib and it has **Private** in its name for a reason which is that is an implementation detail that may change in the future, instead folks should use System.Runtime which is the design time reference assembly identity that we guarantee will remain compatible. So if you end up taking a dependency on System.Private.CoreLib in your application you are at risk that your library or application may not work in a future version and you are also binding yourself to one concrete platform, which is .NET Core in this case, as opposed to having a library that might run on multiple .NET Platforms if you targeted something like the references in .NET Standard.
+
+Beyond just compiling against the correct set of assemblies you should also be cautious about which assembly identities you persist in serialization blobs or at runtime for reflection purposes. If you depend on the type/assembly identities in the set of design time assemblies, you will more likely be able to reuse the reflection code or serialized data on other .NET Platforms, including future versions of the one you are running on.
