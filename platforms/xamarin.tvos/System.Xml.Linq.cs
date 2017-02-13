@@ -6,18 +6,18 @@ namespace System.Xml.Linq
 {
     public static partial class Extensions
     {
-        public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> Ancestors<T>(this System.Collections.Generic.IEnumerable<T> source) where T : System.Xml.Linq.XNode { throw null; }
-        public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> Ancestors<T>(this System.Collections.Generic.IEnumerable<T> source, System.Xml.Linq.XName name) where T : System.Xml.Linq.XNode { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> AncestorsAndSelf(this System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> source) { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> AncestorsAndSelf(this System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> source, System.Xml.Linq.XName name) { throw null; }
+        public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> Ancestors<T>(this System.Collections.Generic.IEnumerable<T> source) where T : System.Xml.Linq.XNode { throw null; }
+        public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> Ancestors<T>(this System.Collections.Generic.IEnumerable<T> source, System.Xml.Linq.XName name) where T : System.Xml.Linq.XNode { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XAttribute> Attributes(this System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> source) { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XAttribute> Attributes(this System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> source, System.Xml.Linq.XName name) { throw null; }
-        public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XNode> DescendantNodes<T>(this System.Collections.Generic.IEnumerable<T> source) where T : System.Xml.Linq.XContainer { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XNode> DescendantNodesAndSelf(this System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> source) { throw null; }
-        public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> Descendants<T>(this System.Collections.Generic.IEnumerable<T> source) where T : System.Xml.Linq.XContainer { throw null; }
-        public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> Descendants<T>(this System.Collections.Generic.IEnumerable<T> source, System.Xml.Linq.XName name) where T : System.Xml.Linq.XContainer { throw null; }
+        public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XNode> DescendantNodes<T>(this System.Collections.Generic.IEnumerable<T> source) where T : System.Xml.Linq.XContainer { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> DescendantsAndSelf(this System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> source) { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> DescendantsAndSelf(this System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> source, System.Xml.Linq.XName name) { throw null; }
+        public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> Descendants<T>(this System.Collections.Generic.IEnumerable<T> source) where T : System.Xml.Linq.XContainer { throw null; }
+        public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> Descendants<T>(this System.Collections.Generic.IEnumerable<T> source, System.Xml.Linq.XName name) where T : System.Xml.Linq.XContainer { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> Elements<T>(this System.Collections.Generic.IEnumerable<T> source) where T : System.Xml.Linq.XContainer { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> Elements<T>(this System.Collections.Generic.IEnumerable<T> source, System.Xml.Linq.XName name) where T : System.Xml.Linq.XContainer { throw null; }
         public static System.Collections.Generic.IEnumerable<T> InDocumentOrder<T>(this System.Collections.Generic.IEnumerable<T> source) where T : System.Xml.Linq.XNode { throw null; }
@@ -76,9 +76,9 @@ namespace System.Xml.Linq
         [System.CLSCompliantAttribute(false)]
         public static explicit operator System.Nullable<bool> (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<System.DateTime> (System.Xml.Linq.XAttribute attribute) { throw null; }
-        [System.CLSCompliantAttribute(false)]
         public static explicit operator System.Nullable<System.DateTimeOffset> (System.Xml.Linq.XAttribute attribute) { throw null; }
+        [System.CLSCompliantAttribute(false)]
+        public static explicit operator System.Nullable<System.DateTime> (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static explicit operator System.Nullable<decimal> (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
@@ -251,9 +251,9 @@ namespace System.Xml.Linq
         [System.CLSCompliantAttribute(false)]
         public static explicit operator System.Nullable<bool> (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<System.DateTime> (System.Xml.Linq.XElement element) { throw null; }
-        [System.CLSCompliantAttribute(false)]
         public static explicit operator System.Nullable<System.DateTimeOffset> (System.Xml.Linq.XElement element) { throw null; }
+        [System.CLSCompliantAttribute(false)]
+        public static explicit operator System.Nullable<System.DateTime> (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static explicit operator System.Nullable<decimal> (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
@@ -401,9 +401,9 @@ namespace System.Xml.Linq
         public event System.EventHandler<System.Xml.Linq.XObjectChangeEventArgs> Changing { add { } remove { } }
         public void AddAnnotation(object annotation) { }
         public object Annotation(System.Type type) { throw null; }
-        public T Annotation<T>() where T : class { throw null; }
         public System.Collections.Generic.IEnumerable<object> Annotations(System.Type type) { throw null; }
         public System.Collections.Generic.IEnumerable<T> Annotations<T>() where T : class { throw null; }
+        public T Annotation<T>() where T : class { throw null; }
         public void RemoveAnnotations(System.Type type) { }
         public void RemoveAnnotations<T>() where T : class { }
         bool System.Xml.IXmlLineInfo.HasLineInfo() { throw null; }
