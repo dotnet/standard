@@ -2,6 +2,180 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+namespace AddressBook
+{
+}
+namespace AddressBookUI
+{
+}
+namespace AudioToolbox
+{
+}
+namespace AudioUnit
+{
+}
+namespace AVFoundation
+{
+}
+namespace AVKit
+{
+}
+namespace CallKit
+{
+}
+namespace CloudKit
+{
+}
+namespace Contacts
+{
+}
+namespace ContactsUI
+{
+}
+namespace CoreAnimation
+{
+}
+namespace CoreBluetooth
+{
+}
+namespace CoreData
+{
+}
+namespace CoreFoundation
+{
+}
+namespace CoreGraphics
+{
+}
+namespace CoreImage
+{
+}
+namespace CoreLocation
+{
+}
+namespace CoreMedia
+{
+}
+namespace CoreMidi
+{
+}
+namespace CoreServices
+{
+}
+namespace CoreSpotlight
+{
+}
+namespace CoreText
+{
+}
+namespace EventKitUI
+{
+}
+namespace ExternalAccessory
+{
+}
+namespace Foundation
+{
+}
+namespace GameKit
+{
+}
+namespace GameplayKit
+{
+}
+namespace GLKit
+{
+}
+namespace HealthKit
+{
+}
+namespace HomeKit
+{
+}
+namespace iAd
+{
+}
+namespace Intents
+{
+}
+namespace IntentsUI
+{
+}
+namespace JavaScriptCore
+{
+}
+namespace MapKit
+{
+}
+namespace MediaPlayer
+{
+}
+namespace Messages
+{
+}
+namespace MessageUI
+{
+}
+namespace Metal
+{
+}
+namespace MetalKit
+{
+}
+namespace ModelIO
+{
+}
+namespace MultipeerConnectivity
+{
+}
+namespace NetworkExtension
+{
+}
+namespace NotificationCenter
+{
+}
+namespace ObjCRuntime
+{
+}
+namespace OpenGLES
+{
+}
+namespace PassKit
+{
+}
+namespace Photos
+{
+}
+namespace PhotosUI
+{
+}
+namespace PushKit
+{
+}
+namespace QuickLook
+{
+}
+namespace ReplayKit
+{
+}
+namespace SafariServices
+{
+}
+namespace SceneKit
+{
+}
+namespace Security
+{
+}
+namespace Speech
+{
+}
+namespace SpriteKit
+{
+}
+namespace StoreKit
+{
+}
 namespace System.Drawing
 {
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -194,4 +368,28 @@ namespace System.Drawing
         public System.Drawing.Size ToSize() { throw null; }
         public override string ToString() { throw null; }
     }
+}
+namespace UIKit
+{
+}
+namespace UserNotifications
+{
+}
+namespace UserNotificationsUI
+{
+}
+namespace VideoSubscriberAccount
+{
+}
+namespace VideoToolbox
+{
+}
+namespace WatchConnectivity
+{
+}
+namespace WatchKit
+{
+}
+namespace WebKit
+{
 }
