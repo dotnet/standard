@@ -2,6 +2,117 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+namespace AudioToolbox
+{
+}
+namespace AudioUnit
+{
+}
+namespace AVFoundation
+{
+}
+namespace AVKit
+{
+}
+namespace CloudKit
+{
+}
+namespace CoreAnimation
+{
+}
+namespace CoreBluetooth
+{
+}
+namespace CoreData
+{
+}
+namespace CoreFoundation
+{
+}
+namespace CoreGraphics
+{
+}
+namespace CoreImage
+{
+}
+namespace CoreLocation
+{
+}
+namespace CoreMedia
+{
+}
+namespace CoreServices
+{
+}
+namespace CoreText
+{
+}
+namespace ExternalAccessory
+{
+}
+namespace Foundation
+{
+}
+namespace GameKit
+{
+}
+namespace GameplayKit
+{
+}
+namespace GLKit
+{
+}
+namespace HomeKit
+{
+}
+namespace JavaScriptCore
+{
+}
+namespace MapKit
+{
+}
+namespace MediaPlayer
+{
+}
+namespace Metal
+{
+}
+namespace MetalKit
+{
+}
+namespace ModelIO
+{
+}
+namespace MultipeerConnectivity
+{
+}
+namespace ObjCRuntime
+{
+}
+namespace OpenGLES
+{
+}
+namespace Photos
+{
+}
+namespace PhotosUI
+{
+}
+namespace ReplayKit
+{
+}
+namespace SceneKit
+{
+}
+namespace Security
+{
+}
+namespace SpriteKit
+{
+}
+namespace StoreKit
+{
+}
 namespace System.Drawing
 {
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -194,4 +305,19 @@ namespace System.Drawing
         public System.Drawing.Size ToSize() { throw null; }
         public override string ToString() { throw null; }
     }
+}
+namespace TVMLKit
+{
+}
+namespace TVServices
+{
+}
+namespace UIKit
+{
+}
+namespace UserNotifications
+{
+}
+namespace VideoSubscriberAccount
+{
 }

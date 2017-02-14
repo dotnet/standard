@@ -2,6 +2,21 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+namespace OpenTK
+{
+}
+namespace OpenTK.Audio
+{
+}
+namespace OpenTK.Graphics
+{
+}
+namespace OpenTK.Platform
+{
+}
+namespace OpenTK.Platform.iPhoneOS
+{
+}
 namespace System.Drawing
 {
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]

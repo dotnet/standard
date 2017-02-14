@@ -6,12 +6,12 @@ namespace System
 {
     public partial class Lazy<T, TMetadata> : System.Lazy<T>
     {
-        public Lazy(TMetadata metadata) { }
-        public Lazy(TMetadata metadata, bool isThreadSafe) { }
-        public Lazy(TMetadata metadata, System.Threading.LazyThreadSafetyMode mode) { }
         public Lazy(System.Func<T> valueFactory, TMetadata metadata) { }
         public Lazy(System.Func<T> valueFactory, TMetadata metadata, bool isThreadSafe) { }
         public Lazy(System.Func<T> valueFactory, TMetadata metadata, System.Threading.LazyThreadSafetyMode mode) { }
+        public Lazy(TMetadata metadata) { }
+        public Lazy(TMetadata metadata, bool isThreadSafe) { }
+        public Lazy(TMetadata metadata, System.Threading.LazyThreadSafetyMode mode) { }
         public TMetadata Metadata { get { throw null; } }
     }
 }
@@ -19,11 +19,11 @@ namespace System.ComponentModel.Composition
 {
     public static partial class AttributedModelServices
     {
-        public static System.ComponentModel.Composition.Primitives.ComposablePart AddExportedValue<T>(this System.ComponentModel.Composition.Hosting.CompositionBatch batch, T exportedValue) { throw null; }
         public static System.ComponentModel.Composition.Primitives.ComposablePart AddExportedValue<T>(this System.ComponentModel.Composition.Hosting.CompositionBatch batch, string contractName, T exportedValue) { throw null; }
+        public static System.ComponentModel.Composition.Primitives.ComposablePart AddExportedValue<T>(this System.ComponentModel.Composition.Hosting.CompositionBatch batch, T exportedValue) { throw null; }
         public static System.ComponentModel.Composition.Primitives.ComposablePart AddPart(this System.ComponentModel.Composition.Hosting.CompositionBatch batch, object attributedPart) { throw null; }
-        public static void ComposeExportedValue<T>(this System.ComponentModel.Composition.Hosting.CompositionContainer container, T exportedValue) { }
         public static void ComposeExportedValue<T>(this System.ComponentModel.Composition.Hosting.CompositionContainer container, string contractName, T exportedValue) { }
+        public static void ComposeExportedValue<T>(this System.ComponentModel.Composition.Hosting.CompositionContainer container, T exportedValue) { }
         public static void ComposeParts(this System.ComponentModel.Composition.Hosting.CompositionContainer container, params object[] attributedParts) { }
         public static System.ComponentModel.Composition.Primitives.ComposablePart CreatePart(System.ComponentModel.Composition.Primitives.ComposablePartDefinition partDefinition, object attributedPart) { throw null; }
         public static System.ComponentModel.Composition.Primitives.ComposablePart CreatePart(object attributedPart) { throw null; }
@@ -283,8 +283,8 @@ namespace System.ComponentModel.Composition.Hosting
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
         public void SetValue(object key, object value) { }
-        public bool TryGetValue<T>(object key, out T value) { value = default(T); throw null; }
         public bool TryGetValue<T>(object key, bool localAtomicCompositionOnly, out T value) { value = default(T); throw null; }
+        public bool TryGetValue<T>(object key, out T value) { value = default(T); throw null; }
     }
     public partial class CatalogExportProvider : System.ComponentModel.Composition.Hosting.ExportProvider, System.IDisposable
     {
@@ -353,10 +353,10 @@ namespace System.ComponentModel.Composition.Hosting
         protected virtual void Dispose(bool disposing) { }
         protected override System.Collections.Generic.IEnumerable<System.ComponentModel.Composition.Primitives.Export> GetExportsCore(System.ComponentModel.Composition.Primitives.ImportDefinition definition, System.ComponentModel.Composition.Hosting.AtomicComposition atomicComposition) { throw null; }
         public void ReleaseExport(System.ComponentModel.Composition.Primitives.Export export) { }
-        public void ReleaseExport<T>(System.Lazy<T> export) { }
         public void ReleaseExports(System.Collections.Generic.IEnumerable<System.ComponentModel.Composition.Primitives.Export> exports) { }
         public void ReleaseExports<T>(System.Collections.Generic.IEnumerable<System.Lazy<T>> exports) { }
         public void ReleaseExports<T, TMetadataView>(System.Collections.Generic.IEnumerable<System.Lazy<T, TMetadataView>> exports) { }
+        public void ReleaseExport<T>(System.Lazy<T> export) { }
         public void SatisfyImportsOnce(System.ComponentModel.Composition.Primitives.ComposablePart part) { }
     }
     [System.FlagsAttribute]
@@ -419,24 +419,24 @@ namespace System.ComponentModel.Composition.Hosting
         protected ExportProvider() { }
         public event System.EventHandler<System.ComponentModel.Composition.Hosting.ExportsChangeEventArgs> ExportsChanged { add { } remove { } }
         public event System.EventHandler<System.ComponentModel.Composition.Hosting.ExportsChangeEventArgs> ExportsChanging { add { } remove { } }
-        public System.Lazy<T> GetExport<T>() { throw null; }
-        public System.Lazy<T> GetExport<T>(string contractName) { throw null; }
-        public System.Lazy<T, TMetadataView> GetExport<T, TMetadataView>() { throw null; }
-        public System.Lazy<T, TMetadataView> GetExport<T, TMetadataView>(string contractName) { throw null; }
-        public T GetExportedValue<T>() { throw null; }
-        public T GetExportedValue<T>(string contractName) { throw null; }
         public T GetExportedValueOrDefault<T>() { throw null; }
         public T GetExportedValueOrDefault<T>(string contractName) { throw null; }
         public System.Collections.Generic.IEnumerable<T> GetExportedValues<T>() { throw null; }
         public System.Collections.Generic.IEnumerable<T> GetExportedValues<T>(string contractName) { throw null; }
+        public T GetExportedValue<T>() { throw null; }
+        public T GetExportedValue<T>(string contractName) { throw null; }
         public System.Collections.Generic.IEnumerable<System.ComponentModel.Composition.Primitives.Export> GetExports(System.ComponentModel.Composition.Primitives.ImportDefinition definition) { throw null; }
         public System.Collections.Generic.IEnumerable<System.ComponentModel.Composition.Primitives.Export> GetExports(System.ComponentModel.Composition.Primitives.ImportDefinition definition, System.ComponentModel.Composition.Hosting.AtomicComposition atomicComposition) { throw null; }
         public System.Collections.Generic.IEnumerable<System.Lazy<object, object>> GetExports(System.Type type, System.Type metadataViewType, string contractName) { throw null; }
+        protected abstract System.Collections.Generic.IEnumerable<System.ComponentModel.Composition.Primitives.Export> GetExportsCore(System.ComponentModel.Composition.Primitives.ImportDefinition definition, System.ComponentModel.Composition.Hosting.AtomicComposition atomicComposition);
         public System.Collections.Generic.IEnumerable<System.Lazy<T>> GetExports<T>() { throw null; }
         public System.Collections.Generic.IEnumerable<System.Lazy<T>> GetExports<T>(string contractName) { throw null; }
         public System.Collections.Generic.IEnumerable<System.Lazy<T, TMetadataView>> GetExports<T, TMetadataView>() { throw null; }
         public System.Collections.Generic.IEnumerable<System.Lazy<T, TMetadataView>> GetExports<T, TMetadataView>(string contractName) { throw null; }
-        protected abstract System.Collections.Generic.IEnumerable<System.ComponentModel.Composition.Primitives.Export> GetExportsCore(System.ComponentModel.Composition.Primitives.ImportDefinition definition, System.ComponentModel.Composition.Hosting.AtomicComposition atomicComposition);
+        public System.Lazy<T> GetExport<T>() { throw null; }
+        public System.Lazy<T> GetExport<T>(string contractName) { throw null; }
+        public System.Lazy<T, TMetadataView> GetExport<T, TMetadataView>() { throw null; }
+        public System.Lazy<T, TMetadataView> GetExport<T, TMetadataView>(string contractName) { throw null; }
         protected virtual void OnExportsChanged(System.ComponentModel.Composition.Hosting.ExportsChangeEventArgs e) { }
         protected virtual void OnExportsChanging(System.ComponentModel.Composition.Hosting.ExportsChangeEventArgs e) { }
         public bool TryGetExports(System.ComponentModel.Composition.Primitives.ImportDefinition definition, System.ComponentModel.Composition.Hosting.AtomicComposition atomicComposition, out System.Collections.Generic.IEnumerable<System.ComponentModel.Composition.Primitives.Export> exports) { exports = default(System.Collections.Generic.IEnumerable<System.ComponentModel.Composition.Primitives.Export>); throw null; }
@@ -484,8 +484,8 @@ namespace System.ComponentModel.Composition.Hosting
     }
     public static partial class ScopingExtensions
     {
-        public static bool ContainsPartMetadata<T>(this System.ComponentModel.Composition.Primitives.ComposablePartDefinition part, string key, T value) { throw null; }
         public static bool ContainsPartMetadataWithKey(this System.ComponentModel.Composition.Primitives.ComposablePartDefinition part, string key) { throw null; }
+        public static bool ContainsPartMetadata<T>(this System.ComponentModel.Composition.Primitives.ComposablePartDefinition part, string key, T value) { throw null; }
         public static bool Exports(this System.ComponentModel.Composition.Primitives.ComposablePartDefinition part, string contractName) { throw null; }
         public static System.ComponentModel.Composition.Hosting.FilteredCatalog Filter(this System.ComponentModel.Composition.Primitives.ComposablePartCatalog catalog, System.Func<System.ComponentModel.Composition.Primitives.ComposablePartDefinition, bool> filter) { throw null; }
         public static bool Imports(this System.ComponentModel.Composition.Primitives.ComposablePartDefinition part, string contractName) { throw null; }

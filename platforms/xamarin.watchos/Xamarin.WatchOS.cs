@@ -2,6 +2,63 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+namespace AVFoundation
+{
+}
+namespace ClockKit
+{
+}
+namespace CloudKit
+{
+}
+namespace Contacts
+{
+}
+namespace CoreData
+{
+}
+namespace CoreFoundation
+{
+}
+namespace CoreGraphics
+{
+}
+namespace CoreLocation
+{
+}
+namespace CoreText
+{
+}
+namespace Foundation
+{
+}
+namespace GameKit
+{
+}
+namespace HealthKit
+{
+}
+namespace HomeKit
+{
+}
+namespace MapKit
+{
+}
+namespace ObjCRuntime
+{
+}
+namespace PassKit
+{
+}
+namespace SceneKit
+{
+}
+namespace Security
+{
+}
+namespace SpriteKit
+{
+}
 namespace System.Drawing
 {
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -542,4 +599,16 @@ namespace System.Drawing
         public System.Drawing.Size ToSize() { throw null; }
         public override string ToString() { throw null; }
     }
+}
+namespace UIKit
+{
+}
+namespace UserNotifications
+{
+}
+namespace WatchConnectivity
+{
+}
+namespace WatchKit
+{
 }

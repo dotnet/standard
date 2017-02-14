@@ -2,6 +2,144 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+namespace AppKit
+{
+}
+namespace AudioToolbox
+{
+}
+namespace AudioUnit
+{
+}
+namespace AVFoundation
+{
+}
+namespace CFNetwork
+{
+}
+namespace CloudKit
+{
+}
+namespace Contacts
+{
+}
+namespace ContactsUI
+{
+}
+namespace CoreAnimation
+{
+}
+namespace CoreBluetooth
+{
+}
+namespace CoreData
+{
+}
+namespace CoreFoundation
+{
+}
+namespace CoreGraphics
+{
+}
+namespace CoreImage
+{
+}
+namespace CoreLocation
+{
+}
+namespace CoreMedia
+{
+}
+namespace CoreMidi
+{
+}
+namespace CoreServices
+{
+}
+namespace CoreText
+{
+}
+namespace CoreWlan
+{
+}
+namespace FinderSync
+{
+}
+namespace Foundation
+{
+}
+namespace GameKit
+{
+}
+namespace GameplayKit
+{
+}
+namespace GLKit
+{
+}
+namespace ImageKit
+{
+}
+namespace Intents
+{
+}
+namespace JavaScriptCore
+{
+}
+namespace MapKit
+{
+}
+namespace Metal
+{
+}
+namespace MetalKit
+{
+}
+namespace ModelIO
+{
+}
+namespace MultipeerConnectivity
+{
+}
+namespace NetworkExtension
+{
+}
+namespace NotificationCenter
+{
+}
+namespace ObjCRuntime
+{
+}
+namespace PdfKit
+{
+}
+namespace Photos
+{
+}
+namespace QTKit
+{
+}
+namespace QuickLookUI
+{
+}
+namespace SafariServices
+{
+}
+namespace SceneKit
+{
+}
+namespace ScriptingBridge
+{
+}
+namespace Security
+{
+}
+namespace SpriteKit
+{
+}
+namespace StoreKit
+{
+}
 namespace System.Drawing
 {
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -194,4 +332,13 @@ namespace System.Drawing
         public System.Drawing.Size ToSize() { throw null; }
         public override string ToString() { throw null; }
     }
+}
+namespace System.Net.Http
+{
+}
+namespace VideoToolbox
+{
+}
+namespace WebKit
+{
 }

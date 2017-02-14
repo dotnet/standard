@@ -2,6 +2,456 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+namespace Android
+{
+}
+namespace Android.AccessibilityServices
+{
+}
+namespace Android.Accounts
+{
+}
+namespace Android.Animation
+{
+}
+namespace Android.Annotation
+{
+}
+namespace Android.App
+{
+}
+namespace Android.App.Backup
+{
+}
+namespace Android.App.Job
+{
+}
+namespace Android.Bluetooth
+{
+}
+namespace Android.Bluetooth.LE
+{
+}
+namespace Android.Content
+{
+}
+namespace Android.Content.PM
+{
+}
+namespace Android.Content.Res
+{
+}
+namespace Android.Database
+{
+}
+namespace Android.Database.Sqlite
+{
+}
+namespace Android.Gestures
+{
+}
+namespace Android.Graphics
+{
+}
+namespace Android.Graphics.Drawables
+{
+}
+namespace Android.Graphics.Drawables.Shapes
+{
+}
+namespace Android.Hardware
+{
+}
+namespace Android.Hardware.Camera2
+{
+}
+namespace Android.Hardware.Location
+{
+}
+namespace Android.Icu.Text
+{
+}
+namespace Android.Icu.Util
+{
+}
+namespace Android.InputMethodServices
+{
+}
+namespace Android.Locations
+{
+}
+namespace Android.Media
+{
+}
+namespace Android.Media.Effect
+{
+}
+namespace Android.Media.Midi
+{
+}
+namespace Android.Media.TV
+{
+}
+namespace Android.Net
+{
+}
+namespace Android.Net.Sip
+{
+}
+namespace Android.Nfc.CardEmulators
+{
+}
+namespace Android.Nfc.Tech
+{
+}
+namespace Android.Opengl
+{
+}
+namespace Android.OS
+{
+}
+namespace Android.OS.Storage
+{
+}
+namespace Android.Preferences
+{
+}
+namespace Android.Print
+{
+}
+namespace Android.PrintServices
+{
+}
+namespace Android.Provider
+{
+}
+namespace Android.Renderscripts
+{
+}
+namespace Android.Runtime
+{
+}
+namespace Android.Sax
+{
+}
+namespace Android.Security
+{
+}
+namespace Android.Security.Keystore
+{
+}
+namespace Android.Service.Carrier
+{
+}
+namespace Android.Service.Chooser
+{
+}
+namespace Android.Service.Media
+{
+}
+namespace Android.Service.Notification
+{
+}
+namespace Android.Service.Restrictions
+{
+}
+namespace Android.Service.Textservice
+{
+}
+namespace Android.Service.Voice
+{
+}
+namespace Android.Service.VR
+{
+}
+namespace Android.Service.Wallpaper
+{
+}
+namespace Android.Speech
+{
+}
+namespace Android.Speech.Tts
+{
+}
+namespace Android.Telecom
+{
+}
+namespace Android.Telephony
+{
+}
+namespace Android.Test
+{
+}
+namespace Android.Test.Suitebuilder.Annotation
+{
+}
+namespace Android.Text
+{
+}
+namespace Android.Text.Method
+{
+}
+namespace Android.Text.Style
+{
+}
+namespace Android.Transitions
+{
+}
+namespace Android.Util
+{
+}
+namespace Android.Views
+{
+}
+namespace Android.Views.Accessibility
+{
+}
+namespace Android.Views.Animations
+{
+}
+namespace Android.Views.InputMethods
+{
+}
+namespace Android.Webkit
+{
+}
+namespace Android.Widget
+{
+}
+namespace Dalvik.Annotation
+{
+}
+namespace Java.Beans
+{
+}
+namespace Java.Interop
+{
+}
+namespace Java.IO
+{
+}
+namespace Java.Lang
+{
+}
+namespace Java.Lang.Annotation
+{
+}
+namespace Java.Lang.Ref
+{
+}
+namespace Java.Lang.Reflect
+{
+}
+namespace Java.Net
+{
+}
+namespace Java.Nio
+{
+}
+namespace Java.Nio.Channels
+{
+}
+namespace Java.Nio.Channels.Spi
+{
+}
+namespace Java.Nio.Charset
+{
+}
+namespace Java.Nio.Charset.Spi
+{
+}
+namespace Java.Security
+{
+}
+namespace Java.Security.Acl
+{
+}
+namespace Java.Security.Cert
+{
+}
+namespace Java.Security.Interfaces
+{
+}
+namespace Java.Security.Spec
+{
+}
+namespace Java.Sql
+{
+}
+namespace Java.Text
+{
+}
+namespace Java.Util
+{
+}
+namespace Java.Util.Concurrent
+{
+}
+namespace Java.Util.Concurrent.Atomic
+{
+}
+namespace Java.Util.Concurrent.Locks
+{
+}
+namespace Java.Util.Functions
+{
+}
+namespace Java.Util.Jar
+{
+}
+namespace Java.Util.Logging
+{
+}
+namespace Java.Util.Prefs
+{
+}
+namespace Java.Util.Regex
+{
+}
+namespace Java.Util.Streams
+{
+}
+namespace Java.Util.Zip
+{
+}
+namespace Javax.Crypto
+{
+}
+namespace Javax.Crypto.Interfaces
+{
+}
+namespace Javax.Microedition.Khronos.Egl
+{
+}
+namespace Javax.Microedition.Khronos.Opengles
+{
+}
+namespace Javax.Net
+{
+}
+namespace Javax.Net.Ssl
+{
+}
+namespace Javax.Security.Auth
+{
+}
+namespace Javax.Security.Auth.Callback
+{
+}
+namespace Javax.Security.Cert
+{
+}
+namespace Javax.Sql
+{
+}
+namespace Javax.Xml.Datatype
+{
+}
+namespace Javax.Xml.Namespace
+{
+}
+namespace Javax.Xml.Parsers
+{
+}
+namespace Javax.Xml.Transform
+{
+}
+namespace Javax.Xml.Transform.Dom
+{
+}
+namespace Javax.Xml.Transform.Sax
+{
+}
+namespace Javax.Xml.Validation
+{
+}
+namespace Javax.Xml.Xpath
+{
+}
+namespace Org.Apache.Commons.Logging
+{
+}
+namespace Org.Apache.Http
+{
+}
+namespace Org.Apache.Http.Authentication
+{
+}
+namespace Org.Apache.Http.Client
+{
+}
+namespace Org.Apache.Http.Client.Methods
+{
+}
+namespace Org.Apache.Http.Conn
+{
+}
+namespace Org.Apache.Http.Conn.Params
+{
+}
+namespace Org.Apache.Http.Conn.Routing
+{
+}
+namespace Org.Apache.Http.Conn.Schemes
+{
+}
+namespace Org.Apache.Http.Conn.Ssl
+{
+}
+namespace Org.Apache.Http.Cookies
+{
+}
+namespace Org.Apache.Http.Entity
+{
+}
+namespace Org.Apache.Http.Impl
+{
+}
+namespace Org.Apache.Http.Impl.Auth
+{
+}
+namespace Org.Apache.Http.Impl.Client
+{
+}
+namespace Org.Apache.Http.Impl.Conn
+{
+}
+namespace Org.Apache.Http.Impl.Conn.Tsccm
+{
+}
+namespace Org.Apache.Http.Impl.Cookie
+{
+}
+namespace Org.Apache.Http.Impl.IO
+{
+}
+namespace Org.Apache.Http.IO
+{
+}
+namespace Org.Apache.Http.Message
+{
+}
+namespace Org.Apache.Http.Params
+{
+}
+namespace Org.Apache.Http.Protocol
+{
+}
+namespace Org.W3c.Dom
+{
+}
+namespace Org.W3c.Dom.LS
+{
+}
+namespace Org.Xml.Sax
+{
+}
+namespace Org.Xml.Sax.Ext
+{
+}
+namespace Org.XmlPull.V1
+{
+}
 namespace System.Drawing
 {
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -629,4 +1079,7 @@ namespace System.Drawing
         public static System.Drawing.Color WindowFrame { get { throw null; } }
         public static System.Drawing.Color WindowText { get { throw null; } }
     }
+}
+namespace Xamarin.Android.Net
+{
 }

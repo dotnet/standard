@@ -79,56 +79,6 @@ namespace Mono.Security.Interface
     [System.CLSCompliantAttribute(false)]
     public enum CipherSuiteCode : ushort
     {
-        TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA = (ushort)25,
-        TLS_DH_anon_EXPORT_WITH_RC4_40_MD5 = (ushort)23,
-        TLS_DH_anon_WITH_3DES_EDE_CBC_SHA = (ushort)27,
-        TLS_DH_anon_WITH_AES_128_CBC_SHA = (ushort)52,
-        TLS_DH_anon_WITH_AES_128_CBC_SHA256 = (ushort)108,
-        TLS_DH_anon_WITH_AES_128_GCM_SHA256 = (ushort)166,
-        TLS_DH_anon_WITH_AES_256_CBC_SHA = (ushort)58,
-        TLS_DH_anon_WITH_AES_256_CBC_SHA256 = (ushort)109,
-        TLS_DH_anon_WITH_AES_256_GCM_SHA384 = (ushort)167,
-        TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA = (ushort)70,
-        TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)191,
-        TLS_DH_anon_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49284,
-        TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA = (ushort)137,
-        TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA256 = (ushort)197,
-        TLS_DH_anon_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49285,
-        TLS_DH_anon_WITH_DES_CBC_SHA = (ushort)26,
-        TLS_DH_anon_WITH_RC4_128_MD5 = (ushort)24,
-        TLS_DH_anon_WITH_SEED_CBC_SHA = (ushort)155,
-        TLS_DH_DSS_EXPORT_WITH_DES40_CBC_SHA = (ushort)11,
-        TLS_DH_DSS_WITH_3DES_EDE_CBC_SHA = (ushort)13,
-        TLS_DH_DSS_WITH_AES_128_CBC_SHA = (ushort)48,
-        TLS_DH_DSS_WITH_AES_128_CBC_SHA256 = (ushort)62,
-        TLS_DH_DSS_WITH_AES_128_GCM_SHA256 = (ushort)164,
-        TLS_DH_DSS_WITH_AES_256_CBC_SHA = (ushort)54,
-        TLS_DH_DSS_WITH_AES_256_CBC_SHA256 = (ushort)104,
-        TLS_DH_DSS_WITH_AES_256_GCM_SHA384 = (ushort)165,
-        TLS_DH_DSS_WITH_CAMELLIA_128_CBC_SHA = (ushort)66,
-        TLS_DH_DSS_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)187,
-        TLS_DH_DSS_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49282,
-        TLS_DH_DSS_WITH_CAMELLIA_256_CBC_SHA = (ushort)133,
-        TLS_DH_DSS_WITH_CAMELLIA_256_CBC_SHA256 = (ushort)193,
-        TLS_DH_DSS_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49283,
-        TLS_DH_DSS_WITH_DES_CBC_SHA = (ushort)12,
-        TLS_DH_DSS_WITH_SEED_CBC_SHA = (ushort)151,
-        TLS_DH_RSA_EXPORT_WITH_DES40_CBC_SHA = (ushort)14,
-        TLS_DH_RSA_WITH_3DES_EDE_CBC_SHA = (ushort)16,
-        TLS_DH_RSA_WITH_AES_128_CBC_SHA = (ushort)49,
-        TLS_DH_RSA_WITH_AES_128_CBC_SHA256 = (ushort)63,
-        TLS_DH_RSA_WITH_AES_128_GCM_SHA256 = (ushort)160,
-        TLS_DH_RSA_WITH_AES_256_CBC_SHA = (ushort)55,
-        TLS_DH_RSA_WITH_AES_256_CBC_SHA256 = (ushort)105,
-        TLS_DH_RSA_WITH_AES_256_GCM_SHA384 = (ushort)161,
-        TLS_DH_RSA_WITH_CAMELLIA_128_CBC_SHA = (ushort)67,
-        TLS_DH_RSA_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)188,
-        TLS_DH_RSA_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49278,
-        TLS_DH_RSA_WITH_CAMELLIA_256_CBC_SHA = (ushort)134,
-        TLS_DH_RSA_WITH_CAMELLIA_256_CBC_SHA256 = (ushort)194,
-        TLS_DH_RSA_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49279,
-        TLS_DH_RSA_WITH_DES_CBC_SHA = (ushort)15,
-        TLS_DH_RSA_WITH_SEED_CBC_SHA = (ushort)152,
         TLS_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA = (ushort)17,
         TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA = (ushort)19,
         TLS_DHE_DSS_WITH_AES_128_CBC_SHA = (ushort)50,
@@ -187,37 +137,56 @@ namespace Mono.Security.Interface
         TLS_DHE_RSA_WITH_ESTREAM_SALSA20_SHA1 = (ushort)58398,
         TLS_DHE_RSA_WITH_SALSA20_SHA1 = (ushort)58399,
         TLS_DHE_RSA_WITH_SEED_CBC_SHA = (ushort)154,
-        TLS_ECDH_anon_WITH_3DES_EDE_CBC_SHA = (ushort)49175,
-        TLS_ECDH_anon_WITH_AES_128_CBC_SHA = (ushort)49176,
-        TLS_ECDH_anon_WITH_AES_256_CBC_SHA = (ushort)49177,
-        TLS_ECDH_anon_WITH_NULL_SHA = (ushort)49173,
-        TLS_ECDH_anon_WITH_RC4_128_SHA = (ushort)49174,
-        TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA = (ushort)49155,
-        TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA = (ushort)49156,
-        TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256 = (ushort)49189,
-        TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256 = (ushort)49197,
-        TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA = (ushort)49157,
-        TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384 = (ushort)49190,
-        TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384 = (ushort)49198,
-        TLS_ECDH_ECDSA_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)49268,
-        TLS_ECDH_ECDSA_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49288,
-        TLS_ECDH_ECDSA_WITH_CAMELLIA_256_CBC_SHA384 = (ushort)49269,
-        TLS_ECDH_ECDSA_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49289,
-        TLS_ECDH_ECDSA_WITH_NULL_SHA = (ushort)49153,
-        TLS_ECDH_ECDSA_WITH_RC4_128_SHA = (ushort)49154,
-        TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA = (ushort)49165,
-        TLS_ECDH_RSA_WITH_AES_128_CBC_SHA = (ushort)49166,
-        TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256 = (ushort)49193,
-        TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256 = (ushort)49201,
-        TLS_ECDH_RSA_WITH_AES_256_CBC_SHA = (ushort)49167,
-        TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384 = (ushort)49194,
-        TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384 = (ushort)49202,
-        TLS_ECDH_RSA_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)49272,
-        TLS_ECDH_RSA_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49292,
-        TLS_ECDH_RSA_WITH_CAMELLIA_256_CBC_SHA384 = (ushort)49273,
-        TLS_ECDH_RSA_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49293,
-        TLS_ECDH_RSA_WITH_NULL_SHA = (ushort)49163,
-        TLS_ECDH_RSA_WITH_RC4_128_SHA = (ushort)49164,
+        TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA = (ushort)25,
+        TLS_DH_anon_EXPORT_WITH_RC4_40_MD5 = (ushort)23,
+        TLS_DH_anon_WITH_3DES_EDE_CBC_SHA = (ushort)27,
+        TLS_DH_anon_WITH_AES_128_CBC_SHA = (ushort)52,
+        TLS_DH_anon_WITH_AES_128_CBC_SHA256 = (ushort)108,
+        TLS_DH_anon_WITH_AES_128_GCM_SHA256 = (ushort)166,
+        TLS_DH_anon_WITH_AES_256_CBC_SHA = (ushort)58,
+        TLS_DH_anon_WITH_AES_256_CBC_SHA256 = (ushort)109,
+        TLS_DH_anon_WITH_AES_256_GCM_SHA384 = (ushort)167,
+        TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA = (ushort)70,
+        TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)191,
+        TLS_DH_anon_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49284,
+        TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA = (ushort)137,
+        TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA256 = (ushort)197,
+        TLS_DH_anon_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49285,
+        TLS_DH_anon_WITH_DES_CBC_SHA = (ushort)26,
+        TLS_DH_anon_WITH_RC4_128_MD5 = (ushort)24,
+        TLS_DH_anon_WITH_SEED_CBC_SHA = (ushort)155,
+        TLS_DH_DSS_EXPORT_WITH_DES40_CBC_SHA = (ushort)11,
+        TLS_DH_DSS_WITH_3DES_EDE_CBC_SHA = (ushort)13,
+        TLS_DH_DSS_WITH_AES_128_CBC_SHA = (ushort)48,
+        TLS_DH_DSS_WITH_AES_128_CBC_SHA256 = (ushort)62,
+        TLS_DH_DSS_WITH_AES_128_GCM_SHA256 = (ushort)164,
+        TLS_DH_DSS_WITH_AES_256_CBC_SHA = (ushort)54,
+        TLS_DH_DSS_WITH_AES_256_CBC_SHA256 = (ushort)104,
+        TLS_DH_DSS_WITH_AES_256_GCM_SHA384 = (ushort)165,
+        TLS_DH_DSS_WITH_CAMELLIA_128_CBC_SHA = (ushort)66,
+        TLS_DH_DSS_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)187,
+        TLS_DH_DSS_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49282,
+        TLS_DH_DSS_WITH_CAMELLIA_256_CBC_SHA = (ushort)133,
+        TLS_DH_DSS_WITH_CAMELLIA_256_CBC_SHA256 = (ushort)193,
+        TLS_DH_DSS_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49283,
+        TLS_DH_DSS_WITH_DES_CBC_SHA = (ushort)12,
+        TLS_DH_DSS_WITH_SEED_CBC_SHA = (ushort)151,
+        TLS_DH_RSA_EXPORT_WITH_DES40_CBC_SHA = (ushort)14,
+        TLS_DH_RSA_WITH_3DES_EDE_CBC_SHA = (ushort)16,
+        TLS_DH_RSA_WITH_AES_128_CBC_SHA = (ushort)49,
+        TLS_DH_RSA_WITH_AES_128_CBC_SHA256 = (ushort)63,
+        TLS_DH_RSA_WITH_AES_128_GCM_SHA256 = (ushort)160,
+        TLS_DH_RSA_WITH_AES_256_CBC_SHA = (ushort)55,
+        TLS_DH_RSA_WITH_AES_256_CBC_SHA256 = (ushort)105,
+        TLS_DH_RSA_WITH_AES_256_GCM_SHA384 = (ushort)161,
+        TLS_DH_RSA_WITH_CAMELLIA_128_CBC_SHA = (ushort)67,
+        TLS_DH_RSA_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)188,
+        TLS_DH_RSA_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49278,
+        TLS_DH_RSA_WITH_CAMELLIA_256_CBC_SHA = (ushort)134,
+        TLS_DH_RSA_WITH_CAMELLIA_256_CBC_SHA256 = (ushort)194,
+        TLS_DH_RSA_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49279,
+        TLS_DH_RSA_WITH_DES_CBC_SHA = (ushort)15,
+        TLS_DH_RSA_WITH_SEED_CBC_SHA = (ushort)152,
         TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA = (ushort)49160,
         TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA = (ushort)49161,
         TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 = (ushort)49187,
@@ -263,6 +232,37 @@ namespace Mono.Security.Interface
         TLS_ECDHE_RSA_WITH_NULL_SHA = (ushort)49168,
         TLS_ECDHE_RSA_WITH_RC4_128_SHA = (ushort)49169,
         TLS_ECDHE_RSA_WITH_SALSA20_SHA1 = (ushort)58387,
+        TLS_ECDH_anon_WITH_3DES_EDE_CBC_SHA = (ushort)49175,
+        TLS_ECDH_anon_WITH_AES_128_CBC_SHA = (ushort)49176,
+        TLS_ECDH_anon_WITH_AES_256_CBC_SHA = (ushort)49177,
+        TLS_ECDH_anon_WITH_NULL_SHA = (ushort)49173,
+        TLS_ECDH_anon_WITH_RC4_128_SHA = (ushort)49174,
+        TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA = (ushort)49155,
+        TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA = (ushort)49156,
+        TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256 = (ushort)49189,
+        TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256 = (ushort)49197,
+        TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA = (ushort)49157,
+        TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384 = (ushort)49190,
+        TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384 = (ushort)49198,
+        TLS_ECDH_ECDSA_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)49268,
+        TLS_ECDH_ECDSA_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49288,
+        TLS_ECDH_ECDSA_WITH_CAMELLIA_256_CBC_SHA384 = (ushort)49269,
+        TLS_ECDH_ECDSA_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49289,
+        TLS_ECDH_ECDSA_WITH_NULL_SHA = (ushort)49153,
+        TLS_ECDH_ECDSA_WITH_RC4_128_SHA = (ushort)49154,
+        TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA = (ushort)49165,
+        TLS_ECDH_RSA_WITH_AES_128_CBC_SHA = (ushort)49166,
+        TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256 = (ushort)49193,
+        TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256 = (ushort)49201,
+        TLS_ECDH_RSA_WITH_AES_256_CBC_SHA = (ushort)49167,
+        TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384 = (ushort)49194,
+        TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384 = (ushort)49202,
+        TLS_ECDH_RSA_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)49272,
+        TLS_ECDH_RSA_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49292,
+        TLS_ECDH_RSA_WITH_CAMELLIA_256_CBC_SHA384 = (ushort)49273,
+        TLS_ECDH_RSA_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49293,
+        TLS_ECDH_RSA_WITH_NULL_SHA = (ushort)49163,
+        TLS_ECDH_RSA_WITH_RC4_128_SHA = (ushort)49164,
         TLS_EMPTY_RENEGOTIATION_INFO_SCSV = (ushort)255,
         TLS_FALLBACK_SCSV = (ushort)22016,
         TLS_NULL_WITH_NULL_NULL = (ushort)0,
@@ -479,7 +479,7 @@ namespace Mono.Security.Interface
         public static bool IsInitialized { get { throw null; } }
         public static System.Net.HttpListener CreateHttpListener(System.Security.Cryptography.X509Certificates.X509Certificate certificate, Mono.Security.Interface.MonoTlsProvider provider=null, Mono.Security.Interface.MonoTlsSettings settings=null) { throw null; }
         public static System.Net.HttpWebRequest CreateHttpsRequest(System.Uri requestUri, Mono.Security.Interface.MonoTlsProvider provider, Mono.Security.Interface.MonoTlsSettings settings=null) { throw null; }
-        [System.ObsoleteAttribute]
+        [System.ObsoleteAttribute("Use GetProvider() instead.")]
         public static Mono.Security.Interface.MonoTlsProvider GetDefaultProvider() { throw null; }
         public static Mono.Security.Interface.IMonoSslStream GetMonoSslStream(System.Net.Security.SslStream stream) { throw null; }
         public static Mono.Security.Interface.MonoTlsProvider GetProvider() { throw null; }
@@ -487,7 +487,7 @@ namespace Mono.Security.Interface
         public static void Initialize() { }
         public static void Initialize(string provider) { }
         public static bool IsProviderSupported(string provider) { throw null; }
-        [System.ObsoleteAttribute]
+        [System.ObsoleteAttribute("Use Initialize(string provider) instead.")]
         public static void SetDefaultProvider(string name) { }
     }
     public sealed partial class MonoTlsSettings
@@ -586,8 +586,8 @@ namespace Mono.Security.Protocol.Ntlm
     {
         LM_and_NTLM = 0,
         LM_and_NTLM_and_try_NTLMv2_Session = 1,
-        NTLM_only = 2,
         NTLMv2_only = 3,
+        NTLM_only = 2,
     }
     [System.FlagsAttribute]
     public enum NtlmFlags
@@ -1038,6 +1038,14 @@ namespace System.Collections.Generic
         void SymmetricExceptWith(System.Collections.Generic.IEnumerable<T> other);
         void UnionWith(System.Collections.Generic.IEnumerable<T> other);
     }
+    public sealed partial class LinkedListNode<T>
+    {
+        public LinkedListNode(T value) { }
+        public System.Collections.Generic.LinkedList<T> List { get { throw null; } }
+        public System.Collections.Generic.LinkedListNode<T> Next { get { throw null; } }
+        public System.Collections.Generic.LinkedListNode<T> Previous { get { throw null; } }
+        public T Value { get { throw null; } set { } }
+    }
     public partial class LinkedList<T> : System.Collections.Generic.ICollection<T>, System.Collections.Generic.IEnumerable<T>, System.Collections.Generic.IReadOnlyCollection<T>, System.Collections.ICollection, System.Collections.IEnumerable, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable
     {
         public LinkedList() { }
@@ -1049,14 +1057,14 @@ namespace System.Collections.Generic
         bool System.Collections.Generic.ICollection<T>.IsReadOnly { get { throw null; } }
         bool System.Collections.ICollection.IsSynchronized { get { throw null; } }
         object System.Collections.ICollection.SyncRoot { get { throw null; } }
-        public System.Collections.Generic.LinkedListNode<T> AddAfter(System.Collections.Generic.LinkedListNode<T> node, T value) { throw null; }
         public void AddAfter(System.Collections.Generic.LinkedListNode<T> node, System.Collections.Generic.LinkedListNode<T> newNode) { }
-        public System.Collections.Generic.LinkedListNode<T> AddBefore(System.Collections.Generic.LinkedListNode<T> node, T value) { throw null; }
+        public System.Collections.Generic.LinkedListNode<T> AddAfter(System.Collections.Generic.LinkedListNode<T> node, T value) { throw null; }
         public void AddBefore(System.Collections.Generic.LinkedListNode<T> node, System.Collections.Generic.LinkedListNode<T> newNode) { }
-        public System.Collections.Generic.LinkedListNode<T> AddFirst(T value) { throw null; }
+        public System.Collections.Generic.LinkedListNode<T> AddBefore(System.Collections.Generic.LinkedListNode<T> node, T value) { throw null; }
         public void AddFirst(System.Collections.Generic.LinkedListNode<T> node) { }
-        public System.Collections.Generic.LinkedListNode<T> AddLast(T value) { throw null; }
+        public System.Collections.Generic.LinkedListNode<T> AddFirst(T value) { throw null; }
         public void AddLast(System.Collections.Generic.LinkedListNode<T> node) { }
+        public System.Collections.Generic.LinkedListNode<T> AddLast(T value) { throw null; }
         public void Clear() { }
         public bool Contains(T value) { throw null; }
         public void CopyTo(T[] array, int index) { }
@@ -1065,8 +1073,8 @@ namespace System.Collections.Generic
         public System.Collections.Generic.LinkedList<T>.Enumerator GetEnumerator() { throw null; }
         public virtual void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public virtual void OnDeserialization(object sender) { }
-        public bool Remove(T value) { throw null; }
         public void Remove(System.Collections.Generic.LinkedListNode<T> node) { }
+        public bool Remove(T value) { throw null; }
         public void RemoveFirst() { }
         public void RemoveLast() { }
         void System.Collections.Generic.ICollection<T>.Add(T value) { }
@@ -1084,14 +1092,6 @@ namespace System.Collections.Generic
             void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender) { }
             void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         }
-    }
-    public sealed partial class LinkedListNode<T>
-    {
-        public LinkedListNode(T value) { }
-        public System.Collections.Generic.LinkedList<T> List { get { throw null; } }
-        public System.Collections.Generic.LinkedListNode<T> Next { get { throw null; } }
-        public System.Collections.Generic.LinkedListNode<T> Previous { get { throw null; } }
-        public T Value { get { throw null; } set { } }
     }
     public partial class Queue<T> : System.Collections.Generic.IEnumerable<T>, System.Collections.Generic.IReadOnlyCollection<T>, System.Collections.ICollection, System.Collections.IEnumerable
     {
@@ -3775,8 +3775,8 @@ namespace System.ComponentModel.Design
         public DesignerVerbCollection(System.ComponentModel.Design.DesignerVerb[] value) { }
         public System.ComponentModel.Design.DesignerVerb this[int index] { get { throw null; } set { } }
         public int Add(System.ComponentModel.Design.DesignerVerb value) { throw null; }
-        public void AddRange(System.ComponentModel.Design.DesignerVerb[] value) { }
         public void AddRange(System.ComponentModel.Design.DesignerVerbCollection value) { }
+        public void AddRange(System.ComponentModel.Design.DesignerVerb[] value) { }
         public bool Contains(System.ComponentModel.Design.DesignerVerb value) { throw null; }
         public void CopyTo(System.ComponentModel.Design.DesignerVerb[] array, int index) { }
         public int IndexOf(System.ComponentModel.Design.DesignerVerb value) { throw null; }
@@ -5231,8 +5231,8 @@ namespace System.Diagnostics
         bool System.Collections.IList.IsReadOnly { get { throw null; } }
         object System.Collections.IList.this[int index] { get { throw null; } set { } }
         public int Add(System.Diagnostics.TraceListener listener) { throw null; }
-        public void AddRange(System.Diagnostics.TraceListener[] value) { }
         public void AddRange(System.Diagnostics.TraceListenerCollection value) { }
+        public void AddRange(System.Diagnostics.TraceListener[] value) { }
         public void Clear() { }
         public bool Contains(System.Diagnostics.TraceListener listener) { throw null; }
         public void CopyTo(System.Diagnostics.TraceListener[] listeners, int index) { }
@@ -8886,13 +8886,13 @@ namespace System.Runtime.InteropServices.ComTypes
     [System.FlagsAttribute]
     public enum ADVF
     {
+        ADVFCACHE_FORCEBUILTIN = 16,
+        ADVFCACHE_NOHANDLER = 8,
+        ADVFCACHE_ONSAVE = 32,
         ADVF_DATAONSTOP = 64,
         ADVF_NODATA = 1,
         ADVF_ONLYONCE = 4,
         ADVF_PRIMEFIRST = 2,
-        ADVFCACHE_FORCEBUILTIN = 16,
-        ADVFCACHE_NOHANDLER = 8,
-        ADVFCACHE_ONSAVE = 32,
     }
     public enum DATADIR
     {
@@ -9367,12 +9367,12 @@ namespace System.Security.Cryptography.X509Certificates
     {
         public X509Certificate2Collection() { }
         public X509Certificate2Collection(System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { }
-        public X509Certificate2Collection(System.Security.Cryptography.X509Certificates.X509Certificate2[] certificates) { }
         public X509Certificate2Collection(System.Security.Cryptography.X509Certificates.X509Certificate2Collection certificates) { }
+        public X509Certificate2Collection(System.Security.Cryptography.X509Certificates.X509Certificate2[] certificates) { }
         public new System.Security.Cryptography.X509Certificates.X509Certificate2 this[int index] { get { throw null; } set { } }
         public int Add(System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { throw null; }
-        public void AddRange(System.Security.Cryptography.X509Certificates.X509Certificate2[] certificates) { }
         public void AddRange(System.Security.Cryptography.X509Certificates.X509Certificate2Collection certificates) { }
+        public void AddRange(System.Security.Cryptography.X509Certificates.X509Certificate2[] certificates) { }
         public bool Contains(System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { throw null; }
         public byte[] Export(System.Security.Cryptography.X509Certificates.X509ContentType contentType) { throw null; }
         public byte[] Export(System.Security.Cryptography.X509Certificates.X509ContentType contentType, string password) { throw null; }
@@ -9384,8 +9384,8 @@ namespace System.Security.Cryptography.X509Certificates
         public void Import(string fileName, string password, System.Security.Cryptography.X509Certificates.X509KeyStorageFlags keyStorageFlags) { }
         public void Insert(int index, System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { }
         public void Remove(System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { }
-        public void RemoveRange(System.Security.Cryptography.X509Certificates.X509Certificate2[] certificates) { }
         public void RemoveRange(System.Security.Cryptography.X509Certificates.X509Certificate2Collection certificates) { }
+        public void RemoveRange(System.Security.Cryptography.X509Certificates.X509Certificate2[] certificates) { }
     }
     public sealed partial class X509Certificate2Enumerator : System.Collections.IEnumerator
     {
@@ -9400,12 +9400,12 @@ namespace System.Security.Cryptography.X509Certificates
     public partial class X509CertificateCollection : System.Collections.CollectionBase
     {
         public X509CertificateCollection() { }
-        public X509CertificateCollection(System.Security.Cryptography.X509Certificates.X509Certificate[] value) { }
         public X509CertificateCollection(System.Security.Cryptography.X509Certificates.X509CertificateCollection value) { }
+        public X509CertificateCollection(System.Security.Cryptography.X509Certificates.X509Certificate[] value) { }
         public System.Security.Cryptography.X509Certificates.X509Certificate this[int index] { get { throw null; } set { } }
         public int Add(System.Security.Cryptography.X509Certificates.X509Certificate value) { throw null; }
-        public void AddRange(System.Security.Cryptography.X509Certificates.X509Certificate[] value) { }
         public void AddRange(System.Security.Cryptography.X509Certificates.X509CertificateCollection value) { }
+        public void AddRange(System.Security.Cryptography.X509Certificates.X509Certificate[] value) { }
         public bool Contains(System.Security.Cryptography.X509Certificates.X509Certificate value) { throw null; }
         public void CopyTo(System.Security.Cryptography.X509Certificates.X509Certificate[] array, int index) { }
         public new System.Security.Cryptography.X509Certificates.X509CertificateCollection.X509CertificateEnumerator GetEnumerator() { throw null; }

@@ -383,13 +383,13 @@ namespace System.Data
     public abstract partial class Constraint
     {
         protected Constraint() { }
-        [System.CLSCompliantAttribute(false)]
-        protected virtual System.Data.DataSet _DataSet { get { throw null; } }
         [System.ComponentModel.DefaultValueAttribute("")]
         public virtual string ConstraintName { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public System.Data.PropertyCollection ExtendedProperties { get { throw null; } }
         public abstract System.Data.DataTable Table { get; }
+        [System.CLSCompliantAttribute(false)]
+        protected virtual System.Data.DataSet _DataSet { get { throw null; } }
         protected void CheckStateForProperty() { }
         protected internal void SetDataSet(System.Data.DataSet dataSet) { }
         public override string ToString() { throw null; }
@@ -2322,9 +2322,9 @@ namespace System.Data.Common
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public abstract System.Collections.IEnumerator GetEnumerator();
         public abstract System.Type GetFieldType(int ordinal);
-        public virtual T GetFieldValue<T>(int ordinal) { throw null; }
         public System.Threading.Tasks.Task<T> GetFieldValueAsync<T>(int ordinal) { throw null; }
         public virtual System.Threading.Tasks.Task<T> GetFieldValueAsync<T>(int ordinal, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public virtual T GetFieldValue<T>(int ordinal) { throw null; }
         public abstract float GetFloat(int ordinal);
         public abstract System.Guid GetGuid(int ordinal);
         public abstract short GetInt16(int ordinal);
@@ -3245,8 +3245,8 @@ namespace System.Data.SqlClient
         public override double GetDouble(int i) { throw null; }
         public override System.Collections.IEnumerator GetEnumerator() { throw null; }
         public override System.Type GetFieldType(int i) { throw null; }
-        public override T GetFieldValue<T>(int i) { throw null; }
         public override System.Threading.Tasks.Task<T> GetFieldValueAsync<T>(int i, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public override T GetFieldValue<T>(int i) { throw null; }
         public override float GetFloat(int i) { throw null; }
         public override System.Guid GetGuid(int i) { throw null; }
         public override short GetInt16(int i) { throw null; }

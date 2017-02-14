@@ -149,70 +149,6 @@ namespace Mono
 }
 namespace System
 {
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _AppDomain
-    {
-        string BaseDirectory { get; }
-        string DynamicDirectory { get; }
-        System.Security.Policy.Evidence Evidence { get; }
-        string FriendlyName { get; }
-        string RelativeSearchPath { get; }
-        bool ShadowCopyFiles { get; }
-        event System.AssemblyLoadEventHandler AssemblyLoad;
-        event System.ResolveEventHandler AssemblyResolve;
-        event System.EventHandler DomainUnload;
-        event System.EventHandler ProcessExit;
-        event System.ResolveEventHandler ResourceResolve;
-        event System.ResolveEventHandler TypeResolve;
-        event System.UnhandledExceptionEventHandler UnhandledException;
-        void AppendPrivatePath(string path);
-        void ClearPrivatePath();
-        void ClearShadowCopyPath();
-        System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName);
-        System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes);
-        System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, object[] activationAttributes);
-        System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName);
-        System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes);
-        System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, object[] activationAttributes);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, System.Security.Policy.Evidence evidence);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, System.Security.Policy.Evidence evidence, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir, System.Security.Policy.Evidence evidence);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir, System.Security.Policy.Evidence evidence, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions);
-        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir, System.Security.Policy.Evidence evidence, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions, bool isSynchronized);
-        void DoCallBack(System.CrossAppDomainDelegate theDelegate);
-        bool Equals(object other);
-        int ExecuteAssembly(string assemblyFile);
-        int ExecuteAssembly(string assemblyFile, System.Security.Policy.Evidence assemblySecurity);
-        int ExecuteAssembly(string assemblyFile, System.Security.Policy.Evidence assemblySecurity, string[] args);
-        System.Reflection.Assembly[] GetAssemblies();
-        object GetData(string name);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        object GetLifetimeService();
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        object InitializeLifetimeService();
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        System.Reflection.Assembly Load(byte[] rawAssembly);
-        System.Reflection.Assembly Load(byte[] rawAssembly, byte[] rawSymbolStore);
-        System.Reflection.Assembly Load(byte[] rawAssembly, byte[] rawSymbolStore, System.Security.Policy.Evidence securityEvidence);
-        System.Reflection.Assembly Load(System.Reflection.AssemblyName assemblyRef);
-        System.Reflection.Assembly Load(System.Reflection.AssemblyName assemblyRef, System.Security.Policy.Evidence assemblySecurity);
-        System.Reflection.Assembly Load(string assemblyString);
-        System.Reflection.Assembly Load(string assemblyString, System.Security.Policy.Evidence assemblySecurity);
-        void SetAppDomainPolicy(System.Security.Policy.PolicyLevel domainPolicy);
-        void SetCachePath(string s);
-        void SetData(string name, object data);
-        void SetPrincipalPolicy(System.Security.Principal.PrincipalPolicy policy);
-        void SetShadowCopyPath(string s);
-        void SetThreadPrincipal(System.Security.Principal.IPrincipal principal);
-        string ToString();
-    }
     public partial class AccessViolationException : System.SystemException
     {
         public AccessViolationException() { }
@@ -267,7 +203,6 @@ namespace System
         public static object CreateInstance(System.Type type, object[] args, object[] activationAttributes) { throw null; }
         public static object CreateInstance(System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture) { throw null; }
         public static object CreateInstance(System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
-        public static T CreateInstance<T>() { throw null; }
         public static System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(System.AppDomain domain, string assemblyFile, string typeName) { throw null; }
         public static System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(System.AppDomain domain, string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
         [System.ObsoleteAttribute("Methods which use Evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateInstanceFrom which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
@@ -277,6 +212,7 @@ namespace System
         [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateInstanceFrom which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
         public static System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityInfo) { throw null; }
         public static System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, object[] activationAttributes) { throw null; }
+        public static T CreateInstance<T>() { throw null; }
         public static object GetObject(System.Type type, string url) { throw null; }
         public static object GetObject(System.Type type, string url, object state) { throw null; }
         void System.Runtime.InteropServices._Activator.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
@@ -605,10 +541,10 @@ namespace System
         public static int BinarySearch(System.Array array, int index, int length, object value, System.Collections.IComparer comparer) { throw null; }
         public static int BinarySearch(System.Array array, object value) { throw null; }
         public static int BinarySearch(System.Array array, object value, System.Collections.IComparer comparer) { throw null; }
-        public static int BinarySearch<T>(T[] array, T value) { throw null; }
-        public static int BinarySearch<T>(T[] array, T value, System.Collections.Generic.IComparer<T> comparer) { throw null; }
         public static int BinarySearch<T>(T[] array, int index, int length, T value) { throw null; }
         public static int BinarySearch<T>(T[] array, int index, int length, T value, System.Collections.Generic.IComparer<T> comparer) { throw null; }
+        public static int BinarySearch<T>(T[] array, T value) { throw null; }
+        public static int BinarySearch<T>(T[] array, T value, System.Collections.Generic.IComparer<T> comparer) { throw null; }
         public static void Clear(System.Array array, int index, int length) { }
         public object Clone() { throw null; }
         public static void ConstrainedCopy(System.Array sourceArray, int sourceIndex, System.Array destinationArray, int destinationIndex, int length) { }
@@ -627,15 +563,15 @@ namespace System
         public static System.Array CreateInstance(System.Type elementType, params long[] lengths) { throw null; }
         public static T[] Empty<T>() { throw null; }
         public static bool Exists<T>(T[] array, System.Predicate<T> match) { throw null; }
-        public static T Find<T>(T[] array, System.Predicate<T> match) { throw null; }
         public static T[] FindAll<T>(T[] array, System.Predicate<T> match) { throw null; }
         public static int FindIndex<T>(T[] array, int startIndex, int count, System.Predicate<T> match) { throw null; }
         public static int FindIndex<T>(T[] array, int startIndex, System.Predicate<T> match) { throw null; }
         public static int FindIndex<T>(T[] array, System.Predicate<T> match) { throw null; }
-        public static T FindLast<T>(T[] array, System.Predicate<T> match) { throw null; }
         public static int FindLastIndex<T>(T[] array, int startIndex, int count, System.Predicate<T> match) { throw null; }
         public static int FindLastIndex<T>(T[] array, int startIndex, System.Predicate<T> match) { throw null; }
         public static int FindLastIndex<T>(T[] array, System.Predicate<T> match) { throw null; }
+        public static T FindLast<T>(T[] array, System.Predicate<T> match) { throw null; }
+        public static T Find<T>(T[] array, System.Predicate<T> match) { throw null; }
         public static void ForEach<T>(T[] array, System.Action<T> action) { }
         public System.Collections.IEnumerator GetEnumerator() { throw null; }
         public int GetLength(int dimension) { throw null; }
@@ -2336,8 +2272,8 @@ namespace System
         public string ToString(string format) { throw null; }
         [System.ObsoleteAttribute("The provider argument is not used. Please use ToString(String).")]
         public string ToString(string format, System.IFormatProvider provider) { throw null; }
-        public static bool TryParse<TEnum>(string value, out TEnum result) where TEnum : struct { result = default(TEnum); throw null; }
         public static bool TryParse<TEnum>(string value, bool ignoreCase, out TEnum result) where TEnum : struct { result = default(TEnum); throw null; }
+        public static bool TryParse<TEnum>(string value, out TEnum result) where TEnum : struct { result = default(TEnum); throw null; }
     }
     public static partial class Environment
     {
@@ -4425,6 +4361,70 @@ namespace System
         public void SetTarget(T target) { }
         public bool TryGetTarget(out T target) { target = default(T); throw null; }
     }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _AppDomain
+    {
+        string BaseDirectory { get; }
+        string DynamicDirectory { get; }
+        System.Security.Policy.Evidence Evidence { get; }
+        string FriendlyName { get; }
+        string RelativeSearchPath { get; }
+        bool ShadowCopyFiles { get; }
+        event System.AssemblyLoadEventHandler AssemblyLoad;
+        event System.ResolveEventHandler AssemblyResolve;
+        event System.EventHandler DomainUnload;
+        event System.EventHandler ProcessExit;
+        event System.ResolveEventHandler ResourceResolve;
+        event System.ResolveEventHandler TypeResolve;
+        event System.UnhandledExceptionEventHandler UnhandledException;
+        void AppendPrivatePath(string path);
+        void ClearPrivatePath();
+        void ClearShadowCopyPath();
+        System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName);
+        System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes);
+        System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, object[] activationAttributes);
+        System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName);
+        System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes);
+        System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, object[] activationAttributes);
+        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access);
+        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions);
+        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, System.Security.Policy.Evidence evidence);
+        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, System.Security.Policy.Evidence evidence, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions);
+        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir);
+        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions);
+        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir, System.Security.Policy.Evidence evidence);
+        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir, System.Security.Policy.Evidence evidence, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions);
+        System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, string dir, System.Security.Policy.Evidence evidence, System.Security.PermissionSet requiredPermissions, System.Security.PermissionSet optionalPermissions, System.Security.PermissionSet refusedPermissions, bool isSynchronized);
+        void DoCallBack(System.CrossAppDomainDelegate theDelegate);
+        bool Equals(object other);
+        int ExecuteAssembly(string assemblyFile);
+        int ExecuteAssembly(string assemblyFile, System.Security.Policy.Evidence assemblySecurity);
+        int ExecuteAssembly(string assemblyFile, System.Security.Policy.Evidence assemblySecurity, string[] args);
+        System.Reflection.Assembly[] GetAssemblies();
+        object GetData(string name);
+        int GetHashCode();
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        object GetLifetimeService();
+        System.Type GetType();
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        object InitializeLifetimeService();
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+        System.Reflection.Assembly Load(byte[] rawAssembly);
+        System.Reflection.Assembly Load(byte[] rawAssembly, byte[] rawSymbolStore);
+        System.Reflection.Assembly Load(byte[] rawAssembly, byte[] rawSymbolStore, System.Security.Policy.Evidence securityEvidence);
+        System.Reflection.Assembly Load(System.Reflection.AssemblyName assemblyRef);
+        System.Reflection.Assembly Load(System.Reflection.AssemblyName assemblyRef, System.Security.Policy.Evidence assemblySecurity);
+        System.Reflection.Assembly Load(string assemblyString);
+        System.Reflection.Assembly Load(string assemblyString, System.Security.Policy.Evidence assemblySecurity);
+        void SetAppDomainPolicy(System.Security.Policy.PolicyLevel domainPolicy);
+        void SetCachePath(string s);
+        void SetData(string name, object data);
+        void SetPrincipalPolicy(System.Security.Principal.PrincipalPolicy policy);
+        void SetShadowCopyPath(string s);
+        void SetThreadPrincipal(System.Security.Principal.IPrincipal principal);
+        string ToString();
+    }
 }
 namespace System.Collections
 {
@@ -4848,13 +4848,13 @@ namespace System.Collections.Concurrent
         System.Collections.ICollection System.Collections.IDictionary.Keys { get { throw null; } }
         System.Collections.ICollection System.Collections.IDictionary.Values { get { throw null; } }
         public System.Collections.Generic.ICollection<TValue> Values { get { throw null; } }
-        public TValue AddOrUpdate(TKey key, TValue addValue, System.Func<TKey, TValue, TValue> updateValueFactory) { throw null; }
         public TValue AddOrUpdate(TKey key, System.Func<TKey, TValue> addValueFactory, System.Func<TKey, TValue, TValue> updateValueFactory) { throw null; }
+        public TValue AddOrUpdate(TKey key, TValue addValue, System.Func<TKey, TValue, TValue> updateValueFactory) { throw null; }
         public void Clear() { }
         public bool ContainsKey(TKey key) { throw null; }
         public System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<TKey, TValue>> GetEnumerator() { throw null; }
-        public TValue GetOrAdd(TKey key, TValue value) { throw null; }
         public TValue GetOrAdd(TKey key, System.Func<TKey, TValue> valueFactory) { throw null; }
+        public TValue GetOrAdd(TKey key, TValue value) { throw null; }
         void System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<TKey,TValue>>.Add(System.Collections.Generic.KeyValuePair<TKey, TValue> keyValuePair) { }
         bool System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<TKey,TValue>>.Contains(System.Collections.Generic.KeyValuePair<TKey, TValue> keyValuePair) { throw null; }
         void System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<TKey,TValue>>.CopyTo(System.Collections.Generic.KeyValuePair<TKey, TValue>[] array, int index) { }
@@ -4946,10 +4946,10 @@ namespace System.Collections.Concurrent
         public static System.Collections.Concurrent.OrderablePartitioner<System.Tuple<int, int>> Create(int fromInclusive, int toExclusive, int rangeSize) { throw null; }
         public static System.Collections.Concurrent.OrderablePartitioner<System.Tuple<long, long>> Create(long fromInclusive, long toExclusive) { throw null; }
         public static System.Collections.Concurrent.OrderablePartitioner<System.Tuple<long, long>> Create(long fromInclusive, long toExclusive, long rangeSize) { throw null; }
-        public static System.Collections.Concurrent.OrderablePartitioner<TSource> Create<TSource>(TSource[] array, bool loadBalance) { throw null; }
         public static System.Collections.Concurrent.OrderablePartitioner<TSource> Create<TSource>(System.Collections.Generic.IEnumerable<TSource> source) { throw null; }
         public static System.Collections.Concurrent.OrderablePartitioner<TSource> Create<TSource>(System.Collections.Generic.IEnumerable<TSource> source, System.Collections.Concurrent.EnumerablePartitionerOptions partitionerOptions) { throw null; }
         public static System.Collections.Concurrent.OrderablePartitioner<TSource> Create<TSource>(System.Collections.Generic.IList<TSource> list, bool loadBalance) { throw null; }
+        public static System.Collections.Concurrent.OrderablePartitioner<TSource> Create<TSource>(TSource[] array, bool loadBalance) { throw null; }
     }
     public abstract partial class Partitioner<TSource>
     {
@@ -5181,15 +5181,15 @@ namespace System.Collections.Generic
         public void Add(T item) { }
         public void AddRange(System.Collections.Generic.IEnumerable<T> collection) { }
         public System.Collections.ObjectModel.ReadOnlyCollection<T> AsReadOnly() { throw null; }
+        public int BinarySearch(int index, int count, T item, System.Collections.Generic.IComparer<T> comparer) { throw null; }
         public int BinarySearch(T item) { throw null; }
         public int BinarySearch(T item, System.Collections.Generic.IComparer<T> comparer) { throw null; }
-        public int BinarySearch(int index, int count, T item, System.Collections.Generic.IComparer<T> comparer) { throw null; }
         public void Clear() { }
         public bool Contains(T item) { throw null; }
         public System.Collections.Generic.List<TOutput> ConvertAll<TOutput>(System.Converter<T, TOutput> converter) { throw null; }
+        public void CopyTo(int index, T[] array, int arrayIndex, int count) { }
         public void CopyTo(T[] array) { }
         public void CopyTo(T[] array, int arrayIndex) { }
-        public void CopyTo(int index, T[] array, int arrayIndex, int count) { }
         public bool Exists(System.Predicate<T> match) { throw null; }
         public T Find(System.Predicate<T> match) { throw null; }
         public System.Collections.Generic.List<T> FindAll(System.Predicate<T> match) { throw null; }
@@ -6094,10 +6094,6 @@ namespace System.Diagnostics.Tracing
         public static void SetCurrentThreadActivityId(System.Guid activityId, out System.Guid oldActivityThatWillContinue) { oldActivityThatWillContinue = default(System.Guid); }
         public void Write(string eventName) { }
         public void Write(string eventName, System.Diagnostics.Tracing.EventSourceOptions options) { }
-        public void Write<T>(string eventName, T data) { }
-        public void Write<T>(string eventName, System.Diagnostics.Tracing.EventSourceOptions options, T data) { }
-        public void Write<T>(string eventName, ref System.Diagnostics.Tracing.EventSourceOptions options, ref T data) { }
-        public void Write<T>(string eventName, ref System.Diagnostics.Tracing.EventSourceOptions options, ref System.Guid activityId, ref System.Guid relatedActivityId, ref T data) { }
         protected void WriteEvent(int eventId) { }
         protected void WriteEvent(int eventId, byte[] arg1) { }
         protected void WriteEvent(int eventId, int arg1) { }
@@ -6121,6 +6117,10 @@ namespace System.Diagnostics.Tracing
         protected void WriteEventWithRelatedActivityId(int eventId, System.Guid relatedActivityId, params object[] args) { }
         [System.CLSCompliantAttribute(false)]
         protected unsafe void WriteEventWithRelatedActivityIdCore(int eventId, System.Guid* relatedActivityId, int eventDataCount, System.Diagnostics.Tracing.EventSource.EventData* data) { }
+        public void Write<T>(string eventName, System.Diagnostics.Tracing.EventSourceOptions options, T data) { }
+        public void Write<T>(string eventName, ref System.Diagnostics.Tracing.EventSourceOptions options, ref System.Guid activityId, ref System.Guid relatedActivityId, ref T data) { }
+        public void Write<T>(string eventName, ref System.Diagnostics.Tracing.EventSourceOptions options, ref T data) { }
+        public void Write<T>(string eventName, T data) { }
         [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Size=1)]
         protected internal partial struct EventData
         {
@@ -7846,7 +7846,6 @@ namespace System.IO
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
         protected void Initialize(System.Runtime.InteropServices.SafeBuffer buffer, long offset, long capacity, System.IO.FileAccess access) { }
-        public void Read<T>(long position, out T structure) where T : struct { structure = default(T); }
         public int ReadArray<T>(long position, T[] array, int offset, int count) where T : struct { throw null; }
         public bool ReadBoolean(long position) { throw null; }
         public byte ReadByte(long position) { throw null; }
@@ -7865,6 +7864,7 @@ namespace System.IO
         public uint ReadUInt32(long position) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public ulong ReadUInt64(long position) { throw null; }
+        public void Read<T>(long position, out T structure) where T : struct { structure = default(T); }
         public void Write(long position, bool value) { }
         public void Write(long position, byte value) { }
         public void Write(long position, char value) { }
@@ -7882,8 +7882,8 @@ namespace System.IO
         public void Write(long position, uint value) { }
         [System.CLSCompliantAttribute(false)]
         public void Write(long position, ulong value) { }
-        public void Write<T>(long position, ref T structure) where T : struct { }
         public void WriteArray<T>(long position, T[] array, int offset, int count) where T : struct { }
+        public void Write<T>(long position, ref T structure) where T : struct { }
     }
     public partial class UnmanagedMemoryStream : System.IO.Stream
     {
@@ -8420,12 +8420,6 @@ namespace System.Reflection
         public static System.Attribute GetCustomAttribute(this System.Reflection.Module element, System.Type attributeType) { throw null; }
         public static System.Attribute GetCustomAttribute(this System.Reflection.ParameterInfo element, System.Type attributeType) { throw null; }
         public static System.Attribute GetCustomAttribute(this System.Reflection.ParameterInfo element, System.Type attributeType, bool inherit) { throw null; }
-        public static T GetCustomAttribute<T>(this System.Reflection.Assembly element) where T : System.Attribute { throw null; }
-        public static T GetCustomAttribute<T>(this System.Reflection.MemberInfo element) where T : System.Attribute { throw null; }
-        public static T GetCustomAttribute<T>(this System.Reflection.MemberInfo element, bool inherit) where T : System.Attribute { throw null; }
-        public static T GetCustomAttribute<T>(this System.Reflection.Module element) where T : System.Attribute { throw null; }
-        public static T GetCustomAttribute<T>(this System.Reflection.ParameterInfo element) where T : System.Attribute { throw null; }
-        public static T GetCustomAttribute<T>(this System.Reflection.ParameterInfo element, bool inherit) where T : System.Attribute { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Attribute> GetCustomAttributes(this System.Reflection.Assembly element) { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Attribute> GetCustomAttributes(this System.Reflection.Assembly element, System.Type attributeType) { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Attribute> GetCustomAttributes(this System.Reflection.MemberInfo element) { throw null; }
@@ -8444,6 +8438,12 @@ namespace System.Reflection
         public static System.Collections.Generic.IEnumerable<T> GetCustomAttributes<T>(this System.Reflection.Module element) where T : System.Attribute { throw null; }
         public static System.Collections.Generic.IEnumerable<T> GetCustomAttributes<T>(this System.Reflection.ParameterInfo element) where T : System.Attribute { throw null; }
         public static System.Collections.Generic.IEnumerable<T> GetCustomAttributes<T>(this System.Reflection.ParameterInfo element, bool inherit) where T : System.Attribute { throw null; }
+        public static T GetCustomAttribute<T>(this System.Reflection.Assembly element) where T : System.Attribute { throw null; }
+        public static T GetCustomAttribute<T>(this System.Reflection.MemberInfo element) where T : System.Attribute { throw null; }
+        public static T GetCustomAttribute<T>(this System.Reflection.MemberInfo element, bool inherit) where T : System.Attribute { throw null; }
+        public static T GetCustomAttribute<T>(this System.Reflection.Module element) where T : System.Attribute { throw null; }
+        public static T GetCustomAttribute<T>(this System.Reflection.ParameterInfo element) where T : System.Attribute { throw null; }
+        public static T GetCustomAttribute<T>(this System.Reflection.ParameterInfo element, bool inherit) where T : System.Attribute { throw null; }
         public static bool IsDefined(this System.Reflection.Assembly element, System.Type attributeType) { throw null; }
         public static bool IsDefined(this System.Reflection.MemberInfo element, System.Type attributeType) { throw null; }
         public static bool IsDefined(this System.Reflection.MemberInfo element, System.Type attributeType, bool inherit) { throw null; }
@@ -9916,12 +9916,12 @@ namespace System.Reflection.Emit
         public static readonly System.Reflection.Emit.OpCode Bne_Un_S;
         public static readonly System.Reflection.Emit.OpCode Box;
         public static readonly System.Reflection.Emit.OpCode Br;
-        public static readonly System.Reflection.Emit.OpCode Br_S;
         public static readonly System.Reflection.Emit.OpCode Break;
         public static readonly System.Reflection.Emit.OpCode Brfalse;
         public static readonly System.Reflection.Emit.OpCode Brfalse_S;
         public static readonly System.Reflection.Emit.OpCode Brtrue;
         public static readonly System.Reflection.Emit.OpCode Brtrue_S;
+        public static readonly System.Reflection.Emit.OpCode Br_S;
         public static readonly System.Reflection.Emit.OpCode Call;
         public static readonly System.Reflection.Emit.OpCode Calli;
         public static readonly System.Reflection.Emit.OpCode Callvirt;
@@ -9939,7 +9939,6 @@ namespace System.Reflection.Emit
         public static readonly System.Reflection.Emit.OpCode Conv_I4;
         public static readonly System.Reflection.Emit.OpCode Conv_I8;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I;
-        public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I1;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I1_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I2;
@@ -9948,8 +9947,8 @@ namespace System.Reflection.Emit
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I4_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I8;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I8_Un;
+        public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U;
-        public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U1;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U1_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U2;
@@ -9958,9 +9957,10 @@ namespace System.Reflection.Emit
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U4_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U8;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U8_Un;
-        public static readonly System.Reflection.Emit.OpCode Conv_R_Un;
+        public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_R4;
         public static readonly System.Reflection.Emit.OpCode Conv_R8;
+        public static readonly System.Reflection.Emit.OpCode Conv_R_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_U;
         public static readonly System.Reflection.Emit.OpCode Conv_U1;
         public static readonly System.Reflection.Emit.OpCode Conv_U2;
@@ -9978,13 +9978,13 @@ namespace System.Reflection.Emit
         public static readonly System.Reflection.Emit.OpCode Isinst;
         public static readonly System.Reflection.Emit.OpCode Jmp;
         public static readonly System.Reflection.Emit.OpCode Ldarg;
+        public static readonly System.Reflection.Emit.OpCode Ldarga;
+        public static readonly System.Reflection.Emit.OpCode Ldarga_S;
         public static readonly System.Reflection.Emit.OpCode Ldarg_0;
         public static readonly System.Reflection.Emit.OpCode Ldarg_1;
         public static readonly System.Reflection.Emit.OpCode Ldarg_2;
         public static readonly System.Reflection.Emit.OpCode Ldarg_3;
         public static readonly System.Reflection.Emit.OpCode Ldarg_S;
-        public static readonly System.Reflection.Emit.OpCode Ldarga;
-        public static readonly System.Reflection.Emit.OpCode Ldarga_S;
         public static readonly System.Reflection.Emit.OpCode Ldc_I4;
         public static readonly System.Reflection.Emit.OpCode Ldc_I4_0;
         public static readonly System.Reflection.Emit.OpCode Ldc_I4_1;
@@ -10001,6 +10001,7 @@ namespace System.Reflection.Emit
         public static readonly System.Reflection.Emit.OpCode Ldc_R4;
         public static readonly System.Reflection.Emit.OpCode Ldc_R8;
         public static readonly System.Reflection.Emit.OpCode Ldelem;
+        public static readonly System.Reflection.Emit.OpCode Ldelema;
         public static readonly System.Reflection.Emit.OpCode Ldelem_I;
         public static readonly System.Reflection.Emit.OpCode Ldelem_I1;
         public static readonly System.Reflection.Emit.OpCode Ldelem_I2;
@@ -10012,7 +10013,6 @@ namespace System.Reflection.Emit
         public static readonly System.Reflection.Emit.OpCode Ldelem_U1;
         public static readonly System.Reflection.Emit.OpCode Ldelem_U2;
         public static readonly System.Reflection.Emit.OpCode Ldelem_U4;
-        public static readonly System.Reflection.Emit.OpCode Ldelema;
         public static readonly System.Reflection.Emit.OpCode Ldfld;
         public static readonly System.Reflection.Emit.OpCode Ldflda;
         public static readonly System.Reflection.Emit.OpCode Ldftn;
@@ -10029,13 +10029,13 @@ namespace System.Reflection.Emit
         public static readonly System.Reflection.Emit.OpCode Ldind_U4;
         public static readonly System.Reflection.Emit.OpCode Ldlen;
         public static readonly System.Reflection.Emit.OpCode Ldloc;
+        public static readonly System.Reflection.Emit.OpCode Ldloca;
+        public static readonly System.Reflection.Emit.OpCode Ldloca_S;
         public static readonly System.Reflection.Emit.OpCode Ldloc_0;
         public static readonly System.Reflection.Emit.OpCode Ldloc_1;
         public static readonly System.Reflection.Emit.OpCode Ldloc_2;
         public static readonly System.Reflection.Emit.OpCode Ldloc_3;
         public static readonly System.Reflection.Emit.OpCode Ldloc_S;
-        public static readonly System.Reflection.Emit.OpCode Ldloca;
-        public static readonly System.Reflection.Emit.OpCode Ldloca_S;
         public static readonly System.Reflection.Emit.OpCode Ldnull;
         public static readonly System.Reflection.Emit.OpCode Ldobj;
         public static readonly System.Reflection.Emit.OpCode Ldsfld;
@@ -10290,8 +10290,8 @@ namespace System.Reflection.Emit
         Popi = 3,
         Popi_pop1 = 4,
         Popi_popi = 5,
-        Popi_popi_popi = 7,
         Popi_popi8 = 6,
+        Popi_popi_popi = 7,
         Popi_popr4 = 8,
         Popi_popr8 = 9,
         Popref = 10,
@@ -11165,6 +11165,1553 @@ namespace System.Runtime.Hosting
 }
 namespace System.Runtime.InteropServices
 {
+    [System.AttributeUsageAttribute((System.AttributeTargets)(64), AllowMultiple=false, Inherited=false)]
+    public sealed partial class AllowReversePInvokeCallsAttribute : System.Attribute
+    {
+        public AllowReversePInvokeCallsAttribute() { }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct ArrayWithOffset
+    {
+        public ArrayWithOffset(object array, int offset) { throw null;}
+        public override bool Equals(object obj) { throw null; }
+        public bool Equals(System.Runtime.InteropServices.ArrayWithOffset obj) { throw null; }
+        public object GetArray() { throw null; }
+        public override int GetHashCode() { throw null; }
+        public int GetOffset() { throw null; }
+        public static bool operator ==(System.Runtime.InteropServices.ArrayWithOffset a, System.Runtime.InteropServices.ArrayWithOffset b) { throw null; }
+        public static bool operator !=(System.Runtime.InteropServices.ArrayWithOffset a, System.Runtime.InteropServices.ArrayWithOffset b) { throw null; }
+    }
+    [System.FlagsAttribute]
+    public enum AssemblyRegistrationFlags
+    {
+        None = 0,
+        SetCodeBase = 1,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1029), Inherited=false)]
+    public sealed partial class AutomationProxyAttribute : System.Attribute
+    {
+        public AutomationProxyAttribute(bool val) { }
+        public bool Value { get { throw null; } }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1037), Inherited=false)]
+    public sealed partial class BestFitMappingAttribute : System.Attribute
+    {
+        public bool ThrowOnUnmappableChar;
+        public BestFitMappingAttribute(bool BestFitMapping) { }
+        public bool BestFitMapping { get { throw null; } }
+    }
+    [System.ObsoleteAttribute]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Explicit)]
+    public partial struct BINDPTR
+    {
+        [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
+        public System.IntPtr lpfuncdesc;
+        [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
+        public System.IntPtr lptcomp;
+        [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
+        public System.IntPtr lpvardesc;
+    }
+    [System.ObsoleteAttribute]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct BIND_OPTS
+    {
+        public int cbStruct;
+        public int dwTickCountDeadline;
+        public int grfFlags;
+        public int grfMode;
+    }
+    public sealed partial class BStrWrapper
+    {
+        public BStrWrapper(object value) { }
+        public BStrWrapper(string value) { }
+        public string WrappedObject { get { throw null; } }
+    }
+    [System.ObsoleteAttribute]
+    public enum CALLCONV
+    {
+        CC_CDECL = 1,
+        CC_MACPASCAL = 3,
+        CC_MAX = 9,
+        CC_MPWCDECL = 7,
+        CC_MPWPASCAL = 8,
+        CC_MSCPASCAL = 2,
+        CC_PASCAL = 2,
+        CC_RESERVED = 5,
+        CC_STDCALL = 4,
+        CC_SYSCALL = 6,
+    }
+    public enum CallingConvention
+    {
+        Cdecl = 2,
+        FastCall = 5,
+        StdCall = 3,
+        ThisCall = 4,
+        Winapi = 1,
+    }
+    public enum CharSet
+    {
+        Ansi = 2,
+        Auto = 4,
+        None = 1,
+        Unicode = 3,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(5), Inherited=false)]
+    public sealed partial class ClassInterfaceAttribute : System.Attribute
+    {
+        public ClassInterfaceAttribute(short classInterfaceType) { }
+        public ClassInterfaceAttribute(System.Runtime.InteropServices.ClassInterfaceType classInterfaceType) { }
+        public System.Runtime.InteropServices.ClassInterfaceType Value { get { throw null; } }
+    }
+    public enum ClassInterfaceType
+    {
+        AutoDispatch = 1,
+        AutoDual = 2,
+        None = 0,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited=false)]
+    public sealed partial class CoClassAttribute : System.Attribute
+    {
+        public CoClassAttribute(System.Type coClass) { }
+        public System.Type CoClass { get { throw null; } }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(10624), Inherited=false)]
+    public sealed partial class ComAliasNameAttribute : System.Attribute
+    {
+        public ComAliasNameAttribute(string alias) { }
+        public string Value { get { throw null; } }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
+    public sealed partial class ComCompatibleVersionAttribute : System.Attribute
+    {
+        public ComCompatibleVersionAttribute(int major, int minor, int build, int revision) { }
+        public int BuildNumber { get { throw null; } }
+        public int MajorVersion { get { throw null; } }
+        public int MinorVersion { get { throw null; } }
+        public int RevisionNumber { get { throw null; } }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(32767), Inherited=false)]
+    public sealed partial class ComConversionLossAttribute : System.Attribute
+    {
+        public ComConversionLossAttribute() { }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=false)]
+    public sealed partial class ComDefaultInterfaceAttribute : System.Attribute
+    {
+        public ComDefaultInterfaceAttribute(System.Type defaultInterface) { }
+        public System.Type Value { get { throw null; } }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited=false)]
+    public sealed partial class ComEventInterfaceAttribute : System.Attribute
+    {
+        public ComEventInterfaceAttribute(System.Type SourceInterface, System.Type EventProvider) { }
+        public System.Type EventProvider { get { throw null; } }
+        public System.Type SourceInterface { get { throw null; } }
+    }
+    public static partial class ComEventsHelper
+    {
+        public static void Combine(object rcw, System.Guid iid, int dispid, System.Delegate d) { }
+        public static System.Delegate Remove(object rcw, System.Guid iid, int dispid, System.Delegate d) { throw null; }
+    }
+    public partial class COMException : System.Runtime.InteropServices.ExternalException
+    {
+        public COMException() { }
+        protected COMException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public COMException(string message) { }
+        public COMException(string message, System.Exception inner) { }
+        public COMException(string message, int errorCode) { }
+        public override string ToString() { throw null; }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), Inherited=false)]
+    public sealed partial class ComImportAttribute : System.Attribute
+    {
+        public ComImportAttribute() { }
+    }
+    public enum ComInterfaceType
+    {
+        InterfaceIsDual = 0,
+        InterfaceIsIDispatch = 2,
+        InterfaceIsIInspectable = 3,
+        InterfaceIsIUnknown = 1,
+    }
+    public enum ComMemberType
+    {
+        Method = 0,
+        PropGet = 1,
+        PropSet = 2,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
+    public sealed partial class ComRegisterFunctionAttribute : System.Attribute
+    {
+        public ComRegisterFunctionAttribute() { }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=true)]
+    public sealed partial class ComSourceInterfacesAttribute : System.Attribute
+    {
+        public ComSourceInterfacesAttribute(string sourceInterfaces) { }
+        public ComSourceInterfacesAttribute(System.Type sourceInterface) { }
+        public ComSourceInterfacesAttribute(System.Type sourceInterface1, System.Type sourceInterface2) { }
+        public ComSourceInterfacesAttribute(System.Type sourceInterface1, System.Type sourceInterface2, System.Type sourceInterface3) { }
+        public ComSourceInterfacesAttribute(System.Type sourceInterface1, System.Type sourceInterface2, System.Type sourceInterface3, System.Type sourceInterface4) { }
+        public string Value { get { throw null; } }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
+    public sealed partial class ComUnregisterFunctionAttribute : System.Attribute
+    {
+        public ComUnregisterFunctionAttribute() { }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(5597), Inherited=false)]
+    public sealed partial class ComVisibleAttribute : System.Attribute
+    {
+        public ComVisibleAttribute(bool visibility) { }
+        public bool Value { get { throw null; } }
+    }
+    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.CONNECTDATA instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct CONNECTDATA
+    {
+        public int dwCookie;
+        public object pUnk;
+    }
+    public abstract partial class CriticalHandle : System.Runtime.ConstrainedExecution.CriticalFinalizerObject, System.IDisposable
+    {
+        protected System.IntPtr handle;
+        protected CriticalHandle(System.IntPtr invalidHandleValue) { }
+        public bool IsClosed { get { throw null; } }
+        public abstract bool IsInvalid { get; }
+        public void Close() { }
+        public void Dispose() { }
+        protected virtual void Dispose(bool disposing) { }
+        ~CriticalHandle() { }
+        protected abstract bool ReleaseHandle();
+        protected void SetHandle(System.IntPtr handle) { }
+        public void SetHandleAsInvalid() { }
+    }
+    public sealed partial class CurrencyWrapper
+    {
+        public CurrencyWrapper(decimal obj) { }
+        public CurrencyWrapper(object obj) { }
+        public decimal WrappedObject { get { throw null; } }
+    }
+    public enum CustomQueryInterfaceMode
+    {
+        Allow = 1,
+        Ignore = 0,
+    }
+    public enum CustomQueryInterfaceResult
+    {
+        Failed = 2,
+        Handled = 0,
+        NotHandled = 1,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(2), Inherited=false)]
+    public sealed partial class DefaultCharSetAttribute : System.Attribute
+    {
+        public DefaultCharSetAttribute(System.Runtime.InteropServices.CharSet charSet) { }
+        public System.Runtime.InteropServices.CharSet CharSet { get { throw null; } }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(65), AllowMultiple=false)]
+    public sealed partial class DefaultDllImportSearchPathsAttribute : System.Attribute
+    {
+        public DefaultDllImportSearchPathsAttribute(System.Runtime.InteropServices.DllImportSearchPath paths) { }
+        public System.Runtime.InteropServices.DllImportSearchPath Paths { get { throw null; } }
+    }
+    [System.ObsoleteAttribute]
+    public enum DESCKIND
+    {
+        DESCKIND_FUNCDESC = 1,
+        DESCKIND_IMPLICITAPPOBJ = 4,
+        DESCKIND_MAX = 5,
+        DESCKIND_NONE = 0,
+        DESCKIND_TYPECOMP = 3,
+        DESCKIND_VARDESC = 2,
+    }
+    public sealed partial class DispatchWrapper
+    {
+        public DispatchWrapper(object obj) { }
+        public object WrappedObject { get { throw null; } }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(960), Inherited=false)]
+    public sealed partial class DispIdAttribute : System.Attribute
+    {
+        public DispIdAttribute(int dispId) { }
+        public int Value { get { throw null; } }
+    }
+    [System.ObsoleteAttribute]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct DISPPARAMS
+    {
+        public int cArgs;
+        public int cNamedArgs;
+        public System.IntPtr rgdispidNamedArgs;
+        public System.IntPtr rgvarg;
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
+    public sealed partial class DllImportAttribute : System.Attribute
+    {
+        public bool BestFitMapping;
+        public System.Runtime.InteropServices.CallingConvention CallingConvention;
+        public System.Runtime.InteropServices.CharSet CharSet;
+        public string EntryPoint;
+        public bool ExactSpelling;
+        public bool PreserveSig;
+        public bool SetLastError;
+        public bool ThrowOnUnmappableChar;
+        public DllImportAttribute(string dllName) { }
+        public string Value { get { throw null; } }
+    }
+    [System.FlagsAttribute]
+    public enum DllImportSearchPath
+    {
+        ApplicationDirectory = 512,
+        AssemblyDirectory = 2,
+        LegacyBehavior = 0,
+        SafeDirectories = 4096,
+        System32 = 2048,
+        UseDllDirectoryForDependencies = 256,
+        UserDirectories = 1024,
+    }
+    [System.ObsoleteAttribute]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct ELEMDESC
+    {
+        public System.Runtime.InteropServices.ELEMDESC.DESCUNION desc;
+        public System.Runtime.InteropServices.TYPEDESC tdesc;
+        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Explicit)]
+        public partial struct DESCUNION
+        {
+            [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
+            public System.Runtime.InteropServices.IDLDESC idldesc;
+            [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
+            public System.Runtime.InteropServices.PARAMDESC paramdesc;
+        }
+    }
+    public sealed partial class ErrorWrapper
+    {
+        public ErrorWrapper(System.Exception e) { }
+        public ErrorWrapper(int errorCode) { }
+        public ErrorWrapper(object errorCode) { }
+        public int ErrorCode { get { throw null; } }
+    }
+    [System.ObsoleteAttribute]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct EXCEPINFO
+    {
+        public string bstrDescription;
+        public string bstrHelpFile;
+        public string bstrSource;
+        public int dwHelpContext;
+        public System.IntPtr pfnDeferredFillIn;
+        public System.IntPtr pvReserved;
+        public short wCode;
+        public short wReserved;
+    }
+    public enum ExporterEventKind
+    {
+        ERROR_REFTOINVALIDASSEMBLY = 2,
+        NOTIF_CONVERTWARNING = 1,
+        NOTIF_TYPECONVERTED = 0,
+    }
+    public sealed partial class ExtensibleClassFactory
+    {
+        internal ExtensibleClassFactory() { }
+        public static void RegisterObjectCreationCallback(System.Runtime.InteropServices.ObjectCreationDelegate callback) { }
+    }
+    public partial class ExternalException : System.SystemException
+    {
+        public ExternalException() { }
+        protected ExternalException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public ExternalException(string message) { }
+        public ExternalException(string message, System.Exception inner) { }
+        public ExternalException(string message, int errorCode) { }
+        public virtual int ErrorCode { get { throw null; } }
+        public override string ToString() { throw null; }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(256), Inherited=false)]
+    public sealed partial class FieldOffsetAttribute : System.Attribute
+    {
+        public FieldOffsetAttribute(int offset) { }
+        public int Value { get { throw null; } }
+    }
+    [System.ObsoleteAttribute]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct FILETIME
+    {
+        public int dwHighDateTime;
+        public int dwLowDateTime;
+    }
+    [System.ObsoleteAttribute]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct FUNCDESC
+    {
+        public System.Runtime.InteropServices.CALLCONV callconv;
+        public short cParams;
+        public short cParamsOpt;
+        public short cScodes;
+        public System.Runtime.InteropServices.ELEMDESC elemdescFunc;
+        public System.Runtime.InteropServices.FUNCKIND funckind;
+        public System.Runtime.InteropServices.INVOKEKIND invkind;
+        public System.IntPtr lprgelemdescParam;
+        public System.IntPtr lprgscode;
+        public int memid;
+        public short oVft;
+        public short wFuncFlags;
+    }
+    [System.FlagsAttribute]
+    [System.ObsoleteAttribute]
+    public enum FUNCFLAGS
+    {
+        FUNCFLAG_FBINDABLE = 4,
+        FUNCFLAG_FDEFAULTBIND = 32,
+        FUNCFLAG_FDEFAULTCOLLELEM = 256,
+        FUNCFLAG_FDISPLAYBIND = 16,
+        FUNCFLAG_FHIDDEN = 64,
+        FUNCFLAG_FIMMEDIATEBIND = 4096,
+        FUNCFLAG_FNONBROWSABLE = 1024,
+        FUNCFLAG_FREPLACEABLE = 2048,
+        FUNCFLAG_FREQUESTEDIT = 8,
+        FUNCFLAG_FRESTRICTED = 1,
+        FUNCFLAG_FSOURCE = 2,
+        FUNCFLAG_FUIDEFAULT = 512,
+        FUNCFLAG_FUSESGETLASTERROR = 128,
+    }
+    [System.ObsoleteAttribute]
+    public enum FUNCKIND
+    {
+        FUNC_DISPATCH = 4,
+        FUNC_NONVIRTUAL = 2,
+        FUNC_PUREVIRTUAL = 1,
+        FUNC_STATIC = 3,
+        FUNC_VIRTUAL = 0,
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct GCHandle
+    {
+        public bool IsAllocated { get { throw null; } }
+        public object Target { get { throw null; } set { } }
+        public System.IntPtr AddrOfPinnedObject() { throw null; }
+        public static System.Runtime.InteropServices.GCHandle Alloc(object value) { throw null; }
+        public static System.Runtime.InteropServices.GCHandle Alloc(object value, System.Runtime.InteropServices.GCHandleType type) { throw null; }
+        public override bool Equals(object o) { throw null; }
+        public void Free() { }
+        public static System.Runtime.InteropServices.GCHandle FromIntPtr(System.IntPtr value) { throw null; }
+        public override int GetHashCode() { throw null; }
+        public static bool operator ==(System.Runtime.InteropServices.GCHandle a, System.Runtime.InteropServices.GCHandle b) { throw null; }
+        public static explicit operator System.Runtime.InteropServices.GCHandle (System.IntPtr value) { throw null; }
+        public static explicit operator System.IntPtr (System.Runtime.InteropServices.GCHandle value) { throw null; }
+        public static bool operator !=(System.Runtime.InteropServices.GCHandle a, System.Runtime.InteropServices.GCHandle b) { throw null; }
+        public static System.IntPtr ToIntPtr(System.Runtime.InteropServices.GCHandle value) { throw null; }
+    }
+    public enum GCHandleType
+    {
+        Normal = 2,
+        Pinned = 3,
+        Weak = 0,
+        WeakTrackResurrection = 1,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(5149), Inherited=false)]
+    public sealed partial class GuidAttribute : System.Attribute
+    {
+        public GuidAttribute(string guid) { }
+        public string Value { get { throw null; } }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct HandleRef
+    {
+        public HandleRef(object wrapper, System.IntPtr handle) { throw null;}
+        public System.IntPtr Handle { get { throw null; } }
+        public object Wrapper { get { throw null; } }
+        public static explicit operator System.IntPtr (System.Runtime.InteropServices.HandleRef value) { throw null; }
+        public static System.IntPtr ToIntPtr(System.Runtime.InteropServices.HandleRef value) { throw null; }
+    }
+    public partial interface ICustomAdapter
+    {
+        object GetUnderlyingObject();
+    }
+    public partial interface ICustomFactory
+    {
+        System.MarshalByRefObject CreateInstance(System.Type serverType);
+    }
+    public partial interface ICustomMarshaler
+    {
+        void CleanUpManagedData(object ManagedObj);
+        void CleanUpNativeData(System.IntPtr pNativeData);
+        int GetNativeDataSize();
+        System.IntPtr MarshalManagedToNative(object ManagedObj);
+        object MarshalNativeToManaged(System.IntPtr pNativeData);
+    }
+    public partial interface ICustomQueryInterface
+    {
+        System.Runtime.InteropServices.CustomQueryInterfaceResult GetInterface(ref System.Guid iid, out System.IntPtr ppv);
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(5), Inherited=false)]
+    [System.ObsoleteAttribute("This attribute is deprecated and will be removed in a future version.", false)]
+    public sealed partial class IDispatchImplAttribute : System.Attribute
+    {
+        public IDispatchImplAttribute(short implType) { }
+        public IDispatchImplAttribute(System.Runtime.InteropServices.IDispatchImplType implType) { }
+        public System.Runtime.InteropServices.IDispatchImplType Value { get { throw null; } }
+    }
+    [System.ObsoleteAttribute("The IDispatchImplAttribute is deprecated.", false)]
+    public enum IDispatchImplType
+    {
+        CompatibleImpl = 2,
+        InternalImpl = 1,
+        SystemDefinedImpl = 0,
+    }
+    [System.ObsoleteAttribute]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct IDLDESC
+    {
+        public int dwReserved;
+        public System.Runtime.InteropServices.IDLFLAG wIDLFlags;
+    }
+    [System.FlagsAttribute]
+    [System.ObsoleteAttribute]
+    public enum IDLFLAG
+    {
+        IDLFLAG_FIN = 1,
+        IDLFLAG_FLCID = 4,
+        IDLFLAG_FOUT = 2,
+        IDLFLAG_FRETVAL = 8,
+        IDLFLAG_NONE = 0,
+    }
+    [System.FlagsAttribute]
+    [System.ObsoleteAttribute]
+    public enum IMPLTYPEFLAGS
+    {
+        IMPLTYPEFLAG_FDEFAULT = 1,
+        IMPLTYPEFLAG_FDEFAULTVTABLE = 8,
+        IMPLTYPEFLAG_FRESTRICTED = 4,
+        IMPLTYPEFLAG_FSOURCE = 2,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
+    public sealed partial class ImportedFromTypeLibAttribute : System.Attribute
+    {
+        public ImportedFromTypeLibAttribute(string tlbFile) { }
+        public string Value { get { throw null; } }
+    }
+    public enum ImporterEventKind
+    {
+        ERROR_REFTOINVALIDTYPELIB = 2,
+        NOTIF_CONVERTWARNING = 1,
+        NOTIF_TYPECONVERTED = 0,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(2048), Inherited=false)]
+    public sealed partial class InAttribute : System.Attribute
+    {
+        public InAttribute() { }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited=false)]
+    public sealed partial class InterfaceTypeAttribute : System.Attribute
+    {
+        public InterfaceTypeAttribute(short interfaceType) { }
+        public InterfaceTypeAttribute(System.Runtime.InteropServices.ComInterfaceType interfaceType) { }
+        public System.Runtime.InteropServices.ComInterfaceType Value { get { throw null; } }
+    }
+    public partial class InvalidComObjectException : System.SystemException
+    {
+        public InvalidComObjectException() { }
+        protected InvalidComObjectException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public InvalidComObjectException(string message) { }
+        public InvalidComObjectException(string message, System.Exception inner) { }
+    }
+    public partial class InvalidOleVariantTypeException : System.SystemException
+    {
+        public InvalidOleVariantTypeException() { }
+        protected InvalidOleVariantTypeException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public InvalidOleVariantTypeException(string message) { }
+        public InvalidOleVariantTypeException(string message, System.Exception inner) { }
+    }
+    [System.ObsoleteAttribute]
+    public enum INVOKEKIND
+    {
+        INVOKE_FUNC = 1,
+        INVOKE_PROPERTYGET = 2,
+        INVOKE_PROPERTYPUT = 4,
+        INVOKE_PROPERTYPUTREF = 8,
+    }
+    public partial interface IRegistrationServices
+    {
+        System.Guid GetManagedCategoryGuid();
+        string GetProgIdForType(System.Type type);
+        System.Type[] GetRegistrableTypesInAssembly(System.Reflection.Assembly assembly);
+        bool RegisterAssembly(System.Reflection.Assembly assembly, System.Runtime.InteropServices.AssemblyRegistrationFlags flags);
+        void RegisterTypeForComClients(System.Type type, ref System.Guid g);
+        bool TypeRepresentsComType(System.Type type);
+        bool TypeRequiresRegistration(System.Type type);
+        bool UnregisterAssembly(System.Reflection.Assembly assembly);
+    }
+    public partial interface ITypeLibConverter
+    {
+        object ConvertAssemblyToTypeLib(System.Reflection.Assembly assembly, string typeLibName, System.Runtime.InteropServices.TypeLibExporterFlags flags, System.Runtime.InteropServices.ITypeLibExporterNotifySink notifySink);
+        System.Reflection.Emit.AssemblyBuilder ConvertTypeLibToAssembly(object typeLib, string asmFileName, int flags, System.Runtime.InteropServices.ITypeLibImporterNotifySink notifySink, byte[] publicKey, System.Reflection.StrongNameKeyPair keyPair, bool unsafeInterfaces);
+        System.Reflection.Emit.AssemblyBuilder ConvertTypeLibToAssembly(object typeLib, string asmFileName, System.Runtime.InteropServices.TypeLibImporterFlags flags, System.Runtime.InteropServices.ITypeLibImporterNotifySink notifySink, byte[] publicKey, System.Reflection.StrongNameKeyPair keyPair, string asmNamespace, System.Version asmVersion);
+        bool GetPrimaryInteropAssembly(System.Guid g, int major, int minor, int lcid, out string asmName, out string asmCodeBase);
+    }
+    public partial interface ITypeLibExporterNameProvider
+    {
+        string[] GetNames();
+    }
+    public partial interface ITypeLibExporterNotifySink
+    {
+        void ReportEvent(System.Runtime.InteropServices.ExporterEventKind eventKind, int eventCode, string eventMsg);
+        object ResolveRef(System.Reflection.Assembly assembly);
+    }
+    public partial interface ITypeLibImporterNotifySink
+    {
+        void ReportEvent(System.Runtime.InteropServices.ImporterEventKind eventKind, int eventCode, string eventMsg);
+        System.Reflection.Assembly ResolveRef(object typeLib);
+    }
+    public enum LayoutKind
+    {
+        Auto = 3,
+        Explicit = 2,
+        Sequential = 0,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
+    public sealed partial class LCIDConversionAttribute : System.Attribute
+    {
+        public LCIDConversionAttribute(int lcid) { }
+        public int Value { get { throw null; } }
+    }
+    [System.FlagsAttribute]
+    [System.ObsoleteAttribute]
+    public enum LIBFLAGS
+    {
+        LIBFLAG_FCONTROL = 2,
+        LIBFLAG_FHASDISKIMAGE = 8,
+        LIBFLAG_FHIDDEN = 4,
+        LIBFLAG_FRESTRICTED = 1,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false, AllowMultiple=false)]
+    public sealed partial class ManagedToNativeComInteropStubAttribute : System.Attribute
+    {
+        public ManagedToNativeComInteropStubAttribute(System.Type classType, string methodName) { }
+        public System.Type ClassType { get { throw null; } }
+        public string MethodName { get { throw null; } }
+    }
+    public static partial class Marshal
+    {
+        public static readonly int SystemDefaultCharSize;
+        public static readonly int SystemMaxDBCSCharSize;
+        public static int AddRef(System.IntPtr pUnk) { throw null; }
+        public static System.IntPtr AllocCoTaskMem(int cb) { throw null; }
+        public static System.IntPtr AllocHGlobal(int cb) { throw null; }
+        public static System.IntPtr AllocHGlobal(System.IntPtr cb) { throw null; }
+        public static bool AreComObjectsAvailableForCleanup() { throw null; }
+        public static object BindToMoniker(string monikerName) { throw null; }
+        public static System.IntPtr BufferToBSTR(System.Array ptr, int slen) { throw null; }
+        public static void ChangeWrapperHandleStrength(object otp, bool fIsWeak) { }
+        public static void CleanupUnusedObjectsInCurrentContext() { }
+        public static void Copy(byte[] source, int startIndex, System.IntPtr destination, int length) { }
+        public static void Copy(char[] source, int startIndex, System.IntPtr destination, int length) { }
+        public static void Copy(double[] source, int startIndex, System.IntPtr destination, int length) { }
+        public static void Copy(short[] source, int startIndex, System.IntPtr destination, int length) { }
+        public static void Copy(int[] source, int startIndex, System.IntPtr destination, int length) { }
+        public static void Copy(long[] source, int startIndex, System.IntPtr destination, int length) { }
+        public static void Copy(System.IntPtr source, byte[] destination, int startIndex, int length) { }
+        public static void Copy(System.IntPtr source, char[] destination, int startIndex, int length) { }
+        public static void Copy(System.IntPtr source, double[] destination, int startIndex, int length) { }
+        public static void Copy(System.IntPtr source, short[] destination, int startIndex, int length) { }
+        public static void Copy(System.IntPtr source, int[] destination, int startIndex, int length) { }
+        public static void Copy(System.IntPtr source, long[] destination, int startIndex, int length) { }
+        public static void Copy(System.IntPtr source, System.IntPtr[] destination, int startIndex, int length) { }
+        public static void Copy(System.IntPtr source, float[] destination, int startIndex, int length) { }
+        public static void Copy(System.IntPtr[] source, int startIndex, System.IntPtr destination, int length) { }
+        public static void Copy(float[] source, int startIndex, System.IntPtr destination, int length) { }
+        public static System.IntPtr CreateAggregatedObject(System.IntPtr pOuter, object o) { throw null; }
+        public static System.IntPtr CreateAggregatedObject<T>(System.IntPtr pOuter, T o) { throw null; }
+        public static object CreateWrapperOfType(object o, System.Type t) { throw null; }
+        public static TWrapper CreateWrapperOfType<T, TWrapper>(T o) { throw null; }
+        public static void DestroyStructure(System.IntPtr ptr, System.Type structuretype) { }
+        public static void DestroyStructure<T>(System.IntPtr ptr) { }
+        public static int FinalReleaseComObject(object o) { throw null; }
+        public static void FreeBSTR(System.IntPtr ptr) { }
+        public static void FreeCoTaskMem(System.IntPtr ptr) { }
+        public static void FreeHGlobal(System.IntPtr hglobal) { }
+        public static System.Guid GenerateGuidForType(System.Type type) { throw null; }
+        public static string GenerateProgIdForType(System.Type type) { throw null; }
+        public static object GetActiveObject(string progID) { throw null; }
+        public static System.IntPtr GetComInterfaceForObject(object o, System.Type T) { throw null; }
+        public static System.IntPtr GetComInterfaceForObject(object o, System.Type T, System.Runtime.InteropServices.CustomQueryInterfaceMode mode) { throw null; }
+        public static System.IntPtr GetComInterfaceForObjectInContext(object o, System.Type t) { throw null; }
+        public static System.IntPtr GetComInterfaceForObject<T, TInterface>(T o) { throw null; }
+        public static object GetComObjectData(object obj, object key) { throw null; }
+        public static int GetComSlotForMethodInfo(System.Reflection.MemberInfo m) { throw null; }
+        public static System.Delegate GetDelegateForFunctionPointer(System.IntPtr ptr, System.Type t) { throw null; }
+        public static TDelegate GetDelegateForFunctionPointer<TDelegate>(System.IntPtr ptr) { throw null; }
+        public static int GetEndComSlot(System.Type t) { throw null; }
+        public static int GetExceptionCode() { throw null; }
+        public static System.Exception GetExceptionForHR(int errorCode) { throw null; }
+        public static System.Exception GetExceptionForHR(int errorCode, System.IntPtr errorInfo) { throw null; }
+        public static System.IntPtr GetExceptionPointers() { throw null; }
+        public static System.IntPtr GetFunctionPointerForDelegate(System.Delegate d) { throw null; }
+        public static System.IntPtr GetFunctionPointerForDelegate<TDelegate>(TDelegate d) { throw null; }
+        public static System.IntPtr GetHINSTANCE(System.Reflection.Module m) { throw null; }
+        public static int GetHRForException(System.Exception e) { throw null; }
+        public static int GetHRForLastWin32Error() { throw null; }
+        public static System.IntPtr GetIDispatchForObject(object o) { throw null; }
+        public static System.IntPtr GetIDispatchForObjectInContext(object o) { throw null; }
+        public static System.IntPtr GetITypeInfoForType(System.Type t) { throw null; }
+        public static System.IntPtr GetIUnknownForObject(object o) { throw null; }
+        public static System.IntPtr GetIUnknownForObjectInContext(object o) { throw null; }
+        public static int GetLastWin32Error() { throw null; }
+        [System.ObsoleteAttribute("This method has been deprecated")]
+        public static System.IntPtr GetManagedThunkForUnmanagedMethodPtr(System.IntPtr pfnMethodToWrap, System.IntPtr pbSignature, int cbSignature) { throw null; }
+        public static System.Reflection.MemberInfo GetMethodInfoForComSlot(System.Type t, int slot, ref System.Runtime.InteropServices.ComMemberType memberType) { throw null; }
+        public static void GetNativeVariantForObject(object obj, System.IntPtr pDstNativeVariant) { }
+        public static void GetNativeVariantForObject<T>(T obj, System.IntPtr pDstNativeVariant) { }
+        public static object GetObjectForIUnknown(System.IntPtr pUnk) { throw null; }
+        public static object GetObjectForNativeVariant(System.IntPtr pSrcNativeVariant) { throw null; }
+        public static T GetObjectForNativeVariant<T>(System.IntPtr pSrcNativeVariant) { throw null; }
+        public static object[] GetObjectsForNativeVariants(System.IntPtr aSrcNativeVariant, int cVars) { throw null; }
+        public static T[] GetObjectsForNativeVariants<T>(System.IntPtr aSrcNativeVariant, int cVars) { throw null; }
+        public static int GetStartComSlot(System.Type t) { throw null; }
+        [System.ObsoleteAttribute("This method has been deprecated")]
+        public static System.Threading.Thread GetThreadFromFiberCookie(int cookie) { throw null; }
+        public static object GetTypedObjectForIUnknown(System.IntPtr pUnk, System.Type t) { throw null; }
+        public static System.Type GetTypeForITypeInfo(System.IntPtr piTypeInfo) { throw null; }
+        public static System.Type GetTypeFromCLSID(System.Guid clsid) { throw null; }
+        public static string GetTypeInfoName(System.Runtime.InteropServices.ComTypes.ITypeInfo typeInfo) { throw null; }
+        [System.ObsoleteAttribute]
+        public static string GetTypeInfoName(System.Runtime.InteropServices.UCOMITypeInfo pTI) { throw null; }
+        public static System.Guid GetTypeLibGuid(System.Runtime.InteropServices.ComTypes.ITypeLib typelib) { throw null; }
+        [System.ObsoleteAttribute]
+        public static System.Guid GetTypeLibGuid(System.Runtime.InteropServices.UCOMITypeLib pTLB) { throw null; }
+        public static System.Guid GetTypeLibGuidForAssembly(System.Reflection.Assembly asm) { throw null; }
+        public static int GetTypeLibLcid(System.Runtime.InteropServices.ComTypes.ITypeLib typelib) { throw null; }
+        [System.ObsoleteAttribute]
+        public static int GetTypeLibLcid(System.Runtime.InteropServices.UCOMITypeLib pTLB) { throw null; }
+        public static string GetTypeLibName(System.Runtime.InteropServices.ComTypes.ITypeLib typelib) { throw null; }
+        [System.ObsoleteAttribute]
+        public static string GetTypeLibName(System.Runtime.InteropServices.UCOMITypeLib pTLB) { throw null; }
+        public static void GetTypeLibVersionForAssembly(System.Reflection.Assembly inputAssembly, out int majorVersion, out int minorVersion) { majorVersion = default(int); minorVersion = default(int); }
+        public static object GetUniqueObjectForIUnknown(System.IntPtr unknown) { throw null; }
+        [System.ObsoleteAttribute("This method has been deprecated")]
+        public static System.IntPtr GetUnmanagedThunkForManagedMethodPtr(System.IntPtr pfnMethodToWrap, System.IntPtr pbSignature, int cbSignature) { throw null; }
+        public static bool IsComObject(object o) { throw null; }
+        public static bool IsTypeVisibleFromCom(System.Type t) { throw null; }
+        public static int NumParamBytes(System.Reflection.MethodInfo m) { throw null; }
+        public static System.IntPtr OffsetOf(System.Type t, string fieldName) { throw null; }
+        public static System.IntPtr OffsetOf<T>(string fieldName) { throw null; }
+        public static void Prelink(System.Reflection.MethodInfo m) { }
+        public static void PrelinkAll(System.Type c) { }
+        public static string PtrToStringAnsi(System.IntPtr ptr) { throw null; }
+        public static string PtrToStringAnsi(System.IntPtr ptr, int len) { throw null; }
+        public static string PtrToStringAuto(System.IntPtr ptr) { throw null; }
+        public static string PtrToStringAuto(System.IntPtr ptr, int len) { throw null; }
+        public static string PtrToStringBSTR(System.IntPtr ptr) { throw null; }
+        public static string PtrToStringUni(System.IntPtr ptr) { throw null; }
+        public static string PtrToStringUni(System.IntPtr ptr, int len) { throw null; }
+        public static void PtrToStructure(System.IntPtr ptr, object structure) { }
+        public static object PtrToStructure(System.IntPtr ptr, System.Type structureType) { throw null; }
+        public static T PtrToStructure<T>(System.IntPtr ptr) { throw null; }
+        public static void PtrToStructure<T>(System.IntPtr ptr, T structure) { }
+        public static int QueryInterface(System.IntPtr pUnk, ref System.Guid iid, out System.IntPtr ppv) { ppv = default(System.IntPtr); throw null; }
+        public static byte ReadByte(System.IntPtr ptr) { throw null; }
+        public static byte ReadByte(System.IntPtr ptr, int ofs) { throw null; }
+        public static byte ReadByte(object ptr, int ofs) { throw null; }
+        public static short ReadInt16(System.IntPtr ptr) { throw null; }
+        public static short ReadInt16(System.IntPtr ptr, int ofs) { throw null; }
+        public static short ReadInt16(object ptr, int ofs) { throw null; }
+        public static int ReadInt32(System.IntPtr ptr) { throw null; }
+        public static int ReadInt32(System.IntPtr ptr, int ofs) { throw null; }
+        public static int ReadInt32(object ptr, int ofs) { throw null; }
+        public static long ReadInt64(System.IntPtr ptr) { throw null; }
+        public static long ReadInt64(System.IntPtr ptr, int ofs) { throw null; }
+        public static long ReadInt64(object ptr, int ofs) { throw null; }
+        public static System.IntPtr ReadIntPtr(System.IntPtr ptr) { throw null; }
+        public static System.IntPtr ReadIntPtr(System.IntPtr ptr, int ofs) { throw null; }
+        public static System.IntPtr ReadIntPtr(object ptr, int ofs) { throw null; }
+        public static System.IntPtr ReAllocCoTaskMem(System.IntPtr pv, int cb) { throw null; }
+        public static System.IntPtr ReAllocHGlobal(System.IntPtr pv, System.IntPtr cb) { throw null; }
+        public static int Release(System.IntPtr pUnk) { throw null; }
+        public static int ReleaseComObject(object o) { throw null; }
+        [System.ObsoleteAttribute]
+        public static void ReleaseThreadCache() { }
+        public static System.IntPtr SecureStringToBSTR(System.Security.SecureString s) { throw null; }
+        public static System.IntPtr SecureStringToCoTaskMemAnsi(System.Security.SecureString s) { throw null; }
+        public static System.IntPtr SecureStringToCoTaskMemUnicode(System.Security.SecureString s) { throw null; }
+        public static System.IntPtr SecureStringToGlobalAllocAnsi(System.Security.SecureString s) { throw null; }
+        public static System.IntPtr SecureStringToGlobalAllocUnicode(System.Security.SecureString s) { throw null; }
+        public static bool SetComObjectData(object obj, object key, object data) { throw null; }
+        public static int SizeOf(object structure) { throw null; }
+        public static int SizeOf(System.Type t) { throw null; }
+        public static int SizeOf<T>() { throw null; }
+        public static int SizeOf<T>(T structure) { throw null; }
+        public static System.IntPtr StringToBSTR(string s) { throw null; }
+        public static System.IntPtr StringToCoTaskMemAnsi(string s) { throw null; }
+        public static System.IntPtr StringToCoTaskMemAuto(string s) { throw null; }
+        public static System.IntPtr StringToCoTaskMemUni(string s) { throw null; }
+        public static System.IntPtr StringToHGlobalAnsi(string s) { throw null; }
+        public static System.IntPtr StringToHGlobalAuto(string s) { throw null; }
+        public static System.IntPtr StringToHGlobalUni(string s) { throw null; }
+        public static void StructureToPtr(object structure, System.IntPtr ptr, bool fDeleteOld) { }
+        public static void StructureToPtr<T>(T structure, System.IntPtr ptr, bool fDeleteOld) { }
+        public static void ThrowExceptionForHR(int errorCode) { }
+        public static void ThrowExceptionForHR(int errorCode, System.IntPtr errorInfo) { }
+        public static System.IntPtr UnsafeAddrOfPinnedArrayElement(System.Array arr, int index) { throw null; }
+        public static System.IntPtr UnsafeAddrOfPinnedArrayElement<T>(T[] arr, int index) { throw null; }
+        public static void WriteByte(System.IntPtr ptr, byte val) { }
+        public static void WriteByte(System.IntPtr ptr, int ofs, byte val) { }
+        public static void WriteByte(object ptr, int ofs, byte val) { ptr = default(object); }
+        public static void WriteInt16(System.IntPtr ptr, char val) { }
+        public static void WriteInt16(System.IntPtr ptr, short val) { }
+        public static void WriteInt16(System.IntPtr ptr, int ofs, char val) { }
+        public static void WriteInt16(System.IntPtr ptr, int ofs, short val) { }
+        public static void WriteInt16(object ptr, int ofs, char val) { ptr = default(object); }
+        public static void WriteInt16(object ptr, int ofs, short val) { ptr = default(object); }
+        public static void WriteInt32(System.IntPtr ptr, int val) { }
+        public static void WriteInt32(System.IntPtr ptr, int ofs, int val) { }
+        public static void WriteInt32(object ptr, int ofs, int val) { ptr = default(object); }
+        public static void WriteInt64(System.IntPtr ptr, int ofs, long val) { }
+        public static void WriteInt64(System.IntPtr ptr, long val) { }
+        public static void WriteInt64(object ptr, int ofs, long val) { ptr = default(object); }
+        public static void WriteIntPtr(System.IntPtr ptr, int ofs, System.IntPtr val) { }
+        public static void WriteIntPtr(System.IntPtr ptr, System.IntPtr val) { }
+        public static void WriteIntPtr(object ptr, int ofs, System.IntPtr val) { ptr = default(object); }
+        public static void ZeroFreeBSTR(System.IntPtr s) { }
+        public static void ZeroFreeCoTaskMemAnsi(System.IntPtr s) { }
+        public static void ZeroFreeCoTaskMemUnicode(System.IntPtr s) { }
+        public static void ZeroFreeGlobalAllocAnsi(System.IntPtr s) { }
+        public static void ZeroFreeGlobalAllocUnicode(System.IntPtr s) { }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(10496), Inherited=false)]
+    public sealed partial class MarshalAsAttribute : System.Attribute
+    {
+        public System.Runtime.InteropServices.UnmanagedType ArraySubType;
+        public int IidParameterIndex;
+        public string MarshalCookie;
+        public string MarshalType;
+        public System.Type MarshalTypeRef;
+        public System.Runtime.InteropServices.VarEnum SafeArraySubType;
+        public System.Type SafeArrayUserDefinedSubType;
+        public int SizeConst;
+        public short SizeParamIndex;
+        public MarshalAsAttribute(short unmanagedType) { }
+        public MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType unmanagedType) { }
+        public System.Runtime.InteropServices.UnmanagedType Value { get { throw null; } }
+    }
+    public partial class MarshalDirectiveException : System.SystemException
+    {
+        public MarshalDirectiveException() { }
+        protected MarshalDirectiveException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public MarshalDirectiveException(string message) { }
+        public MarshalDirectiveException(string message, System.Exception inner) { }
+    }
+    public delegate System.IntPtr ObjectCreationDelegate(System.IntPtr aggregator);
+    [System.AttributeUsageAttribute((System.AttributeTargets)(2048), Inherited=false)]
+    public sealed partial class OptionalAttribute : System.Attribute
+    {
+        public OptionalAttribute() { }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(2048), Inherited=false)]
+    public sealed partial class OutAttribute : System.Attribute
+    {
+        public OutAttribute() { }
+    }
+    [System.ObsoleteAttribute]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct PARAMDESC
+    {
+        public System.IntPtr lpVarValue;
+        public System.Runtime.InteropServices.PARAMFLAG wParamFlags;
+    }
+    [System.FlagsAttribute]
+    [System.ObsoleteAttribute]
+    public enum PARAMFLAG
+    {
+        PARAMFLAG_FHASCUSTDATA = 64,
+        PARAMFLAG_FHASDEFAULT = 32,
+        PARAMFLAG_FIN = 1,
+        PARAMFLAG_FLCID = 4,
+        PARAMFLAG_FOPT = 16,
+        PARAMFLAG_FOUT = 2,
+        PARAMFLAG_FRETVAL = 8,
+        PARAMFLAG_NONE = 0,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
+    public sealed partial class PreserveSigAttribute : System.Attribute
+    {
+        public PreserveSigAttribute() { }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false, AllowMultiple=true)]
+    public sealed partial class PrimaryInteropAssemblyAttribute : System.Attribute
+    {
+        public PrimaryInteropAssemblyAttribute(int major, int minor) { }
+        public int MajorVersion { get { throw null; } }
+        public int MinorVersion { get { throw null; } }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=false)]
+    public sealed partial class ProgIdAttribute : System.Attribute
+    {
+        public ProgIdAttribute(string progId) { }
+        public string Value { get { throw null; } }
+    }
+    [System.FlagsAttribute]
+    public enum RegistrationClassContext
+    {
+        DisableActivateAsActivator = 32768,
+        EnableActivateAsActivator = 65536,
+        EnableCodeDownload = 8192,
+        FromDefaultContext = 131072,
+        InProcessHandler = 2,
+        InProcessHandler16 = 32,
+        InProcessServer = 1,
+        InProcessServer16 = 8,
+        LocalServer = 4,
+        NoCodeDownload = 1024,
+        NoCustomMarshal = 4096,
+        NoFailureLog = 16384,
+        RemoteServer = 16,
+        Reserved1 = 64,
+        Reserved2 = 128,
+        Reserved3 = 256,
+        Reserved4 = 512,
+        Reserved5 = 2048,
+    }
+    [System.FlagsAttribute]
+    public enum RegistrationConnectionType
+    {
+        MultipleUse = 1,
+        MultiSeparate = 2,
+        SingleUse = 0,
+        Surrogate = 8,
+        Suspended = 4,
+    }
+    public partial class RuntimeEnvironment
+    {
+        [System.ObsoleteAttribute("Do not create instances of the RuntimeEnvironment class.  Call the static methods directly on this type instead", true)]
+        public RuntimeEnvironment() { }
+        public static string SystemConfigurationFile { get { throw null; } }
+        public static bool FromGlobalAccessCache(System.Reflection.Assembly a) { throw null; }
+        public static string GetRuntimeDirectory() { throw null; }
+        public static System.IntPtr GetRuntimeInterfaceAsIntPtr(System.Guid clsid, System.Guid riid) { throw null; }
+        public static object GetRuntimeInterfaceAsObject(System.Guid clsid, System.Guid riid) { throw null; }
+        public static string GetSystemVersion() { throw null; }
+    }
+    public partial class SafeArrayRankMismatchException : System.SystemException
+    {
+        public SafeArrayRankMismatchException() { }
+        protected SafeArrayRankMismatchException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public SafeArrayRankMismatchException(string message) { }
+        public SafeArrayRankMismatchException(string message, System.Exception inner) { }
+    }
+    public partial class SafeArrayTypeMismatchException : System.SystemException
+    {
+        public SafeArrayTypeMismatchException() { }
+        protected SafeArrayTypeMismatchException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public SafeArrayTypeMismatchException(string message) { }
+        public SafeArrayTypeMismatchException(string message, System.Exception inner) { }
+    }
+    public abstract partial class SafeBuffer : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid, System.IDisposable
+    {
+        protected SafeBuffer(bool ownsHandle) : base (default(bool)) { }
+        [System.CLSCompliantAttribute(false)]
+        public ulong ByteLength { get { throw null; } }
+        [System.CLSCompliantAttribute(false)]
+        public unsafe void AcquirePointer(ref byte* pointer) { }
+        [System.CLSCompliantAttribute(false)]
+        public void Initialize(uint numElements, uint sizeOfEachElement) { }
+        [System.CLSCompliantAttribute(false)]
+        public void Initialize(ulong numBytes) { }
+        [System.CLSCompliantAttribute(false)]
+        public void Initialize<T>(uint numElements) where T : struct { }
+        [System.CLSCompliantAttribute(false)]
+        public void ReadArray<T>(ulong byteOffset, T[] array, int index, int count) where T : struct { }
+        [System.CLSCompliantAttribute(false)]
+        public T Read<T>(ulong byteOffset) where T : struct { throw null; }
+        public void ReleasePointer() { }
+        [System.CLSCompliantAttribute(false)]
+        public void WriteArray<T>(ulong byteOffset, T[] array, int index, int count) where T : struct { }
+        [System.CLSCompliantAttribute(false)]
+        public void Write<T>(ulong byteOffset, T value) where T : struct { }
+    }
+    public abstract partial class SafeHandle : System.Runtime.ConstrainedExecution.CriticalFinalizerObject, System.IDisposable
+    {
+        protected System.IntPtr handle;
+        protected SafeHandle() { }
+        protected SafeHandle(System.IntPtr invalidHandleValue, bool ownsHandle) { }
+        public bool IsClosed { get { throw null; } }
+        public abstract bool IsInvalid { get; }
+        public void Close() { }
+        public void DangerousAddRef(ref bool success) { }
+        public System.IntPtr DangerousGetHandle() { throw null; }
+        public void DangerousRelease() { }
+        public void Dispose() { }
+        protected virtual void Dispose(bool disposing) { }
+        ~SafeHandle() { }
+        protected abstract bool ReleaseHandle();
+        protected void SetHandle(System.IntPtr handle) { }
+        public void SetHandleAsInvalid() { }
+    }
+    public partial class SEHException : System.Runtime.InteropServices.ExternalException
+    {
+        public SEHException() { }
+        protected SEHException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public SEHException(string message) { }
+        public SEHException(string message, System.Exception inner) { }
+        public virtual bool CanResume() { throw null; }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
+    [System.ObsoleteAttribute("This attribute has been deprecated.  Application Domains no longer respect Activation Context boundaries in IDispatch calls.", false)]
+    public sealed partial class SetWin32ContextInIDispatchAttribute : System.Attribute
+    {
+        public SetWin32ContextInIDispatchAttribute() { }
+    }
+    [System.ObsoleteAttribute]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct STATSTG
+    {
+        public System.Runtime.InteropServices.FILETIME atime;
+        public long cbSize;
+        public System.Guid clsid;
+        public System.Runtime.InteropServices.FILETIME ctime;
+        public int grfLocksSupported;
+        public int grfMode;
+        public int grfStateBits;
+        public System.Runtime.InteropServices.FILETIME mtime;
+        public string pwcsName;
+        public int reserved;
+        public int type;
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited=false)]
+    public sealed partial class StructLayoutAttribute : System.Attribute
+    {
+        public System.Runtime.InteropServices.CharSet CharSet;
+        public int Pack;
+        public int Size;
+        public StructLayoutAttribute(short layoutKind) { }
+        public StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind layoutKind) { }
+        public System.Runtime.InteropServices.LayoutKind Value { get { throw null; } }
+    }
+    [System.ObsoleteAttribute]
+    public enum SYSKIND
+    {
+        SYS_MAC = 2,
+        SYS_WIN16 = 0,
+        SYS_WIN32 = 1,
+    }
+    [System.ObsoleteAttribute]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct TYPEATTR
+    {
+        public short cbAlignment;
+        public int cbSizeInstance;
+        public short cbSizeVft;
+        public short cFuncs;
+        public short cImplTypes;
+        public short cVars;
+        public int dwReserved;
+        public System.Guid guid;
+        public System.Runtime.InteropServices.IDLDESC idldescType;
+        public int lcid;
+        public System.IntPtr lpstrSchema;
+        public const int MEMBER_ID_NIL = -1;
+        public int memidConstructor;
+        public int memidDestructor;
+        public System.Runtime.InteropServices.TYPEDESC tdescAlias;
+        public System.Runtime.InteropServices.TYPEKIND typekind;
+        public short wMajorVerNum;
+        public short wMinorVerNum;
+        public System.Runtime.InteropServices.TYPEFLAGS wTypeFlags;
+    }
+    [System.ObsoleteAttribute]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct TYPEDESC
+    {
+        public System.IntPtr lpValue;
+        public short vt;
+    }
+    [System.FlagsAttribute]
+    [System.ObsoleteAttribute]
+    public enum TYPEFLAGS
+    {
+        TYPEFLAG_FAGGREGATABLE = 1024,
+        TYPEFLAG_FAPPOBJECT = 1,
+        TYPEFLAG_FCANCREATE = 2,
+        TYPEFLAG_FCONTROL = 32,
+        TYPEFLAG_FDISPATCHABLE = 4096,
+        TYPEFLAG_FDUAL = 64,
+        TYPEFLAG_FHIDDEN = 16,
+        TYPEFLAG_FLICENSED = 4,
+        TYPEFLAG_FNONEXTENSIBLE = 128,
+        TYPEFLAG_FOLEAUTOMATION = 256,
+        TYPEFLAG_FPREDECLID = 8,
+        TYPEFLAG_FPROXY = 16384,
+        TYPEFLAG_FREPLACEABLE = 2048,
+        TYPEFLAG_FRESTRICTED = 512,
+        TYPEFLAG_FREVERSEBIND = 8192,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(5144), AllowMultiple=false, Inherited=false)]
+    public sealed partial class TypeIdentifierAttribute : System.Attribute
+    {
+        public TypeIdentifierAttribute() { }
+        public TypeIdentifierAttribute(string scope, string identifier) { }
+        public string Identifier { get { throw null; } }
+        public string Scope { get { throw null; } }
+    }
+    [System.ObsoleteAttribute]
+    public enum TYPEKIND
+    {
+        TKIND_ALIAS = 6,
+        TKIND_COCLASS = 5,
+        TKIND_DISPATCH = 4,
+        TKIND_ENUM = 0,
+        TKIND_INTERFACE = 3,
+        TKIND_MAX = 8,
+        TKIND_MODULE = 2,
+        TKIND_RECORD = 1,
+        TKIND_UNION = 7,
+    }
+    [System.ObsoleteAttribute]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct TYPELIBATTR
+    {
+        public System.Guid guid;
+        public int lcid;
+        public System.Runtime.InteropServices.SYSKIND syskind;
+        public System.Runtime.InteropServices.LIBFLAGS wLibFlags;
+        public short wMajorVerNum;
+        public short wMinorVerNum;
+    }
+    public sealed partial class TypeLibConverter : System.Runtime.InteropServices.ITypeLibConverter
+    {
+        public TypeLibConverter() { }
+        public object ConvertAssemblyToTypeLib(System.Reflection.Assembly assembly, string strTypeLibName, System.Runtime.InteropServices.TypeLibExporterFlags flags, System.Runtime.InteropServices.ITypeLibExporterNotifySink notifySink) { throw null; }
+        public System.Reflection.Emit.AssemblyBuilder ConvertTypeLibToAssembly(object typeLib, string asmFileName, int flags, System.Runtime.InteropServices.ITypeLibImporterNotifySink notifySink, byte[] publicKey, System.Reflection.StrongNameKeyPair keyPair, bool unsafeInterfaces) { throw null; }
+        public System.Reflection.Emit.AssemblyBuilder ConvertTypeLibToAssembly(object typeLib, string asmFileName, System.Runtime.InteropServices.TypeLibImporterFlags flags, System.Runtime.InteropServices.ITypeLibImporterNotifySink notifySink, byte[] publicKey, System.Reflection.StrongNameKeyPair keyPair, string asmNamespace, System.Version asmVersion) { throw null; }
+        public bool GetPrimaryInteropAssembly(System.Guid g, int major, int minor, int lcid, out string asmName, out string asmCodeBase) { asmName = default(string); asmCodeBase = default(string); throw null; }
+    }
+    [System.FlagsAttribute]
+    public enum TypeLibExporterFlags
+    {
+        CallerResolvedReferences = 2,
+        ExportAs32Bit = 16,
+        ExportAs64Bit = 32,
+        None = 0,
+        OldNames = 4,
+        OnlyReferenceRegistered = 1,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
+    public sealed partial class TypeLibFuncAttribute : System.Attribute
+    {
+        public TypeLibFuncAttribute(short flags) { }
+        public TypeLibFuncAttribute(System.Runtime.InteropServices.TypeLibFuncFlags flags) { }
+        public System.Runtime.InteropServices.TypeLibFuncFlags Value { get { throw null; } }
+    }
+    [System.FlagsAttribute]
+    public enum TypeLibFuncFlags
+    {
+        FBindable = 4,
+        FDefaultBind = 32,
+        FDefaultCollelem = 256,
+        FDisplayBind = 16,
+        FHidden = 64,
+        FImmediateBind = 4096,
+        FNonBrowsable = 1024,
+        FReplaceable = 2048,
+        FRequestEdit = 8,
+        FRestricted = 1,
+        FSource = 2,
+        FUiDefault = 512,
+        FUsesGetLastError = 128,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited=false)]
+    public sealed partial class TypeLibImportClassAttribute : System.Attribute
+    {
+        public TypeLibImportClassAttribute(System.Type importClass) { }
+        public string Value { get { throw null; } }
+    }
+    [System.FlagsAttribute]
+    public enum TypeLibImporterFlags
+    {
+        ImportAsAgnostic = 2048,
+        ImportAsItanium = 1024,
+        ImportAsX64 = 512,
+        ImportAsX86 = 256,
+        NoDefineVersionResource = 8192,
+        None = 0,
+        PreventClassMembers = 16,
+        PrimaryInteropAssembly = 1,
+        ReflectionOnlyLoading = 4096,
+        SafeArrayAsSystemArray = 4,
+        SerializableValueClasses = 32,
+        TransformDispRetVals = 8,
+        UnsafeInterfaces = 2,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1052), Inherited=false)]
+    public sealed partial class TypeLibTypeAttribute : System.Attribute
+    {
+        public TypeLibTypeAttribute(short flags) { }
+        public TypeLibTypeAttribute(System.Runtime.InteropServices.TypeLibTypeFlags flags) { }
+        public System.Runtime.InteropServices.TypeLibTypeFlags Value { get { throw null; } }
+    }
+    [System.FlagsAttribute]
+    public enum TypeLibTypeFlags
+    {
+        FAggregatable = 1024,
+        FAppObject = 1,
+        FCanCreate = 2,
+        FControl = 32,
+        FDispatchable = 4096,
+        FDual = 64,
+        FHidden = 16,
+        FLicensed = 4,
+        FNonExtensible = 128,
+        FOleAutomation = 256,
+        FPreDeclId = 8,
+        FReplaceable = 2048,
+        FRestricted = 512,
+        FReverseBind = 8192,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(256), Inherited=false)]
+    public sealed partial class TypeLibVarAttribute : System.Attribute
+    {
+        public TypeLibVarAttribute(short flags) { }
+        public TypeLibVarAttribute(System.Runtime.InteropServices.TypeLibVarFlags flags) { }
+        public System.Runtime.InteropServices.TypeLibVarFlags Value { get { throw null; } }
+    }
+    [System.FlagsAttribute]
+    public enum TypeLibVarFlags
+    {
+        FBindable = 4,
+        FDefaultBind = 32,
+        FDefaultCollelem = 256,
+        FDisplayBind = 16,
+        FHidden = 64,
+        FImmediateBind = 4096,
+        FNonBrowsable = 1024,
+        FReadOnly = 1,
+        FReplaceable = 2048,
+        FRequestEdit = 8,
+        FRestricted = 128,
+        FSource = 2,
+        FUiDefault = 512,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
+    public sealed partial class TypeLibVersionAttribute : System.Attribute
+    {
+        public TypeLibVersionAttribute(int major, int minor) { }
+        public int MajorVersion { get { throw null; } }
+        public int MinorVersion { get { throw null; } }
+    }
+    [System.ObsoleteAttribute]
+    public partial interface UCOMIBindCtx
+    {
+        void EnumObjectParam(out System.Runtime.InteropServices.UCOMIEnumString ppenum);
+        void GetBindOptions(ref System.Runtime.InteropServices.BIND_OPTS pbindopts);
+        void GetObjectParam(string pszKey, out object ppunk);
+        void GetRunningObjectTable(out System.Runtime.InteropServices.UCOMIRunningObjectTable pprot);
+        void RegisterObjectBound(object punk);
+        void RegisterObjectParam(string pszKey, object punk);
+        void ReleaseBoundObjects();
+        void RevokeObjectBound(object punk);
+        void RevokeObjectParam(string pszKey);
+        void SetBindOptions(ref System.Runtime.InteropServices.BIND_OPTS pbindopts);
+    }
+    [System.ObsoleteAttribute]
+    public partial interface UCOMIConnectionPoint
+    {
+        void Advise(object pUnkSink, out int pdwCookie);
+        void EnumConnections(out System.Runtime.InteropServices.UCOMIEnumConnections ppEnum);
+        void GetConnectionInterface(out System.Guid pIID);
+        void GetConnectionPointContainer(out System.Runtime.InteropServices.UCOMIConnectionPointContainer ppCPC);
+        void Unadvise(int dwCookie);
+    }
+    [System.ObsoleteAttribute]
+    public partial interface UCOMIConnectionPointContainer
+    {
+        void EnumConnectionPoints(out System.Runtime.InteropServices.UCOMIEnumConnectionPoints ppEnum);
+        void FindConnectionPoint(ref System.Guid riid, out System.Runtime.InteropServices.UCOMIConnectionPoint ppCP);
+    }
+    [System.ObsoleteAttribute]
+    public partial interface UCOMIEnumConnectionPoints
+    {
+        void Clone(out System.Runtime.InteropServices.UCOMIEnumConnectionPoints ppenum);
+        int Next(int celt, System.Runtime.InteropServices.UCOMIConnectionPoint[] rgelt, out int pceltFetched);
+        int Reset();
+        int Skip(int celt);
+    }
+    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.IEnumConnections instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
+    public partial interface UCOMIEnumConnections
+    {
+        void Clone(out System.Runtime.InteropServices.UCOMIEnumConnections ppenum);
+        int Next(int celt, System.Runtime.InteropServices.CONNECTDATA[] rgelt, out int pceltFetched);
+        void Reset();
+        int Skip(int celt);
+    }
+    [System.ObsoleteAttribute]
+    public partial interface UCOMIEnumMoniker
+    {
+        void Clone(out System.Runtime.InteropServices.UCOMIEnumMoniker ppenum);
+        int Next(int celt, System.Runtime.InteropServices.UCOMIMoniker[] rgelt, out int pceltFetched);
+        int Reset();
+        int Skip(int celt);
+    }
+    [System.ObsoleteAttribute]
+    public partial interface UCOMIEnumString
+    {
+        void Clone(out System.Runtime.InteropServices.UCOMIEnumString ppenum);
+        int Next(int celt, string[] rgelt, out int pceltFetched);
+        int Reset();
+        int Skip(int celt);
+    }
+    [System.ObsoleteAttribute]
+    public partial interface UCOMIEnumVARIANT
+    {
+        void Clone(int ppenum);
+        int Next(int celt, int rgvar, int pceltFetched);
+        int Reset();
+        int Skip(int celt);
+    }
+    [System.ObsoleteAttribute]
+    public partial interface UCOMIMoniker
+    {
+        void BindToObject(System.Runtime.InteropServices.UCOMIBindCtx pbc, System.Runtime.InteropServices.UCOMIMoniker pmkToLeft, ref System.Guid riidResult, out object ppvResult);
+        void BindToStorage(System.Runtime.InteropServices.UCOMIBindCtx pbc, System.Runtime.InteropServices.UCOMIMoniker pmkToLeft, ref System.Guid riid, out object ppvObj);
+        void CommonPrefixWith(System.Runtime.InteropServices.UCOMIMoniker pmkOther, out System.Runtime.InteropServices.UCOMIMoniker ppmkPrefix);
+        void ComposeWith(System.Runtime.InteropServices.UCOMIMoniker pmkRight, bool fOnlyIfNotGeneric, out System.Runtime.InteropServices.UCOMIMoniker ppmkComposite);
+        void Enum(bool fForward, out System.Runtime.InteropServices.UCOMIEnumMoniker ppenumMoniker);
+        void GetClassID(out System.Guid pClassID);
+        void GetDisplayName(System.Runtime.InteropServices.UCOMIBindCtx pbc, System.Runtime.InteropServices.UCOMIMoniker pmkToLeft, out string ppszDisplayName);
+        void GetSizeMax(out long pcbSize);
+        void GetTimeOfLastChange(System.Runtime.InteropServices.UCOMIBindCtx pbc, System.Runtime.InteropServices.UCOMIMoniker pmkToLeft, out System.Runtime.InteropServices.FILETIME pFileTime);
+        void Hash(out int pdwHash);
+        void Inverse(out System.Runtime.InteropServices.UCOMIMoniker ppmk);
+        int IsDirty();
+        void IsEqual(System.Runtime.InteropServices.UCOMIMoniker pmkOtherMoniker);
+        void IsRunning(System.Runtime.InteropServices.UCOMIBindCtx pbc, System.Runtime.InteropServices.UCOMIMoniker pmkToLeft, System.Runtime.InteropServices.UCOMIMoniker pmkNewlyRunning);
+        void IsSystemMoniker(out int pdwMksys);
+        void Load(System.Runtime.InteropServices.UCOMIStream pStm);
+        void ParseDisplayName(System.Runtime.InteropServices.UCOMIBindCtx pbc, System.Runtime.InteropServices.UCOMIMoniker pmkToLeft, string pszDisplayName, out int pchEaten, out System.Runtime.InteropServices.UCOMIMoniker ppmkOut);
+        void Reduce(System.Runtime.InteropServices.UCOMIBindCtx pbc, int dwReduceHowFar, ref System.Runtime.InteropServices.UCOMIMoniker ppmkToLeft, out System.Runtime.InteropServices.UCOMIMoniker ppmkReduced);
+        void RelativePathTo(System.Runtime.InteropServices.UCOMIMoniker pmkOther, out System.Runtime.InteropServices.UCOMIMoniker ppmkRelPath);
+        void Save(System.Runtime.InteropServices.UCOMIStream pStm, bool fClearDirty);
+    }
+    [System.ObsoleteAttribute]
+    public partial interface UCOMIPersistFile
+    {
+        void GetClassID(out System.Guid pClassID);
+        void GetCurFile(out string ppszFileName);
+        int IsDirty();
+        void Load(string pszFileName, int dwMode);
+        void Save(string pszFileName, bool fRemember);
+        void SaveCompleted(string pszFileName);
+    }
+    [System.ObsoleteAttribute]
+    public partial interface UCOMIRunningObjectTable
+    {
+        void EnumRunning(out System.Runtime.InteropServices.UCOMIEnumMoniker ppenumMoniker);
+        void GetObject(System.Runtime.InteropServices.UCOMIMoniker pmkObjectName, out object ppunkObject);
+        void GetTimeOfLastChange(System.Runtime.InteropServices.UCOMIMoniker pmkObjectName, out System.Runtime.InteropServices.FILETIME pfiletime);
+        void IsRunning(System.Runtime.InteropServices.UCOMIMoniker pmkObjectName);
+        void NoteChangeTime(int dwRegister, ref System.Runtime.InteropServices.FILETIME pfiletime);
+        void Register(int grfFlags, object punkObject, System.Runtime.InteropServices.UCOMIMoniker pmkObjectName, out int pdwRegister);
+        void Revoke(int dwRegister);
+    }
+    [System.ObsoleteAttribute]
+    public partial interface UCOMIStream
+    {
+        void Clone(out System.Runtime.InteropServices.UCOMIStream ppstm);
+        void Commit(int grfCommitFlags);
+        void CopyTo(System.Runtime.InteropServices.UCOMIStream pstm, long cb, System.IntPtr pcbRead, System.IntPtr pcbWritten);
+        void LockRegion(long libOffset, long cb, int dwLockType);
+        void Read(byte[] pv, int cb, System.IntPtr pcbRead);
+        void Revert();
+        void Seek(long dlibMove, int dwOrigin, System.IntPtr plibNewPosition);
+        void SetSize(long libNewSize);
+        void Stat(out System.Runtime.InteropServices.STATSTG pstatstg, int grfStatFlag);
+        void UnlockRegion(long libOffset, long cb, int dwLockType);
+        void Write(byte[] pv, int cb, System.IntPtr pcbWritten);
+    }
+    [System.ObsoleteAttribute]
+    public partial interface UCOMITypeComp
+    {
+        void Bind(string szName, int lHashVal, short wFlags, out System.Runtime.InteropServices.UCOMITypeInfo ppTInfo, out System.Runtime.InteropServices.DESCKIND pDescKind, out System.Runtime.InteropServices.BINDPTR pBindPtr);
+        void BindType(string szName, int lHashVal, out System.Runtime.InteropServices.UCOMITypeInfo ppTInfo, out System.Runtime.InteropServices.UCOMITypeComp ppTComp);
+    }
+    [System.ObsoleteAttribute]
+    public partial interface UCOMITypeInfo
+    {
+        void AddressOfMember(int memid, System.Runtime.InteropServices.INVOKEKIND invKind, out System.IntPtr ppv);
+        void CreateInstance(object pUnkOuter, ref System.Guid riid, out object ppvObj);
+        void GetContainingTypeLib(out System.Runtime.InteropServices.UCOMITypeLib ppTLB, out int pIndex);
+        void GetDllEntry(int memid, System.Runtime.InteropServices.INVOKEKIND invKind, out string pBstrDllName, out string pBstrName, out short pwOrdinal);
+        void GetDocumentation(int index, out string strName, out string strDocString, out int dwHelpContext, out string strHelpFile);
+        void GetFuncDesc(int index, out System.IntPtr ppFuncDesc);
+        void GetIDsOfNames(string[] rgszNames, int cNames, int[] pMemId);
+        void GetImplTypeFlags(int index, out int pImplTypeFlags);
+        void GetMops(int memid, out string pBstrMops);
+        void GetNames(int memid, string[] rgBstrNames, int cMaxNames, out int pcNames);
+        void GetRefTypeInfo(int hRef, out System.Runtime.InteropServices.UCOMITypeInfo ppTI);
+        void GetRefTypeOfImplType(int index, out int href);
+        void GetTypeAttr(out System.IntPtr ppTypeAttr);
+        void GetTypeComp(out System.Runtime.InteropServices.UCOMITypeComp ppTComp);
+        void GetVarDesc(int index, out System.IntPtr ppVarDesc);
+        void Invoke(object pvInstance, int memid, short wFlags, ref System.Runtime.InteropServices.DISPPARAMS pDispParams, out object pVarResult, out System.Runtime.InteropServices.EXCEPINFO pExcepInfo, out int puArgErr);
+        void ReleaseFuncDesc(System.IntPtr pFuncDesc);
+        void ReleaseTypeAttr(System.IntPtr pTypeAttr);
+        void ReleaseVarDesc(System.IntPtr pVarDesc);
+    }
+    [System.ObsoleteAttribute]
+    public partial interface UCOMITypeLib
+    {
+        void FindName(string szNameBuf, int lHashVal, System.Runtime.InteropServices.UCOMITypeInfo[] ppTInfo, int[] rgMemId, ref short pcFound);
+        void GetDocumentation(int index, out string strName, out string strDocString, out int dwHelpContext, out string strHelpFile);
+        void GetLibAttr(out System.IntPtr ppTLibAttr);
+        void GetTypeComp(out System.Runtime.InteropServices.UCOMITypeComp ppTComp);
+        void GetTypeInfo(int index, out System.Runtime.InteropServices.UCOMITypeInfo ppTI);
+        int GetTypeInfoCount();
+        void GetTypeInfoOfGuid(ref System.Guid guid, out System.Runtime.InteropServices.UCOMITypeInfo ppTInfo);
+        void GetTypeInfoType(int index, out System.Runtime.InteropServices.TYPEKIND pTKind);
+        bool IsName(string szNameBuf, int lHashVal);
+        void ReleaseTLibAttr(System.IntPtr pTLibAttr);
+    }
+    public sealed partial class UnknownWrapper
+    {
+        public UnknownWrapper(object obj) { }
+        public object WrappedObject { get { throw null; } }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(4096), AllowMultiple=false, Inherited=false)]
+    public sealed partial class UnmanagedFunctionPointerAttribute : System.Attribute
+    {
+        public bool BestFitMapping;
+        public System.Runtime.InteropServices.CharSet CharSet;
+        public bool SetLastError;
+        public bool ThrowOnUnmappableChar;
+        public UnmanagedFunctionPointerAttribute(System.Runtime.InteropServices.CallingConvention callingConvention) { }
+        public System.Runtime.InteropServices.CallingConvention CallingConvention { get { throw null; } }
+    }
+    public enum UnmanagedType
+    {
+        AnsiBStr = 35,
+        AsAny = 40,
+        Bool = 2,
+        BStr = 19,
+        ByValArray = 30,
+        ByValTStr = 23,
+        Currency = 15,
+        CustomMarshaler = 44,
+        Error = 45,
+        FunctionPtr = 38,
+        HString = 47,
+        I1 = 3,
+        I2 = 5,
+        I4 = 7,
+        I8 = 9,
+        IDispatch = 26,
+        IInspectable = 46,
+        Interface = 28,
+        IUnknown = 25,
+        LPArray = 42,
+        LPStr = 20,
+        LPStruct = 43,
+        LPTStr = 22,
+        LPWStr = 21,
+        R4 = 11,
+        R8 = 12,
+        SafeArray = 29,
+        Struct = 27,
+        SysInt = 31,
+        SysUInt = 32,
+        TBStr = 36,
+        U1 = 4,
+        U2 = 6,
+        U4 = 8,
+        U8 = 10,
+        VariantBool = 37,
+        VBByRefStr = 34,
+    }
+    [System.ObsoleteAttribute]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct VARDESC
+    {
+        public System.Runtime.InteropServices.ELEMDESC elemdescVar;
+        public string lpstrSchema;
+        public int memid;
+        public System.Runtime.InteropServices.VarEnum varkind;
+        public short wVarFlags;
+        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Explicit)]
+        public partial struct DESCUNION
+        {
+            [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
+            public System.IntPtr lpvarValue;
+            [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
+            public int oInst;
+        }
+    }
+    public enum VarEnum
+    {
+        VT_ARRAY = 8192,
+        VT_BLOB = 65,
+        VT_BLOB_OBJECT = 70,
+        VT_BOOL = 11,
+        VT_BSTR = 8,
+        VT_BYREF = 16384,
+        VT_CARRAY = 28,
+        VT_CF = 71,
+        VT_CLSID = 72,
+        VT_CY = 6,
+        VT_DATE = 7,
+        VT_DECIMAL = 14,
+        VT_DISPATCH = 9,
+        VT_EMPTY = 0,
+        VT_ERROR = 10,
+        VT_FILETIME = 64,
+        VT_HRESULT = 25,
+        VT_I1 = 16,
+        VT_I2 = 2,
+        VT_I4 = 3,
+        VT_I8 = 20,
+        VT_INT = 22,
+        VT_LPSTR = 30,
+        VT_LPWSTR = 31,
+        VT_NULL = 1,
+        VT_PTR = 26,
+        VT_R4 = 4,
+        VT_R8 = 5,
+        VT_RECORD = 36,
+        VT_SAFEARRAY = 27,
+        VT_STORAGE = 67,
+        VT_STORED_OBJECT = 69,
+        VT_STREAM = 66,
+        VT_STREAMED_OBJECT = 68,
+        VT_UI1 = 17,
+        VT_UI2 = 18,
+        VT_UI4 = 19,
+        VT_UI8 = 21,
+        VT_UINT = 23,
+        VT_UNKNOWN = 13,
+        VT_USERDEFINED = 29,
+        VT_VARIANT = 12,
+        VT_VECTOR = 4096,
+        VT_VOID = 24,
+    }
+    [System.FlagsAttribute]
+    [System.ObsoleteAttribute]
+    public enum VARFLAGS
+    {
+        VARFLAG_FBINDABLE = 4,
+        VARFLAG_FDEFAULTBIND = 32,
+        VARFLAG_FDEFAULTCOLLELEM = 256,
+        VARFLAG_FDISPLAYBIND = 16,
+        VARFLAG_FHIDDEN = 64,
+        VARFLAG_FIMMEDIATEBIND = 4096,
+        VARFLAG_FNONBROWSABLE = 1024,
+        VARFLAG_FREADONLY = 1,
+        VARFLAG_FREPLACEABLE = 2048,
+        VARFLAG_FREQUESTEDIT = 8,
+        VARFLAG_FRESTRICTED = 128,
+        VARFLAG_FSOURCE = 2,
+        VARFLAG_FUIDEFAULT = 512,
+    }
+    public sealed partial class VariantWrapper
+    {
+        public VariantWrapper(object obj) { }
+        public object WrappedObject { get { throw null; } }
+    }
     [System.CLSCompliantAttribute(false)]
     [System.Runtime.InteropServices.TypeLibImportClassAttribute(typeof(System.Activator))]
     public partial interface _Activator
@@ -11786,1564 +13333,9 @@ namespace System.Runtime.InteropServices
         void GetTypeInfoCount(out uint pcTInfo);
         void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), AllowMultiple=false, Inherited=false)]
-    public sealed partial class AllowReversePInvokeCallsAttribute : System.Attribute
-    {
-        public AllowReversePInvokeCallsAttribute() { }
-    }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct ArrayWithOffset
-    {
-        public ArrayWithOffset(object array, int offset) { throw null;}
-        public override bool Equals(object obj) { throw null; }
-        public bool Equals(System.Runtime.InteropServices.ArrayWithOffset obj) { throw null; }
-        public object GetArray() { throw null; }
-        public override int GetHashCode() { throw null; }
-        public int GetOffset() { throw null; }
-        public static bool operator ==(System.Runtime.InteropServices.ArrayWithOffset a, System.Runtime.InteropServices.ArrayWithOffset b) { throw null; }
-        public static bool operator !=(System.Runtime.InteropServices.ArrayWithOffset a, System.Runtime.InteropServices.ArrayWithOffset b) { throw null; }
-    }
-    [System.FlagsAttribute]
-    public enum AssemblyRegistrationFlags
-    {
-        None = 0,
-        SetCodeBase = 1,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1029), Inherited=false)]
-    public sealed partial class AutomationProxyAttribute : System.Attribute
-    {
-        public AutomationProxyAttribute(bool val) { }
-        public bool Value { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1037), Inherited=false)]
-    public sealed partial class BestFitMappingAttribute : System.Attribute
-    {
-        public bool ThrowOnUnmappableChar;
-        public BestFitMappingAttribute(bool BestFitMapping) { }
-        public bool BestFitMapping { get { throw null; } }
-    }
-    [System.ObsoleteAttribute]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct BIND_OPTS
-    {
-        public int cbStruct;
-        public int dwTickCountDeadline;
-        public int grfFlags;
-        public int grfMode;
-    }
-    [System.ObsoleteAttribute]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Explicit)]
-    public partial struct BINDPTR
-    {
-        [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
-        public System.IntPtr lpfuncdesc;
-        [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
-        public System.IntPtr lptcomp;
-        [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
-        public System.IntPtr lpvardesc;
-    }
-    public sealed partial class BStrWrapper
-    {
-        public BStrWrapper(object value) { }
-        public BStrWrapper(string value) { }
-        public string WrappedObject { get { throw null; } }
-    }
-    [System.ObsoleteAttribute]
-    public enum CALLCONV
-    {
-        CC_CDECL = 1,
-        CC_MACPASCAL = 3,
-        CC_MAX = 9,
-        CC_MPWCDECL = 7,
-        CC_MPWPASCAL = 8,
-        CC_MSCPASCAL = 2,
-        CC_PASCAL = 2,
-        CC_RESERVED = 5,
-        CC_STDCALL = 4,
-        CC_SYSCALL = 6,
-    }
-    public enum CallingConvention
-    {
-        Cdecl = 2,
-        FastCall = 5,
-        StdCall = 3,
-        ThisCall = 4,
-        Winapi = 1,
-    }
-    public enum CharSet
-    {
-        Ansi = 2,
-        Auto = 4,
-        None = 1,
-        Unicode = 3,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(5), Inherited=false)]
-    public sealed partial class ClassInterfaceAttribute : System.Attribute
-    {
-        public ClassInterfaceAttribute(short classInterfaceType) { }
-        public ClassInterfaceAttribute(System.Runtime.InteropServices.ClassInterfaceType classInterfaceType) { }
-        public System.Runtime.InteropServices.ClassInterfaceType Value { get { throw null; } }
-    }
-    public enum ClassInterfaceType
-    {
-        AutoDispatch = 1,
-        AutoDual = 2,
-        None = 0,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited=false)]
-    public sealed partial class CoClassAttribute : System.Attribute
-    {
-        public CoClassAttribute(System.Type coClass) { }
-        public System.Type CoClass { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(10624), Inherited=false)]
-    public sealed partial class ComAliasNameAttribute : System.Attribute
-    {
-        public ComAliasNameAttribute(string alias) { }
-        public string Value { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
-    public sealed partial class ComCompatibleVersionAttribute : System.Attribute
-    {
-        public ComCompatibleVersionAttribute(int major, int minor, int build, int revision) { }
-        public int BuildNumber { get { throw null; } }
-        public int MajorVersion { get { throw null; } }
-        public int MinorVersion { get { throw null; } }
-        public int RevisionNumber { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767), Inherited=false)]
-    public sealed partial class ComConversionLossAttribute : System.Attribute
-    {
-        public ComConversionLossAttribute() { }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=false)]
-    public sealed partial class ComDefaultInterfaceAttribute : System.Attribute
-    {
-        public ComDefaultInterfaceAttribute(System.Type defaultInterface) { }
-        public System.Type Value { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited=false)]
-    public sealed partial class ComEventInterfaceAttribute : System.Attribute
-    {
-        public ComEventInterfaceAttribute(System.Type SourceInterface, System.Type EventProvider) { }
-        public System.Type EventProvider { get { throw null; } }
-        public System.Type SourceInterface { get { throw null; } }
-    }
-    public static partial class ComEventsHelper
-    {
-        public static void Combine(object rcw, System.Guid iid, int dispid, System.Delegate d) { }
-        public static System.Delegate Remove(object rcw, System.Guid iid, int dispid, System.Delegate d) { throw null; }
-    }
-    public partial class COMException : System.Runtime.InteropServices.ExternalException
-    {
-        public COMException() { }
-        protected COMException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public COMException(string message) { }
-        public COMException(string message, System.Exception inner) { }
-        public COMException(string message, int errorCode) { }
-        public override string ToString() { throw null; }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), Inherited=false)]
-    public sealed partial class ComImportAttribute : System.Attribute
-    {
-        public ComImportAttribute() { }
-    }
-    public enum ComInterfaceType
-    {
-        InterfaceIsDual = 0,
-        InterfaceIsIDispatch = 2,
-        InterfaceIsIInspectable = 3,
-        InterfaceIsIUnknown = 1,
-    }
-    public enum ComMemberType
-    {
-        Method = 0,
-        PropGet = 1,
-        PropSet = 2,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
-    public sealed partial class ComRegisterFunctionAttribute : System.Attribute
-    {
-        public ComRegisterFunctionAttribute() { }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=true)]
-    public sealed partial class ComSourceInterfacesAttribute : System.Attribute
-    {
-        public ComSourceInterfacesAttribute(string sourceInterfaces) { }
-        public ComSourceInterfacesAttribute(System.Type sourceInterface) { }
-        public ComSourceInterfacesAttribute(System.Type sourceInterface1, System.Type sourceInterface2) { }
-        public ComSourceInterfacesAttribute(System.Type sourceInterface1, System.Type sourceInterface2, System.Type sourceInterface3) { }
-        public ComSourceInterfacesAttribute(System.Type sourceInterface1, System.Type sourceInterface2, System.Type sourceInterface3, System.Type sourceInterface4) { }
-        public string Value { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
-    public sealed partial class ComUnregisterFunctionAttribute : System.Attribute
-    {
-        public ComUnregisterFunctionAttribute() { }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(5597), Inherited=false)]
-    public sealed partial class ComVisibleAttribute : System.Attribute
-    {
-        public ComVisibleAttribute(bool visibility) { }
-        public bool Value { get { throw null; } }
-    }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.CONNECTDATA instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct CONNECTDATA
-    {
-        public int dwCookie;
-        public object pUnk;
-    }
-    public abstract partial class CriticalHandle : System.Runtime.ConstrainedExecution.CriticalFinalizerObject, System.IDisposable
-    {
-        protected System.IntPtr handle;
-        protected CriticalHandle(System.IntPtr invalidHandleValue) { }
-        public bool IsClosed { get { throw null; } }
-        public abstract bool IsInvalid { get; }
-        public void Close() { }
-        public void Dispose() { }
-        protected virtual void Dispose(bool disposing) { }
-        ~CriticalHandle() { }
-        protected abstract bool ReleaseHandle();
-        protected void SetHandle(System.IntPtr handle) { }
-        public void SetHandleAsInvalid() { }
-    }
-    public sealed partial class CurrencyWrapper
-    {
-        public CurrencyWrapper(decimal obj) { }
-        public CurrencyWrapper(object obj) { }
-        public decimal WrappedObject { get { throw null; } }
-    }
-    public enum CustomQueryInterfaceMode
-    {
-        Allow = 1,
-        Ignore = 0,
-    }
-    public enum CustomQueryInterfaceResult
-    {
-        Failed = 2,
-        Handled = 0,
-        NotHandled = 1,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(2), Inherited=false)]
-    public sealed partial class DefaultCharSetAttribute : System.Attribute
-    {
-        public DefaultCharSetAttribute(System.Runtime.InteropServices.CharSet charSet) { }
-        public System.Runtime.InteropServices.CharSet CharSet { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(65), AllowMultiple=false)]
-    public sealed partial class DefaultDllImportSearchPathsAttribute : System.Attribute
-    {
-        public DefaultDllImportSearchPathsAttribute(System.Runtime.InteropServices.DllImportSearchPath paths) { }
-        public System.Runtime.InteropServices.DllImportSearchPath Paths { get { throw null; } }
-    }
-    [System.ObsoleteAttribute]
-    public enum DESCKIND
-    {
-        DESCKIND_FUNCDESC = 1,
-        DESCKIND_IMPLICITAPPOBJ = 4,
-        DESCKIND_MAX = 5,
-        DESCKIND_NONE = 0,
-        DESCKIND_TYPECOMP = 3,
-        DESCKIND_VARDESC = 2,
-    }
-    public sealed partial class DispatchWrapper
-    {
-        public DispatchWrapper(object obj) { }
-        public object WrappedObject { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(960), Inherited=false)]
-    public sealed partial class DispIdAttribute : System.Attribute
-    {
-        public DispIdAttribute(int dispId) { }
-        public int Value { get { throw null; } }
-    }
-    [System.ObsoleteAttribute]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct DISPPARAMS
-    {
-        public int cArgs;
-        public int cNamedArgs;
-        public System.IntPtr rgdispidNamedArgs;
-        public System.IntPtr rgvarg;
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
-    public sealed partial class DllImportAttribute : System.Attribute
-    {
-        public bool BestFitMapping;
-        public System.Runtime.InteropServices.CallingConvention CallingConvention;
-        public System.Runtime.InteropServices.CharSet CharSet;
-        public string EntryPoint;
-        public bool ExactSpelling;
-        public bool PreserveSig;
-        public bool SetLastError;
-        public bool ThrowOnUnmappableChar;
-        public DllImportAttribute(string dllName) { }
-        public string Value { get { throw null; } }
-    }
-    [System.FlagsAttribute]
-    public enum DllImportSearchPath
-    {
-        ApplicationDirectory = 512,
-        AssemblyDirectory = 2,
-        LegacyBehavior = 0,
-        SafeDirectories = 4096,
-        System32 = 2048,
-        UseDllDirectoryForDependencies = 256,
-        UserDirectories = 1024,
-    }
-    [System.ObsoleteAttribute]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct ELEMDESC
-    {
-        public System.Runtime.InteropServices.ELEMDESC.DESCUNION desc;
-        public System.Runtime.InteropServices.TYPEDESC tdesc;
-        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Explicit)]
-        public partial struct DESCUNION
-        {
-            [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
-            public System.Runtime.InteropServices.IDLDESC idldesc;
-            [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
-            public System.Runtime.InteropServices.PARAMDESC paramdesc;
-        }
-    }
-    public sealed partial class ErrorWrapper
-    {
-        public ErrorWrapper(System.Exception e) { }
-        public ErrorWrapper(int errorCode) { }
-        public ErrorWrapper(object errorCode) { }
-        public int ErrorCode { get { throw null; } }
-    }
-    [System.ObsoleteAttribute]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct EXCEPINFO
-    {
-        public string bstrDescription;
-        public string bstrHelpFile;
-        public string bstrSource;
-        public int dwHelpContext;
-        public System.IntPtr pfnDeferredFillIn;
-        public System.IntPtr pvReserved;
-        public short wCode;
-        public short wReserved;
-    }
-    public enum ExporterEventKind
-    {
-        ERROR_REFTOINVALIDASSEMBLY = 2,
-        NOTIF_CONVERTWARNING = 1,
-        NOTIF_TYPECONVERTED = 0,
-    }
-    public sealed partial class ExtensibleClassFactory
-    {
-        internal ExtensibleClassFactory() { }
-        public static void RegisterObjectCreationCallback(System.Runtime.InteropServices.ObjectCreationDelegate callback) { }
-    }
-    public partial class ExternalException : System.SystemException
-    {
-        public ExternalException() { }
-        protected ExternalException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public ExternalException(string message) { }
-        public ExternalException(string message, System.Exception inner) { }
-        public ExternalException(string message, int errorCode) { }
-        public virtual int ErrorCode { get { throw null; } }
-        public override string ToString() { throw null; }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(256), Inherited=false)]
-    public sealed partial class FieldOffsetAttribute : System.Attribute
-    {
-        public FieldOffsetAttribute(int offset) { }
-        public int Value { get { throw null; } }
-    }
-    [System.ObsoleteAttribute]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct FILETIME
-    {
-        public int dwHighDateTime;
-        public int dwLowDateTime;
-    }
-    [System.ObsoleteAttribute]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct FUNCDESC
-    {
-        public System.Runtime.InteropServices.CALLCONV callconv;
-        public short cParams;
-        public short cParamsOpt;
-        public short cScodes;
-        public System.Runtime.InteropServices.ELEMDESC elemdescFunc;
-        public System.Runtime.InteropServices.FUNCKIND funckind;
-        public System.Runtime.InteropServices.INVOKEKIND invkind;
-        public System.IntPtr lprgelemdescParam;
-        public System.IntPtr lprgscode;
-        public int memid;
-        public short oVft;
-        public short wFuncFlags;
-    }
-    [System.FlagsAttribute]
-    [System.ObsoleteAttribute]
-    public enum FUNCFLAGS
-    {
-        FUNCFLAG_FBINDABLE = 4,
-        FUNCFLAG_FDEFAULTBIND = 32,
-        FUNCFLAG_FDEFAULTCOLLELEM = 256,
-        FUNCFLAG_FDISPLAYBIND = 16,
-        FUNCFLAG_FHIDDEN = 64,
-        FUNCFLAG_FIMMEDIATEBIND = 4096,
-        FUNCFLAG_FNONBROWSABLE = 1024,
-        FUNCFLAG_FREPLACEABLE = 2048,
-        FUNCFLAG_FREQUESTEDIT = 8,
-        FUNCFLAG_FRESTRICTED = 1,
-        FUNCFLAG_FSOURCE = 2,
-        FUNCFLAG_FUIDEFAULT = 512,
-        FUNCFLAG_FUSESGETLASTERROR = 128,
-    }
-    [System.ObsoleteAttribute]
-    public enum FUNCKIND
-    {
-        FUNC_DISPATCH = 4,
-        FUNC_NONVIRTUAL = 2,
-        FUNC_PUREVIRTUAL = 1,
-        FUNC_STATIC = 3,
-        FUNC_VIRTUAL = 0,
-    }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct GCHandle
-    {
-        public bool IsAllocated { get { throw null; } }
-        public object Target { get { throw null; } set { } }
-        public System.IntPtr AddrOfPinnedObject() { throw null; }
-        public static System.Runtime.InteropServices.GCHandle Alloc(object value) { throw null; }
-        public static System.Runtime.InteropServices.GCHandle Alloc(object value, System.Runtime.InteropServices.GCHandleType type) { throw null; }
-        public override bool Equals(object o) { throw null; }
-        public void Free() { }
-        public static System.Runtime.InteropServices.GCHandle FromIntPtr(System.IntPtr value) { throw null; }
-        public override int GetHashCode() { throw null; }
-        public static bool operator ==(System.Runtime.InteropServices.GCHandle a, System.Runtime.InteropServices.GCHandle b) { throw null; }
-        public static explicit operator System.Runtime.InteropServices.GCHandle (System.IntPtr value) { throw null; }
-        public static explicit operator System.IntPtr (System.Runtime.InteropServices.GCHandle value) { throw null; }
-        public static bool operator !=(System.Runtime.InteropServices.GCHandle a, System.Runtime.InteropServices.GCHandle b) { throw null; }
-        public static System.IntPtr ToIntPtr(System.Runtime.InteropServices.GCHandle value) { throw null; }
-    }
-    public enum GCHandleType
-    {
-        Normal = 2,
-        Pinned = 3,
-        Weak = 0,
-        WeakTrackResurrection = 1,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(5149), Inherited=false)]
-    public sealed partial class GuidAttribute : System.Attribute
-    {
-        public GuidAttribute(string guid) { }
-        public string Value { get { throw null; } }
-    }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct HandleRef
-    {
-        public HandleRef(object wrapper, System.IntPtr handle) { throw null;}
-        public System.IntPtr Handle { get { throw null; } }
-        public object Wrapper { get { throw null; } }
-        public static explicit operator System.IntPtr (System.Runtime.InteropServices.HandleRef value) { throw null; }
-        public static System.IntPtr ToIntPtr(System.Runtime.InteropServices.HandleRef value) { throw null; }
-    }
-    public partial interface ICustomAdapter
-    {
-        object GetUnderlyingObject();
-    }
-    public partial interface ICustomFactory
-    {
-        System.MarshalByRefObject CreateInstance(System.Type serverType);
-    }
-    public partial interface ICustomMarshaler
-    {
-        void CleanUpManagedData(object ManagedObj);
-        void CleanUpNativeData(System.IntPtr pNativeData);
-        int GetNativeDataSize();
-        System.IntPtr MarshalManagedToNative(object ManagedObj);
-        object MarshalNativeToManaged(System.IntPtr pNativeData);
-    }
-    public partial interface ICustomQueryInterface
-    {
-        System.Runtime.InteropServices.CustomQueryInterfaceResult GetInterface(ref System.Guid iid, out System.IntPtr ppv);
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(5), Inherited=false)]
-    [System.ObsoleteAttribute("This attribute is deprecated and will be removed in a future version.", false)]
-    public sealed partial class IDispatchImplAttribute : System.Attribute
-    {
-        public IDispatchImplAttribute(short implType) { }
-        public IDispatchImplAttribute(System.Runtime.InteropServices.IDispatchImplType implType) { }
-        public System.Runtime.InteropServices.IDispatchImplType Value { get { throw null; } }
-    }
-    [System.ObsoleteAttribute("The IDispatchImplAttribute is deprecated.", false)]
-    public enum IDispatchImplType
-    {
-        CompatibleImpl = 2,
-        InternalImpl = 1,
-        SystemDefinedImpl = 0,
-    }
-    [System.ObsoleteAttribute]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct IDLDESC
-    {
-        public int dwReserved;
-        public System.Runtime.InteropServices.IDLFLAG wIDLFlags;
-    }
-    [System.FlagsAttribute]
-    [System.ObsoleteAttribute]
-    public enum IDLFLAG
-    {
-        IDLFLAG_FIN = 1,
-        IDLFLAG_FLCID = 4,
-        IDLFLAG_FOUT = 2,
-        IDLFLAG_FRETVAL = 8,
-        IDLFLAG_NONE = 0,
-    }
-    [System.FlagsAttribute]
-    [System.ObsoleteAttribute]
-    public enum IMPLTYPEFLAGS
-    {
-        IMPLTYPEFLAG_FDEFAULT = 1,
-        IMPLTYPEFLAG_FDEFAULTVTABLE = 8,
-        IMPLTYPEFLAG_FRESTRICTED = 4,
-        IMPLTYPEFLAG_FSOURCE = 2,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
-    public sealed partial class ImportedFromTypeLibAttribute : System.Attribute
-    {
-        public ImportedFromTypeLibAttribute(string tlbFile) { }
-        public string Value { get { throw null; } }
-    }
-    public enum ImporterEventKind
-    {
-        ERROR_REFTOINVALIDTYPELIB = 2,
-        NOTIF_CONVERTWARNING = 1,
-        NOTIF_TYPECONVERTED = 0,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(2048), Inherited=false)]
-    public sealed partial class InAttribute : System.Attribute
-    {
-        public InAttribute() { }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited=false)]
-    public sealed partial class InterfaceTypeAttribute : System.Attribute
-    {
-        public InterfaceTypeAttribute(short interfaceType) { }
-        public InterfaceTypeAttribute(System.Runtime.InteropServices.ComInterfaceType interfaceType) { }
-        public System.Runtime.InteropServices.ComInterfaceType Value { get { throw null; } }
-    }
-    public partial class InvalidComObjectException : System.SystemException
-    {
-        public InvalidComObjectException() { }
-        protected InvalidComObjectException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public InvalidComObjectException(string message) { }
-        public InvalidComObjectException(string message, System.Exception inner) { }
-    }
-    public partial class InvalidOleVariantTypeException : System.SystemException
-    {
-        public InvalidOleVariantTypeException() { }
-        protected InvalidOleVariantTypeException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public InvalidOleVariantTypeException(string message) { }
-        public InvalidOleVariantTypeException(string message, System.Exception inner) { }
-    }
-    [System.ObsoleteAttribute]
-    public enum INVOKEKIND
-    {
-        INVOKE_FUNC = 1,
-        INVOKE_PROPERTYGET = 2,
-        INVOKE_PROPERTYPUT = 4,
-        INVOKE_PROPERTYPUTREF = 8,
-    }
-    public partial interface IRegistrationServices
-    {
-        System.Guid GetManagedCategoryGuid();
-        string GetProgIdForType(System.Type type);
-        System.Type[] GetRegistrableTypesInAssembly(System.Reflection.Assembly assembly);
-        bool RegisterAssembly(System.Reflection.Assembly assembly, System.Runtime.InteropServices.AssemblyRegistrationFlags flags);
-        void RegisterTypeForComClients(System.Type type, ref System.Guid g);
-        bool TypeRepresentsComType(System.Type type);
-        bool TypeRequiresRegistration(System.Type type);
-        bool UnregisterAssembly(System.Reflection.Assembly assembly);
-    }
-    public partial interface ITypeLibConverter
-    {
-        object ConvertAssemblyToTypeLib(System.Reflection.Assembly assembly, string typeLibName, System.Runtime.InteropServices.TypeLibExporterFlags flags, System.Runtime.InteropServices.ITypeLibExporterNotifySink notifySink);
-        System.Reflection.Emit.AssemblyBuilder ConvertTypeLibToAssembly(object typeLib, string asmFileName, int flags, System.Runtime.InteropServices.ITypeLibImporterNotifySink notifySink, byte[] publicKey, System.Reflection.StrongNameKeyPair keyPair, bool unsafeInterfaces);
-        System.Reflection.Emit.AssemblyBuilder ConvertTypeLibToAssembly(object typeLib, string asmFileName, System.Runtime.InteropServices.TypeLibImporterFlags flags, System.Runtime.InteropServices.ITypeLibImporterNotifySink notifySink, byte[] publicKey, System.Reflection.StrongNameKeyPair keyPair, string asmNamespace, System.Version asmVersion);
-        bool GetPrimaryInteropAssembly(System.Guid g, int major, int minor, int lcid, out string asmName, out string asmCodeBase);
-    }
-    public partial interface ITypeLibExporterNameProvider
-    {
-        string[] GetNames();
-    }
-    public partial interface ITypeLibExporterNotifySink
-    {
-        void ReportEvent(System.Runtime.InteropServices.ExporterEventKind eventKind, int eventCode, string eventMsg);
-        object ResolveRef(System.Reflection.Assembly assembly);
-    }
-    public partial interface ITypeLibImporterNotifySink
-    {
-        void ReportEvent(System.Runtime.InteropServices.ImporterEventKind eventKind, int eventCode, string eventMsg);
-        System.Reflection.Assembly ResolveRef(object typeLib);
-    }
-    public enum LayoutKind
-    {
-        Auto = 3,
-        Explicit = 2,
-        Sequential = 0,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
-    public sealed partial class LCIDConversionAttribute : System.Attribute
-    {
-        public LCIDConversionAttribute(int lcid) { }
-        public int Value { get { throw null; } }
-    }
-    [System.FlagsAttribute]
-    [System.ObsoleteAttribute]
-    public enum LIBFLAGS
-    {
-        LIBFLAG_FCONTROL = 2,
-        LIBFLAG_FHASDISKIMAGE = 8,
-        LIBFLAG_FHIDDEN = 4,
-        LIBFLAG_FRESTRICTED = 1,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false, AllowMultiple=false)]
-    public sealed partial class ManagedToNativeComInteropStubAttribute : System.Attribute
-    {
-        public ManagedToNativeComInteropStubAttribute(System.Type classType, string methodName) { }
-        public System.Type ClassType { get { throw null; } }
-        public string MethodName { get { throw null; } }
-    }
-    public static partial class Marshal
-    {
-        public static readonly int SystemDefaultCharSize;
-        public static readonly int SystemMaxDBCSCharSize;
-        public static int AddRef(System.IntPtr pUnk) { throw null; }
-        public static System.IntPtr AllocCoTaskMem(int cb) { throw null; }
-        public static System.IntPtr AllocHGlobal(int cb) { throw null; }
-        public static System.IntPtr AllocHGlobal(System.IntPtr cb) { throw null; }
-        public static bool AreComObjectsAvailableForCleanup() { throw null; }
-        public static object BindToMoniker(string monikerName) { throw null; }
-        public static System.IntPtr BufferToBSTR(System.Array ptr, int slen) { throw null; }
-        public static void ChangeWrapperHandleStrength(object otp, bool fIsWeak) { }
-        public static void CleanupUnusedObjectsInCurrentContext() { }
-        public static void Copy(byte[] source, int startIndex, System.IntPtr destination, int length) { }
-        public static void Copy(char[] source, int startIndex, System.IntPtr destination, int length) { }
-        public static void Copy(double[] source, int startIndex, System.IntPtr destination, int length) { }
-        public static void Copy(short[] source, int startIndex, System.IntPtr destination, int length) { }
-        public static void Copy(int[] source, int startIndex, System.IntPtr destination, int length) { }
-        public static void Copy(long[] source, int startIndex, System.IntPtr destination, int length) { }
-        public static void Copy(System.IntPtr source, byte[] destination, int startIndex, int length) { }
-        public static void Copy(System.IntPtr source, char[] destination, int startIndex, int length) { }
-        public static void Copy(System.IntPtr source, double[] destination, int startIndex, int length) { }
-        public static void Copy(System.IntPtr source, short[] destination, int startIndex, int length) { }
-        public static void Copy(System.IntPtr source, int[] destination, int startIndex, int length) { }
-        public static void Copy(System.IntPtr source, long[] destination, int startIndex, int length) { }
-        public static void Copy(System.IntPtr source, System.IntPtr[] destination, int startIndex, int length) { }
-        public static void Copy(System.IntPtr source, float[] destination, int startIndex, int length) { }
-        public static void Copy(System.IntPtr[] source, int startIndex, System.IntPtr destination, int length) { }
-        public static void Copy(float[] source, int startIndex, System.IntPtr destination, int length) { }
-        public static System.IntPtr CreateAggregatedObject(System.IntPtr pOuter, object o) { throw null; }
-        public static System.IntPtr CreateAggregatedObject<T>(System.IntPtr pOuter, T o) { throw null; }
-        public static object CreateWrapperOfType(object o, System.Type t) { throw null; }
-        public static TWrapper CreateWrapperOfType<T, TWrapper>(T o) { throw null; }
-        public static void DestroyStructure(System.IntPtr ptr, System.Type structuretype) { }
-        public static void DestroyStructure<T>(System.IntPtr ptr) { }
-        public static int FinalReleaseComObject(object o) { throw null; }
-        public static void FreeBSTR(System.IntPtr ptr) { }
-        public static void FreeCoTaskMem(System.IntPtr ptr) { }
-        public static void FreeHGlobal(System.IntPtr hglobal) { }
-        public static System.Guid GenerateGuidForType(System.Type type) { throw null; }
-        public static string GenerateProgIdForType(System.Type type) { throw null; }
-        public static object GetActiveObject(string progID) { throw null; }
-        public static System.IntPtr GetComInterfaceForObject(object o, System.Type T) { throw null; }
-        public static System.IntPtr GetComInterfaceForObject(object o, System.Type T, System.Runtime.InteropServices.CustomQueryInterfaceMode mode) { throw null; }
-        public static System.IntPtr GetComInterfaceForObject<T, TInterface>(T o) { throw null; }
-        public static System.IntPtr GetComInterfaceForObjectInContext(object o, System.Type t) { throw null; }
-        public static object GetComObjectData(object obj, object key) { throw null; }
-        public static int GetComSlotForMethodInfo(System.Reflection.MemberInfo m) { throw null; }
-        public static System.Delegate GetDelegateForFunctionPointer(System.IntPtr ptr, System.Type t) { throw null; }
-        public static TDelegate GetDelegateForFunctionPointer<TDelegate>(System.IntPtr ptr) { throw null; }
-        public static int GetEndComSlot(System.Type t) { throw null; }
-        public static int GetExceptionCode() { throw null; }
-        public static System.Exception GetExceptionForHR(int errorCode) { throw null; }
-        public static System.Exception GetExceptionForHR(int errorCode, System.IntPtr errorInfo) { throw null; }
-        public static System.IntPtr GetExceptionPointers() { throw null; }
-        public static System.IntPtr GetFunctionPointerForDelegate(System.Delegate d) { throw null; }
-        public static System.IntPtr GetFunctionPointerForDelegate<TDelegate>(TDelegate d) { throw null; }
-        public static System.IntPtr GetHINSTANCE(System.Reflection.Module m) { throw null; }
-        public static int GetHRForException(System.Exception e) { throw null; }
-        public static int GetHRForLastWin32Error() { throw null; }
-        public static System.IntPtr GetIDispatchForObject(object o) { throw null; }
-        public static System.IntPtr GetIDispatchForObjectInContext(object o) { throw null; }
-        public static System.IntPtr GetITypeInfoForType(System.Type t) { throw null; }
-        public static System.IntPtr GetIUnknownForObject(object o) { throw null; }
-        public static System.IntPtr GetIUnknownForObjectInContext(object o) { throw null; }
-        public static int GetLastWin32Error() { throw null; }
-        [System.ObsoleteAttribute("This method has been deprecated")]
-        public static System.IntPtr GetManagedThunkForUnmanagedMethodPtr(System.IntPtr pfnMethodToWrap, System.IntPtr pbSignature, int cbSignature) { throw null; }
-        public static System.Reflection.MemberInfo GetMethodInfoForComSlot(System.Type t, int slot, ref System.Runtime.InteropServices.ComMemberType memberType) { throw null; }
-        public static void GetNativeVariantForObject(object obj, System.IntPtr pDstNativeVariant) { }
-        public static void GetNativeVariantForObject<T>(T obj, System.IntPtr pDstNativeVariant) { }
-        public static object GetObjectForIUnknown(System.IntPtr pUnk) { throw null; }
-        public static object GetObjectForNativeVariant(System.IntPtr pSrcNativeVariant) { throw null; }
-        public static T GetObjectForNativeVariant<T>(System.IntPtr pSrcNativeVariant) { throw null; }
-        public static object[] GetObjectsForNativeVariants(System.IntPtr aSrcNativeVariant, int cVars) { throw null; }
-        public static T[] GetObjectsForNativeVariants<T>(System.IntPtr aSrcNativeVariant, int cVars) { throw null; }
-        public static int GetStartComSlot(System.Type t) { throw null; }
-        [System.ObsoleteAttribute("This method has been deprecated")]
-        public static System.Threading.Thread GetThreadFromFiberCookie(int cookie) { throw null; }
-        public static object GetTypedObjectForIUnknown(System.IntPtr pUnk, System.Type t) { throw null; }
-        public static System.Type GetTypeForITypeInfo(System.IntPtr piTypeInfo) { throw null; }
-        public static System.Type GetTypeFromCLSID(System.Guid clsid) { throw null; }
-        public static string GetTypeInfoName(System.Runtime.InteropServices.ComTypes.ITypeInfo typeInfo) { throw null; }
-        [System.ObsoleteAttribute]
-        public static string GetTypeInfoName(System.Runtime.InteropServices.UCOMITypeInfo pTI) { throw null; }
-        public static System.Guid GetTypeLibGuid(System.Runtime.InteropServices.ComTypes.ITypeLib typelib) { throw null; }
-        [System.ObsoleteAttribute]
-        public static System.Guid GetTypeLibGuid(System.Runtime.InteropServices.UCOMITypeLib pTLB) { throw null; }
-        public static System.Guid GetTypeLibGuidForAssembly(System.Reflection.Assembly asm) { throw null; }
-        public static int GetTypeLibLcid(System.Runtime.InteropServices.ComTypes.ITypeLib typelib) { throw null; }
-        [System.ObsoleteAttribute]
-        public static int GetTypeLibLcid(System.Runtime.InteropServices.UCOMITypeLib pTLB) { throw null; }
-        public static string GetTypeLibName(System.Runtime.InteropServices.ComTypes.ITypeLib typelib) { throw null; }
-        [System.ObsoleteAttribute]
-        public static string GetTypeLibName(System.Runtime.InteropServices.UCOMITypeLib pTLB) { throw null; }
-        public static void GetTypeLibVersionForAssembly(System.Reflection.Assembly inputAssembly, out int majorVersion, out int minorVersion) { majorVersion = default(int); minorVersion = default(int); }
-        public static object GetUniqueObjectForIUnknown(System.IntPtr unknown) { throw null; }
-        [System.ObsoleteAttribute("This method has been deprecated")]
-        public static System.IntPtr GetUnmanagedThunkForManagedMethodPtr(System.IntPtr pfnMethodToWrap, System.IntPtr pbSignature, int cbSignature) { throw null; }
-        public static bool IsComObject(object o) { throw null; }
-        public static bool IsTypeVisibleFromCom(System.Type t) { throw null; }
-        public static int NumParamBytes(System.Reflection.MethodInfo m) { throw null; }
-        public static System.IntPtr OffsetOf(System.Type t, string fieldName) { throw null; }
-        public static System.IntPtr OffsetOf<T>(string fieldName) { throw null; }
-        public static void Prelink(System.Reflection.MethodInfo m) { }
-        public static void PrelinkAll(System.Type c) { }
-        public static string PtrToStringAnsi(System.IntPtr ptr) { throw null; }
-        public static string PtrToStringAnsi(System.IntPtr ptr, int len) { throw null; }
-        public static string PtrToStringAuto(System.IntPtr ptr) { throw null; }
-        public static string PtrToStringAuto(System.IntPtr ptr, int len) { throw null; }
-        public static string PtrToStringBSTR(System.IntPtr ptr) { throw null; }
-        public static string PtrToStringUni(System.IntPtr ptr) { throw null; }
-        public static string PtrToStringUni(System.IntPtr ptr, int len) { throw null; }
-        public static void PtrToStructure(System.IntPtr ptr, object structure) { }
-        public static object PtrToStructure(System.IntPtr ptr, System.Type structureType) { throw null; }
-        public static T PtrToStructure<T>(System.IntPtr ptr) { throw null; }
-        public static void PtrToStructure<T>(System.IntPtr ptr, T structure) { }
-        public static int QueryInterface(System.IntPtr pUnk, ref System.Guid iid, out System.IntPtr ppv) { ppv = default(System.IntPtr); throw null; }
-        public static byte ReadByte(System.IntPtr ptr) { throw null; }
-        public static byte ReadByte(System.IntPtr ptr, int ofs) { throw null; }
-        public static byte ReadByte(object ptr, int ofs) { throw null; }
-        public static short ReadInt16(System.IntPtr ptr) { throw null; }
-        public static short ReadInt16(System.IntPtr ptr, int ofs) { throw null; }
-        public static short ReadInt16(object ptr, int ofs) { throw null; }
-        public static int ReadInt32(System.IntPtr ptr) { throw null; }
-        public static int ReadInt32(System.IntPtr ptr, int ofs) { throw null; }
-        public static int ReadInt32(object ptr, int ofs) { throw null; }
-        public static long ReadInt64(System.IntPtr ptr) { throw null; }
-        public static long ReadInt64(System.IntPtr ptr, int ofs) { throw null; }
-        public static long ReadInt64(object ptr, int ofs) { throw null; }
-        public static System.IntPtr ReadIntPtr(System.IntPtr ptr) { throw null; }
-        public static System.IntPtr ReadIntPtr(System.IntPtr ptr, int ofs) { throw null; }
-        public static System.IntPtr ReadIntPtr(object ptr, int ofs) { throw null; }
-        public static System.IntPtr ReAllocCoTaskMem(System.IntPtr pv, int cb) { throw null; }
-        public static System.IntPtr ReAllocHGlobal(System.IntPtr pv, System.IntPtr cb) { throw null; }
-        public static int Release(System.IntPtr pUnk) { throw null; }
-        public static int ReleaseComObject(object o) { throw null; }
-        [System.ObsoleteAttribute]
-        public static void ReleaseThreadCache() { }
-        public static System.IntPtr SecureStringToBSTR(System.Security.SecureString s) { throw null; }
-        public static System.IntPtr SecureStringToCoTaskMemAnsi(System.Security.SecureString s) { throw null; }
-        public static System.IntPtr SecureStringToCoTaskMemUnicode(System.Security.SecureString s) { throw null; }
-        public static System.IntPtr SecureStringToGlobalAllocAnsi(System.Security.SecureString s) { throw null; }
-        public static System.IntPtr SecureStringToGlobalAllocUnicode(System.Security.SecureString s) { throw null; }
-        public static bool SetComObjectData(object obj, object key, object data) { throw null; }
-        public static int SizeOf(object structure) { throw null; }
-        public static int SizeOf(System.Type t) { throw null; }
-        public static int SizeOf<T>() { throw null; }
-        public static int SizeOf<T>(T structure) { throw null; }
-        public static System.IntPtr StringToBSTR(string s) { throw null; }
-        public static System.IntPtr StringToCoTaskMemAnsi(string s) { throw null; }
-        public static System.IntPtr StringToCoTaskMemAuto(string s) { throw null; }
-        public static System.IntPtr StringToCoTaskMemUni(string s) { throw null; }
-        public static System.IntPtr StringToHGlobalAnsi(string s) { throw null; }
-        public static System.IntPtr StringToHGlobalAuto(string s) { throw null; }
-        public static System.IntPtr StringToHGlobalUni(string s) { throw null; }
-        public static void StructureToPtr(object structure, System.IntPtr ptr, bool fDeleteOld) { }
-        public static void StructureToPtr<T>(T structure, System.IntPtr ptr, bool fDeleteOld) { }
-        public static void ThrowExceptionForHR(int errorCode) { }
-        public static void ThrowExceptionForHR(int errorCode, System.IntPtr errorInfo) { }
-        public static System.IntPtr UnsafeAddrOfPinnedArrayElement(System.Array arr, int index) { throw null; }
-        public static System.IntPtr UnsafeAddrOfPinnedArrayElement<T>(T[] arr, int index) { throw null; }
-        public static void WriteByte(System.IntPtr ptr, byte val) { }
-        public static void WriteByte(System.IntPtr ptr, int ofs, byte val) { }
-        public static void WriteByte(object ptr, int ofs, byte val) { ptr = default(object); }
-        public static void WriteInt16(System.IntPtr ptr, char val) { }
-        public static void WriteInt16(System.IntPtr ptr, short val) { }
-        public static void WriteInt16(System.IntPtr ptr, int ofs, char val) { }
-        public static void WriteInt16(System.IntPtr ptr, int ofs, short val) { }
-        public static void WriteInt16(object ptr, int ofs, char val) { ptr = default(object); }
-        public static void WriteInt16(object ptr, int ofs, short val) { ptr = default(object); }
-        public static void WriteInt32(System.IntPtr ptr, int val) { }
-        public static void WriteInt32(System.IntPtr ptr, int ofs, int val) { }
-        public static void WriteInt32(object ptr, int ofs, int val) { ptr = default(object); }
-        public static void WriteInt64(System.IntPtr ptr, int ofs, long val) { }
-        public static void WriteInt64(System.IntPtr ptr, long val) { }
-        public static void WriteInt64(object ptr, int ofs, long val) { ptr = default(object); }
-        public static void WriteIntPtr(System.IntPtr ptr, int ofs, System.IntPtr val) { }
-        public static void WriteIntPtr(System.IntPtr ptr, System.IntPtr val) { }
-        public static void WriteIntPtr(object ptr, int ofs, System.IntPtr val) { ptr = default(object); }
-        public static void ZeroFreeBSTR(System.IntPtr s) { }
-        public static void ZeroFreeCoTaskMemAnsi(System.IntPtr s) { }
-        public static void ZeroFreeCoTaskMemUnicode(System.IntPtr s) { }
-        public static void ZeroFreeGlobalAllocAnsi(System.IntPtr s) { }
-        public static void ZeroFreeGlobalAllocUnicode(System.IntPtr s) { }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(10496), Inherited=false)]
-    public sealed partial class MarshalAsAttribute : System.Attribute
-    {
-        public System.Runtime.InteropServices.UnmanagedType ArraySubType;
-        public int IidParameterIndex;
-        public string MarshalCookie;
-        public string MarshalType;
-        public System.Type MarshalTypeRef;
-        public System.Runtime.InteropServices.VarEnum SafeArraySubType;
-        public System.Type SafeArrayUserDefinedSubType;
-        public int SizeConst;
-        public short SizeParamIndex;
-        public MarshalAsAttribute(short unmanagedType) { }
-        public MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType unmanagedType) { }
-        public System.Runtime.InteropServices.UnmanagedType Value { get { throw null; } }
-    }
-    public partial class MarshalDirectiveException : System.SystemException
-    {
-        public MarshalDirectiveException() { }
-        protected MarshalDirectiveException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public MarshalDirectiveException(string message) { }
-        public MarshalDirectiveException(string message, System.Exception inner) { }
-    }
-    public delegate System.IntPtr ObjectCreationDelegate(System.IntPtr aggregator);
-    [System.AttributeUsageAttribute((System.AttributeTargets)(2048), Inherited=false)]
-    public sealed partial class OptionalAttribute : System.Attribute
-    {
-        public OptionalAttribute() { }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(2048), Inherited=false)]
-    public sealed partial class OutAttribute : System.Attribute
-    {
-        public OutAttribute() { }
-    }
-    [System.ObsoleteAttribute]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct PARAMDESC
-    {
-        public System.IntPtr lpVarValue;
-        public System.Runtime.InteropServices.PARAMFLAG wParamFlags;
-    }
-    [System.FlagsAttribute]
-    [System.ObsoleteAttribute]
-    public enum PARAMFLAG
-    {
-        PARAMFLAG_FHASCUSTDATA = 64,
-        PARAMFLAG_FHASDEFAULT = 32,
-        PARAMFLAG_FIN = 1,
-        PARAMFLAG_FLCID = 4,
-        PARAMFLAG_FOPT = 16,
-        PARAMFLAG_FOUT = 2,
-        PARAMFLAG_FRETVAL = 8,
-        PARAMFLAG_NONE = 0,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
-    public sealed partial class PreserveSigAttribute : System.Attribute
-    {
-        public PreserveSigAttribute() { }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false, AllowMultiple=true)]
-    public sealed partial class PrimaryInteropAssemblyAttribute : System.Attribute
-    {
-        public PrimaryInteropAssemblyAttribute(int major, int minor) { }
-        public int MajorVersion { get { throw null; } }
-        public int MinorVersion { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=false)]
-    public sealed partial class ProgIdAttribute : System.Attribute
-    {
-        public ProgIdAttribute(string progId) { }
-        public string Value { get { throw null; } }
-    }
-    [System.FlagsAttribute]
-    public enum RegistrationClassContext
-    {
-        DisableActivateAsActivator = 32768,
-        EnableActivateAsActivator = 65536,
-        EnableCodeDownload = 8192,
-        FromDefaultContext = 131072,
-        InProcessHandler = 2,
-        InProcessHandler16 = 32,
-        InProcessServer = 1,
-        InProcessServer16 = 8,
-        LocalServer = 4,
-        NoCodeDownload = 1024,
-        NoCustomMarshal = 4096,
-        NoFailureLog = 16384,
-        RemoteServer = 16,
-        Reserved1 = 64,
-        Reserved2 = 128,
-        Reserved3 = 256,
-        Reserved4 = 512,
-        Reserved5 = 2048,
-    }
-    [System.FlagsAttribute]
-    public enum RegistrationConnectionType
-    {
-        MultipleUse = 1,
-        MultiSeparate = 2,
-        SingleUse = 0,
-        Surrogate = 8,
-        Suspended = 4,
-    }
-    public partial class RuntimeEnvironment
-    {
-        [System.ObsoleteAttribute("Do not create instances of the RuntimeEnvironment class.  Call the static methods directly on this type instead", true)]
-        public RuntimeEnvironment() { }
-        public static string SystemConfigurationFile { get { throw null; } }
-        public static bool FromGlobalAccessCache(System.Reflection.Assembly a) { throw null; }
-        public static string GetRuntimeDirectory() { throw null; }
-        public static System.IntPtr GetRuntimeInterfaceAsIntPtr(System.Guid clsid, System.Guid riid) { throw null; }
-        public static object GetRuntimeInterfaceAsObject(System.Guid clsid, System.Guid riid) { throw null; }
-        public static string GetSystemVersion() { throw null; }
-    }
-    public partial class SafeArrayRankMismatchException : System.SystemException
-    {
-        public SafeArrayRankMismatchException() { }
-        protected SafeArrayRankMismatchException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public SafeArrayRankMismatchException(string message) { }
-        public SafeArrayRankMismatchException(string message, System.Exception inner) { }
-    }
-    public partial class SafeArrayTypeMismatchException : System.SystemException
-    {
-        public SafeArrayTypeMismatchException() { }
-        protected SafeArrayTypeMismatchException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public SafeArrayTypeMismatchException(string message) { }
-        public SafeArrayTypeMismatchException(string message, System.Exception inner) { }
-    }
-    public abstract partial class SafeBuffer : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid, System.IDisposable
-    {
-        protected SafeBuffer(bool ownsHandle) : base (default(bool)) { }
-        [System.CLSCompliantAttribute(false)]
-        public ulong ByteLength { get { throw null; } }
-        [System.CLSCompliantAttribute(false)]
-        public unsafe void AcquirePointer(ref byte* pointer) { }
-        [System.CLSCompliantAttribute(false)]
-        public void Initialize(uint numElements, uint sizeOfEachElement) { }
-        [System.CLSCompliantAttribute(false)]
-        public void Initialize(ulong numBytes) { }
-        [System.CLSCompliantAttribute(false)]
-        public void Initialize<T>(uint numElements) where T : struct { }
-        [System.CLSCompliantAttribute(false)]
-        public T Read<T>(ulong byteOffset) where T : struct { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public void ReadArray<T>(ulong byteOffset, T[] array, int index, int count) where T : struct { }
-        public void ReleasePointer() { }
-        [System.CLSCompliantAttribute(false)]
-        public void Write<T>(ulong byteOffset, T value) where T : struct { }
-        [System.CLSCompliantAttribute(false)]
-        public void WriteArray<T>(ulong byteOffset, T[] array, int index, int count) where T : struct { }
-    }
-    public abstract partial class SafeHandle : System.Runtime.ConstrainedExecution.CriticalFinalizerObject, System.IDisposable
-    {
-        protected System.IntPtr handle;
-        protected SafeHandle() { }
-        protected SafeHandle(System.IntPtr invalidHandleValue, bool ownsHandle) { }
-        public bool IsClosed { get { throw null; } }
-        public abstract bool IsInvalid { get; }
-        public void Close() { }
-        public void DangerousAddRef(ref bool success) { }
-        public System.IntPtr DangerousGetHandle() { throw null; }
-        public void DangerousRelease() { }
-        public void Dispose() { }
-        protected virtual void Dispose(bool disposing) { }
-        ~SafeHandle() { }
-        protected abstract bool ReleaseHandle();
-        protected void SetHandle(System.IntPtr handle) { }
-        public void SetHandleAsInvalid() { }
-    }
-    public partial class SEHException : System.Runtime.InteropServices.ExternalException
-    {
-        public SEHException() { }
-        protected SEHException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public SEHException(string message) { }
-        public SEHException(string message, System.Exception inner) { }
-        public virtual bool CanResume() { throw null; }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
-    [System.ObsoleteAttribute("This attribute has been deprecated.  Application Domains no longer respect Activation Context boundaries in IDispatch calls.", false)]
-    public sealed partial class SetWin32ContextInIDispatchAttribute : System.Attribute
-    {
-        public SetWin32ContextInIDispatchAttribute() { }
-    }
-    [System.ObsoleteAttribute]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct STATSTG
-    {
-        public System.Runtime.InteropServices.FILETIME atime;
-        public long cbSize;
-        public System.Guid clsid;
-        public System.Runtime.InteropServices.FILETIME ctime;
-        public int grfLocksSupported;
-        public int grfMode;
-        public int grfStateBits;
-        public System.Runtime.InteropServices.FILETIME mtime;
-        public string pwcsName;
-        public int reserved;
-        public int type;
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited=false)]
-    public sealed partial class StructLayoutAttribute : System.Attribute
-    {
-        public System.Runtime.InteropServices.CharSet CharSet;
-        public int Pack;
-        public int Size;
-        public StructLayoutAttribute(short layoutKind) { }
-        public StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind layoutKind) { }
-        public System.Runtime.InteropServices.LayoutKind Value { get { throw null; } }
-    }
-    [System.ObsoleteAttribute]
-    public enum SYSKIND
-    {
-        SYS_MAC = 2,
-        SYS_WIN16 = 0,
-        SYS_WIN32 = 1,
-    }
-    [System.ObsoleteAttribute]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct TYPEATTR
-    {
-        public short cbAlignment;
-        public int cbSizeInstance;
-        public short cbSizeVft;
-        public short cFuncs;
-        public short cImplTypes;
-        public short cVars;
-        public int dwReserved;
-        public System.Guid guid;
-        public System.Runtime.InteropServices.IDLDESC idldescType;
-        public int lcid;
-        public System.IntPtr lpstrSchema;
-        public const int MEMBER_ID_NIL = -1;
-        public int memidConstructor;
-        public int memidDestructor;
-        public System.Runtime.InteropServices.TYPEDESC tdescAlias;
-        public System.Runtime.InteropServices.TYPEKIND typekind;
-        public short wMajorVerNum;
-        public short wMinorVerNum;
-        public System.Runtime.InteropServices.TYPEFLAGS wTypeFlags;
-    }
-    [System.ObsoleteAttribute]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct TYPEDESC
-    {
-        public System.IntPtr lpValue;
-        public short vt;
-    }
-    [System.FlagsAttribute]
-    [System.ObsoleteAttribute]
-    public enum TYPEFLAGS
-    {
-        TYPEFLAG_FAGGREGATABLE = 1024,
-        TYPEFLAG_FAPPOBJECT = 1,
-        TYPEFLAG_FCANCREATE = 2,
-        TYPEFLAG_FCONTROL = 32,
-        TYPEFLAG_FDISPATCHABLE = 4096,
-        TYPEFLAG_FDUAL = 64,
-        TYPEFLAG_FHIDDEN = 16,
-        TYPEFLAG_FLICENSED = 4,
-        TYPEFLAG_FNONEXTENSIBLE = 128,
-        TYPEFLAG_FOLEAUTOMATION = 256,
-        TYPEFLAG_FPREDECLID = 8,
-        TYPEFLAG_FPROXY = 16384,
-        TYPEFLAG_FREPLACEABLE = 2048,
-        TYPEFLAG_FRESTRICTED = 512,
-        TYPEFLAG_FREVERSEBIND = 8192,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(5144), AllowMultiple=false, Inherited=false)]
-    public sealed partial class TypeIdentifierAttribute : System.Attribute
-    {
-        public TypeIdentifierAttribute() { }
-        public TypeIdentifierAttribute(string scope, string identifier) { }
-        public string Identifier { get { throw null; } }
-        public string Scope { get { throw null; } }
-    }
-    [System.ObsoleteAttribute]
-    public enum TYPEKIND
-    {
-        TKIND_ALIAS = 6,
-        TKIND_COCLASS = 5,
-        TKIND_DISPATCH = 4,
-        TKIND_ENUM = 0,
-        TKIND_INTERFACE = 3,
-        TKIND_MAX = 8,
-        TKIND_MODULE = 2,
-        TKIND_RECORD = 1,
-        TKIND_UNION = 7,
-    }
-    [System.ObsoleteAttribute]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct TYPELIBATTR
-    {
-        public System.Guid guid;
-        public int lcid;
-        public System.Runtime.InteropServices.SYSKIND syskind;
-        public System.Runtime.InteropServices.LIBFLAGS wLibFlags;
-        public short wMajorVerNum;
-        public short wMinorVerNum;
-    }
-    public sealed partial class TypeLibConverter : System.Runtime.InteropServices.ITypeLibConverter
-    {
-        public TypeLibConverter() { }
-        public object ConvertAssemblyToTypeLib(System.Reflection.Assembly assembly, string strTypeLibName, System.Runtime.InteropServices.TypeLibExporterFlags flags, System.Runtime.InteropServices.ITypeLibExporterNotifySink notifySink) { throw null; }
-        public System.Reflection.Emit.AssemblyBuilder ConvertTypeLibToAssembly(object typeLib, string asmFileName, int flags, System.Runtime.InteropServices.ITypeLibImporterNotifySink notifySink, byte[] publicKey, System.Reflection.StrongNameKeyPair keyPair, bool unsafeInterfaces) { throw null; }
-        public System.Reflection.Emit.AssemblyBuilder ConvertTypeLibToAssembly(object typeLib, string asmFileName, System.Runtime.InteropServices.TypeLibImporterFlags flags, System.Runtime.InteropServices.ITypeLibImporterNotifySink notifySink, byte[] publicKey, System.Reflection.StrongNameKeyPair keyPair, string asmNamespace, System.Version asmVersion) { throw null; }
-        public bool GetPrimaryInteropAssembly(System.Guid g, int major, int minor, int lcid, out string asmName, out string asmCodeBase) { asmName = default(string); asmCodeBase = default(string); throw null; }
-    }
-    [System.FlagsAttribute]
-    public enum TypeLibExporterFlags
-    {
-        CallerResolvedReferences = 2,
-        ExportAs32Bit = 16,
-        ExportAs64Bit = 32,
-        None = 0,
-        OldNames = 4,
-        OnlyReferenceRegistered = 1,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
-    public sealed partial class TypeLibFuncAttribute : System.Attribute
-    {
-        public TypeLibFuncAttribute(short flags) { }
-        public TypeLibFuncAttribute(System.Runtime.InteropServices.TypeLibFuncFlags flags) { }
-        public System.Runtime.InteropServices.TypeLibFuncFlags Value { get { throw null; } }
-    }
-    [System.FlagsAttribute]
-    public enum TypeLibFuncFlags
-    {
-        FBindable = 4,
-        FDefaultBind = 32,
-        FDefaultCollelem = 256,
-        FDisplayBind = 16,
-        FHidden = 64,
-        FImmediateBind = 4096,
-        FNonBrowsable = 1024,
-        FReplaceable = 2048,
-        FRequestEdit = 8,
-        FRestricted = 1,
-        FSource = 2,
-        FUiDefault = 512,
-        FUsesGetLastError = 128,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited=false)]
-    public sealed partial class TypeLibImportClassAttribute : System.Attribute
-    {
-        public TypeLibImportClassAttribute(System.Type importClass) { }
-        public string Value { get { throw null; } }
-    }
-    [System.FlagsAttribute]
-    public enum TypeLibImporterFlags
-    {
-        ImportAsAgnostic = 2048,
-        ImportAsItanium = 1024,
-        ImportAsX64 = 512,
-        ImportAsX86 = 256,
-        NoDefineVersionResource = 8192,
-        None = 0,
-        PreventClassMembers = 16,
-        PrimaryInteropAssembly = 1,
-        ReflectionOnlyLoading = 4096,
-        SafeArrayAsSystemArray = 4,
-        SerializableValueClasses = 32,
-        TransformDispRetVals = 8,
-        UnsafeInterfaces = 2,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1052), Inherited=false)]
-    public sealed partial class TypeLibTypeAttribute : System.Attribute
-    {
-        public TypeLibTypeAttribute(short flags) { }
-        public TypeLibTypeAttribute(System.Runtime.InteropServices.TypeLibTypeFlags flags) { }
-        public System.Runtime.InteropServices.TypeLibTypeFlags Value { get { throw null; } }
-    }
-    [System.FlagsAttribute]
-    public enum TypeLibTypeFlags
-    {
-        FAggregatable = 1024,
-        FAppObject = 1,
-        FCanCreate = 2,
-        FControl = 32,
-        FDispatchable = 4096,
-        FDual = 64,
-        FHidden = 16,
-        FLicensed = 4,
-        FNonExtensible = 128,
-        FOleAutomation = 256,
-        FPreDeclId = 8,
-        FReplaceable = 2048,
-        FRestricted = 512,
-        FReverseBind = 8192,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(256), Inherited=false)]
-    public sealed partial class TypeLibVarAttribute : System.Attribute
-    {
-        public TypeLibVarAttribute(short flags) { }
-        public TypeLibVarAttribute(System.Runtime.InteropServices.TypeLibVarFlags flags) { }
-        public System.Runtime.InteropServices.TypeLibVarFlags Value { get { throw null; } }
-    }
-    [System.FlagsAttribute]
-    public enum TypeLibVarFlags
-    {
-        FBindable = 4,
-        FDefaultBind = 32,
-        FDefaultCollelem = 256,
-        FDisplayBind = 16,
-        FHidden = 64,
-        FImmediateBind = 4096,
-        FNonBrowsable = 1024,
-        FReadOnly = 1,
-        FReplaceable = 2048,
-        FRequestEdit = 8,
-        FRestricted = 128,
-        FSource = 2,
-        FUiDefault = 512,
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
-    public sealed partial class TypeLibVersionAttribute : System.Attribute
-    {
-        public TypeLibVersionAttribute(int major, int minor) { }
-        public int MajorVersion { get { throw null; } }
-        public int MinorVersion { get { throw null; } }
-    }
-    [System.ObsoleteAttribute]
-    public partial interface UCOMIBindCtx
-    {
-        void EnumObjectParam(out System.Runtime.InteropServices.UCOMIEnumString ppenum);
-        void GetBindOptions(ref System.Runtime.InteropServices.BIND_OPTS pbindopts);
-        void GetObjectParam(string pszKey, out object ppunk);
-        void GetRunningObjectTable(out System.Runtime.InteropServices.UCOMIRunningObjectTable pprot);
-        void RegisterObjectBound(object punk);
-        void RegisterObjectParam(string pszKey, object punk);
-        void ReleaseBoundObjects();
-        void RevokeObjectBound(object punk);
-        void RevokeObjectParam(string pszKey);
-        void SetBindOptions(ref System.Runtime.InteropServices.BIND_OPTS pbindopts);
-    }
-    [System.ObsoleteAttribute]
-    public partial interface UCOMIConnectionPoint
-    {
-        void Advise(object pUnkSink, out int pdwCookie);
-        void EnumConnections(out System.Runtime.InteropServices.UCOMIEnumConnections ppEnum);
-        void GetConnectionInterface(out System.Guid pIID);
-        void GetConnectionPointContainer(out System.Runtime.InteropServices.UCOMIConnectionPointContainer ppCPC);
-        void Unadvise(int dwCookie);
-    }
-    [System.ObsoleteAttribute]
-    public partial interface UCOMIConnectionPointContainer
-    {
-        void EnumConnectionPoints(out System.Runtime.InteropServices.UCOMIEnumConnectionPoints ppEnum);
-        void FindConnectionPoint(ref System.Guid riid, out System.Runtime.InteropServices.UCOMIConnectionPoint ppCP);
-    }
-    [System.ObsoleteAttribute]
-    public partial interface UCOMIEnumConnectionPoints
-    {
-        void Clone(out System.Runtime.InteropServices.UCOMIEnumConnectionPoints ppenum);
-        int Next(int celt, System.Runtime.InteropServices.UCOMIConnectionPoint[] rgelt, out int pceltFetched);
-        int Reset();
-        int Skip(int celt);
-    }
-    [System.ObsoleteAttribute("Use System.Runtime.InteropServices.ComTypes.IEnumConnections instead. http://go.microsoft.com/fwlink/?linkid=14202", false)]
-    public partial interface UCOMIEnumConnections
-    {
-        void Clone(out System.Runtime.InteropServices.UCOMIEnumConnections ppenum);
-        int Next(int celt, System.Runtime.InteropServices.CONNECTDATA[] rgelt, out int pceltFetched);
-        void Reset();
-        int Skip(int celt);
-    }
-    [System.ObsoleteAttribute]
-    public partial interface UCOMIEnumMoniker
-    {
-        void Clone(out System.Runtime.InteropServices.UCOMIEnumMoniker ppenum);
-        int Next(int celt, System.Runtime.InteropServices.UCOMIMoniker[] rgelt, out int pceltFetched);
-        int Reset();
-        int Skip(int celt);
-    }
-    [System.ObsoleteAttribute]
-    public partial interface UCOMIEnumString
-    {
-        void Clone(out System.Runtime.InteropServices.UCOMIEnumString ppenum);
-        int Next(int celt, string[] rgelt, out int pceltFetched);
-        int Reset();
-        int Skip(int celt);
-    }
-    [System.ObsoleteAttribute]
-    public partial interface UCOMIEnumVARIANT
-    {
-        void Clone(int ppenum);
-        int Next(int celt, int rgvar, int pceltFetched);
-        int Reset();
-        int Skip(int celt);
-    }
-    [System.ObsoleteAttribute]
-    public partial interface UCOMIMoniker
-    {
-        void BindToObject(System.Runtime.InteropServices.UCOMIBindCtx pbc, System.Runtime.InteropServices.UCOMIMoniker pmkToLeft, ref System.Guid riidResult, out object ppvResult);
-        void BindToStorage(System.Runtime.InteropServices.UCOMIBindCtx pbc, System.Runtime.InteropServices.UCOMIMoniker pmkToLeft, ref System.Guid riid, out object ppvObj);
-        void CommonPrefixWith(System.Runtime.InteropServices.UCOMIMoniker pmkOther, out System.Runtime.InteropServices.UCOMIMoniker ppmkPrefix);
-        void ComposeWith(System.Runtime.InteropServices.UCOMIMoniker pmkRight, bool fOnlyIfNotGeneric, out System.Runtime.InteropServices.UCOMIMoniker ppmkComposite);
-        void Enum(bool fForward, out System.Runtime.InteropServices.UCOMIEnumMoniker ppenumMoniker);
-        void GetClassID(out System.Guid pClassID);
-        void GetDisplayName(System.Runtime.InteropServices.UCOMIBindCtx pbc, System.Runtime.InteropServices.UCOMIMoniker pmkToLeft, out string ppszDisplayName);
-        void GetSizeMax(out long pcbSize);
-        void GetTimeOfLastChange(System.Runtime.InteropServices.UCOMIBindCtx pbc, System.Runtime.InteropServices.UCOMIMoniker pmkToLeft, out System.Runtime.InteropServices.FILETIME pFileTime);
-        void Hash(out int pdwHash);
-        void Inverse(out System.Runtime.InteropServices.UCOMIMoniker ppmk);
-        int IsDirty();
-        void IsEqual(System.Runtime.InteropServices.UCOMIMoniker pmkOtherMoniker);
-        void IsRunning(System.Runtime.InteropServices.UCOMIBindCtx pbc, System.Runtime.InteropServices.UCOMIMoniker pmkToLeft, System.Runtime.InteropServices.UCOMIMoniker pmkNewlyRunning);
-        void IsSystemMoniker(out int pdwMksys);
-        void Load(System.Runtime.InteropServices.UCOMIStream pStm);
-        void ParseDisplayName(System.Runtime.InteropServices.UCOMIBindCtx pbc, System.Runtime.InteropServices.UCOMIMoniker pmkToLeft, string pszDisplayName, out int pchEaten, out System.Runtime.InteropServices.UCOMIMoniker ppmkOut);
-        void Reduce(System.Runtime.InteropServices.UCOMIBindCtx pbc, int dwReduceHowFar, ref System.Runtime.InteropServices.UCOMIMoniker ppmkToLeft, out System.Runtime.InteropServices.UCOMIMoniker ppmkReduced);
-        void RelativePathTo(System.Runtime.InteropServices.UCOMIMoniker pmkOther, out System.Runtime.InteropServices.UCOMIMoniker ppmkRelPath);
-        void Save(System.Runtime.InteropServices.UCOMIStream pStm, bool fClearDirty);
-    }
-    [System.ObsoleteAttribute]
-    public partial interface UCOMIPersistFile
-    {
-        void GetClassID(out System.Guid pClassID);
-        void GetCurFile(out string ppszFileName);
-        int IsDirty();
-        void Load(string pszFileName, int dwMode);
-        void Save(string pszFileName, bool fRemember);
-        void SaveCompleted(string pszFileName);
-    }
-    [System.ObsoleteAttribute]
-    public partial interface UCOMIRunningObjectTable
-    {
-        void EnumRunning(out System.Runtime.InteropServices.UCOMIEnumMoniker ppenumMoniker);
-        void GetObject(System.Runtime.InteropServices.UCOMIMoniker pmkObjectName, out object ppunkObject);
-        void GetTimeOfLastChange(System.Runtime.InteropServices.UCOMIMoniker pmkObjectName, out System.Runtime.InteropServices.FILETIME pfiletime);
-        void IsRunning(System.Runtime.InteropServices.UCOMIMoniker pmkObjectName);
-        void NoteChangeTime(int dwRegister, ref System.Runtime.InteropServices.FILETIME pfiletime);
-        void Register(int grfFlags, object punkObject, System.Runtime.InteropServices.UCOMIMoniker pmkObjectName, out int pdwRegister);
-        void Revoke(int dwRegister);
-    }
-    [System.ObsoleteAttribute]
-    public partial interface UCOMIStream
-    {
-        void Clone(out System.Runtime.InteropServices.UCOMIStream ppstm);
-        void Commit(int grfCommitFlags);
-        void CopyTo(System.Runtime.InteropServices.UCOMIStream pstm, long cb, System.IntPtr pcbRead, System.IntPtr pcbWritten);
-        void LockRegion(long libOffset, long cb, int dwLockType);
-        void Read(byte[] pv, int cb, System.IntPtr pcbRead);
-        void Revert();
-        void Seek(long dlibMove, int dwOrigin, System.IntPtr plibNewPosition);
-        void SetSize(long libNewSize);
-        void Stat(out System.Runtime.InteropServices.STATSTG pstatstg, int grfStatFlag);
-        void UnlockRegion(long libOffset, long cb, int dwLockType);
-        void Write(byte[] pv, int cb, System.IntPtr pcbWritten);
-    }
-    [System.ObsoleteAttribute]
-    public partial interface UCOMITypeComp
-    {
-        void Bind(string szName, int lHashVal, short wFlags, out System.Runtime.InteropServices.UCOMITypeInfo ppTInfo, out System.Runtime.InteropServices.DESCKIND pDescKind, out System.Runtime.InteropServices.BINDPTR pBindPtr);
-        void BindType(string szName, int lHashVal, out System.Runtime.InteropServices.UCOMITypeInfo ppTInfo, out System.Runtime.InteropServices.UCOMITypeComp ppTComp);
-    }
-    [System.ObsoleteAttribute]
-    public partial interface UCOMITypeInfo
-    {
-        void AddressOfMember(int memid, System.Runtime.InteropServices.INVOKEKIND invKind, out System.IntPtr ppv);
-        void CreateInstance(object pUnkOuter, ref System.Guid riid, out object ppvObj);
-        void GetContainingTypeLib(out System.Runtime.InteropServices.UCOMITypeLib ppTLB, out int pIndex);
-        void GetDllEntry(int memid, System.Runtime.InteropServices.INVOKEKIND invKind, out string pBstrDllName, out string pBstrName, out short pwOrdinal);
-        void GetDocumentation(int index, out string strName, out string strDocString, out int dwHelpContext, out string strHelpFile);
-        void GetFuncDesc(int index, out System.IntPtr ppFuncDesc);
-        void GetIDsOfNames(string[] rgszNames, int cNames, int[] pMemId);
-        void GetImplTypeFlags(int index, out int pImplTypeFlags);
-        void GetMops(int memid, out string pBstrMops);
-        void GetNames(int memid, string[] rgBstrNames, int cMaxNames, out int pcNames);
-        void GetRefTypeInfo(int hRef, out System.Runtime.InteropServices.UCOMITypeInfo ppTI);
-        void GetRefTypeOfImplType(int index, out int href);
-        void GetTypeAttr(out System.IntPtr ppTypeAttr);
-        void GetTypeComp(out System.Runtime.InteropServices.UCOMITypeComp ppTComp);
-        void GetVarDesc(int index, out System.IntPtr ppVarDesc);
-        void Invoke(object pvInstance, int memid, short wFlags, ref System.Runtime.InteropServices.DISPPARAMS pDispParams, out object pVarResult, out System.Runtime.InteropServices.EXCEPINFO pExcepInfo, out int puArgErr);
-        void ReleaseFuncDesc(System.IntPtr pFuncDesc);
-        void ReleaseTypeAttr(System.IntPtr pTypeAttr);
-        void ReleaseVarDesc(System.IntPtr pVarDesc);
-    }
-    [System.ObsoleteAttribute]
-    public partial interface UCOMITypeLib
-    {
-        void FindName(string szNameBuf, int lHashVal, System.Runtime.InteropServices.UCOMITypeInfo[] ppTInfo, int[] rgMemId, ref short pcFound);
-        void GetDocumentation(int index, out string strName, out string strDocString, out int dwHelpContext, out string strHelpFile);
-        void GetLibAttr(out System.IntPtr ppTLibAttr);
-        void GetTypeComp(out System.Runtime.InteropServices.UCOMITypeComp ppTComp);
-        void GetTypeInfo(int index, out System.Runtime.InteropServices.UCOMITypeInfo ppTI);
-        int GetTypeInfoCount();
-        void GetTypeInfoOfGuid(ref System.Guid guid, out System.Runtime.InteropServices.UCOMITypeInfo ppTInfo);
-        void GetTypeInfoType(int index, out System.Runtime.InteropServices.TYPEKIND pTKind);
-        bool IsName(string szNameBuf, int lHashVal);
-        void ReleaseTLibAttr(System.IntPtr pTLibAttr);
-    }
-    public sealed partial class UnknownWrapper
-    {
-        public UnknownWrapper(object obj) { }
-        public object WrappedObject { get { throw null; } }
-    }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4096), AllowMultiple=false, Inherited=false)]
-    public sealed partial class UnmanagedFunctionPointerAttribute : System.Attribute
-    {
-        public bool BestFitMapping;
-        public System.Runtime.InteropServices.CharSet CharSet;
-        public bool SetLastError;
-        public bool ThrowOnUnmappableChar;
-        public UnmanagedFunctionPointerAttribute(System.Runtime.InteropServices.CallingConvention callingConvention) { }
-        public System.Runtime.InteropServices.CallingConvention CallingConvention { get { throw null; } }
-    }
-    public enum UnmanagedType
-    {
-        AnsiBStr = 35,
-        AsAny = 40,
-        Bool = 2,
-        BStr = 19,
-        ByValArray = 30,
-        ByValTStr = 23,
-        Currency = 15,
-        CustomMarshaler = 44,
-        Error = 45,
-        FunctionPtr = 38,
-        HString = 47,
-        I1 = 3,
-        I2 = 5,
-        I4 = 7,
-        I8 = 9,
-        IDispatch = 26,
-        IInspectable = 46,
-        Interface = 28,
-        IUnknown = 25,
-        LPArray = 42,
-        LPStr = 20,
-        LPStruct = 43,
-        LPTStr = 22,
-        LPWStr = 21,
-        R4 = 11,
-        R8 = 12,
-        SafeArray = 29,
-        Struct = 27,
-        SysInt = 31,
-        SysUInt = 32,
-        TBStr = 36,
-        U1 = 4,
-        U2 = 6,
-        U4 = 8,
-        U8 = 10,
-        VariantBool = 37,
-        VBByRefStr = 34,
-    }
-    [System.ObsoleteAttribute]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct VARDESC
-    {
-        public System.Runtime.InteropServices.ELEMDESC elemdescVar;
-        public string lpstrSchema;
-        public int memid;
-        public System.Runtime.InteropServices.VarEnum varkind;
-        public short wVarFlags;
-        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Explicit)]
-        public partial struct DESCUNION
-        {
-            [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
-            public System.IntPtr lpvarValue;
-            [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
-            public int oInst;
-        }
-    }
-    public enum VarEnum
-    {
-        VT_ARRAY = 8192,
-        VT_BLOB = 65,
-        VT_BLOB_OBJECT = 70,
-        VT_BOOL = 11,
-        VT_BSTR = 8,
-        VT_BYREF = 16384,
-        VT_CARRAY = 28,
-        VT_CF = 71,
-        VT_CLSID = 72,
-        VT_CY = 6,
-        VT_DATE = 7,
-        VT_DECIMAL = 14,
-        VT_DISPATCH = 9,
-        VT_EMPTY = 0,
-        VT_ERROR = 10,
-        VT_FILETIME = 64,
-        VT_HRESULT = 25,
-        VT_I1 = 16,
-        VT_I2 = 2,
-        VT_I4 = 3,
-        VT_I8 = 20,
-        VT_INT = 22,
-        VT_LPSTR = 30,
-        VT_LPWSTR = 31,
-        VT_NULL = 1,
-        VT_PTR = 26,
-        VT_R4 = 4,
-        VT_R8 = 5,
-        VT_RECORD = 36,
-        VT_SAFEARRAY = 27,
-        VT_STORAGE = 67,
-        VT_STORED_OBJECT = 69,
-        VT_STREAM = 66,
-        VT_STREAMED_OBJECT = 68,
-        VT_UI1 = 17,
-        VT_UI2 = 18,
-        VT_UI4 = 19,
-        VT_UI8 = 21,
-        VT_UINT = 23,
-        VT_UNKNOWN = 13,
-        VT_USERDEFINED = 29,
-        VT_VARIANT = 12,
-        VT_VECTOR = 4096,
-        VT_VOID = 24,
-    }
-    [System.FlagsAttribute]
-    [System.ObsoleteAttribute]
-    public enum VARFLAGS
-    {
-        VARFLAG_FBINDABLE = 4,
-        VARFLAG_FDEFAULTBIND = 32,
-        VARFLAG_FDEFAULTCOLLELEM = 256,
-        VARFLAG_FDISPLAYBIND = 16,
-        VARFLAG_FHIDDEN = 64,
-        VARFLAG_FIMMEDIATEBIND = 4096,
-        VARFLAG_FNONBROWSABLE = 1024,
-        VARFLAG_FREADONLY = 1,
-        VARFLAG_FREPLACEABLE = 2048,
-        VARFLAG_FREQUESTEDIT = 8,
-        VARFLAG_FRESTRICTED = 128,
-        VARFLAG_FSOURCE = 2,
-        VARFLAG_FUIDEFAULT = 512,
-    }
-    public sealed partial class VariantWrapper
-    {
-        public VariantWrapper(object obj) { }
-        public object WrappedObject { get { throw null; } }
-    }
 }
 namespace System.Runtime.InteropServices.ComTypes
 {
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct BIND_OPTS
-    {
-        public int cbStruct;
-        public int dwTickCountDeadline;
-        public int grfFlags;
-        public int grfMode;
-    }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Explicit)]
     public partial struct BINDPTR
     {
@@ -13353,6 +13345,14 @@ namespace System.Runtime.InteropServices.ComTypes
         public System.IntPtr lptcomp;
         [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
         public System.IntPtr lpvardesc;
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct BIND_OPTS
+    {
+        public int cbStruct;
+        public int dwTickCountDeadline;
+        public int grfFlags;
+        public int grfMode;
     }
     public enum CALLCONV
     {
@@ -13907,8 +13907,8 @@ namespace System.Runtime.InteropServices.WindowsRuntime
         public T InvocationList { get { throw null; } set { } }
         public System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken AddEventHandler(T handler) { throw null; }
         public static System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable<T> GetOrCreateEventRegistrationTokenTable(ref System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable<T> refEventTable) { throw null; }
-        public void RemoveEventHandler(T handler) { }
         public void RemoveEventHandler(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken token) { }
+        public void RemoveEventHandler(T handler) { }
     }
     public partial interface IActivationFactory
     {
@@ -18847,16 +18847,16 @@ namespace System.Security.Policy
         public System.Security.Policy.ApplicationTrust this[string appFullName] { get { throw null; } }
         public object SyncRoot { get { throw null; } }
         public int Add(System.Security.Policy.ApplicationTrust trust) { throw null; }
-        public void AddRange(System.Security.Policy.ApplicationTrust[] trusts) { }
         public void AddRange(System.Security.Policy.ApplicationTrustCollection trusts) { }
+        public void AddRange(System.Security.Policy.ApplicationTrust[] trusts) { }
         public void Clear() { }
         public void CopyTo(System.Security.Policy.ApplicationTrust[] array, int index) { }
         public System.Security.Policy.ApplicationTrustCollection Find(System.ApplicationIdentity applicationIdentity, System.Security.Policy.ApplicationVersionMatch versionMatch) { throw null; }
         public System.Security.Policy.ApplicationTrustEnumerator GetEnumerator() { throw null; }
         public void Remove(System.ApplicationIdentity applicationIdentity, System.Security.Policy.ApplicationVersionMatch versionMatch) { }
         public void Remove(System.Security.Policy.ApplicationTrust trust) { }
-        public void RemoveRange(System.Security.Policy.ApplicationTrust[] trusts) { }
         public void RemoveRange(System.Security.Policy.ApplicationTrustCollection trusts) { }
+        public void RemoveRange(System.Security.Policy.ApplicationTrust[] trusts) { }
         void System.Collections.ICollection.CopyTo(System.Array array, int index) { }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
     }
@@ -20053,18 +20053,18 @@ namespace System.Threading
         public static bool operator !=(System.Threading.AsyncFlowControl a, System.Threading.AsyncFlowControl b) { throw null; }
         public void Undo() { }
     }
-    public sealed partial class AsyncLocal<T>
-    {
-        public AsyncLocal() { }
-        public AsyncLocal(System.Action<System.Threading.AsyncLocalValueChangedArgs<T>> valueChangedHandler) { }
-        public T Value { get { throw null; } set { } }
-    }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Size=1)]
     public partial struct AsyncLocalValueChangedArgs<T>
     {
         public T CurrentValue { get { throw null; } }
         public T PreviousValue { get { throw null; } }
         public bool ThreadContextChanged { get { throw null; } }
+    }
+    public sealed partial class AsyncLocal<T>
+    {
+        public AsyncLocal() { }
+        public AsyncLocal(System.Action<System.Threading.AsyncLocalValueChangedArgs<T>> valueChangedHandler) { }
+        public T Value { get { throw null; } set { } }
     }
     public sealed partial class AutoResetEvent : System.Threading.EventWaitHandle
     {
@@ -20769,10 +20769,6 @@ namespace System.Threading.Tasks
         public static System.Threading.Tasks.ParallelLoopResult For(long fromInclusive, long toExclusive, System.Action<long> body) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult For(long fromInclusive, long toExclusive, System.Threading.Tasks.ParallelOptions parallelOptions, System.Action<long, System.Threading.Tasks.ParallelLoopState> body) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult For(long fromInclusive, long toExclusive, System.Threading.Tasks.ParallelOptions parallelOptions, System.Action<long> body) { throw null; }
-        public static System.Threading.Tasks.ParallelLoopResult For<TLocal>(int fromInclusive, int toExclusive, System.Func<TLocal> localInit, System.Func<int, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
-        public static System.Threading.Tasks.ParallelLoopResult For<TLocal>(int fromInclusive, int toExclusive, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<int, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
-        public static System.Threading.Tasks.ParallelLoopResult For<TLocal>(long fromInclusive, long toExclusive, System.Func<TLocal> localInit, System.Func<long, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
-        public static System.Threading.Tasks.ParallelLoopResult For<TLocal>(long fromInclusive, long toExclusive, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<long, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource>(System.Collections.Concurrent.OrderablePartitioner<TSource> source, System.Action<TSource, System.Threading.Tasks.ParallelLoopState, long> body) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource>(System.Collections.Concurrent.OrderablePartitioner<TSource> source, System.Threading.Tasks.ParallelOptions parallelOptions, System.Action<TSource, System.Threading.Tasks.ParallelLoopState, long> body) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource>(System.Collections.Concurrent.Partitioner<TSource> source, System.Action<TSource, System.Threading.Tasks.ParallelLoopState> body) { throw null; }
@@ -20789,10 +20785,14 @@ namespace System.Threading.Tasks
         public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Concurrent.OrderablePartitioner<TSource> source, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, long, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Concurrent.Partitioner<TSource> source, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Concurrent.Partitioner<TSource> source, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
-        public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Generic.IEnumerable<TSource> source, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Generic.IEnumerable<TSource> source, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, long, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
-        public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Generic.IEnumerable<TSource> source, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
+        public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Generic.IEnumerable<TSource> source, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Generic.IEnumerable<TSource> source, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, long, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
+        public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Generic.IEnumerable<TSource> source, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
+        public static System.Threading.Tasks.ParallelLoopResult For<TLocal>(int fromInclusive, int toExclusive, System.Func<TLocal> localInit, System.Func<int, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
+        public static System.Threading.Tasks.ParallelLoopResult For<TLocal>(int fromInclusive, int toExclusive, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<int, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
+        public static System.Threading.Tasks.ParallelLoopResult For<TLocal>(long fromInclusive, long toExclusive, System.Func<TLocal> localInit, System.Func<long, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
+        public static System.Threading.Tasks.ParallelLoopResult For<TLocal>(long fromInclusive, long toExclusive, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<long, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
         public static void Invoke(params System.Action[] actions) { }
         public static void Invoke(System.Threading.Tasks.ParallelOptions parallelOptions, params System.Action[] actions) { }
     }
@@ -20853,16 +20853,16 @@ namespace System.Threading.Tasks
         public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task> continuationAction, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
         public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task> continuationAction, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
         public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task> continuationAction, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction) { throw null; }
-        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
-        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
         public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, object, TResult> continuationFunction, object state) { throw null; }
         public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, object, TResult> continuationFunction, object state, System.Threading.CancellationToken cancellationToken) { throw null; }
         public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, object, TResult> continuationFunction, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
         public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, object, TResult> continuationFunction, object state, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, object, TResult> continuationFunction, object state, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction) { throw null; }
+        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
+        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
         public static System.Threading.Tasks.Task Delay(int millisecondsDelay) { throw null; }
         public static System.Threading.Tasks.Task Delay(int millisecondsDelay, System.Threading.CancellationToken cancellationToken) { throw null; }
         public static System.Threading.Tasks.Task Delay(System.TimeSpan delay) { throw null; }
@@ -20879,12 +20879,12 @@ namespace System.Threading.Tasks
         public static System.Threading.Tasks.Task Run(System.Action action, System.Threading.CancellationToken cancellationToken) { throw null; }
         public static System.Threading.Tasks.Task Run(System.Func<System.Threading.Tasks.Task> function) { throw null; }
         public static System.Threading.Tasks.Task Run(System.Func<System.Threading.Tasks.Task> function, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public static System.Threading.Tasks.Task<TResult> Run<TResult>(System.Func<TResult> function) { throw null; }
-        public static System.Threading.Tasks.Task<TResult> Run<TResult>(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public static System.Threading.Tasks.Task<TResult> Run<TResult>(System.Func<System.Threading.Tasks.Task<TResult>> function) { throw null; }
-        public static System.Threading.Tasks.Task<TResult> Run<TResult>(System.Func<System.Threading.Tasks.Task<TResult>> function, System.Threading.CancellationToken cancellationToken) { throw null; }
         public void RunSynchronously() { }
         public void RunSynchronously(System.Threading.Tasks.TaskScheduler scheduler) { }
+        public static System.Threading.Tasks.Task<TResult> Run<TResult>(System.Func<System.Threading.Tasks.Task<TResult>> function) { throw null; }
+        public static System.Threading.Tasks.Task<TResult> Run<TResult>(System.Func<System.Threading.Tasks.Task<TResult>> function, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public static System.Threading.Tasks.Task<TResult> Run<TResult>(System.Func<TResult> function) { throw null; }
+        public static System.Threading.Tasks.Task<TResult> Run<TResult>(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken) { throw null; }
         public void Start() { }
         public void Start(System.Threading.Tasks.TaskScheduler scheduler) { }
         public void Wait() { }
@@ -20911,41 +20911,6 @@ namespace System.Threading.Tasks
         public static System.Threading.Tasks.Task<System.Threading.Tasks.Task<TResult>> WhenAny<TResult>(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task<TResult>> tasks) { throw null; }
         public static System.Threading.Tasks.Task<System.Threading.Tasks.Task<TResult>> WhenAny<TResult>(params System.Threading.Tasks.Task<TResult>[] tasks) { throw null; }
         public static System.Runtime.CompilerServices.YieldAwaitable Yield() { throw null; }
-    }
-    public partial class Task<TResult> : System.Threading.Tasks.Task
-    {
-        public Task(System.Func<TResult> function) : base (default(System.Action)) { }
-        public Task(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken) : base (default(System.Action)) { }
-        public Task(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions) : base (default(System.Action)) { }
-        public Task(System.Func<TResult> function, System.Threading.Tasks.TaskCreationOptions creationOptions) : base (default(System.Action)) { }
-        public Task(System.Func<object, TResult> function, object state) : base (default(System.Action)) { }
-        public Task(System.Func<object, TResult> function, object state, System.Threading.CancellationToken cancellationToken) : base (default(System.Action)) { }
-        public Task(System.Func<object, TResult> function, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions) : base (default(System.Action)) { }
-        public Task(System.Func<object, TResult> function, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) : base (default(System.Action)) { }
-        public static new System.Threading.Tasks.TaskFactory<TResult> Factory { get { throw null; } }
-        public TResult Result { get { throw null; } }
-        public new System.Runtime.CompilerServices.ConfiguredTaskAwaitable<TResult> ConfigureAwait(bool continueOnCapturedContext) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public new System.Runtime.CompilerServices.TaskAwaiter<TResult> GetAwaiter() { throw null; }
     }
     public partial class TaskCanceledException : System.OperationCanceledException
     {
@@ -21051,21 +21016,21 @@ namespace System.Threading.Tasks
         public System.Threading.Tasks.Task FromAsync(System.IAsyncResult asyncResult, System.Action<System.IAsyncResult> endMethod) { throw null; }
         public System.Threading.Tasks.Task FromAsync(System.IAsyncResult asyncResult, System.Action<System.IAsyncResult> endMethod, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task FromAsync(System.IAsyncResult asyncResult, System.Action<System.IAsyncResult> endMethod, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task FromAsync<TArg1>(System.Func<TArg1, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, object state) { throw null; }
-        public System.Threading.Tasks.Task FromAsync<TArg1>(System.Func<TArg1, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TResult>(System.Func<System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, object state) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TResult>(System.Func<System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
+        public System.Threading.Tasks.Task FromAsync<TArg1>(System.Func<TArg1, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, object state) { throw null; }
+        public System.Threading.Tasks.Task FromAsync<TArg1>(System.Func<TArg1, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TResult>(System.IAsyncResult asyncResult, System.Func<System.IAsyncResult, TResult> endMethod) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TResult>(System.IAsyncResult asyncResult, System.Func<System.IAsyncResult, TResult> endMethod, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TResult>(System.IAsyncResult asyncResult, System.Func<System.IAsyncResult, TResult> endMethod, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task FromAsync<TArg1, TArg2>(System.Func<TArg1, TArg2, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, object state) { throw null; }
-        public System.Threading.Tasks.Task FromAsync<TArg1, TArg2>(System.Func<TArg1, TArg2, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TResult>(System.Func<TArg1, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, object state) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TResult>(System.Func<TArg1, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
-        public System.Threading.Tasks.Task FromAsync<TArg1, TArg2, TArg3>(System.Func<TArg1, TArg2, TArg3, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, object state) { throw null; }
-        public System.Threading.Tasks.Task FromAsync<TArg1, TArg2, TArg3>(System.Func<TArg1, TArg2, TArg3, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
+        public System.Threading.Tasks.Task FromAsync<TArg1, TArg2>(System.Func<TArg1, TArg2, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, object state) { throw null; }
+        public System.Threading.Tasks.Task FromAsync<TArg1, TArg2>(System.Func<TArg1, TArg2, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TArg2, TResult>(System.Func<TArg1, TArg2, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, TArg2 arg2, object state) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TArg2, TResult>(System.Func<TArg1, TArg2, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, TArg2 arg2, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
+        public System.Threading.Tasks.Task FromAsync<TArg1, TArg2, TArg3>(System.Func<TArg1, TArg2, TArg3, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, object state) { throw null; }
+        public System.Threading.Tasks.Task FromAsync<TArg1, TArg2, TArg3>(System.Func<TArg1, TArg2, TArg3, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TArg2, TArg3, TResult>(System.Func<TArg1, TArg2, TArg3, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, object state) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TArg2, TArg3, TResult>(System.Func<TArg1, TArg2, TArg3, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task StartNew(System.Action action) { throw null; }
@@ -21076,14 +21041,14 @@ namespace System.Threading.Tasks
         public System.Threading.Tasks.Task StartNew(System.Action<object> action, object state, System.Threading.CancellationToken cancellationToken) { throw null; }
         public System.Threading.Tasks.Task StartNew(System.Action<object> action, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
         public System.Threading.Tasks.Task StartNew(System.Action<object> action, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
-        public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<TResult> function) { throw null; }
-        public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<TResult> function, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<object, TResult> function, object state) { throw null; }
         public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<object, TResult> function, object state, System.Threading.CancellationToken cancellationToken) { throw null; }
         public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<object, TResult> function, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
         public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<object, TResult> function, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
+        public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<TResult> function) { throw null; }
+        public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<TResult> function, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
     }
     public partial class TaskFactory<TResult>
     {
@@ -21123,14 +21088,14 @@ namespace System.Threading.Tasks
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TArg2>(System.Func<TArg1, TArg2, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, TArg2 arg2, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TArg2, TArg3>(System.Func<TArg1, TArg2, TArg3, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, object state) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TArg2, TArg3>(System.Func<TArg1, TArg2, TArg3, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
-        public System.Threading.Tasks.Task<TResult> StartNew(System.Func<TResult> function) { throw null; }
-        public System.Threading.Tasks.Task<TResult> StartNew(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public System.Threading.Tasks.Task<TResult> StartNew(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task<TResult> StartNew(System.Func<TResult> function, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> StartNew(System.Func<object, TResult> function, object state) { throw null; }
         public System.Threading.Tasks.Task<TResult> StartNew(System.Func<object, TResult> function, object state, System.Threading.CancellationToken cancellationToken) { throw null; }
         public System.Threading.Tasks.Task<TResult> StartNew(System.Func<object, TResult> function, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
         public System.Threading.Tasks.Task<TResult> StartNew(System.Func<object, TResult> function, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
+        public System.Threading.Tasks.Task<TResult> StartNew(System.Func<TResult> function) { throw null; }
+        public System.Threading.Tasks.Task<TResult> StartNew(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task<TResult> StartNew(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task<TResult> StartNew(System.Func<TResult> function, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
     }
     public abstract partial class TaskScheduler
     {
@@ -21165,6 +21130,41 @@ namespace System.Threading.Tasks
         WaitingForActivation = 1,
         WaitingForChildrenToComplete = 4,
         WaitingToRun = 2,
+    }
+    public partial class Task<TResult> : System.Threading.Tasks.Task
+    {
+        public Task(System.Func<object, TResult> function, object state) : base (default(System.Action)) { }
+        public Task(System.Func<object, TResult> function, object state, System.Threading.CancellationToken cancellationToken) : base (default(System.Action)) { }
+        public Task(System.Func<object, TResult> function, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions) : base (default(System.Action)) { }
+        public Task(System.Func<object, TResult> function, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) : base (default(System.Action)) { }
+        public Task(System.Func<TResult> function) : base (default(System.Action)) { }
+        public Task(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken) : base (default(System.Action)) { }
+        public Task(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions) : base (default(System.Action)) { }
+        public Task(System.Func<TResult> function, System.Threading.Tasks.TaskCreationOptions creationOptions) : base (default(System.Action)) { }
+        public static new System.Threading.Tasks.TaskFactory<TResult> Factory { get { throw null; } }
+        public TResult Result { get { throw null; } }
+        public new System.Runtime.CompilerServices.ConfiguredTaskAwaitable<TResult> ConfigureAwait(bool continueOnCapturedContext) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public new System.Runtime.CompilerServices.TaskAwaiter<TResult> GetAwaiter() { throw null; }
     }
     public partial class UnobservedTaskExceptionEventArgs : System.EventArgs
     {

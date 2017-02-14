@@ -149,61 +149,6 @@ namespace Mono
 }
 namespace System
 {
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _AppDomain
-    {
-        string BaseDirectory { get; }
-        string DynamicDirectory { get; }
-        System.Security.Policy.Evidence Evidence { get; }
-        string FriendlyName { get; }
-        string RelativeSearchPath { get; }
-        bool ShadowCopyFiles { get; }
-        event System.AssemblyLoadEventHandler AssemblyLoad;
-        event System.ResolveEventHandler AssemblyResolve;
-        event System.EventHandler DomainUnload;
-        event System.EventHandler ProcessExit;
-        event System.ResolveEventHandler ResourceResolve;
-        event System.ResolveEventHandler TypeResolve;
-        event System.UnhandledExceptionEventHandler UnhandledException;
-        void AppendPrivatePath(string path);
-        void ClearPrivatePath();
-        void ClearShadowCopyPath();
-        System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName);
-        System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes);
-        System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, object[] activationAttributes);
-        System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName);
-        System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes);
-        System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, object[] activationAttributes);
-        void DoCallBack(System.CrossAppDomainDelegate theDelegate);
-        bool Equals(object other);
-        int ExecuteAssembly(string assemblyFile);
-        int ExecuteAssembly(string assemblyFile, System.Security.Policy.Evidence assemblySecurity);
-        int ExecuteAssembly(string assemblyFile, System.Security.Policy.Evidence assemblySecurity, string[] args);
-        System.Reflection.Assembly[] GetAssemblies();
-        object GetData(string name);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        object GetLifetimeService();
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        object InitializeLifetimeService();
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        System.Reflection.Assembly Load(byte[] rawAssembly);
-        System.Reflection.Assembly Load(byte[] rawAssembly, byte[] rawSymbolStore);
-        System.Reflection.Assembly Load(byte[] rawAssembly, byte[] rawSymbolStore, System.Security.Policy.Evidence securityEvidence);
-        System.Reflection.Assembly Load(System.Reflection.AssemblyName assemblyRef);
-        System.Reflection.Assembly Load(System.Reflection.AssemblyName assemblyRef, System.Security.Policy.Evidence assemblySecurity);
-        System.Reflection.Assembly Load(string assemblyString);
-        System.Reflection.Assembly Load(string assemblyString, System.Security.Policy.Evidence assemblySecurity);
-        void SetAppDomainPolicy(System.Security.Policy.PolicyLevel domainPolicy);
-        void SetCachePath(string s);
-        void SetData(string name, object data);
-        void SetPrincipalPolicy(System.Security.Principal.PrincipalPolicy policy);
-        void SetShadowCopyPath(string s);
-        void SetThreadPrincipal(System.Security.Principal.IPrincipal principal);
-        string ToString();
-    }
     public partial class AccessViolationException : System.SystemException
     {
         public AccessViolationException() { }
@@ -258,7 +203,6 @@ namespace System
         public static object CreateInstance(System.Type type, object[] args, object[] activationAttributes) { throw null; }
         public static object CreateInstance(System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture) { throw null; }
         public static object CreateInstance(System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
-        public static T CreateInstance<T>() { throw null; }
         public static System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(System.AppDomain domain, string assemblyFile, string typeName) { throw null; }
         public static System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(System.AppDomain domain, string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes) { throw null; }
         [System.ObsoleteAttribute("Methods which use Evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateInstanceFrom which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
@@ -268,6 +212,7 @@ namespace System
         [System.ObsoleteAttribute("Methods which use evidence to sandbox are obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateInstanceFrom which does not take an Evidence parameter. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.")]
         public static System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityInfo) { throw null; }
         public static System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, object[] activationAttributes) { throw null; }
+        public static T CreateInstance<T>() { throw null; }
         public static object GetObject(System.Type type, string url) { throw null; }
         public static object GetObject(System.Type type, string url, object state) { throw null; }
         void System.Runtime.InteropServices._Activator.GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId) { }
@@ -575,10 +520,10 @@ namespace System
         public static int BinarySearch(System.Array array, int index, int length, object value, System.Collections.IComparer comparer) { throw null; }
         public static int BinarySearch(System.Array array, object value) { throw null; }
         public static int BinarySearch(System.Array array, object value, System.Collections.IComparer comparer) { throw null; }
-        public static int BinarySearch<T>(T[] array, T value) { throw null; }
-        public static int BinarySearch<T>(T[] array, T value, System.Collections.Generic.IComparer<T> comparer) { throw null; }
         public static int BinarySearch<T>(T[] array, int index, int length, T value) { throw null; }
         public static int BinarySearch<T>(T[] array, int index, int length, T value, System.Collections.Generic.IComparer<T> comparer) { throw null; }
+        public static int BinarySearch<T>(T[] array, T value) { throw null; }
+        public static int BinarySearch<T>(T[] array, T value, System.Collections.Generic.IComparer<T> comparer) { throw null; }
         public static void Clear(System.Array array, int index, int length) { }
         public object Clone() { throw null; }
         public static void ConstrainedCopy(System.Array sourceArray, int sourceIndex, System.Array destinationArray, int destinationIndex, int length) { }
@@ -597,15 +542,15 @@ namespace System
         public static System.Array CreateInstance(System.Type elementType, params long[] lengths) { throw null; }
         public static T[] Empty<T>() { throw null; }
         public static bool Exists<T>(T[] array, System.Predicate<T> match) { throw null; }
-        public static T Find<T>(T[] array, System.Predicate<T> match) { throw null; }
         public static T[] FindAll<T>(T[] array, System.Predicate<T> match) { throw null; }
         public static int FindIndex<T>(T[] array, int startIndex, int count, System.Predicate<T> match) { throw null; }
         public static int FindIndex<T>(T[] array, int startIndex, System.Predicate<T> match) { throw null; }
         public static int FindIndex<T>(T[] array, System.Predicate<T> match) { throw null; }
-        public static T FindLast<T>(T[] array, System.Predicate<T> match) { throw null; }
         public static int FindLastIndex<T>(T[] array, int startIndex, int count, System.Predicate<T> match) { throw null; }
         public static int FindLastIndex<T>(T[] array, int startIndex, System.Predicate<T> match) { throw null; }
         public static int FindLastIndex<T>(T[] array, System.Predicate<T> match) { throw null; }
+        public static T FindLast<T>(T[] array, System.Predicate<T> match) { throw null; }
+        public static T Find<T>(T[] array, System.Predicate<T> match) { throw null; }
         public static void ForEach<T>(T[] array, System.Action<T> action) { }
         public System.Collections.IEnumerator GetEnumerator() { throw null; }
         public int GetLength(int dimension) { throw null; }
@@ -2306,8 +2251,8 @@ namespace System
         public string ToString(string format) { throw null; }
         [System.ObsoleteAttribute("The provider argument is not used. Please use ToString(String).")]
         public string ToString(string format, System.IFormatProvider provider) { throw null; }
-        public static bool TryParse<TEnum>(string value, out TEnum result) where TEnum : struct { result = default(TEnum); throw null; }
         public static bool TryParse<TEnum>(string value, bool ignoreCase, out TEnum result) where TEnum : struct { result = default(TEnum); throw null; }
+        public static bool TryParse<TEnum>(string value, out TEnum result) where TEnum : struct { result = default(TEnum); throw null; }
     }
     public static partial class Environment
     {
@@ -4395,6 +4340,61 @@ namespace System
         public void SetTarget(T target) { }
         public bool TryGetTarget(out T target) { target = default(T); throw null; }
     }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _AppDomain
+    {
+        string BaseDirectory { get; }
+        string DynamicDirectory { get; }
+        System.Security.Policy.Evidence Evidence { get; }
+        string FriendlyName { get; }
+        string RelativeSearchPath { get; }
+        bool ShadowCopyFiles { get; }
+        event System.AssemblyLoadEventHandler AssemblyLoad;
+        event System.ResolveEventHandler AssemblyResolve;
+        event System.EventHandler DomainUnload;
+        event System.EventHandler ProcessExit;
+        event System.ResolveEventHandler ResourceResolve;
+        event System.ResolveEventHandler TypeResolve;
+        event System.UnhandledExceptionEventHandler UnhandledException;
+        void AppendPrivatePath(string path);
+        void ClearPrivatePath();
+        void ClearShadowCopyPath();
+        System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName);
+        System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes);
+        System.Runtime.Remoting.ObjectHandle CreateInstance(string assemblyName, string typeName, object[] activationAttributes);
+        System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName);
+        System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes, System.Security.Policy.Evidence securityAttributes);
+        System.Runtime.Remoting.ObjectHandle CreateInstanceFrom(string assemblyFile, string typeName, object[] activationAttributes);
+        void DoCallBack(System.CrossAppDomainDelegate theDelegate);
+        bool Equals(object other);
+        int ExecuteAssembly(string assemblyFile);
+        int ExecuteAssembly(string assemblyFile, System.Security.Policy.Evidence assemblySecurity);
+        int ExecuteAssembly(string assemblyFile, System.Security.Policy.Evidence assemblySecurity, string[] args);
+        System.Reflection.Assembly[] GetAssemblies();
+        object GetData(string name);
+        int GetHashCode();
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        object GetLifetimeService();
+        System.Type GetType();
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        object InitializeLifetimeService();
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+        System.Reflection.Assembly Load(byte[] rawAssembly);
+        System.Reflection.Assembly Load(byte[] rawAssembly, byte[] rawSymbolStore);
+        System.Reflection.Assembly Load(byte[] rawAssembly, byte[] rawSymbolStore, System.Security.Policy.Evidence securityEvidence);
+        System.Reflection.Assembly Load(System.Reflection.AssemblyName assemblyRef);
+        System.Reflection.Assembly Load(System.Reflection.AssemblyName assemblyRef, System.Security.Policy.Evidence assemblySecurity);
+        System.Reflection.Assembly Load(string assemblyString);
+        System.Reflection.Assembly Load(string assemblyString, System.Security.Policy.Evidence assemblySecurity);
+        void SetAppDomainPolicy(System.Security.Policy.PolicyLevel domainPolicy);
+        void SetCachePath(string s);
+        void SetData(string name, object data);
+        void SetPrincipalPolicy(System.Security.Principal.PrincipalPolicy policy);
+        void SetShadowCopyPath(string s);
+        void SetThreadPrincipal(System.Security.Principal.IPrincipal principal);
+        string ToString();
+    }
 }
 namespace System.Collections
 {
@@ -4818,13 +4818,13 @@ namespace System.Collections.Concurrent
         System.Collections.ICollection System.Collections.IDictionary.Keys { get { throw null; } }
         System.Collections.ICollection System.Collections.IDictionary.Values { get { throw null; } }
         public System.Collections.Generic.ICollection<TValue> Values { get { throw null; } }
-        public TValue AddOrUpdate(TKey key, TValue addValue, System.Func<TKey, TValue, TValue> updateValueFactory) { throw null; }
         public TValue AddOrUpdate(TKey key, System.Func<TKey, TValue> addValueFactory, System.Func<TKey, TValue, TValue> updateValueFactory) { throw null; }
+        public TValue AddOrUpdate(TKey key, TValue addValue, System.Func<TKey, TValue, TValue> updateValueFactory) { throw null; }
         public void Clear() { }
         public bool ContainsKey(TKey key) { throw null; }
         public System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<TKey, TValue>> GetEnumerator() { throw null; }
-        public TValue GetOrAdd(TKey key, TValue value) { throw null; }
         public TValue GetOrAdd(TKey key, System.Func<TKey, TValue> valueFactory) { throw null; }
+        public TValue GetOrAdd(TKey key, TValue value) { throw null; }
         void System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<TKey,TValue>>.Add(System.Collections.Generic.KeyValuePair<TKey, TValue> keyValuePair) { }
         bool System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<TKey,TValue>>.Contains(System.Collections.Generic.KeyValuePair<TKey, TValue> keyValuePair) { throw null; }
         void System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<TKey,TValue>>.CopyTo(System.Collections.Generic.KeyValuePair<TKey, TValue>[] array, int index) { }
@@ -4916,10 +4916,10 @@ namespace System.Collections.Concurrent
         public static System.Collections.Concurrent.OrderablePartitioner<System.Tuple<int, int>> Create(int fromInclusive, int toExclusive, int rangeSize) { throw null; }
         public static System.Collections.Concurrent.OrderablePartitioner<System.Tuple<long, long>> Create(long fromInclusive, long toExclusive) { throw null; }
         public static System.Collections.Concurrent.OrderablePartitioner<System.Tuple<long, long>> Create(long fromInclusive, long toExclusive, long rangeSize) { throw null; }
-        public static System.Collections.Concurrent.OrderablePartitioner<TSource> Create<TSource>(TSource[] array, bool loadBalance) { throw null; }
         public static System.Collections.Concurrent.OrderablePartitioner<TSource> Create<TSource>(System.Collections.Generic.IEnumerable<TSource> source) { throw null; }
         public static System.Collections.Concurrent.OrderablePartitioner<TSource> Create<TSource>(System.Collections.Generic.IEnumerable<TSource> source, System.Collections.Concurrent.EnumerablePartitionerOptions partitionerOptions) { throw null; }
         public static System.Collections.Concurrent.OrderablePartitioner<TSource> Create<TSource>(System.Collections.Generic.IList<TSource> list, bool loadBalance) { throw null; }
+        public static System.Collections.Concurrent.OrderablePartitioner<TSource> Create<TSource>(TSource[] array, bool loadBalance) { throw null; }
     }
     public abstract partial class Partitioner<TSource>
     {
@@ -5151,15 +5151,15 @@ namespace System.Collections.Generic
         public void Add(T item) { }
         public void AddRange(System.Collections.Generic.IEnumerable<T> collection) { }
         public System.Collections.ObjectModel.ReadOnlyCollection<T> AsReadOnly() { throw null; }
+        public int BinarySearch(int index, int count, T item, System.Collections.Generic.IComparer<T> comparer) { throw null; }
         public int BinarySearch(T item) { throw null; }
         public int BinarySearch(T item, System.Collections.Generic.IComparer<T> comparer) { throw null; }
-        public int BinarySearch(int index, int count, T item, System.Collections.Generic.IComparer<T> comparer) { throw null; }
         public void Clear() { }
         public bool Contains(T item) { throw null; }
         public System.Collections.Generic.List<TOutput> ConvertAll<TOutput>(System.Converter<T, TOutput> converter) { throw null; }
+        public void CopyTo(int index, T[] array, int arrayIndex, int count) { }
         public void CopyTo(T[] array) { }
         public void CopyTo(T[] array, int arrayIndex) { }
-        public void CopyTo(int index, T[] array, int arrayIndex, int count) { }
         public bool Exists(System.Predicate<T> match) { throw null; }
         public T Find(System.Predicate<T> match) { throw null; }
         public System.Collections.Generic.List<T> FindAll(System.Predicate<T> match) { throw null; }
@@ -6064,10 +6064,6 @@ namespace System.Diagnostics.Tracing
         public static void SetCurrentThreadActivityId(System.Guid activityId, out System.Guid oldActivityThatWillContinue) { oldActivityThatWillContinue = default(System.Guid); }
         public void Write(string eventName) { }
         public void Write(string eventName, System.Diagnostics.Tracing.EventSourceOptions options) { }
-        public void Write<T>(string eventName, T data) { }
-        public void Write<T>(string eventName, System.Diagnostics.Tracing.EventSourceOptions options, T data) { }
-        public void Write<T>(string eventName, ref System.Diagnostics.Tracing.EventSourceOptions options, ref T data) { }
-        public void Write<T>(string eventName, ref System.Diagnostics.Tracing.EventSourceOptions options, ref System.Guid activityId, ref System.Guid relatedActivityId, ref T data) { }
         protected void WriteEvent(int eventId) { }
         protected void WriteEvent(int eventId, byte[] arg1) { }
         protected void WriteEvent(int eventId, int arg1) { }
@@ -6091,6 +6087,10 @@ namespace System.Diagnostics.Tracing
         protected void WriteEventWithRelatedActivityId(int eventId, System.Guid relatedActivityId, params object[] args) { }
         [System.CLSCompliantAttribute(false)]
         protected unsafe void WriteEventWithRelatedActivityIdCore(int eventId, System.Guid* relatedActivityId, int eventDataCount, System.Diagnostics.Tracing.EventSource.EventData* data) { }
+        public void Write<T>(string eventName, System.Diagnostics.Tracing.EventSourceOptions options, T data) { }
+        public void Write<T>(string eventName, ref System.Diagnostics.Tracing.EventSourceOptions options, ref System.Guid activityId, ref System.Guid relatedActivityId, ref T data) { }
+        public void Write<T>(string eventName, ref System.Diagnostics.Tracing.EventSourceOptions options, ref T data) { }
+        public void Write<T>(string eventName, T data) { }
         [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Size=1)]
         protected internal partial struct EventData
         {
@@ -7816,7 +7816,6 @@ namespace System.IO
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
         protected void Initialize(System.Runtime.InteropServices.SafeBuffer buffer, long offset, long capacity, System.IO.FileAccess access) { }
-        public void Read<T>(long position, out T structure) where T : struct { structure = default(T); }
         public int ReadArray<T>(long position, T[] array, int offset, int count) where T : struct { throw null; }
         public bool ReadBoolean(long position) { throw null; }
         public byte ReadByte(long position) { throw null; }
@@ -7835,6 +7834,7 @@ namespace System.IO
         public uint ReadUInt32(long position) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public ulong ReadUInt64(long position) { throw null; }
+        public void Read<T>(long position, out T structure) where T : struct { structure = default(T); }
         public void Write(long position, bool value) { }
         public void Write(long position, byte value) { }
         public void Write(long position, char value) { }
@@ -7852,8 +7852,8 @@ namespace System.IO
         public void Write(long position, uint value) { }
         [System.CLSCompliantAttribute(false)]
         public void Write(long position, ulong value) { }
-        public void Write<T>(long position, ref T structure) where T : struct { }
         public void WriteArray<T>(long position, T[] array, int offset, int count) where T : struct { }
+        public void Write<T>(long position, ref T structure) where T : struct { }
     }
     public partial class UnmanagedMemoryStream : System.IO.Stream
     {
@@ -8391,12 +8391,6 @@ namespace System.Reflection
         public static System.Attribute GetCustomAttribute(this System.Reflection.Module element, System.Type attributeType) { throw null; }
         public static System.Attribute GetCustomAttribute(this System.Reflection.ParameterInfo element, System.Type attributeType) { throw null; }
         public static System.Attribute GetCustomAttribute(this System.Reflection.ParameterInfo element, System.Type attributeType, bool inherit) { throw null; }
-        public static T GetCustomAttribute<T>(this System.Reflection.Assembly element) where T : System.Attribute { throw null; }
-        public static T GetCustomAttribute<T>(this System.Reflection.MemberInfo element) where T : System.Attribute { throw null; }
-        public static T GetCustomAttribute<T>(this System.Reflection.MemberInfo element, bool inherit) where T : System.Attribute { throw null; }
-        public static T GetCustomAttribute<T>(this System.Reflection.Module element) where T : System.Attribute { throw null; }
-        public static T GetCustomAttribute<T>(this System.Reflection.ParameterInfo element) where T : System.Attribute { throw null; }
-        public static T GetCustomAttribute<T>(this System.Reflection.ParameterInfo element, bool inherit) where T : System.Attribute { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Attribute> GetCustomAttributes(this System.Reflection.Assembly element) { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Attribute> GetCustomAttributes(this System.Reflection.Assembly element, System.Type attributeType) { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Attribute> GetCustomAttributes(this System.Reflection.MemberInfo element) { throw null; }
@@ -8415,6 +8409,12 @@ namespace System.Reflection
         public static System.Collections.Generic.IEnumerable<T> GetCustomAttributes<T>(this System.Reflection.Module element) where T : System.Attribute { throw null; }
         public static System.Collections.Generic.IEnumerable<T> GetCustomAttributes<T>(this System.Reflection.ParameterInfo element) where T : System.Attribute { throw null; }
         public static System.Collections.Generic.IEnumerable<T> GetCustomAttributes<T>(this System.Reflection.ParameterInfo element, bool inherit) where T : System.Attribute { throw null; }
+        public static T GetCustomAttribute<T>(this System.Reflection.Assembly element) where T : System.Attribute { throw null; }
+        public static T GetCustomAttribute<T>(this System.Reflection.MemberInfo element) where T : System.Attribute { throw null; }
+        public static T GetCustomAttribute<T>(this System.Reflection.MemberInfo element, bool inherit) where T : System.Attribute { throw null; }
+        public static T GetCustomAttribute<T>(this System.Reflection.Module element) where T : System.Attribute { throw null; }
+        public static T GetCustomAttribute<T>(this System.Reflection.ParameterInfo element) where T : System.Attribute { throw null; }
+        public static T GetCustomAttribute<T>(this System.Reflection.ParameterInfo element, bool inherit) where T : System.Attribute { throw null; }
         public static bool IsDefined(this System.Reflection.Assembly element, System.Type attributeType) { throw null; }
         public static bool IsDefined(this System.Reflection.MemberInfo element, System.Type attributeType) { throw null; }
         public static bool IsDefined(this System.Reflection.MemberInfo element, System.Type attributeType, bool inherit) { throw null; }
@@ -9490,12 +9490,12 @@ namespace System.Reflection.Emit
         public static readonly System.Reflection.Emit.OpCode Bne_Un_S;
         public static readonly System.Reflection.Emit.OpCode Box;
         public static readonly System.Reflection.Emit.OpCode Br;
-        public static readonly System.Reflection.Emit.OpCode Br_S;
         public static readonly System.Reflection.Emit.OpCode Break;
         public static readonly System.Reflection.Emit.OpCode Brfalse;
         public static readonly System.Reflection.Emit.OpCode Brfalse_S;
         public static readonly System.Reflection.Emit.OpCode Brtrue;
         public static readonly System.Reflection.Emit.OpCode Brtrue_S;
+        public static readonly System.Reflection.Emit.OpCode Br_S;
         public static readonly System.Reflection.Emit.OpCode Call;
         public static readonly System.Reflection.Emit.OpCode Calli;
         public static readonly System.Reflection.Emit.OpCode Callvirt;
@@ -9513,7 +9513,6 @@ namespace System.Reflection.Emit
         public static readonly System.Reflection.Emit.OpCode Conv_I4;
         public static readonly System.Reflection.Emit.OpCode Conv_I8;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I;
-        public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I1;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I1_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I2;
@@ -9522,8 +9521,8 @@ namespace System.Reflection.Emit
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I4_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I8;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I8_Un;
+        public static readonly System.Reflection.Emit.OpCode Conv_Ovf_I_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U;
-        public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U1;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U1_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U2;
@@ -9532,9 +9531,10 @@ namespace System.Reflection.Emit
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U4_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U8;
         public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U8_Un;
-        public static readonly System.Reflection.Emit.OpCode Conv_R_Un;
+        public static readonly System.Reflection.Emit.OpCode Conv_Ovf_U_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_R4;
         public static readonly System.Reflection.Emit.OpCode Conv_R8;
+        public static readonly System.Reflection.Emit.OpCode Conv_R_Un;
         public static readonly System.Reflection.Emit.OpCode Conv_U;
         public static readonly System.Reflection.Emit.OpCode Conv_U1;
         public static readonly System.Reflection.Emit.OpCode Conv_U2;
@@ -9552,13 +9552,13 @@ namespace System.Reflection.Emit
         public static readonly System.Reflection.Emit.OpCode Isinst;
         public static readonly System.Reflection.Emit.OpCode Jmp;
         public static readonly System.Reflection.Emit.OpCode Ldarg;
+        public static readonly System.Reflection.Emit.OpCode Ldarga;
+        public static readonly System.Reflection.Emit.OpCode Ldarga_S;
         public static readonly System.Reflection.Emit.OpCode Ldarg_0;
         public static readonly System.Reflection.Emit.OpCode Ldarg_1;
         public static readonly System.Reflection.Emit.OpCode Ldarg_2;
         public static readonly System.Reflection.Emit.OpCode Ldarg_3;
         public static readonly System.Reflection.Emit.OpCode Ldarg_S;
-        public static readonly System.Reflection.Emit.OpCode Ldarga;
-        public static readonly System.Reflection.Emit.OpCode Ldarga_S;
         public static readonly System.Reflection.Emit.OpCode Ldc_I4;
         public static readonly System.Reflection.Emit.OpCode Ldc_I4_0;
         public static readonly System.Reflection.Emit.OpCode Ldc_I4_1;
@@ -9575,6 +9575,7 @@ namespace System.Reflection.Emit
         public static readonly System.Reflection.Emit.OpCode Ldc_R4;
         public static readonly System.Reflection.Emit.OpCode Ldc_R8;
         public static readonly System.Reflection.Emit.OpCode Ldelem;
+        public static readonly System.Reflection.Emit.OpCode Ldelema;
         public static readonly System.Reflection.Emit.OpCode Ldelem_I;
         public static readonly System.Reflection.Emit.OpCode Ldelem_I1;
         public static readonly System.Reflection.Emit.OpCode Ldelem_I2;
@@ -9586,7 +9587,6 @@ namespace System.Reflection.Emit
         public static readonly System.Reflection.Emit.OpCode Ldelem_U1;
         public static readonly System.Reflection.Emit.OpCode Ldelem_U2;
         public static readonly System.Reflection.Emit.OpCode Ldelem_U4;
-        public static readonly System.Reflection.Emit.OpCode Ldelema;
         public static readonly System.Reflection.Emit.OpCode Ldfld;
         public static readonly System.Reflection.Emit.OpCode Ldflda;
         public static readonly System.Reflection.Emit.OpCode Ldftn;
@@ -9603,13 +9603,13 @@ namespace System.Reflection.Emit
         public static readonly System.Reflection.Emit.OpCode Ldind_U4;
         public static readonly System.Reflection.Emit.OpCode Ldlen;
         public static readonly System.Reflection.Emit.OpCode Ldloc;
+        public static readonly System.Reflection.Emit.OpCode Ldloca;
+        public static readonly System.Reflection.Emit.OpCode Ldloca_S;
         public static readonly System.Reflection.Emit.OpCode Ldloc_0;
         public static readonly System.Reflection.Emit.OpCode Ldloc_1;
         public static readonly System.Reflection.Emit.OpCode Ldloc_2;
         public static readonly System.Reflection.Emit.OpCode Ldloc_3;
         public static readonly System.Reflection.Emit.OpCode Ldloc_S;
-        public static readonly System.Reflection.Emit.OpCode Ldloca;
-        public static readonly System.Reflection.Emit.OpCode Ldloca_S;
         public static readonly System.Reflection.Emit.OpCode Ldnull;
         public static readonly System.Reflection.Emit.OpCode Ldobj;
         public static readonly System.Reflection.Emit.OpCode Ldsfld;
@@ -9792,8 +9792,8 @@ namespace System.Reflection.Emit
         Popi = 3,
         Popi_pop1 = 4,
         Popi_popi = 5,
-        Popi_popi_popi = 7,
         Popi_popi8 = 6,
+        Popi_popi_popi = 7,
         Popi_popr4 = 8,
         Popi_popr8 = 9,
         Popref = 10,
@@ -10569,493 +10569,6 @@ namespace System.Runtime.Hosting
 }
 namespace System.Runtime.InteropServices
 {
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _Activator
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _Assembly
-    {
-        string CodeBase { get; }
-        System.Reflection.MethodInfo EntryPoint { get; }
-        string EscapedCodeBase { get; }
-        string FullName { get; }
-        string Location { get; }
-        event System.Reflection.ModuleResolveEventHandler ModuleResolve;
-        object CreateInstance(string typeName);
-        object CreateInstance(string typeName, bool ignoreCase);
-        object CreateInstance(string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes);
-        bool Equals(object other);
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        System.Type[] GetExportedTypes();
-        System.IO.FileStream GetFile(string name);
-        System.IO.FileStream[] GetFiles();
-        System.IO.FileStream[] GetFiles(bool getResourceModules);
-        int GetHashCode();
-        System.Reflection.Module[] GetLoadedModules();
-        System.Reflection.Module[] GetLoadedModules(bool getResourceModules);
-        System.Reflection.ManifestResourceInfo GetManifestResourceInfo(string resourceName);
-        string[] GetManifestResourceNames();
-        System.IO.Stream GetManifestResourceStream(string name);
-        System.IO.Stream GetManifestResourceStream(System.Type type, string name);
-        System.Reflection.Module GetModule(string name);
-        System.Reflection.Module[] GetModules();
-        System.Reflection.Module[] GetModules(bool getResourceModules);
-        System.Reflection.AssemblyName GetName();
-        System.Reflection.AssemblyName GetName(bool copiedName);
-        void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context);
-        System.Reflection.AssemblyName[] GetReferencedAssemblies();
-        System.Reflection.Assembly GetSatelliteAssembly(System.Globalization.CultureInfo culture);
-        System.Reflection.Assembly GetSatelliteAssembly(System.Globalization.CultureInfo culture, System.Version version);
-        System.Type GetType();
-        System.Type GetType(string name);
-        System.Type GetType(string name, bool throwOnError);
-        System.Type GetType(string name, bool throwOnError, bool ignoreCase);
-        System.Type[] GetTypes();
-        bool IsDefined(System.Type attributeType, bool inherit);
-        System.Reflection.Module LoadModule(string moduleName, byte[] rawModule);
-        System.Reflection.Module LoadModule(string moduleName, byte[] rawModule, byte[] rawSymbolStore);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _AssemblyName
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _Attribute
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _ConstructorInfo
-    {
-        System.Reflection.MethodAttributes Attributes { get; }
-        System.Reflection.CallingConventions CallingConvention { get; }
-        System.Type DeclaringType { get; }
-        bool IsAbstract { get; }
-        bool IsAssembly { get; }
-        bool IsConstructor { get; }
-        bool IsFamily { get; }
-        bool IsFamilyAndAssembly { get; }
-        bool IsFamilyOrAssembly { get; }
-        bool IsFinal { get; }
-        bool IsHideBySig { get; }
-        bool IsPrivate { get; }
-        bool IsPublic { get; }
-        bool IsSpecialName { get; }
-        bool IsStatic { get; }
-        bool IsVirtual { get; }
-        System.Reflection.MemberTypes MemberType { get; }
-        System.RuntimeMethodHandle MethodHandle { get; }
-        string Name { get; }
-        System.Type ReflectedType { get; }
-        bool Equals(object other);
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        System.Reflection.MethodImplAttributes GetMethodImplementationFlags();
-        System.Reflection.ParameterInfo[] GetParameters();
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        object Invoke_2(object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture);
-        object Invoke_3(object obj, object[] parameters);
-        object Invoke_4(System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture);
-        object Invoke_5(object[] parameters);
-        bool IsDefined(System.Type attributeType, bool inherit);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _EventInfo
-    {
-        System.Reflection.EventAttributes Attributes { get; }
-        System.Type DeclaringType { get; }
-        System.Type EventHandlerType { get; }
-        bool IsMulticast { get; }
-        bool IsSpecialName { get; }
-        System.Reflection.MemberTypes MemberType { get; }
-        string Name { get; }
-        System.Type ReflectedType { get; }
-        void AddEventHandler(object target, System.Delegate handler);
-        bool Equals(object other);
-        System.Reflection.MethodInfo GetAddMethod();
-        System.Reflection.MethodInfo GetAddMethod(bool nonPublic);
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        System.Reflection.MethodInfo GetRaiseMethod();
-        System.Reflection.MethodInfo GetRaiseMethod(bool nonPublic);
-        System.Reflection.MethodInfo GetRemoveMethod();
-        System.Reflection.MethodInfo GetRemoveMethod(bool nonPublic);
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        bool IsDefined(System.Type attributeType, bool inherit);
-        void RemoveEventHandler(object target, System.Delegate handler);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _Exception
-    {
-        string HelpLink { get; set; }
-        System.Exception InnerException { get; }
-        string Message { get; }
-        string Source { get; set; }
-        string StackTrace { get; }
-        System.Reflection.MethodBase TargetSite { get; }
-        bool Equals(object obj);
-        System.Exception GetBaseException();
-        int GetHashCode();
-        void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context);
-        System.Type GetType();
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _FieldInfo
-    {
-        System.Reflection.FieldAttributes Attributes { get; }
-        System.Type DeclaringType { get; }
-        System.RuntimeFieldHandle FieldHandle { get; }
-        System.Type FieldType { get; }
-        bool IsAssembly { get; }
-        bool IsFamily { get; }
-        bool IsFamilyAndAssembly { get; }
-        bool IsFamilyOrAssembly { get; }
-        bool IsInitOnly { get; }
-        bool IsLiteral { get; }
-        bool IsNotSerialized { get; }
-        bool IsPinvokeImpl { get; }
-        bool IsPrivate { get; }
-        bool IsPublic { get; }
-        bool IsSpecialName { get; }
-        bool IsStatic { get; }
-        System.Reflection.MemberTypes MemberType { get; }
-        string Name { get; }
-        System.Type ReflectedType { get; }
-        bool Equals(object other);
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        object GetValue(object obj);
-        object GetValueDirect(System.TypedReference obj);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        bool IsDefined(System.Type attributeType, bool inherit);
-        void SetValue(object obj, object value);
-        void SetValue(object obj, object value, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Globalization.CultureInfo culture);
-        void SetValueDirect(System.TypedReference obj, object value);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _MemberInfo
-    {
-        System.Type DeclaringType { get; }
-        System.Reflection.MemberTypes MemberType { get; }
-        string Name { get; }
-        System.Type ReflectedType { get; }
-        bool Equals(object other);
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        bool IsDefined(System.Type attributeType, bool inherit);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _MethodBase
-    {
-        System.Reflection.MethodAttributes Attributes { get; }
-        System.Reflection.CallingConventions CallingConvention { get; }
-        System.Type DeclaringType { get; }
-        bool IsAbstract { get; }
-        bool IsAssembly { get; }
-        bool IsConstructor { get; }
-        bool IsFamily { get; }
-        bool IsFamilyAndAssembly { get; }
-        bool IsFamilyOrAssembly { get; }
-        bool IsFinal { get; }
-        bool IsHideBySig { get; }
-        bool IsPrivate { get; }
-        bool IsPublic { get; }
-        bool IsSpecialName { get; }
-        bool IsStatic { get; }
-        bool IsVirtual { get; }
-        System.Reflection.MemberTypes MemberType { get; }
-        System.RuntimeMethodHandle MethodHandle { get; }
-        string Name { get; }
-        System.Type ReflectedType { get; }
-        bool Equals(object other);
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        System.Reflection.MethodImplAttributes GetMethodImplementationFlags();
-        System.Reflection.ParameterInfo[] GetParameters();
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        object Invoke(object obj, object[] parameters);
-        object Invoke(object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        bool IsDefined(System.Type attributeType, bool inherit);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _MethodInfo
-    {
-        System.Reflection.MethodAttributes Attributes { get; }
-        System.Reflection.CallingConventions CallingConvention { get; }
-        System.Type DeclaringType { get; }
-        bool IsAbstract { get; }
-        bool IsAssembly { get; }
-        bool IsConstructor { get; }
-        bool IsFamily { get; }
-        bool IsFamilyAndAssembly { get; }
-        bool IsFamilyOrAssembly { get; }
-        bool IsFinal { get; }
-        bool IsHideBySig { get; }
-        bool IsPrivate { get; }
-        bool IsPublic { get; }
-        bool IsSpecialName { get; }
-        bool IsStatic { get; }
-        bool IsVirtual { get; }
-        System.Reflection.MemberTypes MemberType { get; }
-        System.RuntimeMethodHandle MethodHandle { get; }
-        string Name { get; }
-        System.Type ReflectedType { get; }
-        System.Type ReturnType { get; }
-        System.Reflection.ICustomAttributeProvider ReturnTypeCustomAttributes { get; }
-        bool Equals(object other);
-        System.Reflection.MethodInfo GetBaseDefinition();
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        System.Reflection.MethodImplAttributes GetMethodImplementationFlags();
-        System.Reflection.ParameterInfo[] GetParameters();
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        object Invoke(object obj, object[] parameters);
-        object Invoke(object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        bool IsDefined(System.Type attributeType, bool inherit);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _MethodRental
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _Module
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _ParameterInfo
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _PropertyInfo
-    {
-        System.Reflection.PropertyAttributes Attributes { get; }
-        bool CanRead { get; }
-        bool CanWrite { get; }
-        System.Type DeclaringType { get; }
-        bool IsSpecialName { get; }
-        System.Reflection.MemberTypes MemberType { get; }
-        string Name { get; }
-        System.Type PropertyType { get; }
-        System.Type ReflectedType { get; }
-        bool Equals(object other);
-        System.Reflection.MethodInfo[] GetAccessors();
-        System.Reflection.MethodInfo[] GetAccessors(bool nonPublic);
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        System.Reflection.MethodInfo GetGetMethod();
-        System.Reflection.MethodInfo GetGetMethod(bool nonPublic);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        System.Reflection.ParameterInfo[] GetIndexParameters();
-        System.Reflection.MethodInfo GetSetMethod();
-        System.Reflection.MethodInfo GetSetMethod(bool nonPublic);
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        object GetValue(object obj, object[] index);
-        object GetValue(object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] index, System.Globalization.CultureInfo culture);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        bool IsDefined(System.Type attributeType, bool inherit);
-        void SetValue(object obj, object value, object[] index);
-        void SetValue(object obj, object value, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] index, System.Globalization.CultureInfo culture);
-        string ToString();
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _SignatureHelper
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _Thread
-    {
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-    }
-    [System.CLSCompliantAttribute(false)]
-    public partial interface _Type
-    {
-        System.Reflection.Assembly Assembly { get; }
-        string AssemblyQualifiedName { get; }
-        System.Reflection.TypeAttributes Attributes { get; }
-        System.Type BaseType { get; }
-        System.Type DeclaringType { get; }
-        string FullName { get; }
-        System.Guid GUID { get; }
-        bool HasElementType { get; }
-        bool IsAbstract { get; }
-        bool IsAnsiClass { get; }
-        bool IsArray { get; }
-        bool IsAutoClass { get; }
-        bool IsAutoLayout { get; }
-        bool IsByRef { get; }
-        bool IsClass { get; }
-        bool IsCOMObject { get; }
-        bool IsContextful { get; }
-        bool IsEnum { get; }
-        bool IsExplicitLayout { get; }
-        bool IsImport { get; }
-        bool IsInterface { get; }
-        bool IsLayoutSequential { get; }
-        bool IsMarshalByRef { get; }
-        bool IsNestedAssembly { get; }
-        bool IsNestedFamANDAssem { get; }
-        bool IsNestedFamily { get; }
-        bool IsNestedFamORAssem { get; }
-        bool IsNestedPrivate { get; }
-        bool IsNestedPublic { get; }
-        bool IsNotPublic { get; }
-        bool IsPointer { get; }
-        bool IsPrimitive { get; }
-        bool IsPublic { get; }
-        bool IsSealed { get; }
-        bool IsSerializable { get; }
-        bool IsSpecialName { get; }
-        bool IsUnicodeClass { get; }
-        bool IsValueType { get; }
-        System.Reflection.MemberTypes MemberType { get; }
-        System.Reflection.Module Module { get; }
-        string Name { get; }
-        string Namespace { get; }
-        System.Type ReflectedType { get; }
-        System.RuntimeTypeHandle TypeHandle { get; }
-        System.Reflection.ConstructorInfo TypeInitializer { get; }
-        System.Type UnderlyingSystemType { get; }
-        bool Equals(object other);
-        bool Equals(System.Type o);
-        System.Type[] FindInterfaces(System.Reflection.TypeFilter filter, object filterCriteria);
-        System.Reflection.MemberInfo[] FindMembers(System.Reflection.MemberTypes memberType, System.Reflection.BindingFlags bindingAttr, System.Reflection.MemberFilter filter, object filterCriteria);
-        int GetArrayRank();
-        System.Reflection.ConstructorInfo GetConstructor(System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Reflection.CallingConventions callConvention, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
-        System.Reflection.ConstructorInfo GetConstructor(System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
-        System.Reflection.ConstructorInfo GetConstructor(System.Type[] types);
-        System.Reflection.ConstructorInfo[] GetConstructors();
-        System.Reflection.ConstructorInfo[] GetConstructors(System.Reflection.BindingFlags bindingAttr);
-        object[] GetCustomAttributes(bool inherit);
-        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
-        System.Reflection.MemberInfo[] GetDefaultMembers();
-        System.Type GetElementType();
-        System.Reflection.EventInfo GetEvent(string name);
-        System.Reflection.EventInfo GetEvent(string name, System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.EventInfo[] GetEvents();
-        System.Reflection.EventInfo[] GetEvents(System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.FieldInfo GetField(string name);
-        System.Reflection.FieldInfo GetField(string name, System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.FieldInfo[] GetFields();
-        System.Reflection.FieldInfo[] GetFields(System.Reflection.BindingFlags bindingAttr);
-        int GetHashCode();
-        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
-        System.Type GetInterface(string name);
-        System.Type GetInterface(string name, bool ignoreCase);
-        System.Reflection.InterfaceMapping GetInterfaceMap(System.Type interfaceType);
-        System.Type[] GetInterfaces();
-        System.Reflection.MemberInfo[] GetMember(string name);
-        System.Reflection.MemberInfo[] GetMember(string name, System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.MemberInfo[] GetMember(string name, System.Reflection.MemberTypes type, System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.MemberInfo[] GetMembers();
-        System.Reflection.MemberInfo[] GetMembers(System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.MethodInfo GetMethod(string name);
-        System.Reflection.MethodInfo GetMethod(string name, System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.MethodInfo GetMethod(string name, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Reflection.CallingConventions callConvention, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
-        System.Reflection.MethodInfo GetMethod(string name, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
-        System.Reflection.MethodInfo GetMethod(string name, System.Type[] types);
-        System.Reflection.MethodInfo GetMethod(string name, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
-        System.Reflection.MethodInfo[] GetMethods();
-        System.Reflection.MethodInfo[] GetMethods(System.Reflection.BindingFlags bindingAttr);
-        System.Type GetNestedType(string name);
-        System.Type GetNestedType(string name, System.Reflection.BindingFlags bindingAttr);
-        System.Type[] GetNestedTypes();
-        System.Type[] GetNestedTypes(System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.PropertyInfo[] GetProperties();
-        System.Reflection.PropertyInfo[] GetProperties(System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.PropertyInfo GetProperty(string name);
-        System.Reflection.PropertyInfo GetProperty(string name, System.Reflection.BindingFlags bindingAttr);
-        System.Reflection.PropertyInfo GetProperty(string name, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Type returnType, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
-        System.Reflection.PropertyInfo GetProperty(string name, System.Type returnType);
-        System.Reflection.PropertyInfo GetProperty(string name, System.Type returnType, System.Type[] types);
-        System.Reflection.PropertyInfo GetProperty(string name, System.Type returnType, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
-        System.Reflection.PropertyInfo GetProperty(string name, System.Type[] types);
-        System.Type GetType();
-        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
-        void GetTypeInfoCount(out uint pcTInfo);
-        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
-        object InvokeMember(string name, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object target, object[] args);
-        object InvokeMember(string name, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object target, object[] args, System.Globalization.CultureInfo culture);
-        object InvokeMember(string name, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object target, object[] args, System.Reflection.ParameterModifier[] modifiers, System.Globalization.CultureInfo culture, string[] namedParameters);
-        bool IsAssignableFrom(System.Type c);
-        bool IsDefined(System.Type attributeType, bool inherit);
-        bool IsInstanceOfType(object o);
-        bool IsSubclassOf(System.Type c);
-        string ToString();
-    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(64), AllowMultiple=false, Inherited=false)]
     public sealed partial class AllowReversePInvokeCallsAttribute : System.Attribute
     {
@@ -11093,15 +10606,6 @@ namespace System.Runtime.InteropServices
         public bool BestFitMapping { get { throw null; } }
     }
     [System.ObsoleteAttribute]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct BIND_OPTS
-    {
-        public int cbStruct;
-        public int dwTickCountDeadline;
-        public int grfFlags;
-        public int grfMode;
-    }
-    [System.ObsoleteAttribute]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Explicit)]
     public partial struct BINDPTR
     {
@@ -11111,6 +10615,15 @@ namespace System.Runtime.InteropServices
         public System.IntPtr lptcomp;
         [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
         public System.IntPtr lpvardesc;
+    }
+    [System.ObsoleteAttribute]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct BIND_OPTS
+    {
+        public int cbStruct;
+        public int dwTickCountDeadline;
+        public int grfFlags;
+        public int grfMode;
     }
     public sealed partial class BStrWrapper
     {
@@ -11936,14 +11449,14 @@ namespace System.Runtime.InteropServices
         [System.CLSCompliantAttribute(false)]
         public void Initialize<T>(uint numElements) where T : struct { }
         [System.CLSCompliantAttribute(false)]
-        public T Read<T>(ulong byteOffset) where T : struct { throw null; }
-        [System.CLSCompliantAttribute(false)]
         public void ReadArray<T>(ulong byteOffset, T[] array, int index, int count) where T : struct { }
+        [System.CLSCompliantAttribute(false)]
+        public T Read<T>(ulong byteOffset) where T : struct { throw null; }
         public void ReleasePointer() { }
         [System.CLSCompliantAttribute(false)]
-        public void Write<T>(ulong byteOffset, T value) where T : struct { }
-        [System.CLSCompliantAttribute(false)]
         public void WriteArray<T>(ulong byteOffset, T[] array, int index, int count) where T : struct { }
+        [System.CLSCompliantAttribute(false)]
+        public void Write<T>(ulong byteOffset, T value) where T : struct { }
     }
     public abstract partial class SafeHandle : System.Runtime.ConstrainedExecution.CriticalFinalizerObject, System.IDisposable
     {
@@ -12322,17 +11835,496 @@ namespace System.Runtime.InteropServices
         public VariantWrapper(object obj) { }
         public object WrappedObject { get { throw null; } }
     }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _Activator
+    {
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _Assembly
+    {
+        string CodeBase { get; }
+        System.Reflection.MethodInfo EntryPoint { get; }
+        string EscapedCodeBase { get; }
+        string FullName { get; }
+        string Location { get; }
+        event System.Reflection.ModuleResolveEventHandler ModuleResolve;
+        object CreateInstance(string typeName);
+        object CreateInstance(string typeName, bool ignoreCase);
+        object CreateInstance(string typeName, bool ignoreCase, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, object[] args, System.Globalization.CultureInfo culture, object[] activationAttributes);
+        bool Equals(object other);
+        object[] GetCustomAttributes(bool inherit);
+        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
+        System.Type[] GetExportedTypes();
+        System.IO.FileStream GetFile(string name);
+        System.IO.FileStream[] GetFiles();
+        System.IO.FileStream[] GetFiles(bool getResourceModules);
+        int GetHashCode();
+        System.Reflection.Module[] GetLoadedModules();
+        System.Reflection.Module[] GetLoadedModules(bool getResourceModules);
+        System.Reflection.ManifestResourceInfo GetManifestResourceInfo(string resourceName);
+        string[] GetManifestResourceNames();
+        System.IO.Stream GetManifestResourceStream(string name);
+        System.IO.Stream GetManifestResourceStream(System.Type type, string name);
+        System.Reflection.Module GetModule(string name);
+        System.Reflection.Module[] GetModules();
+        System.Reflection.Module[] GetModules(bool getResourceModules);
+        System.Reflection.AssemblyName GetName();
+        System.Reflection.AssemblyName GetName(bool copiedName);
+        void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context);
+        System.Reflection.AssemblyName[] GetReferencedAssemblies();
+        System.Reflection.Assembly GetSatelliteAssembly(System.Globalization.CultureInfo culture);
+        System.Reflection.Assembly GetSatelliteAssembly(System.Globalization.CultureInfo culture, System.Version version);
+        System.Type GetType();
+        System.Type GetType(string name);
+        System.Type GetType(string name, bool throwOnError);
+        System.Type GetType(string name, bool throwOnError, bool ignoreCase);
+        System.Type[] GetTypes();
+        bool IsDefined(System.Type attributeType, bool inherit);
+        System.Reflection.Module LoadModule(string moduleName, byte[] rawModule);
+        System.Reflection.Module LoadModule(string moduleName, byte[] rawModule, byte[] rawSymbolStore);
+        string ToString();
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _AssemblyName
+    {
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _Attribute
+    {
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _ConstructorInfo
+    {
+        System.Reflection.MethodAttributes Attributes { get; }
+        System.Reflection.CallingConventions CallingConvention { get; }
+        System.Type DeclaringType { get; }
+        bool IsAbstract { get; }
+        bool IsAssembly { get; }
+        bool IsConstructor { get; }
+        bool IsFamily { get; }
+        bool IsFamilyAndAssembly { get; }
+        bool IsFamilyOrAssembly { get; }
+        bool IsFinal { get; }
+        bool IsHideBySig { get; }
+        bool IsPrivate { get; }
+        bool IsPublic { get; }
+        bool IsSpecialName { get; }
+        bool IsStatic { get; }
+        bool IsVirtual { get; }
+        System.Reflection.MemberTypes MemberType { get; }
+        System.RuntimeMethodHandle MethodHandle { get; }
+        string Name { get; }
+        System.Type ReflectedType { get; }
+        bool Equals(object other);
+        object[] GetCustomAttributes(bool inherit);
+        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
+        int GetHashCode();
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        System.Reflection.MethodImplAttributes GetMethodImplementationFlags();
+        System.Reflection.ParameterInfo[] GetParameters();
+        System.Type GetType();
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+        object Invoke_2(object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture);
+        object Invoke_3(object obj, object[] parameters);
+        object Invoke_4(System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture);
+        object Invoke_5(object[] parameters);
+        bool IsDefined(System.Type attributeType, bool inherit);
+        string ToString();
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _EventInfo
+    {
+        System.Reflection.EventAttributes Attributes { get; }
+        System.Type DeclaringType { get; }
+        System.Type EventHandlerType { get; }
+        bool IsMulticast { get; }
+        bool IsSpecialName { get; }
+        System.Reflection.MemberTypes MemberType { get; }
+        string Name { get; }
+        System.Type ReflectedType { get; }
+        void AddEventHandler(object target, System.Delegate handler);
+        bool Equals(object other);
+        System.Reflection.MethodInfo GetAddMethod();
+        System.Reflection.MethodInfo GetAddMethod(bool nonPublic);
+        object[] GetCustomAttributes(bool inherit);
+        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
+        int GetHashCode();
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        System.Reflection.MethodInfo GetRaiseMethod();
+        System.Reflection.MethodInfo GetRaiseMethod(bool nonPublic);
+        System.Reflection.MethodInfo GetRemoveMethod();
+        System.Reflection.MethodInfo GetRemoveMethod(bool nonPublic);
+        System.Type GetType();
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+        bool IsDefined(System.Type attributeType, bool inherit);
+        void RemoveEventHandler(object target, System.Delegate handler);
+        string ToString();
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _Exception
+    {
+        string HelpLink { get; set; }
+        System.Exception InnerException { get; }
+        string Message { get; }
+        string Source { get; set; }
+        string StackTrace { get; }
+        System.Reflection.MethodBase TargetSite { get; }
+        bool Equals(object obj);
+        System.Exception GetBaseException();
+        int GetHashCode();
+        void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context);
+        System.Type GetType();
+        string ToString();
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _FieldInfo
+    {
+        System.Reflection.FieldAttributes Attributes { get; }
+        System.Type DeclaringType { get; }
+        System.RuntimeFieldHandle FieldHandle { get; }
+        System.Type FieldType { get; }
+        bool IsAssembly { get; }
+        bool IsFamily { get; }
+        bool IsFamilyAndAssembly { get; }
+        bool IsFamilyOrAssembly { get; }
+        bool IsInitOnly { get; }
+        bool IsLiteral { get; }
+        bool IsNotSerialized { get; }
+        bool IsPinvokeImpl { get; }
+        bool IsPrivate { get; }
+        bool IsPublic { get; }
+        bool IsSpecialName { get; }
+        bool IsStatic { get; }
+        System.Reflection.MemberTypes MemberType { get; }
+        string Name { get; }
+        System.Type ReflectedType { get; }
+        bool Equals(object other);
+        object[] GetCustomAttributes(bool inherit);
+        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
+        int GetHashCode();
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        System.Type GetType();
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        object GetValue(object obj);
+        object GetValueDirect(System.TypedReference obj);
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+        bool IsDefined(System.Type attributeType, bool inherit);
+        void SetValue(object obj, object value);
+        void SetValue(object obj, object value, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Globalization.CultureInfo culture);
+        void SetValueDirect(System.TypedReference obj, object value);
+        string ToString();
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _MemberInfo
+    {
+        System.Type DeclaringType { get; }
+        System.Reflection.MemberTypes MemberType { get; }
+        string Name { get; }
+        System.Type ReflectedType { get; }
+        bool Equals(object other);
+        object[] GetCustomAttributes(bool inherit);
+        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
+        int GetHashCode();
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        System.Type GetType();
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+        bool IsDefined(System.Type attributeType, bool inherit);
+        string ToString();
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _MethodBase
+    {
+        System.Reflection.MethodAttributes Attributes { get; }
+        System.Reflection.CallingConventions CallingConvention { get; }
+        System.Type DeclaringType { get; }
+        bool IsAbstract { get; }
+        bool IsAssembly { get; }
+        bool IsConstructor { get; }
+        bool IsFamily { get; }
+        bool IsFamilyAndAssembly { get; }
+        bool IsFamilyOrAssembly { get; }
+        bool IsFinal { get; }
+        bool IsHideBySig { get; }
+        bool IsPrivate { get; }
+        bool IsPublic { get; }
+        bool IsSpecialName { get; }
+        bool IsStatic { get; }
+        bool IsVirtual { get; }
+        System.Reflection.MemberTypes MemberType { get; }
+        System.RuntimeMethodHandle MethodHandle { get; }
+        string Name { get; }
+        System.Type ReflectedType { get; }
+        bool Equals(object other);
+        object[] GetCustomAttributes(bool inherit);
+        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
+        int GetHashCode();
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        System.Reflection.MethodImplAttributes GetMethodImplementationFlags();
+        System.Reflection.ParameterInfo[] GetParameters();
+        System.Type GetType();
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        object Invoke(object obj, object[] parameters);
+        object Invoke(object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture);
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+        bool IsDefined(System.Type attributeType, bool inherit);
+        string ToString();
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _MethodInfo
+    {
+        System.Reflection.MethodAttributes Attributes { get; }
+        System.Reflection.CallingConventions CallingConvention { get; }
+        System.Type DeclaringType { get; }
+        bool IsAbstract { get; }
+        bool IsAssembly { get; }
+        bool IsConstructor { get; }
+        bool IsFamily { get; }
+        bool IsFamilyAndAssembly { get; }
+        bool IsFamilyOrAssembly { get; }
+        bool IsFinal { get; }
+        bool IsHideBySig { get; }
+        bool IsPrivate { get; }
+        bool IsPublic { get; }
+        bool IsSpecialName { get; }
+        bool IsStatic { get; }
+        bool IsVirtual { get; }
+        System.Reflection.MemberTypes MemberType { get; }
+        System.RuntimeMethodHandle MethodHandle { get; }
+        string Name { get; }
+        System.Type ReflectedType { get; }
+        System.Type ReturnType { get; }
+        System.Reflection.ICustomAttributeProvider ReturnTypeCustomAttributes { get; }
+        bool Equals(object other);
+        System.Reflection.MethodInfo GetBaseDefinition();
+        object[] GetCustomAttributes(bool inherit);
+        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
+        int GetHashCode();
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        System.Reflection.MethodImplAttributes GetMethodImplementationFlags();
+        System.Reflection.ParameterInfo[] GetParameters();
+        System.Type GetType();
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        object Invoke(object obj, object[] parameters);
+        object Invoke(object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture);
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+        bool IsDefined(System.Type attributeType, bool inherit);
+        string ToString();
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _MethodRental
+    {
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _Module
+    {
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _ParameterInfo
+    {
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _PropertyInfo
+    {
+        System.Reflection.PropertyAttributes Attributes { get; }
+        bool CanRead { get; }
+        bool CanWrite { get; }
+        System.Type DeclaringType { get; }
+        bool IsSpecialName { get; }
+        System.Reflection.MemberTypes MemberType { get; }
+        string Name { get; }
+        System.Type PropertyType { get; }
+        System.Type ReflectedType { get; }
+        bool Equals(object other);
+        System.Reflection.MethodInfo[] GetAccessors();
+        System.Reflection.MethodInfo[] GetAccessors(bool nonPublic);
+        object[] GetCustomAttributes(bool inherit);
+        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
+        System.Reflection.MethodInfo GetGetMethod();
+        System.Reflection.MethodInfo GetGetMethod(bool nonPublic);
+        int GetHashCode();
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        System.Reflection.ParameterInfo[] GetIndexParameters();
+        System.Reflection.MethodInfo GetSetMethod();
+        System.Reflection.MethodInfo GetSetMethod(bool nonPublic);
+        System.Type GetType();
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        object GetValue(object obj, object[] index);
+        object GetValue(object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] index, System.Globalization.CultureInfo culture);
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+        bool IsDefined(System.Type attributeType, bool inherit);
+        void SetValue(object obj, object value, object[] index);
+        void SetValue(object obj, object value, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] index, System.Globalization.CultureInfo culture);
+        string ToString();
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _SignatureHelper
+    {
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _Thread
+    {
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+    }
+    [System.CLSCompliantAttribute(false)]
+    public partial interface _Type
+    {
+        System.Reflection.Assembly Assembly { get; }
+        string AssemblyQualifiedName { get; }
+        System.Reflection.TypeAttributes Attributes { get; }
+        System.Type BaseType { get; }
+        System.Type DeclaringType { get; }
+        string FullName { get; }
+        System.Guid GUID { get; }
+        bool HasElementType { get; }
+        bool IsAbstract { get; }
+        bool IsAnsiClass { get; }
+        bool IsArray { get; }
+        bool IsAutoClass { get; }
+        bool IsAutoLayout { get; }
+        bool IsByRef { get; }
+        bool IsClass { get; }
+        bool IsCOMObject { get; }
+        bool IsContextful { get; }
+        bool IsEnum { get; }
+        bool IsExplicitLayout { get; }
+        bool IsImport { get; }
+        bool IsInterface { get; }
+        bool IsLayoutSequential { get; }
+        bool IsMarshalByRef { get; }
+        bool IsNestedAssembly { get; }
+        bool IsNestedFamANDAssem { get; }
+        bool IsNestedFamily { get; }
+        bool IsNestedFamORAssem { get; }
+        bool IsNestedPrivate { get; }
+        bool IsNestedPublic { get; }
+        bool IsNotPublic { get; }
+        bool IsPointer { get; }
+        bool IsPrimitive { get; }
+        bool IsPublic { get; }
+        bool IsSealed { get; }
+        bool IsSerializable { get; }
+        bool IsSpecialName { get; }
+        bool IsUnicodeClass { get; }
+        bool IsValueType { get; }
+        System.Reflection.MemberTypes MemberType { get; }
+        System.Reflection.Module Module { get; }
+        string Name { get; }
+        string Namespace { get; }
+        System.Type ReflectedType { get; }
+        System.RuntimeTypeHandle TypeHandle { get; }
+        System.Reflection.ConstructorInfo TypeInitializer { get; }
+        System.Type UnderlyingSystemType { get; }
+        bool Equals(object other);
+        bool Equals(System.Type o);
+        System.Type[] FindInterfaces(System.Reflection.TypeFilter filter, object filterCriteria);
+        System.Reflection.MemberInfo[] FindMembers(System.Reflection.MemberTypes memberType, System.Reflection.BindingFlags bindingAttr, System.Reflection.MemberFilter filter, object filterCriteria);
+        int GetArrayRank();
+        System.Reflection.ConstructorInfo GetConstructor(System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Reflection.CallingConventions callConvention, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
+        System.Reflection.ConstructorInfo GetConstructor(System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
+        System.Reflection.ConstructorInfo GetConstructor(System.Type[] types);
+        System.Reflection.ConstructorInfo[] GetConstructors();
+        System.Reflection.ConstructorInfo[] GetConstructors(System.Reflection.BindingFlags bindingAttr);
+        object[] GetCustomAttributes(bool inherit);
+        object[] GetCustomAttributes(System.Type attributeType, bool inherit);
+        System.Reflection.MemberInfo[] GetDefaultMembers();
+        System.Type GetElementType();
+        System.Reflection.EventInfo GetEvent(string name);
+        System.Reflection.EventInfo GetEvent(string name, System.Reflection.BindingFlags bindingAttr);
+        System.Reflection.EventInfo[] GetEvents();
+        System.Reflection.EventInfo[] GetEvents(System.Reflection.BindingFlags bindingAttr);
+        System.Reflection.FieldInfo GetField(string name);
+        System.Reflection.FieldInfo GetField(string name, System.Reflection.BindingFlags bindingAttr);
+        System.Reflection.FieldInfo[] GetFields();
+        System.Reflection.FieldInfo[] GetFields(System.Reflection.BindingFlags bindingAttr);
+        int GetHashCode();
+        void GetIDsOfNames(ref System.Guid riid, System.IntPtr rgszNames, uint cNames, uint lcid, System.IntPtr rgDispId);
+        System.Type GetInterface(string name);
+        System.Type GetInterface(string name, bool ignoreCase);
+        System.Reflection.InterfaceMapping GetInterfaceMap(System.Type interfaceType);
+        System.Type[] GetInterfaces();
+        System.Reflection.MemberInfo[] GetMember(string name);
+        System.Reflection.MemberInfo[] GetMember(string name, System.Reflection.BindingFlags bindingAttr);
+        System.Reflection.MemberInfo[] GetMember(string name, System.Reflection.MemberTypes type, System.Reflection.BindingFlags bindingAttr);
+        System.Reflection.MemberInfo[] GetMembers();
+        System.Reflection.MemberInfo[] GetMembers(System.Reflection.BindingFlags bindingAttr);
+        System.Reflection.MethodInfo GetMethod(string name);
+        System.Reflection.MethodInfo GetMethod(string name, System.Reflection.BindingFlags bindingAttr);
+        System.Reflection.MethodInfo GetMethod(string name, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Reflection.CallingConventions callConvention, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
+        System.Reflection.MethodInfo GetMethod(string name, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
+        System.Reflection.MethodInfo GetMethod(string name, System.Type[] types);
+        System.Reflection.MethodInfo GetMethod(string name, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
+        System.Reflection.MethodInfo[] GetMethods();
+        System.Reflection.MethodInfo[] GetMethods(System.Reflection.BindingFlags bindingAttr);
+        System.Type GetNestedType(string name);
+        System.Type GetNestedType(string name, System.Reflection.BindingFlags bindingAttr);
+        System.Type[] GetNestedTypes();
+        System.Type[] GetNestedTypes(System.Reflection.BindingFlags bindingAttr);
+        System.Reflection.PropertyInfo[] GetProperties();
+        System.Reflection.PropertyInfo[] GetProperties(System.Reflection.BindingFlags bindingAttr);
+        System.Reflection.PropertyInfo GetProperty(string name);
+        System.Reflection.PropertyInfo GetProperty(string name, System.Reflection.BindingFlags bindingAttr);
+        System.Reflection.PropertyInfo GetProperty(string name, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Type returnType, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
+        System.Reflection.PropertyInfo GetProperty(string name, System.Type returnType);
+        System.Reflection.PropertyInfo GetProperty(string name, System.Type returnType, System.Type[] types);
+        System.Reflection.PropertyInfo GetProperty(string name, System.Type returnType, System.Type[] types, System.Reflection.ParameterModifier[] modifiers);
+        System.Reflection.PropertyInfo GetProperty(string name, System.Type[] types);
+        System.Type GetType();
+        void GetTypeInfo(uint iTInfo, uint lcid, System.IntPtr ppTInfo);
+        void GetTypeInfoCount(out uint pcTInfo);
+        void Invoke(uint dispIdMember, ref System.Guid riid, uint lcid, short wFlags, System.IntPtr pDispParams, System.IntPtr pVarResult, System.IntPtr pExcepInfo, System.IntPtr puArgErr);
+        object InvokeMember(string name, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object target, object[] args);
+        object InvokeMember(string name, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object target, object[] args, System.Globalization.CultureInfo culture);
+        object InvokeMember(string name, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object target, object[] args, System.Reflection.ParameterModifier[] modifiers, System.Globalization.CultureInfo culture, string[] namedParameters);
+        bool IsAssignableFrom(System.Type c);
+        bool IsDefined(System.Type attributeType, bool inherit);
+        bool IsInstanceOfType(object o);
+        bool IsSubclassOf(System.Type c);
+        string ToString();
+    }
 }
 namespace System.Runtime.InteropServices.ComTypes
 {
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct BIND_OPTS
-    {
-        public int cbStruct;
-        public int dwTickCountDeadline;
-        public int grfFlags;
-        public int grfMode;
-    }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Explicit)]
     public partial struct BINDPTR
     {
@@ -12342,6 +12334,14 @@ namespace System.Runtime.InteropServices.ComTypes
         public System.IntPtr lptcomp;
         [System.Runtime.InteropServices.FieldOffsetAttribute(0)]
         public System.IntPtr lpvardesc;
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct BIND_OPTS
+    {
+        public int cbStruct;
+        public int dwTickCountDeadline;
+        public int grfFlags;
+        public int grfMode;
     }
     public enum CALLCONV
     {
@@ -12896,8 +12896,8 @@ namespace System.Runtime.InteropServices.WindowsRuntime
         public T InvocationList { get { throw null; } set { } }
         public System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken AddEventHandler(T handler) { throw null; }
         public static System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable<T> GetOrCreateEventRegistrationTokenTable(ref System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable<T> refEventTable) { throw null; }
-        public void RemoveEventHandler(T handler) { }
         public void RemoveEventHandler(System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken token) { }
+        public void RemoveEventHandler(T handler) { }
     }
     public partial interface IActivationFactory
     {
@@ -17838,16 +17838,16 @@ namespace System.Security.Policy
         public System.Security.Policy.ApplicationTrust this[string appFullName] { get { throw null; } }
         public object SyncRoot { get { throw null; } }
         public int Add(System.Security.Policy.ApplicationTrust trust) { throw null; }
-        public void AddRange(System.Security.Policy.ApplicationTrust[] trusts) { }
         public void AddRange(System.Security.Policy.ApplicationTrustCollection trusts) { }
+        public void AddRange(System.Security.Policy.ApplicationTrust[] trusts) { }
         public void Clear() { }
         public void CopyTo(System.Security.Policy.ApplicationTrust[] array, int index) { }
         public System.Security.Policy.ApplicationTrustCollection Find(System.ApplicationIdentity applicationIdentity, System.Security.Policy.ApplicationVersionMatch versionMatch) { throw null; }
         public System.Security.Policy.ApplicationTrustEnumerator GetEnumerator() { throw null; }
         public void Remove(System.ApplicationIdentity applicationIdentity, System.Security.Policy.ApplicationVersionMatch versionMatch) { }
         public void Remove(System.Security.Policy.ApplicationTrust trust) { }
-        public void RemoveRange(System.Security.Policy.ApplicationTrust[] trusts) { }
         public void RemoveRange(System.Security.Policy.ApplicationTrustCollection trusts) { }
+        public void RemoveRange(System.Security.Policy.ApplicationTrust[] trusts) { }
         void System.Collections.ICollection.CopyTo(System.Array array, int index) { }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
     }
@@ -19044,18 +19044,18 @@ namespace System.Threading
         public static bool operator !=(System.Threading.AsyncFlowControl a, System.Threading.AsyncFlowControl b) { throw null; }
         public void Undo() { }
     }
-    public sealed partial class AsyncLocal<T>
-    {
-        public AsyncLocal() { }
-        public AsyncLocal(System.Action<System.Threading.AsyncLocalValueChangedArgs<T>> valueChangedHandler) { }
-        public T Value { get { throw null; } set { } }
-    }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Size=1)]
     public partial struct AsyncLocalValueChangedArgs<T>
     {
         public T CurrentValue { get { throw null; } }
         public T PreviousValue { get { throw null; } }
         public bool ThreadContextChanged { get { throw null; } }
+    }
+    public sealed partial class AsyncLocal<T>
+    {
+        public AsyncLocal() { }
+        public AsyncLocal(System.Action<System.Threading.AsyncLocalValueChangedArgs<T>> valueChangedHandler) { }
+        public T Value { get { throw null; } set { } }
     }
     public sealed partial class AutoResetEvent : System.Threading.EventWaitHandle
     {
@@ -19760,10 +19760,6 @@ namespace System.Threading.Tasks
         public static System.Threading.Tasks.ParallelLoopResult For(long fromInclusive, long toExclusive, System.Action<long> body) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult For(long fromInclusive, long toExclusive, System.Threading.Tasks.ParallelOptions parallelOptions, System.Action<long, System.Threading.Tasks.ParallelLoopState> body) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult For(long fromInclusive, long toExclusive, System.Threading.Tasks.ParallelOptions parallelOptions, System.Action<long> body) { throw null; }
-        public static System.Threading.Tasks.ParallelLoopResult For<TLocal>(int fromInclusive, int toExclusive, System.Func<TLocal> localInit, System.Func<int, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
-        public static System.Threading.Tasks.ParallelLoopResult For<TLocal>(int fromInclusive, int toExclusive, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<int, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
-        public static System.Threading.Tasks.ParallelLoopResult For<TLocal>(long fromInclusive, long toExclusive, System.Func<TLocal> localInit, System.Func<long, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
-        public static System.Threading.Tasks.ParallelLoopResult For<TLocal>(long fromInclusive, long toExclusive, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<long, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource>(System.Collections.Concurrent.OrderablePartitioner<TSource> source, System.Action<TSource, System.Threading.Tasks.ParallelLoopState, long> body) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource>(System.Collections.Concurrent.OrderablePartitioner<TSource> source, System.Threading.Tasks.ParallelOptions parallelOptions, System.Action<TSource, System.Threading.Tasks.ParallelLoopState, long> body) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource>(System.Collections.Concurrent.Partitioner<TSource> source, System.Action<TSource, System.Threading.Tasks.ParallelLoopState> body) { throw null; }
@@ -19780,10 +19776,14 @@ namespace System.Threading.Tasks
         public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Concurrent.OrderablePartitioner<TSource> source, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, long, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Concurrent.Partitioner<TSource> source, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Concurrent.Partitioner<TSource> source, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
-        public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Generic.IEnumerable<TSource> source, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Generic.IEnumerable<TSource> source, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, long, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
-        public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Generic.IEnumerable<TSource> source, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
+        public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Generic.IEnumerable<TSource> source, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
         public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Generic.IEnumerable<TSource> source, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, long, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
+        public static System.Threading.Tasks.ParallelLoopResult ForEach<TSource, TLocal>(System.Collections.Generic.IEnumerable<TSource> source, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<TSource, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
+        public static System.Threading.Tasks.ParallelLoopResult For<TLocal>(int fromInclusive, int toExclusive, System.Func<TLocal> localInit, System.Func<int, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
+        public static System.Threading.Tasks.ParallelLoopResult For<TLocal>(int fromInclusive, int toExclusive, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<int, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
+        public static System.Threading.Tasks.ParallelLoopResult For<TLocal>(long fromInclusive, long toExclusive, System.Func<TLocal> localInit, System.Func<long, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
+        public static System.Threading.Tasks.ParallelLoopResult For<TLocal>(long fromInclusive, long toExclusive, System.Threading.Tasks.ParallelOptions parallelOptions, System.Func<TLocal> localInit, System.Func<long, System.Threading.Tasks.ParallelLoopState, TLocal, TLocal> body, System.Action<TLocal> localFinally) { throw null; }
         public static void Invoke(params System.Action[] actions) { }
         public static void Invoke(System.Threading.Tasks.ParallelOptions parallelOptions, params System.Action[] actions) { }
     }
@@ -19844,16 +19844,16 @@ namespace System.Threading.Tasks
         public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task> continuationAction, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
         public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task> continuationAction, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
         public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task> continuationAction, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction) { throw null; }
-        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
-        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
         public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, object, TResult> continuationFunction, object state) { throw null; }
         public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, object, TResult> continuationFunction, object state, System.Threading.CancellationToken cancellationToken) { throw null; }
         public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, object, TResult> continuationFunction, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
         public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, object, TResult> continuationFunction, object state, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, object, TResult> continuationFunction, object state, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction) { throw null; }
+        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
+        public System.Threading.Tasks.Task<TResult> ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult> continuationFunction, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
         public static System.Threading.Tasks.Task Delay(int millisecondsDelay) { throw null; }
         public static System.Threading.Tasks.Task Delay(int millisecondsDelay, System.Threading.CancellationToken cancellationToken) { throw null; }
         public static System.Threading.Tasks.Task Delay(System.TimeSpan delay) { throw null; }
@@ -19870,12 +19870,12 @@ namespace System.Threading.Tasks
         public static System.Threading.Tasks.Task Run(System.Action action, System.Threading.CancellationToken cancellationToken) { throw null; }
         public static System.Threading.Tasks.Task Run(System.Func<System.Threading.Tasks.Task> function) { throw null; }
         public static System.Threading.Tasks.Task Run(System.Func<System.Threading.Tasks.Task> function, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public static System.Threading.Tasks.Task<TResult> Run<TResult>(System.Func<TResult> function) { throw null; }
-        public static System.Threading.Tasks.Task<TResult> Run<TResult>(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public static System.Threading.Tasks.Task<TResult> Run<TResult>(System.Func<System.Threading.Tasks.Task<TResult>> function) { throw null; }
-        public static System.Threading.Tasks.Task<TResult> Run<TResult>(System.Func<System.Threading.Tasks.Task<TResult>> function, System.Threading.CancellationToken cancellationToken) { throw null; }
         public void RunSynchronously() { }
         public void RunSynchronously(System.Threading.Tasks.TaskScheduler scheduler) { }
+        public static System.Threading.Tasks.Task<TResult> Run<TResult>(System.Func<System.Threading.Tasks.Task<TResult>> function) { throw null; }
+        public static System.Threading.Tasks.Task<TResult> Run<TResult>(System.Func<System.Threading.Tasks.Task<TResult>> function, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public static System.Threading.Tasks.Task<TResult> Run<TResult>(System.Func<TResult> function) { throw null; }
+        public static System.Threading.Tasks.Task<TResult> Run<TResult>(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken) { throw null; }
         public void Start() { }
         public void Start(System.Threading.Tasks.TaskScheduler scheduler) { }
         public void Wait() { }
@@ -19902,41 +19902,6 @@ namespace System.Threading.Tasks
         public static System.Threading.Tasks.Task<System.Threading.Tasks.Task<TResult>> WhenAny<TResult>(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task<TResult>> tasks) { throw null; }
         public static System.Threading.Tasks.Task<System.Threading.Tasks.Task<TResult>> WhenAny<TResult>(params System.Threading.Tasks.Task<TResult>[] tasks) { throw null; }
         public static System.Runtime.CompilerServices.YieldAwaitable Yield() { throw null; }
-    }
-    public partial class Task<TResult> : System.Threading.Tasks.Task
-    {
-        public Task(System.Func<TResult> function) : base (default(System.Action)) { }
-        public Task(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken) : base (default(System.Action)) { }
-        public Task(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions) : base (default(System.Action)) { }
-        public Task(System.Func<TResult> function, System.Threading.Tasks.TaskCreationOptions creationOptions) : base (default(System.Action)) { }
-        public Task(System.Func<object, TResult> function, object state) : base (default(System.Action)) { }
-        public Task(System.Func<object, TResult> function, object state, System.Threading.CancellationToken cancellationToken) : base (default(System.Action)) { }
-        public Task(System.Func<object, TResult> function, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions) : base (default(System.Action)) { }
-        public Task(System.Func<object, TResult> function, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) : base (default(System.Action)) { }
-        public static new System.Threading.Tasks.TaskFactory<TResult> Factory { get { throw null; } }
-        public TResult Result { get { throw null; } }
-        public new System.Runtime.CompilerServices.ConfiguredTaskAwaitable<TResult> ConfigureAwait(bool continueOnCapturedContext) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
-        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
-        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public new System.Runtime.CompilerServices.TaskAwaiter<TResult> GetAwaiter() { throw null; }
     }
     public partial class TaskCanceledException : System.OperationCanceledException
     {
@@ -20042,21 +20007,21 @@ namespace System.Threading.Tasks
         public System.Threading.Tasks.Task FromAsync(System.IAsyncResult asyncResult, System.Action<System.IAsyncResult> endMethod) { throw null; }
         public System.Threading.Tasks.Task FromAsync(System.IAsyncResult asyncResult, System.Action<System.IAsyncResult> endMethod, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task FromAsync(System.IAsyncResult asyncResult, System.Action<System.IAsyncResult> endMethod, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task FromAsync<TArg1>(System.Func<TArg1, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, object state) { throw null; }
-        public System.Threading.Tasks.Task FromAsync<TArg1>(System.Func<TArg1, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TResult>(System.Func<System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, object state) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TResult>(System.Func<System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
+        public System.Threading.Tasks.Task FromAsync<TArg1>(System.Func<TArg1, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, object state) { throw null; }
+        public System.Threading.Tasks.Task FromAsync<TArg1>(System.Func<TArg1, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TResult>(System.IAsyncResult asyncResult, System.Func<System.IAsyncResult, TResult> endMethod) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TResult>(System.IAsyncResult asyncResult, System.Func<System.IAsyncResult, TResult> endMethod, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TResult>(System.IAsyncResult asyncResult, System.Func<System.IAsyncResult, TResult> endMethod, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task FromAsync<TArg1, TArg2>(System.Func<TArg1, TArg2, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, object state) { throw null; }
-        public System.Threading.Tasks.Task FromAsync<TArg1, TArg2>(System.Func<TArg1, TArg2, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TResult>(System.Func<TArg1, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, object state) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TResult>(System.Func<TArg1, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
-        public System.Threading.Tasks.Task FromAsync<TArg1, TArg2, TArg3>(System.Func<TArg1, TArg2, TArg3, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, object state) { throw null; }
-        public System.Threading.Tasks.Task FromAsync<TArg1, TArg2, TArg3>(System.Func<TArg1, TArg2, TArg3, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
+        public System.Threading.Tasks.Task FromAsync<TArg1, TArg2>(System.Func<TArg1, TArg2, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, object state) { throw null; }
+        public System.Threading.Tasks.Task FromAsync<TArg1, TArg2>(System.Func<TArg1, TArg2, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TArg2, TResult>(System.Func<TArg1, TArg2, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, TArg2 arg2, object state) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TArg2, TResult>(System.Func<TArg1, TArg2, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, TArg2 arg2, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
+        public System.Threading.Tasks.Task FromAsync<TArg1, TArg2, TArg3>(System.Func<TArg1, TArg2, TArg3, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, object state) { throw null; }
+        public System.Threading.Tasks.Task FromAsync<TArg1, TArg2, TArg3>(System.Func<TArg1, TArg2, TArg3, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Action<System.IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TArg2, TArg3, TResult>(System.Func<TArg1, TArg2, TArg3, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, object state) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TArg2, TArg3, TResult>(System.Func<TArg1, TArg2, TArg3, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task StartNew(System.Action action) { throw null; }
@@ -20067,14 +20032,14 @@ namespace System.Threading.Tasks
         public System.Threading.Tasks.Task StartNew(System.Action<object> action, object state, System.Threading.CancellationToken cancellationToken) { throw null; }
         public System.Threading.Tasks.Task StartNew(System.Action<object> action, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
         public System.Threading.Tasks.Task StartNew(System.Action<object> action, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
-        public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<TResult> function) { throw null; }
-        public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<TResult> function, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<object, TResult> function, object state) { throw null; }
         public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<object, TResult> function, object state, System.Threading.CancellationToken cancellationToken) { throw null; }
         public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<object, TResult> function, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
         public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<object, TResult> function, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
+        public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<TResult> function) { throw null; }
+        public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task<TResult> StartNew<TResult>(System.Func<TResult> function, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
     }
     public partial class TaskFactory<TResult>
     {
@@ -20114,14 +20079,14 @@ namespace System.Threading.Tasks
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TArg2>(System.Func<TArg1, TArg2, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, TArg2 arg2, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TArg2, TArg3>(System.Func<TArg1, TArg2, TArg3, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, object state) { throw null; }
         public System.Threading.Tasks.Task<TResult> FromAsync<TArg1, TArg2, TArg3>(System.Func<TArg1, TArg2, TArg3, System.AsyncCallback, object, System.IAsyncResult> beginMethod, System.Func<System.IAsyncResult, TResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
-        public System.Threading.Tasks.Task<TResult> StartNew(System.Func<TResult> function) { throw null; }
-        public System.Threading.Tasks.Task<TResult> StartNew(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public System.Threading.Tasks.Task<TResult> StartNew(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
-        public System.Threading.Tasks.Task<TResult> StartNew(System.Func<TResult> function, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
         public System.Threading.Tasks.Task<TResult> StartNew(System.Func<object, TResult> function, object state) { throw null; }
         public System.Threading.Tasks.Task<TResult> StartNew(System.Func<object, TResult> function, object state, System.Threading.CancellationToken cancellationToken) { throw null; }
         public System.Threading.Tasks.Task<TResult> StartNew(System.Func<object, TResult> function, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
         public System.Threading.Tasks.Task<TResult> StartNew(System.Func<object, TResult> function, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
+        public System.Threading.Tasks.Task<TResult> StartNew(System.Func<TResult> function) { throw null; }
+        public System.Threading.Tasks.Task<TResult> StartNew(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task<TResult> StartNew(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task<TResult> StartNew(System.Func<TResult> function, System.Threading.Tasks.TaskCreationOptions creationOptions) { throw null; }
     }
     public abstract partial class TaskScheduler
     {
@@ -20156,6 +20121,41 @@ namespace System.Threading.Tasks
         WaitingForActivation = 1,
         WaitingForChildrenToComplete = 4,
         WaitingToRun = 2,
+    }
+    public partial class Task<TResult> : System.Threading.Tasks.Task
+    {
+        public Task(System.Func<object, TResult> function, object state) : base (default(System.Action)) { }
+        public Task(System.Func<object, TResult> function, object state, System.Threading.CancellationToken cancellationToken) : base (default(System.Action)) { }
+        public Task(System.Func<object, TResult> function, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions) : base (default(System.Action)) { }
+        public Task(System.Func<object, TResult> function, object state, System.Threading.Tasks.TaskCreationOptions creationOptions) : base (default(System.Action)) { }
+        public Task(System.Func<TResult> function) : base (default(System.Action)) { }
+        public Task(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken) : base (default(System.Action)) { }
+        public Task(System.Func<TResult> function, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskCreationOptions creationOptions) : base (default(System.Action)) { }
+        public Task(System.Func<TResult> function, System.Threading.Tasks.TaskCreationOptions creationOptions) : base (default(System.Action)) { }
+        public static new System.Threading.Tasks.TaskFactory<TResult> Factory { get { throw null; } }
+        public TResult Result { get { throw null; } }
+        public new System.Runtime.CompilerServices.ConfiguredTaskAwaitable<TResult> ConfigureAwait(bool continueOnCapturedContext) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>, object> continuationAction, object state, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
+        public System.Threading.Tasks.Task ContinueWith(System.Action<System.Threading.Tasks.Task<TResult>> continuationAction, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, object, TNewResult> continuationFunction, object state, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction, System.Threading.CancellationToken cancellationToken, System.Threading.Tasks.TaskContinuationOptions continuationOptions, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction, System.Threading.Tasks.TaskContinuationOptions continuationOptions) { throw null; }
+        public System.Threading.Tasks.Task<TNewResult> ContinueWith<TNewResult>(System.Func<System.Threading.Tasks.Task<TResult>, TNewResult> continuationFunction, System.Threading.Tasks.TaskScheduler scheduler) { throw null; }
+        public new System.Runtime.CompilerServices.TaskAwaiter<TResult> GetAwaiter() { throw null; }
     }
     public partial class UnobservedTaskExceptionEventArgs : System.EventArgs
     {
