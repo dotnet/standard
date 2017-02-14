@@ -8,11 +8,11 @@
     <AssemblyName>netstandard</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <ContractProject>..\ref\netstandard.csproj</ContractProject>
-    <IsPartialFacadeAssembly>true</IsPartialFacadeAssembly>
+    <ResolveMatchingContract>true</ResolveMatchingContract>
     <RunApiCompatForSrc>true</RunApiCompatForSrc>
-    <GenFacadesIgnoreMissingTypes>true</GenFacadesIgnoreMissingTypes>
     <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
     <ApiCompatBaseline>$(MSBuildProjectDirectory)\ApiCompatBaseline.$(TargetGroup).txt</ApiCompatBaseline>
+    <NoWarn>$(NoWarn);618</NoWarn>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetGroup)' == 'net461'">
     <PackageDestination Include="build/$(TargetGroup)/ref">
@@ -62,4 +62,44 @@
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\Mono.Android.csproj" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
+
+  <PropertyGroup>
+    <CompileDependsOn>
+      GenerateTypeForwards;
+      $(CompileDependsOn);
+    </CompileDependsOn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <_TypeForwardsOutputPath>$(IntermediateOutputPath)netstandard.forwards.cs</_TypeForwardsOutputPath>
+    <_ExcludeAPIList>$(MSBuildThisProjectDirectory)GenApi.exclude.$(TargetGroup).txt</_ExcludeAPIList>
+  </PropertyGroup>
+
+  <Target Name="GenerateTypeForwards" 
+          Inputs="@(ResolvedMatchingContract);$(_ExcludeAPIList)"
+          Outputs="$(_TypeForwardsOutputPath)"
+          DependsOnTargets="ResolveMatchingContract"
+    >
+    <PropertyGroup>
+      <_ReferenceAssembly>@(ResolvedMatchingContract)</_ReferenceAssembly>
+      <_TypeForwardsOutputPath>$(IntermediateOutputPath)netstandard.forwards.cs</_TypeForwardsOutputPath>
+      <_ExcludeAPIList>$(MSBuildThisProjectDirectory)GenApi.exclude.$(TargetGroup).txt</_ExcludeAPIList>
+    </PropertyGroup>
+
+    <PropertyGroup>
+      <_GenAPICmd>$(ToolHostCmd) "$(ToolsDir)GenApi.exe"</_GenAPICmd>
+      <_GenAPICmd>$(_GenAPICmd) -assembly:"$(_ReferenceAssembly)"</_GenAPICmd>
+      <_GenAPICmd>$(_GenAPICmd) -writer:TypeForwards</_GenAPICmd>
+      <_GenAPICmd>$(_GenAPICmd) -out:"$(_TypeForwardsOutputPath)"</_GenAPICmd>
+      <_GenAPICmd Condition="Exists('$(_ExcludeAPIList)')">$(_GenAPICmd) -excludeApiList:$(_ExcludeAPIList)</_GenAPICmd>
+    </PropertyGroup>
+
+    <Exec Command="$(_GenAPICmd)" />
+
+    <ItemGroup>
+      <Compile Include="$(_TypeForwardsOutputPath)" />
+      <FileWrites Include="$(_TypeForwardsOutputPath)" />
+    </ItemGroup>
+
+  </Target>
 </Project>
