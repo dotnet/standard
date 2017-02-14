@@ -104,7 +104,8 @@
   </PropertyGroup>
   <UsingTask TaskName="RemoveDepsFileConflicts" AssemblyFile="$(NETStandardToolsTaskDirectory)NETStandard.Tools.dll" />
   <Target Name="RemoveDepsFileConflicts" AfterTargets="$(RemoveDepsFileConflictsAfter)"
-          Inputs="$(ProjectDepsFilePath)" Outputs="$(_RemoveDepsFileConflictsSemaphore)">
+          Inputs="$(ProjectDepsFilePath)" Outputs="$(_RemoveDepsFileConflictsSemaphore)"
+          Condition="'$(GenerateDependencyFile)'=='true'">
     <RemoveDepsFileConflicts DepsFilePath="$(ProjectDepsFilePath)" Conflicts="@(_ConflictPackageFiles)" />
 
     <Touch Files="$(_RemoveDepsFileConflictsSemaphore)" AlwaysCreate="true">
