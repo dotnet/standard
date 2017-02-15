@@ -20,46 +20,7 @@
     </PackageDestination>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\mscorlib.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.ComponentModel.Composition.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Core.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Data.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.IO.Compression.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.IO.Compression.FileSystem.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Net.Http.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Numerics.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Runtime.Serialization.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Transactions.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Xml.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Xml.Linq.csproj" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetGroup)'=='net461'">
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Drawing.csproj" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetGroup)'=='xamarin.ios'">
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\OpenTK-1.0.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.Services.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\Xamarin.iOS.csproj" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetGroup)'=='xamarin.watchos'">
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.Services.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\Xamarin.WatchOS.csproj" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetGroup)'=='xamarin.tvos'">
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\OpenTK-1.0.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.Services.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\Xamarin.TVOS.csproj" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetGroup)'=='xamarin.mac'">
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\OpenTK.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.Services.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\Xamarin.Mac.csproj" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetGroup)'=='xamarin.android'">
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.Services.csproj" />
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\Mono.Android.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\**\*.csproj" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 
