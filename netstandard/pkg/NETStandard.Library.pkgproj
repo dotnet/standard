@@ -37,9 +37,9 @@
       <TargetPath>build/net461/$(Id).targets</TargetPath>
     </File>
 
-    <Dependency Include="_._">
-      <TargetFramework>netstandard2.0</TargetFramework>
-    </Dependency>
+    <File Include="$(PlaceHolderFile)">
+      <TargetPath>lib/netstandard1.0</TargetPath>
+    </File>
   </ItemGroup>
 
   <Target Name="StampPackageVersionInTargets" BeforeTargets="GenerateNuSpec">
