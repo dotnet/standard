@@ -15,5 +15,20 @@
     <AssemblyOriginatorKeyFile Condition="'$(UseXamarinProductsKey)' == 'true'">$(MSBuildThisFileDirectory)xamarin-products.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
+  <!--
+    We want to use these shims at runtime as well in some cases so we need to not
+    have the ReferenceAssemblyAttribute or the AssemblyFlags 0x70 bit set otherwise
+    the runtime will block loading them.
+  -->
+  <Target Name="ClearReferenceAssemblyBits" BeforeTargets="GenerateAssemblyInfo">
+    <!--
+      Removes all the lines added before GenerateAssemblyInfo is called. In particular clears the
+      lines added by ReferenceAssemblies.targets.
+    -->
+    <ItemGroup>
+      <AssemblyInfoLines Remove="@(AssemblyInfoLines)" />
+    </ItemGroup>
+  </Target>
+
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory).., dir.targets))\dir.targets" />
 </Project>
