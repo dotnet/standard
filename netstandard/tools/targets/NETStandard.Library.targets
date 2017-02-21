@@ -137,4 +137,6 @@
       <Output TaskParameter="TouchedFiles" ItemName="FileWrites" />
     </Touch>
   </Target>
+
+  <Import Project="NETStandard.Library.Trimming.targets" Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp' AND '$(TrimUnusedDependencies)' == 'true'" />
 </Project>

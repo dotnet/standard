@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <UsingTask TaskName="TrimPackages" AssemblyFile="$(NETStandardToolsTaskDirectory)NETStandard.Tools.dll" />
+
+  <Target Name="TrimPackages"
+          AfterTargets="CoreCompile">
+    <TrimPackages RootFiles="@(IntermediateAssembly)"
+                  RootPackages="@(ReferencedNuGetPackages)"
+                  ProjectLockFile="$(ProjectLockFile)"
+                  TargetMonikers="$(NuGetTargetMoniker);$(_NuGetTargetFallbackMoniker)"
+                  RuntimeIdentifier="$(NuGetRuntimeIdentifier)"
+                  AllowFallbackOnTargetSelection="$(DesignTimeBuild)"
+                  RuntimeItems="@(ReferenceCopyLocalPaths)">
+      <Output ItemName="_trimmedCopyLocal" TaskParameter="TrimmedRuntimeItems" />
+    </TrimPackages>
+
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)"/>
+      <ReferenceCopyLocalPaths Include="@(_trimmedCopyLocal)" />
+    </ItemGroup>
+  </Target>
+</Project>

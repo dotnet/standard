@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DuplicatePreprocessorToken" xml:space="preserve">
+    <value>The preprocessor token '{0}' has been given more than one value. Choosing '{1}' as the value.</value>
+  </data>
+  <data name="DuplicateProjectReference" xml:space="preserve">
+    <value>The project '{0}' was referenced more than once in the {1} property. Ignoring all but the first.</value>
+  </data>
+  <data name="LockFileNotFound" xml:space="preserve">
+    <value>Lock file {0} couldn't be found. Run a NuGet package restore to generate this file.</value>
+  </data>
+  <data name="MissingFramework" xml:space="preserve">
+    <value>Your project is not referencing the "{0}" framework. Add a reference to "{0}" in the "frameworks" section of your project.json, and then re-run NuGet restore.</value>
+  </data>
+  <data name="MissingMSBuildPathInProjectPackage" xml:space="preserve">
+    <value>Your project is consuming assets from the project '{0}' but no MSBuild project is found in the project.lock.json. Check the project references in your project file, and re-run NuGet restore.</value>
+  </data>
+  <data name="MissingPackageInTargetsSection" xml:space="preserve">
+    <value>The package '{0}' could not be found in the libraries section of the lock file. This may indicate your lock file is corrupted.</value>
+  </data>
+  <data name="MissingProjectReference" xml:space="preserve">
+    <value>The project.json is referencing the project '{0}', but an output path was not specified on an item in the {1} property.</value>
+  </data>
+  <data name="MissingRuntimeInRuntimesSection" xml:space="preserve">
+    <value>Your project.json doesn't list '{0}' as a targeted runtime. You should add '{1}' inside your "runtimes" section in your project.json, and then re-run NuGet restore.</value>
+  </data>
+  <data name="MissingRuntimesSection" xml:space="preserve">
+    <value>Your project.json doesn't have a runtimes section. You should add '{0}' to your project.json and then re-run NuGet restore.</value>
+  </data>
+  <data name="NoTargetsInLockFile" xml:space="preserve">
+    <value>No targets could be found in the lock file. Make sure you have a supports or runtimes section i your project.json file.</value>
+  </data>
+  <data name="PackageFolderNotFound" xml:space="preserve">
+    <value>The package {0} with version {1} could not be found in {2}. Run a NuGet package restore to download the package.</value>
+  </data>
+  <data name="PreprocessedDirectoryNotSet" xml:space="preserve">
+    <value>The {0} property must be set in order to consume preprocessed content.</value>
+  </data>
+  <data name="UnspecifiedToken" xml:space="preserve">
+    <value>The token '{0}' is unrecognized.</value>
+  </data>
+</root>
