@@ -1,0 +1,11 @@
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <!-- Set PackageIndexFile to point to our local repo's index.  This tells the packaging targets
+         which index should be used for updates -->
+    <PackageIndexFile>$(MSBuildThisFileDirectory)packageIndex.json</PackageIndexFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageIndex Include="$(MSBuildThisFileDirectory)packageIndex.json" />
+  </ItemGroup>
+</Project>

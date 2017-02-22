@@ -37,14 +37,9 @@
       <TargetPath>build/net461/$(Id).targets</TargetPath>
     </File>
 
-    <!-- Temporarily map ns17 to the ns20 refs https://github.com/NuGet/Home/issues/3576 -->
-    <File Include="..\tools\targets\netstandard1.7\$(TargetsFileName)">
-      <TargetPath>build/netstandard1.7/$(Id).targets</TargetPath>
+    <File Include="$(PlaceHolderFile)">
+      <TargetPath>lib/netstandard1.0</TargetPath>
     </File>
-
-    <Dependency Include="_._">
-      <TargetFramework>netstandard1.7</TargetFramework>
-    </Dependency>
   </ItemGroup>
 
   <Target Name="StampPackageVersionInTargets" BeforeTargets="GenerateNuSpec">
