@@ -26,12 +26,11 @@
     <Compile Include="ReferenceComparer.cs" />
     <Compile Include="Trimming\FileNode.cs" />
     <Compile Include="Trimming\IIsIncluded.cs" />
-    <Compile Include="Trimming\NuGet.BuildTasks\ExceptionFromResource.cs" />
-    <Compile Include="Trimming\NuGet.BuildTasks\Strings.Designer.cs" />
+    <Compile Include="Trimming\Microsoft.NET.Build.Tasks\BuildErrorException.cs" />
+    <Compile Include="Trimming\Microsoft.NET.Build.Tasks\LockFileCache.cs" />
     <Compile Include="Trimming\NuGetPackageNode.cs" />
     <Compile Include="Trimming\Trimmable.cs" />
     <Compile Include="Trimming\TrimPackages.cs" />
-    <Compile Include="Trimming\TrimPackages.LockParsing.cs" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)' != 'net451'">
     <Compile Include="FileUtilities.netstandard.cs" />
@@ -53,9 +52,6 @@
     <None Include="targets\NETStandard.Library.targets" />
     <None Include="targets\NETStandard.Library.Trimming.targets" />
     <None Include="project.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Trimming\NuGet.BuildTasks\Strings.resx" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>

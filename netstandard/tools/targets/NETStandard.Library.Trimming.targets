@@ -3,21 +3,72 @@
 
   <UsingTask TaskName="TrimPackages" AssemblyFile="$(NETStandardToolsTaskDirectory)NETStandard.Tools.dll" />
 
-  <Target Name="TrimPackages"
+  <Target Name="_determineTrimPackageInputs">
+    <ItemGroup>
+      <_directlyReferencedPackages Include="@(PackageDependencies)" Condition="'%(PackageDependencies.ParentPackage)' == ''" />
+    </ItemGroup>
+    
+    <!-- todo: move this stuff to NETCore.App package -->
+    <ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp'">
+      <!-- Native host / CLR for netcoreapp -->
+      <TrimPackagesRootFiles Include="coreclr.dll;libcoreclr.dylib;libcoreclr.so" />
+      <TrimPackagesRootFiles Include="clrjit.dll;libclrjit.dylib;libclrjit.so" />
+      <TrimPackagesRootFiles Include="dotnet.exe;dotnet" />
+      <TrimPackagesRootFiles Include="hostfxr.dll;libhostfxr.dylib;libhostfxr.so" />
+      <TrimPackagesRootFiles Include="hostpolicy.dll;libhostpolicy.dylib;libhostpolicy.so" />
+
+      <!-- treat platform packages as trimmable -->
+      <TrimmablePackages Include="$(PackageConflictPreferredPackages)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="TrimFilesOnBuild"
+          DependsOnTargets="_determineTrimPackageInputs"
           AfterTargets="CoreCompile">
-    <TrimPackages RootFiles="@(IntermediateAssembly)"
-                  RootPackages="@(ReferencedNuGetPackages)"
-                  ProjectLockFile="$(ProjectLockFile)"
-                  TargetMonikers="$(NuGetTargetMoniker);$(_NuGetTargetFallbackMoniker)"
-                  RuntimeIdentifier="$(NuGetRuntimeIdentifier)"
-                  AllowFallbackOnTargetSelection="$(DesignTimeBuild)"
-                  RuntimeItems="@(ReferenceCopyLocalPaths)">
-      <Output ItemName="_trimmedCopyLocal" TaskParameter="TrimmedRuntimeItems" />
+    <ItemGroup>
+      <_trimOtherRuntimeItems Include="@(_LockFileAssemblies)" Exclude="@(_ConflictPackageFiles)" />
+    </ItemGroup>
+
+    <TrimPackages RootFiles="@(IntermediateAssembly);@(TrimPackagesRootFiles)"
+                  RootPackages="@(_directlyReferencedPackages);@(TrimPackagesRootPackages)"
+                  TrimmablePackages="@(TrimmablePackages)"
+                  TrimmableFiles="@(TrimmableFiles)"
+                  AssetsFilePath="$(ProjectAssetsFile)"
+                  TargetFramework="$(TargetFrameworkMoniker)"
+                  RuntimeIdentifier="$(RuntimeIdentifier)"
+                  RuntimeItems="@(ReferenceCopyLocalPaths)"
+                  OtherRuntimeItems="@(_trimOtherRuntimeItems)"
+                  PreferNativeImages="$(TrimPackagesPreferNativeImages)">
+      <Output ItemName="_ReferenceCopyLocalPathsAfterTrimming" TaskParameter="RuntimeItemsAfterTrimming" />
+      <Output ItemName="_ConflictPackageFiles" TaskParameter="TrimmedItems" />
     </TrimPackages>
 
     <ItemGroup>
-      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)"/>
-      <ReferenceCopyLocalPaths Include="@(_trimmedCopyLocal)" />
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" />
+      <ReferenceCopyLocalPaths Include="@(_ReferenceCopyLocalPathsAfterTrimming)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="TrimFilesPublish"
+          DependsOnTargets="_determineTrimPackageInputs"
+          AfterTargets="HandlePublishFileConflicts">
+
+    <TrimPackages RootFiles="@(IntermediateAssembly);@(TrimPackagesRootFiles)"
+                  RootPackages="@(_directlyReferencedPackages);@(TrimPackagesRootPackages)"
+                  TrimmablePackages="@(TrimmablePackages)"
+                  TrimmableFiles="@(TrimmableFiles)"
+                  AssetsFilePath="$(ProjectAssetsFile)"
+                  TargetFramework="$(TargetFrameworkMoniker)"
+                  RuntimeIdentifier="$(RuntimeIdentifier)"
+                  RuntimeItems="@(ResolvedAssembliesToPublish)"
+                  PreferNativeImages="$(TrimPackagesPreferNativeImages)" >
+      <Output ItemName="_ResolvedAssembliesToPublishAfterTrimming" TaskParameter="RuntimeItemsAfterTrimming" />
+      <Output ItemName="_PublishConflictPackageFiles" TaskParameter="TrimmedItems" />
+    </TrimPackages>
+
+    <ItemGroup>
+      <ResolvedAssembliesToPublish Remove="@(ResolvedAssembliesToPublish)" />
+      <ResolvedAssembliesToPublish Include="@(_ResolvedAssembliesToPublishAfterTrimming)" />
     </ItemGroup>
   </Target>
 </Project>

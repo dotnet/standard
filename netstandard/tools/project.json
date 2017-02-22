@@ -2,6 +2,7 @@
   "dependencies": {
     "Microsoft.DotNet.PlatformAbstractions": "1.0.1-beta-000933",
     "Microsoft.Extensions.DependencyModel": "1.0.1-beta-000933",
+    "NuGet.ProjectModel":  "4.0.0-rtm-2241",
     "NETStandard.Library": "1.6.0",
     "System.Reflection.Metadata": "1.3.0"
   },

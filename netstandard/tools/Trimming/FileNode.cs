@@ -1,13 +1,14 @@
-﻿using Microsoft.Build.Framework;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.Build.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection.Metadata;
 using System.Reflection.Metadata.Ecma335;
 using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Microsoft.DotNet.Build.Tasks
 {
@@ -17,12 +18,21 @@ namespace Microsoft.DotNet.Build.Tasks
 
         internal const string NuGetPackageIdMetadata = "NuGetPackageId";
         internal const string NuGetPackageVersionMetadata = "NuGetPackageVersion";
+        internal const string AdditionalDependenciesFileSuffix = ".dependencies";
+
         public FileNode(ITaskItem fileItem, IDictionary<string, NuGetPackageNode> allPackages)
         {
             Name = fileItem.GetMetadata("Filename") + fileItem.GetMetadata("Extension");
             OriginalItem = fileItem;
             PackageId = fileItem.GetMetadata(NuGetPackageIdMetadata);
-            if (!String.IsNullOrEmpty(PackageId))
+            SourceFile = fileItem.GetMetadata("FullPath");
+
+            if (string.IsNullOrEmpty(PackageId))
+            {
+                PackageId = NuGetUtilities.GetPackageIdFromSourcePath(SourceFile);
+            }
+
+            if (!string.IsNullOrEmpty(PackageId))
             {
                 NuGetPackageNode package;
 
@@ -36,7 +46,6 @@ namespace Microsoft.DotNet.Build.Tasks
                     Package.Files.Add(this);
                 }
             }
-            SourceFile = fileItem.GetMetadata("FullPath");
         }
 
         public bool IsIncluded { get; set; }
@@ -47,7 +56,7 @@ namespace Microsoft.DotNet.Build.Tasks
         public NuGetPackageNode Package { get; }
         public IEnumerable<FileNode> Dependencies { get { return _dependencies; } }
 
-        public void PopulateDependencies(Dictionary<string, FileNode> allFiles)
+        public void PopulateDependencies(Dictionary<string, FileNode> allFiles, bool preferNativeImage)
         {
             List<FileNode> dependencies = new List<FileNode>();
 
@@ -61,12 +70,16 @@ namespace Microsoft.DotNet.Build.Tasks
                         foreach (var handle in reader.AssemblyReferences)
                         {
                             var reference = reader.GetAssemblyReference(handle);
-                            var referenceCandidates = new[] { reader.GetString(reference.Name) + ".dll", reader.GetString(reference.Name) + ".ni.dll" };
+                            var referenceName = reader.GetString(reference.Name);
+
+                            var referenceCandidates = preferNativeImage ? 
+                                new[] { referenceName + ".ni.dll", referenceName + ".dll" } :
+                                new[] { referenceName + ".dll", referenceName + ".ni.dll" };
 
                             FileNode referencedFile = null;
-                            foreach (var referenceName in referenceCandidates)
+                            foreach (var referenceCandidate in referenceCandidates)
                             {
-                                if (allFiles.TryGetValue(referenceName, out referencedFile))
+                                if (allFiles.TryGetValue(referenceCandidate, out referencedFile))
                                 {
                                     break;
                                 }
@@ -90,8 +103,18 @@ namespace Microsoft.DotNet.Build.Tasks
                             var moduleRef = reader.GetModuleReference(MetadataTokens.ModuleReferenceHandle(i));
                             var moduleName = reader.GetString(moduleRef.Name);
 
-                            FileNode referencedNativeFile;
-                            if (allFiles.TryGetValue(moduleName, out referencedNativeFile))
+                            var moduleRefCandidates = new[] { moduleName, moduleName + ".dll", moduleName + ".so", moduleName + ".dylib" };
+
+                            FileNode referencedNativeFile = null;
+                            foreach (var moduleRefCandidate in moduleRefCandidates)
+                            {
+                                if (allFiles.TryGetValue(moduleRefCandidate, out referencedNativeFile))
+                                {
+                                    break;
+                                }
+                            }
+
+                            if (referencedNativeFile != null)
                             {
                                 dependencies.Add(referencedNativeFile);
                             }
@@ -106,6 +129,22 @@ namespace Microsoft.DotNet.Build.Tasks
             catch(BadImageFormatException)
             {
                 // not a PE
+            }
+
+            // allow for components to specify their dependencies themselves, by placing a file next to their source file.
+            var additionalDependenciesFile = SourceFile + AdditionalDependenciesFileSuffix;
+
+            if (File.Exists(additionalDependenciesFile))
+            {
+                foreach(var additionalDependency in File.ReadAllLines(additionalDependenciesFile))
+                {
+                    FileNode additionalDependencyFile;
+                    if (allFiles.TryGetValue(additionalDependency, out additionalDependencyFile))
+                    {
+                        dependencies.Add(additionalDependencyFile);
+                    }
+
+                }
             }
 
             _dependencies = dependencies;
