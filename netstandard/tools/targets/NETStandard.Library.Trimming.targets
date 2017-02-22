@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <UsingTask TaskName="TrimPackages" AssemblyFile="$(NETStandardToolsTaskDirectory)NETStandard.Tools.dll" />
+  <UsingTask TaskName="TrimFiles" AssemblyFile="$(NETStandardToolsTaskDirectory)NETStandard.Tools.dll" />
 
   <Target Name="_determineTrimPackageInputs">
-    <ItemGroup>
-      <_directlyReferencedPackages Include="@(PackageDependencies)" Condition="'%(PackageDependencies.ParentPackage)' == ''" />
+    <ItemGroup Condition="'$(RootPackageReference)' != 'true'">
+      <TrimFilesRootPackages Include="@(PackageReference)"/>
     </ItemGroup>
-    
+
     <!-- todo: move this stuff to NETCore.App package -->
     <ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp'">
       <!-- Native host / CLR for netcoreapp -->
-      <TrimPackagesRootFiles Include="coreclr.dll;libcoreclr.dylib;libcoreclr.so" />
-      <TrimPackagesRootFiles Include="clrjit.dll;libclrjit.dylib;libclrjit.so" />
-      <TrimPackagesRootFiles Include="dotnet.exe;dotnet" />
-      <TrimPackagesRootFiles Include="hostfxr.dll;libhostfxr.dylib;libhostfxr.so" />
-      <TrimPackagesRootFiles Include="hostpolicy.dll;libhostpolicy.dylib;libhostpolicy.so" />
+      <TrimFilesRootFiles Include="coreclr.dll;libcoreclr.dylib;libcoreclr.so" />
+      <TrimFilesRootFiles Include="clrjit.dll;libclrjit.dylib;libclrjit.so" />
+      <TrimFilesRootFiles Include="dotnet.exe;dotnet" />
+      <TrimFilesRootFiles Include="hostfxr.dll;libhostfxr.dylib;libhostfxr.so" />
+      <TrimFilesRootFiles Include="hostpolicy.dll;libhostpolicy.dylib;libhostpolicy.so" />
 
       <!-- treat platform packages as trimmable -->
       <TrimmablePackages Include="$(PackageConflictPreferredPackages)" />
@@ -29,19 +29,19 @@
       <_trimOtherRuntimeItems Include="@(_LockFileAssemblies)" Exclude="@(_ConflictPackageFiles)" />
     </ItemGroup>
 
-    <TrimPackages RootFiles="@(IntermediateAssembly);@(TrimPackagesRootFiles)"
-                  RootPackages="@(_directlyReferencedPackages);@(TrimPackagesRootPackages)"
-                  TrimmablePackages="@(TrimmablePackages)"
-                  TrimmableFiles="@(TrimmableFiles)"
-                  AssetsFilePath="$(ProjectAssetsFile)"
-                  TargetFramework="$(TargetFrameworkMoniker)"
-                  RuntimeIdentifier="$(RuntimeIdentifier)"
-                  RuntimeItems="@(ReferenceCopyLocalPaths)"
-                  OtherRuntimeItems="@(_trimOtherRuntimeItems)"
-                  PreferNativeImages="$(TrimPackagesPreferNativeImages)">
+    <TrimFiles RootFiles="@(IntermediateAssembly);@(TrimFilesRootFiles)"
+               RootPackages="@(TrimFilesRootPackages)"
+               TrimmablePackages="@(TrimmablePackages)"
+               TrimmableFiles="@(TrimmableFiles)"
+               AssetsFilePath="$(ProjectAssetsFile)"
+               TargetFramework="$(TargetFrameworkMoniker)"
+               RuntimeIdentifier="$(RuntimeIdentifier)"
+               RuntimeItems="@(ReferenceCopyLocalPaths)"
+               OtherRuntimeItems="@(_trimOtherRuntimeItems)"
+               PreferNativeImages="$(TrimFilesPreferNativeImages)">
       <Output ItemName="_ReferenceCopyLocalPathsAfterTrimming" TaskParameter="RuntimeItemsAfterTrimming" />
       <Output ItemName="_ConflictPackageFiles" TaskParameter="TrimmedItems" />
-    </TrimPackages>
+    </TrimFiles>
 
     <ItemGroup>
       <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" />
@@ -49,22 +49,22 @@
     </ItemGroup>
   </Target>
 
-  <Target Name="TrimFilesPublish"
+  <Target Name="TrimFilesOnPublish"
           DependsOnTargets="_determineTrimPackageInputs"
           AfterTargets="HandlePublishFileConflicts">
 
-    <TrimPackages RootFiles="@(IntermediateAssembly);@(TrimPackagesRootFiles)"
-                  RootPackages="@(_directlyReferencedPackages);@(TrimPackagesRootPackages)"
-                  TrimmablePackages="@(TrimmablePackages)"
-                  TrimmableFiles="@(TrimmableFiles)"
-                  AssetsFilePath="$(ProjectAssetsFile)"
-                  TargetFramework="$(TargetFrameworkMoniker)"
-                  RuntimeIdentifier="$(RuntimeIdentifier)"
-                  RuntimeItems="@(ResolvedAssembliesToPublish)"
-                  PreferNativeImages="$(TrimPackagesPreferNativeImages)" >
+    <TrimFiles RootFiles="@(IntermediateAssembly);@(TrimFilesRootFiles)"
+               RootPackages="@(TrimFilesRootPackages)"
+               TrimmablePackages="@(TrimmablePackages)"
+               TrimmableFiles="@(TrimmableFiles)"
+               AssetsFilePath="$(ProjectAssetsFile)"
+               TargetFramework="$(TargetFrameworkMoniker)"
+               RuntimeIdentifier="$(RuntimeIdentifier)"
+               RuntimeItems="@(ResolvedAssembliesToPublish)"
+               PreferNativeImages="$(TrimFilesPreferNativeImages)" >
       <Output ItemName="_ResolvedAssembliesToPublishAfterTrimming" TaskParameter="RuntimeItemsAfterTrimming" />
       <Output ItemName="_PublishConflictPackageFiles" TaskParameter="TrimmedItems" />
-    </TrimPackages>
+    </TrimFiles>
 
     <ItemGroup>
       <ResolvedAssembliesToPublish Remove="@(ResolvedAssembliesToPublish)" />

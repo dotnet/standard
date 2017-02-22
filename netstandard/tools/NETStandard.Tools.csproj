@@ -30,7 +30,7 @@
     <Compile Include="Trimming\Microsoft.NET.Build.Tasks\LockFileCache.cs" />
     <Compile Include="Trimming\NuGetPackageNode.cs" />
     <Compile Include="Trimming\Trimmable.cs" />
-    <Compile Include="Trimming\TrimPackages.cs" />
+    <Compile Include="Trimming\TrimFiles.cs" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)' != 'net451'">
     <Compile Include="FileUtilities.netstandard.cs" />

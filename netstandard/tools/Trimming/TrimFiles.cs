@@ -14,7 +14,7 @@ using System.Text;
 
 namespace Microsoft.DotNet.Build.Tasks
 {
-    public partial class TrimPackages : Task
+    public partial class TrimFiles : Task
     {
         /// <summary>
         /// Files to consider as a roots for trimming.  These files and their dependency closure will be preserved.
