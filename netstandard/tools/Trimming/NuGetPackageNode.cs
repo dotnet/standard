@@ -31,7 +31,7 @@ namespace Microsoft.DotNet.Build.Tasks
         public IEnumerable<NuGetPackageNode> Dependencies { get { return _dependencies; } }
         public IList<FileNode> Files { get; } = new List<FileNode>();
 
-        public void PopulateDependencies(Dictionary<string, NuGetPackageNode> allPackages)
+        public void PopulateDependencies(Dictionary<string, NuGetPackageNode> allPackages, ILog log)
         {
             foreach(var dependencyId in _dependencyIds)
             {
@@ -40,6 +40,7 @@ namespace Microsoft.DotNet.Build.Tasks
                 {
                     // package declared a dependency but NuGet was missing the dependent package
                     // in the lock file.  This indicates a broken restore, but don't fail trimming
+                    log.LogMessage(LogImportance.Low, $"Could not locate dependency {dependencyId} of package {Id}.");
                 }
                 else
                 {

@@ -56,7 +56,7 @@ namespace Microsoft.DotNet.Build.Tasks
         public NuGetPackageNode Package { get; }
         public IEnumerable<FileNode> Dependencies { get { return _dependencies; } }
 
-        public void PopulateDependencies(Dictionary<string, FileNode> allFiles, bool preferNativeImage)
+        public void PopulateDependencies(Dictionary<string, FileNode> allFiles, bool preferNativeImage, ILog log)
         {
             List<FileNode> dependencies = new List<FileNode>();
 
@@ -92,9 +92,10 @@ namespace Microsoft.DotNet.Build.Tasks
                             else
                             {
                                 // static dependency that wasn't satisfied, this can happen if folks use 
-                                // lightup code to gaurd the static dependency.
+                                // lightup code to guard the static dependency.
                                 // this can also happen when referencing a package that isn't implemented
                                 // on this platform but don't fail the build here
+                                log.LogMessage(LogImportance.Low, $"Could not locate assembly dependency {referenceName} of {SourceFile}.");
                             }
                         }
 
@@ -138,12 +139,20 @@ namespace Microsoft.DotNet.Build.Tasks
             {
                 foreach(var additionalDependency in File.ReadAllLines(additionalDependenciesFile))
                 {
+                    if (additionalDependency.Length == 0 || additionalDependency[0] == '#')
+                    {
+                        continue;
+                    }
+
                     FileNode additionalDependencyFile;
                     if (allFiles.TryGetValue(additionalDependency, out additionalDependencyFile))
                     {
                         dependencies.Add(additionalDependencyFile);
                     }
-
+                    else
+                    {
+                        log.LogMessage(LogImportance.Low, $"Could not locate explicit dependency {additionalDependency} of {SourceFile} specified in {additionalDependenciesFile}.");
+                    }
                 }
             }
 

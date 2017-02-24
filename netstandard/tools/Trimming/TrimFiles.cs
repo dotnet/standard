@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Microsoft.DotNet.Build.Tasks
 {
@@ -90,8 +89,12 @@ namespace Microsoft.DotNet.Build.Tasks
         [Output]
         public ITaskItem[] TrimmedItems { get; set; }
 
+        private ILog log;
+
         public override bool Execute()
         {
+            log = new MSBuildLog(Log);
+
             // Build the package graph
             var packages = GetPackagesFromAssetsFile();
 
@@ -251,7 +254,7 @@ namespace Microsoft.DotNet.Build.Tasks
             // Connect the graph
             foreach (var package in packages.Values)
             {
-                package.PopulateDependencies(packages);
+                package.PopulateDependencies(packages, log);
             }
 
             return packages;
@@ -286,7 +289,7 @@ namespace Microsoft.DotNet.Build.Tasks
             // connect the graph
             foreach(var file in files.Values)
             {
-                file.PopulateDependencies(files, PreferNativeImages);
+                file.PopulateDependencies(files, PreferNativeImages, log);
             }
 
             return files;

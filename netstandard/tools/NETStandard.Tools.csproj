@@ -12,6 +12,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'net451_Debug'" />
   <ItemGroup>
     <Compile Include="ConflictResolver.cs" />
+    <Compile Include="MSBuildLog.cs" />
     <Compile Include="MetadataNames.cs" />
     <Compile Include="PlatformManifestReader.cs" />
     <Compile Include="ILog.cs" />

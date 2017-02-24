@@ -140,5 +140,5 @@
     </Touch>
   </Target>
 
-  <Import Project="NETStandard.Library.Trimming.targets" Condition="'$(_SupportsTrimming)' == 'true' AND '$(TrimUnusedDependencies)' == 'true'" />
+  <Import Project="NETStandard.Library.Trimming.targets" Condition="'$(_supportsTrimming)' == 'true' AND '$(TrimUnusedDependencies)' == 'true'" />
 </Project>

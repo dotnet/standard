@@ -180,25 +180,5 @@ namespace Microsoft.DotNet.Build.Tasks
 
             return result;
         }
-
-        private class MSBuildLog : ILog
-        {
-            private TaskLoggingHelper logger;
-            public MSBuildLog(TaskLoggingHelper logger)
-            {
-                this.logger = logger;
-            }
-
-            public void LogError(string errorMessage)
-            {
-                logger.LogError(errorMessage);
-            }
-
-            public void LogMessage(string message)
-            {
-                logger.LogMessage(message);
-            }
-        }
-
     }
 }
