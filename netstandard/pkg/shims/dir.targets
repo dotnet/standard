@@ -31,5 +31,13 @@
     </ItemGroup>
   </Target>
 
+  <Target Name="MarkProjectReferencesAsNotPrivate" BeforeTargets="AssignProjectConfiguration">
+    <ItemGroup>
+      <ProjectReference>
+        <Private>false</Private>
+      </ProjectReference>
+    </ItemGroup>
+  </Target>
+
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory).., dir.targets))\dir.targets" />
 </Project>
