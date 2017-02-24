@@ -12,6 +12,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'net451_Debug'" />
   <ItemGroup>
     <Compile Include="ConflictResolver.cs" />
+    <Compile Include="MSBuildLog.cs" />
     <Compile Include="MetadataNames.cs" />
     <Compile Include="PlatformManifestReader.cs" />
     <Compile Include="ILog.cs" />
@@ -24,6 +25,13 @@
     <Compile Include="NuGetUtilities.cs" />
     <Compile Include="PackageRank.cs" />
     <Compile Include="ReferenceComparer.cs" />
+    <Compile Include="Trimming\FileNode.cs" />
+    <Compile Include="Trimming\IIsIncluded.cs" />
+    <Compile Include="Trimming\Microsoft.NET.Build.Tasks\BuildErrorException.cs" />
+    <Compile Include="Trimming\Microsoft.NET.Build.Tasks\LockFileCache.cs" />
+    <Compile Include="Trimming\NuGetPackageNode.cs" />
+    <Compile Include="Trimming\Trimmable.cs" />
+    <Compile Include="Trimming\TrimFiles.cs" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)' != 'net451'">
     <Compile Include="FileUtilities.netstandard.cs" />
@@ -37,11 +45,13 @@
     <TargetingPackReference Include="Microsoft.Build.Framework" />
     <TargetingPackReference Include="Microsoft.Build.Utilities.v4.0" />
     <TargetingPackReference Include="System.Runtime" />
+    <TargetingPackReference Include="System.IO" />
     <PackageDestination Include="build/desktop" />
   </ItemGroup>
   <ItemGroup>
     <None Include="targets\netstandard\NETStandard.Library.targets" />
     <None Include="targets\NETStandard.Library.targets" />
+    <None Include="targets\NETStandard.Library.Trimming.targets" />
     <None Include="project.json" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />

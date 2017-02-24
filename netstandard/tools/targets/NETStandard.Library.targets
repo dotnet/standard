@@ -23,6 +23,8 @@
         <!-- If CopyLocalLockFileAssemblies is not true the host will run from packages,
              but we still need to consider those package items for conflicts -->
         <HandlePackageFileConflictsDependsOn Condition="'$(CopyLocalLockFileAssemblies)' != 'true'">_GetLockFileAssemblies</HandlePackageFileConflictsDependsOn>
+
+        <_supportsTrimming>true</_supportsTrimming>
       </PropertyGroup>
     </When>
     <When Condition="'$(ResolveNuGetPackages)' == 'true' and Exists('$(ProjectLockFile)')">
@@ -137,4 +139,6 @@
       <Output TaskParameter="TouchedFiles" ItemName="FileWrites" />
     </Touch>
   </Target>
+
+  <Import Project="NETStandard.Library.Trimming.targets" Condition="'$(_supportsTrimming)' == 'true' AND '$(TrimUnusedDependencies)' == 'true'" />
 </Project>

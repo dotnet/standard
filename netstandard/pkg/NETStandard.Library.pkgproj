@@ -29,6 +29,10 @@
       <TargetPath>build/$(Id).targets</TargetPath>
     </File>
 
+    <File Include="..\tools\targets\NETStandard.Library.Trimming.targets">
+      <TargetPath>build</TargetPath>
+    </File>
+
     <File Include="..\tools\targets\netstandard\$(TargetsFileName)">
       <TargetPath>build/$(NETStandardVersion)/$(Id).targets</TargetPath>
     </File>
