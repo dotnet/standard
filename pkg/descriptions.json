@@ -5,9 +5,15 @@
         "CommonTypes": [ ]
     },
     {
+        "Name": "Microsoft.Packaging.Tools",
+        "Description": "Provides build infrastructure for handling conflicting assets from packages and trimming unused files from an application.",
+        "CommonTypes": [
+        ]
+    },
+    {
         "Name": "NETStandard.Library",
         "Description": "A set of standard .NET APIs that are prescribed to be used and supported together.",
         "CommonTypes": [
         ]
-    },
+    }
 ]

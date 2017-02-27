@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ToolsPackageId>Microsoft.Packaging.Tools</ToolsPackageId>
+  </PropertyGroup>
+
   <ItemGroup>
     <NETStandard10Dependency Include="$(PlatformPackageId)" />
     <NETStandard10Dependency Include="System.Collections" />
@@ -133,19 +137,20 @@
       <TargetFramework>uap10.0</TargetFramework>
     </_dependency>
 
-    <!-- ensure we bring in the Platform package for NS2.0 (for the RID graph), but none of the other packages -->
-    <_dependency Include="$(PlatformPackageId)">
+    <!-- ensure we bring in the Platform package for NS2.0 (for the RID graph), and tools (for conflict resolution)
+         but none of the other packages -->
+    <_dependency Include="$(PlatformPackageId);$(ToolsPackageId)">
       <TargetFramework>netstandard2.0</TargetFramework>
     </_dependency>
 
     <!-- these frameworks support ns2.0 natively and shouldn't import previous dependencies (similar to netstandar2.0) -->
-    <_dependency Include="$(PlatformPackageId)">
+    <_dependency Include="$(PlatformPackageId);$(ToolsPackageId)">
       <TargetFramework>netcoreapp2.0</TargetFramework>
     </_dependency>
-    <_dependency Include="$(PlatformPackageId)">
+    <_dependency Include="$(PlatformPackageId);$(ToolsPackageId)">
       <TargetFramework>uap10.1</TargetFramework>
     </_dependency>
-    <_dependency Include="$(PlatformPackageId)">
+    <_dependency Include="$(PlatformPackageId);$(ToolsPackageId)">
       <TargetFramework>net461</TargetFramework>
     </_dependency>
 
