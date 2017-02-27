@@ -49,9 +49,8 @@
     <PackageDestination Include="build/desktop" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="targets\netstandard\NETStandard.Library.targets" />
-    <None Include="targets\NETStandard.Library.targets" />
-    <None Include="targets\NETStandard.Library.Trimming.targets" />
+    <None Include="targets\Microsoft.Packaging.Tools.targets" />
+    <None Include="targets\Microsoft.Packaging.Tools.Trimming.targets" />
     <None Include="project.json" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <UsingTask TaskName="TrimFiles" AssemblyFile="$(NETStandardToolsTaskDirectory)NETStandard.Tools.dll" />
+  <UsingTask TaskName="TrimFiles" AssemblyFile="$(MicrosoftPackagingToolsTaskDirectory)Microsoft.Packaging.Tools.Tasks.dll" />
 
   <Target Name="_determineTrimPackageInputs">
     <ItemGroup Condition="'$(RootPackageReference)' != 'true'">
