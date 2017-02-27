@@ -1,0 +1,23 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <NETStandardLibraryPackageVersion>#VERSION#</NETStandardLibraryPackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Condition="'$(_NetStandardLibraryRefPath)' != ''" Include="$(_NetStandardLibraryRefPath)*.dll">
+      <!-- Private = false to make these reference only -->
+      <Private>false</Private>
+      <NuGetPackageId>NETStandard.Library</NuGetPackageId>
+      <NuGetPackageVersion>$(NETStandardLibraryPackageVersion)</NuGetPackageVersion>
+      <NuGetIsFrameworkReference>false</NuGetIsFrameworkReference>
+      <NuGetSourceType>Package</NuGetSourceType>
+    </Reference>
+    <ReferenceCopyLocalPaths Condition="'$(_NetStandardLibraryLibPath)' != ''" Include="$(_NetStandardLibraryLibPath)*.dll">
+      <Private>false</Private>
+      <NuGetPackageId>NETStandard.Library</NuGetPackageId>
+      <NuGetPackageVersion>$(NETStandardLibraryPackageVersion)</NuGetPackageVersion>
+      <NuGetIsFrameworkReference>false</NuGetIsFrameworkReference>
+      <NuGetSourceType>Package</NuGetSourceType>
+    </ReferenceCopyLocalPaths>
+  </ItemGroup>
+</Project>

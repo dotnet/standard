@@ -5,10 +5,6 @@
     <NETStandardToolsTaskDirectory Condition="'$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)desktop/</NETStandardToolsTaskDirectory>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <NETStandardLibraryPackageVersion>#VERSION#</NETStandardLibraryPackageVersion>
-  </PropertyGroup>
-
   <Choose>
     <!-- Allow completely disabling the conflict resolution targets-->
     <When Condition="'$(DisableHandlePackageFileConflicts)' == 'true'" />
@@ -41,24 +37,6 @@
       </PropertyGroup>
     </Otherwise>
   </Choose>
-
-  <ItemGroup>
-    <Reference Condition="'$(_NetStandardLibraryRefPath)' != ''" Include="$(_NetStandardLibraryRefPath)*.dll">
-      <!-- Private = false to make these reference only -->
-      <Private>false</Private>
-      <NuGetPackageId>NETStandard.Library</NuGetPackageId>
-      <NuGetPackageVersion>$(NETStandardLibraryPackageVersion)</NuGetPackageVersion>
-      <NuGetIsFrameworkReference>false</NuGetIsFrameworkReference>
-      <NuGetSourceType>Package</NuGetSourceType>
-    </Reference>
-    <ReferenceCopyLocalPaths Condition="'$(_NetStandardLibraryLibPath)' != ''" Include="$(_NetStandardLibraryLibPath)*.dll">
-      <Private>false</Private>
-      <NuGetPackageId>NETStandard.Library</NuGetPackageId>
-      <NuGetPackageVersion>$(NETStandardLibraryPackageVersion)</NuGetPackageVersion>
-      <NuGetIsFrameworkReference>false</NuGetIsFrameworkReference>
-      <NuGetSourceType>Package</NuGetSourceType>
-    </ReferenceCopyLocalPaths>
-  </ItemGroup>
 
   <Target Name="_GetLockFileAssemblies"
           DependsOnTargets="ComputePrivateAssetsPackageReferences;

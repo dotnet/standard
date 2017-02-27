@@ -5,9 +5,9 @@
   <ItemGroup>
     <Project Include="netstandard/ref/*.csproj" />
     <Project Include="netstandard/src/*.builds" />
-    <Project Include="netstandard/tools/*.builds" />
     <Project Include="extensions/dir.proj" />
     <Project Include="platforms/dir.proj" />
+    <Project Include="Microsoft.Packaging.Tools/tasks/*.builds" />
   </ItemGroup>
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.traversal.targets))\dir.traversal.targets" />
