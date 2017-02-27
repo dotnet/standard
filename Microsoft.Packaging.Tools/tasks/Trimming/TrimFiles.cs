@@ -55,7 +55,6 @@ namespace Microsoft.DotNet.Build.Tasks
         /// <summary>
         /// RuntimeIdentifier to use when determining package dependencies.
         /// </summary>
-        [Required]
         public string RuntimeIdentifier { get; set; }
 
         /// <summary>
