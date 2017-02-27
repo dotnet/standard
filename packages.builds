@@ -3,18 +3,9 @@
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.props))\dir.props" />
   
   <ItemGroup>
-    <Project Include="netstandard/ref/*.csproj" />
-    <Project Include="netstandard/src/*.builds" />
-    <Project Include="extensions/dir.proj" />
-    <Project Include="platforms/dir.proj" />
-    <Project Include="Microsoft.Packaging.Tools/tasks/*.builds" />
+    <Project Include="**/*.pkgproj" />
   </ItemGroup>
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.traversal.targets))\dir.traversal.targets" />
-
-  <!-- Override CleanAllProjects from dir.traversal.targets and just remove the full BinDir -->
-  <Target Name="CleanAllProjects">
-    <RemoveDir Directories="$(BinDir)" />
-  </Target>
 </Project>
 

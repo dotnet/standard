@@ -1,12 +1,8 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <PropertyGroup Condition="'$(NETStandardToolsTaskDirectory)' == ''">
-    <NETStandardToolsTaskDirectory>$(MSBuildThisFileDirectory)</NETStandardToolsTaskDirectory>
-    <NETStandardToolsTaskDirectory Condition="'$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)desktop/</NETStandardToolsTaskDirectory>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <NETStandardLibraryPackageVersion>#VERSION#</NETStandardLibraryPackageVersion>
+  <PropertyGroup Condition="'$(MicrosoftPackagingToolsTaskDirectory)' == ''">
+    <MicrosoftPackagingToolsTaskDirectory>$(MSBuildThisFileDirectory)</MicrosoftPackagingToolsTaskDirectory>
+    <MicrosoftPackagingToolsTaskDirectory Condition="'$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)desktop/</MicrosoftPackagingToolsTaskDirectory>
   </PropertyGroup>
 
   <Choose>
@@ -42,24 +38,6 @@
     </Otherwise>
   </Choose>
 
-  <ItemGroup>
-    <Reference Condition="'$(_NetStandardLibraryRefPath)' != ''" Include="$(_NetStandardLibraryRefPath)*.dll">
-      <!-- Private = false to make these reference only -->
-      <Private>false</Private>
-      <NuGetPackageId>NETStandard.Library</NuGetPackageId>
-      <NuGetPackageVersion>$(NETStandardLibraryPackageVersion)</NuGetPackageVersion>
-      <NuGetIsFrameworkReference>false</NuGetIsFrameworkReference>
-      <NuGetSourceType>Package</NuGetSourceType>
-    </Reference>
-    <ReferenceCopyLocalPaths Condition="'$(_NetStandardLibraryLibPath)' != ''" Include="$(_NetStandardLibraryLibPath)*.dll">
-      <Private>false</Private>
-      <NuGetPackageId>NETStandard.Library</NuGetPackageId>
-      <NuGetPackageVersion>$(NETStandardLibraryPackageVersion)</NuGetPackageVersion>
-      <NuGetIsFrameworkReference>false</NuGetIsFrameworkReference>
-      <NuGetSourceType>Package</NuGetSourceType>
-    </ReferenceCopyLocalPaths>
-  </ItemGroup>
-
   <Target Name="_GetLockFileAssemblies"
           DependsOnTargets="ComputePrivateAssetsPackageReferences;
                             _DefaultMicrosoftNETPlatformLibrary">
@@ -77,7 +55,7 @@
     </ResolvePublishAssemblies>
   </Target>
 
-  <UsingTask TaskName="HandlePackageFileConflicts" AssemblyFile="$(NETStandardToolsTaskDirectory)NETStandard.Tools.dll" />
+  <UsingTask TaskName="HandlePackageFileConflicts" AssemblyFile="$(MicrosoftPackagingToolsTaskDirectory)Microsoft.Packaging.Tools.Tasks.dll" />
   <Target Name="HandlePackageFileConflicts" AfterTargets="$(HandlePackageFileConflictsAfter)" DependsOnTargets="$(HandlePackageFileConflictsDependsOn)">
     <HandlePackageFileConflicts References="@(Reference)"
                                 ReferenceCopyLocalPaths="@(ReferenceCopyLocalPaths)"
@@ -104,7 +82,7 @@
   <PropertyGroup>
     <_RemoveDepsFileConflictsSemaphore>$(IntermediateOutputPath)\RemoveDepsFileConflicts.semaphore</_RemoveDepsFileConflictsSemaphore>
   </PropertyGroup>
-  <UsingTask TaskName="RemoveDepsFileConflicts" AssemblyFile="$(NETStandardToolsTaskDirectory)NETStandard.Tools.dll" />
+  <UsingTask TaskName="RemoveDepsFileConflicts" AssemblyFile="$(MicrosoftPackagingToolsTaskDirectory)Microsoft.Packaging.Tools.Tasks.dll" />
   <Target Name="RemoveDepsFileConflicts" AfterTargets="$(RemoveDepsFileConflictsAfter)"
           Inputs="$(ProjectDepsFilePath)" Outputs="$(_RemoveDepsFileConflictsSemaphore)"
           Condition="'$(GenerateDependencyFile)'=='true'">
@@ -140,5 +118,5 @@
     </Touch>
   </Target>
 
-  <Import Project="NETStandard.Library.Trimming.targets" Condition="'$(_supportsTrimming)' == 'true' AND '$(TrimUnusedDependencies)' == 'true'" />
+  <Import Project="Microsoft.Packaging.Tools.Trimming.targets" Condition="'$(_supportsTrimming)' == 'true' AND '$(TrimUnusedDependencies)' == 'true'" />
 </Project>

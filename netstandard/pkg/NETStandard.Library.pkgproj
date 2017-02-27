@@ -9,7 +9,7 @@
     <OmitDependencies>true</OmitDependencies>
     <SkipValidatePackage>true</SkipValidatePackage>
     <TargetsFileName>NETStandard.Library.targets</TargetsFileName>
-    <RootTargetsTemplate>..\tools\targets\$(TargetsFileName)</RootTargetsTemplate>
+    <RootTargetsTemplate>targets\$(TargetsFileName)</RootTargetsTemplate>
     <RootTargetsSource>$(IntermediateOutputPath)$(TargetsFileName)</RootTargetsSource>
     <NETStandardVersion>netstandard2.0</NETStandardVersion>
   </PropertyGroup>
@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ref\netstandard.csproj" />
-    <ProjectReference Include="..\tools\NETStandard.Tools.builds" />
     <ProjectReference Include="shims\netstandard\dir.builds" />
     <ProjectReference Include="shims\netfx\dir.builds" />
     <ProjectReference Include="..\src\netstandard.csproj">
@@ -29,15 +28,11 @@
       <TargetPath>build/$(Id).targets</TargetPath>
     </File>
 
-    <File Include="..\tools\targets\NETStandard.Library.Trimming.targets">
-      <TargetPath>build</TargetPath>
-    </File>
-
-    <File Include="..\tools\targets\netstandard\$(TargetsFileName)">
+    <File Include="targets\netstandard\$(TargetsFileName)">
       <TargetPath>build/$(NETStandardVersion)/$(Id).targets</TargetPath>
     </File>
 
-    <File Include="..\tools\targets\netfx\$(TargetsFileName)">
+    <File Include="targets\netfx\$(TargetsFileName)">
       <TargetPath>build/net461/$(Id).targets</TargetPath>
     </File>
 

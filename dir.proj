@@ -10,7 +10,7 @@
     <Project Include="src.builds" />
     <Project Include="apicompat/apicompat.proj" />
     <Project Include="signing.builds" />
-    <Project Include="netstandard/pkg/*.pkgproj" />
+    <Project Include="packages.builds" />
   </ItemGroup>
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.traversal.targets))\dir.traversal.targets" />
