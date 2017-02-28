@@ -4,6 +4,8 @@ This package provides build infrastructure for trimming the output of an applica
 
 It determines what is used by the application by examining static dependencies of the application binary as well as any directly referenced packages.  For any file that is unused it will be removed from the set of files copied to the output and publish folders and removed from the application's dependency file(`deps.json`) in the case of a .NET Core application.
 
+Applications which rely on dynamic dependencies, for example using reflection or runtime compilation like ASP.NET MVC, can specify their dynamic dependencies by referencing packages that contain those dependencies or specifying dependent files as *[roots](#roots)*.
+
 ## How to use
 First install the `Microsoft.Packaging.Tools` package in your application.
 
@@ -19,6 +21,8 @@ dotnet publish /p:TrimUnusedDependencies=true
 msbuild /p:TrimUnusedDependencies=true
 msbuild /t:Publish /p:TrimUnusedDependencies=true
 ```
+
+**Important:** Specify TrimUnusedDependencies for both *build* and *publish*, otherwise *build* will produce an applicatiob that is not trimmed and debugging will run against an untrimmed application that may hide any problems introduced by trimming, like missing dynamic dependencies.
 
 ### From the IDE or committing the change to your project
 
@@ -36,6 +40,40 @@ In your project (*.csproj* file) make the following change.
 `@(TrimmableFiles)` - Files which should be trimmed from the application.  See [trimmable](#trimmable).  
 `@(TrimmablePackages)` - Packages which should be trimmed from the application.  See [trimmable](#trimmable).  
 `$(TrimFilesPreferNativeImages)` - Prefer a file with the `.ni.dll` extension over a file with the `.dll` extension.  `.ni.dll` files are native images and significantly larger than a managed assembly but will load faster since they don't need to be JIT compiled.
+`$(RootPackageReference)` - Set to `false` to indicate that `PackageReferences` should not be considered as *[roots](roots)*.
+
+**Examples:**
+- Specify TrimFilesRootFiles to include file `System.IO.Pipes.dll`.
+
+```xml
+<ItemGroup>
+  <TrimFilesRootFiles Include="System.IO.Pipes.dll" />
+<ItemGroup>
+```
+
+- Specify TrimmablePackages to indicate that the `System.Composition` meta-package should be considered trimmable and only the files in its closure that are actually used should be included.
+
+```xml
+<ItemGroup>
+  <TrimmablePackages Include="System.Composition" />
+<ItemGroup>
+```
+
+- Specify TrimFilesPreferNativeImages to prefer faster and larger native images if they exist.
+
+```xml
+<PropertyGroup>
+  <TrimFilesPreferNativeImages>true</TrimFilesPreferNativeImages>
+</PropertyGroup>
+```
+
+- Specify RootPackageReference to prefer avoid *rooting* packages directly reference by the project.
+
+```xml
+<PropertyGroup>
+  <RootPackageReference>false</RootPackageReference>
+</PropertyGroup>
+```
 
 ## How it works
 The trimming task examines all of the binaries and packages that make up your project and constructs a graph of the two that is related.  We start by identifying roots that are included in the application then we traverse the relationships between those to determine if other files or packages should be included in the app.
@@ -45,13 +83,13 @@ By default the application is a *root*, as well as all `PackageReference`s from 
 
 The direct packages references may be excluded from the set of *roots* by specifying the property `RootPackageReference=false`.
 
-Additional file *roots* may be specified using the `TrimFilesRootFiles` item.
+Additional file *roRootPackageReferenceots* may be specified using the `TrimFilesRootFiles` item.
 Additional package *roots* may be specified using the `TrimFilesRootPackages` item.
 
 ### Trimmable
-Files or packages may be treated as *trimmable*.  Essentially this means that when the file or package is encountered during graph traversal, traversal will halt down that path.
+Files or packages may be treated as *trimmable*.  Essentially this means that when the file or package is encountered while examining dRootPackageReferenceependencies, that file or package will not be included nor will its dependencies unless otherwise referenced.
 
-If a file is *trimmable* this means that the file will not be included in the application.  A reference to the file alone will not cause the file to be included, nor will a direct reference to a package containing that file.
+If a file is *trimmable* this means that the file will not be included in the application.  This takes precedence over all other indirect or direct references, including *roots*.
 
 If a package is *trimmable* this means that a package's files will not be included in the application unless those files are directly referenced by another file or as a root.
 
@@ -59,7 +97,7 @@ Additional *trimmable* files may be specified using the `TrimmableFiles` item.
 Additional *trimmable* packages may be specified using the `TrimmablePackages` item.
 
 ### File relationships
-Managed assemblies are related to other managed assemblies by type references.  Managed assemblies are related to native libraries by DllImports, P-Invokes, to those libraries.
+Managed assemblies are related to other managed assemblies by assembly references in the compiled assembly.  Managed assemblies are related to native libraries by DllImports, P-Invokes, to those libraries.
 
 #### Adding file relationships explicitly
 Not all relationships can be discovered statically.  A file may define relationships to other files by placing a text file next to it, with the `.dependencies` extension and list other files that it depends on.
