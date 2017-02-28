@@ -3,6 +3,10 @@
 
   <UsingTask TaskName="TrimFiles" AssemblyFile="$(MicrosoftPackagingToolsTaskDirectory)Microsoft.Packaging.Tools.Tasks.dll" />
 
+  <PropertyGroup>
+    <TreatMetaPackagesAsTrimmable Condition="'$(TreatMetaPackagesAsTrimmable)' == ''">true</TreatMetaPackagesAsTrimmable>
+  </PropertyGroup>
+  
   <Target Name="_determineTrimPackageInputs">
     <ItemGroup Condition="'$(RootPackageReference)' != 'true'">
       <TrimFilesRootPackages Include="@(PackageReference)"/>
@@ -38,7 +42,8 @@
                RuntimeIdentifier="$(RuntimeIdentifier)"
                RuntimeItems="@(ReferenceCopyLocalPaths)"
                OtherRuntimeItems="@(_trimOtherRuntimeItems)"
-               PreferNativeImages="$(TrimFilesPreferNativeImages)">
+               PreferNativeImages="$(TrimFilesPreferNativeImages)"
+               TreatMetaPackagesAsTrimmable="$(TreatMetaPackagesAsTrimmable)">
       <Output ItemName="_ReferenceCopyLocalPathsAfterTrimming" TaskParameter="RuntimeItemsAfterTrimming" />
       <Output ItemName="_ConflictPackageFiles" TaskParameter="TrimmedItems" />
     </TrimFiles>
@@ -61,7 +66,8 @@
                TargetFramework="$(TargetFrameworkMoniker)"
                RuntimeIdentifier="$(RuntimeIdentifier)"
                RuntimeItems="@(ResolvedAssembliesToPublish)"
-               PreferNativeImages="$(TrimFilesPreferNativeImages)" >
+               PreferNativeImages="$(TrimFilesPreferNativeImages)"
+               TreatMetaPackagesAsTrimmable="$(TreatMetaPackagesAsTrimmable)">
       <Output ItemName="_ResolvedAssembliesToPublishAfterTrimming" TaskParameter="RuntimeItemsAfterTrimming" />
       <Output ItemName="_PublishConflictPackageFiles" TaskParameter="TrimmedItems" />
     </TrimFiles>

@@ -39,8 +39,9 @@ In your project (*.csproj* file) make the following change.
 `@(TrimFilesRootPackages)` -  Additional *root* packages to consider part of the application.  See [roots](#roots).  
 `@(TrimmableFiles)` - Files which should be trimmed from the application.  See [trimmable](#trimmable).  
 `@(TrimmablePackages)` - Packages which should be trimmed from the application.  See [trimmable](#trimmable).  
-`$(TrimFilesPreferNativeImages)` - Prefer a file with the `.ni.dll` extension over a file with the `.dll` extension.  `.ni.dll` files are native images and significantly larger than a managed assembly but will load faster since they don't need to be JIT compiled.
-`$(RootPackageReference)` - Set to `false` to indicate that `PackageReferences` should not be considered as *[roots](roots)*.
+`$(TrimFilesPreferNativeImages)` - Prefer a file with the `.ni.dll` extension over a file with the `.dll` extension.  `.ni.dll` files are native images and significantly larger than a managed assembly but will load faster since they don't need to be JIT compiled.  Default is `false`.
+`$(RootPackageReference)` - Set to `false` to indicate that `PackageReferences` should not be considered as *[roots](roots)*.  Default is `true`.
+`$(TreatMetaPackagesAsTrimmable)` - When set to `true` indicates that meta-packages (packages without any file assets) should be treated as *[trimmable](#trimmable)*.  Default is `true`.
 
 **Examples:**
 - Specify TrimFilesRootFiles to include file `System.IO.Pipes.dll`.
