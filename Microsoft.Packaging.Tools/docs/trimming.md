@@ -109,3 +109,39 @@ Suppose `foo.dll` depends on `somelibrary.dll` but that dependency is dynamic.  
 Packages are related to other packages by dependencies.  Files are related to packages if they are contained in a package.
 
 Package relationships are established by the dependencies of a package.  In this way if a file (a.dll) has a dynamic dependency on another file (b.dll) which is contained in a package (B), that file may be included in a package (A) with a dependency on the other package (b).
+
+## How to identify and fix missing dynamic dependencies
+The best way to identify dynamic dependencies is to run your application with trimming enabled and without.  If it fails only with trimming enabled then the cause of the failure is likely trimming.
+
+A missing assembly may cause the application to fail with an exception like the following:
+
+```
+Unhandled Exception: System.IO.FileNotFoundException: Could not load file or assembly
+'AssemblyName, Culture=culture, PublicKeyToken=0123456789abcdef' or one of its dependencies.
+The system cannot find the file specified.
+```
+
+To fix this you can *root* the assembly `'AssemblyName, Culture=culture, PublicKeyToken=0123456789abcdef'` by adding the following to your project file.
+
+```xml
+<ItemGroup>
+  <TrimFilesRootFiles Include="AssemblyName.dll" />
+<ItemGroup>
+```
+
+A missing native library may cause the application to fail with an exception like the following:
+
+```
+Unhandled Exception: System.DllNotFoundException: Unable to load DLL 'native.dll':
+The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+```
+
+To fix this you can *root* the native library `'native.dll'` by adding the following to your project file.
+
+```xml
+<ItemGroup>
+  <TrimFilesRootFiles Include="native.dll" />
+<ItemGroup>
+```
+
+**Note:** Just because you see these exceptions doesn't necessarily mean trimming is the root cause.  If you don't see the exception when running the application with trimming disabled then trimming is the likely cause.  If you see the exception when running the application with trimming disabled then the cause could be a missing pre-requisite or an undeclared dependency from some package.
