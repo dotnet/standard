@@ -80,6 +80,11 @@ namespace Microsoft.DotNet.Build.Tasks
         public bool PreferNativeImages { get; set; }
 
         /// <summary>
+        /// True to treat packages with only package references as trimmable.
+        /// </summary>
+        public bool TreatMetaPackagesAsTrimmable { get; set; }
+
+        /// <summary>
         /// A subset of ReferenceCopyLocalPaths after trimming has been done.
         /// </summary>
         [Output]
@@ -89,6 +94,7 @@ namespace Microsoft.DotNet.Build.Tasks
         public ITaskItem[] TrimmedItems { get; set; }
 
         private ILog log;
+        private Trimmable trimmable;
 
         public override bool Execute()
         {
@@ -100,8 +106,8 @@ namespace Microsoft.DotNet.Build.Tasks
             // Build file graph
             var files = GetFiles(packages);
 
-            var trimmable = new Trimmable(TrimmablePackages?.Select(i => i.ItemSpec), 
-                                          TrimmableFiles?.Select(i => GetFileNameFromItem(i)));
+            trimmable = new Trimmable(TrimmablePackages?.Select(i => i.ItemSpec), 
+                                      TrimmableFiles?.Select(i => GetFileNameFromItem(i)));
 
             Queue<NuGetPackageNode> packageRoots = GetPackageRoots(packages, trimmable);
             Queue<FileNode> fileRoots = GetFileRoots(files, trimmable);
@@ -117,7 +123,7 @@ namespace Microsoft.DotNet.Build.Tasks
                         IncludeNode(fileRoots, file);
                     }
 
-                    if (fileNode.Package != null && !trimmable.IsPackageTrimmable(fileNode.PackageId))
+                    if (fileNode.Package != null && !IsPackageTrimmable(fileNode.Package))
                     {
                         IncludeNode(packageRoots, fileNode.Package);
                     }
@@ -127,7 +133,7 @@ namespace Microsoft.DotNet.Build.Tasks
                 {
                     var packageNode = packageRoots.Dequeue();
 
-                    foreach(var dependency in packageNode.Dependencies.Where(d => !trimmable.IsPackageTrimmable(d.Id)))
+                    foreach(var dependency in packageNode.Dependencies.Where(d => !IsPackageTrimmable(d)))
                     {
                         IncludeNode(packageRoots, dependency);
                     }
@@ -183,9 +189,7 @@ namespace Microsoft.DotNet.Build.Tasks
             {
                 var rootPackageIds = RootPackages.Select(i => GetPackageIdFromItemSpec(i.ItemSpec));
 
-                var trimmedRootPackageIds = rootPackageIds.Where(p => !trimmable.IsPackageTrimmable(p));
-
-                foreach (var rootPackageId in trimmedRootPackageIds)
+                foreach (var rootPackageId in rootPackageIds)
                 {
                     NuGetPackageNode rootPackage;
 
@@ -194,7 +198,10 @@ namespace Microsoft.DotNet.Build.Tasks
                         throw new Exception($"Root package {rootPackageId} was specified but was not found in {AssetsFilePath}");
                     }
 
-                    IncludeNode(packageRootQueue, rootPackage);
+                    if (!IsPackageTrimmable(rootPackage))
+                    {
+                        IncludeNode(packageRootQueue, rootPackage);
+                    }
                 }
             }
 
@@ -292,6 +299,12 @@ namespace Microsoft.DotNet.Build.Tasks
             }
 
             return files;
+        }
+
+        private bool IsPackageTrimmable(NuGetPackageNode package)
+        {
+            return trimmable.IsPackageTrimmable(package.Id) ||
+                (TreatMetaPackagesAsTrimmable && package.IsMetaPackage);
         }
 
         private static void IncludeNode<T>(Queue<T> queue, T node) where T : IIsIncluded
