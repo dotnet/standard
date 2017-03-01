@@ -22,7 +22,7 @@ msbuild /p:TrimUnusedDependencies=true
 msbuild /t:Publish /p:TrimUnusedDependencies=true
 ```
 
-**Important:** Specify TrimUnusedDependencies for both *build* and *publish*, otherwise *build* will produce an applicatiob that is not trimmed and debugging will run against an untrimmed application that may hide any problems introduced by trimming, like missing dynamic dependencies.
+**Important:** Specify TrimUnusedDependencies for both *build* and *publish*, otherwise *build* will produce an application that is not trimmed and debugging will run against an untrimmed application that may hide any problems introduced by trimming, like missing dynamic dependencies.
 
 ### From the IDE or committing the change to your project
 
@@ -83,11 +83,11 @@ By default the application is a *root*, as well as all `PackageReference`s from 
 
 The direct packages references may be excluded from the set of *roots* by specifying the property `RootPackageReference=false`.
 
-Additional file *roRootPackageReferenceots* may be specified using the `TrimFilesRootFiles` item.
+Additional file *roots* may be specified using the `TrimFilesRootFiles` item.
 Additional package *roots* may be specified using the `TrimFilesRootPackages` item.
 
 ### Trimmable
-Files or packages may be treated as *trimmable*.  Essentially this means that when the file or package is encountered while examining dRootPackageReferenceependencies, that file or package will not be included nor will its dependencies unless otherwise referenced.
+Files or packages may be treated as *trimmable*.  Essentially this means that when the file or package is encountered while examining dependencies, that file or package will not be included nor will its dependencies unless otherwise referenced.
 
 If a file is *trimmable* this means that the file will not be included in the application.  This takes precedence over all other indirect or direct references, including *roots*.
 
