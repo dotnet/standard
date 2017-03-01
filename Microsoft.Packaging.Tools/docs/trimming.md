@@ -52,11 +52,11 @@ In your project (*.csproj* file) make the following change.
 <ItemGroup>
 ```
 
-- Specify TrimmablePackages to indicate that the `System.Composition` meta-package should be considered trimmable and only the files in its closure that are actually used should be included.
+- Specify TrimmablePackages to indicate that the `NuGet.Client` package should be considered trimmable and only the files in its closure that are actually used should be included.
 
 ```xml
 <ItemGroup>
-  <TrimmablePackages Include="System.Composition" />
+  <TrimmablePackages Include="NuGet.Client" />
 <ItemGroup>
 ```
 
