@@ -37,14 +37,13 @@ namespace Microsoft.DotNet.Build.Tasks
         /// <returns>rank of package</returns>
         public int GetPackageRank(string packageId)
         {
-            int rank = int.MaxValue;
-
-            if (packageId != null)
+            int rank;
+            if (packageId != null && packageRanks.TryGetValue(packageId, out rank))
             {
-                packageRanks.TryGetValue(packageId, out rank);
+                return rank;
             }
 
-            return rank;
+            return int.MaxValue;
         }
     }
 }
