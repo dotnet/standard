@@ -23,7 +23,6 @@
 "System.ComponentModel.TypeConverter": "4.3.0",
 "System.Console": "4.3.0",
 "System.Data.Common": "4.3.0",
-"System.Data.SqlClient": "4.3.0",
 "System.Diagnostics.Contracts": "4.3.0",
 "System.Diagnostics.Debug": "4.3.0",
 "System.Diagnostics.FileVersionInfo": "4.3.0",
