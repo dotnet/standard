@@ -10,6 +10,7 @@
 * [Channel 9: Whiteboarding .NET Standard](https://channel9.msdn.com/Blogs/Seth-Juarez/What-is-NET-Standard)
 * [Podcast Episode on .NET Rocks!](http://dotnetrocks.com/?show=1371)
 * [Q&A](https://channel9.msdn.com/Shows/On-NET/Immo-Landwerth-Net-Standard) video
+* [Versions][netstandard-versions]
 
 ## What is .NET Standard?
 
