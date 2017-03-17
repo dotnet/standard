@@ -7,12 +7,19 @@
     <IsReferenceAssembly>true</IsReferenceAssembly>
   </PropertyGroup>
 
-   <ItemGroup>
+  <PropertyGroup>
+    <PackageForNetFx>true</PackageForNetFx>
+    <!-- Some assemblies that ship with implementatiosn in NetFx should not ship as a netfx shim -->
+    <PackageForNetFx Condition="'$(MSBuildProjectName)' == 'System.IO.Compression'">false</PackageForNetFx>
+    <PackageForNetFx Condition="'$(MSBuildProjectName)' == 'System.Net.Http'">false</PackageForNetFx>
+  </PropertyGroup>
+
+  <ItemGroup>
     <PackageDestination Include="build/$(TargetFramework)/ref">
       <TargetFramework>$(TargetFramework)</TargetFramework>
     </PackageDestination>
     <!-- Package all the netstandard contract shims in net461 ref as well -->
-    <PackageDestination Include="build/net461/ref">
+    <PackageDestination Include="build/net461/ref" Condition="'$(PackageForNetFx)' == 'true'">
       <TargetFramework>net461</TargetFramework>
     </PackageDestination>
   </ItemGroup>
