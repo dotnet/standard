@@ -3,6 +3,7 @@
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(Microsoft.Win32.SafeHandles.SafeFileHandle))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(Microsoft.Win32.SafeHandles.SafeProcessHandle))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(Microsoft.Win32.SafeHandles.SafeWaitHandle))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.AccessViolationException))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Action))]

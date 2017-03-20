@@ -351,6 +351,12 @@ namespace System.Net
 }
 namespace System.Net.Mail
 {
+    public enum SmtpAccess
+    {
+        Connect = 1,
+        ConnectToUnrestrictedPort = 2,
+        None = 0,
+    }
     public sealed partial class SmtpPermission : System.Security.CodeAccessPermission, System.Security.Permissions.IUnrestrictedPermission
     {
         public SmtpPermission(bool unrestricted) { }

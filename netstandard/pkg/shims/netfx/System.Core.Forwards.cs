@@ -169,6 +169,7 @@
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.CngUIProtectionLevels))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.ECDiffieHellmanPublicKey))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.ECDsa))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.ECDsaCng))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.RSACng))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.X509Certificates.ECDsaCertificateExtensions))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Security.Cryptography.X509Certificates.RSACertificateExtensions))]
