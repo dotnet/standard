@@ -292,7 +292,9 @@ called *.NET Standard*.
 
 ## Can you explain the assemblies and type forwarding in more detail?
 
-Yes. For now, take a look at the [.NET Standard 2.0 spec][netstandard-spec], as
+Yes. See this video explaining how .NET Standard works [under the
+covers](https://www.youtube.com/watch?v=vg6nR7hS2lI&list=PLRAdsfhKI4OWx321A_pr-7HhRNk7wOLLY&index=4).
+You can also take a look at the [.NET Standard 2.0 spec][netstandard-spec], as
 it has some diagrams.
 
 [netstandard-docs]: https://docs.microsoft.com/en-us/dotnet/articles/standard/library
