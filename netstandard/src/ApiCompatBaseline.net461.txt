@@ -31,8 +31,6 @@ MembersMustExist : Member 'System.Net.Http.HttpClientHandler.SslProtocols.set(Sy
 TypesMustExist : Type 'System.Net.Sockets.SocketReceiveFromResult' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.Sockets.SocketReceiveMessageFromResult' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.Sockets.SocketTaskExtensions' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Numerics.Vector' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Numerics.Vector<T>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.Serialization.DataContractSerializerExtensions' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.Serialization.ISerializationSurrogateProvider' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Security.SecureStringMarshal' does not exist in the implementation but it does exist in the contract.
@@ -64,4 +62,4 @@ MembersMustExist : Member 'System.Text.RegularExpressions.Regex.Caps.set(System.
 TypesMustExist : Type 'System.Threading.PreAllocatedOverlapped' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Threading.ThreadPoolBoundHandle' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 65
+Total Issues: 63
