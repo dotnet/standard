@@ -297,6 +297,33 @@ covers](https://www.youtube.com/watch?v=vg6nR7hS2lI&list=PLRAdsfhKI4OWx321A_pr-7
 You can also take a look at the [.NET Standard 2.0 spec][netstandard-spec], as
 it has some diagrams.
 
+## Should I reference the meta package or should I reference individual packages?
+
+In the past, we've given developers the recommendation to not reference the meta
+package (`NETStandard.Library`) from NuGet packages but instead reference
+individual packages, like `System.Runtime` and `System.Collections`. The
+rationale was that we thought of the meta package as a shorthand for a bunch of
+packages that were the actual atomic building blocks of the .NET platform. The
+assumption was: we might end up creating another .NET platform that only
+supports some of these atomic blocks but not all of them. There were also
+concerns regarding how our tooling deals with large package graphs.
+
+Moving forward, we'll simplify this:
+
+1. **.NET Standard is an atomic building block**. In other words, new platforms
+aren't allowed to subset .NET Standard -- they have to implement all of it.
+
+2. **We're moving away from using packages to describe our platforms**,
+including .NET Standard.
+
+This means, you'll not have to reference any NuGet packages for .NET Standard
+anymore. You expressed your dependency with the lib folder, which is exactly how
+it has worked for all other .NET platforms, in particular .NET Framework.
+
+However, right now our tooling will still burn in the reference to
+`NETStandard.Library`. There is no harm in that either, it will just become
+redundant moving forward.
+
 [netstandard-docs]: https://docs.microsoft.com/en-us/dotnet/articles/standard/library
 [netstandard-post]: https://blogs.msdn.microsoft.com/dotnet/2016/09/26/introducing-net-standard/
 [netstandard-spec]: netstandard-20/README.md
