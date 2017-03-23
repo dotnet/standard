@@ -6,27 +6,23 @@ The table below lists all versions of .NET Standard:
   document that shows which APIs got added in that version of .NET Standard.
 * The rows indicate which version of a given .NET platform implements a given
   .NET Standard version.
-* The arrows indicate that the platform supports a higher version of .NET
-  Standard. For instance, .NET Core 1.0 supports the .NET Standard version 1.6,
-  which is why there are arrows pointing to the right for the lower versions 1.0
-  \- 1.5.
 
 You can use this table to understand what the highest version of .NET Standard
 is that you can target, based on which .NET platforms you intend to run on. For
 instance, if you want to run on .NET Framework 4.5 and .NET Core 1.0, you can at
 most target .NET Standard 1.1.
 
-|.NET Platform              | [1.0]| [1.1]| [1.2]| [1.3]| [1.4]| [1.5]| [1.6]| [2.0]|
-|:--------------------------|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|
-|.NET Core                  |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|   1.0| vNext|
-|.NET Framework             |&rarr;|  4.5 | 4.5.1|   4.6|&rarr;|&rarr;|&rarr;| 4.6.1|
-|Mono                       |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|   4.6| vNext|
-|Xamarin.iOS                |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|  10.0| vNext|
-|Xamarin.Android            |&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|&rarr;|   7.0| vNext|
-|Universal Windows Platform |&rarr;|&rarr;|&rarr;|&rarr;|  10.0|&rarr;|&rarr;| vNext|
-|Windows                    |&rarr;|   8.0|   8.1|      |      |      |      |      |
-|Windows Phone              |&rarr;|&rarr;|   8.1|      |      |      |      |      |
-|Windows Phone Silverlight  |   8.0|      |      |      |      |      |      |      |
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.NET Standard| [1.0]    | [1.1] | [1.2]   | [1.3]  | [1.4]| [1.5]| [1.6]| [2.0]|
+|:--------------------------|---------:|------:|--------:|-------:|-----:|-----:|-----:|-----:|
+|.NET Core                  |   **1.0**|    1.0|      1.0|     1.0|      1.0|   1.0|   1.0|   **2.0**|
+|.NET Framework             |   **4.5**|**4.5**|**4.5.1**| **4.6**|**4.6.1**|4.6.1 ~~4.6.2~~|4.6.1 ~~vNext~~|4.6.1|
+|Mono                       |   **4.6**|    4.6|      4.6|     4.6|   4.6|   4.6|   4.6| **vNext**|
+|Xamarin.iOS                |  **10.0**|   10.0|     10.0|    10.0|  10.0|  10.0|  10.0| **vNext**|
+|Xamarin.Android            |   **7.0**|    7.0|      7.0|     7.0|   7.0|   7.0|   7.0| **vNext**|
+|Universal Windows Platform |  **10.0**|   10.0|     10.0|    10.0|  10.0| **vNext**| vNext| vNext|
+|Windows                    |   **8.0**|    8.0|  **8.1**|        |      |      |      |      |
+|Windows Phone              |   **8.1**|    8.1|      8.1|        |      |      |      |      |
+|Windows Phone Silverlight  |   **8.0**|       |         |        |      |      |      |      |
 
 [1.0]: versions/netstandard1.0.md
 [1.1]: versions/netstandard1.1.md
@@ -36,6 +32,10 @@ most target .NET Standard 1.1.
 [1.5]: versions/netstandard1.5.md
 [1.6]: versions/netstandard1.6.md
 [2.0]: versions/netstandard2.0.md
+
+**NOTE**: The table above reflects the mappings that will happen when we release the
+.NET Standard 2.0 tooling. You can see that .NET Framework 4.6.1 mapping is being moved from
+1.4 to 2.0. For the exact mapping table for pre-.NET Standard 2.0 tooling see [.NET Standard Library](https://docs.microsoft.com/en-us/dotnet/articles/standard/library)
 
 ## How do I know which .NET Standard version I should target?
 
