@@ -12,7 +12,7 @@ is that you can target, based on which .NET platforms you intend to run on. For
 instance, if you want to run on .NET Framework 4.5 and .NET Core 1.0, you can at
 most target .NET Standard 1.1.
 
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.NET Standard| [1.0]    | [1.1] | [1.2]   | [1.3]  | [1.4]| [1.5]| [1.6]| [2.0]|
+|<div align="right">.NET Standard</div>| [1.0]    | [1.1] | [1.2]   | [1.3]  | [1.4]| [1.5]| [1.6]| [2.0]|
 |:--------------------------|---------:|------:|--------:|-------:|-----:|-----:|-----:|-----:|
 |.NET Core                  |   **1.0**|    1.0|      1.0|     1.0|      1.0|   1.0|   1.0|   **2.0**|
 |.NET Framework             |   **4.5**|**4.5**|**4.5.1**| **4.6**|**4.6.1**|4.6.1 ~~4.6.2~~|4.6.1 ~~vNext~~|4.6.1|
