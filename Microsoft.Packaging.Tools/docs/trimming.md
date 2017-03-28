@@ -1,4 +1,4 @@
-#Dependency Trimming
+# Dependency Trimming
 
 This package provides build infrastructure for trimming the output of an application.
 
