@@ -56,7 +56,7 @@
 
   <Target Name="TrimFilesOnPublish"
           DependsOnTargets="_determineTrimPackageInputs"
-          AfterTargets="HandlePublishFileConflicts">
+          BeforeTargets="ComputeFilesToPublish">
 
     <TrimFiles RootFiles="@(IntermediateAssembly);@(TrimFilesRootFiles)"
                RootPackages="@(TrimFilesRootPackages)"
