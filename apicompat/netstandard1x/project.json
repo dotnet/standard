@@ -82,7 +82,6 @@
 "System.Runtime.Serialization.Xml": "4.3.0",
 "System.Security.Claims": "4.3.0",
 "System.Security.Cryptography.Algorithms": "4.3.0",
-"System.Security.Cryptography.Cng": "4.3.0",
 "System.Security.Cryptography.Csp": "4.3.0",
 "System.Security.Cryptography.Encoding": "4.3.0",
 "System.Security.Cryptography.Primitives": "4.3.0",
