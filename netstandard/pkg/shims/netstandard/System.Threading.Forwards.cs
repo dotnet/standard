@@ -1,6 +1,6 @@
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.AbandonedMutexException))]
-[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.AsyncLocal<>))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.AsyncLocalValueChangedArgs<>))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.AsyncLocal<>))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.AutoResetEvent))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.Barrier))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.BarrierPostPhaseException))]

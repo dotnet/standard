@@ -16,7 +16,6 @@
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.CancellationTokenSource))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.Tasks.ConcurrentExclusiveSchedulerPair))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.Tasks.Task))]
-[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.Tasks.Task<>))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.Tasks.TaskCanceledException))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.Tasks.TaskCompletionSource<>))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.Tasks.TaskContinuationOptions))]
@@ -27,4 +26,5 @@
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.Tasks.TaskScheduler))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.Tasks.TaskSchedulerException))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.Tasks.TaskStatus))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.Tasks.Task<>))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Threading.Tasks.UnobservedTaskExceptionEventArgs))]
