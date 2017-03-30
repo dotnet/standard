@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <AssemblyOriginatorKeyFile Condition="'$(UseOpenKey)' == 'true'">$(ToolsDir)Open.snk</AssemblyOriginatorKeyFile>
     <AssemblyOriginatorKeyFile Condition="'$(UseECMAKey)' == 'true'">$(ToolsDir)ECMA.snk</AssemblyOriginatorKeyFile>
     <AssemblyOriginatorKeyFile Condition="'$(UseMSFTKey)' == 'true'">$(ToolsDir)MSFT.snk</AssemblyOriginatorKeyFile>
     <AssemblyOriginatorKeyFile Condition="'$(UseWinFxKey)' == 'true'">$(ProjectDir)platforms/winfx.pub</AssemblyOriginatorKeyFile>

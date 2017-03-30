@@ -99,6 +99,7 @@
 "System.Threading.Thread": "4.3.0",
 "System.Threading.ThreadPool": "4.3.0",
 "System.Threading.Timer": "4.3.0",
+"System.ValueTuple": "4.3.0",
 "System.Xml.ReaderWriter": "4.3.0",
 "System.Xml.XDocument": "4.3.0",
 "System.Xml.XmlDocument": "4.3.0",
