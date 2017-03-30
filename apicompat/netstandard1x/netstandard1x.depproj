@@ -11,13 +11,4 @@
     <None Include="project.json" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
-  <Target Name="FilterNugetPackage" AfterTargets="ResolveNuGetPackages">
-    <ItemGroup>
-      <!--
-        Remove OOB assemblies from compat considerations because we will continue
-        to ship them as OOB assemblies
-      -->
-      <Reference Remove="@(Reference)" Condition="'%(Filename)' == 'System.Runtime.InteropServices.RuntimeInformation'" />
-    </ItemGroup>
-  </Target>
 </Project>

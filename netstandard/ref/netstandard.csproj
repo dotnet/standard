@@ -29,6 +29,7 @@
     <Compile Include="System.IO.Compression.FileSystem.cs" />
     <Compile Include="System.Net.Http.cs" />
     <Compile Include="System.Numerics.cs" />
+    <Compile Include="System.Runtime.InteropServices.RuntimeInformation.cs" />
     <Compile Include="System.Runtime.Serialization.cs" />
     <Compile Include="System.Transactions.cs" />
     <Compile Include="System.Web.cs" />
