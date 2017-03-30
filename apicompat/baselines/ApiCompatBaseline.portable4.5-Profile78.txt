@@ -1,13 +1,9 @@
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'Microsoft.CSharp'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Net'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Runtime.InteropServices.WindowsRuntime'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Http'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Primitives'.
 DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Security'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Web'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Windows'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Xml.Serialization'.
 DEFAULT_APPNAME Error: 0 : Unable to resolve assembly 'Assembly(Name=System.Runtime.InteropServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the contract assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
 DEFAULT_APPNAME Error: 0 : Unable to resolve assembly 'Assembly(Name=System.Diagnostics.Tracing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the contract assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
 DEFAULT_APPNAME Error: 0 : Unable to resolve assembly 'Assembly(Name=System.Collections.Concurrent, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the contract assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
@@ -34,27 +30,6 @@ TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArr
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute' does not exist in the implementation but it does exist in the contract.
-Compat issues with assembly System.Net:
-TypesMustExist : Type 'System.Net.Cookie' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.CookieCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.CookieContainer' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.CookieException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.HttpRequestHeader' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.HttpStatusCode' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.HttpWebRequest' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.HttpWebResponse' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.ICredentials' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.IWebRequestCreate' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.NetworkCredential' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.ProtocolViolationException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.WebException' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.WebExceptionStatus' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.WebHeaderCollection' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.WebRequest' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.WebResponse' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.NetworkInformation.NetworkAddressChangedEventHandler' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.NetworkInformation.NetworkChange' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Net.NetworkInformation.NetworkInterface' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly System.Runtime.InteropServices.WindowsRuntime:
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken' does not exist in the implementation but it does exist in the contract.
@@ -326,25 +301,6 @@ Compat issues with assembly System.ServiceModel.Security:
 TypesMustExist : Type 'System.ServiceModel.Channels.LocalClientSecuritySettings' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.Channels.SecurityBindingElement' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.Channels.TransportSecurityBindingElement' does not exist in the implementation but it does exist in the contract.
-Compat issues with assembly System.ServiceModel.Web:
-TypesMustExist : Type 'System.Runtime.Serialization.Json.DataContractJsonSerializer' does not exist in the implementation but it does exist in the contract.
-Compat issues with assembly System.Windows:
-TypesMustExist : Type 'System.Collections.ObjectModel.ObservableCollection<T>' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Collections.ObjectModel.ReadOnlyObservableCollection<T>' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Collections.Specialized.INotifyCollectionChanged' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Collections.Specialized.NotifyCollectionChangedAction' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Collections.Specialized.NotifyCollectionChangedEventArgs' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Collections.Specialized.NotifyCollectionChangedEventHandler' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.ComponentModel.DataErrorsChangedEventArgs' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.ComponentModel.INotifyDataErrorInfo' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Windows.Input.ICommand' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly System.Xml.Serialization:
 TypesMustExist : Type 'System.ServiceModel.XmlSerializerFormatAttribute' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlAnyElementAttributes' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlArrayItemAttributes' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlAttributeOverrides' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlAttributes' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlElementAttributes' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlSerializer' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Xml.Serialization.XmlSerializerNamespaces' does not exist in the implementation but it does exist in the contract.
-Total Issues: 319
+Total Issues: 282
