@@ -1,0 +1,3 @@
+T:System.Security.Cryptography.SHA256CryptoServiceProvider
+T:System.Security.Cryptography.SHA384CryptoServiceProvider
+T:System.Security.Cryptography.SHA512CryptoServiceProvider
