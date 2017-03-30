@@ -2277,6 +2277,30 @@ namespace System.Security.Cryptography
         public byte[] X;
         public byte[] Y;
     }
+    public sealed partial class SHA256CryptoServiceProvider : System.Security.Cryptography.SHA256
+    {
+        public SHA256CryptoServiceProvider() { }
+        protected override void Dispose(bool disposing) { }
+        protected override void HashCore(byte[] array, int ibStart, int cbSize) { }
+        protected override byte[] HashFinal() { throw null; }
+        public override void Initialize() { }
+    }
+    public sealed partial class SHA384CryptoServiceProvider : System.Security.Cryptography.SHA384
+    {
+        public SHA384CryptoServiceProvider() { }
+        protected override void Dispose(bool disposing) { }
+        protected override void HashCore(byte[] array, int ibStart, int cbSize) { }
+        protected override byte[] HashFinal() { throw null; }
+        public override void Initialize() { }
+    }
+    public sealed partial class SHA512CryptoServiceProvider : System.Security.Cryptography.SHA512
+    {
+        public SHA512CryptoServiceProvider() { }
+        protected override void Dispose(bool disposing) { }
+        protected override void HashCore(byte[] array, int ibStart, int cbSize) { }
+        protected override byte[] HashFinal() { throw null; }
+        public override void Initialize() { }
+    }
 }
 namespace System.Security.Cryptography.X509Certificates
 {
