@@ -22,3 +22,6 @@ T:System.Security.Cryptography.TripleDESCng
 T:System.Threading.PreAllocatedOverlapped
 T:System.Threading.ThreadPoolBoundHandle
 T:System.Xml.XPath.XDocumentExtensions
+T:System.Runtime.InteropServices.Architecture
+T:System.Runtime.InteropServices.OSPlatform
+T:System.Runtime.InteropServices.RuntimeInformation

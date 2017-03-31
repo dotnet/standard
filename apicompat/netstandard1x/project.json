@@ -75,6 +75,7 @@
 "System.Runtime.Extensions": "4.3.0",
 "System.Runtime.Handles": "4.3.0",
 "System.Runtime.InteropServices": "4.3.0",
+"System.Runtime.InteropServices.RuntimeInformation": "4.3.0",
 "System.Runtime.Numerics": "4.3.0",
 "System.Runtime.Serialization.Formatters": "4.3.0",
 "System.Runtime.Serialization.Json": "4.3.0",
