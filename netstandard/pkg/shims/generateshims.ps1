@@ -58,6 +58,10 @@ foreach ($shim in $shimList)
     {
         $token = "UseECMAKey";
     }
+    elseif ($asmToken -eq "cc")
+    {
+        $token = "UseOpenKey";
+    }
     elseif ($asmToken -eq "31")
     {
         $token = "UseWinFxKey";

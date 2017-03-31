@@ -25,3 +25,15 @@ T:System.Xml.XPath.XDocumentExtensions
 T:System.Runtime.InteropServices.Architecture
 T:System.Runtime.InteropServices.OSPlatform
 T:System.Runtime.InteropServices.RuntimeInformation
+T:System.TupleExtensions
+T:System.ValueTuple
+T:System.ValueTuple`1
+T:System.ValueTuple`1
+T:System.ValueTuple`2
+T:System.ValueTuple`3
+T:System.ValueTuple`4
+T:System.ValueTuple`5
+T:System.ValueTuple`6
+T:System.ValueTuple`7
+T:System.ValueTuple`8
+T:System.Runtime.CompilerServices.TupleElementNamesAttribute

@@ -32,6 +32,7 @@
     <Compile Include="System.Runtime.InteropServices.RuntimeInformation.cs" />
     <Compile Include="System.Runtime.Serialization.cs" />
     <Compile Include="System.Transactions.cs" />
+    <Compile Include="System.ValueTuple.cs" />
     <Compile Include="System.Web.cs" />
     <Compile Include="System.Xml.cs" />
     <Compile Include="System.Xml.Linq.cs" />
