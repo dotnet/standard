@@ -11,6 +11,10 @@
     <ItemGroup Condition="'$(RootPackageReference)' != 'true'">
       <TrimFilesRootPackages Include="@(PackageReference)"/>
     </ItemGroup>
+    
+    <ItemGroup Condition="'$(RootProjectReference)' != 'true'">
+      <TrimFilesRootFiles Include="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.ReferenceSourceTarget)' == 'ProjectReference'"/>
+    </ItemGroup>
 
     <!-- todo: move this stuff to NETCore.App package -->
     <ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp'">
