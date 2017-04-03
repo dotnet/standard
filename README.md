@@ -31,3 +31,6 @@ Conduct](http://www.dotnetfoundation.org/code-of-conduct).
 
 Check out the [FAQ](docs/faq.md). It should answer most, if not all, the
 questions you have.
+
+Useful links:
+* [.NET Standard versions](https://github.com/dotnet/standard/blob/master/docs/versions.md)
