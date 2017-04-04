@@ -29,8 +29,8 @@ Conduct](http://www.dotnetfoundation.org/code-of-conduct).
 
 ## Learning More
 
-Check out the [FAQ](docs/faq.md). It should answer most, if not all, the
-questions you have.
+Currently defined versions of the .NET Standard can be located in the 
+[Versions](docs/versions.md) document.
 
-Useful links:
-* [.NET Standard versions](https://github.com/dotnet/standard/blob/master/docs/versions.md)
+For more information, check out the [FAQ](docs/faq.md). It should answer any questions 
+you have not covered by the versions documentation.
