@@ -62,17 +62,24 @@ namespace Microsoft.DotNet.Build.Tasks
         {
             if (dependencies == null)
             {
-                PopulateDependenciesInternal(allFiles, preferNativeImage, log);
+                PopulateDependenciesInternal(allFiles, preferNativeImage, log, null);
             }
         }
 
-        private void PopulateDependenciesInternal(IDictionary<string, FileNode> allFiles, bool preferNativeImage, ILog log)
+        private void PopulateDependenciesInternal(IDictionary<string, FileNode> allFiles, bool preferNativeImage, ILog log, Stack<FileNode> stack)
         {
+            if (stack == null)
+            {
+                stack = new Stack<FileNode>();
+            }
+
+            stack.Push(this);
+
             if (dependencies != null)
             {
-                // re-entrant call, bail
-                log.LogMessage($"Cycle detected involving file {Name}");
-
+                // re-entrant call indicates a cycle, bail
+                log.LogMessage($"Cycle detected: {String.Join(" -> ", stack)}");
+                stack.Pop();
                 return;
             }
 
@@ -114,7 +121,7 @@ namespace Microsoft.DotNet.Build.Tasks
                                     dependencies.Add(referencedFile);
 
                                     // populate dependencies of child
-                                    referencedFile.PopulateDependenciesInternal(allFiles, preferNativeImage, log);
+                                    referencedFile.PopulateDependenciesInternal(allFiles, preferNativeImage, log, stack);
 
                                     // if we're following type-forwards out of any dependency make sure to look at typerefs from this assembly.
                                     // and populate the type-forwards in the dependency
@@ -180,7 +187,7 @@ namespace Microsoft.DotNet.Build.Tasks
 
                                         FileNode typeForwardedToNode = null;
 
-                                        var assemblyReferenceNodeStart = assemblyReferenceNode;
+                                        var forwardAssemblies = new Stack<FileNode>();
 
                                         // while assembly forwarded to is also a facade, add a dependency on the target
                                         while (assemblyReferenceNode.followTypeForwards)
@@ -191,14 +198,15 @@ namespace Microsoft.DotNet.Build.Tasks
                                             }
 
                                             dependencies.Add(typeForwardedToNode);
+                                            forwardAssemblies.Push(assemblyReferenceNode);
 
                                             // look at the target in case it is also a facade
                                             assemblyReferenceNode = typeForwardedToNode;
 
-                                            if (assemblyReferenceNode == assemblyReferenceNodeStart)
+                                            if (forwardAssemblies.Contains(assemblyReferenceNode))
                                             {
                                                 // type-forward cycle, bail
-                                                log.LogMessage($"Cycle detected involving type-forwards from file {assemblyReferenceNode.Name}");
+                                                log.LogMessage($"Cycle detected involving type-forwards: {String.Join(" -> ", forwardAssemblies)}");
                                                 break;
                                             }
                                         }
@@ -264,6 +272,8 @@ namespace Microsoft.DotNet.Build.Tasks
                     }
                 }
             }
+
+            stack.Pop();
         }
 
         private FileNode TryGetFileForReference(string referenceName, IDictionary<string, FileNode> allFiles, bool preferNativeImage)
