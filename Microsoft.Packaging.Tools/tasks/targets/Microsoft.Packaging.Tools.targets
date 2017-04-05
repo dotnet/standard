@@ -61,6 +61,7 @@
                                 ReferenceCopyLocalPaths="@(ReferenceCopyLocalPaths)"
                                 OtherRuntimeItems="@(_LockFileAssemblies)"
                                 PlatformManifests="@(PackageConflictPlatformManifests)"
+                                ForcedPackages="$(PackageConflictForcedPackages)"
                                 PreferredPackages="$(PackageConflictPreferredPackages)">
       <Output TaskParameter="ReferencesWithoutConflicts" ItemName="_ReferencesWithoutConflicts" />
       <Output TaskParameter="ReferenceCopyLocalPathsWithoutConflicts" ItemName="_ReferenceCopyLocalPathsWithoutConflicts" />
@@ -96,6 +97,7 @@
   <Target Name="HandlePublishFileConflicts" AfterTargets="$(HandlePublishFileConflictsAfter)">
     <HandlePackageFileConflicts ReferenceCopyLocalPaths="@(ResolvedAssembliesToPublish)"
                                 PlatformManifests="@(PackageConflictPlatformManifests)"
+                                ForcedPackages="$(PackageConflictForcedPackages)"
                                 PreferredPackages="$(PackageConflictPreferredPackages)">
       <Output TaskParameter="ReferenceCopyLocalPathsWithoutConflicts" ItemName="_ResolvedAssembliesToPublishWithoutConflicts" />
       <Output TaskParameter="Conflicts" ItemName="_PublishConflictPackageFiles" />

@@ -12,12 +12,14 @@ namespace Microsoft.DotNet.Build.Tasks
     {
         private Dictionary<string, ConflictItem> winningItemsByKey = new Dictionary<string, ConflictItem>();
         private ILog log;
-        private PackageRank packageRank;
+        private PackageRank forcedPackageRank;
+        private PackageRank preferredPackageRank;
 
-        public ConflictResolver(PackageRank packageRank, ILog log)
+        public ConflictResolver(PackageRank forcedPackageRank, PackageRank preferredPackageRank, ILog log)
         {
             this.log = log;
-            this.packageRank = packageRank;
+            this.forcedPackageRank = forcedPackageRank;
+            this.preferredPackageRank = preferredPackageRank;
         }
 
         public void ResolveConflicts(IEnumerable<ConflictItem> conflictItems, Func<ConflictItem, string> getItemKey, Action<ConflictItem> foundConflict, bool commitWinner = true)
@@ -78,6 +80,21 @@ namespace Microsoft.DotNet.Build.Tasks
         private ConflictItem ResolveConflict(ConflictItem item1, ConflictItem item2)
         {
             var conflictMessage = $"Encountered conflict between {item1.DisplayName} and {item2.DisplayName}.";
+
+            var forcedPackageRank1 = forcedPackageRank.GetPackageRank(item1.PackageId);
+            var forcedPackageRank2 = forcedPackageRank.GetPackageRank(item2.PackageId);
+
+            if (forcedPackageRank1 < forcedPackageRank2)
+            {
+                log.LogMessage($"{conflictMessage}.  Choosing {item1.DisplayName} because package it comes from a package that is forced.");
+                return item1;
+            }
+
+            if (forcedPackageRank1 < forcedPackageRank2)
+            {
+                log.LogMessage($"{conflictMessage}.  Choosing {item2.DisplayName} because package it comes from a package that is forced.");
+                return item2;
+            }
 
             var exists1 = item1.Exists;
             var exists2 = item2.Exists;
@@ -147,16 +164,16 @@ namespace Microsoft.DotNet.Build.Tasks
                 }
             }
 
-            var packageRank1 = packageRank.GetPackageRank(item1.PackageId);
-            var packageRank2 = packageRank.GetPackageRank(item2.PackageId);
+            var preferredPackageRank1 = preferredPackageRank.GetPackageRank(item1.PackageId);
+            var preferredPackageRank2 = preferredPackageRank.GetPackageRank(item2.PackageId);
 
-            if (packageRank1 < packageRank2)
+            if (preferredPackageRank1 < preferredPackageRank2)
             {
                 log.LogMessage($"{conflictMessage}.  Choosing {item1.DisplayName} because package it comes from a package that is preferred.");
                 return item1;
             }
 
-            if (packageRank2 < packageRank1)
+            if (preferredPackageRank2 < preferredPackageRank1)
             {
                 log.LogMessage($"{conflictMessage}.  Choosing {item2.DisplayName} because package it comes from a package that is preferred.");
                 return item2;
