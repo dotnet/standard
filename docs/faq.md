@@ -278,8 +278,7 @@ I am :-)
 
 ## When will Visual Studio support creating .NET Standard libraries?
 
-The upcoming version of Visual Studio ("Dev15") will support the creation of
-.NET Standard Libraries, including building NuGet packages.
+Visual Studio 2017 supports creation of .NET Standard Libraries, including building NuGet packages.
 
 ## When will Xamarin Studio support creating .NET Standard libraries?
 
