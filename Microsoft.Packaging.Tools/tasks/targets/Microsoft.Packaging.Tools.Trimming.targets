@@ -8,11 +8,11 @@
   </PropertyGroup>
   
   <Target Name="_determineTrimPackageInputs">
-    <ItemGroup Condition="'$(RootPackageReference)' != 'true'">
+    <ItemGroup Condition="'$(RootPackageReference)' != 'false'">
       <TrimFilesRootPackages Include="@(PackageReference)"/>
     </ItemGroup>
     
-    <ItemGroup Condition="'$(RootProjectReference)' != 'true'">
+    <ItemGroup Condition="'$(RootProjectReference)' != 'false'">
       <TrimFilesRootFiles Include="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.ReferenceSourceTarget)' == 'ProjectReference'"/>
     </ItemGroup>
 
