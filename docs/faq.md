@@ -4,7 +4,8 @@
 
 ## What are good resources to learn about .NET Standard?
 
-* [Documentation][netstandard-docs]
+* [API Documentation][netstandard-refdocs]
+* [Conceptual Documentation][netstandard-docs]
 * [Video Series on .NET Standard](https://www.youtube.com/playlist?list=PLRAdsfhKI4OWx321A_pr-7HhRNk7wOLLY)
 * [Introducing .NET Standard][netstandard-post] blog post
 * [Channel 9: Whiteboarding .NET Standard](https://channel9.msdn.com/Blogs/Seth-Juarez/What-is-NET-Standard)
@@ -323,6 +324,7 @@ However, right now our tooling will still burn in the reference to
 `NETStandard.Library`. There is no harm in that either, it will just become
 redundant moving forward.
 
+[netstandard-refdocs]: https://docs.microsoft.com/en-us/dotnet/api/?view=netstandard-1.6
 [netstandard-docs]: https://docs.microsoft.com/en-us/dotnet/articles/standard/library
 [netstandard-post]: https://blogs.msdn.microsoft.com/dotnet/2016/09/26/introducing-net-standard/
 [netstandard-spec]: netstandard-20/README.md
