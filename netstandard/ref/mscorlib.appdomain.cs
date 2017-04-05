@@ -152,8 +152,8 @@ namespace System
         [System.ObsoleteAttribute("AppDomain.GetCurrentThreadId has been deprecated because it does not provide a stable Id when managed threads are running on fibers (aka lightweight threads). To get a stable identifier for a managed thread, use the ManagedThreadId property on Thread.  http://go.microsoft.com/fwlink/?linkid=14202", false)]
         public static int GetCurrentThreadId() { throw null; }
         public object GetData(string name) { throw null; }
-        public new System.Type GetType() { throw null; }
-        public override object InitializeLifetimeService() { throw null; }
+//NOOP       public new System.Type GetType() { throw null; }
+//NOOP       public override object InitializeLifetimeService() { throw null; }
         public System.Nullable<bool> IsCompatibilitySwitchSet(string value) { throw null; }
         public bool IsDefaultAppDomain() { throw null; }
         public bool IsFinalizingForUnload() { throw null; }
