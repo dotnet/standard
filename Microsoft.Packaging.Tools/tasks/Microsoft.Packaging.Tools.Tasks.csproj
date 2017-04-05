@@ -27,8 +27,6 @@
     <Compile Include="ReferenceComparer.cs" />
     <Compile Include="Trimming\FileNode.cs" />
     <Compile Include="Trimming\IIsIncluded.cs" />
-    <Compile Include="Trimming\Microsoft.NET.Build.Tasks\BuildErrorException.cs" />
-    <Compile Include="Trimming\Microsoft.NET.Build.Tasks\LockFileCache.cs" />
     <Compile Include="Trimming\NuGetPackageNode.cs" />
     <Compile Include="Trimming\Trimmable.cs" />
     <Compile Include="Trimming\TrimFiles.cs" />
