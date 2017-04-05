@@ -25,6 +25,11 @@ namespace Microsoft.DotNet.Build.Tasks
         public ITaskItem[] PlatformManifests { get; set; }
 
         /// <summary>
+        /// NuGet3 and later only.  In the case of a conflict before examining assembly or file version a file from the most forced package will be chosen.
+        /// </summary>
+        public string[] ForcedPackages { get; set; }
+
+        /// <summary>
         /// NuGet3 and later only.  In the case of a conflict with identical file version information a file from the most preferred package will be chosen.
         /// </summary>
         public string[] PreferredPackages { get; set; }
@@ -41,19 +46,20 @@ namespace Microsoft.DotNet.Build.Tasks
         public override bool Execute()
         {
             var log = new MSBuildLog(Log);
-            var packageRanks = new PackageRank(PreferredPackages);
+            var forcedPackageRanks = new PackageRank(ForcedPackages);
+            var preferredPackageRanks = new PackageRank(PreferredPackages);
 
             // resolve conflicts at compile time
             var referenceItems = GetConflictTaskItems(References, ConflictItemType.Reference).ToArray();
 
-            var compileConflictScope = new ConflictResolver(packageRanks, log);
+            var compileConflictScope = new ConflictResolver(forcedPackageRanks, preferredPackageRanks, log);
 
             compileConflictScope.ResolveConflicts(referenceItems,
                 ci => ItemUtilities.GetReferenceFileName(ci.OriginalItem),
                 HandleCompileConflict);
 
             // resolve conflicts that class in output
-            var runtimeConflictScope = new ConflictResolver(packageRanks, log);
+            var runtimeConflictScope = new ConflictResolver(forcedPackageRanks, preferredPackageRanks, log);
 
             runtimeConflictScope.ResolveConflicts(referenceItems,
                 ci => ItemUtilities.GetReferenceTargetPath(ci.OriginalItem),
@@ -74,7 +80,7 @@ namespace Microsoft.DotNet.Build.Tasks
 
             // resolve conflicts with platform (eg: shared framework) items
             // we only commit the platform items since its not a conflict if other items share the same filename.
-            var platformConflictScope = new ConflictResolver(packageRanks, log);
+            var platformConflictScope = new ConflictResolver(forcedPackageRanks, preferredPackageRanks, log);
             var platformItems = PlatformManifests?.SelectMany(pm => PlatformManifestReader.LoadConflictItems(pm.ItemSpec, log)) ?? Enumerable.Empty<ConflictItem>();
 
             platformConflictScope.ResolveConflicts(platformItems, pi => pi.FileName, pi => { });
