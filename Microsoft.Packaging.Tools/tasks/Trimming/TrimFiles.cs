@@ -4,8 +4,6 @@
 
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
-using Microsoft.NET.Build.Tasks;
-using NuGet.Frameworks;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,13 +39,16 @@ namespace Microsoft.DotNet.Build.Tasks
         public ITaskItem[] TrimmableFiles { get; set; }
 
         /// <summary>
-        /// project.assets.json file for this project to be used for finding package dependencies.
+        /// PackageDependency items.
+        /// Identity is packageId/packageVersion
+        /// ParentPackage metadata is packageId/packageVersion of depending package
+        /// ParentTarget metadata is target string, targetMoniker/RID.
         /// </summary>
         [Required]
-        public string AssetsFilePath { get; set; }
+        public ITaskItem[] PackageDependencies { get; set; }
 
         /// <summary>
-        /// Target framework to use when determining package dependencies.
+        /// Target framework to use when determining package dependencies.  Should be long form, IE: .NETCoreApp,Version=v1.0
         /// </summary>
         [Required]
         public string TargetFramework { get; set; }
@@ -101,7 +102,7 @@ namespace Microsoft.DotNet.Build.Tasks
             log = new MSBuildLog(Log);
 
             // Build the package graph
-            var packages = GetPackagesFromAssetsFile();
+            var packages = GetPackagesFromPackageDependencies();
 
             // Build file graph
             var files = GetFiles(packages);
@@ -195,7 +196,7 @@ namespace Microsoft.DotNet.Build.Tasks
 
                     if (!packages.TryGetValue(rootPackageId, out rootPackage))
                     {
-                        throw new Exception($"Root package {rootPackageId} was specified but was not found in {AssetsFilePath}");
+                        throw new Exception($"Root package {rootPackageId} was specified but was not found in PackageDependencies");
                     }
 
                     if (!IsPackageTrimmable(rootPackage))
@@ -210,9 +211,18 @@ namespace Microsoft.DotNet.Build.Tasks
 
         private static string GetPackageIdFromItemSpec(string itemSpec)
         {
-            var separatorIndex = itemSpec.IndexOf('/');
+            string id, unused;
+            GetPackageIdAndVersion(itemSpec, out id, out unused);
+            return id;
+        }
 
-            return separatorIndex > 0 ? itemSpec.Substring(0, separatorIndex) : itemSpec;
+        private static void GetPackageIdAndVersion(string packageString, out string packageId, out string packageVersion)
+        {
+            var separatorIndex = packageString.IndexOf('/');
+
+            packageId = separatorIndex > 0 ? packageString.Substring(0, separatorIndex) : packageString;
+            packageVersion = separatorIndex > 0 && (separatorIndex + 1) < packageString.Length ?
+                packageString.Substring(separatorIndex + 1) : null;
         }
 
         Queue<FileNode> GetFileRoots(IDictionary<string, FileNode> files, Trimmable trimmable)
@@ -236,35 +246,53 @@ namespace Microsoft.DotNet.Build.Tasks
 
             return fileRootQueue;
         }
-        internal IDictionary<string, NuGetPackageNode> GetPackagesFromAssetsFile()
+
+        internal IDictionary<string, NuGetPackageNode> GetPackagesFromPackageDependencies()
         {
-            var lockFile = new LockFileCache(BuildEngine4).GetLockFile(AssetsFilePath);
-            var lockFileTarget = lockFile.GetTarget(NuGetFramework.Parse(TargetFramework), RuntimeIdentifier);
+            Dictionary<string, NuGetPackageNode> packages = new Dictionary<string, NuGetPackageNode>(StringComparer.OrdinalIgnoreCase);
 
-            if (lockFileTarget == null)
+            var target = TargetFramework;
+
+            if (!string.IsNullOrEmpty(RuntimeIdentifier))
             {
-                var targetString = string.IsNullOrEmpty(RuntimeIdentifier) ? TargetFramework : $"{TargetFramework}/{RuntimeIdentifier}";
-
-                throw new Exception($"Missing target section {targetString} from assets file {AssetsFilePath}.  Ensure you have restored this project previously.");
+                target += "/" + RuntimeIdentifier;
             }
 
-            Dictionary<string, NuGetPackageNode> packages = new Dictionary<string, NuGetPackageNode>(lockFileTarget.Libraries.Count, StringComparer.OrdinalIgnoreCase);
-
-            foreach (var library in lockFileTarget.Libraries)
+            foreach (var packageDepedency in PackageDependencies)
             {
-                var dependencyIds = library.Dependencies.Select(d => d.Id);
+                var dependencyTarget = packageDepedency.GetMetadata("ParentTarget");
 
-                packages.Add(library.Name, new NuGetPackageNode(library.Name, library.Version.ToString(), dependencyIds));
-            }
+                if (!dependencyTarget.Equals(target, StringComparison.Ordinal))
+                {
+                    continue;
+                }
 
-            // Connect the graph
-            foreach (var package in packages.Values)
-            {
-                package.PopulateDependencies(packages, log);
+                var parentPackage = packageDepedency.GetMetadata("ParentPackage");
+                var childPackage = packageDepedency.ItemSpec;
+
+                var parentNode = GetOrCreatePackageNode(packages, parentPackage);
+                var childNode = GetOrCreatePackageNode(packages, childPackage);
+
+                parentNode.AddDependency(childNode);
             }
 
             return packages;
         }
+
+        private static NuGetPackageNode GetOrCreatePackageNode(IDictionary<string, NuGetPackageNode> packages, string package)
+        {
+            string id, version;
+            GetPackageIdAndVersion(package, out id, out version);
+
+            NuGetPackageNode node;
+            if (!packages.TryGetValue(id, out node))
+            {
+                packages[id] = node = new NuGetPackageNode(id, version);
+            }
+
+            return node;
+        }
+
 
         internal IDictionary<string, FileNode> GetFiles(IDictionary<string, NuGetPackageNode> packages)
         {

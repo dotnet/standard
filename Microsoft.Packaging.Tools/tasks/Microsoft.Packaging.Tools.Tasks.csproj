@@ -27,8 +27,6 @@
     <Compile Include="ReferenceComparer.cs" />
     <Compile Include="Trimming\FileNode.cs" />
     <Compile Include="Trimming\IIsIncluded.cs" />
-    <Compile Include="Trimming\Microsoft.NET.Build.Tasks\BuildErrorException.cs" />
-    <Compile Include="Trimming\Microsoft.NET.Build.Tasks\LockFileCache.cs" />
     <Compile Include="Trimming\NuGetPackageNode.cs" />
     <Compile Include="Trimming\Trimmable.cs" />
     <Compile Include="Trimming\TrimFiles.cs" />
@@ -49,9 +47,34 @@
     <PackageDestination Include="build/desktop" />
   </ItemGroup>
   <ItemGroup>
+    <PackageDependencyId Include="System.Reflection.Metadata" />
+    <PackageDependencyId Include="System.Collections.Immutable" />
+    <!-- the following should be removed once we delete RemoveDepsFileConflicts -->
+    <PackageDependencyId Include="Microsoft.Extensions.DependencyModel" />
+    <PackageDependencyId Include="Microsoft.DotNet.PlatformAbstractions" />
+    <PackageDependencyId Include="Newtonsoft.Json" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="targets\Microsoft.Packaging.Tools.targets" />
     <None Include="targets\Microsoft.Packaging.Tools.Trimming.targets" />
     <None Include="project.json" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
+  
+  <Target Name="PackageAdditionalDependencies" BeforeTargets="GetFilesToPackage" DependsOnTargets="ResolveReferences">
+    <ItemGroup>
+      <_referencePathsByPackageId Include="@(ReferencePath->'%(NuGetPackageId)')" />
+      <_referencePathsByPackageIdToExclude Include="@(_referencePathsByPackageId)" Exclude="@(PackageDependencyId)" />
+      <_referencePathsByPackageIdToInclude Include="@(_referencePathsByPackageId)" Exclude="@(_referencePathsByPackageIdToExclude)" />
+      <_missingPackageDependencyId Include="@(PackageDependencyId)" Exclude="@(_referencePathsByPackageIdToInclude)" />
+
+      <_referencePathsToInclude Include="@(_referencePathsByPackageIdToInclude->'%(OriginalItemSpec)')" />
+
+      <FilesToPackage Include="@(_referencePathsToInclude)">
+        <TargetPath>%(PackageDestination.Identity)</TargetPath>
+      </FilesToPackage>
+    </ItemGroup>
+    <Error Condition="'@(_missingPackageDependencyId)' != ''"
+           Text="The following PackageDependencyIds were specified but not referenced: @(_missingPackageDependencyId)" />
+  </Target>
 </Project>

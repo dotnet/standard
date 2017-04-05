@@ -12,15 +12,13 @@ namespace Microsoft.DotNet.Build.Tasks
     internal sealed class NuGetPackageNode : IIsIncluded
     {
         private const string NuGetPackageDependencies = "dependencies";
-        private List<NuGetPackageNode> _dependencies = new List<NuGetPackageNode>();
-        private IEnumerable<string> _dependencyIds;
+        private HashSet<NuGetPackageNode> _dependencies = new HashSet<NuGetPackageNode>();
 
-        public NuGetPackageNode(string id, string version, IEnumerable<string> dependencyIds)
+        public NuGetPackageNode(string id, string version)
         {
             Id = id;
             IsRuntimePackage = id.StartsWith("runtime.");
             Version = version;
-            _dependencyIds = dependencyIds;
         }
 
         public string Id { get; }
@@ -32,37 +30,21 @@ namespace Microsoft.DotNet.Build.Tasks
         public IEnumerable<NuGetPackageNode> Dependencies { get { return _dependencies; } }
         public IList<FileNode> Files { get; } = new List<FileNode>();
 
-        public void PopulateDependencies(Dictionary<string, NuGetPackageNode> allPackages, ILog log)
+        public void AddDependency(NuGetPackageNode dependencyNode)
         {
-            foreach(var dependencyId in _dependencyIds)
+            _dependencies.Add(dependencyNode);
+
+            // Runtime packages may be brought in by a file-based dependency,
+            // but runtime packages may be missing the dependencies needed since those are 
+            // often declared by the idenity package since it is in the compile graph
+            // and capable of bringing in other runtime-split packages.
+
+            // Map back up to the identity package so that we can root it and its dependencies.
+            // This creates an artificial cycle, but our graph walk doesn't care about cycles.
+            if (dependencyNode.IsRuntimePackage)
             {
-                NuGetPackageNode dependencyNode;
-                if (!allPackages.TryGetValue(dependencyId, out dependencyNode))
-                {
-                    // package declared a dependency but NuGet was missing the dependent package
-                    // in the lock file.  This indicates a broken restore, but don't fail trimming
-                    log.LogMessage(LogImportance.Low, $"Could not locate dependency {dependencyId} of package {Id}.");
-                }
-                else
-                {
-                    _dependencies.Add(dependencyNode);
-
-                    // Runtime packages may be brought in by a file-based dependency,
-                    // but runtime packages may be missing the dependencies needed since those are 
-                    // often declared by the idenity package since it is in the compile graph
-                    // and capable of bringing in other runtime-split packages.
-
-                    // Map back up to the identity package so that we can root it and its dependencies.
-                    // This creates an artificial cycle, but our graph walk doesn't care about cycles.
-                    if (dependencyNode.IsRuntimePackage)
-                    {
-                        dependencyNode._dependencies.Add(this);
-                    }
-                }
+                dependencyNode._dependencies.Add(this);
             }
-
-            _dependencyIds = null;
         }
-
     }
 }
