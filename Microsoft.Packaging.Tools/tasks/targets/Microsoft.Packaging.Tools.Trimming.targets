@@ -22,10 +22,10 @@
       <TrimFilesRootFiles Include="hostpolicy.dll;libhostpolicy.dylib;libhostpolicy.so" />
 
       <!-- treat platform packages as trimmable -->
-      <TrimmablePackages Include="$(PackageConflictPreferredPackages)" />
+      <TrimmablePackages Condition="'$(DontTrimNETCoreAppRuntime)' != 'true'" Include="$(PackageConflictPreferredPackages)" />
     </ItemGroup>
 
-    <ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp' AND $(TargetFrameworkVersion.StartsWith('v1.'))">
+    <ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp' AND $(TargetFrameworkVersion.StartsWith('v1.')) AND '$(DontTrimNETCoreAppRuntime)' != 'true'">
       <!-- on NetCoreApp 1.x PackageConflictPreferredPackages is not defined, but we want to trim the runtime packages -->
       <TrimmablePackages Include="%(FileDefinitions.PackageName)" Condition="'%(FileDefinitions.FileName)' ==  'System.Private.CoreLib.ni'" />
     </ItemGroup>
