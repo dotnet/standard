@@ -1,5 +1,4 @@
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Drawing.Color))]
-[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Drawing.KnownColor))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Drawing.Point))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Drawing.PointF))]
 [assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Drawing.Rectangle))]
