@@ -93,7 +93,7 @@ namespace Microsoft.DotNet.Build.Tasks
                     {
                         var reader = peReader.GetMetadataReader();
 
-                        var includeAssemblyReferences = true;
+                        var includeDependencies = true;
 
                         // map of facade handles to enable quickly getting to FileNode without repeatedly looking up by name
                         var facadeHandles = new Dictionary<AssemblyReferenceHandle, FileNode>();
@@ -101,43 +101,43 @@ namespace Microsoft.DotNet.Build.Tasks
                         if (IsFullFacade(reader))
                         {
                             // don't include dependencies in full facades.  We'll instead follow their typeforwards and promote the dependencies to the parent.
-                            includeAssemblyReferences = false;
+                            includeDependencies = false;
 
                             // follow typeforwards in any full facade.
                             followTypeForwards = true;
                         }
 
-                        if (includeAssemblyReferences)
+                        foreach (var handle in reader.AssemblyReferences)
                         {
-                            foreach (var handle in reader.AssemblyReferences)
+                            var reference = reader.GetAssemblyReference(handle);
+                            var referenceName = reader.GetString(reference.Name);
+
+                            FileNode referencedFile = TryGetFileForReference(referenceName, allFiles, preferNativeImage);
+
+                            if (referencedFile != null)
                             {
-                                var reference = reader.GetAssemblyReference(handle);
-                                var referenceName = reader.GetString(reference.Name);
-
-                                FileNode referencedFile = TryGetFileForReference(referenceName, allFiles, preferNativeImage);
-
-                                if (referencedFile != null)
+                                if (includeDependencies)
                                 {
                                     dependencies.Add(referencedFile);
-
-                                    // populate dependencies of child
-                                    referencedFile.PopulateDependenciesInternal(allFiles, preferNativeImage, log, stack);
-
-                                    // if we're following type-forwards out of any dependency make sure to look at typerefs from this assembly.
-                                    // and populate the type-forwards in the dependency
-                                    if (referencedFile.followTypeForwards || followTypeForwards)
-                                    {
-                                        facadeHandles.Add(handle, referencedFile);
-                                    }
                                 }
-                                else
+
+                                // populate dependencies of child
+                                referencedFile.PopulateDependenciesInternal(allFiles, preferNativeImage, log, stack);
+
+                                // if we're following type-forwards out of any dependency make sure to look at typerefs from this assembly.
+                                // and populate the type-forwards in the dependency
+                                if (referencedFile.followTypeForwards || followTypeForwards)
                                 {
-                                    // static dependency that wasn't satisfied, this can happen if folks use 
-                                    // lightup code to guard the static dependency.
-                                    // this can also happen when referencing a package that isn't implemented
-                                    // on this platform but don't fail the build here
-                                    log.LogMessage(LogImportance.Low, $"Could not locate assembly dependency {referenceName} of {SourceFile}.");
+                                    facadeHandles.Add(handle, referencedFile);
                                 }
+                            }
+                            else
+                            {
+                                // static dependency that wasn't satisfied, this can happen if folks use 
+                                // lightup code to guard the static dependency.
+                                // this can also happen when referencing a package that isn't implemented
+                                // on this platform but don't fail the build here
+                                log.LogMessage(LogImportance.Low, $"Could not locate assembly dependency {referenceName} of {SourceFile}.");
                             }
                         }
 
