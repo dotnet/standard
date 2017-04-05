@@ -24,6 +24,11 @@
       <!-- treat platform packages as trimmable -->
       <TrimmablePackages Include="$(PackageConflictPreferredPackages)" />
     </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp' AND $(TargetFrameworkVersion.StartsWith('v1.'))">
+      <!-- on NetCoreApp 1.x PackageConflictPreferredPackages is not defined, but we want to trim the runtime packages -->
+      <TrimmablePackages Include="%(FileDefinitions.PackageName)" Condition="'%(FileDefinitions.FileName)' ==  'System.Private.CoreLib.ni'" />
+    </ItemGroup>
   </Target>
 
   <Target Name="TrimFilesOnBuild"
