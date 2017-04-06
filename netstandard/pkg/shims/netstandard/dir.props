@@ -12,6 +12,8 @@
     <!-- Some assemblies that ship with implementatiosn in NetFx should not ship as a netfx shim -->
     <PackageForNetFx Condition="'$(MSBuildProjectName)' == 'System.IO.Compression'">false</PackageForNetFx>
     <PackageForNetFx Condition="'$(MSBuildProjectName)' == 'System.Net.Http'">false</PackageForNetFx>
+    <PackageForNetFx Condition="'$(MSBuildProjectName)' == 'System.ValueTuple'">false</PackageForNetFx>
+    <PackageForNetFx Condition="'$(MSBuildProjectName)' == 'System.Runtime.InteropServices.RuntimeInformation'">false</PackageForNetFx>
   </PropertyGroup>
 
   <ItemGroup>
