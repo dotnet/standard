@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <AssemblyOriginatorKeyFile Condition="'$(UseOpenKey)' == 'true'">$(ToolsDir)Open.snk</AssemblyOriginatorKeyFile>
     <AssemblyOriginatorKeyFile Condition="'$(UseMSFTKey)' == 'true'">$(ToolsDir)MSFT.snk</AssemblyOriginatorKeyFile>
     <AssemblyOriginatorKeyFile Condition="'$(UseSilverlightKey)' == 'true'">$(MSBuildThisFileDirectory)silverlight.pub</AssemblyOriginatorKeyFile>
     <AssemblyOriginatorKeyFile Condition="'$(UseWinFxKey)' == 'true'">$(MSBuildThisFileDirectory)winfx.pub</AssemblyOriginatorKeyFile>

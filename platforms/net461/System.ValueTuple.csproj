@@ -6,6 +6,7 @@
     <OutputType>Library</OutputType>
     <!-- disable obsolete warnings/errors -->
     <NoWarn>$(NoWarn);0618;0619;0809</NoWarn>
+    <UseOpenKey>true</UseOpenKey>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="mscorlib.csproj" />
