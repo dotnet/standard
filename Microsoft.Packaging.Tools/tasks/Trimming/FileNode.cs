@@ -14,7 +14,9 @@ namespace Microsoft.DotNet.Build.Tasks
 {
     internal class FileNode : IIsIncluded
     {
-        IEnumerable<FileNode> _dependencies;
+        private ISet<FileNode> dependencies;
+        private bool followTypeForwards;
+        private IDictionary<string, FileNode> typeForwards = new Dictionary<string, FileNode>();
 
         internal const string NuGetPackageIdMetadata = "NuGetPackageId";
         internal const string NuGetPackageVersionMetadata = "NuGetPackageVersion";
@@ -54,11 +56,34 @@ namespace Microsoft.DotNet.Build.Tasks
         public string PackageId { get; }
         public string SourceFile { get; }
         public NuGetPackageNode Package { get; }
-        public IEnumerable<FileNode> Dependencies { get { return _dependencies; } }
+        public IEnumerable<FileNode> Dependencies { get { return dependencies; } }
 
-        public void PopulateDependencies(Dictionary<string, FileNode> allFiles, bool preferNativeImage, ILog log)
+        public void PopulateDependencies(IDictionary<string, FileNode> allFiles, bool preferNativeImage, ILog log)
         {
-            List<FileNode> dependencies = new List<FileNode>();
+            if (dependencies == null)
+            {
+                PopulateDependenciesInternal(allFiles, preferNativeImage, log, null);
+            }
+        }
+
+        private void PopulateDependenciesInternal(IDictionary<string, FileNode> allFiles, bool preferNativeImage, ILog log, Stack<FileNode> stack)
+        {
+            if (stack == null)
+            {
+                stack = new Stack<FileNode>();
+            }
+
+            stack.Push(this);
+
+            if (dependencies != null)
+            {
+                // re-entrant call indicates a cycle, bail
+                log.LogMessage($"Cycle detected: {String.Join(" -> ", stack)}");
+                stack.Pop();
+                return;
+            }
+
+            dependencies = new HashSet<FileNode>();
 
             try
             {
@@ -67,27 +92,44 @@ namespace Microsoft.DotNet.Build.Tasks
                     if (peReader.HasMetadata)
                     {
                         var reader = peReader.GetMetadataReader();
+
+                        var includeDependencies = true;
+
+                        // map of facade handles to enable quickly getting to FileNode without repeatedly looking up by name
+                        var facadeHandles = new Dictionary<AssemblyReferenceHandle, FileNode>();
+
+                        if (IsFullFacade(reader))
+                        {
+                            // don't include dependencies in full facades.  We'll instead follow their typeforwards and promote the dependencies to the parent.
+                            includeDependencies = false;
+
+                            // follow typeforwards in any full facade.
+                            followTypeForwards = true;
+                        }
+
                         foreach (var handle in reader.AssemblyReferences)
                         {
                             var reference = reader.GetAssemblyReference(handle);
                             var referenceName = reader.GetString(reference.Name);
 
-                            var referenceCandidates = preferNativeImage ? 
-                                new[] { referenceName + ".ni.dll", referenceName + ".dll" } :
-                                new[] { referenceName + ".dll", referenceName + ".ni.dll" };
-
-                            FileNode referencedFile = null;
-                            foreach (var referenceCandidate in referenceCandidates)
-                            {
-                                if (allFiles.TryGetValue(referenceCandidate, out referencedFile))
-                                {
-                                    break;
-                                }
-                            }
+                            FileNode referencedFile = TryGetFileForReference(referenceName, allFiles, preferNativeImage);
 
                             if (referencedFile != null)
                             {
-                                dependencies.Add(referencedFile);
+                                if (includeDependencies)
+                                {
+                                    dependencies.Add(referencedFile);
+                                }
+
+                                // populate dependencies of child
+                                referencedFile.PopulateDependenciesInternal(allFiles, preferNativeImage, log, stack);
+
+                                // if we're following type-forwards out of any dependency make sure to look at typerefs from this assembly.
+                                // and populate the type-forwards in the dependency
+                                if (referencedFile.followTypeForwards || followTypeForwards)
+                                {
+                                    facadeHandles.Add(handle, referencedFile);
+                                }
                             }
                             else
                             {
@@ -99,6 +141,81 @@ namespace Microsoft.DotNet.Build.Tasks
                             }
                         }
 
+                        if (followTypeForwards)
+                        {
+                            // if following typeforwards out of this assembly, capture all type forwards
+                            foreach (var exportedTypeHandle in reader.ExportedTypes)
+                            {
+                                var exportedType = reader.GetExportedType(exportedTypeHandle);
+
+                                if (exportedType.IsForwarder)
+                                {
+                                    var assemblyReferenceHandle = (AssemblyReferenceHandle)exportedType.Implementation;
+                                    FileNode assemblyReferenceNode;
+
+                                    if (facadeHandles.TryGetValue(assemblyReferenceHandle, out assemblyReferenceNode))
+                                    {
+                                        var typeName = exportedType.Namespace.IsNil ?
+                                            reader.GetString(exportedType.Name) :
+                                            reader.GetString(exportedType.Namespace) + reader.GetString(exportedType.Name);
+
+                                        typeForwards.Add(typeName, assemblyReferenceNode);
+                                    }
+                                }
+                            }
+                        }
+                        else if (facadeHandles.Count > 0)
+                        {
+                            // if examining type forwards in some dependency, enumerate type-refs
+                            // for any that point at a facade assembly.
+
+                            foreach (var typeReferenceHandle in reader.TypeReferences)
+                            {
+                                var typeReference = reader.GetTypeReference(typeReferenceHandle);
+                                var resolutionScope = typeReference.ResolutionScope;
+
+                                if (resolutionScope.Kind == HandleKind.AssemblyReference)
+                                {
+                                    var assemblyReferenceHandle = (AssemblyReferenceHandle)resolutionScope;
+                                    FileNode assemblyReferenceNode;
+
+                                    if (facadeHandles.TryGetValue(assemblyReferenceHandle, out assemblyReferenceNode))
+                                    {
+                                        var typeName = typeReference.Namespace.IsNil ?
+                                            reader.GetString(typeReference.Name) :
+                                            reader.GetString(typeReference.Namespace) + reader.GetString(typeReference.Name);
+
+                                        FileNode typeForwardedToNode = null;
+
+                                        var forwardAssemblies = new Stack<FileNode>();
+
+                                        // while assembly forwarded to is also a facade, add a dependency on the target
+                                        while (assemblyReferenceNode.followTypeForwards)
+                                        {
+                                            if (!assemblyReferenceNode.typeForwards.TryGetValue(typeName, out typeForwardedToNode))
+                                            {
+                                                break;
+                                            }
+
+                                            dependencies.Add(typeForwardedToNode);
+                                            forwardAssemblies.Push(assemblyReferenceNode);
+
+                                            // look at the target in case it is also a facade
+                                            assemblyReferenceNode = typeForwardedToNode;
+
+                                            if (forwardAssemblies.Contains(assemblyReferenceNode))
+                                            {
+                                                // type-forward cycle, bail
+                                                log.LogMessage($"Cycle detected involving type-forwards: {String.Join(" -> ", forwardAssemblies)}");
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        // examine native module dependencies
                         for (int i = 1, count = reader.GetTableRowCount(TableIndex.ModuleRef); i <= count; i++)
                         {
                             var moduleRef = reader.GetModuleReference(MetadataTokens.ModuleReferenceHandle(i));
@@ -156,7 +273,41 @@ namespace Microsoft.DotNet.Build.Tasks
                 }
             }
 
-            _dependencies = dependencies;
+            stack.Pop();
+        }
+
+        private FileNode TryGetFileForReference(string referenceName, IDictionary<string, FileNode> allFiles, bool preferNativeImage)
+        {
+            var referenceCandidates = preferNativeImage ?
+                new[] { referenceName + ".ni.dll", referenceName + ".dll" } :
+                new[] { referenceName + ".dll", referenceName + ".ni.dll" };
+
+            FileNode referencedFile = null;
+            foreach (var referenceCandidate in referenceCandidates)
+            {
+                if (allFiles.TryGetValue(referenceCandidate, out referencedFile))
+                {
+                    break;
+                }
+            }
+
+            return referencedFile;
+        }
+
+        private static bool IsFullFacade(MetadataReader reader)
+        {
+            foreach (var typeDefHandle in reader.TypeDefinitions)
+            {
+                var typeDef = reader.GetTypeDefinition(typeDefHandle);
+                var typeName = reader.GetString(typeDef.Name);
+
+                if (typeName != "<Module>")
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
