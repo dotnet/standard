@@ -236,22 +236,22 @@ namespace System.Dynamic
     public sealed partial class ExpandoObject : System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string, object>>, System.Collections.Generic.IDictionary<string, object>, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, object>>, System.Collections.IEnumerable, System.ComponentModel.INotifyPropertyChanged, System.Dynamic.IDynamicMetaObjectProvider
     {
         public ExpandoObject() { }
-        int System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string,object>>.Count { get { throw null; } }
-        bool System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string,object>>.IsReadOnly { get { throw null; } }
-        object System.Collections.Generic.IDictionary<string,object>.this[string key] { get { throw null; } set { } }
-        System.Collections.Generic.ICollection<string> System.Collections.Generic.IDictionary<string,object>.Keys { get { throw null; } }
-        System.Collections.Generic.ICollection<object> System.Collections.Generic.IDictionary<string,object>.Values { get { throw null; } }
+        int System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.Count { get { throw null; } }
+        bool System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.IsReadOnly { get { throw null; } }
+        object System.Collections.Generic.IDictionary<System.String,System.Object>.this[string key] { get { throw null; } set { } }
+        System.Collections.Generic.ICollection<string> System.Collections.Generic.IDictionary<System.String,System.Object>.Keys { get { throw null; } }
+        System.Collections.Generic.ICollection<object> System.Collections.Generic.IDictionary<System.String,System.Object>.Values { get { throw null; } }
         event System.ComponentModel.PropertyChangedEventHandler System.ComponentModel.INotifyPropertyChanged.PropertyChanged { add { } remove { } }
-        void System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string,object>>.Add(System.Collections.Generic.KeyValuePair<string, object> item) { }
-        void System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string,object>>.Clear() { }
-        bool System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string,object>>.Contains(System.Collections.Generic.KeyValuePair<string, object> item) { throw null; }
-        void System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string,object>>.CopyTo(System.Collections.Generic.KeyValuePair<string, object>[] array, int arrayIndex) { }
-        bool System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string,object>>.Remove(System.Collections.Generic.KeyValuePair<string, object> item) { throw null; }
-        void System.Collections.Generic.IDictionary<string,object>.Add(string key, object value) { }
-        bool System.Collections.Generic.IDictionary<string,object>.ContainsKey(string key) { throw null; }
-        bool System.Collections.Generic.IDictionary<string,object>.Remove(string key) { throw null; }
-        bool System.Collections.Generic.IDictionary<string,object>.TryGetValue(string key, out object value) { value = default(object); throw null; }
-        System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<string, object>> System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string,object>>.GetEnumerator() { throw null; }
+        void System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.Add(System.Collections.Generic.KeyValuePair<string, object> item) { }
+        void System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.Clear() { }
+        bool System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.Contains(System.Collections.Generic.KeyValuePair<string, object> item) { throw null; }
+        void System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.CopyTo(System.Collections.Generic.KeyValuePair<string, object>[] array, int arrayIndex) { }
+        bool System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.Remove(System.Collections.Generic.KeyValuePair<string, object> item) { throw null; }
+        void System.Collections.Generic.IDictionary<System.String,System.Object>.Add(string key, object value) { }
+        bool System.Collections.Generic.IDictionary<System.String,System.Object>.ContainsKey(string key) { throw null; }
+        bool System.Collections.Generic.IDictionary<System.String,System.Object>.Remove(string key) { throw null; }
+        bool System.Collections.Generic.IDictionary<System.String,System.Object>.TryGetValue(string key, out object value) { value = default(object); throw null; }
+        System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<string, object>> System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.GetEnumerator() { throw null; }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
         System.Dynamic.DynamicMetaObject System.Dynamic.IDynamicMetaObjectProvider.GetMetaObject(System.Linq.Expressions.Expression parameter) { throw null; }
     }
@@ -270,7 +270,7 @@ namespace System.Dynamic
         public bool IgnoreCase { get { throw null; } }
         public string Name { get { throw null; } }
         public sealed override System.Type ReturnType { get { throw null; } }
-        public sealed override System.Dynamic.DynamicMetaObject Bind(System.Dynamic.DynamicMetaObject target, params System.Dynamic.DynamicMetaObject[] args) { throw null; }
+        public sealed override System.Dynamic.DynamicMetaObject Bind(System.Dynamic.DynamicMetaObject target, System.Dynamic.DynamicMetaObject[] args) { throw null; }
         public System.Dynamic.DynamicMetaObject FallbackGetMember(System.Dynamic.DynamicMetaObject target) { throw null; }
         public abstract System.Dynamic.DynamicMetaObject FallbackGetMember(System.Dynamic.DynamicMetaObject target, System.Dynamic.DynamicMetaObject errorSuggestion);
     }
@@ -746,6 +746,7 @@ namespace System.Linq
         public static TSource SingleOrDefault<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, bool> predicate) { throw null; }
         public static TSource Single<TSource>(this System.Collections.Generic.IEnumerable<TSource> source) { throw null; }
         public static TSource Single<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, bool> predicate) { throw null; }
+        public static System.Collections.Generic.IEnumerable<TSource> SkipLast<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, int count) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> SkipWhile<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, bool> predicate) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> SkipWhile<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, int, bool> predicate) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> Skip<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, int count) { throw null; }
@@ -769,6 +770,7 @@ namespace System.Linq
         public static System.Nullable<long> Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<long>> selector) { throw null; }
         public static System.Nullable<float> Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<float>> selector) { throw null; }
         public static float Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, float> selector) { throw null; }
+        public static System.Collections.Generic.IEnumerable<TSource> TakeLast<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, int count) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> TakeWhile<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, bool> predicate) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> TakeWhile<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, int, bool> predicate) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> Take<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, int count) { throw null; }
@@ -781,6 +783,8 @@ namespace System.Linq
         public static System.Collections.Generic.Dictionary<TKey, TSource> ToDictionary<TSource, TKey>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, TKey> keySelector, System.Collections.Generic.IEqualityComparer<TKey> comparer) { throw null; }
         public static System.Collections.Generic.Dictionary<TKey, TElement> ToDictionary<TSource, TKey, TElement>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, TKey> keySelector, System.Func<TSource, TElement> elementSelector) { throw null; }
         public static System.Collections.Generic.Dictionary<TKey, TElement> ToDictionary<TSource, TKey, TElement>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, TKey> keySelector, System.Func<TSource, TElement> elementSelector, System.Collections.Generic.IEqualityComparer<TKey> comparer) { throw null; }
+        public static System.Collections.Generic.HashSet<TSource> ToHashSet<TSource>(this System.Collections.Generic.IEnumerable<TSource> source) { throw null; }
+        public static System.Collections.Generic.HashSet<TSource> ToHashSet<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Collections.Generic.IEqualityComparer<TSource> comparer) { throw null; }
         public static System.Collections.Generic.List<TSource> ToList<TSource>(this System.Collections.Generic.IEnumerable<TSource> source) { throw null; }
         public static System.Linq.ILookup<TKey, TSource> ToLookup<TSource, TKey>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, TKey> keySelector) { throw null; }
         public static System.Linq.ILookup<TKey, TSource> ToLookup<TSource, TKey>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, TKey> keySelector, System.Collections.Generic.IEqualityComparer<TKey> comparer) { throw null; }
@@ -814,9 +818,9 @@ namespace System.Linq
         System.Collections.Generic.IEnumerator<T> System.Collections.Generic.IEnumerable<T>.GetEnumerator() { throw null; }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
         System.Linq.IQueryable System.Linq.IQueryProvider.CreateQuery(System.Linq.Expressions.Expression expression) { throw null; }
-        System.Linq.IQueryable<S> System.Linq.IQueryProvider.CreateQuery<S>(System.Linq.Expressions.Expression expression) { throw null; }
+        System.Linq.IQueryable<TElement> System.Linq.IQueryProvider.CreateQuery<TElement>(System.Linq.Expressions.Expression expression) { throw null; }
         object System.Linq.IQueryProvider.Execute(System.Linq.Expressions.Expression expression) { throw null; }
-        S System.Linq.IQueryProvider.Execute<S>(System.Linq.Expressions.Expression expression) { throw null; }
+        TElement System.Linq.IQueryProvider.Execute<TElement>(System.Linq.Expressions.Expression expression) { throw null; }
         public override string ToString() { throw null; }
     }
     public partial interface IGrouping<out TKey, out TElement> : System.Collections.Generic.IEnumerable<TElement>, System.Collections.IEnumerable
@@ -829,7 +833,7 @@ namespace System.Linq
         System.Collections.Generic.IEnumerable<TElement> this[TKey key] { get; }
         bool Contains(TKey key);
     }
-    public partial interface IOrderedEnumerable<TElement> : System.Collections.Generic.IEnumerable<TElement>, System.Collections.IEnumerable
+    public partial interface IOrderedEnumerable<out TElement> : System.Collections.Generic.IEnumerable<TElement>, System.Collections.IEnumerable
     {
         System.Linq.IOrderedEnumerable<TElement> CreateOrderedEnumerable<TKey>(System.Func<TElement, TKey> keySelector, System.Collections.Generic.IComparer<TKey> comparer, bool descending);
     }
@@ -1202,6 +1206,7 @@ namespace System.Linq
         public static TSource SingleOrDefault<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, bool>> predicate) { throw null; }
         public static TSource Single<TSource>(this System.Linq.IQueryable<TSource> source) { throw null; }
         public static TSource Single<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, bool>> predicate) { throw null; }
+        public static System.Linq.IQueryable<TSource> SkipLast<TSource>(this System.Linq.IQueryable<TSource> source, int count) { throw null; }
         public static System.Linq.IQueryable<TSource> SkipWhile<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, bool>> predicate) { throw null; }
         public static System.Linq.IQueryable<TSource> SkipWhile<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, int, bool>> predicate) { throw null; }
         public static System.Linq.IQueryable<TSource> Skip<TSource>(this System.Linq.IQueryable<TSource> source, int count) { throw null; }
@@ -1225,6 +1230,7 @@ namespace System.Linq
         public static System.Nullable<long> Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, System.Nullable<long>>> selector) { throw null; }
         public static System.Nullable<float> Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, System.Nullable<float>>> selector) { throw null; }
         public static float Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, float>> selector) { throw null; }
+        public static System.Linq.IQueryable<TSource> TakeLast<TSource>(this System.Linq.IQueryable<TSource> source, int count) { throw null; }
         public static System.Linq.IQueryable<TSource> TakeWhile<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, bool>> predicate) { throw null; }
         public static System.Linq.IQueryable<TSource> TakeWhile<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, int, bool>> predicate) { throw null; }
         public static System.Linq.IQueryable<TSource> Take<TSource>(this System.Linq.IQueryable<TSource> source, int count) { throw null; }
@@ -1299,11 +1305,16 @@ namespace System.Linq.Expressions
     {
         internal DebugInfoExpression() { }
         public System.Linq.Expressions.SymbolDocumentInfo Document { get { throw null; } }
+        [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
         public virtual int EndColumn { get { throw null; } }
+        [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
         public virtual int EndLine { get { throw null; } }
+        [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
         public virtual bool IsClear { get { throw null; } }
         public sealed override System.Linq.Expressions.ExpressionType NodeType { get { throw null; } }
+        [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
         public virtual int StartColumn { get { throw null; } }
+        [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
         public virtual int StartLine { get { throw null; } }
         public sealed override System.Type Type { get { throw null; } }
         protected internal override System.Linq.Expressions.Expression Accept(System.Linq.Expressions.ExpressionVisitor visitor) { throw null; }
@@ -1320,8 +1331,10 @@ namespace System.Linq.Expressions
         internal DynamicExpression() { }
         public System.Collections.ObjectModel.ReadOnlyCollection<System.Linq.Expressions.Expression> Arguments { get { throw null; } }
         public System.Runtime.CompilerServices.CallSiteBinder Binder { get { throw null; } }
+        public override bool CanReduce { get { throw null; } }
         public System.Type DelegateType { get { throw null; } }
         public sealed override System.Linq.Expressions.ExpressionType NodeType { get { throw null; } }
+        [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
         int System.Linq.Expressions.IArgumentProvider.ArgumentCount { get { throw null; } }
         public override System.Type Type { get { throw null; } }
         protected internal override System.Linq.Expressions.Expression Accept(System.Linq.Expressions.ExpressionVisitor visitor) { throw null; }
@@ -1337,23 +1350,25 @@ namespace System.Linq.Expressions
         public static new System.Linq.Expressions.DynamicExpression MakeDynamic(System.Type delegateType, System.Runtime.CompilerServices.CallSiteBinder binder, System.Linq.Expressions.Expression arg0, System.Linq.Expressions.Expression arg1, System.Linq.Expressions.Expression arg2) { throw null; }
         public static new System.Linq.Expressions.DynamicExpression MakeDynamic(System.Type delegateType, System.Runtime.CompilerServices.CallSiteBinder binder, System.Linq.Expressions.Expression arg0, System.Linq.Expressions.Expression arg1, System.Linq.Expressions.Expression arg2, System.Linq.Expressions.Expression arg3) { throw null; }
         public static new System.Linq.Expressions.DynamicExpression MakeDynamic(System.Type delegateType, System.Runtime.CompilerServices.CallSiteBinder binder, params System.Linq.Expressions.Expression[] arguments) { throw null; }
+        public override System.Linq.Expressions.Expression Reduce() { throw null; }
+        [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
         System.Linq.Expressions.Expression System.Linq.Expressions.IArgumentProvider.GetArgument(int index) { throw null; }
         object System.Linq.Expressions.IDynamicExpression.CreateCallSite() { throw null; }
         System.Linq.Expressions.Expression System.Linq.Expressions.IDynamicExpression.Rewrite(System.Linq.Expressions.Expression[] args) { throw null; }
         public System.Linq.Expressions.DynamicExpression Update(System.Collections.Generic.IEnumerable<System.Linq.Expressions.Expression> arguments) { throw null; }
     }
-    public abstract partial class DynamicExpressionVisitor : System.Linq.Expressions.ExpressionVisitor
+    public partial class DynamicExpressionVisitor : System.Linq.Expressions.ExpressionVisitor
     {
-        protected DynamicExpressionVisitor() { }
+        public DynamicExpressionVisitor() { }
         protected internal override System.Linq.Expressions.Expression VisitDynamic(System.Linq.Expressions.DynamicExpression node) { throw null; }
     }
     public sealed partial class ElementInit : System.Linq.Expressions.IArgumentProvider
     {
         internal ElementInit() { }
         public System.Reflection.MethodInfo AddMethod { get { throw null; } }
+        public int ArgumentCount { get { throw null; } }
         public System.Collections.ObjectModel.ReadOnlyCollection<System.Linq.Expressions.Expression> Arguments { get { throw null; } }
-        int System.Linq.Expressions.IArgumentProvider.ArgumentCount { get { throw null; } }
-        System.Linq.Expressions.Expression System.Linq.Expressions.IArgumentProvider.GetArgument(int index) { throw null; }
+        public System.Linq.Expressions.Expression GetArgument(int index) { throw null; }
         public override string ToString() { throw null; }
         public System.Linq.Expressions.ElementInit Update(System.Collections.Generic.IEnumerable<System.Linq.Expressions.Expression> arguments) { throw null; }
     }
@@ -1812,7 +1827,7 @@ namespace System.Linq.Expressions
         protected internal virtual System.Linq.Expressions.Expression VisitUnary(System.Linq.Expressions.UnaryExpression node) { throw null; }
         public static System.Collections.ObjectModel.ReadOnlyCollection<T> Visit<T>(System.Collections.ObjectModel.ReadOnlyCollection<T> nodes, System.Func<T, T> elementVisitor) { throw null; }
     }
-    public sealed partial class Expression<TDelegate> : System.Linq.Expressions.LambdaExpression
+    public partial class Expression<TDelegate> : System.Linq.Expressions.LambdaExpression
     {
         internal Expression() { }
         protected internal override System.Linq.Expressions.Expression Accept(System.Linq.Expressions.ExpressionVisitor visitor) { throw null; }
@@ -1853,26 +1868,28 @@ namespace System.Linq.Expressions
     public sealed partial class IndexExpression : System.Linq.Expressions.Expression, System.Linq.Expressions.IArgumentProvider
     {
         internal IndexExpression() { }
+        public int ArgumentCount { get { throw null; } }
         public System.Collections.ObjectModel.ReadOnlyCollection<System.Linq.Expressions.Expression> Arguments { get { throw null; } }
         public System.Reflection.PropertyInfo Indexer { get { throw null; } }
         public sealed override System.Linq.Expressions.ExpressionType NodeType { get { throw null; } }
         public System.Linq.Expressions.Expression Object { get { throw null; } }
-        int System.Linq.Expressions.IArgumentProvider.ArgumentCount { get { throw null; } }
         public sealed override System.Type Type { get { throw null; } }
         protected internal override System.Linq.Expressions.Expression Accept(System.Linq.Expressions.ExpressionVisitor visitor) { throw null; }
-        System.Linq.Expressions.Expression System.Linq.Expressions.IArgumentProvider.GetArgument(int index) { throw null; }
+        public System.Linq.Expressions.Expression GetArgument(int index) { throw null; }
         public System.Linq.Expressions.IndexExpression Update(System.Linq.Expressions.Expression @object, System.Collections.Generic.IEnumerable<System.Linq.Expressions.Expression> arguments) { throw null; }
     }
-    public sealed partial class InvocationExpression : System.Linq.Expressions.Expression, System.Linq.Expressions.IArgumentProvider
+    public partial class InvocationExpression : System.Linq.Expressions.Expression, System.Linq.Expressions.IArgumentProvider
     {
         internal InvocationExpression() { }
+        [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
+        public virtual int ArgumentCount { get { throw null; } }
         public System.Collections.ObjectModel.ReadOnlyCollection<System.Linq.Expressions.Expression> Arguments { get { throw null; } }
         public System.Linq.Expressions.Expression Expression { get { throw null; } }
         public sealed override System.Linq.Expressions.ExpressionType NodeType { get { throw null; } }
-        int System.Linq.Expressions.IArgumentProvider.ArgumentCount { get { throw null; } }
         public sealed override System.Type Type { get { throw null; } }
         protected internal override System.Linq.Expressions.Expression Accept(System.Linq.Expressions.ExpressionVisitor visitor) { throw null; }
-        System.Linq.Expressions.Expression System.Linq.Expressions.IArgumentProvider.GetArgument(int index) { throw null; }
+        [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
+        public virtual System.Linq.Expressions.Expression GetArgument(int index) { throw null; }
         public System.Linq.Expressions.InvocationExpression Update(System.Linq.Expressions.Expression expression, System.Collections.Generic.IEnumerable<System.Linq.Expressions.Expression> arguments) { throw null; }
     }
     public sealed partial class LabelExpression : System.Linq.Expressions.Expression
@@ -1985,14 +2002,16 @@ namespace System.Linq.Expressions
     public partial class MethodCallExpression : System.Linq.Expressions.Expression, System.Linq.Expressions.IArgumentProvider
     {
         internal MethodCallExpression() { }
+        [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
+        public virtual int ArgumentCount { get { throw null; } }
         public System.Collections.ObjectModel.ReadOnlyCollection<System.Linq.Expressions.Expression> Arguments { get { throw null; } }
         public System.Reflection.MethodInfo Method { get { throw null; } }
         public sealed override System.Linq.Expressions.ExpressionType NodeType { get { throw null; } }
         public System.Linq.Expressions.Expression Object { get { throw null; } }
-        int System.Linq.Expressions.IArgumentProvider.ArgumentCount { get { throw null; } }
         public sealed override System.Type Type { get { throw null; } }
         protected internal override System.Linq.Expressions.Expression Accept(System.Linq.Expressions.ExpressionVisitor visitor) { throw null; }
-        System.Linq.Expressions.Expression System.Linq.Expressions.IArgumentProvider.GetArgument(int index) { throw null; }
+        [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
+        public virtual System.Linq.Expressions.Expression GetArgument(int index) { throw null; }
         public System.Linq.Expressions.MethodCallExpression Update(System.Linq.Expressions.Expression @object, System.Collections.Generic.IEnumerable<System.Linq.Expressions.Expression> arguments) { throw null; }
     }
     public partial class NewArrayExpression : System.Linq.Expressions.Expression
@@ -2006,14 +2025,14 @@ namespace System.Linq.Expressions
     public partial class NewExpression : System.Linq.Expressions.Expression, System.Linq.Expressions.IArgumentProvider
     {
         internal NewExpression() { }
+        public int ArgumentCount { get { throw null; } }
         public System.Collections.ObjectModel.ReadOnlyCollection<System.Linq.Expressions.Expression> Arguments { get { throw null; } }
         public System.Reflection.ConstructorInfo Constructor { get { throw null; } }
         public System.Collections.ObjectModel.ReadOnlyCollection<System.Reflection.MemberInfo> Members { get { throw null; } }
         public sealed override System.Linq.Expressions.ExpressionType NodeType { get { throw null; } }
-        int System.Linq.Expressions.IArgumentProvider.ArgumentCount { get { throw null; } }
         public override System.Type Type { get { throw null; } }
         protected internal override System.Linq.Expressions.Expression Accept(System.Linq.Expressions.ExpressionVisitor visitor) { throw null; }
-        System.Linq.Expressions.Expression System.Linq.Expressions.IArgumentProvider.GetArgument(int index) { throw null; }
+        public System.Linq.Expressions.Expression GetArgument(int index) { throw null; }
         public System.Linq.Expressions.NewExpression Update(System.Collections.Generic.IEnumerable<System.Linq.Expressions.Expression> arguments) { throw null; }
     }
     public partial class ParameterExpression : System.Linq.Expressions.Expression
@@ -2163,6 +2182,13 @@ namespace System.Runtime.CompilerServices
         public T Update { get { throw null; } }
         public static System.Runtime.CompilerServices.CallSite<T> Create(System.Runtime.CompilerServices.CallSiteBinder binder) { throw null; }
     }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    public sealed partial class Closure
+    {
+        public readonly object[] Constants;
+        public readonly object[] Locals;
+        public Closure(object[] constants, object[] locals) { }
+    }
     public abstract partial class DebugInfoGenerator
     {
         protected DebugInfoGenerator() { }
@@ -2236,8 +2262,15 @@ namespace System.Runtime.CompilerServices
     {
         internal RuleCache() { }
     }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
     public static partial class RuntimeOps
     {
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("do not use this method", true)]
+        public static System.Runtime.CompilerServices.IRuntimeVariables CreateRuntimeVariables() { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("do not use this method", true)]
+        public static System.Runtime.CompilerServices.IRuntimeVariables CreateRuntimeVariables(object[] data, long[] indexes) { throw null; }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static bool ExpandoCheckVersion(System.Dynamic.ExpandoObject expando, object version) { throw null; }
@@ -2253,6 +2286,12 @@ namespace System.Runtime.CompilerServices
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static object ExpandoTrySetValue(System.Dynamic.ExpandoObject expando, object indexClass, int index, object value, string name, bool ignoreCase) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("do not use this method", true)]
+        public static System.Runtime.CompilerServices.IRuntimeVariables MergeRuntimeVariables(System.Runtime.CompilerServices.IRuntimeVariables first, System.Runtime.CompilerServices.IRuntimeVariables second, int[] indexes) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("do not use this method", true)]
+        public static System.Linq.Expressions.Expression Quote(System.Linq.Expressions.Expression expression, object hoistedLocals, object[] locals) { throw null; }
     }
     public partial class StrongBox<T> : System.Runtime.CompilerServices.IStrongBox
     {
@@ -2634,6 +2673,30 @@ namespace System.Security.Cryptography
         public System.Security.Cryptography.CngKey Key { get { throw null; } }
         public override System.Security.Cryptography.RSAParameters ExportParameters(bool includePrivateParameters) { throw null; }
         public override void ImportParameters(System.Security.Cryptography.RSAParameters parameters) { }
+    }
+    public sealed partial class SHA256CryptoServiceProvider : System.Security.Cryptography.SHA256
+    {
+        public SHA256CryptoServiceProvider() { }
+        protected override void Dispose(bool disposing) { }
+        protected override void HashCore(byte[] array, int ibStart, int cbSize) { }
+        protected override byte[] HashFinal() { throw null; }
+        public override void Initialize() { }
+    }
+    public sealed partial class SHA384CryptoServiceProvider : System.Security.Cryptography.SHA384
+    {
+        public SHA384CryptoServiceProvider() { }
+        protected override void Dispose(bool disposing) { }
+        protected override void HashCore(byte[] array, int ibStart, int cbSize) { }
+        protected override byte[] HashFinal() { throw null; }
+        public override void Initialize() { }
+    }
+    public sealed partial class SHA512CryptoServiceProvider : System.Security.Cryptography.SHA512
+    {
+        public SHA512CryptoServiceProvider() { }
+        protected override void Dispose(bool disposing) { }
+        protected override void HashCore(byte[] array, int ibStart, int cbSize) { }
+        protected override byte[] HashFinal() { throw null; }
+        public override void Initialize() { }
     }
     public sealed partial class TripleDESCng : System.Security.Cryptography.TripleDES
     {

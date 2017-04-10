@@ -14,6 +14,9 @@ namespace AudioUnit
 namespace AVFoundation
 {
 }
+namespace AVKit
+{
+}
 namespace CFNetwork
 {
 }
@@ -114,6 +117,9 @@ namespace PdfKit
 {
 }
 namespace Photos
+{
+}
+namespace PrintCore
 {
 }
 namespace QTKit

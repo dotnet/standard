@@ -41,6 +41,9 @@ namespace HealthKit
 namespace HomeKit
 {
 }
+namespace Intents
+{
+}
 namespace MapKit
 {
 }

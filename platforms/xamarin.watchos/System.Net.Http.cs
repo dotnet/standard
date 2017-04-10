@@ -226,6 +226,7 @@ namespace System.Net.Http
         public bool AllowAutoRedirect { get { throw null; } set { } }
         public System.Net.ICredentials Credentials { get { throw null; } set { } }
         public bool DisableCaching { get { throw null; } set { } }
+        public long MaxInputInMemory { get { throw null; } set { } }
         protected override void Dispose(bool disposing) { }
         protected internal override System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> SendAsync(System.Net.Http.HttpRequestMessage request, System.Threading.CancellationToken cancellationToken) { throw null; }
     }
