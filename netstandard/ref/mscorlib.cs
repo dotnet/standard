@@ -100,22 +100,6 @@ namespace System
         public override int GetHashCode() { throw null; }
         public override string ToString() { throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct ArgIterator
-    {
-        public ArgIterator(System.RuntimeArgumentHandle arglist) { throw null;}
-        [System.CLSCompliantAttribute(false)]
-        public unsafe ArgIterator(System.RuntimeArgumentHandle arglist, void* ptr) { throw null;}
-        public void End() { }
-        public override bool Equals(object o) { throw null; }
-        public override int GetHashCode() { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public System.TypedReference GetNextArg() { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public System.TypedReference GetNextArg(System.RuntimeTypeHandle rth) { throw null; }
-        public System.RuntimeTypeHandle GetNextArgType() { throw null; }
-        public int GetRemainingCount() { throw null; }
-    }
     public partial class ArgumentException : System.SystemException, System.Runtime.Serialization.ISerializable
     {
         public ArgumentException() { }
@@ -674,8 +658,6 @@ namespace System
         public static void Write(string format, object arg0) { }
         public static void Write(string format, object arg0, object arg1) { }
         public static void Write(string format, object arg0, object arg1, object arg2) { }
-        [System.CLSCompliantAttribute(false)]
-        public static void Write(string format, object arg0, object arg1, object arg2, object arg3, __arglist) { }
         public static void Write(string format, params object[] arg) { }
         [System.CLSCompliantAttribute(false)]
         public static void Write(uint value) { }
@@ -696,8 +678,6 @@ namespace System
         public static void WriteLine(string format, object arg0) { }
         public static void WriteLine(string format, object arg0, object arg1) { }
         public static void WriteLine(string format, object arg0, object arg1, object arg2) { }
-        [System.CLSCompliantAttribute(false)]
-        public static void WriteLine(string format, object arg0, object arg1, object arg2, object arg3, __arglist) { }
         public static void WriteLine(string format, params object[] arg) { }
         [System.CLSCompliantAttribute(false)]
         public static void WriteLine(uint value) { }
@@ -3015,8 +2995,6 @@ namespace System
         public static System.String Concat(object arg0) { throw null; }
         public static System.String Concat(object arg0, object arg1) { throw null; }
         public static System.String Concat(object arg0, object arg1, object arg2) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static System.String Concat(object arg0, object arg1, object arg2, object arg3, __arglist) { throw null; }
         public static System.String Concat(params object[] args) { throw null; }
         public static System.String Concat(System.String str0, System.String str1) { throw null; }
         public static System.String Concat(System.String str0, System.String str1, System.String str2) { throw null; }
