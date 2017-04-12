@@ -48,8 +48,7 @@
                               TargetFramework="$(TargetFrameworkMoniker)"
                               RuntimeIdentifier="$(RuntimeIdentifier)"
                               PlatformLibraryName="$(MicrosoftNETPlatformLibrary)"
-                              PrivateAssetsPackageReferences="@(PrivateAssetsPackageReference)"
-                              IsSelfContained="$(SelfContained)">
+                              PrivateAssetsPackageReferences="@(PrivateAssetsPackageReference)">
 
       <Output TaskParameter="AssembliesToPublish" ItemName="_LockFileAssemblies" />
 
