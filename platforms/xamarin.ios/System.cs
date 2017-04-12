@@ -15,640 +15,6 @@ namespace Microsoft.Win32.SafeHandles
         protected override bool ReleaseHandle() { throw null; }
     }
 }
-namespace Mono.Security.Interface
-{
-    public partial class Alert
-    {
-        public Alert(Mono.Security.Interface.AlertDescription description) { }
-        public Alert(Mono.Security.Interface.AlertLevel level, Mono.Security.Interface.AlertDescription description) { }
-        public Mono.Security.Interface.AlertDescription Description { get { throw null; } }
-        public bool IsCloseNotify { get { throw null; } }
-        public bool IsWarning { get { throw null; } }
-        public Mono.Security.Interface.AlertLevel Level { get { throw null; } }
-        public string Message { get { throw null; } }
-        public static string GetAlertMessage(Mono.Security.Interface.AlertDescription description) { throw null; }
-        public override string ToString() { throw null; }
-    }
-    public enum AlertDescription : byte
-    {
-        AccessDenied = (byte)49,
-        BadCertificate = (byte)42,
-        BadRecordMAC = (byte)20,
-        CertificateExpired = (byte)45,
-        CertificateRevoked = (byte)44,
-        CertificateUnknown = (byte)46,
-        CloseNotify = (byte)0,
-        DecodeError = (byte)50,
-        DecompressionFailure = (byte)30,
-        DecryptError = (byte)51,
-        DecryptionFailed_RESERVED = (byte)21,
-        ExportRestriction = (byte)60,
-        HandshakeFailure = (byte)40,
-        IlegalParameter = (byte)47,
-        InsuficientSecurity = (byte)71,
-        InternalError = (byte)80,
-        NoCertificate_RESERVED = (byte)41,
-        NoRenegotiation = (byte)100,
-        ProtocolVersion = (byte)70,
-        RecordOverflow = (byte)22,
-        UnexpectedMessage = (byte)10,
-        UnknownCA = (byte)48,
-        UnsupportedCertificate = (byte)43,
-        UnsupportedExtension = (byte)110,
-        UserCancelled = (byte)90,
-    }
-    public enum AlertLevel : byte
-    {
-        Fatal = (byte)2,
-        Warning = (byte)1,
-    }
-    public static partial class CertificateValidationHelper
-    {
-        public static bool SupportsTrustAnchors { get { throw null; } }
-        public static bool SupportsX509Chain { get { throw null; } }
-        public static Mono.Security.Interface.ICertificateValidator GetValidator(Mono.Security.Interface.MonoTlsSettings settings) { throw null; }
-    }
-    public enum CipherAlgorithmType
-    {
-        Aes128 = 1,
-        Aes256 = 2,
-        AesGcm128 = 3,
-        AesGcm256 = 4,
-        None = 0,
-    }
-    [System.CLSCompliantAttribute(false)]
-    public enum CipherSuiteCode : ushort
-    {
-        TLS_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA = (ushort)17,
-        TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA = (ushort)19,
-        TLS_DHE_DSS_WITH_AES_128_CBC_SHA = (ushort)50,
-        TLS_DHE_DSS_WITH_AES_128_CBC_SHA256 = (ushort)64,
-        TLS_DHE_DSS_WITH_AES_128_GCM_SHA256 = (ushort)162,
-        TLS_DHE_DSS_WITH_AES_256_CBC_SHA = (ushort)56,
-        TLS_DHE_DSS_WITH_AES_256_CBC_SHA256 = (ushort)106,
-        TLS_DHE_DSS_WITH_AES_256_GCM_SHA384 = (ushort)163,
-        TLS_DHE_DSS_WITH_CAMELLIA_128_CBC_SHA = (ushort)68,
-        TLS_DHE_DSS_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)189,
-        TLS_DHE_DSS_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49280,
-        TLS_DHE_DSS_WITH_CAMELLIA_256_CBC_SHA = (ushort)135,
-        TLS_DHE_DSS_WITH_CAMELLIA_256_CBC_SHA256 = (ushort)195,
-        TLS_DHE_DSS_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49281,
-        TLS_DHE_DSS_WITH_DES_CBC_SHA = (ushort)18,
-        TLS_DHE_DSS_WITH_SEED_CBC_SHA = (ushort)153,
-        TLS_DHE_PSK_WITH_3DES_EDE_CBC_SHA = (ushort)143,
-        TLS_DHE_PSK_WITH_AES_128_CBC_SHA = (ushort)144,
-        TLS_DHE_PSK_WITH_AES_128_CBC_SHA256 = (ushort)178,
-        TLS_DHE_PSK_WITH_AES_128_CCM = (ushort)49318,
-        TLS_DHE_PSK_WITH_AES_128_GCM_SHA256 = (ushort)170,
-        TLS_DHE_PSK_WITH_AES_256_CBC_SHA = (ushort)145,
-        TLS_DHE_PSK_WITH_AES_256_CBC_SHA384 = (ushort)179,
-        TLS_DHE_PSK_WITH_AES_256_CCM = (ushort)49319,
-        TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 = (ushort)171,
-        TLS_DHE_PSK_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)49302,
-        TLS_DHE_PSK_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49296,
-        TLS_DHE_PSK_WITH_CAMELLIA_256_CBC_SHA384 = (ushort)49303,
-        TLS_DHE_PSK_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49297,
-        TLS_DHE_PSK_WITH_ESTREAM_SALSA20_SHA1 = (ushort)58396,
-        TLS_DHE_PSK_WITH_NULL_SHA = (ushort)45,
-        TLS_DHE_PSK_WITH_NULL_SHA256 = (ushort)180,
-        TLS_DHE_PSK_WITH_NULL_SHA384 = (ushort)181,
-        TLS_DHE_PSK_WITH_RC4_128_SHA = (ushort)142,
-        TLS_DHE_PSK_WITH_SALSA20_SHA1 = (ushort)58397,
-        TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA = (ushort)20,
-        TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA = (ushort)22,
-        TLS_DHE_RSA_WITH_AES_128_CBC_SHA = (ushort)51,
-        TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 = (ushort)103,
-        TLS_DHE_RSA_WITH_AES_128_CCM = (ushort)49310,
-        TLS_DHE_RSA_WITH_AES_128_CCM_8 = (ushort)49314,
-        TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 = (ushort)158,
-        TLS_DHE_RSA_WITH_AES_256_CBC_SHA = (ushort)57,
-        TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 = (ushort)107,
-        TLS_DHE_RSA_WITH_AES_256_CCM = (ushort)49311,
-        TLS_DHE_RSA_WITH_AES_256_CCM_8 = (ushort)49315,
-        TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 = (ushort)159,
-        TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA = (ushort)69,
-        TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)190,
-        TLS_DHE_RSA_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49276,
-        TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA = (ushort)136,
-        TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256 = (ushort)196,
-        TLS_DHE_RSA_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49277,
-        TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256 = (ushort)52245,
-        TLS_DHE_RSA_WITH_DES_CBC_SHA = (ushort)21,
-        TLS_DHE_RSA_WITH_ESTREAM_SALSA20_SHA1 = (ushort)58398,
-        TLS_DHE_RSA_WITH_SALSA20_SHA1 = (ushort)58399,
-        TLS_DHE_RSA_WITH_SEED_CBC_SHA = (ushort)154,
-        TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA = (ushort)25,
-        TLS_DH_anon_EXPORT_WITH_RC4_40_MD5 = (ushort)23,
-        TLS_DH_anon_WITH_3DES_EDE_CBC_SHA = (ushort)27,
-        TLS_DH_anon_WITH_AES_128_CBC_SHA = (ushort)52,
-        TLS_DH_anon_WITH_AES_128_CBC_SHA256 = (ushort)108,
-        TLS_DH_anon_WITH_AES_128_GCM_SHA256 = (ushort)166,
-        TLS_DH_anon_WITH_AES_256_CBC_SHA = (ushort)58,
-        TLS_DH_anon_WITH_AES_256_CBC_SHA256 = (ushort)109,
-        TLS_DH_anon_WITH_AES_256_GCM_SHA384 = (ushort)167,
-        TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA = (ushort)70,
-        TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)191,
-        TLS_DH_anon_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49284,
-        TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA = (ushort)137,
-        TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA256 = (ushort)197,
-        TLS_DH_anon_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49285,
-        TLS_DH_anon_WITH_DES_CBC_SHA = (ushort)26,
-        TLS_DH_anon_WITH_RC4_128_MD5 = (ushort)24,
-        TLS_DH_anon_WITH_SEED_CBC_SHA = (ushort)155,
-        TLS_DH_DSS_EXPORT_WITH_DES40_CBC_SHA = (ushort)11,
-        TLS_DH_DSS_WITH_3DES_EDE_CBC_SHA = (ushort)13,
-        TLS_DH_DSS_WITH_AES_128_CBC_SHA = (ushort)48,
-        TLS_DH_DSS_WITH_AES_128_CBC_SHA256 = (ushort)62,
-        TLS_DH_DSS_WITH_AES_128_GCM_SHA256 = (ushort)164,
-        TLS_DH_DSS_WITH_AES_256_CBC_SHA = (ushort)54,
-        TLS_DH_DSS_WITH_AES_256_CBC_SHA256 = (ushort)104,
-        TLS_DH_DSS_WITH_AES_256_GCM_SHA384 = (ushort)165,
-        TLS_DH_DSS_WITH_CAMELLIA_128_CBC_SHA = (ushort)66,
-        TLS_DH_DSS_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)187,
-        TLS_DH_DSS_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49282,
-        TLS_DH_DSS_WITH_CAMELLIA_256_CBC_SHA = (ushort)133,
-        TLS_DH_DSS_WITH_CAMELLIA_256_CBC_SHA256 = (ushort)193,
-        TLS_DH_DSS_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49283,
-        TLS_DH_DSS_WITH_DES_CBC_SHA = (ushort)12,
-        TLS_DH_DSS_WITH_SEED_CBC_SHA = (ushort)151,
-        TLS_DH_RSA_EXPORT_WITH_DES40_CBC_SHA = (ushort)14,
-        TLS_DH_RSA_WITH_3DES_EDE_CBC_SHA = (ushort)16,
-        TLS_DH_RSA_WITH_AES_128_CBC_SHA = (ushort)49,
-        TLS_DH_RSA_WITH_AES_128_CBC_SHA256 = (ushort)63,
-        TLS_DH_RSA_WITH_AES_128_GCM_SHA256 = (ushort)160,
-        TLS_DH_RSA_WITH_AES_256_CBC_SHA = (ushort)55,
-        TLS_DH_RSA_WITH_AES_256_CBC_SHA256 = (ushort)105,
-        TLS_DH_RSA_WITH_AES_256_GCM_SHA384 = (ushort)161,
-        TLS_DH_RSA_WITH_CAMELLIA_128_CBC_SHA = (ushort)67,
-        TLS_DH_RSA_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)188,
-        TLS_DH_RSA_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49278,
-        TLS_DH_RSA_WITH_CAMELLIA_256_CBC_SHA = (ushort)134,
-        TLS_DH_RSA_WITH_CAMELLIA_256_CBC_SHA256 = (ushort)194,
-        TLS_DH_RSA_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49279,
-        TLS_DH_RSA_WITH_DES_CBC_SHA = (ushort)15,
-        TLS_DH_RSA_WITH_SEED_CBC_SHA = (ushort)152,
-        TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA = (ushort)49160,
-        TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA = (ushort)49161,
-        TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 = (ushort)49187,
-        TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 = (ushort)49195,
-        TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA = (ushort)49162,
-        TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 = (ushort)49188,
-        TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 = (ushort)49196,
-        TLS_ECDHE_ECDSA_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)49266,
-        TLS_ECDHE_ECDSA_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49286,
-        TLS_ECDHE_ECDSA_WITH_CAMELLIA_256_CBC_SHA384 = (ushort)49267,
-        TLS_ECDHE_ECDSA_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49287,
-        TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256 = (ushort)52244,
-        TLS_ECDHE_ECDSA_WITH_ESTREAM_SALSA20_SHA1 = (ushort)58388,
-        TLS_ECDHE_ECDSA_WITH_NULL_SHA = (ushort)49158,
-        TLS_ECDHE_ECDSA_WITH_RC4_128_SHA = (ushort)49159,
-        TLS_ECDHE_ECDSA_WITH_SALSA20_SHA1 = (ushort)58389,
-        TLS_ECDHE_PSK_WITH_3DES_EDE_CBC_SHA = (ushort)49204,
-        TLS_ECDHE_PSK_WITH_AES_128_CBC_SHA = (ushort)49205,
-        TLS_ECDHE_PSK_WITH_AES_128_CBC_SHA256 = (ushort)49207,
-        TLS_ECDHE_PSK_WITH_AES_256_CBC_SHA = (ushort)49206,
-        TLS_ECDHE_PSK_WITH_AES_256_CBC_SHA384 = (ushort)49208,
-        TLS_ECDHE_PSK_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)49306,
-        TLS_ECDHE_PSK_WITH_CAMELLIA_256_CBC_SHA384 = (ushort)49307,
-        TLS_ECDHE_PSK_WITH_ESTREAM_SALSA20_SHA1 = (ushort)58392,
-        TLS_ECDHE_PSK_WITH_NULL_SHA = (ushort)49209,
-        TLS_ECDHE_PSK_WITH_NULL_SHA256 = (ushort)49210,
-        TLS_ECDHE_PSK_WITH_NULL_SHA384 = (ushort)49211,
-        TLS_ECDHE_PSK_WITH_RC4_128_SHA = (ushort)49203,
-        TLS_ECDHE_PSK_WITH_SALSA20_SHA1 = (ushort)58393,
-        TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA = (ushort)49170,
-        TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA = (ushort)49171,
-        TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 = (ushort)49191,
-        TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 = (ushort)49199,
-        TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA = (ushort)49172,
-        TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 = (ushort)49192,
-        TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 = (ushort)49200,
-        TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)49270,
-        TLS_ECDHE_RSA_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49290,
-        TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384 = (ushort)49271,
-        TLS_ECDHE_RSA_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49291,
-        TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 = (ushort)52243,
-        TLS_ECDHE_RSA_WITH_ESTREAM_SALSA20_SHA1 = (ushort)58386,
-        TLS_ECDHE_RSA_WITH_NULL_SHA = (ushort)49168,
-        TLS_ECDHE_RSA_WITH_RC4_128_SHA = (ushort)49169,
-        TLS_ECDHE_RSA_WITH_SALSA20_SHA1 = (ushort)58387,
-        TLS_ECDH_anon_WITH_3DES_EDE_CBC_SHA = (ushort)49175,
-        TLS_ECDH_anon_WITH_AES_128_CBC_SHA = (ushort)49176,
-        TLS_ECDH_anon_WITH_AES_256_CBC_SHA = (ushort)49177,
-        TLS_ECDH_anon_WITH_NULL_SHA = (ushort)49173,
-        TLS_ECDH_anon_WITH_RC4_128_SHA = (ushort)49174,
-        TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA = (ushort)49155,
-        TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA = (ushort)49156,
-        TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256 = (ushort)49189,
-        TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256 = (ushort)49197,
-        TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA = (ushort)49157,
-        TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384 = (ushort)49190,
-        TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384 = (ushort)49198,
-        TLS_ECDH_ECDSA_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)49268,
-        TLS_ECDH_ECDSA_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49288,
-        TLS_ECDH_ECDSA_WITH_CAMELLIA_256_CBC_SHA384 = (ushort)49269,
-        TLS_ECDH_ECDSA_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49289,
-        TLS_ECDH_ECDSA_WITH_NULL_SHA = (ushort)49153,
-        TLS_ECDH_ECDSA_WITH_RC4_128_SHA = (ushort)49154,
-        TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA = (ushort)49165,
-        TLS_ECDH_RSA_WITH_AES_128_CBC_SHA = (ushort)49166,
-        TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256 = (ushort)49193,
-        TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256 = (ushort)49201,
-        TLS_ECDH_RSA_WITH_AES_256_CBC_SHA = (ushort)49167,
-        TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384 = (ushort)49194,
-        TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384 = (ushort)49202,
-        TLS_ECDH_RSA_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)49272,
-        TLS_ECDH_RSA_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49292,
-        TLS_ECDH_RSA_WITH_CAMELLIA_256_CBC_SHA384 = (ushort)49273,
-        TLS_ECDH_RSA_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49293,
-        TLS_ECDH_RSA_WITH_NULL_SHA = (ushort)49163,
-        TLS_ECDH_RSA_WITH_RC4_128_SHA = (ushort)49164,
-        TLS_EMPTY_RENEGOTIATION_INFO_SCSV = (ushort)255,
-        TLS_FALLBACK_SCSV = (ushort)22016,
-        TLS_NULL_WITH_NULL_NULL = (ushort)0,
-        TLS_PSK_DHE_WITH_AES_128_CCM_8 = (ushort)49322,
-        TLS_PSK_DHE_WITH_AES_256_CCM_8 = (ushort)49323,
-        TLS_PSK_WITH_3DES_EDE_CBC_SHA = (ushort)139,
-        TLS_PSK_WITH_AES_128_CBC_SHA = (ushort)140,
-        TLS_PSK_WITH_AES_128_CBC_SHA256 = (ushort)174,
-        TLS_PSK_WITH_AES_128_CCM = (ushort)49316,
-        TLS_PSK_WITH_AES_128_CCM_8 = (ushort)49320,
-        TLS_PSK_WITH_AES_128_GCM_SHA256 = (ushort)168,
-        TLS_PSK_WITH_AES_256_CBC_SHA = (ushort)141,
-        TLS_PSK_WITH_AES_256_CBC_SHA384 = (ushort)175,
-        TLS_PSK_WITH_AES_256_CCM = (ushort)49317,
-        TLS_PSK_WITH_AES_256_CCM_8 = (ushort)49321,
-        TLS_PSK_WITH_AES_256_GCM_SHA384 = (ushort)169,
-        TLS_PSK_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)49300,
-        TLS_PSK_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49294,
-        TLS_PSK_WITH_CAMELLIA_256_CBC_SHA384 = (ushort)49301,
-        TLS_PSK_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49295,
-        TLS_PSK_WITH_ESTREAM_SALSA20_SHA1 = (ushort)58390,
-        TLS_PSK_WITH_NULL_SHA = (ushort)44,
-        TLS_PSK_WITH_NULL_SHA256 = (ushort)176,
-        TLS_PSK_WITH_NULL_SHA384 = (ushort)177,
-        TLS_PSK_WITH_RC4_128_SHA = (ushort)138,
-        TLS_PSK_WITH_SALSA20_SHA1 = (ushort)58391,
-        TLS_RSA_EXPORT_WITH_DES40_CBC_SHA = (ushort)8,
-        TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5 = (ushort)6,
-        TLS_RSA_EXPORT_WITH_RC4_40_MD5 = (ushort)3,
-        TLS_RSA_PSK_WITH_3DES_EDE_CBC_SHA = (ushort)147,
-        TLS_RSA_PSK_WITH_AES_128_CBC_SHA = (ushort)148,
-        TLS_RSA_PSK_WITH_AES_128_CBC_SHA256 = (ushort)182,
-        TLS_RSA_PSK_WITH_AES_128_GCM_SHA256 = (ushort)172,
-        TLS_RSA_PSK_WITH_AES_256_CBC_SHA = (ushort)149,
-        TLS_RSA_PSK_WITH_AES_256_CBC_SHA384 = (ushort)183,
-        TLS_RSA_PSK_WITH_AES_256_GCM_SHA384 = (ushort)173,
-        TLS_RSA_PSK_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)49304,
-        TLS_RSA_PSK_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49298,
-        TLS_RSA_PSK_WITH_CAMELLIA_256_CBC_SHA384 = (ushort)49305,
-        TLS_RSA_PSK_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49299,
-        TLS_RSA_PSK_WITH_ESTREAM_SALSA20_SHA1 = (ushort)58394,
-        TLS_RSA_PSK_WITH_NULL_SHA = (ushort)46,
-        TLS_RSA_PSK_WITH_NULL_SHA256 = (ushort)184,
-        TLS_RSA_PSK_WITH_NULL_SHA384 = (ushort)185,
-        TLS_RSA_PSK_WITH_RC4_128_SHA = (ushort)146,
-        TLS_RSA_PSK_WITH_SALSA20_SHA1 = (ushort)58395,
-        TLS_RSA_WITH_3DES_EDE_CBC_SHA = (ushort)10,
-        TLS_RSA_WITH_AES_128_CBC_SHA = (ushort)47,
-        TLS_RSA_WITH_AES_128_CBC_SHA256 = (ushort)60,
-        TLS_RSA_WITH_AES_128_CCM = (ushort)49308,
-        TLS_RSA_WITH_AES_128_CCM_8 = (ushort)49312,
-        TLS_RSA_WITH_AES_128_GCM_SHA256 = (ushort)156,
-        TLS_RSA_WITH_AES_256_CBC_SHA = (ushort)53,
-        TLS_RSA_WITH_AES_256_CBC_SHA256 = (ushort)61,
-        TLS_RSA_WITH_AES_256_CCM = (ushort)49309,
-        TLS_RSA_WITH_AES_256_CCM_8 = (ushort)49313,
-        TLS_RSA_WITH_AES_256_GCM_SHA384 = (ushort)157,
-        TLS_RSA_WITH_CAMELLIA_128_CBC_SHA = (ushort)65,
-        TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256 = (ushort)186,
-        TLS_RSA_WITH_CAMELLIA_128_GCM_SHA256 = (ushort)49274,
-        TLS_RSA_WITH_CAMELLIA_256_CBC_SHA = (ushort)132,
-        TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256 = (ushort)192,
-        TLS_RSA_WITH_CAMELLIA_256_GCM_SHA384 = (ushort)49275,
-        TLS_RSA_WITH_DES_CBC_SHA = (ushort)9,
-        TLS_RSA_WITH_ESTREAM_SALSA20_SHA1 = (ushort)58384,
-        TLS_RSA_WITH_IDEA_CBC_SHA = (ushort)7,
-        TLS_RSA_WITH_NULL_MD5 = (ushort)1,
-        TLS_RSA_WITH_NULL_SHA = (ushort)2,
-        TLS_RSA_WITH_NULL_SHA256 = (ushort)59,
-        TLS_RSA_WITH_RC4_128_MD5 = (ushort)4,
-        TLS_RSA_WITH_RC4_128_SHA = (ushort)5,
-        TLS_RSA_WITH_SALSA20_SHA1 = (ushort)58385,
-        TLS_RSA_WITH_SEED_CBC_SHA = (ushort)150,
-        TLS_SRP_SHA_DSS_WITH_3DES_EDE_CBC_SHA = (ushort)49180,
-        TLS_SRP_SHA_DSS_WITH_AES_128_CBC_SHA = (ushort)49183,
-        TLS_SRP_SHA_DSS_WITH_AES_256_CBC_SHA = (ushort)49186,
-        TLS_SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA = (ushort)49179,
-        TLS_SRP_SHA_RSA_WITH_AES_128_CBC_SHA = (ushort)49182,
-        TLS_SRP_SHA_RSA_WITH_AES_256_CBC_SHA = (ushort)49185,
-        TLS_SRP_SHA_WITH_3DES_EDE_CBC_SHA = (ushort)49178,
-        TLS_SRP_SHA_WITH_AES_128_CBC_SHA = (ushort)49181,
-        TLS_SRP_SHA_WITH_AES_256_CBC_SHA = (ushort)49184,
-    }
-    public enum ExchangeAlgorithmType
-    {
-        Dhe = 1,
-        EcDhe = 3,
-        None = 0,
-        Rsa = 2,
-    }
-    public enum HashAlgorithmType
-    {
-        Md5 = 1,
-        Md5Sha1 = 254,
-        None = 0,
-        Sha1 = 2,
-        Sha224 = 3,
-        Sha256 = 4,
-        Sha384 = 5,
-        Sha512 = 6,
-        Unknown = 255,
-    }
-    public partial interface IBufferOffsetSize
-    {
-        byte[] Buffer { get; }
-        int Offset { get; }
-        int Size { get; }
-    }
-    public partial interface ICertificateValidator
-    {
-        Mono.Security.Interface.MonoTlsSettings Settings { get; }
-        bool SelectClientCertificate(string targetHost, System.Security.Cryptography.X509Certificates.X509CertificateCollection localCertificates, System.Security.Cryptography.X509Certificates.X509Certificate remoteCertificate, string[] acceptableIssuers, out System.Security.Cryptography.X509Certificates.X509Certificate clientCertificate);
-        Mono.Security.Interface.ValidationResult ValidateCertificate(string targetHost, bool serverMode, System.Security.Cryptography.X509Certificates.X509CertificateCollection certificates);
-    }
-    public partial interface IMonoSslStream : System.IDisposable
-    {
-        System.Net.Security.AuthenticatedStream AuthenticatedStream { get; }
-        bool CanRead { get; }
-        bool CanTimeout { get; }
-        bool CanWrite { get; }
-        bool CheckCertRevocationStatus { get; }
-        System.Security.Authentication.CipherAlgorithmType CipherAlgorithm { get; }
-        int CipherStrength { get; }
-        System.Security.Authentication.HashAlgorithmType HashAlgorithm { get; }
-        int HashStrength { get; }
-        System.Security.Cryptography.X509Certificates.X509Certificate InternalLocalCertificate { get; }
-        bool IsAuthenticated { get; }
-        bool IsEncrypted { get; }
-        bool IsMutuallyAuthenticated { get; }
-        bool IsServer { get; }
-        bool IsSigned { get; }
-        System.Security.Authentication.ExchangeAlgorithmType KeyExchangeAlgorithm { get; }
-        int KeyExchangeStrength { get; }
-        long Length { get; }
-        System.Security.Cryptography.X509Certificates.X509Certificate LocalCertificate { get; }
-        long Position { get; }
-        Mono.Security.Interface.MonoTlsProvider Provider { get; }
-        int ReadTimeout { get; set; }
-        System.Security.Cryptography.X509Certificates.X509Certificate RemoteCertificate { get; }
-        System.Security.Authentication.SslProtocols SslProtocol { get; }
-        System.Net.TransportContext TransportContext { get; }
-        int WriteTimeout { get; set; }
-        void AuthenticateAsClient(string targetHost);
-        void AuthenticateAsClient(string targetHost, System.Security.Cryptography.X509Certificates.X509CertificateCollection clientCertificates, System.Security.Authentication.SslProtocols enabledSslProtocols, bool checkCertificateRevocation);
-        System.Threading.Tasks.Task AuthenticateAsClientAsync(string targetHost);
-        System.Threading.Tasks.Task AuthenticateAsClientAsync(string targetHost, System.Security.Cryptography.X509Certificates.X509CertificateCollection clientCertificates, System.Security.Authentication.SslProtocols enabledSslProtocols, bool checkCertificateRevocation);
-        void AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate serverCertificate);
-        void AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate serverCertificate, bool clientCertificateRequired, System.Security.Authentication.SslProtocols enabledSslProtocols, bool checkCertificateRevocation);
-        System.Threading.Tasks.Task AuthenticateAsServerAsync(System.Security.Cryptography.X509Certificates.X509Certificate serverCertificate);
-        System.Threading.Tasks.Task AuthenticateAsServerAsync(System.Security.Cryptography.X509Certificates.X509Certificate serverCertificate, bool clientCertificateRequired, System.Security.Authentication.SslProtocols enabledSslProtocols, bool checkCertificateRevocation);
-        System.IAsyncResult BeginAuthenticateAsClient(string targetHost, System.AsyncCallback asyncCallback, object asyncState);
-        System.IAsyncResult BeginAuthenticateAsClient(string targetHost, System.Security.Cryptography.X509Certificates.X509CertificateCollection clientCertificates, System.Security.Authentication.SslProtocols enabledSslProtocols, bool checkCertificateRevocation, System.AsyncCallback asyncCallback, object asyncState);
-        System.IAsyncResult BeginAuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate serverCertificate, System.AsyncCallback asyncCallback, object asyncState);
-        System.IAsyncResult BeginAuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate serverCertificate, bool clientCertificateRequired, System.Security.Authentication.SslProtocols enabledSslProtocols, bool checkCertificateRevocation, System.AsyncCallback asyncCallback, object asyncState);
-        System.IAsyncResult BeginRead(byte[] buffer, int offset, int count, System.AsyncCallback asyncCallback, object asyncState);
-        System.IAsyncResult BeginWrite(byte[] buffer, int offset, int count, System.AsyncCallback asyncCallback, object asyncState);
-        void EndAuthenticateAsClient(System.IAsyncResult asyncResult);
-        void EndAuthenticateAsServer(System.IAsyncResult asyncResult);
-        int EndRead(System.IAsyncResult asyncResult);
-        void EndWrite(System.IAsyncResult asyncResult);
-        void Flush();
-        Mono.Security.Interface.MonoTlsConnectionInfo GetConnectionInfo();
-        int Read(byte[] buffer, int offset, int count);
-        void SetLength(long value);
-        void Write(byte[] buffer);
-        void Write(byte[] buffer, int offset, int count);
-    }
-    public partial interface IMonoTlsEventSink
-    {
-        void Error(System.Exception exception);
-        void ReceivedCloseNotify();
-    }
-    public enum MonoEncryptionPolicy
-    {
-        AllowNoEncryption = 1,
-        NoEncryption = 2,
-        RequireEncryption = 0,
-    }
-    public delegate System.Security.Cryptography.X509Certificates.X509Certificate MonoLocalCertificateSelectionCallback(string targetHost, System.Security.Cryptography.X509Certificates.X509CertificateCollection localCertificates, System.Security.Cryptography.X509Certificates.X509Certificate remoteCertificate, string[] acceptableIssuers);
-    public delegate bool MonoRemoteCertificateValidationCallback(string targetHost, System.Security.Cryptography.X509Certificates.X509Certificate certificate, System.Security.Cryptography.X509Certificates.X509Chain chain, Mono.Security.Interface.MonoSslPolicyErrors sslPolicyErrors);
-    [System.FlagsAttribute]
-    public enum MonoSslPolicyErrors
-    {
-        None = 0,
-        RemoteCertificateChainErrors = 4,
-        RemoteCertificateNameMismatch = 2,
-        RemoteCertificateNotAvailable = 1,
-    }
-    public partial class MonoTlsConnectionInfo
-    {
-        public MonoTlsConnectionInfo() { }
-        public Mono.Security.Interface.CipherAlgorithmType CipherAlgorithmType { get { throw null; } set { } }
-        [System.CLSCompliantAttribute(false)]
-        public Mono.Security.Interface.CipherSuiteCode CipherSuiteCode { get { throw null; } set { } }
-        public Mono.Security.Interface.ExchangeAlgorithmType ExchangeAlgorithmType { get { throw null; } set { } }
-        public Mono.Security.Interface.HashAlgorithmType HashAlgorithmType { get { throw null; } set { } }
-        public string PeerDomainName { get { throw null; } set { } }
-        public Mono.Security.Interface.TlsProtocols ProtocolVersion { get { throw null; } set { } }
-        public override string ToString() { throw null; }
-    }
-    public abstract partial class MonoTlsProvider
-    {
-        internal MonoTlsProvider() { }
-        public abstract System.Guid ID { get; }
-        public abstract string Name { get; }
-        public abstract System.Security.Authentication.SslProtocols SupportedProtocols { get; }
-        public abstract bool SupportsConnectionInfo { get; }
-        public abstract bool SupportsMonoExtensions { get; }
-        public abstract bool SupportsSslStream { get; }
-        public abstract Mono.Security.Interface.IMonoSslStream CreateSslStream(System.IO.Stream innerStream, bool leaveInnerStreamOpen, Mono.Security.Interface.MonoTlsSettings settings=null);
-    }
-    public static partial class MonoTlsProviderFactory
-    {
-        public static bool IsInitialized { get { throw null; } }
-        public static System.Net.HttpListener CreateHttpListener(System.Security.Cryptography.X509Certificates.X509Certificate certificate, Mono.Security.Interface.MonoTlsProvider provider=null, Mono.Security.Interface.MonoTlsSettings settings=null) { throw null; }
-        public static System.Net.HttpWebRequest CreateHttpsRequest(System.Uri requestUri, Mono.Security.Interface.MonoTlsProvider provider, Mono.Security.Interface.MonoTlsSettings settings=null) { throw null; }
-        [System.ObsoleteAttribute("Use GetProvider() instead.")]
-        public static Mono.Security.Interface.MonoTlsProvider GetDefaultProvider() { throw null; }
-        public static Mono.Security.Interface.IMonoSslStream GetMonoSslStream(System.Net.Security.SslStream stream) { throw null; }
-        public static Mono.Security.Interface.MonoTlsProvider GetProvider() { throw null; }
-        public static Mono.Security.Interface.MonoTlsProvider GetProvider(string provider) { throw null; }
-        public static void Initialize() { }
-        public static void Initialize(string provider) { }
-        public static bool IsProviderSupported(string provider) { throw null; }
-        [System.ObsoleteAttribute("Use Initialize(string provider) instead.")]
-        public static void SetDefaultProvider(string name) { }
-    }
-    public sealed partial class MonoTlsSettings
-    {
-        public MonoTlsSettings() { }
-        public bool CallbackNeedsCertificateChain { get { throw null; } set { } }
-        [System.ObsoleteAttribute("Do not use outside System.dll!")]
-        public Mono.Security.Interface.ICertificateValidator CertificateValidator { get { throw null; } }
-        public bool CheckCertificateName { get { throw null; } set { } }
-        public bool CheckCertificateRevocationStatus { get { throw null; } set { } }
-        public Mono.Security.Interface.MonoLocalCertificateSelectionCallback ClientCertificateSelectionCallback { get { throw null; } set { } }
-        public static Mono.Security.Interface.MonoTlsSettings DefaultSettings { get { throw null; } set { } }
-        [System.CLSCompliantAttribute(false)]
-        public Mono.Security.Interface.CipherSuiteCode[] EnabledCiphers { get { throw null; } set { } }
-        public System.Nullable<Mono.Security.Interface.TlsProtocols> EnabledProtocols { get { throw null; } set { } }
-        public Mono.Security.Interface.MonoRemoteCertificateValidationCallback RemoteCertificateValidationCallback { get { throw null; } set { } }
-        public bool SkipSystemValidators { get { throw null; } set { } }
-        public System.Security.Cryptography.X509Certificates.X509CertificateCollection TrustAnchors { get { throw null; } set { } }
-        public object UserSettings { get { throw null; } set { } }
-        public System.Nullable<bool> UseServicePointManagerCallback { get { throw null; } set { } }
-        public Mono.Security.Interface.MonoTlsSettings Clone() { throw null; }
-        [System.ObsoleteAttribute("Do not use outside System.dll!")]
-        public Mono.Security.Interface.MonoTlsSettings CloneWithValidator(Mono.Security.Interface.ICertificateValidator validator) { throw null; }
-        public static Mono.Security.Interface.MonoTlsSettings CopyDefaultSettings() { throw null; }
-    }
-    public sealed partial class TlsException : System.Exception
-    {
-        public TlsException(Mono.Security.Interface.Alert alert) { }
-        public TlsException(Mono.Security.Interface.Alert alert, string message) { }
-        public TlsException(Mono.Security.Interface.AlertDescription description) { }
-        public TlsException(Mono.Security.Interface.AlertDescription description, string message) { }
-        public TlsException(Mono.Security.Interface.AlertDescription description, string format, params object[] args) { }
-        public TlsException(Mono.Security.Interface.AlertLevel level, Mono.Security.Interface.AlertDescription description) { }
-        public Mono.Security.Interface.Alert Alert { get { throw null; } }
-    }
-    public enum TlsProtocolCode : short
-    {
-        Tls10 = (short)769,
-        Tls11 = (short)770,
-        Tls12 = (short)771,
-    }
-    [System.FlagsAttribute]
-    public enum TlsProtocols
-    {
-        ClientMask = 2688,
-        ServerMask = 1344,
-        Tls10 = 192,
-        Tls10Client = 128,
-        Tls10Server = 64,
-        Tls11 = 768,
-        Tls11Client = 512,
-        Tls11Server = 256,
-        Tls12 = 3072,
-        Tls12Client = 2048,
-        Tls12Server = 1024,
-        Zero = 0,
-    }
-    public partial class ValidationResult
-    {
-        public ValidationResult(bool trusted, bool user_denied, int error_code, System.Nullable<Mono.Security.Interface.MonoSslPolicyErrors> policy_errors) { }
-        public int ErrorCode { get { throw null; } }
-        public System.Nullable<Mono.Security.Interface.MonoSslPolicyErrors> PolicyErrors { get { throw null; } }
-        public bool Trusted { get { throw null; } }
-        public bool UserDenied { get { throw null; } }
-    }
-}
-namespace Mono.Security.Protocol.Ntlm
-{
-    [System.ObsoleteAttribute("Use of this API is highly discouraged, it selects legacy-mode LM/NTLM authentication, which sends your password in very weak encryption over the wire even if the server supports the more secure NTLMv2 / NTLMv2 Session. You need to use the new `Type3Message (Type2Message)' constructor to use the more secure NTLMv2 / NTLMv2 Session authentication modes. These require the Type 2 message from the server to compute the response.")]
-    public partial class ChallengeResponse : System.IDisposable
-    {
-        public ChallengeResponse() { }
-        public ChallengeResponse(string password, byte[] challenge) { }
-        public byte[] Challenge { get { throw null; } set { } }
-        public byte[] LM { get { throw null; } }
-        public byte[] NT { get { throw null; } }
-        public string Password { get { throw null; } set { } }
-        public void Dispose() { }
-        ~ChallengeResponse() { }
-    }
-    public static partial class ChallengeResponse2
-    {
-        public static void Compute(Mono.Security.Protocol.Ntlm.Type2Message type2, Mono.Security.Protocol.Ntlm.NtlmAuthLevel level, string username, string password, string domain, out byte[] lm, out byte[] ntlm) { lm = default(byte[]); ntlm = default(byte[]); }
-    }
-    public abstract partial class MessageBase
-    {
-        protected MessageBase(int messageType) { }
-        public Mono.Security.Protocol.Ntlm.NtlmFlags Flags { get { throw null; } set { } }
-        public int Type { get { throw null; } }
-        protected bool CheckHeader(byte[] message) { throw null; }
-        protected virtual void Decode(byte[] message) { }
-        public abstract byte[] GetBytes();
-        protected byte[] PrepareMessage(int messageSize) { throw null; }
-    }
-    public enum NtlmAuthLevel
-    {
-        LM_and_NTLM = 0,
-        LM_and_NTLM_and_try_NTLMv2_Session = 1,
-        NTLMv2_only = 3,
-        NTLM_only = 2,
-    }
-    [System.FlagsAttribute]
-    public enum NtlmFlags
-    {
-        Negotiate128 = 536870912,
-        Negotiate56 = -2147483648,
-        NegotiateAlwaysSign = 32768,
-        NegotiateDomainSupplied = 4096,
-        NegotiateNtlm = 512,
-        NegotiateNtlm2Key = 524288,
-        NegotiateOem = 2,
-        NegotiateUnicode = 1,
-        NegotiateWorkstationSupplied = 8192,
-        RequestTarget = 4,
-    }
-    public static partial class NtlmSettings
-    {
-        public static Mono.Security.Protocol.Ntlm.NtlmAuthLevel DefaultAuthLevel { get { throw null; } set { } }
-    }
-    public partial class Type1Message : Mono.Security.Protocol.Ntlm.MessageBase
-    {
-        public Type1Message() : base (default(int)) { }
-        public Type1Message(byte[] message) : base (default(int)) { }
-        public string Domain { get { throw null; } set { } }
-        public string Host { get { throw null; } set { } }
-        protected override void Decode(byte[] message) { }
-        public override byte[] GetBytes() { throw null; }
-    }
-    public partial class Type2Message : Mono.Security.Protocol.Ntlm.MessageBase
-    {
-        public Type2Message() : base (default(int)) { }
-        public Type2Message(byte[] message) : base (default(int)) { }
-        public byte[] Nonce { get { throw null; } set { } }
-        public byte[] TargetInfo { get { throw null; } }
-        public string TargetName { get { throw null; } }
-        protected override void Decode(byte[] message) { }
-        ~Type2Message() { }
-        public override byte[] GetBytes() { throw null; }
-    }
-    public partial class Type3Message : Mono.Security.Protocol.Ntlm.MessageBase
-    {
-        [System.ObsoleteAttribute("Use of this API is highly discouraged, it selects legacy-mode LM/NTLM authentication, which sends your password in very weak encryption over the wire even if the server supports the more secure NTLMv2 / NTLMv2 Session. You need to use the new `Type3Message (Type2Message)' constructor to use the more secure NTLMv2 / NTLMv2 Session authentication modes. These require the Type 2 message from the server to compute the response.")]
-        public Type3Message() : base (default(int)) { }
-        public Type3Message(Mono.Security.Protocol.Ntlm.Type2Message type2) : base (default(int)) { }
-        public Type3Message(byte[] message) : base (default(int)) { }
-        [System.ObsoleteAttribute("Use of this API is highly discouraged, it selects legacy-mode LM/NTLM authentication, which sends your password in very weak encryption over the wire even if the server supports the more secure NTLMv2 / NTLMv2 Session. You need to use the new `Type3Message (Type2Message)' constructor to use the more secure NTLMv2 / NTLMv2 Session authentication modes. These require the Type 2 message from the server to compute the response.")]
-        public byte[] Challenge { get { throw null; } set { } }
-        [System.ObsoleteAttribute("Use NtlmSettings.DefaultAuthLevel")]
-        public static Mono.Security.Protocol.Ntlm.NtlmAuthLevel DefaultAuthLevel { get { throw null; } set { } }
-        public string Domain { get { throw null; } set { } }
-        public string Host { get { throw null; } set { } }
-        public Mono.Security.Protocol.Ntlm.NtlmAuthLevel Level { get { throw null; } set { } }
-        public byte[] LM { get { throw null; } }
-        public byte[] NT { get { throw null; } set { } }
-        public string Password { get { throw null; } set { } }
-        public string Username { get { throw null; } set { } }
-        protected override void Decode(byte[] message) { }
-        ~Type3Message() { }
-        public override byte[] GetBytes() { throw null; }
-    }
-}
 namespace System
 {
     public partial class FileStyleUriParser : System.UriParser
@@ -5345,7 +4711,6 @@ namespace System.IO
         public event System.IO.ErrorEventHandler Error { add { } remove { } }
         public event System.IO.RenamedEventHandler Renamed { add { } remove { } }
         public void BeginInit() { }
-        public virtual new void Dispose() { }
         protected override void Dispose(bool disposing) { }
         public void EndInit() { }
         protected void OnChanged(System.IO.FileSystemEventArgs e) { }
@@ -5460,16 +4825,21 @@ namespace System.IO.Compression
         public override bool CanWrite { get { throw null; } }
         public override long Length { get { throw null; } }
         public override long Position { get { throw null; } set { } }
-        public override System.IAsyncResult BeginRead(byte[] buffer, int offset, int count, System.AsyncCallback cback, object state) { throw null; }
-        public override System.IAsyncResult BeginWrite(byte[] buffer, int offset, int count, System.AsyncCallback cback, object state) { throw null; }
+        public override System.IAsyncResult BeginRead(byte[] array, int offset, int count, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
+        public override System.IAsyncResult BeginWrite(byte[] array, int offset, int count, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
+        public override System.Threading.Tasks.Task CopyToAsync(System.IO.Stream destination, int bufferSize, System.Threading.CancellationToken cancellationToken) { throw null; }
         protected override void Dispose(bool disposing) { }
-        public override int EndRead(System.IAsyncResult async_result) { throw null; }
-        public override void EndWrite(System.IAsyncResult async_result) { }
+        public override int EndRead(System.IAsyncResult asyncResult) { throw null; }
+        public override void EndWrite(System.IAsyncResult asyncResult) { }
         public override void Flush() { }
+        public override System.Threading.Tasks.Task FlushAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
         public override int Read(byte[] array, int offset, int count) { throw null; }
+        public override System.Threading.Tasks.Task<int> ReadAsync(byte[] array, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public override int ReadByte() { throw null; }
         public override long Seek(long offset, System.IO.SeekOrigin origin) { throw null; }
         public override void SetLength(long value) { }
         public override void Write(byte[] array, int offset, int count) { }
+        public override System.Threading.Tasks.Task WriteAsync(byte[] array, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
     }
 }
 namespace System.Net
@@ -8233,9 +7603,9 @@ namespace System.Net.Sockets
         public int SendBufferSize { get { throw null; } set { } }
         public int SendTimeout { get { throw null; } set { } }
         public System.Net.Sockets.SocketType SocketType { get { throw null; } }
-        [System.ObsoleteAttribute("Use OSSupportsIPv4 instead")]
+        [System.ObsoleteAttribute("SupportsIPv4 is obsoleted for this type, please use OSSupportsIPv4 instead. http://go.microsoft.com/fwlink/?linkid=14202")]
         public static bool SupportsIPv4 { get { throw null; } }
-        [System.ObsoleteAttribute("Use OSSupportsIPv6 instead")]
+        [System.ObsoleteAttribute("SupportsIPv6 is obsoleted for this type, please use OSSupportsIPv6 instead. http://go.microsoft.com/fwlink/?linkid=14202")]
         public static bool SupportsIPv6 { get { throw null; } }
         public short Ttl { get { throw null; } set { } }
         public bool UseOnlyOverlappedIO { get { throw null; } set { } }
@@ -8245,19 +7615,18 @@ namespace System.Net.Sockets
         public System.IAsyncResult BeginAccept(int receiveSize, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginAccept(System.Net.Sockets.Socket acceptSocket, int receiveSize, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginConnect(System.Net.EndPoint end_point, System.AsyncCallback callback, object state) { throw null; }
-        public System.IAsyncResult BeginConnect(System.Net.IPAddress address, int port, System.AsyncCallback callback, object state) { throw null; }
+        public System.IAsyncResult BeginConnect(System.Net.IPAddress address, int port, System.AsyncCallback requestCallback, object state) { throw null; }
         public System.IAsyncResult BeginConnect(System.Net.IPAddress[] addresses, int port, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginConnect(string host, int port, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginDisconnect(bool reuseSocket, System.AsyncCallback callback, object state) { throw null; }
-        public System.IAsyncResult BeginReceive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socket_flags, System.AsyncCallback callback, object state) { throw null; }
-        public System.IAsyncResult BeginReceive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags flags, out System.Net.Sockets.SocketError error, System.AsyncCallback callback, object state) { error = default(System.Net.Sockets.SocketError); throw null; }
-        [System.CLSCompliantAttribute(false)]
+        public System.IAsyncResult BeginReceive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, System.AsyncCallback callback, object state) { throw null; }
+        public System.IAsyncResult BeginReceive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode, System.AsyncCallback callback, object state) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
         public System.IAsyncResult BeginReceive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags, System.AsyncCallback callback, object state) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public System.IAsyncResult BeginReceive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode, System.AsyncCallback callback, object state) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
         public System.IAsyncResult BeginReceiveFrom(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socket_flags, ref System.Net.EndPoint remote_end, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginReceiveMessageFrom(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, ref System.Net.EndPoint remoteEP, System.AsyncCallback callback, object state) { throw null; }
-        public System.IAsyncResult BeginSend(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socket_flags, System.AsyncCallback callback, object state) { throw null; }
+        public System.IAsyncResult BeginSend(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginSend(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode, System.AsyncCallback callback, object state) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
         public System.IAsyncResult BeginSend(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags, System.AsyncCallback callback, object state) { throw null; }
         [System.CLSCompliantAttribute(false)]
@@ -8285,11 +7654,11 @@ namespace System.Net.Sockets
         public System.Net.Sockets.Socket EndAccept(System.IAsyncResult result) { throw null; }
         public void EndConnect(System.IAsyncResult result) { }
         public void EndDisconnect(System.IAsyncResult asyncResult) { }
-        public int EndReceive(System.IAsyncResult result) { throw null; }
+        public int EndReceive(System.IAsyncResult asyncResult) { throw null; }
         public int EndReceive(System.IAsyncResult asyncResult, out System.Net.Sockets.SocketError errorCode) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
         public int EndReceiveFrom(System.IAsyncResult result, ref System.Net.EndPoint end_point) { throw null; }
         public int EndReceiveMessageFrom(System.IAsyncResult asyncResult, ref System.Net.Sockets.SocketFlags socketFlags, ref System.Net.EndPoint endPoint, out System.Net.Sockets.IPPacketInformation ipPacketInformation) { ipPacketInformation = default(System.Net.Sockets.IPPacketInformation); throw null; }
-        public int EndSend(System.IAsyncResult result) { throw null; }
+        public int EndSend(System.IAsyncResult asyncResult) { throw null; }
         public int EndSend(System.IAsyncResult asyncResult, out System.Net.Sockets.SocketError errorCode) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
         public void EndSendFile(System.IAsyncResult asyncResult) { }
         public int EndSendTo(System.IAsyncResult result) { throw null; }
@@ -8307,7 +7676,6 @@ namespace System.Net.Sockets
         public int Receive(byte[] buffer, int size, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
         public int Receive(byte[] buffer, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
         public int Receive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers) { throw null; }
-        [System.CLSCompliantAttribute(false)]
         public int Receive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public int Receive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
@@ -8385,6 +7753,13 @@ namespace System.Net.Sockets
         Send = 7,
         SendPackets = 8,
         SendTo = 9,
+    }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
+    public enum SocketClientAccessPolicyProtocol
+    {
+        Http = 1,
+        Tcp = 0,
     }
     public enum SocketError
     {
@@ -8611,7 +7986,7 @@ namespace System.Net.Sockets
     }
     public partial class TcpListener
     {
-        [System.ObsoleteAttribute("Use TcpListener (IPAddress address, int port) instead")]
+        [System.ObsoleteAttribute("This method has been deprecated. Please use TcpListener(IPAddress localaddr, int port) instead. http://go.microsoft.com/fwlink/?linkid=14202")]
         public TcpListener(int port) { }
         public TcpListener(System.Net.IPAddress localaddr, int port) { }
         public TcpListener(System.Net.IPEndPoint localEP) { }
@@ -8629,7 +8004,6 @@ namespace System.Net.Sockets
         public static System.Net.Sockets.TcpListener Create(int port) { throw null; }
         public System.Net.Sockets.Socket EndAcceptSocket(System.IAsyncResult asyncResult) { throw null; }
         public System.Net.Sockets.TcpClient EndAcceptTcpClient(System.IAsyncResult asyncResult) { throw null; }
-        ~TcpListener() { }
         public bool Pending() { throw null; }
         public void Start() { }
         public void Start(int backlog) { }
@@ -8676,7 +8050,6 @@ namespace System.Net.Sockets
         public void DropMulticastGroup(System.Net.IPAddress multicastAddr, int ifindex) { }
         public byte[] EndReceive(System.IAsyncResult asyncResult, ref System.Net.IPEndPoint remoteEP) { throw null; }
         public int EndSend(System.IAsyncResult asyncResult) { throw null; }
-        ~UdpClient() { }
         public void JoinMulticastGroup(int ifindex, System.Net.IPAddress multicastAddr) { }
         public void JoinMulticastGroup(System.Net.IPAddress multicastAddr) { }
         public void JoinMulticastGroup(System.Net.IPAddress multicastAddr, int timeToLive) { }

@@ -321,3 +321,6 @@ namespace UserNotifications
 namespace VideoSubscriberAccount
 {
 }
+namespace VideoToolbox
+{
+}

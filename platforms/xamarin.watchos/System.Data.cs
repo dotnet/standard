@@ -736,7 +736,6 @@ namespace System.Data
         object System.ComponentModel.ICustomTypeDescriptor.GetPropertyOwner(System.ComponentModel.PropertyDescriptor pd) { throw null; }
     }
     [System.ComponentModel.DefaultPropertyAttribute("DataSetName")]
-    [System.ComponentModel.ToolboxItemAttribute("Microsoft.VSDesigner.Data.VS.DataSetToolboxItem, Microsoft.VSDesigner, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [System.Xml.Serialization.XmlSchemaProviderAttribute("GetDataSetSchema")]
     public partial class DataSet : System.ComponentModel.MarshalByValueComponent, System.ComponentModel.IListSource, System.ComponentModel.ISupportInitialize, System.ComponentModel.ISupportInitializeNotification, System.Runtime.Serialization.ISerializable, System.Xml.Serialization.IXmlSerializable
     {
@@ -1654,7 +1653,7 @@ namespace System.Data
         Required = 1,
         Write = 1024,
     }
-    public partial class PropertyCollection : System.Collections.Hashtable
+    public partial class PropertyCollection : System.Collections.Hashtable, System.ICloneable
     {
         public PropertyCollection() { }
         protected PropertyCollection(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
@@ -2011,6 +2010,34 @@ namespace System.Data.Common
         public void RemoveAt(string sourceTable) { }
         System.Data.ITableMapping System.Data.ITableMappingCollection.Add(string sourceTableName, string dataSetTableName) { throw null; }
         System.Data.ITableMapping System.Data.ITableMappingCollection.GetByDataSetTable(string dataSetTableName) { throw null; }
+    }
+    public abstract partial class DbColumn
+    {
+        protected DbColumn() { }
+        public System.Nullable<bool> AllowDBNull { get { throw null; } protected set { } }
+        public string BaseCatalogName { get { throw null; } protected set { } }
+        public string BaseColumnName { get { throw null; } protected set { } }
+        public string BaseSchemaName { get { throw null; } protected set { } }
+        public string BaseServerName { get { throw null; } protected set { } }
+        public string BaseTableName { get { throw null; } protected set { } }
+        public string ColumnName { get { throw null; } protected set { } }
+        public System.Nullable<int> ColumnOrdinal { get { throw null; } protected set { } }
+        public System.Nullable<int> ColumnSize { get { throw null; } protected set { } }
+        public System.Type DataType { get { throw null; } protected set { } }
+        public string DataTypeName { get { throw null; } protected set { } }
+        public System.Nullable<bool> IsAliased { get { throw null; } protected set { } }
+        public System.Nullable<bool> IsAutoIncrement { get { throw null; } protected set { } }
+        public System.Nullable<bool> IsExpression { get { throw null; } protected set { } }
+        public System.Nullable<bool> IsHidden { get { throw null; } protected set { } }
+        public System.Nullable<bool> IsIdentity { get { throw null; } protected set { } }
+        public System.Nullable<bool> IsKey { get { throw null; } protected set { } }
+        public System.Nullable<bool> IsLong { get { throw null; } protected set { } }
+        public System.Nullable<bool> IsReadOnly { get { throw null; } protected set { } }
+        public System.Nullable<bool> IsUnique { get { throw null; } protected set { } }
+        public virtual object this[string property] { get { throw null; } }
+        public System.Nullable<int> NumericPrecision { get { throw null; } protected set { } }
+        public System.Nullable<int> NumericScale { get { throw null; } protected set { } }
+        public string UdtAssemblyQualifiedName { get { throw null; } protected set { } }
     }
     public abstract partial class DbCommand : System.ComponentModel.Component, System.Data.IDbCommand, System.IDisposable
     {
@@ -2593,6 +2620,10 @@ namespace System.Data.Common
         NotSupported = 1,
         Unknown = 0,
         Unrelated = 2,
+    }
+    public partial interface IDbColumnSchemaGenerator
+    {
+        System.Collections.ObjectModel.ReadOnlyCollection<System.Data.Common.DbColumn> GetColumnSchema();
     }
     public enum IdentifierCase
     {

@@ -4717,7 +4717,6 @@ namespace System.IO
         public event System.IO.ErrorEventHandler Error { add { } remove { } }
         public event System.IO.RenamedEventHandler Renamed { add { } remove { } }
         public void BeginInit() { }
-        public virtual new void Dispose() { }
         protected override void Dispose(bool disposing) { }
         public void EndInit() { }
         protected void OnChanged(System.IO.FileSystemEventArgs e) { }
@@ -4832,16 +4831,21 @@ namespace System.IO.Compression
         public override bool CanWrite { get { throw null; } }
         public override long Length { get { throw null; } }
         public override long Position { get { throw null; } set { } }
-        public override System.IAsyncResult BeginRead(byte[] buffer, int offset, int count, System.AsyncCallback cback, object state) { throw null; }
-        public override System.IAsyncResult BeginWrite(byte[] buffer, int offset, int count, System.AsyncCallback cback, object state) { throw null; }
+        public override System.IAsyncResult BeginRead(byte[] array, int offset, int count, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
+        public override System.IAsyncResult BeginWrite(byte[] array, int offset, int count, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
+        public override System.Threading.Tasks.Task CopyToAsync(System.IO.Stream destination, int bufferSize, System.Threading.CancellationToken cancellationToken) { throw null; }
         protected override void Dispose(bool disposing) { }
-        public override int EndRead(System.IAsyncResult async_result) { throw null; }
-        public override void EndWrite(System.IAsyncResult async_result) { }
+        public override int EndRead(System.IAsyncResult asyncResult) { throw null; }
+        public override void EndWrite(System.IAsyncResult asyncResult) { }
         public override void Flush() { }
+        public override System.Threading.Tasks.Task FlushAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
         public override int Read(byte[] array, int offset, int count) { throw null; }
+        public override System.Threading.Tasks.Task<int> ReadAsync(byte[] array, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public override int ReadByte() { throw null; }
         public override long Seek(long offset, System.IO.SeekOrigin origin) { throw null; }
         public override void SetLength(long value) { }
         public override void Write(byte[] array, int offset, int count) { }
+        public override System.Threading.Tasks.Task WriteAsync(byte[] array, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
     }
 }
 namespace System.Net
@@ -7602,9 +7606,9 @@ namespace System.Net.Sockets
         public int SendBufferSize { get { throw null; } set { } }
         public int SendTimeout { get { throw null; } set { } }
         public System.Net.Sockets.SocketType SocketType { get { throw null; } }
-        [System.ObsoleteAttribute("Use OSSupportsIPv4 instead")]
+        [System.ObsoleteAttribute("SupportsIPv4 is obsoleted for this type, please use OSSupportsIPv4 instead. http://go.microsoft.com/fwlink/?linkid=14202")]
         public static bool SupportsIPv4 { get { throw null; } }
-        [System.ObsoleteAttribute("Use OSSupportsIPv6 instead")]
+        [System.ObsoleteAttribute("SupportsIPv6 is obsoleted for this type, please use OSSupportsIPv6 instead. http://go.microsoft.com/fwlink/?linkid=14202")]
         public static bool SupportsIPv6 { get { throw null; } }
         public short Ttl { get { throw null; } set { } }
         public bool UseOnlyOverlappedIO { get { throw null; } set { } }
@@ -7614,19 +7618,18 @@ namespace System.Net.Sockets
         public System.IAsyncResult BeginAccept(int receiveSize, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginAccept(System.Net.Sockets.Socket acceptSocket, int receiveSize, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginConnect(System.Net.EndPoint end_point, System.AsyncCallback callback, object state) { throw null; }
-        public System.IAsyncResult BeginConnect(System.Net.IPAddress address, int port, System.AsyncCallback callback, object state) { throw null; }
+        public System.IAsyncResult BeginConnect(System.Net.IPAddress address, int port, System.AsyncCallback requestCallback, object state) { throw null; }
         public System.IAsyncResult BeginConnect(System.Net.IPAddress[] addresses, int port, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginConnect(string host, int port, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginDisconnect(bool reuseSocket, System.AsyncCallback callback, object state) { throw null; }
-        public System.IAsyncResult BeginReceive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socket_flags, System.AsyncCallback callback, object state) { throw null; }
-        public System.IAsyncResult BeginReceive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags flags, out System.Net.Sockets.SocketError error, System.AsyncCallback callback, object state) { error = default(System.Net.Sockets.SocketError); throw null; }
-        [System.CLSCompliantAttribute(false)]
+        public System.IAsyncResult BeginReceive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, System.AsyncCallback callback, object state) { throw null; }
+        public System.IAsyncResult BeginReceive(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode, System.AsyncCallback callback, object state) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
         public System.IAsyncResult BeginReceive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags, System.AsyncCallback callback, object state) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public System.IAsyncResult BeginReceive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode, System.AsyncCallback callback, object state) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
         public System.IAsyncResult BeginReceiveFrom(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socket_flags, ref System.Net.EndPoint remote_end, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginReceiveMessageFrom(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, ref System.Net.EndPoint remoteEP, System.AsyncCallback callback, object state) { throw null; }
-        public System.IAsyncResult BeginSend(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socket_flags, System.AsyncCallback callback, object state) { throw null; }
+        public System.IAsyncResult BeginSend(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, System.AsyncCallback callback, object state) { throw null; }
         public System.IAsyncResult BeginSend(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode, System.AsyncCallback callback, object state) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
         public System.IAsyncResult BeginSend(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags, System.AsyncCallback callback, object state) { throw null; }
         [System.CLSCompliantAttribute(false)]
@@ -7654,11 +7657,11 @@ namespace System.Net.Sockets
         public System.Net.Sockets.Socket EndAccept(System.IAsyncResult result) { throw null; }
         public void EndConnect(System.IAsyncResult result) { }
         public void EndDisconnect(System.IAsyncResult asyncResult) { }
-        public int EndReceive(System.IAsyncResult result) { throw null; }
+        public int EndReceive(System.IAsyncResult asyncResult) { throw null; }
         public int EndReceive(System.IAsyncResult asyncResult, out System.Net.Sockets.SocketError errorCode) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
         public int EndReceiveFrom(System.IAsyncResult result, ref System.Net.EndPoint end_point) { throw null; }
         public int EndReceiveMessageFrom(System.IAsyncResult asyncResult, ref System.Net.Sockets.SocketFlags socketFlags, ref System.Net.EndPoint endPoint, out System.Net.Sockets.IPPacketInformation ipPacketInformation) { ipPacketInformation = default(System.Net.Sockets.IPPacketInformation); throw null; }
-        public int EndSend(System.IAsyncResult result) { throw null; }
+        public int EndSend(System.IAsyncResult asyncResult) { throw null; }
         public int EndSend(System.IAsyncResult asyncResult, out System.Net.Sockets.SocketError errorCode) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
         public void EndSendFile(System.IAsyncResult asyncResult) { }
         public int EndSendTo(System.IAsyncResult result) { throw null; }
@@ -7676,7 +7679,6 @@ namespace System.Net.Sockets
         public int Receive(byte[] buffer, int size, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
         public int Receive(byte[] buffer, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
         public int Receive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers) { throw null; }
-        [System.CLSCompliantAttribute(false)]
         public int Receive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public int Receive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode) { errorCode = default(System.Net.Sockets.SocketError); throw null; }
@@ -7754,6 +7756,13 @@ namespace System.Net.Sockets
         Send = 7,
         SendPackets = 8,
         SendTo = 9,
+    }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
+    public enum SocketClientAccessPolicyProtocol
+    {
+        Http = 1,
+        Tcp = 0,
     }
     public enum SocketError
     {
