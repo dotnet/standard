@@ -20,9 +20,6 @@
     <ProjectReference Include="..\ref\netstandard.csproj" />
     <ProjectReference Include="shims\netstandard\dir.builds" />
     <ProjectReference Include="shims\netfx\dir.builds" />
-    <ProjectReference Include="..\src\netstandard.csproj">
-      <AdditionalProperties>%(ProjectReference.AdditionalProperties);TargetGroup=net461</AdditionalProperties>
-    </ProjectReference>
 
     <File Include="$(RootTargetsSource)">
       <TargetPath>build/$(Id).targets</TargetPath>
@@ -30,10 +27,6 @@
 
     <File Include="targets\netstandard\$(TargetsFileName)">
       <TargetPath>build/$(NETStandardVersion)/$(Id).targets</TargetPath>
-    </File>
-
-    <File Include="targets\netfx\$(TargetsFileName)">
-      <TargetPath>build/net461/$(Id).targets</TargetPath>
     </File>
 
     <File Include="$(PlaceHolderFile)">
