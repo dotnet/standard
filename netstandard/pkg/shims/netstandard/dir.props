@@ -20,10 +20,6 @@
     <PackageDestination Include="build/$(TargetFramework)/ref">
       <TargetFramework>$(TargetFramework)</TargetFramework>
     </PackageDestination>
-    <!-- Package all the netstandard contract shims in net461 ref as well -->
-    <PackageDestination Include="build/net461/ref" Condition="'$(PackageForNetFx)' == 'true'">
-      <TargetFramework>net461</TargetFramework>
-    </PackageDestination>
   </ItemGroup>
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory).., dir.props))\dir.props" />
