@@ -14,6 +14,10 @@
     <BuildAllProjects>true</BuildAllProjects>
   </PropertyGroup>
   <ItemGroup>
+    <!-- Mark netstandard as a framework assembly -->
+    <AssemblyMetadata Include=".NETFrameworkAssembly">
+      <Value></Value>
+    </AssemblyMetadata>
     <PackageDestination Include="build/$(TargetFramework)/ref">
       <TargetFramework>$(TargetFramework)</TargetFramework>
     </PackageDestination>

@@ -14,6 +14,12 @@
     <ApiCompatBaseline>$(MSBuildProjectDirectory)\ApiCompatBaseline.$(TargetGroup).txt</ApiCompatBaseline>
     <NoWarn>$(NoWarn);618</NoWarn>
   </PropertyGroup>
+  <ItemGroup>
+    <!-- Mark netstandard as a framework assembly -->
+    <AssemblyMetadata Include=".NETFrameworkAssembly">
+      <Value></Value>
+    </AssemblyMetadata>
+  </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)' == 'net461'">
     <PackageDestination Include="build/$(TargetGroup)/ref">
       <TargetFramework>$(TargetGroup)</TargetFramework>
@@ -36,7 +42,7 @@
     <_ExcludeAPIList>$(MSBuildThisProjectDirectory)GenApi.exclude.$(TargetGroup).txt</_ExcludeAPIList>
   </PropertyGroup>
 
-  <Target Name="GenerateTypeForwards" 
+  <Target Name="GenerateTypeForwards"
           Inputs="@(ResolvedMatchingContract);$(_ExcludeAPIList)"
           Outputs="$(_TypeForwardsOutputPath)"
           DependsOnTargets="ResolveMatchingContract"
