@@ -20,7 +20,7 @@
           "ReportingParameters": {
             "OperatingSystem": "Windows",
             "SubType": "managed",
-            "Type": "build/product/standard/",
+            "Type": "build/product/",
             "ConfigurationGroup": "Release"
           }
         }
