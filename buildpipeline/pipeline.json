@@ -3,7 +3,8 @@
   "Definitions": {
     "Path": ".",
     "Type": "VSTS",
-    "BaseUrl":  "https://devdiv.visualstudio.com/DefaultCollection"
+    "BaseUrl":  "https://devdiv.visualstudio.com/DefaultCollection",
+    "SkipBranchAndVersionOverrides": "false"
   },
   "Pipelines": [
     {
