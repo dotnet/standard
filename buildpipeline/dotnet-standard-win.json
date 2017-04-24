@@ -144,7 +144,8 @@
       "value": "real"
     },
     "SourceBranch": {
-      "value": "master"
+      "value": "master",
+      "allowOverride": true
     },
     "PB_GitHubAuthToken": {
       "value": null,
