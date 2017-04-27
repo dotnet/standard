@@ -64,7 +64,7 @@
     <DotnetRestoreSource>@(DotnetSourceList -> '--source %(Identity)', ' ')</DotnetRestoreSource>
     <DotnetRestoreCommand>"$(DotnetToolCommand)"</DotnetRestoreCommand>
     <DotnetRestoreCommand>$(DotnetRestoreCommand) restore</DotnetRestoreCommand>
-    <DotnetRestoreCommand>$(DotnetRestoreCommand) --packages "$(PackagesDir.TrimEnd('/\'.ToCharArray()))" $(DotnetRestoreSource)</DotnetRestoreCommand>
+    <DotnetRestoreCommand>$(DotnetRestoreCommand) --packages "$(PackagesDir.TrimEnd('/').TrimEnd('\'))" $(DotnetRestoreSource)</DotnetRestoreCommand>
     <DnuRestoreCommand>$(DotnetRestoreCommand)</DnuRestoreCommand>
   </PropertyGroup>
 
