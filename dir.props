@@ -9,6 +9,10 @@
     <!-- Temp change to make OS X build behave as a Linux build -->
     <OsEnvironment Condition="'$(OsEnvironment)'=='' AND '$(OS)'=='OSX'">Unix</OsEnvironment>
     <OsEnvironment Condition="'$(OsEnvironment)'==''">$(OS)</OsEnvironment>
+
+    <!-- ToDo: Eliminate the need for this property -->
+    <ContainsPackageReferences>true</ContainsPackageReferences>
+    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
   </PropertyGroup>
 
   <PropertyGroup>

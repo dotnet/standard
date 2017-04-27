@@ -6,25 +6,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Project Include="netstandard1x.depproj">
-      <AdditionalProperties>%(AdditionalProperties);OutputFolder=netstandard1.0;NuGetTargetMoniker=.NETStandard,Version=v1.0</AdditionalProperties>
+      <AdditionalProperties>%(AdditionalProperties);TargetFramework=netstandard1.0;NuGetTargetMoniker=.NETStandard,Version=v1.0</AdditionalProperties>
     </Project>
     <Project Include="netstandard1x.depproj">
-      <AdditionalProperties>%(AdditionalProperties);OutputFolder=netstandard1.1;NuGetTargetMoniker=.NETStandard,Version=v1.1</AdditionalProperties>
+      <AdditionalProperties>%(AdditionalProperties);TargetFramework=netstandard1.1;NuGetTargetMoniker=.NETStandard,Version=v1.1</AdditionalProperties>
     </Project>
     <Project Include="netstandard1x.depproj">
-      <AdditionalProperties>%(AdditionalProperties);OutputFolder=netstandard1.2;NuGetTargetMoniker=.NETStandard,Version=v1.2</AdditionalProperties>
+      <AdditionalProperties>%(AdditionalProperties);TargetFramework=netstandard1.2;NuGetTargetMoniker=.NETStandard,Version=v1.2</AdditionalProperties>
     </Project>
     <Project Include="netstandard1x.depproj">
-      <AdditionalProperties>%(AdditionalProperties);OutputFolder=netstandard1.3;NuGetTargetMoniker=.NETStandard,Version=v1.3</AdditionalProperties>
+      <AdditionalProperties>%(AdditionalProperties);TargetFramework=netstandard1.3;NuGetTargetMoniker=.NETStandard,Version=v1.3</AdditionalProperties>
     </Project>
     <Project Include="netstandard1x.depproj">
-      <AdditionalProperties>%(AdditionalProperties);OutputFolder=netstandard1.4;NuGetTargetMoniker=.NETStandard,Version=v1.4</AdditionalProperties>
+      <AdditionalProperties>%(AdditionalProperties);TargetFramework=netstandard1.4;NuGetTargetMoniker=.NETStandard,Version=v1.4</AdditionalProperties>
     </Project>
     <Project Include="netstandard1x.depproj">
-      <AdditionalProperties>%(AdditionalProperties);OutputFolder=netstandard1.5;NuGetTargetMoniker=.NETStandard,Version=v1.5</AdditionalProperties>
+      <AdditionalProperties>%(AdditionalProperties);TargetFramework=netstandard1.5;NuGetTargetMoniker=.NETStandard,Version=v1.5</AdditionalProperties>
     </Project>
     <Project Include="netstandard1x.depproj">
-      <AdditionalProperties>%(AdditionalProperties);OutputFolder=netstandard1.6;NuGetTargetMoniker=.NETStandard,Version=v1.6</AdditionalProperties>
+      <AdditionalProperties>%(AdditionalProperties);TargetFramework=netstandard1.6;NuGetTargetMoniker=.NETStandard,Version=v1.6</AdditionalProperties>
     </Project>
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.traversal.targets))\dir.traversal.targets" />
