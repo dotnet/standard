@@ -90,7 +90,7 @@ namespace Microsoft.DotNet.Build.Tasks
                 return item1;
             }
 
-            if (forcedPackageRank1 < forcedPackageRank2)
+            if (forcedPackageRank2 < forcedPackageRank1)
             {
                 log.LogMessage($"{conflictMessage}.  Choosing {item2.DisplayName} because package it comes from a package that is forced.");
                 return item2;
