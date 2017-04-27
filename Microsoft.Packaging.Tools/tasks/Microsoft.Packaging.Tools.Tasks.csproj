@@ -10,6 +10,7 @@
     <CLSCompliant>false</CLSCompliant>
     <ProjectGuid>{65E58605-AE96-46C2-8C6C-F28A5EB9B565}</ProjectGuid>
     <RestoreOutputPath>$(IntermediateOutputPath)$(TargetGroup)</RestoreOutputPath>
+    <ContainsPackageReferences>true</ContainsPackageReferences>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'netstandard1.5_Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'net451_Debug'" />

@@ -2,12 +2,6 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Condition="Exists('..\dir.props')" Project="..\dir.props" />
 
-  <PropertyGroup>
-    <!-- ToDo: Eliminate the need for this property -->
-    <ContainsPackageReferences>true</ContainsPackageReferences>
-    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
-  </PropertyGroup>
-
   <!-- Common repo directories -->
   <PropertyGroup>
     <ProjectDir>$(MSBuildThisFileDirectory)</ProjectDir>
@@ -44,6 +38,7 @@
     <OutputType>Library</OutputType>
     <RunApiCompat>true</RunApiCompat>
     <AssemblyKey>Open</AssemblyKey>
+    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
   </PropertyGroup>
 
   <!--
