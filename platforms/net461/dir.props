@@ -5,4 +5,8 @@
     <TargetGroup>net461</TargetGroup>
   </PropertyGroup>
   <Import Condition="Exists('..\dir.props')" Project="..\dir.props" />
+  <PropertyGroup>
+    <!-- default to ECMA key -->
+    <AssemblyKey>ECMA</AssemblyKey>
+  </PropertyGroup>
 </Project>

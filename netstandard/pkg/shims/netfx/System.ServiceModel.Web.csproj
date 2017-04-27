@@ -4,7 +4,7 @@
   <PropertyGroup>
     <AssemblyName>System.ServiceModel.Web</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
-    <UseWinFxKey>true</UseWinFxKey>
+    <AssemblyKey>SilverlightExtension</AssemblyKey>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.ServiceModel.Web.Forwards.cs" />

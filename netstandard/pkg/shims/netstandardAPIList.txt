@@ -271,16 +271,6 @@ M:System.ApplicationId.get_ProcessorArchitecture
 M:System.ApplicationId.get_PublicKeyToken
 M:System.ApplicationId.get_Version
 M:System.ApplicationId.ToString
-T:System.ArgIterator
-M:System.ArgIterator.#ctor(System.RuntimeArgumentHandle)
-M:System.ArgIterator.#ctor(System.RuntimeArgumentHandle,System.Void*)
-M:System.ArgIterator.End
-M:System.ArgIterator.Equals(System.Object)
-M:System.ArgIterator.GetHashCode
-M:System.ArgIterator.GetNextArg
-M:System.ArgIterator.GetNextArg(System.RuntimeTypeHandle)
-M:System.ArgIterator.GetNextArgType
-M:System.ArgIterator.GetRemainingCount
 T:System.ArgumentException
 M:System.ArgumentException.#ctor
 M:System.ArgumentException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
@@ -877,7 +867,6 @@ M:System.Console.Write(System.String)
 M:System.Console.Write(System.String,System.Object)
 M:System.Console.Write(System.String,System.Object,System.Object)
 M:System.Console.Write(System.String,System.Object,System.Object,System.Object)
-M:System.Console.Write(System.String,System.Object,System.Object,System.Object,System.Object,__arglist)
 M:System.Console.Write(System.String,System.Object[])
 M:System.Console.Write(System.UInt32)
 M:System.Console.Write(System.UInt64)
@@ -896,7 +885,6 @@ M:System.Console.WriteLine(System.String)
 M:System.Console.WriteLine(System.String,System.Object)
 M:System.Console.WriteLine(System.String,System.Object,System.Object)
 M:System.Console.WriteLine(System.String,System.Object,System.Object,System.Object)
-M:System.Console.WriteLine(System.String,System.Object,System.Object,System.Object,System.Object,__arglist)
 M:System.Console.WriteLine(System.String,System.Object[])
 M:System.Console.WriteLine(System.UInt32)
 M:System.Console.WriteLine(System.UInt64)
@@ -3035,7 +3023,6 @@ M:System.String.Concat(System.Collections.Generic.IEnumerable{System.String})
 M:System.String.Concat(System.Object)
 M:System.String.Concat(System.Object,System.Object)
 M:System.String.Concat(System.Object,System.Object,System.Object)
-M:System.String.Concat(System.Object,System.Object,System.Object,System.Object,__arglist)
 M:System.String.Concat(System.Object[])
 M:System.String.Concat(System.String,System.String)
 M:System.String.Concat(System.String,System.String,System.String)
