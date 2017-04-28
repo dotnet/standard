@@ -7,13 +7,12 @@ __TOOLRUNTIME_DIR=$__scriptpath/Tools
 __DOTNET_PATH=$__TOOLRUNTIME_DIR/dotnetcli
 __DOTNET_CMD=$__DOTNET_PATH/dotnet
 if [ -z "$__BUILDTOOLS_SOURCE" ]; then __BUILDTOOLS_SOURCE=https://dotnet.myget.org/F/dotnet-buildtools/api/v3/index.json; fi
+export __BUILDTOOLS_USE_CSPROJ=true
 __BUILD_TOOLS_PACKAGE_VERSION=$(cat $__scriptpath/BuildToolsVersion.txt)
 __DOTNET_TOOLS_VERSION=$(cat $__scriptpath/DotnetCLIVersion.txt)
-__BUILD_TOOLS_PATH=$__PACKAGES_DIR/Microsoft.DotNet.BuildTools/$__BUILD_TOOLS_PACKAGE_VERSION/lib
-__PROJECT_JSON_PATH=$__TOOLRUNTIME_DIR/$__BUILD_TOOLS_PACKAGE_VERSION
-__PROJECT_JSON_FILE=$__PROJECT_JSON_PATH/project.json
-__PROJECT_JSON_CONTENTS="{ \"dependencies\": { \"Microsoft.DotNet.BuildTools\": \"$__BUILD_TOOLS_PACKAGE_VERSION\" }, \"frameworks\": { \"netcoreapp1.0\": { } } }"
-__INIT_TOOLS_DONE_MARKER=$__PROJECT_JSON_PATH/done
+__BUILD_TOOLS_PATH=$__PACKAGES_DIR/microsoft.dotnet.buildtools/$__BUILD_TOOLS_PACKAGE_VERSION/lib
+__INIT_TOOLS_RESTORE_PROJECT=$__scriptpath/init-tools.msbuild
+__INIT_TOOLS_DONE_MARKER=$__TOOLRUNTIME_DIR/$__BUILD_TOOLS_PACKAGE_VERSION/done
 
 # Extended version of platform detection logic from dotnet/cli/scripts/obtain/dotnet-install.sh 16692fc
 get_current_linux_name() {
@@ -43,10 +42,6 @@ get_current_linux_name() {
         echo "alpine"
         return 0
     elif [ "$(cat /etc/*-release | grep -cim1 fedora)" -eq 1 ]; then
-        if [ "$(cat /etc/*-release | grep -cim1 23)" -eq 1 ]; then
-            echo "fedora.23"
-            return 0
-        fi
         if [ "$(cat /etc/*-release | grep -cim1 24)" -eq 1 ]; then
             echo "fedora.24"
             return 0
@@ -68,6 +63,9 @@ get_current_linux_name() {
 }
 
 if [ -z "$__DOTNET_PKG" ]; then
+    if [ "$(uname -m | grep "i[3456]86")" = "i686" ]; then
+        echo "Warning: build not supported on 32 bit Unix"
+    fi
 OSName=$(uname -s)
     case $OSName in
         Darwin)
@@ -107,7 +105,7 @@ if [ ! -e $__INIT_TOOLS_DONE_MARKER ]; then
             cp -r $DOTNET_TOOL_DIR/* $__DOTNET_PATH
         else
             echo "Installing dotnet cli..."
-            __DOTNET_LOCATION="https://dotnetcli.blob.core.windows.net/dotnet/preview/Binaries/${__DOTNET_TOOLS_VERSION}/${__DOTNET_PKG}.${__DOTNET_TOOLS_VERSION}.tar.gz"
+            __DOTNET_LOCATION="https://dotnetcli.blob.core.windows.net/dotnet/Sdk/${__DOTNET_TOOLS_VERSION}/${__DOTNET_PKG}.${__DOTNET_TOOLS_VERSION}.tar.gz"
             # curl has HTTPS CA trust-issues less often than wget, so lets try that first.
             echo "Installing '${__DOTNET_LOCATION}' to '$__DOTNET_PATH/dotnet.tar'" >> $__init_tools_log
             which curl > /dev/null 2> /dev/null
@@ -133,18 +131,18 @@ if [ ! -e $__INIT_TOOLS_DONE_MARKER ]; then
         echo "Copying $BUILD_TOOLS_TOOL_DIR to $__TOOLRUNTIME_DIR" >> $__init_tools_log
         cp -r $BUILD_TOOLS_TOOL_DIR/* $__TOOLRUNTIME_DIR
     else
-        if [ ! -d "$__PROJECT_JSON_PATH" ]; then mkdir "$__PROJECT_JSON_PATH"; fi
-        echo $__PROJECT_JSON_CONTENTS > "$__PROJECT_JSON_FILE"
-
         if [ ! -e $__BUILD_TOOLS_PATH ]; then
             echo "Restoring BuildTools version $__BUILD_TOOLS_PACKAGE_VERSION..."
-            echo "Running: $__DOTNET_CMD restore \"$__PROJECT_JSON_FILE\" --no-cache --packages $__PACKAGES_DIR --source $__BUILDTOOLS_SOURCE" >> $__init_tools_log
-            $__DOTNET_CMD restore "$__PROJECT_JSON_FILE" --no-cache --packages $__PACKAGES_DIR --source $__BUILDTOOLS_SOURCE >> $__init_tools_log
+            echo "Running: $__DOTNET_CMD restore \"$__INIT_TOOLS_RESTORE_PROJECT\" --no-cache --packages $__PACKAGES_DIR --source $__BUILDTOOLS_SOURCE /p:BuildToolsPackageVersion=$__BUILD_TOOLS_PACKAGE_VERSION" >> $__init_tools_log
+            $__DOTNET_CMD restore "$__INIT_TOOLS_RESTORE_PROJECT" --no-cache --packages $__PACKAGES_DIR --source $__BUILDTOOLS_SOURCE /p:BuildToolsPackageVersion=$__BUILD_TOOLS_PACKAGE_VERSION >> $__init_tools_log
             if [ ! -e "$__BUILD_TOOLS_PATH/init-tools.sh" ]; then echo "ERROR: Could not restore build tools correctly. See '$__init_tools_log' for more details."1>&2; fi
         fi
 
         echo "Initializing BuildTools..."
         echo "Running: $__BUILD_TOOLS_PATH/init-tools.sh $__scriptpath $__DOTNET_CMD $__TOOLRUNTIME_DIR" >> $__init_tools_log
+
+        # Executables restored with .NET Core 2.0 do not have executable permission flags. https://github.com/NuGet/Home/issues/4424
+        chmod +x $__BUILD_TOOLS_PATH/init-tools.sh
         $__BUILD_TOOLS_PATH/init-tools.sh $__scriptpath $__DOTNET_CMD $__TOOLRUNTIME_DIR >> $__init_tools_log
         if [ "$?" != "0" ]; then
             echo "ERROR: An error occured when trying to initialize the tools. Please check '$__init_tools_log' for more details."1>&2
@@ -152,17 +150,12 @@ if [ ! -e $__INIT_TOOLS_DONE_MARKER ]; then
         fi
     fi
 
-    if [ $__PATCH_CLI_NUGET_FRAMEWORKS -eq 1 ]; then
-        echo "Updating CLI NuGet Frameworks map..."
-        cp $__TOOLRUNTIME_DIR/NuGet.Frameworks.dll $__TOOLRUNTIME_DIR/dotnetcli/sdk/$__DOTNET_TOOLS_VERSION >> $__init_tools_log
-        if [ "$?" != "0" ]; then
-            echo "ERROR: An error occured when updating Nuget for CLI . Please check '$__init_tools_log' for more details."1>&2
-            exit 1
-        fi
-    fi
+    echo "Making all .sh files executable under Tools."
+    # Executables restored with .NET Core 2.0 do not have executable permission flags. https://github.com/NuGet/Home/issues/4424
+    ls $__scriptpath/Tools/*.sh | xargs chmod +x
+    ls $__scriptpath/Tools/scripts/docker/*.sh | xargs chmod +x
 
-    echo Copying supplemental overrides from Tools-Override.
-    cp $__scriptpath/Tools-Override/* $__scriptpath/Tools
+    Tools/crossgen.sh $__scriptpath/Tools
 
     touch $__INIT_TOOLS_DONE_MARKER
 

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <AssemblyName>System.Runtime.Serialization.Primitives</AssemblyName>
     <AssemblyVersion>4.1.1.0</AssemblyVersion>
-    <UseMSFTKey>true</UseMSFTKey>
+    <AssemblyKey>MSFT</AssemblyKey>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.Runtime.Serialization.Primitives.Forwards.cs" />

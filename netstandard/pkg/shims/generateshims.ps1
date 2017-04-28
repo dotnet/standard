@@ -52,19 +52,19 @@ foreach ($shim in $shimList)
     $asmToken = $asmName.GetPublicKeyToken()[0].ToString("x2");
     if ($asmToken -eq "b0")
     {
-        $token = "UseMSFTKey";
+        $token = "MSFT";
     }
     elseif ($asmToken -eq "b7")
     {
-        $token = "UseECMAKey";
+        $token = "ECMA";
     }
     elseif ($asmToken -eq "cc")
     {
-        $token = "UseOpenKey";
+        $token = "Open";
     }
     elseif ($asmToken -eq "31")
     {
-        $token = "UseWinFxKey";
+        $token = "SilverlightExtension";
     }
     else
     {
@@ -73,5 +73,5 @@ foreach ($shim in $shimList)
 
     & $genapi -writer:TypeForwards -assembly:"$shimContract" -apiList:"$netstandardAPIList" -out:"$shimForwards" -libpath:"$refPath"
     #& $genapi -writer:TypeForwards -assembly:"$shimContract" -out:"$shimForwards" -libpath:"$refPath"
-    $projTemplate.Replace("[SHIM]", $shim).Replace("[TOKEN]", $token).Replace("[VERSION]", $asmVersion) | sc "$shimProject"
+    $projTemplate.Replace("[SHIM]", $shim).Replace("[TOKEN]", $token).Replace("[VERSION]", $asmVersion).Replace("[KEY]", $token) | sc "$shimProject"
 }

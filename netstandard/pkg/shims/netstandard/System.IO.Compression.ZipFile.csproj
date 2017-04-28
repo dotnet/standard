@@ -4,7 +4,7 @@
   <PropertyGroup>
     <AssemblyName>System.IO.Compression.ZipFile</AssemblyName>
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
-    <UseECMAKey>true</UseECMAKey>
+    <AssemblyKey>ECMA</AssemblyKey>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.IO.Compression.ZipFile.Forwards.cs" />

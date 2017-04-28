@@ -4,7 +4,7 @@
   <PropertyGroup>
     <AssemblyName>System.Runtime.CompilerServices.VisualC</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
-    <UseMSFTKey>true</UseMSFTKey>
+    <AssemblyKey>MSFT</AssemblyKey>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.Runtime.CompilerServices.VisualC.Forwards.cs" />

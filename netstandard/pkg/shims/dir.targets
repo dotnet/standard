@@ -6,14 +6,6 @@
     <NoWarn>$(NoWarn);0618</NoWarn>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile Condition="'$(UseOpenKey)' == 'true'">$(ToolsDir)Open.snk</AssemblyOriginatorKeyFile>
-    <AssemblyOriginatorKeyFile Condition="'$(UseECMAKey)' == 'true'">$(ToolsDir)ECMA.snk</AssemblyOriginatorKeyFile>
-    <AssemblyOriginatorKeyFile Condition="'$(UseMSFTKey)' == 'true'">$(ToolsDir)MSFT.snk</AssemblyOriginatorKeyFile>
-    <AssemblyOriginatorKeyFile Condition="'$(UseWinFxKey)' == 'true'">$(ProjectDir)platforms/winfx.pub</AssemblyOriginatorKeyFile>
-    <StrongNameSig Condition="'$(UseWinFxKey)' == 'true'">MSSharedLib</StrongNameSig>
-  </PropertyGroup>
-
   <!--
     These shims need to have a higher file version then the last ones we shipped to ensure they win
     the conflict resolution so setting major/minor to match what was shipped before. The patch version
@@ -36,6 +28,14 @@
     -->
     <ItemGroup>
       <AssemblyInfoLines Remove="@(AssemblyInfoLines)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="MarkProjectReferencesAsNotPrivate" BeforeTargets="AssignProjectConfiguration">
+    <ItemGroup>
+      <ProjectReference>
+        <Private>false</Private>
+      </ProjectReference>
     </ItemGroup>
   </Target>
 
