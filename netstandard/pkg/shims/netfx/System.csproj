@@ -9,6 +9,7 @@
   <ItemGroup>
     <Compile Include="System.Forwards.cs" />
     <ProjectReference Include="..\..\..\ref\netstandard.csproj" />
+    <ProjectReference Include="..\..\..\..\platforms\extensions\System.CodeDom.csproj" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>

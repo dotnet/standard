@@ -26,9 +26,10 @@ $shimList = gc $shimlistFile;
 $projTemplate = gc shim.projtemplate
 
 $netstandardRef = "..\..\..\bin\ref\netstandard\2.0.0.0\netstandard.dll";
-$netstandardAPIList = "netstandardAPIList.txt";
+$extensionsDir = "..\..\..\bin\ref\extensions\";
+$netstandardAndExtensionsAPIList = "netstandardAndExtensionsAPIList.txt";
 
-& $genapi -writer:DocIds -assembly:$netstandardRef -out:$netstandardAPIList
+& $genapi -writer:DocIds -assembly:$netstandardRef,$extensionsDir -out:$netstandardAndExtensionsAPIList
 
 foreach ($shim in $shimList)
 {
@@ -71,7 +72,11 @@ foreach ($shim in $shimList)
         Write-Error "Don't know which key is token $asmToken";
     }
 
-    & $genapi -writer:TypeForwards -assembly:"$shimContract" -apiList:"$netstandardAPIList" -out:"$shimForwards" -libpath:"$refPath"
+    & $genapi -writer:TypeForwards -assembly:"$shimContract" -apiList:"$netstandardAndExtensionsAPIList" -out:"$shimForwards" -libpath:"$refPath"
     #& $genapi -writer:TypeForwards -assembly:"$shimContract" -out:"$shimForwards" -libpath:"$refPath"
-    $projTemplate.Replace("[SHIM]", $shim).Replace("[TOKEN]", $token).Replace("[VERSION]", $asmVersion).Replace("[KEY]", $token) | sc "$shimProject"
+
+    if (!Test-Project $shimProject)
+    {
+        $projTemplate.Replace("[SHIM]", $shim).Replace("[TOKEN]", $token).Replace("[VERSION]", $asmVersion).Replace("[KEY]", $token) | sc "$shimProject"
+    }
 }
