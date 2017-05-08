@@ -2,58 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-/*
-APIs removed/broken by this factoring:
-
-    public partial interface IDataContractSurrogate
-    {
-//CODEDOM        System.CodeDom.CodeTypeDeclaration ProcessImportedType(System.CodeDom.CodeTypeDeclaration typeDeclaration, System.CodeDom.CodeCompileUnit compileUnit);
-    }
-    public sealed partial class DataContractSerializer : System.Runtime.Serialization.XmlObjectSerializer
-    {
-//CODEDOM        public DataContractSerializer(System.Type type, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate) { }
-//CODEDOM        public DataContractSerializer(System.Type type, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, System.Runtime.Serialization.DataContractResolver dataContractResolver) { }
-//CODEDOM        public DataContractSerializer(System.Type type, string rootName, string rootNamespace, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate) { }
-//CODEDOM        public DataContractSerializer(System.Type type, string rootName, string rootNamespace, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, System.Runtime.Serialization.DataContractResolver dataContractResolver) { }
-//CODEDOM        public DataContractSerializer(System.Type type, System.Xml.XmlDictionaryString rootName, System.Xml.XmlDictionaryString rootNamespace, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate) { }
-//CODEDOM        public DataContractSerializer(System.Type type, System.Xml.XmlDictionaryString rootName, System.Xml.XmlDictionaryString rootNamespace, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, bool preserveObjectReferences, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, System.Runtime.Serialization.DataContractResolver dataContractResolver) { }
-//CODEDOM        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } }
-    }
-    public partial class DataContractSerializerSettings
-    {
-//CODEDOM        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } set { } }
-    }
-    public partial class ExportOptions
-    {
-//CODEDOM        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } set { } }
-    }
-    public sealed partial class DataContractJsonSerializer : System.Runtime.Serialization.XmlObjectSerializer
-    {
-//CODEDOM        public DataContractJsonSerializer(System.Type type, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, bool alwaysEmitTypeInformation) { }
-//CODEDOM        public DataContractJsonSerializer(System.Type type, string rootName, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, bool alwaysEmitTypeInformation) { }
-//CODEDOM        public DataContractJsonSerializer(System.Type type, System.Xml.XmlDictionaryString rootName, System.Collections.Generic.IEnumerable<System.Type> knownTypes, int maxItemsInObjectGraph, bool ignoreExtensionDataObject, System.Runtime.Serialization.IDataContractSurrogate dataContractSurrogate, bool alwaysEmitTypeInformation) { }
-//CODEDOM        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } }
-    }
-    public partial class DataContractJsonSerializerSettings
-    {
-//CODEDOM        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } set { } }
-    }
-    public partial class XmlMemberMapping
-    {
-//CODEDOM        public string GenerateTypeName(System.CodeDom.Compiler.CodeDomProvider codeProvider) { throw null; }
-    }
-    public partial class XmlSchemaImporter
-//CodeDOM : System.Xml.Serialization.SchemaImporter
-    {
-//CODEDOM        public XmlSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeGenerationOptions options, System.CodeDom.Compiler.CodeDomProvider codeProvider, System.Xml.Serialization.ImportContext context) { }
-//CODEDOM        public XmlSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeGenerationOptions options, System.Xml.Serialization.ImportContext context) { }
-//CODEDOM        public XmlSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeIdentifiers typeIdentifiers, System.Xml.Serialization.CodeGenerationOptions options) { }
-    }
-    public sealed partial class XslCompiledTransform
-    {
-//CODEDOM        public System.CodeDom.Compiler.TempFileCollection TemporaryFiles { get { throw null; } }
-    }
-*/
 namespace Microsoft.CSharp
 {
     public partial class CSharpCodeProvider : System.CodeDom.Compiler.CodeDomProvider
@@ -143,12 +91,12 @@ namespace System.CodeDom
     public partial class CodeAttributeArgumentCollection : System.Collections.CollectionBase
     {
         public CodeAttributeArgumentCollection() { }
-        public CodeAttributeArgumentCollection(System.CodeDom.CodeAttributeArgument[] value) { }
         public CodeAttributeArgumentCollection(System.CodeDom.CodeAttributeArgumentCollection value) { }
+        public CodeAttributeArgumentCollection(System.CodeDom.CodeAttributeArgument[] value) { }
         public System.CodeDom.CodeAttributeArgument this[int index] { get { throw null; } set { } }
         public int Add(System.CodeDom.CodeAttributeArgument value) { throw null; }
-        public void AddRange(System.CodeDom.CodeAttributeArgument[] value) { }
         public void AddRange(System.CodeDom.CodeAttributeArgumentCollection value) { }
+        public void AddRange(System.CodeDom.CodeAttributeArgument[] value) { }
         public bool Contains(System.CodeDom.CodeAttributeArgument value) { throw null; }
         public void CopyTo(System.CodeDom.CodeAttributeArgument[] array, int index) { }
         public int IndexOf(System.CodeDom.CodeAttributeArgument value) { throw null; }
@@ -169,12 +117,12 @@ namespace System.CodeDom
     public partial class CodeAttributeDeclarationCollection : System.Collections.CollectionBase
     {
         public CodeAttributeDeclarationCollection() { }
-        public CodeAttributeDeclarationCollection(System.CodeDom.CodeAttributeDeclaration[] value) { }
         public CodeAttributeDeclarationCollection(System.CodeDom.CodeAttributeDeclarationCollection value) { }
+        public CodeAttributeDeclarationCollection(System.CodeDom.CodeAttributeDeclaration[] value) { }
         public System.CodeDom.CodeAttributeDeclaration this[int index] { get { throw null; } set { } }
         public int Add(System.CodeDom.CodeAttributeDeclaration value) { throw null; }
-        public void AddRange(System.CodeDom.CodeAttributeDeclaration[] value) { }
         public void AddRange(System.CodeDom.CodeAttributeDeclarationCollection value) { }
+        public void AddRange(System.CodeDom.CodeAttributeDeclaration[] value) { }
         public bool Contains(System.CodeDom.CodeAttributeDeclaration value) { throw null; }
         public void CopyTo(System.CodeDom.CodeAttributeDeclaration[] array, int index) { }
         public int IndexOf(System.CodeDom.CodeAttributeDeclaration value) { throw null; }
@@ -235,12 +183,12 @@ namespace System.CodeDom
     public partial class CodeCatchClauseCollection : System.Collections.CollectionBase
     {
         public CodeCatchClauseCollection() { }
-        public CodeCatchClauseCollection(System.CodeDom.CodeCatchClause[] value) { }
         public CodeCatchClauseCollection(System.CodeDom.CodeCatchClauseCollection value) { }
+        public CodeCatchClauseCollection(System.CodeDom.CodeCatchClause[] value) { }
         public System.CodeDom.CodeCatchClause this[int index] { get { throw null; } set { } }
         public int Add(System.CodeDom.CodeCatchClause value) { throw null; }
-        public void AddRange(System.CodeDom.CodeCatchClause[] value) { }
         public void AddRange(System.CodeDom.CodeCatchClauseCollection value) { }
+        public void AddRange(System.CodeDom.CodeCatchClause[] value) { }
         public bool Contains(System.CodeDom.CodeCatchClause value) { throw null; }
         public void CopyTo(System.CodeDom.CodeCatchClause[] array, int index) { }
         public int IndexOf(System.CodeDom.CodeCatchClause value) { throw null; }
@@ -274,12 +222,12 @@ namespace System.CodeDom
     public partial class CodeCommentStatementCollection : System.Collections.CollectionBase
     {
         public CodeCommentStatementCollection() { }
-        public CodeCommentStatementCollection(System.CodeDom.CodeCommentStatement[] value) { }
         public CodeCommentStatementCollection(System.CodeDom.CodeCommentStatementCollection value) { }
+        public CodeCommentStatementCollection(System.CodeDom.CodeCommentStatement[] value) { }
         public System.CodeDom.CodeCommentStatement this[int index] { get { throw null; } set { } }
         public int Add(System.CodeDom.CodeCommentStatement value) { throw null; }
-        public void AddRange(System.CodeDom.CodeCommentStatement[] value) { }
         public void AddRange(System.CodeDom.CodeCommentStatementCollection value) { }
+        public void AddRange(System.CodeDom.CodeCommentStatement[] value) { }
         public bool Contains(System.CodeDom.CodeCommentStatement value) { throw null; }
         public void CopyTo(System.CodeDom.CodeCommentStatement[] array, int index) { }
         public int IndexOf(System.CodeDom.CodeCommentStatement value) { throw null; }
@@ -346,12 +294,12 @@ namespace System.CodeDom
     public partial class CodeDirectiveCollection : System.Collections.CollectionBase
     {
         public CodeDirectiveCollection() { }
-        public CodeDirectiveCollection(System.CodeDom.CodeDirective[] value) { }
         public CodeDirectiveCollection(System.CodeDom.CodeDirectiveCollection value) { }
+        public CodeDirectiveCollection(System.CodeDom.CodeDirective[] value) { }
         public System.CodeDom.CodeDirective this[int index] { get { throw null; } set { } }
         public int Add(System.CodeDom.CodeDirective value) { throw null; }
-        public void AddRange(System.CodeDom.CodeDirective[] value) { }
         public void AddRange(System.CodeDom.CodeDirectiveCollection value) { }
+        public void AddRange(System.CodeDom.CodeDirective[] value) { }
         public bool Contains(System.CodeDom.CodeDirective value) { throw null; }
         public void CopyTo(System.CodeDom.CodeDirective[] array, int index) { }
         public int IndexOf(System.CodeDom.CodeDirective value) { throw null; }
@@ -376,12 +324,12 @@ namespace System.CodeDom
     public partial class CodeExpressionCollection : System.Collections.CollectionBase
     {
         public CodeExpressionCollection() { }
-        public CodeExpressionCollection(System.CodeDom.CodeExpression[] value) { }
         public CodeExpressionCollection(System.CodeDom.CodeExpressionCollection value) { }
+        public CodeExpressionCollection(System.CodeDom.CodeExpression[] value) { }
         public System.CodeDom.CodeExpression this[int index] { get { throw null; } set { } }
         public int Add(System.CodeDom.CodeExpression value) { throw null; }
-        public void AddRange(System.CodeDom.CodeExpression[] value) { }
         public void AddRange(System.CodeDom.CodeExpressionCollection value) { }
+        public void AddRange(System.CodeDom.CodeExpression[] value) { }
         public bool Contains(System.CodeDom.CodeExpression value) { throw null; }
         public void CopyTo(System.CodeDom.CodeExpression[] array, int index) { }
         public int IndexOf(System.CodeDom.CodeExpression value) { throw null; }
@@ -518,12 +466,12 @@ namespace System.CodeDom
     public partial class CodeNamespaceCollection : System.Collections.CollectionBase
     {
         public CodeNamespaceCollection() { }
-        public CodeNamespaceCollection(System.CodeDom.CodeNamespace[] value) { }
         public CodeNamespaceCollection(System.CodeDom.CodeNamespaceCollection value) { }
+        public CodeNamespaceCollection(System.CodeDom.CodeNamespace[] value) { }
         public System.CodeDom.CodeNamespace this[int index] { get { throw null; } set { } }
         public int Add(System.CodeDom.CodeNamespace value) { throw null; }
-        public void AddRange(System.CodeDom.CodeNamespace[] value) { }
         public void AddRange(System.CodeDom.CodeNamespaceCollection value) { }
+        public void AddRange(System.CodeDom.CodeNamespace[] value) { }
         public bool Contains(System.CodeDom.CodeNamespace value) { throw null; }
         public void CopyTo(System.CodeDom.CodeNamespace[] array, int index) { }
         public int IndexOf(System.CodeDom.CodeNamespace value) { throw null; }
@@ -590,12 +538,12 @@ namespace System.CodeDom
     public partial class CodeParameterDeclarationExpressionCollection : System.Collections.CollectionBase
     {
         public CodeParameterDeclarationExpressionCollection() { }
-        public CodeParameterDeclarationExpressionCollection(System.CodeDom.CodeParameterDeclarationExpression[] value) { }
         public CodeParameterDeclarationExpressionCollection(System.CodeDom.CodeParameterDeclarationExpressionCollection value) { }
+        public CodeParameterDeclarationExpressionCollection(System.CodeDom.CodeParameterDeclarationExpression[] value) { }
         public System.CodeDom.CodeParameterDeclarationExpression this[int index] { get { throw null; } set { } }
         public int Add(System.CodeDom.CodeParameterDeclarationExpression value) { throw null; }
-        public void AddRange(System.CodeDom.CodeParameterDeclarationExpression[] value) { }
         public void AddRange(System.CodeDom.CodeParameterDeclarationExpressionCollection value) { }
+        public void AddRange(System.CodeDom.CodeParameterDeclarationExpression[] value) { }
         public bool Contains(System.CodeDom.CodeParameterDeclarationExpression value) { throw null; }
         public void CopyTo(System.CodeDom.CodeParameterDeclarationExpression[] array, int index) { }
         public int IndexOf(System.CodeDom.CodeParameterDeclarationExpression value) { throw null; }
@@ -675,13 +623,13 @@ namespace System.CodeDom
     public partial class CodeStatementCollection : System.Collections.CollectionBase
     {
         public CodeStatementCollection() { }
-        public CodeStatementCollection(System.CodeDom.CodeStatement[] value) { }
         public CodeStatementCollection(System.CodeDom.CodeStatementCollection value) { }
+        public CodeStatementCollection(System.CodeDom.CodeStatement[] value) { }
         public System.CodeDom.CodeStatement this[int index] { get { throw null; } set { } }
         public int Add(System.CodeDom.CodeExpression value) { throw null; }
         public int Add(System.CodeDom.CodeStatement value) { throw null; }
-        public void AddRange(System.CodeDom.CodeStatement[] value) { }
         public void AddRange(System.CodeDom.CodeStatementCollection value) { }
+        public void AddRange(System.CodeDom.CodeStatement[] value) { }
         public bool Contains(System.CodeDom.CodeStatement value) { throw null; }
         public void CopyTo(System.CodeDom.CodeStatement[] array, int index) { }
         public int IndexOf(System.CodeDom.CodeStatement value) { throw null; }
@@ -730,12 +678,12 @@ namespace System.CodeDom
     public partial class CodeTypeDeclarationCollection : System.Collections.CollectionBase
     {
         public CodeTypeDeclarationCollection() { }
-        public CodeTypeDeclarationCollection(System.CodeDom.CodeTypeDeclaration[] value) { }
         public CodeTypeDeclarationCollection(System.CodeDom.CodeTypeDeclarationCollection value) { }
+        public CodeTypeDeclarationCollection(System.CodeDom.CodeTypeDeclaration[] value) { }
         public System.CodeDom.CodeTypeDeclaration this[int index] { get { throw null; } set { } }
         public int Add(System.CodeDom.CodeTypeDeclaration value) { throw null; }
-        public void AddRange(System.CodeDom.CodeTypeDeclaration[] value) { }
         public void AddRange(System.CodeDom.CodeTypeDeclarationCollection value) { }
+        public void AddRange(System.CodeDom.CodeTypeDeclaration[] value) { }
         public bool Contains(System.CodeDom.CodeTypeDeclaration value) { throw null; }
         public void CopyTo(System.CodeDom.CodeTypeDeclaration[] array, int index) { }
         public int IndexOf(System.CodeDom.CodeTypeDeclaration value) { throw null; }
@@ -763,12 +711,12 @@ namespace System.CodeDom
     public partial class CodeTypeMemberCollection : System.Collections.CollectionBase
     {
         public CodeTypeMemberCollection() { }
-        public CodeTypeMemberCollection(System.CodeDom.CodeTypeMember[] value) { }
         public CodeTypeMemberCollection(System.CodeDom.CodeTypeMemberCollection value) { }
+        public CodeTypeMemberCollection(System.CodeDom.CodeTypeMember[] value) { }
         public System.CodeDom.CodeTypeMember this[int index] { get { throw null; } set { } }
         public int Add(System.CodeDom.CodeTypeMember value) { throw null; }
-        public void AddRange(System.CodeDom.CodeTypeMember[] value) { }
         public void AddRange(System.CodeDom.CodeTypeMemberCollection value) { }
+        public void AddRange(System.CodeDom.CodeTypeMember[] value) { }
         public bool Contains(System.CodeDom.CodeTypeMember value) { throw null; }
         public void CopyTo(System.CodeDom.CodeTypeMember[] array, int index) { }
         public int IndexOf(System.CodeDom.CodeTypeMember value) { throw null; }
@@ -795,13 +743,13 @@ namespace System.CodeDom
     public partial class CodeTypeParameterCollection : System.Collections.CollectionBase
     {
         public CodeTypeParameterCollection() { }
-        public CodeTypeParameterCollection(System.CodeDom.CodeTypeParameter[] value) { }
         public CodeTypeParameterCollection(System.CodeDom.CodeTypeParameterCollection value) { }
+        public CodeTypeParameterCollection(System.CodeDom.CodeTypeParameter[] value) { }
         public System.CodeDom.CodeTypeParameter this[int index] { get { throw null; } set { } }
         public int Add(System.CodeDom.CodeTypeParameter value) { throw null; }
         public void Add(string value) { }
-        public void AddRange(System.CodeDom.CodeTypeParameter[] value) { }
         public void AddRange(System.CodeDom.CodeTypeParameterCollection value) { }
+        public void AddRange(System.CodeDom.CodeTypeParameter[] value) { }
         public bool Contains(System.CodeDom.CodeTypeParameter value) { throw null; }
         public void CopyTo(System.CodeDom.CodeTypeParameter[] array, int index) { }
         public int IndexOf(System.CodeDom.CodeTypeParameter value) { throw null; }
@@ -814,8 +762,8 @@ namespace System.CodeDom
         public CodeTypeReference(System.CodeDom.CodeTypeParameter typeParameter) { }
         public CodeTypeReference(System.CodeDom.CodeTypeReference arrayType, int rank) { }
         public CodeTypeReference(string typeName) { }
-        public CodeTypeReference(string typeName, params System.CodeDom.CodeTypeReference[] typeArguments) { }
         public CodeTypeReference(string typeName, System.CodeDom.CodeTypeReferenceOptions codeTypeReferenceOption) { }
+        public CodeTypeReference(string typeName, params System.CodeDom.CodeTypeReference[] typeArguments) { }
         public CodeTypeReference(string baseType, int rank) { }
         public CodeTypeReference(System.Type type) { }
         public CodeTypeReference(System.Type type, System.CodeDom.CodeTypeReferenceOptions codeTypeReferenceOption) { }
@@ -828,14 +776,14 @@ namespace System.CodeDom
     public partial class CodeTypeReferenceCollection : System.Collections.CollectionBase
     {
         public CodeTypeReferenceCollection() { }
-        public CodeTypeReferenceCollection(System.CodeDom.CodeTypeReference[] value) { }
         public CodeTypeReferenceCollection(System.CodeDom.CodeTypeReferenceCollection value) { }
+        public CodeTypeReferenceCollection(System.CodeDom.CodeTypeReference[] value) { }
         public System.CodeDom.CodeTypeReference this[int index] { get { throw null; } set { } }
         public int Add(System.CodeDom.CodeTypeReference value) { throw null; }
         public void Add(string value) { }
         public void Add(System.Type value) { }
-        public void AddRange(System.CodeDom.CodeTypeReference[] value) { }
         public void AddRange(System.CodeDom.CodeTypeReferenceCollection value) { }
+        public void AddRange(System.CodeDom.CodeTypeReference[] value) { }
         public bool Contains(System.CodeDom.CodeTypeReference value) { throw null; }
         public void CopyTo(System.CodeDom.CodeTypeReference[] array, int index) { }
         public int IndexOf(System.CodeDom.CodeTypeReference value) { throw null; }
@@ -925,7 +873,6 @@ namespace System.CodeDom.Compiler
         System.CodeDom.Compiler.CompilerResults System.CodeDom.Compiler.ICodeCompiler.CompileAssemblyFromSource(System.CodeDom.Compiler.CompilerParameters options, string source) { throw null; }
         System.CodeDom.Compiler.CompilerResults System.CodeDom.Compiler.ICodeCompiler.CompileAssemblyFromSourceBatch(System.CodeDom.Compiler.CompilerParameters options, string[] sources) { throw null; }
     }
-    [System.ComponentModel.ToolboxItemAttribute(false)]
     public abstract partial class CodeDomProvider : System.ComponentModel.Component
     {
         protected CodeDomProvider() { }
@@ -1119,14 +1066,14 @@ namespace System.CodeDom.Compiler
     public partial class CompilerErrorCollection : System.Collections.CollectionBase
     {
         public CompilerErrorCollection() { }
-        public CompilerErrorCollection(System.CodeDom.Compiler.CompilerError[] value) { }
         public CompilerErrorCollection(System.CodeDom.Compiler.CompilerErrorCollection value) { }
+        public CompilerErrorCollection(System.CodeDom.Compiler.CompilerError[] value) { }
         public bool HasErrors { get { throw null; } }
         public bool HasWarnings { get { throw null; } }
         public System.CodeDom.Compiler.CompilerError this[int index] { get { throw null; } set { } }
         public int Add(System.CodeDom.Compiler.CompilerError value) { throw null; }
-        public void AddRange(System.CodeDom.Compiler.CompilerError[] value) { }
         public void AddRange(System.CodeDom.Compiler.CompilerErrorCollection value) { }
+        public void AddRange(System.CodeDom.Compiler.CompilerError[] value) { }
         public bool Contains(System.CodeDom.Compiler.CompilerError value) { throw null; }
         public void CopyTo(System.CodeDom.Compiler.CompilerError[] array, int index) { }
         public int IndexOf(System.CodeDom.Compiler.CompilerError value) { throw null; }
@@ -1155,8 +1102,6 @@ namespace System.CodeDom.Compiler
         public string CompilerOptions { get { throw null; } set { } }
         public string CoreAssemblyFileName { get { throw null; } set { } }
         public System.Collections.Specialized.StringCollection EmbeddedResources { get { throw null; } }
-//CAS        [System.ObsoleteAttribute("CAS policy is obsolete and will be removed in a future release of the .NET Framework. Please see http://go2.microsoft.com/fwlink/?LinkId=131738 for more information.")]
-//CAS        public System.Security.Policy.Evidence Evidence { get { throw null; } set { } }
         public bool GenerateExecutable { get { throw null; } set { } }
         public bool GenerateInMemory { get { throw null; } set { } }
         public bool IncludeDebugInformation { get { throw null; } set { } }
@@ -1175,8 +1120,6 @@ namespace System.CodeDom.Compiler
         public CompilerResults(System.CodeDom.Compiler.TempFileCollection tempFiles) { }
         public System.Reflection.Assembly CompiledAssembly { get { throw null; } set { } }
         public System.CodeDom.Compiler.CompilerErrorCollection Errors { get { throw null; } }
-//CAS        [System.ObsoleteAttribute("CAS policy is obsolete and will be removed in a future release of the .NET Framework. Please see http://go2.microsoft.com/fwlink/?LinkId=131738 for more information.")]
-//CAS        public System.Security.Policy.Evidence Evidence { get { throw null; } set { } }
         public int NativeCompilerReturnValue { get { throw null; } set { } }
         public System.Collections.Specialized.StringCollection Output { get { throw null; } }
         public string PathToAssembly { get { throw null; } set { } }
@@ -1276,133 +1219,5 @@ namespace System.CodeDom.Compiler
         void System.Collections.ICollection.CopyTo(System.Array array, int start) { }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
         void System.IDisposable.Dispose() { }
-    }
-}
-namespace System.Runtime.Serialization
-{
-    public partial interface IDataContractSurrogate
-    {
-        object GetCustomDataToExport(System.Reflection.MemberInfo memberInfo, System.Type dataContractType);
-        object GetCustomDataToExport(System.Type clrType, System.Type dataContractType);
-        System.Type GetDataContractType(System.Type type);
-        object GetDeserializedObject(object obj, System.Type targetType);
-        void GetKnownCustomDataTypes(System.Collections.ObjectModel.Collection<System.Type> customDataTypes);
-        object GetObjectToSerialize(object obj, System.Type targetType);
-        System.Type GetReferencedTypeOnImport(string typeName, string typeNamespace, object customData);
-        System.CodeDom.CodeTypeDeclaration ProcessImportedType(System.CodeDom.CodeTypeDeclaration typeDeclaration, System.CodeDom.CodeCompileUnit compileUnit);
-    }
-    public partial class ImportOptions
-    {
-        public ImportOptions() { }
-        public System.CodeDom.Compiler.CodeDomProvider CodeProvider { get { throw null; } set { } }
-        public System.Runtime.Serialization.IDataContractSurrogate DataContractSurrogate { get { throw null; } set { } }
-        public bool EnableDataBinding { get { throw null; } set { } }
-        public bool GenerateInternal { get { throw null; } set { } }
-        public bool GenerateSerializable { get { throw null; } set { } }
-        public bool ImportXmlType { get { throw null; } set { } }
-        public System.Collections.Generic.IDictionary<string, string> Namespaces { get { throw null; } }
-        public System.Collections.Generic.ICollection<System.Type> ReferencedCollectionTypes { get { throw null; } }
-        public System.Collections.Generic.ICollection<System.Type> ReferencedTypes { get { throw null; } }
-    }
-    public partial class XsdDataContractImporter
-    {
-        public XsdDataContractImporter() { }
-        public XsdDataContractImporter(System.CodeDom.CodeCompileUnit codeCompileUnit) { }
-        public System.CodeDom.CodeCompileUnit CodeCompileUnit { get { throw null; } }
-        public System.Runtime.Serialization.ImportOptions Options { get { throw null; } set { } }
-        public bool CanImport(System.Xml.Schema.XmlSchemaSet schemas) { throw null; }
-        public bool CanImport(System.Xml.Schema.XmlSchemaSet schemas, System.Collections.Generic.ICollection<System.Xml.XmlQualifiedName> typeNames) { throw null; }
-        public bool CanImport(System.Xml.Schema.XmlSchemaSet schemas, System.Xml.Schema.XmlSchemaElement element) { throw null; }
-        public bool CanImport(System.Xml.Schema.XmlSchemaSet schemas, System.Xml.XmlQualifiedName typeName) { throw null; }
-        public System.CodeDom.CodeTypeReference GetCodeTypeReference(System.Xml.XmlQualifiedName typeName) { throw null; }
-        public System.CodeDom.CodeTypeReference GetCodeTypeReference(System.Xml.XmlQualifiedName typeName, System.Xml.Schema.XmlSchemaElement element) { throw null; }
-        public System.Collections.Generic.ICollection<System.CodeDom.CodeTypeReference> GetKnownTypeReferences(System.Xml.XmlQualifiedName typeName) { throw null; }
-        public void Import(System.Xml.Schema.XmlSchemaSet schemas) { }
-        public void Import(System.Xml.Schema.XmlSchemaSet schemas, System.Collections.Generic.ICollection<System.Xml.XmlQualifiedName> typeNames) { }
-        public System.Xml.XmlQualifiedName Import(System.Xml.Schema.XmlSchemaSet schemas, System.Xml.Schema.XmlSchemaElement element) { throw null; }
-        public void Import(System.Xml.Schema.XmlSchemaSet schemas, System.Xml.XmlQualifiedName typeName) { }
-    }
-}
-namespace System.Xml.Serialization
-{
-    public abstract partial class CodeExporter
-    {
-        internal CodeExporter() { }
-        public System.CodeDom.CodeAttributeDeclarationCollection IncludeMetadata { get { throw null; } }
-    }
-    public abstract partial class SchemaImporter
-    {
-        internal SchemaImporter() { }
-        public System.Xml.Serialization.Advanced.SchemaImporterExtensionCollection Extensions { get { throw null; } }
-    }
-    public partial class SoapCodeExporter : System.Xml.Serialization.CodeExporter
-    {
-        public SoapCodeExporter(System.CodeDom.CodeNamespace codeNamespace) { }
-        public SoapCodeExporter(System.CodeDom.CodeNamespace codeNamespace, System.CodeDom.CodeCompileUnit codeCompileUnit) { }
-        public SoapCodeExporter(System.CodeDom.CodeNamespace codeNamespace, System.CodeDom.CodeCompileUnit codeCompileUnit, System.CodeDom.Compiler.CodeDomProvider codeProvider, System.Xml.Serialization.CodeGenerationOptions options, System.Collections.Hashtable mappings) { }
-        public SoapCodeExporter(System.CodeDom.CodeNamespace codeNamespace, System.CodeDom.CodeCompileUnit codeCompileUnit, System.Xml.Serialization.CodeGenerationOptions options) { }
-        public SoapCodeExporter(System.CodeDom.CodeNamespace codeNamespace, System.CodeDom.CodeCompileUnit codeCompileUnit, System.Xml.Serialization.CodeGenerationOptions options, System.Collections.Hashtable mappings) { }
-        public void AddMappingMetadata(System.CodeDom.CodeAttributeDeclarationCollection metadata, System.Xml.Serialization.XmlMemberMapping member) { }
-        public void AddMappingMetadata(System.CodeDom.CodeAttributeDeclarationCollection metadata, System.Xml.Serialization.XmlMemberMapping member, bool forceUseMemberName) { }
-        public void ExportMembersMapping(System.Xml.Serialization.XmlMembersMapping xmlMembersMapping) { }
-        public void ExportTypeMapping(System.Xml.Serialization.XmlTypeMapping xmlTypeMapping) { }
-    }
-    public partial class SoapSchemaExporter
-    {
-        public SoapSchemaExporter(System.Xml.Serialization.XmlSchemas schemas) { }
-        public void ExportMembersMapping(System.Xml.Serialization.XmlMembersMapping xmlMembersMapping) { }
-        public void ExportMembersMapping(System.Xml.Serialization.XmlMembersMapping xmlMembersMapping, bool exportEnclosingType) { }
-        public void ExportTypeMapping(System.Xml.Serialization.XmlTypeMapping xmlTypeMapping) { }
-    }
-    public partial class SoapSchemaImporter : System.Xml.Serialization.SchemaImporter
-    {
-        public SoapSchemaImporter(System.Xml.Serialization.XmlSchemas schemas) { }
-        public SoapSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeGenerationOptions options, System.CodeDom.Compiler.CodeDomProvider codeProvider, System.Xml.Serialization.ImportContext context) { }
-        public SoapSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeGenerationOptions options, System.Xml.Serialization.ImportContext context) { }
-        public SoapSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeIdentifiers typeIdentifiers) { }
-        public SoapSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeIdentifiers typeIdentifiers, System.Xml.Serialization.CodeGenerationOptions options) { }
-        public System.Xml.Serialization.XmlTypeMapping ImportDerivedTypeMapping(System.Xml.XmlQualifiedName name, System.Type baseType, bool baseTypeCanBeIndirect) { throw null; }
-        public System.Xml.Serialization.XmlMembersMapping ImportMembersMapping(string name, string ns, System.Xml.Serialization.SoapSchemaMember member) { throw null; }
-        public System.Xml.Serialization.XmlMembersMapping ImportMembersMapping(string name, string ns, System.Xml.Serialization.SoapSchemaMember[] members) { throw null; }
-        public System.Xml.Serialization.XmlMembersMapping ImportMembersMapping(string name, string ns, System.Xml.Serialization.SoapSchemaMember[] members, bool hasWrapperElement) { throw null; }
-        public System.Xml.Serialization.XmlMembersMapping ImportMembersMapping(string name, string ns, System.Xml.Serialization.SoapSchemaMember[] members, bool hasWrapperElement, System.Type baseType, bool baseTypeCanBeIndirect) { throw null; }
-    }
-    public partial class XmlCodeExporter : System.Xml.Serialization.CodeExporter
-    {
-        public XmlCodeExporter(System.CodeDom.CodeNamespace codeNamespace) { }
-        public XmlCodeExporter(System.CodeDom.CodeNamespace codeNamespace, System.CodeDom.CodeCompileUnit codeCompileUnit) { }
-        public XmlCodeExporter(System.CodeDom.CodeNamespace codeNamespace, System.CodeDom.CodeCompileUnit codeCompileUnit, System.CodeDom.Compiler.CodeDomProvider codeProvider, System.Xml.Serialization.CodeGenerationOptions options, System.Collections.Hashtable mappings) { }
-        public XmlCodeExporter(System.CodeDom.CodeNamespace codeNamespace, System.CodeDom.CodeCompileUnit codeCompileUnit, System.Xml.Serialization.CodeGenerationOptions options) { }
-        public XmlCodeExporter(System.CodeDom.CodeNamespace codeNamespace, System.CodeDom.CodeCompileUnit codeCompileUnit, System.Xml.Serialization.CodeGenerationOptions options, System.Collections.Hashtable mappings) { }
-        public void AddMappingMetadata(System.CodeDom.CodeAttributeDeclarationCollection metadata, System.Xml.Serialization.XmlMemberMapping member, string ns) { }
-        public void AddMappingMetadata(System.CodeDom.CodeAttributeDeclarationCollection metadata, System.Xml.Serialization.XmlMemberMapping member, string ns, bool forceUseMemberName) { }
-        public void AddMappingMetadata(System.CodeDom.CodeAttributeDeclarationCollection metadata, System.Xml.Serialization.XmlTypeMapping mapping, string ns) { }
-        public void ExportMembersMapping(System.Xml.Serialization.XmlMembersMapping xmlMembersMapping) { }
-        public void ExportTypeMapping(System.Xml.Serialization.XmlTypeMapping xmlTypeMapping) { }
-    }
-}
-namespace System.Xml.Serialization.Advanced
-{
-    public abstract partial class SchemaImporterExtension
-    {
-        protected SchemaImporterExtension() { }
-        public virtual string ImportAnyElement(System.Xml.Schema.XmlSchemaAny any, bool mixed, System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.XmlSchemaImporter importer, System.CodeDom.CodeCompileUnit compileUnit, System.CodeDom.CodeNamespace mainNamespace, System.Xml.Serialization.CodeGenerationOptions options, System.CodeDom.Compiler.CodeDomProvider codeProvider) { throw null; }
-        public virtual System.CodeDom.CodeExpression ImportDefaultValue(string value, string type) { throw null; }
-        public virtual string ImportSchemaType(string name, string ns, System.Xml.Schema.XmlSchemaObject context, System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.XmlSchemaImporter importer, System.CodeDom.CodeCompileUnit compileUnit, System.CodeDom.CodeNamespace mainNamespace, System.Xml.Serialization.CodeGenerationOptions options, System.CodeDom.Compiler.CodeDomProvider codeProvider) { throw null; }
-        public virtual string ImportSchemaType(System.Xml.Schema.XmlSchemaType type, System.Xml.Schema.XmlSchemaObject context, System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.XmlSchemaImporter importer, System.CodeDom.CodeCompileUnit compileUnit, System.CodeDom.CodeNamespace mainNamespace, System.Xml.Serialization.CodeGenerationOptions options, System.CodeDom.Compiler.CodeDomProvider codeProvider) { throw null; }
-    }
-    public partial class SchemaImporterExtensionCollection : System.Collections.CollectionBase
-    {
-        public SchemaImporterExtensionCollection() { }
-        public System.Xml.Serialization.Advanced.SchemaImporterExtension this[int index] { get { throw null; } set { } }
-        public int Add(string name, System.Type type) { throw null; }
-        public int Add(System.Xml.Serialization.Advanced.SchemaImporterExtension extension) { throw null; }
-        public new void Clear() { }
-        public bool Contains(System.Xml.Serialization.Advanced.SchemaImporterExtension extension) { throw null; }
-        public void CopyTo(System.Xml.Serialization.Advanced.SchemaImporterExtension[] array, int index) { }
-        public int IndexOf(System.Xml.Serialization.Advanced.SchemaImporterExtension extension) { throw null; }
-        public void Insert(int index, System.Xml.Serialization.Advanced.SchemaImporterExtension extension) { }
-        public void Remove(string name) { }
-        public void Remove(System.Xml.Serialization.Advanced.SchemaImporterExtension extension) { }
     }
 }

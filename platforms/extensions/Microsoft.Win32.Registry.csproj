@@ -2,14 +2,15 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.props))\dir.props" />
   <PropertyGroup>
-    <AssemblyName>System</AssemblyName>
-    <AssemblyVersion>4.0.0.0</AssemblyVersion>
-    <AssemblyKey>ECMA</AssemblyKey>
+    <AssemblyName>Microsoft.Win32.Registry</AssemblyName>
+    <AssemblyVersion>4.1.0.0</AssemblyVersion>
+    <AssemblyKey>MSFT</AssemblyKey>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="System.Forwards.cs" />
-    <ProjectReference Include="..\..\..\ref\netstandard.csproj" />
-    <ProjectReference Include="..\..\..\..\platforms\extensions\System.CodeDom.csproj" />
+    <Compile Include="Microsoft.Win32.Registry.cs" />
+    <ProjectReference Include="..\..\netstandard\ref\netstandard.csproj" />
+    <ProjectReference Include=".\System.Security.AccessControl.csproj" />
+    <ProjectReference Include=".\System.Security.Principal.Windows.csproj" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>

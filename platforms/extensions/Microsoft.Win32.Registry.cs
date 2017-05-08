@@ -2,11 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-/*
-APIs removed/broken by this factoring:
-
-*/
-
 namespace Microsoft.Win32
 {
     public static partial class Registry
@@ -14,8 +9,6 @@ namespace Microsoft.Win32
         public static readonly Microsoft.Win32.RegistryKey ClassesRoot;
         public static readonly Microsoft.Win32.RegistryKey CurrentConfig;
         public static readonly Microsoft.Win32.RegistryKey CurrentUser;
-        [System.ObsoleteAttribute("The DynData registry key only works on Win9x, which is no longer supported by the CLR.  On NT-based operating systems, use the PerformanceData registry key instead.")]
-        public static readonly Microsoft.Win32.RegistryKey DynData;
         public static readonly Microsoft.Win32.RegistryKey LocalMachine;
         public static readonly Microsoft.Win32.RegistryKey PerformanceData;
         public static readonly Microsoft.Win32.RegistryKey Users;
@@ -28,7 +21,6 @@ namespace Microsoft.Win32
         ClassesRoot = -2147483648,
         CurrentConfig = -2147483643,
         CurrentUser = -2147483647,
-        DynData = -2147483642,
         LocalMachine = -2147483646,
         PerformanceData = -2147483644,
         Users = -2147483645,
@@ -44,7 +36,7 @@ namespace Microsoft.Win32
         public void Close() { }
         public Microsoft.Win32.RegistryKey CreateSubKey(string subkey) { throw null; }
         public Microsoft.Win32.RegistryKey CreateSubKey(string subkey, Microsoft.Win32.RegistryKeyPermissionCheck permissionCheck) { throw null; }
-        public Microsoft.Win32.RegistryKey CreateSubKey(string subkey, Microsoft.Win32.RegistryKeyPermissionCheck permissionCheck, Microsoft.Win32.RegistryOptions options) { throw null; }
+        public Microsoft.Win32.RegistryKey CreateSubKey(string subkey, Microsoft.Win32.RegistryKeyPermissionCheck permissionCheck, Microsoft.Win32.RegistryOptions registryOptions) { throw null; }
         public Microsoft.Win32.RegistryKey CreateSubKey(string subkey, Microsoft.Win32.RegistryKeyPermissionCheck permissionCheck, Microsoft.Win32.RegistryOptions registryOptions, System.Security.AccessControl.RegistrySecurity registrySecurity) { throw null; }
         public Microsoft.Win32.RegistryKey CreateSubKey(string subkey, Microsoft.Win32.RegistryKeyPermissionCheck permissionCheck, System.Security.AccessControl.RegistrySecurity registrySecurity) { throw null; }
         public Microsoft.Win32.RegistryKey CreateSubKey(string subkey, bool writable) { throw null; }
@@ -121,6 +113,62 @@ namespace Microsoft.Win32.SafeHandles
     public sealed partial class SafeRegistryHandle : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid
     {
         public SafeRegistryHandle(System.IntPtr preexistingHandle, bool ownsHandle) : base (default(bool)) { }
+        public override bool IsInvalid { get { throw null; } }
         protected override bool ReleaseHandle() { throw null; }
+    }
+}
+namespace System.Security.AccessControl
+{
+    public sealed partial class RegistryAccessRule : System.Security.AccessControl.AccessRule
+    {
+        public RegistryAccessRule(System.Security.Principal.IdentityReference identity, System.Security.AccessControl.RegistryRights registryRights, System.Security.AccessControl.AccessControlType type) : base (default(System.Security.Principal.IdentityReference), default(int), default(bool), default(System.Security.AccessControl.InheritanceFlags), default(System.Security.AccessControl.PropagationFlags), default(System.Security.AccessControl.AccessControlType)) { }
+        public RegistryAccessRule(System.Security.Principal.IdentityReference identity, System.Security.AccessControl.RegistryRights registryRights, System.Security.AccessControl.InheritanceFlags inheritanceFlags, System.Security.AccessControl.PropagationFlags propagationFlags, System.Security.AccessControl.AccessControlType type) : base (default(System.Security.Principal.IdentityReference), default(int), default(bool), default(System.Security.AccessControl.InheritanceFlags), default(System.Security.AccessControl.PropagationFlags), default(System.Security.AccessControl.AccessControlType)) { }
+        public RegistryAccessRule(string identity, System.Security.AccessControl.RegistryRights registryRights, System.Security.AccessControl.AccessControlType type) : base (default(System.Security.Principal.IdentityReference), default(int), default(bool), default(System.Security.AccessControl.InheritanceFlags), default(System.Security.AccessControl.PropagationFlags), default(System.Security.AccessControl.AccessControlType)) { }
+        public RegistryAccessRule(string identity, System.Security.AccessControl.RegistryRights registryRights, System.Security.AccessControl.InheritanceFlags inheritanceFlags, System.Security.AccessControl.PropagationFlags propagationFlags, System.Security.AccessControl.AccessControlType type) : base (default(System.Security.Principal.IdentityReference), default(int), default(bool), default(System.Security.AccessControl.InheritanceFlags), default(System.Security.AccessControl.PropagationFlags), default(System.Security.AccessControl.AccessControlType)) { }
+        public System.Security.AccessControl.RegistryRights RegistryRights { get { throw null; } }
+    }
+    public sealed partial class RegistryAuditRule : System.Security.AccessControl.AuditRule
+    {
+        public RegistryAuditRule(System.Security.Principal.IdentityReference identity, System.Security.AccessControl.RegistryRights registryRights, System.Security.AccessControl.InheritanceFlags inheritanceFlags, System.Security.AccessControl.PropagationFlags propagationFlags, System.Security.AccessControl.AuditFlags flags) : base (default(System.Security.Principal.IdentityReference), default(int), default(bool), default(System.Security.AccessControl.InheritanceFlags), default(System.Security.AccessControl.PropagationFlags), default(System.Security.AccessControl.AuditFlags)) { }
+        public RegistryAuditRule(string identity, System.Security.AccessControl.RegistryRights registryRights, System.Security.AccessControl.InheritanceFlags inheritanceFlags, System.Security.AccessControl.PropagationFlags propagationFlags, System.Security.AccessControl.AuditFlags flags) : base (default(System.Security.Principal.IdentityReference), default(int), default(bool), default(System.Security.AccessControl.InheritanceFlags), default(System.Security.AccessControl.PropagationFlags), default(System.Security.AccessControl.AuditFlags)) { }
+        public System.Security.AccessControl.RegistryRights RegistryRights { get { throw null; } }
+    }
+    [System.FlagsAttribute]
+    public enum RegistryRights
+    {
+        ChangePermissions = 262144,
+        CreateLink = 32,
+        CreateSubKey = 4,
+        Delete = 65536,
+        EnumerateSubKeys = 8,
+        ExecuteKey = 131097,
+        FullControl = 983103,
+        Notify = 16,
+        QueryValues = 1,
+        ReadKey = 131097,
+        ReadPermissions = 131072,
+        SetValue = 2,
+        TakeOwnership = 524288,
+        WriteKey = 131078,
+    }
+    public sealed partial class RegistrySecurity : System.Security.AccessControl.NativeObjectSecurity
+    {
+        public RegistrySecurity() : base (default(bool), default(System.Security.AccessControl.ResourceType)) { }
+        public override System.Type AccessRightType { get { throw null; } }
+        public override System.Type AccessRuleType { get { throw null; } }
+        public override System.Type AuditRuleType { get { throw null; } }
+        public override System.Security.AccessControl.AccessRule AccessRuleFactory(System.Security.Principal.IdentityReference identityReference, int accessMask, bool isInherited, System.Security.AccessControl.InheritanceFlags inheritanceFlags, System.Security.AccessControl.PropagationFlags propagationFlags, System.Security.AccessControl.AccessControlType type) { throw null; }
+        public void AddAccessRule(System.Security.AccessControl.RegistryAccessRule rule) { }
+        public void AddAuditRule(System.Security.AccessControl.RegistryAuditRule rule) { }
+        public override System.Security.AccessControl.AuditRule AuditRuleFactory(System.Security.Principal.IdentityReference identityReference, int accessMask, bool isInherited, System.Security.AccessControl.InheritanceFlags inheritanceFlags, System.Security.AccessControl.PropagationFlags propagationFlags, System.Security.AccessControl.AuditFlags flags) { throw null; }
+        public bool RemoveAccessRule(System.Security.AccessControl.RegistryAccessRule rule) { throw null; }
+        public void RemoveAccessRuleAll(System.Security.AccessControl.RegistryAccessRule rule) { }
+        public void RemoveAccessRuleSpecific(System.Security.AccessControl.RegistryAccessRule rule) { }
+        public bool RemoveAuditRule(System.Security.AccessControl.RegistryAuditRule rule) { throw null; }
+        public void RemoveAuditRuleAll(System.Security.AccessControl.RegistryAuditRule rule) { }
+        public void RemoveAuditRuleSpecific(System.Security.AccessControl.RegistryAuditRule rule) { }
+        public void ResetAccessRule(System.Security.AccessControl.RegistryAccessRule rule) { }
+        public void SetAccessRule(System.Security.AccessControl.RegistryAccessRule rule) { }
+        public void SetAuditRule(System.Security.AccessControl.RegistryAuditRule rule) { }
     }
 }
