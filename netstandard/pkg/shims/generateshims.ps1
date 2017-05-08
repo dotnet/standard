@@ -10,7 +10,7 @@ if ($shims -eq "netstandard")
 }
 elseif ($shims -eq "netfx")
 {
-    $refPath = "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1"
+    $refPath = "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7"
 }
 
 $shimOutput = $shims;
