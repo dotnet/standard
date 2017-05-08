@@ -1,0 +1,4 @@
+Microsoft.Win32.Registry
+System.CodeDom
+System.Security.AccessControl
+System.Security.Principal.Windows
