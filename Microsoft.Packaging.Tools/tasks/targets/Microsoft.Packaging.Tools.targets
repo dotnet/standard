@@ -119,6 +119,4 @@
       <Output TaskParameter="TouchedFiles" ItemName="FileWrites" />
     </Touch>
   </Target>
-
-  <Import Project="Microsoft.Packaging.Tools.Trimming.targets" Condition="'$(_supportsTrimming)' == 'true' AND '$(TrimUnusedDependencies)' == 'true'" />
 </Project>
