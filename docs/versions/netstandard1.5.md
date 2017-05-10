@@ -8,7 +8,7 @@
 ## Platform Support
 
 * .NET Core 1.0
-* .NET Framework 4.6.1
+* .NET Framework 4.6.2
 * Mono 4.6
 * Xamarin.iOS 10.0
 * Xamarin.Android 7.0
