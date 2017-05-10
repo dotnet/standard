@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <UsingTask TaskName="TrimFiles" AssemblyFile="$(MicrosoftPackagingToolsTaskDirectory)Microsoft.Packaging.Tools.Tasks.dll" />
+  <PropertyGroup Condition="'$(MicrosoftPackagingToolsTaskDirectory)' == ''">
+    <MicrosoftPackagingToolsTrimmingTaskDirectory>$(MSBuildThisFileDirectory)</MicrosoftPackagingToolsTrimmingTaskDirectory>
+    <MicrosoftPackagingToolsTrimmingTaskDirectory Condition="'$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)desktop/</MicrosoftPackagingToolsTrimmingTaskDirectory>
+  </PropertyGroup>
+  
+  <UsingTask TaskName="TrimFiles" AssemblyFile="$(MicrosoftPackagingToolsTrimmingTaskDirectory)Microsoft.Packaging.Tools.Trimming.Tasks.dll" />
 
   <PropertyGroup>
     <TreatMetaPackagesAsTrimmable Condition="'$(TreatMetaPackagesAsTrimmable)' == ''">true</TreatMetaPackagesAsTrimmable>
@@ -34,10 +39,15 @@
       <TrimmablePackages Include="%(FileDefinitions.PackageName)" Condition="'%(FileDefinitions.FileName)' ==  'System.Private.CoreLib.ni'" />
     </ItemGroup>
   </Target>
+  
+  <PropertyGroup Condition="'$(TrimUnusedDependencies)' == 'true'">
+    <TrimFilesOnBuildAfter>CoreCompile</TrimFilesOnBuildAfter>
+    <TrimFilesOnPublishBefore>ComputeFilesToPublish</TrimFilesOnPublishBefore>
+  </PropertyGroup>
 
   <Target Name="TrimFilesOnBuild"
           DependsOnTargets="_determineTrimPackageInputs"
-          AfterTargets="CoreCompile">
+          AfterTargets="$(TrimFilesOnBuildAfter)">
     <ItemGroup>
       <_trimOtherRuntimeItems Include="@(_LockFileAssemblies)" Exclude="@(_ConflictPackageFiles)" />
     </ItemGroup>
@@ -65,7 +75,7 @@
 
   <Target Name="TrimFilesOnPublish"
           DependsOnTargets="_determineTrimPackageInputs"
-          BeforeTargets="ComputeFilesToPublish">
+          BeforeTargets="$(TrimFilesOnPublishBefore)">
 
     <TrimFiles RootFiles="@(IntermediateAssembly);@(TrimFilesRootFiles)"
                RootPackages="@(TrimFilesRootPackages)"
