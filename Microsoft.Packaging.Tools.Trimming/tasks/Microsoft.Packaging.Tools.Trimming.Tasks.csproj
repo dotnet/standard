@@ -15,18 +15,20 @@
   <PropertyGroup Condition="'$(Configuration)' == 'netstandard1.5_Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'net451_Debug'" />
   <ItemGroup>
-    <Compile Include="ConflictResolver.cs" />
-    <Compile Include="MSBuildLog.cs" />
-    <Compile Include="MetadataNames.cs" />
-    <Compile Include="PlatformManifestReader.cs" />
-    <Compile Include="ILog.cs" />
-    <Compile Include="ItemUtilities.cs" />
-    <Compile Include="ConflictItem.cs" />
-    <Compile Include="HandlePackageFileConflicts.cs" />
-    <Compile Include="FileUtilities.cs" />
-    <Compile Include="MSBuildUtilities.cs" />
-    <Compile Include="NuGetUtilities.cs" />
-    <Compile Include="PackageRank.cs" />
+    <Compile Include="..\..\Microsoft.Packaging.Tools\tasks\ILog.cs">
+      <Link>tools\ILog.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Microsoft.Packaging.Tools\tasks\MSBuildLog.cs">
+      <Link>tools\MSBuildLog.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Microsoft.Packaging.Tools\tasks\NuGetUtilities.cs">
+      <Link>tools\NuGetUtilities.cs</Link>
+    </Compile>
+    <Compile Include="FileNode.cs" />
+    <Compile Include="IIsIncluded.cs" />
+    <Compile Include="NuGetPackageNode.cs" />
+    <Compile Include="Trimmable.cs" />
+    <Compile Include="TrimFiles.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NETStandard.Library">
@@ -37,7 +39,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)' != 'net451'">
-    <Compile Include="FileUtilities.netstandard.cs" />
     <PackageReference Include="Microsoft.Build">
       <Version>14.3.0-prerelease02</Version>
     </PackageReference>
@@ -60,7 +61,6 @@
     <PackageDestination Include="build" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)' == 'net451'">
-    <Compile Include="FileUtilities.net45.cs" />
     <PackageReference Include="Microsoft.TargetingPack.NETFramework.v4.5.1">
       <Version>1.0.1</Version>
     </PackageReference>
@@ -78,7 +78,7 @@
     <PackageDependencyId Include="System.Collections.Immutable" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="targets\Microsoft.Packaging.Tools.targets" />
+    <None Include="targets\Microsoft.Packaging.Tools.Trimming.targets" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 

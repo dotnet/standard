@@ -6,7 +6,13 @@
     },
     {
         "Name": "Microsoft.Packaging.Tools",
-        "Description": "Provides build infrastructure for handling conflicting assets from packages and trimming unused files from an application.",
+        "Description": "Provides build infrastructure for handling conflicting assets from packages.",
+        "CommonTypes": [
+        ]
+    },
+    {
+        "Name": "Microsoft.Packaging.Tools.Trimming",
+        "Description": "Provides build infrastructure for trimming unused files from an application.",
         "CommonTypes": [
         ]
     },
