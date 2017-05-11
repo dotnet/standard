@@ -31,7 +31,7 @@
   </Choose>
 
   <Target Name="PackagingToolsInsufficientSDKVersion" Condition="'$(PackagingToolsInsufficientSDKVersion)' != 'false'" AfterTargets="$(PackagingToolsInsufficientSDKVersionAfter)">
-    <Error Text="The version of Microsoft.NET.Sdk used by this project is insufficient to support this package.  This error may be suppressed by setting PackagingToolsInsufficientSDKVersion=false" />
+    <Error Text="The version of Microsoft.NET.Sdk used by this project is insufficient to support this package.  Please ensure you are using the .NET Core SDK 2.0 or higher, which is included in Visual Studio 2017 Update 15.3.  This error may be suppressed by setting PackagingToolsInsufficientSDKVersion=false." />
   </Target>
 
   <UsingTask TaskName="HandlePackageFileConflicts" AssemblyFile="$(MicrosoftPackagingToolsTaskDirectory)Microsoft.Packaging.Tools.Tasks.dll" />
