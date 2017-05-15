@@ -37,7 +37,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)' != 'net451'">
-    <Compile Include="FileUtilities.netstandard.cs" />
     <PackageReference Include="Microsoft.Build">
       <Version>14.3.0-prerelease02</Version>
     </PackageReference>
@@ -60,7 +59,6 @@
     <PackageDestination Include="build" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)' == 'net451'">
-    <Compile Include="FileUtilities.net45.cs" />
     <PackageReference Include="Microsoft.TargetingPack.NETFramework.v4.5.1">
       <Version>1.0.1</Version>
     </PackageReference>
