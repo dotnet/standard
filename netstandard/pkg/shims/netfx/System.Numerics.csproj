@@ -4,7 +4,7 @@
   <PropertyGroup>
     <AssemblyName>System.Numerics</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
-    <UseECMAKey>true</UseECMAKey>
+    <AssemblyKey>ECMA</AssemblyKey>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.Numerics.Forwards.cs" />

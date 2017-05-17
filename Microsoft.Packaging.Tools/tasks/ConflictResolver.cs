@@ -90,7 +90,7 @@ namespace Microsoft.DotNet.Build.Tasks
                 return item1;
             }
 
-            if (forcedPackageRank1 < forcedPackageRank2)
+            if (forcedPackageRank2 < forcedPackageRank1)
             {
                 log.LogMessage($"{conflictMessage}.  Choosing {item2.DisplayName} because package it comes from a package that is forced.");
                 return item2;
@@ -98,6 +98,12 @@ namespace Microsoft.DotNet.Build.Tasks
 
             var exists1 = item1.Exists;
             var exists2 = item2.Exists;
+
+            if (!exists1 && !exists2)
+            {
+                //  If neither file exists, then don't report a conflict, as both items should be resolved (or not) to the same reference assembly
+                return null;
+            }
 
             if (!exists1 || !exists2)
             {
@@ -191,7 +197,7 @@ namespace Microsoft.DotNet.Build.Tasks
             if (!isPlatform1 && isPlatform2)
             {
                 log.LogMessage($"{conflictMessage}.  Choosing {item2.DisplayName} because it is a platform item.");
-                return item1;
+                return item2;
             }
 
             log.LogMessage($"{conflictMessage}.  Could not determine winner due to equal file and assembly versions.");

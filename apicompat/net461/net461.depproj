@@ -4,19 +4,23 @@
   <PropertyGroup>
     <NuGetDeploySourceItem>Reference</NuGetDeploySourceItem>
     <NuGetTargetMoniker>.NETFramework,Version=v4.6.1</NuGetTargetMoniker>
+    <NuGetTargetMonikerShort>net461</NuGetTargetMonikerShort>
     <OutputPath>$(RestoredRefRootPath)net461</OutputPath>
+    <RestoreOutputPath>$(IntermediateOutputPath)</RestoreOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <TargetingPackReference Include="mscorlib" />
-    <TargetingPackReference Include="System" />
-    <TargetingPackReference Include="System.Core" />
-    <TargetingPackReference Include="System.Drawing" />
-    <TargetingPackReference Include="System.Numerics" />
-    <TargetingPackReference Include="System.Runtime.Serialization" />
-    <TargetingPackReference Include="System.Xml" />
-    <TargetingPackReference Include="System.Xml.Linq" />
-    <TargetingPackReference Include="System.Web" />
-    <None Include="project.json" />
+    <FileToInclude Include="mscorlib" />
+    <FileToInclude Include="System" />
+    <FileToInclude Include="System.Core" />
+    <FileToInclude Include="System.Drawing" />
+    <FileToInclude Include="System.Numerics" />
+    <FileToInclude Include="System.Runtime.Serialization" />
+    <FileToInclude Include="System.Xml" />
+    <FileToInclude Include="System.Xml.Linq" />
+    <FileToInclude Include="System.Web" />
+    <PackageReference Include="Microsoft.TargetingPack.NETFramework.v4.6.1">
+      <Version>1.0.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>

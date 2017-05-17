@@ -7,7 +7,7 @@ def branch = GithubBranchName
 
 // Generate the builds for commit and PRJob
 [true, false].each { isPR ->
-    ['Windows_NT', 'Ubuntu16.04', 'OSX',].each { osName ->
+    ['Windows_NT', 'Ubuntu16.04', 'OSX10.12',].each { osName ->
         def newJobName = Utilities.getFullJobName(project, osName, isPR)
 
         def newJob = job(newJobName) {

@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.props))\dir.props" />
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <NuGetTargetMoniker>.NETStandard,Version=v1.5</NuGetTargetMoniker>
+    <NuGetTargetMonikerShort>netstandard1.5</NuGetTargetMonikerShort>
+    <NuGetTargetMoniker Condition="'$(TargetGroup)' == 'net451'">.NETFramework,Version=v4.5.1</NuGetTargetMoniker>
+    <NuGetTargetMonikerShort Condition="'$(TargetGroup)' == 'net451'">net451</NuGetTargetMonikerShort>
+    <CLSCompliant>false</CLSCompliant>
+    <ProjectGuid>{65E58605-AE96-46C2-8C6C-F28A5EB9B565}</ProjectGuid>
+    <RestoreOutputPath>$(IntermediateOutputPath)$(TargetGroup)</RestoreOutputPath>
+    <ContainsPackageReferences>true</ContainsPackageReferences>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'netstandard1.5_Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'net451_Debug'" />
+  <ItemGroup>
+    <Compile Include="..\..\Microsoft.Packaging.Tools\tasks\ILog.cs">
+      <Link>tools\ILog.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Microsoft.Packaging.Tools\tasks\MSBuildLog.cs">
+      <Link>tools\MSBuildLog.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Microsoft.Packaging.Tools\tasks\NuGetUtilities.cs">
+      <Link>tools\NuGetUtilities.cs</Link>
+    </Compile>
+    <Compile Include="FileNode.cs" />
+    <Compile Include="IIsIncluded.cs" />
+    <Compile Include="NuGetPackageNode.cs" />
+    <Compile Include="Trimmable.cs" />
+    <Compile Include="TrimFiles.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NETStandard.Library">
+      <Version>1.6.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Metadata">
+      <Version>1.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetGroup)' != 'net451'">
+    <PackageReference Include="Microsoft.Build">
+      <Version>14.3.0-prerelease02</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Build.Framework">
+      <Version>14.3.0-prerelease02</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Build.Tasks.Core">
+      <Version>14.3.0-prerelease02</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Build.Utilities.Core">
+      <Version>14.3.0-prerelease02</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Tpl.Dataflow">
+      <Version>4.5.24</Version>
+      <IncludeAssets>None</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Diagnostics.FileVersionInfo">
+      <Version>4.0.0</Version>
+    </PackageReference>
+    <PackageDestination Include="build" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetGroup)' == 'net451'">
+    <PackageReference Include="Microsoft.TargetingPack.NETFramework.v4.5.1">
+      <Version>1.0.1</Version>
+    </PackageReference>
+    <TargetingPackReference Include="System" />
+    <TargetingPackReference Include="System.Core" />
+    <TargetingPackReference Include="Microsoft.Build" />
+    <TargetingPackReference Include="Microsoft.Build.Framework" />
+    <TargetingPackReference Include="Microsoft.Build.Utilities.v4.0" />
+    <TargetingPackReference Include="System.Runtime" />
+    <TargetingPackReference Include="System.IO" />
+    <PackageDestination Include="build/desktop" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageDependencyId Include="System.Reflection.Metadata" />
+    <PackageDependencyId Include="System.Collections.Immutable" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="targets\Microsoft.Packaging.Tools.Trimming.targets" />
+  </ItemGroup>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
+
+  <Target Name="PackageAdditionalDependencies" BeforeTargets="GetFilesToPackage" DependsOnTargets="ResolveReferences">
+    <ItemGroup>
+      <_referencePathsByPackageId Include="@(ReferencePath->'%(NuGetPackageId)')" />
+      <_referencePathsByPackageIdToExclude Include="@(_referencePathsByPackageId)" Exclude="@(PackageDependencyId)" />
+      <_referencePathsByPackageIdToInclude Include="@(_referencePathsByPackageId)" Exclude="@(_referencePathsByPackageIdToExclude)" />
+      <_missingPackageDependencyId Include="@(PackageDependencyId)" Exclude="@(_referencePathsByPackageIdToInclude)" />
+
+      <_referencePathsToInclude Include="@(_referencePathsByPackageIdToInclude->'%(OriginalItemSpec)')" />
+
+      <FilesToPackage Include="@(_referencePathsToInclude)">
+        <TargetPath>%(PackageDestination.Identity)</TargetPath>
+      </FilesToPackage>
+    </ItemGroup>
+    <Error Condition="'@(_missingPackageDependencyId)' != ''"
+           Text="The following PackageDependencyIds were specified but not referenced: @(_missingPackageDependencyId)" />
+  </Target>
+</Project>

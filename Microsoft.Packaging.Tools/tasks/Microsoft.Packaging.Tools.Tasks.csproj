@@ -4,9 +4,13 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <NuGetTargetMoniker>.NETStandard,Version=v1.5</NuGetTargetMoniker>
+    <NuGetTargetMonikerShort>netstandard1.5</NuGetTargetMonikerShort>
     <NuGetTargetMoniker Condition="'$(TargetGroup)' == 'net451'">.NETFramework,Version=v4.5.1</NuGetTargetMoniker>
+    <NuGetTargetMonikerShort Condition="'$(TargetGroup)' == 'net451'">net451</NuGetTargetMonikerShort>
     <CLSCompliant>false</CLSCompliant>
     <ProjectGuid>{65E58605-AE96-46C2-8C6C-F28A5EB9B565}</ProjectGuid>
+    <RestoreOutputPath>$(IntermediateOutputPath)$(TargetGroup)</RestoreOutputPath>
+    <ContainsPackageReferences>true</ContainsPackageReferences>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'netstandard1.5_Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'net451_Debug'" />
@@ -19,24 +23,47 @@
     <Compile Include="ItemUtilities.cs" />
     <Compile Include="ConflictItem.cs" />
     <Compile Include="HandlePackageFileConflicts.cs" />
-    <Compile Include="RemoveDepsFileConflicts.cs" />
     <Compile Include="FileUtilities.cs" />
     <Compile Include="MSBuildUtilities.cs" />
     <Compile Include="NuGetUtilities.cs" />
     <Compile Include="PackageRank.cs" />
-    <Compile Include="ReferenceComparer.cs" />
-    <Compile Include="Trimming\FileNode.cs" />
-    <Compile Include="Trimming\IIsIncluded.cs" />
-    <Compile Include="Trimming\NuGetPackageNode.cs" />
-    <Compile Include="Trimming\Trimmable.cs" />
-    <Compile Include="Trimming\TrimFiles.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NETStandard.Library">
+      <Version>1.6.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Metadata">
+      <Version>1.3.0</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)' != 'net451'">
     <Compile Include="FileUtilities.netstandard.cs" />
+    <PackageReference Include="Microsoft.Build">
+      <Version>14.3.0-prerelease02</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Build.Framework">
+      <Version>14.3.0-prerelease02</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Build.Tasks.Core">
+      <Version>14.3.0-prerelease02</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Build.Utilities.Core">
+      <Version>14.3.0-prerelease02</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Tpl.Dataflow">
+      <Version>4.5.24</Version>
+      <IncludeAssets>None</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Diagnostics.FileVersionInfo">
+      <Version>4.0.0</Version>
+    </PackageReference>
     <PackageDestination Include="build" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetGroup)' == 'net451'">
     <Compile Include="FileUtilities.net45.cs" />
+    <PackageReference Include="Microsoft.TargetingPack.NETFramework.v4.5.1">
+      <Version>1.0.1</Version>
+    </PackageReference>
     <TargetingPackReference Include="System" />
     <TargetingPackReference Include="System.Core" />
     <TargetingPackReference Include="Microsoft.Build" />
@@ -49,18 +76,12 @@
   <ItemGroup>
     <PackageDependencyId Include="System.Reflection.Metadata" />
     <PackageDependencyId Include="System.Collections.Immutable" />
-    <!-- the following should be removed once we delete RemoveDepsFileConflicts -->
-    <PackageDependencyId Include="Microsoft.Extensions.DependencyModel" />
-    <PackageDependencyId Include="Microsoft.DotNet.PlatformAbstractions" />
-    <PackageDependencyId Include="Newtonsoft.Json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="targets\Microsoft.Packaging.Tools.targets" />
-    <None Include="targets\Microsoft.Packaging.Tools.Trimming.targets" />
-    <None Include="project.json" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
-  
+
   <Target Name="PackageAdditionalDependencies" BeforeTargets="GetFilesToPackage" DependsOnTargets="ResolveReferences">
     <ItemGroup>
       <_referencePathsByPackageId Include="@(ReferencePath->'%(NuGetPackageId)')" />

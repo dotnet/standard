@@ -4,7 +4,7 @@
   <PropertyGroup>
     <AssemblyName>[SHIM]</AssemblyName>
     <AssemblyVersion>[VERSION]</AssemblyVersion>
-    <[TOKEN]>true</[TOKEN]>
+    <AssemblyKey>[KEY]</AssemblyKey>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="[SHIM].Forwards.cs" />

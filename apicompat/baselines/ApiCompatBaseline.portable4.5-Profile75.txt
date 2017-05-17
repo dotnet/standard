@@ -1,17 +1,21 @@
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'Microsoft.CSharp'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'Microsoft.VisualBasic'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ComponentModel.Annotations'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ComponentModel.DataAnnotations'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Reflection.Context'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Reflection.Emit.ILGeneration'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Reflection.Emit.Lightweight'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.Runtime.InteropServices.WindowsRuntime'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Duplex'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Http'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.NetTcp'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Primitives'.
-DEFAULT_APPNAME Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Security'.
+ApiCompat Error: 0 : Failed to find or load matching assembly 'Microsoft.CSharp'.
+ApiCompat Error: 0 : Failed to find or load matching assembly 'Microsoft.VisualBasic'.
+ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ComponentModel.Annotations'.
+ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ComponentModel.DataAnnotations'.
+ApiCompat Error: 0 : Failed to find or load matching assembly 'System.Reflection.Context'.
+ApiCompat Error: 0 : Failed to find or load matching assembly 'System.Reflection.Emit.ILGeneration'.
+ApiCompat Error: 0 : Failed to find or load matching assembly 'System.Reflection.Emit.Lightweight'.
+ApiCompat Error: 0 : Failed to find or load matching assembly 'System.Runtime.InteropServices.WindowsRuntime'.
+ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel'.
+ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Duplex'.
+ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Http'.
+ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.NetTcp'.
+ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Primitives'.
+ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Security'.
+ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.Security.AccessControl, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the implementation assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
+ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=Microsoft.Win32.Registry, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the implementation assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
+ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.Security.Principal.Windows, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the implementation assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
+ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.CodeDom, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51)' referenced by the implementation assembly 'Assembly(Name=System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
 Compat issues with assembly Microsoft.CSharp:
 TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.Binder' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo' does not exist in the implementation but it does exist in the contract.
