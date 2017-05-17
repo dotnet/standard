@@ -4,7 +4,7 @@
   <PropertyGroup>
     <AssemblyName>System.ValueTuple</AssemblyName>
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
-    <UseOpenKey>true</UseOpenKey>
+    <AssemblyKey>Open</AssemblyKey>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.ValueTuple.Forwards.cs" />

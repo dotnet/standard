@@ -4,7 +4,7 @@
   <PropertyGroup>
     <AssemblyName>System.Diagnostics.StackTrace</AssemblyName>
     <AssemblyVersion>4.0.2.0</AssemblyVersion>
-    <UseMSFTKey>true</UseMSFTKey>
+    <AssemblyKey>MSFT</AssemblyKey>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.Diagnostics.StackTrace.Forwards.cs" />

@@ -6,15 +6,11 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile Condition="'$(UseOpenKey)' == 'true'">$(ToolsDir)Open.snk</AssemblyOriginatorKeyFile>
-    <AssemblyOriginatorKeyFile Condition="'$(UseMSFTKey)' == 'true'">$(ToolsDir)MSFT.snk</AssemblyOriginatorKeyFile>
-    <AssemblyOriginatorKeyFile Condition="'$(UseSilverlightKey)' == 'true'">$(MSBuildThisFileDirectory)silverlight.pub</AssemblyOriginatorKeyFile>
-    <AssemblyOriginatorKeyFile Condition="'$(UseWinFxKey)' == 'true'">$(MSBuildThisFileDirectory)winfx.pub</AssemblyOriginatorKeyFile>
-    <AssemblyOriginatorKeyFile Condition="'$(UseXamarinProductsKey)' == 'true'">$(MSBuildThisFileDirectory)xamarin-products.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile Condition="'$(AssemblyKey)' == 'XamarinProducts'">$(MSBuildThisFileDirectory)xamarin-products.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <Import Condition="Exists('..\dir.targets')" Project="..\dir.targets" />
-  
+
   <!-- We don't need full signing for these so not writing the required signing file -->
   <Target Name="WriteSigningRequired" />
 

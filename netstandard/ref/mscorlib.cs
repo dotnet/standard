@@ -2754,12 +2754,17 @@ namespace System
     }
     public enum PlatformID
     {
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         MacOSX = 6,
         Unix = 4,
         Win32NT = 2,
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         Win32S = 0,
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         Win32Windows = 1,
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         WinCE = 3,
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         Xbox = 5,
     }
     public partial class PlatformNotSupportedException : System.NotSupportedException

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <AssemblyName>System.Runtime.Serialization</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
-    <UseECMAKey>true</UseECMAKey>
+    <AssemblyKey>ECMA</AssemblyKey>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.Runtime.Serialization.Forwards.cs" />

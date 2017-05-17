@@ -53,7 +53,7 @@
         "nuGetFeedType": "external",
         "connectedServiceName": "e3b269d4-5b99-4a32-a6ff-2c2feb920051",
         "feedName": "",
-        "nuGetAdditionalArgs": "",
+        "nuGetAdditionalArgs": "-Timeout 3600",
         "verbosity": "Detailed",
         "nuGetVersion": "3.5.0.1829",
         "nuGetPath": ""

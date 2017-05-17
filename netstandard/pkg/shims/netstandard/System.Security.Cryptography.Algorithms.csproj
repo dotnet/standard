@@ -4,7 +4,7 @@
   <PropertyGroup>
     <AssemblyName>System.Security.Cryptography.Algorithms</AssemblyName>
     <AssemblyVersion>4.2.0.0</AssemblyVersion>
-    <UseMSFTKey>true</UseMSFTKey>
+    <AssemblyKey>MSFT</AssemblyKey>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.Security.Cryptography.Algorithms.Forwards.cs" />

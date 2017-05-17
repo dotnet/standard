@@ -4,7 +4,7 @@
   <PropertyGroup>
     <AssemblyName>System.Diagnostics.Contracts</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
-    <UseMSFTKey>true</UseMSFTKey>
+    <AssemblyKey>MSFT</AssemblyKey>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.Diagnostics.Contracts.Forwards.cs" />

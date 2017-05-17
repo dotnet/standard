@@ -10,7 +10,7 @@ if ($shims -eq "netstandard")
 }
 elseif ($shims -eq "netfx")
 {
-    $refPath = "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1"
+    $refPath = "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7"
 }
 
 $shimOutput = $shims;
@@ -26,9 +26,10 @@ $shimList = gc $shimlistFile;
 $projTemplate = gc shim.projtemplate
 
 $netstandardRef = "..\..\..\bin\ref\netstandard\2.0.0.0\netstandard.dll";
-$netstandardAPIList = "netstandardAPIList.txt";
+$extensionsDir = "..\..\..\bin\ref\extensions\";
+$netstandardAndExtensionsAPIList = "netstandardAndExtensionsAPIList.txt";
 
-& $genapi -writer:DocIds -assembly:$netstandardRef -out:$netstandardAPIList
+& $genapi -writer:DocIds -assembly:$netstandardRef,$extensionsDir -out:$netstandardAndExtensionsAPIList
 
 foreach ($shim in $shimList)
 {
@@ -52,26 +53,30 @@ foreach ($shim in $shimList)
     $asmToken = $asmName.GetPublicKeyToken()[0].ToString("x2");
     if ($asmToken -eq "b0")
     {
-        $token = "UseMSFTKey";
+        $token = "MSFT";
     }
     elseif ($asmToken -eq "b7")
     {
-        $token = "UseECMAKey";
+        $token = "ECMA";
     }
     elseif ($asmToken -eq "cc")
     {
-        $token = "UseOpenKey";
+        $token = "Open";
     }
     elseif ($asmToken -eq "31")
     {
-        $token = "UseWinFxKey";
+        $token = "SilverlightExtension";
     }
     else
     {
         Write-Error "Don't know which key is token $asmToken";
     }
 
-    & $genapi -writer:TypeForwards -assembly:"$shimContract" -apiList:"$netstandardAPIList" -out:"$shimForwards" -libpath:"$refPath"
+    & $genapi -writer:TypeForwards -assembly:"$shimContract" -apiList:"$netstandardAndExtensionsAPIList" -out:"$shimForwards" -libpath:"$refPath"
     #& $genapi -writer:TypeForwards -assembly:"$shimContract" -out:"$shimForwards" -libpath:"$refPath"
-    $projTemplate.Replace("[SHIM]", $shim).Replace("[TOKEN]", $token).Replace("[VERSION]", $asmVersion) | sc "$shimProject"
+
+    if (!Test-Project $shimProject)
+    {
+        $projTemplate.Replace("[SHIM]", $shim).Replace("[TOKEN]", $token).Replace("[VERSION]", $asmVersion).Replace("[KEY]", $token) | sc "$shimProject"
+    }
 }
