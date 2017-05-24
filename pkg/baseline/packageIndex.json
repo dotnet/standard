@@ -1966,9 +1966,10 @@
     "System.Data.SqlClient": {
       "StableVersions": [
         "4.1.0",
-        "4.3.0"
+        "4.3.0",
+        "4.3.1"
       ],
-      "BaselineVersion": "4.3.0",
+      "BaselineVersion": "4.3.1",
       "InboxOn": {
         "monoandroid10": "Any",
         "monotouch10": "Any",
@@ -1980,7 +1981,8 @@
       "AssemblyVersionInPackageVersion": {
         "4.0.0.0": "4.1.0",
         "4.1.0.0": "4.1.0",
-        "4.1.1.0": "4.3.0"
+        "4.1.1.0": "4.3.0",
+        "4.1.1.1": "4.3.1"
       }
     },
     "System.Data.SqlXml": {
@@ -2080,13 +2082,15 @@
     "System.Diagnostics.DiagnosticSource": {
       "StableVersions": [
         "4.0.0",
-        "4.3.0"
+        "4.3.0",
+        "4.3.1"
       ],
-      "BaselineVersion": "4.3.0",
+      "BaselineVersion": "4.3.1",
       "InboxOn": {},
       "AssemblyVersionInPackageVersion": {
         "4.0.0.0": "4.0.0",
-        "4.0.1.0": "4.3.0"
+        "4.0.1.0": "4.3.0",
+        "4.0.1.1": "4.3.1"
       }
     },
     "System.Diagnostics.FileVersionInfo": {
@@ -2975,9 +2979,10 @@
         "4.1.0",
         "4.1.1",
         "4.3.0",
-        "4.3.1"
+        "4.3.1",
+        "4.3.2"
       ],
-      "BaselineVersion": "4.3.0",
+      "BaselineVersion": "4.3.2",
       "InboxOn": {
         "net45": "4.0.0.0",
         "portable45-net45+win8+wpa81": "4.0.0.0",
@@ -2997,7 +3002,8 @@
       "AssemblyVersionInPackageVersion": {
         "4.0.0.0": "4.0.0",
         "4.1.0.0": "4.1.0",
-        "4.1.1.0": "4.3.0"
+        "4.1.1.0": "4.3.0",
+        "4.1.1.1": "4.3.1"
       }
     },
     "System.Net.Http.Rtc": {
@@ -3035,13 +3041,15 @@
       "StableVersions": [
         "4.0.0",
         "4.0.1",
-        "4.3.0"
+        "4.3.0",
+        "4.3.1"
       ],
-      "BaselineVersion": "4.3.0",
+      "BaselineVersion": "4.3.1",
       "InboxOn": {},
       "AssemblyVersionInPackageVersion": {
         "4.0.0.0": "4.0.0",
-        "4.0.1.0": "4.3.0"
+        "4.0.1.0": "4.3.0",
+        "4.0.1.1": "4.3.1"
       }
     },
     "System.Net.HttpListener": {
@@ -3222,9 +3230,10 @@
     "System.Net.Security": {
       "StableVersions": [
         "4.0.0",
-        "4.3.0"
+        "4.3.0",
+        "4.3.1"
       ],
-      "BaselineVersion": "4.3.0",
+      "BaselineVersion": "4.3.1",
       "InboxOn": {
         "monoandroid10": "Any",
         "monotouch10": "Any",
@@ -3235,7 +3244,8 @@
       },
       "AssemblyVersionInPackageVersion": {
         "4.0.0.0": "4.0.0",
-        "4.0.1.0": "4.3.0"
+        "4.0.1.0": "4.3.0",
+        "4.0.1.1": "4.3.1"
       }
     },
     "System.Net.ServicePoint": {
@@ -3323,9 +3333,10 @@
     "System.Net.WebSockets.Client": {
       "StableVersions": [
         "4.0.0",
-        "4.3.0"
+        "4.3.0",
+        "4.3.1"
       ],
-      "BaselineVersion": "4.3.0",
+      "BaselineVersion": "4.3.1",
       "InboxOn": {
         "monoandroid10": "Any",
         "monotouch10": "Any",
@@ -3336,7 +3347,8 @@
       },
       "AssemblyVersionInPackageVersion": {
         "4.0.0.0": "4.0.0",
-        "4.0.1.0": "4.3.0"
+        "4.0.1.0": "4.3.0",
+        "4.0.1.1": "4.3.1"
       }
     },
     "System.Numerics": {
@@ -4809,13 +4821,15 @@
     "System.Text.Encodings.Web": {
       "StableVersions": [
         "4.0.0",
-        "4.3.0"
+        "4.3.0",
+        "4.3.1"
       ],
-      "BaselineVersion": "4.3.0",
+      "BaselineVersion": "4.3.1",
       "InboxOn": {},
       "AssemblyVersionInPackageVersion": {
         "4.0.0.0": "4.0.0",
-        "4.0.1.0": "4.3.0"
+        "4.0.1.0": "4.3.0",
+        "4.0.1.1": "4.3.1"
       }
     },
     "System.Text.RegularExpressions": {
