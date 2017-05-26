@@ -6,8 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection.Metadata;
-using System.Reflection.PortableExecutable;
 
 namespace Microsoft.DotNet.Build.Tasks
 {
@@ -33,41 +31,5 @@ namespace Microsoft.DotNet.Build.Tasks
             return s_assemblyExtensions.Contains(extension) ? GetAssemblyVersion(sourcePath) : null;
         }
 
-        public static bool GetReferencesNETStandard(string sourcePath)
-        {
-            bool result = false;
-            using (var assemblyStream = new FileStream(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Delete | FileShare.Read))
-            {
-                try
-                {
-                    using (PEReader peReader = new PEReader(assemblyStream, PEStreamOptions.LeaveOpen))
-                    {
-                        if (peReader.HasMetadata)
-                        {
-                            MetadataReader reader = peReader.GetMetadataReader();
-                            if (reader.IsAssembly)
-                            {
-                                foreach (var referenceHandle in reader.AssemblyReferences)
-                                {
-                                    AssemblyReference reference = reader.GetAssemblyReference(referenceHandle);
-                                    var referenceName = reader.GetString(reference.Name);
-
-                                    if (result = referenceName.Equals("netstandard", StringComparison.Ordinal))
-                                    {
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                catch (BadImageFormatException)
-                {
-                    // not a PE
-                }
-            }
-
-            return result;
-        }
     }
 }

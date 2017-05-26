@@ -74,7 +74,7 @@
     <TargetingPackReference Include="System.IO" />
     <PackageDestination Include="build/desktop" />
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetGroup)' != 'net451'">
     <PackageDependencyId Include="System.Reflection.Metadata" />
     <PackageDependencyId Include="System.Collections.Immutable" />
   </ItemGroup>
