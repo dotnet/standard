@@ -9,15 +9,11 @@
       <Private>false</Private>
       <NuGetPackageId>NETStandard.Library</NuGetPackageId>
       <NuGetPackageVersion>$(NETStandardLibraryPackageVersion)</NuGetPackageVersion>
-      <NuGetIsFrameworkReference>false</NuGetIsFrameworkReference>
-      <NuGetSourceType>Package</NuGetSourceType>
     </Reference>
     <ReferenceCopyLocalPaths Condition="'$(_NetStandardLibraryLibPath)' != ''" Include="$(_NetStandardLibraryLibPath)*.dll">
       <Private>false</Private>
       <NuGetPackageId>NETStandard.Library</NuGetPackageId>
       <NuGetPackageVersion>$(NETStandardLibraryPackageVersion)</NuGetPackageVersion>
-      <NuGetIsFrameworkReference>false</NuGetIsFrameworkReference>
-      <NuGetSourceType>Package</NuGetSourceType>
     </ReferenceCopyLocalPaths>
   </ItemGroup>
 </Project>
