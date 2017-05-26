@@ -58,4 +58,13 @@
       <ReferenceCopyLocalPaths Include="@(_ReferenceCopyLocalPathsWithoutConflicts)" />
     </ItemGroup>
   </Target>
+
+  <!-- The following target is used by desktop to determine if the project requires a netstandard reference -->
+  <UsingTask TaskName="IsNETStandardRequired" AssemblyFile="$(MicrosoftPackagingToolsTaskDirectory)Microsoft.Packaging.Tools.Tasks.dll" />
+  <Target Name="IsNETStandardRequired"
+          Condition="'$(IsNETStandardRequired)' == ''">
+    <IsNETStandardRequired References="@(Reference);@(_ResolvedProjectReferencePaths)">
+      <Output TaskParameter="Required" PropertyName="IsNETStandardRequired" />
+    </IsNETStandardRequired>
+  </Target>
 </Project>
