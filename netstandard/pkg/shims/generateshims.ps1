@@ -7,6 +7,7 @@ $genapi = "\\fxcore\tools\others\GenAPI\GenAPI.exe";
 if ($shims -eq "netstandard")
 {
     $refPath = Resolve-Path "..\..\..\bin\obj\CompatShims\ref\netstandard1.6"
+    $refVersionPath = Resolve-Path "..\..\..\bin\obj\CompatShims\ref\net47"
 }
 elseif ($shims -eq "netfx")
 {
@@ -48,8 +49,22 @@ foreach ($shim in $shimList)
     Write-Host "Generating forwards and project for $shimContract";
 
     $asmName = [System.Reflection.AssemblyName]::GetAssemblyName($shimContract);
-    $asmVersion = $asmName.Version.ToString();
+    $asmVersion = $asmName.Version;
 
+    if ($refVersionPath -ne "" -and (Test-Path "$refVersionPath\$shim.dll"))
+    {
+        $asmRefVersion = [System.Reflection.AssemblyName]::GetAssemblyName("$refVersionPath\$shim.dll");
+
+        if ($asmRefVersion.Version -gt $asmName.Version)
+        {
+            $asmVersion = $asmRefVersion.Version;
+        }
+    }
+
+    # Increment the patch version by 1 above the highest stable release to ensure we are higher then any servicing
+    $asmVersion = new-object System.Version($asmVersion.Major, $asmVersion.Minor, ($asmVersion.Build+1), 0)
+
+    $asmVersion = $asmVersion.ToString()
     $asmToken = $asmName.GetPublicKeyToken()[0].ToString("x2");
     if ($asmToken -eq "b0")
     {
@@ -74,9 +89,5 @@ foreach ($shim in $shimList)
 
     & $genapi -writer:TypeForwards -assembly:"$shimContract" -apiList:"$netstandardAndExtensionsAPIList" -out:"$shimForwards" -libpath:"$refPath"
     #& $genapi -writer:TypeForwards -assembly:"$shimContract" -out:"$shimForwards" -libpath:"$refPath"
-
-    if (!Test-Project $shimProject)
-    {
-        $projTemplate.Replace("[SHIM]", $shim).Replace("[TOKEN]", $token).Replace("[VERSION]", $asmVersion).Replace("[KEY]", $token) | sc "$shimProject"
-    }
+    $projTemplate.Replace("[SHIM]", $shim).Replace("[TOKEN]", $token).Replace("[VERSION]", $asmVersion).Replace("[KEY]", $token) | sc "$shimProject"
 }
