@@ -7,11 +7,13 @@
     <Reference Condition="'$(_NetStandardLibraryRefPath)' != ''" Include="$(_NetStandardLibraryRefPath)*.dll">
       <!-- Private = false to make these reference only -->
       <Private>false</Private>
+      <Facade Condition="'%(FileName)' != 'netstandard'">true</Facade>
       <NuGetPackageId>NETStandard.Library</NuGetPackageId>
       <NuGetPackageVersion>$(NETStandardLibraryPackageVersion)</NuGetPackageVersion>
     </Reference>
     <ReferenceCopyLocalPaths Condition="'$(_NetStandardLibraryLibPath)' != ''" Include="$(_NetStandardLibraryLibPath)*.dll">
       <Private>false</Private>
+      <Facade Condition="'%(FileName)' != 'netstandard'">true</Facade>
       <NuGetPackageId>NETStandard.Library</NuGetPackageId>
       <NuGetPackageVersion>$(NETStandardLibraryPackageVersion)</NuGetPackageVersion>
     </ReferenceCopyLocalPaths>
