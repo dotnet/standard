@@ -263,7 +263,7 @@ course, there are limits to this. Exceptions are only acceptable for corner
 cases to avoid the complexities above. We will generally not expose large set of
 APIs that aren't supported.
 
-In the future, my hope is that we can provide tooling to help you with this, by,
+In the future, we hope that we can provide tooling to help you with this, by,
 for example, providing Roslyn analyzers that can give you squiggles in the IDE.
 
 ## Will Unity implement .NET Standard?
