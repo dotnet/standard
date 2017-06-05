@@ -27,6 +27,7 @@
     <Compile Include="MSBuildUtilities.cs" />
     <Compile Include="NuGetUtilities.cs" />
     <Compile Include="PackageRank.cs" />
+    <Compile Include="IsNETStandardRequired.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NETStandard.Library">
@@ -73,7 +74,7 @@
     <TargetingPackReference Include="System.IO" />
     <PackageDestination Include="build/desktop" />
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetGroup)' != 'net451'">
     <PackageDependencyId Include="System.Reflection.Metadata" />
     <PackageDependencyId Include="System.Collections.Immutable" />
   </ItemGroup>
@@ -81,21 +82,17 @@
     <None Include="targets\Microsoft.Packaging.Tools.targets" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
-
   <Target Name="PackageAdditionalDependencies" BeforeTargets="GetFilesToPackage" DependsOnTargets="ResolveReferences">
     <ItemGroup>
       <_referencePathsByPackageId Include="@(ReferencePath->'%(NuGetPackageId)')" />
       <_referencePathsByPackageIdToExclude Include="@(_referencePathsByPackageId)" Exclude="@(PackageDependencyId)" />
       <_referencePathsByPackageIdToInclude Include="@(_referencePathsByPackageId)" Exclude="@(_referencePathsByPackageIdToExclude)" />
       <_missingPackageDependencyId Include="@(PackageDependencyId)" Exclude="@(_referencePathsByPackageIdToInclude)" />
-
       <_referencePathsToInclude Include="@(_referencePathsByPackageIdToInclude->'%(OriginalItemSpec)')" />
-
       <FilesToPackage Include="@(_referencePathsToInclude)">
         <TargetPath>%(PackageDestination.Identity)</TargetPath>
       </FilesToPackage>
     </ItemGroup>
-    <Error Condition="'@(_missingPackageDependencyId)' != ''"
-           Text="The following PackageDependencyIds were specified but not referenced: @(_missingPackageDependencyId)" />
+    <Error Condition="'@(_missingPackageDependencyId)' != ''" Text="The following PackageDependencyIds were specified but not referenced: @(_missingPackageDependencyId)" />
   </Target>
 </Project>

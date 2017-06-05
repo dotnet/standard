@@ -38,5 +38,42 @@ namespace Microsoft.DotNet.Build.Tasks
                 return result;
             }
         }
+
+        public static bool GetReferencesNETStandard(string sourcePath)
+        {
+            bool result = false;
+            using (var assemblyStream = new FileStream(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Delete | FileShare.Read))
+            {
+                try
+                {
+                    using (PEReader peReader = new PEReader(assemblyStream, PEStreamOptions.LeaveOpen))
+                    {
+                        if (peReader.HasMetadata)
+                        {
+                            MetadataReader reader = peReader.GetMetadataReader();
+                            if (reader.IsAssembly)
+                            {
+                                foreach (var referenceHandle in reader.AssemblyReferences)
+                                {
+                                    AssemblyReference reference = reader.GetAssemblyReference(referenceHandle);
+                                    var referenceName = reader.GetString(reference.Name);
+
+                                    if (result = referenceName.Equals("netstandard", StringComparison.Ordinal))
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (BadImageFormatException)
+                {
+                    // not a PE
+                }
+            }
+
+            return result;
+        }
     }
 }
