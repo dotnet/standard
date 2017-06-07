@@ -15,15 +15,9 @@
   <PropertyGroup Condition="'$(Configuration)' == 'netstandard1.5_Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'net451_Debug'" />
   <ItemGroup>
-    <Compile Include="..\..\Microsoft.Packaging.Tools\tasks\ILog.cs">
-      <Link>tools\ILog.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Microsoft.Packaging.Tools\tasks\MSBuildLog.cs">
-      <Link>tools\MSBuildLog.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Microsoft.Packaging.Tools\tasks\NuGetUtilities.cs">
-      <Link>tools\NuGetUtilities.cs</Link>
-    </Compile>
+    <Compile Include="ILog.cs" />
+    <Compile Include="MSBuildLog.cs" />
+    <Compile Include="NuGetUtilities.cs" />
     <Compile Include="FileNode.cs" />
     <Compile Include="IIsIncluded.cs" />
     <Compile Include="NuGetPackageNode.cs" />
