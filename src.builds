@@ -6,7 +6,6 @@
     <Project Include="netstandard/ref/*.csproj" />
     <Project Include="netstandard/src/*.builds" />
     <Project Include="platforms/dir.proj" />
-    <Project Include="Microsoft.Packaging.Tools/tasks/*.builds" />
     <Project Include="Microsoft.Packaging.Tools.Trimming/tasks/*.builds" />
   </ItemGroup>
 
