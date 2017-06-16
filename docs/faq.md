@@ -153,7 +153,7 @@ needed, for example, from the project template.
 
 The current versions of .NET Standard (1.x - 2.0) were mostly computed:
 
-* The 1.x version range was effectively constraint by what was available in
+* The 1.x version range was effectively constrained by what was available in
   .NET Core.
 * For 2.0, we've started with the intersection of .NET Framework and Xamarin,
   deliberately excluding .NET Core to make sure the resulting set isn't held
