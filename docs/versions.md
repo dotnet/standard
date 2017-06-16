@@ -19,7 +19,7 @@ most target .NET Standard 1.1.
 |Mono                       |   **4.6**|    4.6|      4.6|     4.6|   4.6|   4.6|   4.6| **vNext**|
 |Xamarin.iOS                |  **10.0**|   10.0|     10.0|    10.0|  10.0|  10.0|  10.0| **vNext**|
 |Xamarin.Android            |   **7.0**|    7.0|      7.0|     7.0|   7.0|   7.0|   7.0| **vNext**|
-|Universal Windows Platform |  **10.0**|   10.0|     10.0|    10.0|  10.0| **vNext**| vNext| vNext|
+|Universal Windows Platform |  **10.0**|   10.0|     10.0|    10.0|  10.0|      |      | **vNext**|
 |Windows                    |   **8.0**|    8.0|  **8.1**|        |      |      |      |      |
 |Windows Phone              |   **8.1**|    8.1|      8.1|        |      |      |      |      |
 |Windows Phone Silverlight  |   **8.0**|       |         |        |      |      |      |      |
