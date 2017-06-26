@@ -157,4 +157,8 @@
     <SymbolPackageOutputPath Condition="'$(SymbolPackageOutputPath)'==''">$(PackageOutputPath)symbols/</SymbolPackageOutputPath>
   </PropertyGroup>
 
+  <!-- Target Framework Moniker values to be used in our projects -->
+  <PropertyGroup>
+    <UapRs3Tfm>uap10.0.15138</UapRs3Tfm>
+  </PropertyGroup>
 </Project>
