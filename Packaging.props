@@ -12,6 +12,10 @@
     <!-- defined in buildtools packaging.targets, but we need this before targets are imported -->
     <PackagePlatform Condition="'$(PackagePlatform)' == ''">$(Platform)</PackagePlatform>
     <PackagePlatform Condition="'$(PackagePlatform)' == 'amd64'">x64</PackagePlatform>
+    <XmlDocPackage>Microsoft.Private.Intellisense</XmlDocPackage>
+    <XmlDocPackageVersion>2.0.0-preview3-25426-1</XmlDocPackageVersion>
+    <XmlDocFileRoot>$(PackagesDir)$(XmlDocPackage.ToLowerInvariant())/$(XmlDocPackageVersion)/xmldocs/netstandard</XmlDocFileRoot>
+    <XmlDocDir>$(BinDir)docs</XmlDocDir>
   </PropertyGroup>
 
   <Import Condition="Exists('pkg/baseline/baseline.props')" Project="pkg/baseline/baseline.props" />
