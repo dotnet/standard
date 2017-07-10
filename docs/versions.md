@@ -12,18 +12,18 @@ is that you can target, based on which .NET platforms you intend to run on. For
 instance, if you want to run on .NET Framework 4.5 and .NET Core 1.0, you can at
 most target .NET Standard 1.1.
 
-|<div align="right">.NET Standard</div>| [1.0]    | [1.1] | [1.2]   | [1.3]  | [1.4]| [1.5]| [1.6]| [2.0]|
-|:--------------------------|---------:|------:|--------:|-------:|-----:|-----:|-----:|-----:|
-|.NET Core                  |   **1.0**|    1.0|      1.0|     1.0|      1.0|   1.0|   1.0|   **2.0**|
-|.NET Framework             |   **4.5**|**4.5**|**4.5.1**| **4.6**|**4.6.1**|4.6.1 ~~4.6.2~~|4.6.1 ~~vNext~~|4.6.1|
-|Mono                       |   **4.6**|    4.6|      4.6|     4.6|   4.6|   4.6|   4.6| **vNext**|
-|Xamarin.iOS                |  **10.0**|   10.0|     10.0|    10.0|  10.0|  10.0|  10.0| **vNext**|
-|Xamarin.Mac                |   **3.0**|    3.0|      3.0|     3.0|   3.0|   3.0|   3.0| **vNext**|
-|Xamarin.Android            |   **7.0**|    7.0|      7.0|     7.0|   7.0|   7.0|   7.0| **vNext**|
-|Universal Windows Platform |  **10.0**|   10.0|     10.0|    10.0|  10.0| **vNext**| vNext| vNext|
-|Windows                    |   **8.0**|    8.0|  **8.1**|        |      |      |      |      |
-|Windows Phone              |   **8.1**|    8.1|      8.1|        |      |      |      |      |
-|Windows Phone Silverlight  |   **8.0**|       |         |        |      |      |      |      |
+|<div align="right">.NET Standard</div>|    [1.0] | [1.1] |   [1.2] |  [1.3] |   [1.4] |   [1.5]         | [1.6]         |    [2.0] |
+|:-------------------------------------|---------:|------:|--------:|-------:|--------:|----------------:|--------------:|---------:|
+|.NET Core                             |   **1.0**|  1.0  |    1.0  |   1.0  |    1.0  |    1.0          |  1.0          |   **2.0**|
+|.NET Framework                        |   **4.5**|**4.5**|**4.5.1**| **4.6**|**4.6.1**|  4.6.1 ~~4.6.2~~|4.6.1 ~~vNext~~|   4.6.1  |
+|Mono                                  |   **4.6**|  4.6  |    4.6  |   4.6  |    4.6  |    4.6          |**4.6**        | **vNext**|
+|Xamarin.iOS                           |  **10.0**| 10.0  |   10.0  |  10.0  |   10.0  |   10.0          | 10.0          | **vNext**|
+|Xamarin.Mac                           |   **3.0**|  3.0  |    3.0  |   3.0  |    3.0  |    3.0          |  3.0          | **vNext**|
+|Xamarin.Android                       |   **7.0**|  7.0  |    7.0  |   7.0  |    7.0  |    7.0          |  7.0          | **vNext**|
+|Universal Windows Platform            |  **10.0**| 10.0  |   10.0  |  10.0  |   10.0  |**vNext**        |vNext          |   vNext  |
+|Windows                               |   **8.0**|  8.0  |  **8.1**|        |         |                 |               |          |
+|Windows Phone                         |   **8.1**|  8.1  |    8.1  |        |         |                 |               |          |
+|Windows Phone Silverlight             |   **8.0**|       |         |        |         |                 |               |          |
 
 [1.0]: versions/netstandard1.0.md
 [1.1]: versions/netstandard1.1.md
