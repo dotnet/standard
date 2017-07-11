@@ -13,7 +13,7 @@
     <PackagePlatform Condition="'$(PackagePlatform)' == ''">$(Platform)</PackagePlatform>
     <PackagePlatform Condition="'$(PackagePlatform)' == 'amd64'">x64</PackagePlatform>
     <XmlDocPackage>Microsoft.Private.Intellisense</XmlDocPackage>
-    <XmlDocPackageVersion>2.0.0-preview3-25426-1</XmlDocPackageVersion>
+    <XmlDocPackageVersion>2.0.0-preview3-25511-0</XmlDocPackageVersion>
     <XmlDocFileRoot>$(PackagesDir)$(XmlDocPackage.ToLowerInvariant())/$(XmlDocPackageVersion)/xmldocs/netstandard</XmlDocFileRoot>
     <XmlDocDir>$(BinDir)docs</XmlDocDir>
   </PropertyGroup>
