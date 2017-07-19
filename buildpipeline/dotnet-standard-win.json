@@ -61,7 +61,7 @@
     },
     {
       "enabled": true,
-      "continueOnError": true,
+      "continueOnError": false,
       "alwaysRun": false,
       "displayName": "Update dotnet/versions",
       "timeoutInMinutes": 0,
