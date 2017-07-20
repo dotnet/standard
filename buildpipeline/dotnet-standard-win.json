@@ -1,85 +1,24 @@
 {
-  "build": [
-    {
-      "enabled": true,
-      "continueOnError": false,
-      "alwaysRun": false,
-      "displayName": "Install Signing Plugin",
-      "timeoutInMinutes": 0,
-      "task": {
-        "id": "30666190-6959-11e5-9f96-f56098202fef",
-        "versionSpec": "1.*",
-        "definitionType": "task"
-      },
-      "inputs": {
-        "signType": "$(SignType)",
-        "zipSources": "false",
-        "version": "1.0.268",
-        "feedSource": "https://devdiv.pkgs.visualstudio.com/DefaultCollection/_packaging/MicroBuildToolset/nuget/v3/index.json"
-      }
-    },
-    {
-      "enabled": true,
-      "continueOnError": true,
-      "alwaysRun": false,
-      "displayName": "Run script build.cmd",
-      "timeoutInMinutes": 0,
-      "task": {
-        "id": "bfc8bf76-e7ac-4a8c-9a55-a944a9f632fd",
-        "versionSpec": "1.*",
-        "definitionType": "task"
-      },
-      "inputs": {
-        "filename": "build.cmd",
-        "arguments": "-OfficialBuildId=$(OfficialBuildId) -- /p:SignType=real /p:MicroBuild_SigningEnabled=true",
-        "modifyEnvironment": "false",
-        "workingFolder": "",
-        "failOnStandardError": "false"
-      }
-    },
-    {
-      "enabled": true,
-      "continueOnError": false,
-      "alwaysRun": false,
-      "displayName": "NuGet Publisher ",
-      "timeoutInMinutes": 0,
-      "task": {
-        "id": "333b11bd-d341-40d9-afcf-b32d5ce6f25b",
-        "versionSpec": "0.*",
-        "definitionType": "task"
-      },
-      "inputs": {
-        "searchPattern": "bin/packages/**/*.nupkg;-:bin/packages/**/*.symbols.nupkg",
-        "nuGetFeedType": "external",
-        "connectedServiceName": "e3b269d4-5b99-4a32-a6ff-2c2feb920051",
-        "feedName": "",
-        "nuGetAdditionalArgs": "-Timeout 3600",
-        "verbosity": "Detailed",
-        "nuGetVersion": "3.5.0.1829",
-        "nuGetPath": ""
-      }
-    },
-    {
-      "enabled": true,
-      "continueOnError": true,
-      "alwaysRun": false,
-      "displayName": "Update dotnet/versions",
-      "timeoutInMinutes": 0,
-      "task": {
-        "id": "bfc8bf76-e7ac-4a8c-9a55-a944a9f632fd",
-        "versionSpec": "1.*",
-        "definitionType": "task"
-      },
-      "inputs": {
-        "filename": "build.cmd",
-        "arguments": "-- /v:diagnostic /t:UpdatePublishedVersions /p:GitHubUser=\"dotnet-build-bot\" /p:GitHubEmail=\"dotnet-build-bot@microsoft.com\"  /p:GitHubAuthToken=\"$(PB_GitHubAuthToken)\" /p:VersionsRepoOwner=\"$(VersionsRepoOwner)\" /p:VersionsRepo=\"versions\" /p:VersionsRepoPath=\"build-info/dotnet/$(PB_GitHubRepositoryName)/$(SourceBranch)\" /p:ShippedNuGetPackageGlobPath=\"bin/packages/Debug/*.nupkg\"",
-        "modifyEnvironment": "false",
-        "workingFolder": "",
-        "failOnStandardError": "false"
-      }
-    }
-  ],
   "options": [
+    {
+      "enabled": false,
+      "definition": {
+        "id": "5d58cc01-7c75-450c-be18-a388ddb129ec"
+      },
+      "inputs": {
+        "branchFilters": "[\"+refs/heads/*\"]",
+        "additionalFields": "{}"
+      }
+    },
+    {
+      "enabled": false,
+      "definition": {
+        "id": "5bc3cfb7-6b54-4a4b-b5d2-a3905949f8a6"
+      },
+      "inputs": {
+        "additionalFields": "{}"
+      }
+    },
     {
       "enabled": false,
       "definition": {
@@ -114,31 +53,21 @@
     }
   ],
   "variables": {
-    "system.debug": {
-      "value": "false",
-      "allowOverride": true
-    },
-    "TeamName": {
-      "value": "DotNetCore"
+    "CloudDropAccessToken": {
+      "value": ""
     },
     "CloudDropAccountName": {
       "value": "dotnetbuildoutput"
     },
-    "OfficialBuildId": {
-      "value": "$(Build.BuildNumber)"
-    },
     "Label": {
       "value": "$(Build.BuildNumber)"
     },
-    "VsoAccountName": {
-      "value": "dn-bot"
+    "OfficialBuildId": {
+      "value": "$(Build.BuildNumber)"
     },
-    "VsoPassword": {
+    "PB_GitHubAuthToken": {
       "value": null,
       "isSecret": true
-    },
-    "CloudDropAccessToken": {
-      "value": ""
     },
     "SignType": {
       "value": "real"
@@ -146,7 +75,17 @@
     "SourceBranch": {
       "value": "master"
     },
-    "PB_GitHubAuthToken": {
+    "system.debug": {
+      "value": "false",
+      "allowOverride": true
+    },
+    "TeamName": {
+      "value": "DotNetCore"
+    },
+    "VsoAccountName": {
+      "value": "dn-bot"
+    },
+    "VsoPassword": {
       "value": null,
       "isSecret": true
     }
@@ -173,6 +112,130 @@
   "buildNumberFormat": "$(date:yyyyMMdd)$(rev:-rr)",
   "jobAuthorizationScope": "projectCollection",
   "jobTimeoutInMinutes": 180,
+  "jobCancelTimeoutInMinutes": 5,
+  "process": {
+    "phases": [
+      {
+        "steps": [
+          {
+            "environment": {},
+            "enabled": true,
+            "continueOnError": false,
+            "alwaysRun": false,
+            "displayName": "Install Signing Plugin",
+            "timeoutInMinutes": 0,
+            "refName": "Task1",
+            "task": {
+              "id": "30666190-6959-11e5-9f96-f56098202fef",
+              "versionSpec": "1.*",
+              "definitionType": "task"
+            },
+            "inputs": {
+              "signType": "$(SignType)",
+              "zipSources": "false",
+              "version": "1.0.268",
+              "feedSource": "https://devdiv.pkgs.visualstudio.com/DefaultCollection/_packaging/MicroBuildToolset/nuget/v3/index.json"
+            }
+          },
+          {
+            "environment": {},
+            "enabled": true,
+            "continueOnError": true,
+            "alwaysRun": false,
+            "displayName": "Run script build.cmd",
+            "timeoutInMinutes": 0,
+            "refName": "Task2",
+            "task": {
+              "id": "bfc8bf76-e7ac-4a8c-9a55-a944a9f632fd",
+              "versionSpec": "1.*",
+              "definitionType": "task"
+            },
+            "inputs": {
+              "filename": "build.cmd",
+              "arguments": "-OfficialBuildId=$(OfficialBuildId) -- /p:SignType=real /p:MicroBuild_SigningEnabled=true",
+              "modifyEnvironment": "false",
+              "workingFolder": "",
+              "failOnStandardError": "false"
+            }
+          },
+          {
+            "environment": {},
+            "enabled": true,
+            "continueOnError": false,
+            "alwaysRun": false,
+            "displayName": "Publish to Artifact Services Drop",
+            "timeoutInMinutes": 0,
+            "refName": "Task3",
+            "task": {
+              "id": "f9d96d25-0c81-4e77-8282-1ad1f785cbb4",
+              "versionSpec": "0.*",
+              "definitionType": "task"
+            },
+            "inputs": {
+              "dropServiceURI": "https://devdiv.artifacts.visualstudio.com/DefaultCollection",
+              "buildNumber": "dotnet/standard/$(SourceBranch)/$(OfficialBuildId)/packages/Release",
+              "sourcePath": "$(Build.SourcesDirectory)\\bin\\packages",
+              "dropExePath": "",
+              "toLowerCase": "true",
+              "detailedLog": "false",
+              "usePat": "false",
+              "retentionDays": "",
+              "dropMetadataContainerName": "DropMetadata"
+            }
+          },
+          {
+            "environment": {},
+            "enabled": true,
+            "continueOnError": false,
+            "alwaysRun": false,
+            "displayName": "NuGet Publisher ",
+            "timeoutInMinutes": 0,
+            "refName": "Task4",
+            "task": {
+              "id": "333b11bd-d341-40d9-afcf-b32d5ce6f25b",
+              "versionSpec": "0.*",
+              "definitionType": "task"
+            },
+            "inputs": {
+              "searchPattern": "bin/packages/**/*.nupkg;-:bin/packages/**/*.symbols.nupkg",
+              "nuGetFeedType": "external",
+              "connectedServiceName": "e3b269d4-5b99-4a32-a6ff-2c2feb920051",
+              "feedName": "",
+              "nuGetAdditionalArgs": "-Timeout 3600",
+              "verbosity": "Detailed",
+              "nuGetVersion": "3.5.0.1829",
+              "nuGetPath": "",
+              "continueOnEmptyNupkgMatch": "false"
+            }
+          },
+          {
+            "environment": {},
+            "enabled": true,
+            "continueOnError": true,
+            "alwaysRun": false,
+            "displayName": "Update dotnet/versions",
+            "timeoutInMinutes": 0,
+            "refName": "Task5",
+            "task": {
+              "id": "bfc8bf76-e7ac-4a8c-9a55-a944a9f632fd",
+              "versionSpec": "1.*",
+              "definitionType": "task"
+            },
+            "inputs": {
+              "filename": "build.cmd",
+              "arguments": "-- /v:diagnostic /t:UpdatePublishedVersions /p:GitHubUser=\"dotnet-build-bot\" /p:GitHubEmail=\"dotnet-build-bot@microsoft.com\"  /p:GitHubAuthToken=\"$(PB_GitHubAuthToken)\" /p:VersionsRepoOwner=\"$(VersionsRepoOwner)\" /p:VersionsRepo=\"versions\" /p:VersionsRepoPath=\"build-info/dotnet/$(PB_GitHubRepositoryName)/$(SourceBranch)\" /p:ShippedNuGetPackageGlobPath=\"bin/packages/Debug/*.nupkg\"",
+              "modifyEnvironment": "false",
+              "workingFolder": "",
+              "failOnStandardError": "false"
+            }
+          }
+        ],
+        "name": null,
+        "jobAuthorizationScope": 0
+      }
+    ],
+    "type": 1
+  },
   "repository": {
     "properties": {
       "labelSources": "0",
@@ -180,7 +243,9 @@
       "fetchDepth": "0",
       "gitLfsSupport": "false",
       "skipSyncSource": "false",
-      "cleanOptions": "0"
+      "cleanOptions": "0",
+      "checkoutNestedSubmodules": "false",
+      "labelSourcesFormat": "$(build.buildNumber)"
     },
     "id": "529ccf9f-5708-47fb-a9ac-09c0fc4071dd",
     "type": "TfsGit",
@@ -190,27 +255,27 @@
     "clean": "true",
     "checkoutSubmodules": false
   },
+  "processParameters": {},
   "quality": "definition",
-  "defaultBranch": "master",
   "queue": {
+    "id": 36,
+    "name": "DotNet-Build",
     "pool": {
       "id": 39,
       "name": "DotNet-Build"
-    },
-    "id": 36,
-    "name": "DotNet-Build"
+    }
   },
-  "path": "\\",
-  "type": "build",
   "id": 4998,
   "name": "dotnet-standard-win",
-  "url": "https://devdiv.visualstudio.com/DefaultCollection/0bdbc590-a062-4c3f-b0f6-9383f67865ee/_apis/build/Definitions/4998",
+  "path": "\\",
+  "type": "build",
   "project": {
     "id": "0bdbc590-a062-4c3f-b0f6-9383f67865ee",
     "name": "DevDiv",
     "description": "Visual Studio and DevDiv team project for git source code repositories.  Work items will be added for Adams, Dev14 work items are tracked in vstfdevdiv.  ",
     "url": "https://devdiv.visualstudio.com/DefaultCollection/_apis/projects/0bdbc590-a062-4c3f-b0f6-9383f67865ee",
     "state": "wellFormed",
-    "revision": 418097435
+    "revision": 418097804,
+    "visibility": "private"
   }
 }
