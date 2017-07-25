@@ -8,6 +8,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.Net.NetworkInformation.Forwards.cs" />
+    <Compile Include="System.Net.NetworkInformation.manual.cs" />
     <ProjectReference Include="..\..\..\ref\netstandard.csproj" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
