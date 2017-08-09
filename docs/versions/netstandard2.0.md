@@ -16,8 +16,6 @@
 
 ## What's new?
 
-***.NET Standard 2.0 is work in progress***
-
 | Namespace                                         | #APIs |
 |:--------------------------------------------------|------:|
 | Microsoft.Win32.SafeHandles                       |    32 |
