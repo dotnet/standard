@@ -8,88 +8,90 @@
 
 ## Platform Support
 
-* .NET Core vNext
+* .NET Core 2.0
 * .NET Framework 4.6.1
-* Mono vNext
-* Xamarin.iOS vNext
-* Xamarin.Android vNext
+* Mono 5.4
+* Xamarin.iOS 10.14
+* Xamarin.Mac 3.8
+* Xamarin.Android 7.5
 * Universal Windows Platform vNext
 
 ## What's new?
 
 | Namespace                                         | #APIs |
 |:--------------------------------------------------|------:|
-| Microsoft.Win32.SafeHandles                       |    32 |
-| System                                            | 1,087 |
-| System.CodeDom.Compiler                           |    14 |
-| System.Collections                                |   292 |
-| System.Collections.Generic                        |    17 |
+| Microsoft.Win32.SafeHandles                       |    22 |
+| System                                            | 1,366 |
+| System.CodeDom.Compiler                           |    46 |
+| System.Collections                                |   335 |
+| System.Collections.Generic                        |    23 |
 | System.Collections.ObjectModel                    |     1 |
-| System.Collections.Specialized                    |   241 |
-| System.ComponentModel                             | 1,499 |
-| System.ComponentModel.Design                      |   520 |
-| System.ComponentModel.Design.Serialization        |   150 |
+| System.Collections.Specialized                    |   281 |
+| System.ComponentModel                             | 1,843 |
+| System.ComponentModel.Design                      |   565 |
+| System.ComponentModel.Design.Serialization        |   155 |
 | System.Configuration.Assemblies                   |    13 |
-| System.Data                                       | 1,399 |
-| System.Data.Common                                |   701 |
-| System.Data.SqlTypes                              |   882 |
-| System.Diagnostics                                |   772 |
+| System.Data                                       | 1,587 |
+| System.Data.Common                                |   907 |
+| System.Data.SqlTypes                              |   971 |
+| System.Diagnostics                                |   826 |
 | System.Diagnostics.CodeAnalysis                   |     2 |
 | System.Diagnostics.Contracts                      |    89 |
-| System.Diagnostics.Contracts.Internal             |     3 |
-| System.Diagnostics.SymbolStore                    |   144 |
+| System.Diagnostics.SymbolStore                    |   146 |
 | System.Diagnostics.Tracing                        |     2 |
-| System.Drawing                                    |   681 |
-| System.Dynamic                                    |   173 |
-| System.Globalization                              |   188 |
-| System.IO                                         |   275 |
-| System.IO.IsolatedStorage                         |   104 |
-| System.IO.MemoryMappedFiles                       |    64 |
-| System.IO.Pipes                                   |   124 |
-| System.Linq                                       |   351 |
-| System.Linq.Expressions                           |    41 |
-| System.Net                                        | 1,271 |
-| System.Net.Cache                                  |    50 |
-| System.Net.Mail                                   |   279 |
-| System.Net.Mime                                   |    69 |
-| System.Net.NetworkInformation                     |   692 |
-| System.Net.Security                               |   147 |
-| System.Net.Sockets                                |   164 |
-| System.Net.WebSockets                             |   165 |
-| System.Numerics                                   |   344 |
-| System.Reflection                                 |   348 |
+| System.Drawing                                    |   520 |
+| System.Dynamic                                    |   226 |
+| System.Globalization                              |   217 |
+| System.IO                                         |   309 |
+| System.IO.Compression                             |     8 |
+| System.IO.IsolatedStorage                         |   134 |
+| System.IO.MemoryMappedFiles                       |    66 |
+| System.IO.Pipes                                   |   125 |
+| System.Linq                                       |   366 |
+| System.Linq.Expressions                           |    50 |
+| System.Net                                        | 1,360 |
+| System.Net.Cache                                  |    52 |
+| System.Net.Http.Headers                           |    20 |
+| System.Net.Mail                                   |   289 |
+| System.Net.Mime                                   |    75 |
+| System.Net.NetworkInformation                     |   696 |
+| System.Net.Security                               |   194 |
+| System.Net.Sockets                                |   168 |
+| System.Net.WebSockets                             |   188 |
+| System.Numerics                                   |     1 |
+| System.Reflection                                 |   403 |
 | System.Reflection.Emit                            |     3 |
-| System.Resources                                  |    89 |
+| System.Resources                                  |    91 |
 | System.Runtime                                    |    12 |
-| System.Runtime.CompilerServices                   |   164 |
+| System.Runtime.CompilerServices                   |   190 |
 | System.Runtime.ConstrainedExecution               |    22 |
 | System.Runtime.ExceptionServices                  |     6 |
-| System.Runtime.InteropServices                    |    96 |
+| System.Runtime.InteropServices                    |   106 |
 | System.Runtime.InteropServices.ComTypes           |    15 |
-| System.Runtime.Remoting.Messaging                 |    55 |
-| System.Runtime.Serialization                      |   463 |
+| System.Runtime.Serialization                      |   486 |
 | System.Runtime.Serialization.Formatters           |    13 |
-| System.Runtime.Serialization.Formatters.Binary    |    28 |
-| System.Runtime.Serialization.Json                 |    64 |
+| System.Runtime.Serialization.Formatters.Binary    |    23 |
+| System.Runtime.Serialization.Json                 |    80 |
 | System.Runtime.Versioning                         |    33 |
-| System.Security                                   |   117 |
+| System.Security                                   |   124 |
 | System.Security.Authentication                    |    11 |
-| System.Security.Authentication.ExtendedProtection |    40 |
-| System.Security.Claims                            |   205 |
-| System.Security.Cryptography                      |   684 |
-| System.Security.Cryptography.X509Certificates     |    67 |
-| System.Security.Permissions                       |    87 |
-| System.Security.Principal                         |    34 |
-| System.Text                                       |    56 |
-| System.Text.RegularExpressions                    |    29 |
-| System.Threading                                  |   313 |
+| System.Security.Authentication.ExtendedProtection |    36 |
+| System.Security.Claims                            |   206 |
+| System.Security.Cryptography                      |   575 |
+| System.Security.Cryptography.X509Certificates     |    76 |
+| System.Security.Permissions                       |    88 |
+| System.Security.Principal                         |    41 |
+| System.Text                                       |    83 |
+| System.Text.RegularExpressions                    |    31 |
+| System.Threading                                  |   330 |
 | System.Threading.Tasks                            |    66 |
-| System.Timers                                     |    36 |
+| System.Timers                                     |    39 |
+| System.Transactions                               |   223 |
 | System.Web                                        |    32 |
-| System.Xml                                        | 1,011 |
-| System.Xml.Linq                                   |     6 |
-| System.Xml.Resolvers                              |    20 |
-| System.Xml.Schema                                 |   924 |
-| System.Xml.Serialization                          |   935 |
-| System.Xml.XPath                                  |   244 |
-| System.Xml.Xsl                                    |   137 |
+| System.Xml                                        | 1,362 |
+| System.Xml.Linq                                   |     7 |
+| System.Xml.Resolvers                              |    25 |
+| System.Xml.Schema                                 |   967 |
+| System.Xml.Serialization                          |   943 |
+| System.Xml.XPath                                  |   261 |
+| System.Xml.Xsl                                    |   140 |
