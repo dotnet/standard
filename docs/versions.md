@@ -6,6 +6,8 @@ The table below lists all versions of .NET Standard:
   document that shows which APIs got added in that version of .NET Standard.
 * The rows indicate which version of a given .NET platform implements a given
   .NET Standard version.
+* Bold text indicates when a .NET implementation added support for a given .NET
+  Standard version.
 
 You can use this table to understand what the highest version of .NET Standard
 is that you can target, based on which .NET platforms you intend to run on. For
