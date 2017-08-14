@@ -9,8 +9,8 @@ The diffs are in the format of unified diffs you're used to from Git and GitHub.
 as follows:
 
 ```diff
-+ API that exists in this version of .NET Standard but not in the platform on the right hand side
-- API that doesn't exist in this version of .NET Standard but does in the platform on the right hand side
++ API that doesn't exist in this version of .NET Standard but does in the platform on the right hand side
+- API that exists in this version of .NET Standard but not in the platform on the right hand side
 ```
 
 For APIs that have modifications (e.g. we made an abstract method virtual),
