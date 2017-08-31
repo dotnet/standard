@@ -50,7 +50,6 @@ namespace Microsoft.DotNet.Build.Tasks
         /// <summary>
         /// Target framework to use when determining package dependencies.  Should be long form, IE: .NETCoreApp,Version=v1.0
         /// </summary>
-        [Required]
         public string TargetFramework { get; set; }
 
         /// <summary>
@@ -250,6 +249,12 @@ namespace Microsoft.DotNet.Build.Tasks
         internal IDictionary<string, NuGetPackageNode> GetPackagesFromPackageDependencies()
         {
             Dictionary<string, NuGetPackageNode> packages = new Dictionary<string, NuGetPackageNode>(StringComparer.OrdinalIgnoreCase);
+
+            if (string.IsNullOrEmpty(TargetFramework) && PackageDependencies?.Length > 0)
+            {
+                Log.LogError($"{nameof(TargetFramework)} was not specified and is required when {nameof(PackageDependencies)} are present.");
+                return packages;
+            }
 
             var target = TargetFramework;
 
