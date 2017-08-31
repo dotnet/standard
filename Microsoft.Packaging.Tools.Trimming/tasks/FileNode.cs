@@ -58,6 +58,11 @@ namespace Microsoft.DotNet.Build.Tasks
         public NuGetPackageNode Package { get; }
         public IEnumerable<FileNode> Dependencies { get { return dependencies; } }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
         public void PopulateDependencies(IDictionary<string, FileNode> allFiles, bool preferNativeImage, ILog log)
         {
             if (dependencies == null)
@@ -73,15 +78,17 @@ namespace Microsoft.DotNet.Build.Tasks
                 stack = new Stack<FileNode>();
             }
 
-            stack.Push(this);
+            if (stack.Contains(this))
+            {
+                log.LogMessage($"Cycle detected: {String.Join(" -> ", stack)} -> {this}");
+            }
 
             if (dependencies != null)
             {
-                // re-entrant call indicates a cycle, bail
-                log.LogMessage($"Cycle detected: {String.Join(" -> ", stack)}");
-                stack.Pop();
                 return;
             }
+
+            stack.Push(this);
 
             dependencies = new HashSet<FileNode>();
 
