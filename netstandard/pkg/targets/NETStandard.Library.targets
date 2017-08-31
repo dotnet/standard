@@ -13,11 +13,5 @@
       <NuGetPackageId>NETStandard.Library</NuGetPackageId>
       <NuGetPackageVersion>$(NETStandardLibraryPackageVersion)</NuGetPackageVersion>
     </Reference>
-    <ReferenceCopyLocalPaths Condition="'$(_NetStandardLibraryLibPath)' != ''" Include="$(_NetStandardLibraryLibPath)*.dll">
-      <Private>false</Private>
-      <Facade Condition="'%(FileName)' != 'netstandard'">true</Facade>
-      <NuGetPackageId>NETStandard.Library</NuGetPackageId>
-      <NuGetPackageVersion>$(NETStandardLibraryPackageVersion)</NuGetPackageVersion>
-    </ReferenceCopyLocalPaths>
   </ItemGroup>
 </Project>
