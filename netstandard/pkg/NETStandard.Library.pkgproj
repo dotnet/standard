@@ -9,23 +9,23 @@
     <OmitDependencies>true</OmitDependencies>
     <SkipValidatePackage>true</SkipValidatePackage>
     <TargetsFileName>NETStandard.Library.targets</TargetsFileName>
-    <RootTargetsTemplate>targets\$(TargetsFileName)</RootTargetsTemplate>
-    <RootTargetsSource>$(IntermediateOutputPath)$(TargetsFileName)</RootTargetsSource>
+    <VersionTargetsTemplate>targets\netstandard\$(TargetsFileName)</VersionTargetsTemplate>
     <NETStandardVersion>netstandard2.0</NETStandardVersion>
+    <VersionTargetsSource>$(IntermediateOutputPath)$(NETStandardVersion)\$(TargetsFileName)</VersionTargetsSource>
   </PropertyGroup>
 
   <Import Project="NETStandard.Library.dependencies.props" />
 
   <ItemGroup>
     <ProjectReference Include="..\ref\netstandard.csproj" />
-    <ProjectReference Include="shims\netstandard\dir.builds" />
-    <ProjectReference Include="shims\netfx\dir.builds" />
+    <ProjectReference Include="shims\netstandard\dir.builds">
+      <Facade>true</Facade>
+    </ProjectReference>
+    <ProjectReference Include="shims\netfx\dir.builds">
+      <Facade>true</Facade>
+    </ProjectReference>
 
-    <File Include="$(RootTargetsSource)">
-      <TargetPath>build/$(Id).targets</TargetPath>
-    </File>
-
-    <File Include="targets\netstandard\$(TargetsFileName)">
+    <File Include="$(VersionTargetsSource)">
       <TargetPath>build/$(NETStandardVersion)/$(Id).targets</TargetPath>
     </File>
 
@@ -34,11 +34,16 @@
     </File>
   </ItemGroup>
 
-  <Target Name="StampPackageVersionInTargets" BeforeTargets="GenerateNuSpec">
-    <MakeDir Directories="$(IntermediateOutputPath)" />
+  <Target Name="StampTargets" BeforeTargets="GenerateNuSpec">
+    <PropertyGroup>
+      <_FacadeFiles Condition="'%(File.Facade)' == 'true' AND '%(File.Extension)' == '.dll'" >@(File->'%24(MSBuildThisFileDirectory)\ref\%(FileName)%(Extension)')</_FacadeFiles>
+    </PropertyGroup>
+    <Error Condition="'$(_FacadeFiles)' == ''" Text="Could not determine facade file names to write to targets" />
 
-    <WriteLinesToFile File="$(RootTargetsSource)"
-                      Lines="$([System.IO.File]::ReadAllText('$(RootTargetsTemplate)').Replace('#VERSION#', '$(PackageVersion)'))"
+    <MakeDir Directories="$(IntermediateOutputPath)$(NETStandardVersion)" />
+
+    <WriteLinesToFile File="$(VersionTargetsSource)"
+                      Lines="$([System.IO.File]::ReadAllText('$(VersionTargetsTemplate)').Replace('#VERSION#', '$(PackageVersion)').Replace('#NETSTANDARDFACADES#', '$(_FacadeFiles)'))"
                       Overwrite="true" />
   </Target>
 
