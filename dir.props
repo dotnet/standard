@@ -160,4 +160,9 @@
   <!-- Use Roslyn Compilers to build -->
   <Import Project="$(RoslynPropsFile)" Condition="'$(RunningOnUnix)'!='true' and Exists('$(RoslynPropsFile)') and '$(UseRoslynCompilers)'!='false'" />
   <Import Project="$(RoslynPropsFile)" Condition="'$(RunningOnUnix)'=='true' and Exists('$(RoslynPropsFile)')" />
+  
+  <!-- Target Framework Moniker values to be used in our projects -->
+  <PropertyGroup>
+    <UapRs3Tfm>uap10.0.15138</UapRs3Tfm>
+  </PropertyGroup>
 </Project>

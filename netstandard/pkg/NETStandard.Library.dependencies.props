@@ -144,7 +144,7 @@
       <TargetFramework>netcoreapp2.0</TargetFramework>
     </_dependency>
     <_dependency Include="$(PlatformPackageId)">
-      <TargetFramework>uap10.1</TargetFramework>
+      <TargetFramework>$(UapRs3Tfm)</TargetFramework>
     </_dependency>
     <_dependency Include="$(PlatformPackageId)">
       <TargetFramework>net461</TargetFramework>
