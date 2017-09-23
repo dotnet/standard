@@ -46,6 +46,10 @@
     <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <SkipBuildingTrimmingPackage Condition="'$(SkipBuildingTrimmingPackage)' == '' and '$(DotNetBuildFromSource)' == 'true'">true</SkipBuildingTrimmingPackage>
+  </PropertyGroup>
+
   <!--
   Projects that have no OS-specific implementations just use Debug and Release for $(Configuration).
   Projects that do have OS-specific implementations use OS_Debug and OS_Release, for all OS's we support even
