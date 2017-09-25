@@ -2,13 +2,10 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.props))\dir.props" />
 
-  <PropertyGroup>
-    <ProjectExclusionList Condition="'$(SkipBuildingTrimmingPackage)' == 'true'">**/Microsoft.Packaging.Tools.Trimming.pkgproj</ProjectExclusionList>
-  </PropertyGroup>
-
   <ItemGroup>
-    <Project Include="**/*.pkgproj"
-             Exclude="$(ProjectExclusionList)" />
+    <Project Include="netstandard\pkg\NETStandard.Library.pkgproj" />
+    <Project Include="Microsoft.Packaging.Tools.Trimming/pkg/Microsoft.Packaging.Tools.Trimming.pkgproj"
+             Condition="'$(DotNetBuildFromSource)' != 'true'" />
   </ItemGroup>
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.traversal.targets))\dir.traversal.targets" />

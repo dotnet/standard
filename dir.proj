@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Project Include="external/**/*.depproj" />
+    <Project Include="external/**/*.depproj" Condition="'$(DotNetBuildFromSource)' != 'true'" />
     <Project Include="src.builds" />
-    <Project Include="apicompat/apicompat.proj" />
+    <Project Include="apicompat/apicompat.proj" Condition="'$(DotNetBuildFromSource)' != 'true'" />
     <Project Include="signing.builds" />
     <Project Include="packages.builds" />
   </ItemGroup>
