@@ -16,7 +16,7 @@
     <PackageOutputRoot Condition="'$(PackageOutputRoot)'==''">$(BinDir)packages/</PackageOutputRoot>
 
     <!-- Input Directories -->
-    <PackagesDir>$(RestorePackagesPath)</PackagesDir>
+    <PackagesDir>$(DotNetRestorePackagesPath)</PackagesDir>
     <PackagesDir Condition="'$(PackagesDir)'==''">$(ProjectDir)packages/</PackagesDir>
     <ToolsDir Condition="'$(ToolsDir)'==''">$(ProjectDir)Tools/</ToolsDir>
   </PropertyGroup>
@@ -44,10 +44,6 @@
     <RunApiCompat>true</RunApiCompat>
     <AssemblyKey>Open</AssemblyKey>
     <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <SkipBuildingTrimmingPackage Condition="'$(SkipBuildingTrimmingPackage)' == '' and '$(DotNetBuildFromSource)' == 'true'">true</SkipBuildingTrimmingPackage>
   </PropertyGroup>
 
   <!--
