@@ -16,6 +16,7 @@
     <PackageOutputRoot Condition="'$(PackageOutputRoot)'==''">$(BinDir)packages/</PackageOutputRoot>
 
     <!-- Input Directories -->
+    <PackagesDir>$(DotNetRestorePackagesPath)</PackagesDir>
     <PackagesDir Condition="'$(PackagesDir)'==''">$(ProjectDir)packages/</PackagesDir>
     <ToolsDir Condition="'$(ToolsDir)'==''">$(ProjectDir)Tools/</ToolsDir>
   </PropertyGroup>
@@ -26,8 +27,12 @@
   <!-- Import packaging props -->
   <Import Project="$(MSBuildThisFileDirectory)Packaging.props"/>
 
+  <ItemGroup>
+    <DotnetSourceList Include="$(DotNetSourceBuildRestoreSources)" />
+  </ItemGroup>
+  
   <!-- list of nuget package sources passed to dotnet -->
-  <ItemGroup Condition="'$(ExcludeInternetFeeds)' != 'true'">
+  <ItemGroup Condition="'$(DotNetBuildOffline)' != 'true'">
     <DotnetSourceList Include="https:%2F%2Fdotnet.myget.org/F/dotnet-core/api/v3/index.json" />
     <DotnetSourceList Include="https:%2F%2Fapi.nuget.org/v3/index.json" />
   </ItemGroup>
