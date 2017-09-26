@@ -24,6 +24,8 @@ if exist "%BUILD_TOOLS_SEMAPHORE%" (
   goto :EOF
 )
 
+if exist "%TOOLRUNTIME_DIR%" rmdir /S /Q "%TOOLRUNTIME_DIR%"
+
 if exist "%DotNetBuildToolsDir%" (
   echo Using tools from '%DotNetBuildToolsDir%'.
   mklink /j "%TOOLRUNTIME_DIR%" "%DotNetBuildToolsDir%"
@@ -37,8 +39,6 @@ if exist "%DotNetBuildToolsDir%" (
   echo Using tools from '%DotNetBuildToolsDir%'. > "%BUILD_TOOLS_SEMAPHORE%"
   exit /b 0
 )
-
-if exist "%TOOLRUNTIME_DIR%" rmdir /S /Q "%TOOLRUNTIME_DIR%"
 
 echo Running %0 > "%INIT_TOOLS_LOG%"
 
