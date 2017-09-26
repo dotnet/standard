@@ -19,11 +19,13 @@ if [ -e $__BUILD_TOOLS_SEMAPHORE ]; then
     exit 0
 fi
 
+if [ -e $__TOOLRUNTIME_DIR ]; then rm -rf -- $__TOOLRUNTIME_DIR; fi
+
 if [ -d "$DotNetBuildToolsDir" ]; then
     echo Using tools from '$DotNetBuildToolsDir'.
     ln -s "$DotNetBuildToolsDir" "$__TOOLRUNTIME_DIR"
 
-    if [ -e "$__DOTNET_CMD" ]; then
+    if [ ! -e "$__DOTNET_CMD" ]; then
         echo "ERROR: Ensure that $DotNetBuildToolsDir contains the .NET Core SDK at $__DOTNET_PATH"
         exit 1
     fi
@@ -33,7 +35,6 @@ if [ -d "$DotNetBuildToolsDir" ]; then
     exit 0
 fi
 
-if [ -e $__TOOLRUNTIME_DIR ]; then rm -rf -- $__TOOLRUNTIME_DIR; fi
 echo "Running: $__scriptpath/init-tools.sh" > $__init_tools_log
 
 if [ ! -e $__DOTNET_PATH ]; then
