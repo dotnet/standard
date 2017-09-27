@@ -22,7 +22,7 @@ fi
 if [ -e $__TOOLRUNTIME_DIR ]; then rm -rf -- $__TOOLRUNTIME_DIR; fi
 
 if [ -d "$DotNetBuildToolsDir" ]; then
-    echo Using tools from '$DotNetBuildToolsDir'.
+    echo "Using tools from '$DotNetBuildToolsDir'."
     ln -s "$DotNetBuildToolsDir" "$__TOOLRUNTIME_DIR"
 
     if [ ! -e "$__DOTNET_CMD" ]; then
@@ -30,8 +30,8 @@ if [ -d "$DotNetBuildToolsDir" ]; then
         exit 1
     fi
 
-    echo Done initializing tools.
-    touch $__BUILD_TOOLS_SEMAPHORE
+    echo "Done initializing tools."
+    mkdir -p "$(dirname "$__BUILD_TOOLS_SEMAPHORE")" && touch $__BUILD_TOOLS_SEMAPHORE
     exit 0
 fi
 
@@ -53,6 +53,14 @@ if [ ! -e $__DOTNET_PATH ]; then
             Linux)
                 __DOTNET_PKG=dotnet-dev-linux-x64
                 OS=Linux
+
+                if [ -e /etc/redhat-release ]; then
+                    redhatRelease=$(</etc/redhat-release)
+                    if [[ $redhatRelease == "CentOS release 6."* || $redhatRelease == "Red Hat Enterprise Linux Server release 6."* ]]; then
+                        __DOTNET_PKG=dotnet-dev-rhel.6-x64
+                    fi
+                fi
+
                 ;;
 
             *)
@@ -66,7 +74,7 @@ if [ ! -e $__DOTNET_PATH ]; then
     mkdir -p "$__DOTNET_PATH"
 
     echo "Installing dotnet cli..."
-    __DOTNET_LOCATION="https://dotnetcli.blob.core.windows.net/dotnet/Sdk/${__DOTNET_TOOLS_VERSION}/${__DOTNET_PKG}.${__DOTNET_TOOLS_VERSION}.tar.gz"
+    __DOTNET_LOCATION="https://dotnetcli.azureedge.net/dotnet/Sdk/${__DOTNET_TOOLS_VERSION}/${__DOTNET_PKG}.${__DOTNET_TOOLS_VERSION}.tar.gz"
     # curl has HTTPS CA trust-issues less often than wget, so lets try that first.
     echo "Installing '${__DOTNET_LOCATION}' to '$__DOTNET_PATH/dotnet.tar'" >> $__init_tools_log
     which curl > /dev/null 2> /dev/null
@@ -106,7 +114,7 @@ ls $__scriptpath/Tools/scripts/docker/*.sh | xargs chmod +x
 
 Tools/crossgen.sh $__scriptpath/Tools
 
-touch $__BUILD_TOOLS_SEMAPHORE
+mkdir -p "$(dirname "$__BUILD_TOOLS_SEMAPHORE")" && touch $__BUILD_TOOLS_SEMAPHORE
 
 echo "Done initializing tools."
 
