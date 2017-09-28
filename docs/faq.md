@@ -329,7 +329,7 @@ redundant moving forward.
 [netstandard-post]: https://blogs.msdn.microsoft.com/dotnet/2016/09/26/introducing-net-standard/
 [netstandard-spec]: netstandard-20/README.md
 [netstandard-analogy]: https://gist.github.com/davidfowl/8939f305567e1755412d6dc0b8baf1b7
-[netstandard-versions]: versions.md
+[netstandard-versions]: http://immo.landwerth.net/netstandard-versions/#
 [netstandard-targeting]: versions.md#how-do-i-know-which-net-standard-version-i-should-target
 [netstandard-review-board]: review-board/README.md
 [netstandard-principles]: review-board/README.md#inclusion-principles
