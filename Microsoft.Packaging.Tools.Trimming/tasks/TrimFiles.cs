@@ -312,14 +312,16 @@ namespace Microsoft.DotNet.Build.Tasks
             foreach(var runtimeItem in runtimeItems)
             {
                 var fileNode = new FileNode(runtimeItem, packages);
-                files.Add(fileNode.Name, fileNode);
+
+                // last in wins
+                files[fileNode.Name] = fileNode;
             }
 
             // root files are likely not in the RuntimeItems
             foreach (var rootFile in RootFiles)
             {
                 var fileNode = new FileNode(rootFile, packages);
-                if (!files.ContainsKey(fileNode.Name)  && File.Exists(fileNode.SourceFile))
+                if (!files.ContainsKey(fileNode.Name) && File.Exists(fileNode.SourceFile))
                 {
                     files.Add(fileNode.Name, fileNode);
                 }
