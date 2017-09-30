@@ -7,7 +7,7 @@ It determines what is used by the application by examining static dependencies o
 Applications which rely on dynamic dependencies, for example using reflection or runtime compilation like ASP.NET MVC, can specify their dynamic dependencies by referencing packages that contain those dependencies or specifying dependent files as *[roots](#roots)*.
 
 ## How to use
-First install the `Microsoft.Packaging.Tools.Trimming` package in your application.
+First install the `Microsoft.Packaging.Tools.Trimming` package in your application. Remember to enable Prerelease packages or use the `-pre` flag for `Install-Package`
 
 You must use *Visual Studio 2017* or later, or *.NET Core command-line (CLI) tools 1.0* or later.
 
