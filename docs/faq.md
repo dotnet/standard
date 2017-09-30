@@ -36,8 +36,8 @@ we're making in .NET Standard 2.0, how we model platform specific APIs, and what
 
 ## I still don't get it. Can you provide an analogy that makes sense for a dev?
 
-David Fowler provided a [developer analogy][netstandard-analogy] that explains
-.NET Standard in terms of interfaces and classes.
+Take a look at [this document][netstandard-metaphor] which explains the
+versioning in terms of interfaces and classes.
 
 ## How is .NET Standard different from .NET Core?
 
@@ -328,7 +328,7 @@ redundant moving forward.
 [netstandard-docs]: https://docs.microsoft.com/dotnet/standard/net-standard
 [netstandard-post]: https://blogs.msdn.microsoft.com/dotnet/2016/09/26/introducing-net-standard/
 [netstandard-spec]: netstandard-20/README.md
-[netstandard-analogy]: https://gist.github.com/davidfowl/8939f305567e1755412d6dc0b8baf1b7
+[netstandard-metaphor]: metaphor.md
 [netstandard-versions]: http://immo.landwerth.net/netstandard-versions/#
 [netstandard-targeting]: versions.md#how-do-i-know-which-net-standard-version-i-should-target
 [netstandard-review-board]: review-board/README.md
