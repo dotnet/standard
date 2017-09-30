@@ -1,8 +1,8 @@
 # Developer Metaphor for .NET Standard
 
-It seems there is some confusion on how [.NET Standard versions] work. One way
-to think about .NET Standard is that it is an interface and that the concrete
-frameworks are classes implementing the interfaces.
+It seems there is some confusion on how [.NET Standard versions][versioning]
+work. One way to think about .NET Standard is that it is an interface and that
+the concrete frameworks are classes implementing the interfaces.
 
 Here is a how this would look like for .NET Standard, .NET Framework, and .NET
 Core. The other frameworks are analogous.
