@@ -27,15 +27,14 @@
   <!-- Import packaging props -->
   <Import Project="$(MSBuildThisFileDirectory)Packaging.props"/>
 
-  <ItemGroup>
-    <DotnetSourceList Include="$(DotNetSourceBuildRestoreSources)" />
-  </ItemGroup>
-  
   <!-- list of nuget package sources passed to dotnet -->
-  <ItemGroup Condition="'$(DotNetBuildOffline)' != 'true'">
-    <DotnetSourceList Include="https:%2F%2Fdotnet.myget.org/F/dotnet-core/api/v3/index.json" />
-    <DotnetSourceList Include="https:%2F%2Fapi.nuget.org/v3/index.json" />
-  </ItemGroup>
+  <PropertyGroup>
+    <RestoreSources Condition="'$(DotNetBuildOffline)' != 'true'">
+      $(RestoreSources);
+      https://dotnet.myget.org/F/dotnet-core/api/v3/index.json;
+      https://api.nuget.org/v3/index.json
+    </RestoreSources>
+  </PropertyGroup>
 
   <PropertyGroup>
     <!-- By default make all libraries to be AnyCPU but individual projects can override it if they need to -->
