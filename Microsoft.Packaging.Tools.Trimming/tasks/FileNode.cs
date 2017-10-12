@@ -14,6 +14,13 @@ namespace Microsoft.DotNet.Build.Tasks
 {
     internal class FileNode : IIsIncluded
     {
+        internal static class MetadataNames
+        {
+            public const string DestinationSubPath = "DestinationSubPath";
+            public const string HintPath = "HintPath";
+            public const string TargetPath = "TargetPath";
+        }
+
         private ISet<FileNode> dependencies;
         private bool followTypeForwards;
         private IDictionary<string, FileNode> typeForwards = new Dictionary<string, FileNode>();
@@ -22,9 +29,56 @@ namespace Microsoft.DotNet.Build.Tasks
         internal const string NuGetPackageVersionMetadata = "NuGetPackageVersion";
         internal const string AdditionalDependenciesFileSuffix = ".dependencies";
 
+        public static string GetSourcePath(ITaskItem item)
+        {
+            var sourcePath = item.GetMetadata(MetadataNames.HintPath);
+
+            if (String.IsNullOrWhiteSpace(sourcePath))
+            {
+                // assumes item-spec points to the file.
+                // this won't work if it comes from a targeting pack or SDK, but
+                // in that case the file won't exist and we'll skip it.
+                sourcePath = item.ItemSpec;
+            }
+
+            return sourcePath;
+        }
+
+        static readonly string[] s_targetPathMetadata = new[] { MetadataNames.TargetPath, MetadataNames.DestinationSubPath };
+        public static string GetTargetPath(ITaskItem item)
+        {
+            // first use TargetPath, DestinationSubPath, then Path, then fallback to filename+extension alone
+            // Can't use Path, as this is the path of the file in the package, which is usually not the target path
+            // (for example the target path for lib/netcoreapp2.0/lib.dll is just lib.dll)
+            foreach (var metadata in s_targetPathMetadata)
+            {
+                var value = item.GetMetadata(metadata);
+
+                if (!String.IsNullOrWhiteSpace(value))
+                {
+                    // normalize path
+                    return value.Replace('\\', '/');
+                }
+            }
+
+            var sourcePath = GetSourcePath(item);
+
+            var fileName = Path.GetFileName(sourcePath);
+
+            // Get locale subdirectory for satellite assemblies
+            var destinationSubDirectory = item.GetMetadata("DestinationSubDirectory");
+
+            if (!string.IsNullOrWhiteSpace(destinationSubDirectory))
+            {
+                return Path.Combine(destinationSubDirectory, fileName);
+            }
+
+            return fileName;
+        }
+
         public FileNode(ITaskItem fileItem, IDictionary<string, NuGetPackageNode> allPackages)
         {
-            Name = fileItem.GetMetadata("Filename") + fileItem.GetMetadata("Extension");
+            Name = GetTargetPath(fileItem);
             OriginalItem = fileItem;
             PackageId = fileItem.GetMetadata(NuGetPackageIdMetadata);
             SourceFile = fileItem.GetMetadata("FullPath");
