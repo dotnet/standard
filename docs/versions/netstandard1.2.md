@@ -4,6 +4,7 @@
 
 * [APIs](netstandard1.2_ref.md)
 * [Diff with 1.1](netstandard1.2_diff.md)
+* [Reference Documentation](https://docs.microsoft.com/en-us/dotnet/api/?view=netstandard-1.2)
 
 ## Platform Support
 
@@ -19,7 +20,7 @@
 ## What's new?
 
 | Namespace                      | #APIs |
-|:-------------------------------|------:| 
+|:-------------------------------|------:|
 | System.Diagnostics.Tracing     |    12 |
 | System.Runtime                 |     7 |
 | System.Runtime.InteropServices |    16 |
