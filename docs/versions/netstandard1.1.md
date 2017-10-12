@@ -4,7 +4,7 @@
 
 * [APIs](netstandard1.1_ref.md)
 * [Diff with 1.0](netstandard1.1_diff.md)
-* [Reference Documentation](https://docs.microsoft.com/en-us/dotnet/api/?view=netstandard-1.1)
+* [Reference Documentation](https://docs.microsoft.com/dotnet/api/?view=netstandard-1.1)
 
 ## Platform Support
 

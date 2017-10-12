@@ -4,7 +4,7 @@
 
 * [APIs](netstandard1.6_ref.md)
 * [Diff with 1.5](netstandard1.6_diff.md)
-* [Reference Documentation](https://docs.microsoft.com/en-us/dotnet/api/?view=netstandard-1.6)
+* [Reference Documentation](https://docs.microsoft.com/dotnet/api/?view=netstandard-1.6)
 
 ## Platform Support
 
