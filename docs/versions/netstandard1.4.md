@@ -4,6 +4,7 @@
 
 * [APIs](netstandard1.4_ref.md)
 * [Diff with 1.3](netstandard1.4_diff.md)
+* [Reference Documentation](https://docs.microsoft.com/dotnet/api/?view=netstandard-1.4)
 
 ## Platform Support
 
@@ -17,6 +18,6 @@
 ## What's new?
 
 | Namespace                                     | #APIs |
-|:----------------------------------------------|------:| 
+|:----------------------------------------------|------:|
 | System.Security.Cryptography                  |    12 |
 | System.Security.Cryptography.X509Certificates |     6 |

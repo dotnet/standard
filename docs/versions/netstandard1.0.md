@@ -3,6 +3,7 @@
 [Overview](../versions.md) | [Next](netstandard1.1.md)
 
 * [APIs](netstandard1.0_ref.md)
+* [Reference Documentation](https://docs.microsoft.com/dotnet/api/?view=netstandard-1.0)
 
 ## Platform Support
 
