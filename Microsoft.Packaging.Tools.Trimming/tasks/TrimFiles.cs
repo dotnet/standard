@@ -178,7 +178,7 @@ namespace Microsoft.DotNet.Build.Tasks
 
         private long GetFileSize(FileNode file)
         {
-            return new FileInfo(file.SourceFile).Length;
+            return string.IsNullOrEmpty(file.SourceFile) ? 0 : new FileInfo(file.SourceFile).Length;
         }
 
         Queue<NuGetPackageNode> GetPackageRoots(IDictionary<string, NuGetPackageNode> packages, Trimmable trimmable)
@@ -313,8 +313,23 @@ namespace Microsoft.DotNet.Build.Tasks
             {
                 var fileNode = new FileNode(runtimeItem, packages);
 
-                // last in wins
-                files[fileNode.Name] = fileNode;
+                FileNode existingNode;
+
+                if (files.TryGetValue(fileNode.Name, out existingNode))
+                {
+                    // if there is any duplicate file we'll replace it with an 'imaginary' aggregate node that
+                    // depends on the 'real' duplicate nodes.
+                    if (!existingNode.IsAggregate)
+                    {
+                        files[fileNode.Name] = existingNode = FileNode.CreateAggregateFileNode(existingNode);
+                    }
+
+                    existingNode.AddCandidateImplementation(fileNode);
+                }
+                else
+                {
+                    files.Add(fileNode.Name, fileNode);
+                }
             }
 
             // root files are likely not in the RuntimeItems

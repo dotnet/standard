@@ -22,6 +22,12 @@ namespace Microsoft.DotNet.Build.Tasks
         internal const string NuGetPackageVersionMetadata = "NuGetPackageVersion";
         internal const string AdditionalDependenciesFileSuffix = ".dependencies";
 
+        private FileNode(string fileName)
+        {
+            Name = fileName;
+            dependencies = new HashSet<FileNode>();
+        }
+
         public FileNode(ITaskItem fileItem, IDictionary<string, NuGetPackageNode> allPackages)
         {
             Name = fileItem.GetMetadata("Filename") + fileItem.GetMetadata("Extension");
@@ -50,6 +56,14 @@ namespace Microsoft.DotNet.Build.Tasks
             }
         }
 
+        public static FileNode CreateAggregateFileNode(FileNode fileNode)
+        {
+            var aggregateNode = new FileNode(fileNode.Name);
+            aggregateNode.AddCandidateImplementation(fileNode);
+            return aggregateNode;
+        }
+
+        public bool IsAggregate { get { return OriginalItem == null; } }
         public bool IsIncluded { get; set; }
         public string Name { get; }
         public ITaskItem OriginalItem { get; }
@@ -65,10 +79,34 @@ namespace Microsoft.DotNet.Build.Tasks
 
         public void PopulateDependencies(IDictionary<string, FileNode> allFiles, bool preferNativeImage, ILog log)
         {
-            if (dependencies == null)
+            if (IsAggregate)
+            {
+                // dependencies of aggregate nodes will not appear in allFiles, so pass through
+                // dependency population
+                foreach(var dependency in dependencies)
+                {
+                    dependency.PopulateDependencies(allFiles, preferNativeImage, log);
+                }
+            }
+            else  if (dependencies == null)
             {
                 PopulateDependenciesInternal(allFiles, preferNativeImage, log, null);
             }
+        }
+
+        public void AddCandidateImplementation(FileNode candidate)
+        {
+            if (IsAggregate != true)
+            {
+                throw new InvalidOperationException($"{nameof(AddCandidateImplementation)} can only be called on aggregate FileNodes.");
+            }
+
+            if (candidate.Name != Name)
+            {
+                throw new ArgumentException($"{candidate.Name} does not match this aggregate {nameof(FileNode)}'s {nameof(Name)}: {Name}.", nameof(candidate));
+            }
+
+            dependencies.Add(candidate);
         }
 
         private void PopulateDependenciesInternal(IDictionary<string, FileNode> allFiles, bool preferNativeImage, ILog log, Stack<FileNode> stack)
