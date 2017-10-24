@@ -98,6 +98,7 @@
       "alwaysRun": false,
       "displayName": "packages -> Azure Feed",
       "timeoutInMinutes": 0,
+      "condition": "and(succeeded(), eq(variables['PublishToAzureFeed'], 'True'))",      
       "refName": "CmdLine1",
       "task": {
         "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
@@ -118,6 +119,7 @@
       "alwaysRun": false,
       "displayName": "symbol packages -> Azure Feed",
       "timeoutInMinutes": 0,
+      "condition": "and(succeeded(), eq(variables['PublishToAzureFeed'], 'True'))",      
       "refName": "CmdLine1",
       "task": {
         "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
