@@ -35,7 +35,7 @@
       },
       "inputs": {
         "filename": "build.cmd",
-        "arguments": "-OfficialBuildId=$(OfficialBuildId) -- /p:SignType=real /p:MicroBuild_SigningEnabled=true",
+        "arguments": "-OfficialBuildId=$(OfficialBuildId) -- /p:SignType=$(SignType) /p:MicroBuild_SigningEnabled=true",
         "modifyEnvironment": "false",
         "workingFolder": "",
         "failOnStandardError": "false"
