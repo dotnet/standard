@@ -6,9 +6,9 @@
     </PropertyGroup> 
     <ItemGroup>
         <XmlUpdateStep Include="BuildTools">
-        <Path="$(MSBuildThisFileFullPath)</Path>
-        <ElementName>FeedTasksPackageVersion</ElementName>
-        <PackageId>$(FeedTasksPackage)</PackageId>
+            <Path>$(MSBuildThisFileFullPath)</Path>
+            <ElementName>FeedTasksPackageVersion</ElementName>
+            <PackageId>$(FeedTasksPackage)</PackageId>
         </XmlUpdateStep>
     </ItemGroup>
 </Project>
