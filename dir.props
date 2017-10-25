@@ -28,6 +28,7 @@
 
   <!-- list of nuget package sources passed to dotnet -->
   <ItemGroup Condition="'$(ExcludeInternetFeeds)' != 'true'">
+    <DotnetSourceList Include="$(OverridePackageSource)" />  
     <DotnetSourceList Include="https:%2F%2Fdotnet.myget.org/F/dotnet-core/api/v3/index.json" />
     <DotnetSourceList Include="https:%2F%2Fapi.nuget.org/v3/index.json" />
   </ItemGroup>
