@@ -1,43 +1,43 @@
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <!-- Source of truth for dependency tooling: the commit hash of the dotnet/versions master branch as of the last auto-upgrade. -->
-    <!-- For detailed explanation of the reference versions see:
+  <!-- Source of truth for dependency tooling: the commit hash of the dotnet/versions master branch as of the last auto-upgrade. -->
+  <!-- For detailed explanation of the reference versions see:
 
-            https://github.com/dotnet/buildtools/blob/master/Documentation/project-nuget-dependencies.md
-            https://github.com/dotnet/buildtools/blob/master/Documentation/annotated-dependency-props.md
+       https://github.com/dotnet/buildtools/blob/master/Documentation/project-nuget-dependencies.md
+       https://github.com/dotnet/buildtools/blob/master/Documentation/annotated-dependency-props.md
 
-        These ref versions are pulled from https://github.com/dotnet/versions.
-    -->
-    <PropertyGroup>
-        <BuildToolsCurrentRef>bd37cedea957c312fb7d3d681f416d51227d4df1</BuildToolsCurrentRef>
-    </PropertyGroup>
+       These ref versions are pulled from https://github.com/dotnet/versions.
+  -->
+  <PropertyGroup>
+    <BuildToolsCurrentRef>c6906dcb2309085e414c5b9691de84fbe2bf5c86</BuildToolsCurrentRef>
+  </PropertyGroup>
 
-    <!-- Package versions used as toolsets --> 
-    <PropertyGroup> 
-        <FeedTasksPackage>Microsoft.DotNet.Build.Tasks.Feed</FeedTasksPackage> 
-        <FeedTasksPackageVersion>1.0.0-prerelease-02121-01</FeedTasksPackageVersion> 
-    </PropertyGroup> 
+  <!-- Package versions used as toolsets --> 
+  <PropertyGroup> 
+    <FeedTasksPackage>Microsoft.DotNet.Build.Tasks.Feed</FeedTasksPackage> 
+    <FeedTasksPackageVersion>1.0.0-prerelease-02121-01</FeedTasksPackageVersion> 
+  </PropertyGroup> 
 
-    <!-- Package dependency verification/auto-upgrade configuration. -->
-    <PropertyGroup>
-        <BaseDotNetBuildInfo>build-info/dotnet/</BaseDotNetBuildInfo>
-        <DependencyBranch>master</DependencyBranch>
-        <CurrentRefXmlPath>$(MSBuildThisFileFullPath)</CurrentRefXmlPath>
-    </PropertyGroup>
+  <!-- Package dependency verification/auto-upgrade configuration. -->
+  <PropertyGroup>
+    <BaseDotNetBuildInfo>build-info/dotnet/</BaseDotNetBuildInfo>
+    <DependencyBranch>master</DependencyBranch>
+    <CurrentRefXmlPath>$(MSBuildThisFileFullPath)</CurrentRefXmlPath>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <RemoteDependencyBuildInfo Include="BuildTools">
-        <BuildInfoPath>$(BaseDotNetBuildInfo)buildtools/$(DependencyBranch)</BuildInfoPath>
-        <CurrentRef>$(BuildToolsCurrentRef)</CurrentRef>
-        </RemoteDependencyBuildInfo>
+  <ItemGroup>
+    <RemoteDependencyBuildInfo Include="BuildToolsFeed">
+    <BuildInfoPath>$(BaseDotNetBuildInfo)buildtools/$(DependencyBranch)</BuildInfoPath>
+    <CurrentRef>$(BuildToolsCurrentRef)</CurrentRef>
+    </RemoteDependencyBuildInfo>
 
-        <DependencyBuildInfo Include="@(RemoteDependencyBuildInfo)">
-        <RawVersionsBaseUrl>https://raw.githubusercontent.com/dotnet/versions</RawVersionsBaseUrl>
-        </DependencyBuildInfo>    
+    <DependencyBuildInfo Include="@(RemoteDependencyBuildInfo)">
+    <RawVersionsBaseUrl>https://raw.githubusercontent.com/dotnet/versions</RawVersionsBaseUrl>
+    </DependencyBuildInfo>    
 
-        <XmlUpdateStep Include="BuildTools">
-            <Path>$(MSBuildThisFileFullPath)</Path>
-            <ElementName>FeedTasksPackageVersion</ElementName>
-            <PackageId>$(FeedTasksPackage)</PackageId>
-        </XmlUpdateStep>
-    </ItemGroup>
+    <XmlUpdateStep Include="BuildToolsFeed">
+      <Path>$(MSBuildThisFileFullPath)</Path>
+      <ElementName>FeedTasksPackageVersion</ElementName>
+      <PackageId>$(FeedTasksPackage)</PackageId>
+    </XmlUpdateStep>
+  </ItemGroup>
 </Project>
