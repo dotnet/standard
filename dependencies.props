@@ -25,16 +25,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <RemoteDependencyBuildInfo Include="BuildToolsFeed">
-    <BuildInfoPath>$(BaseDotNetBuildInfo)buildtools/$(DependencyBranch)</BuildInfoPath>
-    <CurrentRef>$(BuildToolsCurrentRef)</CurrentRef>
+    <RemoteDependencyBuildInfo Include="BuildTools">
+      <BuildInfoPath>$(BaseDotNetBuildInfo)buildtools/$(DependencyBranch)</BuildInfoPath>
+      <CurrentRef>$(BuildToolsCurrentRef)</CurrentRef>
     </RemoteDependencyBuildInfo>
 
     <DependencyBuildInfo Include="@(RemoteDependencyBuildInfo)">
-    <RawVersionsBaseUrl>https://raw.githubusercontent.com/dotnet/versions</RawVersionsBaseUrl>
+      <RawVersionsBaseUrl>https://raw.githubusercontent.com/dotnet/versions</RawVersionsBaseUrl>
     </DependencyBuildInfo>    
 
-    <XmlUpdateStep Include="BuildToolsFeed">
+    <XmlUpdateStep Include="BuildTools">
       <Path>$(MSBuildThisFileFullPath)</Path>
       <ElementName>FeedTasksPackageVersion</ElementName>
       <PackageId>$(FeedTasksPackage)</PackageId>
