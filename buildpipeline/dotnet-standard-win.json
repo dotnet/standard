@@ -35,7 +35,7 @@
       },
       "inputs": {
         "filename": "build.cmd",
-        "arguments": "-OfficialBuildId=$(OfficialBuildId) -- /p:SignType=$(SignType) /p:MicroBuild_SigningEnabled=true /p:OverridePackageSource=$(PB_AzureSourceFeedUrl)",
+        "arguments": "-OfficialBuildId=$(OfficialBuildId) -- /p:SignType=$(SignType) /p:MicroBuild_SigningEnabled=true /p:OverridePackageSource=$(PB_RestoreSource)",
         "modifyEnvironment": "false",
         "workingFolder": "",
         "failOnStandardError": "false"
@@ -107,7 +107,7 @@
       },
       "inputs": {
         "filename": "build.cmd",
-        "arguments": "-- publish.msbuild /t:PublishToAzureBlobFeed /p:AccountKey=$(PB_PublishAccountKey) /p:ExpectedFeedUrl=$(PB_AzurePublishFeedUrl)",
+        "arguments": "-- publish.msbuild /t:PublishToAzureBlobFeed /p:AccountKey=$(PB_PublishBlobFeedKey) /p:ExpectedFeedUrl=$(PB_PublishBlobFeedUrl)",
         "workingFolder": "",
         "failOnStandardError": "false"
       }
@@ -128,7 +128,7 @@
       },
       "inputs": {
         "filename": "build.cmd",
-        "arguments": "-- publish.msbuild /t:PublishSymbolsToAzureBlobFeed /p:AccountKey=$(PB_PublishAccountKey) /p:ExpectedFeedUrl=$(PB_AzurePublishSymbolFeedUrl) /p:PublishSymbols=$(PB_PublishSymbols)",
+        "arguments": "-- publish.msbuild /t:PublishSymbolsToAzureBlobFeed /p:AccountKey=$(PB_PublishBlobFeedKey) /p:ExpectedFeedUrl=$(PB_PublishBlobFeedUrl) /p:PublishSymbols=$(PB_PublishSymbols)",
         "workingFolder": "",
         "failOnStandardError": "false"
       }
@@ -224,23 +224,20 @@
       "value": null,
       "isSecret": true
     },
-    "PB_AzurePublishFeedUrl": {
-      "value": ""
-    },
-    "PB_AzurePublishSymbolFeedUrl": {
+    "PB_PublishBlobFeedUrl": {
       "value": ""
     },
     "PB_PublishSymbols": {
       "value": "true"
     },
-    "PB_PublishAccountKey": {
+    "PB_PublishBlobFeedKey": {
       "value": null,
       "isSecret": true
     },
     "PB_PublishToAzureFeed": {
       "value": "False"
     },
-    "PB_AzureSourceFeedUrl": {
+    "PB_RestoreSource": {
       "value": ""
     }
   },
