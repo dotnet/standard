@@ -39,5 +39,10 @@
       <ElementName>FeedTasksPackageVersion</ElementName>
       <PackageId>$(FeedTasksPackage)</PackageId>
     </XmlUpdateStep>
+    <UpdateStep Include="BuildTools">
+      <UpdaterType>File</UpdaterType>
+      <Path>$(MSBuildThisFileDirectory)BuildToolsVersion.txt</Path>
+      <PackageId>Microsoft.DotNet.BuildTools</PackageId>
+    </UpdateStep>
   </ItemGroup>
 </Project>
