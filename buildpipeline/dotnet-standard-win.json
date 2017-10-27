@@ -35,7 +35,7 @@
       },
       "inputs": {
         "filename": "build.cmd",
-        "arguments": "-OfficialBuildId=$(OfficialBuildId) -- /p:SignType=$(SignType) /p:MicroBuild_SigningEnabled=true",
+        "arguments": "-OfficialBuildId=$(OfficialBuildId) -- /p:SignType=$(SignType) /p:MicroBuild_SigningEnabled=true /p:OverridePackageSource=$(PB_RestoreSource)",
         "modifyEnvironment": "false",
         "workingFolder": "",
         "failOnStandardError": "false"
@@ -98,7 +98,7 @@
       "alwaysRun": false,
       "displayName": "packages -> Azure Feed",
       "timeoutInMinutes": 0,
-      "condition": "and(succeeded(), eq(variables['PB_PublishToAzureFeed'], 'True'))",      
+      "condition": "and(succeeded(), eq(variables['PB_PublishToAzureFeed'], 'True'))",
       "refName": "CmdLine1",
       "task": {
         "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
@@ -107,7 +107,7 @@
       },
       "inputs": {
         "filename": "build.cmd",
-        "arguments": "-- publish.msbuild /t:PublishToAzureBlobFeed /p:AccountKey=$(PB_PublishAccountKey) /p:ExpectedFeedUrl=$(PB_AzureFeedUrl)",
+        "arguments": "-- publish.msbuild /t:PublishToAzureBlobFeed /p:AccountKey=$(PB_PublishBlobFeedKey) /p:ExpectedFeedUrl=$(PB_PublishBlobFeedUrl)",
         "workingFolder": "",
         "failOnStandardError": "false"
       }
@@ -119,7 +119,7 @@
       "alwaysRun": false,
       "displayName": "symbol packages -> Azure Feed",
       "timeoutInMinutes": 0,
-      "condition": "and(succeeded(), eq(variables['PB_PublishToAzureFeed'], 'True'))",      
+      "condition": "and(succeeded(), eq(variables['PB_PublishToAzureFeed'], 'True'))",
       "refName": "CmdLine1",
       "task": {
         "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
@@ -128,7 +128,7 @@
       },
       "inputs": {
         "filename": "build.cmd",
-        "arguments": "-- publish.msbuild /t:PublishSymbolsToAzureBlobFeed /p:AccountKey=$(PB_PublishAccountKey) /p:ExpectedFeedUrl=$(PB_AzureSymbolFeedUrl) /p:PublishSymbols=$(PB_PublishSymbols)",
+        "arguments": "-- publish.msbuild /t:PublishSymbolsToAzureBlobFeed /p:AccountKey=$(PB_PublishBlobFeedKey) /p:ExpectedFeedUrl=$(PB_PublishBlobFeedUrl) /p:PublishSymbols=$(PB_PublishSymbols)",
         "workingFolder": "",
         "failOnStandardError": "false"
       }
@@ -224,21 +224,21 @@
       "value": null,
       "isSecret": true
     },
-    "PB_AzureFeedUrl": {
-      "value": ""
-    },
-    "PB_AzureSymbolFeedUrl": {
+    "PB_PublishBlobFeedUrl": {
       "value": ""
     },
     "PB_PublishSymbols": {
       "value": "true"
     },
-    "PB_PublishAccountKey": {
+    "PB_PublishBlobFeedKey": {
       "value": null,
       "isSecret": true
     },
     "PB_PublishToAzureFeed": {
       "value": "False"
+    },
+    "PB_RestoreSource": {
+      "value": ""
     }
   },
   "demands": [
@@ -305,7 +305,7 @@
     "description": "Visual Studio and DevDiv team project for git source code repositories.  Work items will be added for Adams, Dev14 work items are tracked in vstfdevdiv.  ",
     "url": "https://devdiv.visualstudio.com/DefaultCollection/_apis/projects/0bdbc590-a062-4c3f-b0f6-9383f67865ee",
     "state": "wellFormed",
-    "revision": 418098253,
+    "revision": 418098272,
     "visibility": "organization"
   }
 }
