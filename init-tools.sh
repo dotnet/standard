@@ -99,6 +99,7 @@ if [ ! -e $__DOTNET_PATH ]; then
 
     install_dotnet_cli() {
         echo "Installing '${__DOTNET_LOCATION}' to '$__DOTNET_PATH/dotnet.tar'" >> "$__init_tools_log"
+        rm -rf -- "$__DOTNET_PATH/*"
         # curl has HTTPS CA trust-issues less often than wget, so lets try that first.
         which curl > /dev/null 2> /dev/null
         if [ $? -ne 0 ]; then
