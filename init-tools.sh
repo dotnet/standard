@@ -37,6 +37,27 @@ fi
 
 echo "Running: $__scriptpath/init-tools.sh" > $__init_tools_log
 
+# Executes a command and retries if it fails.
+execute_with_retry() {
+    local count=0
+    local retries=${retries:-5}
+    local waitFactor=${waitFactor:-6} 
+    until "$@"; do
+        local exit=$?
+        count=$(( $count + 1 ))
+        if [ $count -lt $retries ]; then
+            local wait=$(( waitFactor ** (( count - 1 )) ))
+            echo "Retry $count/$retries exited $exit, retrying in $wait seconds..."
+            sleep $wait
+        else    
+            say_err "Retry $count/$retries exited $exit, no more retries left."
+            return $exit
+        fi
+    done
+
+    return 0
+}
+
 if [ ! -e $__DOTNET_PATH ]; then
     if [ -z "$__DOTNET_PKG" ]; then
         if [ "$(uname -m | grep "i[3456]86")" = "i686" ]; then
