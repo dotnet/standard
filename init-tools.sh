@@ -125,7 +125,7 @@ if [ ! -e $__BUILD_TOOLS_PATH ]; then
     echo "Running: $__DOTNET_CMD restore \"$__INIT_TOOLS_RESTORE_PROJECT\" --no-cache --packages $__PACKAGES_DIR --source $__BUILDTOOLS_SOURCE /p:BuildToolsPackageVersion=$__BUILD_TOOLS_PACKAGE_VERSION" >> $__init_tools_log
     $__DOTNET_CMD restore "$__INIT_TOOLS_RESTORE_PROJECT" --no-cache --packages $__PACKAGES_DIR --source $__BUILDTOOLS_SOURCE /p:BuildToolsPackageVersion=$__BUILD_TOOLS_PACKAGE_VERSION >> $__init_tools_log
     if [ ! -e "$__BUILD_TOOLS_PATH/init-tools.sh" ]; then 
-        echo "ERROR: Could not restore build tools correctly."1>&2; 
+        echo "ERROR: Could not restore build tools correctly." 1>&2 
         display_error_message
     fi
 fi
@@ -137,7 +137,7 @@ echo "Running: $__BUILD_TOOLS_PATH/init-tools.sh $__scriptpath $__DOTNET_CMD $__
 chmod +x $__BUILD_TOOLS_PATH/init-tools.sh
 $__BUILD_TOOLS_PATH/init-tools.sh $__scriptpath $__DOTNET_CMD $__TOOLRUNTIME_DIR >> $__init_tools_log
 if [ "$?" != "0" ]; then
-    echo "ERROR: An error occured when trying to initialize the tools."1>&2
+    echo "ERROR: An error occured when trying to initialize the tools." 1>&2
     display_error_message
     exit 1
 fi
