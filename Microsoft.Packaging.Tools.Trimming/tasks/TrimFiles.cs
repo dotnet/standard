@@ -172,7 +172,7 @@ namespace Microsoft.DotNet.Build.Tasks
                 }
             }
 
-            Log.LogMessage(MessageImportance.High, $"Trimmed {numExcluded} out of {numExcluded + numIncluded} files for a savings of {(double)sizeExcluded / (1024*1024):0.##} MB");
+            Log.LogMessage(MessageImportance.High, $"Trimmed {numExcluded} out of {numExcluded + numIncluded} files for a saving of {(double)sizeExcluded / (1024*1024):0.##} MB");
             Log.LogMessage(MessageImportance.High, $"Final app size is {(double)sizeIncluded / (1024 * 1024):0.##} MB");
         }
 
