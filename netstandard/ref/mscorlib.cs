@@ -10589,8 +10589,8 @@ namespace System.Runtime.InteropServices.ComTypes
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct FILETIME
     {
-        public int dwHighDateTime;
         public int dwLowDateTime;
+        public int dwHighDateTime;
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct FUNCDESC
@@ -10767,19 +10767,21 @@ namespace System.Runtime.InteropServices.ComTypes
         int Register(int grfFlags, object punkObject, System.Runtime.InteropServices.ComTypes.IMoniker pmkObjectName);
         void Revoke(int dwRegister);
     }
+    [Guid("0000000c-0000-0000-C000-000000000046")]
+    [InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
     public partial interface IStream
     {
-        void Clone(out System.Runtime.InteropServices.ComTypes.IStream ppstm);
-        void Commit(int grfCommitFlags);
-        void CopyTo(System.Runtime.InteropServices.ComTypes.IStream pstm, long cb, System.IntPtr pcbRead, System.IntPtr pcbWritten);
-        void LockRegion(long libOffset, long cb, int dwLockType);
         void Read(byte[] pv, int cb, System.IntPtr pcbRead);
-        void Revert();
+        void Write(byte[] pv, int cb, System.IntPtr pcbWritten);
         void Seek(long dlibMove, int dwOrigin, System.IntPtr plibNewPosition);
         void SetSize(long libNewSize);
-        void Stat(out System.Runtime.InteropServices.ComTypes.STATSTG pstatstg, int grfStatFlag);
+        void CopyTo(System.Runtime.InteropServices.ComTypes.IStream pstm, long cb, System.IntPtr pcbRead, System.IntPtr pcbWritten);
+        void Commit(int grfCommitFlags);
+        void Revert();
+        void LockRegion(long libOffset, long cb, int dwLockType);
         void UnlockRegion(long libOffset, long cb, int dwLockType);
-        void Write(byte[] pv, int cb, System.IntPtr pcbWritten);
+        void Stat(out System.Runtime.InteropServices.ComTypes.STATSTG pstatstg, int grfStatFlag);
+        void Clone(out System.Runtime.InteropServices.ComTypes.IStream ppstm);
     }
     public partial interface ITypeComp
     {
@@ -10906,17 +10908,17 @@ namespace System.Runtime.InteropServices.ComTypes
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct STATSTG
     {
-        public System.Runtime.InteropServices.ComTypes.FILETIME atime;
-        public long cbSize;
-        public System.Guid clsid;
-        public System.Runtime.InteropServices.ComTypes.FILETIME ctime;
-        public int grfLocksSupported;
-        public int grfMode;
-        public int grfStateBits;
-        public System.Runtime.InteropServices.ComTypes.FILETIME mtime;
         public string pwcsName;
-        public int reserved;
         public int type;
+        public long cbSize;
+        public System.Runtime.InteropServices.ComTypes.FILETIME mtime;
+        public System.Runtime.InteropServices.ComTypes.FILETIME ctime;
+        public System.Runtime.InteropServices.ComTypes.FILETIME atime;
+        public int grfMode;
+        public int grfLocksSupported;
+        public System.Guid clsid;
+        public int grfStateBits;
+        public int reserved;
     }
     public enum SYSKIND
     {
