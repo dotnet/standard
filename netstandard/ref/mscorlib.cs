@@ -10771,8 +10771,8 @@ namespace System.Runtime.InteropServices.ComTypes
     [InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
     public partial interface IStream
     {
-        void Read(byte[] pv, int cb, System.IntPtr pcbRead);
-        void Write(byte[] pv, int cb, System.IntPtr pcbWritten);
+        void Read([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1), Out] byte[] pv, int cb, System.IntPtr pcbRead);
+        void Write([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] byte[] pv, int cb, System.IntPtr pcbWritten);
         void Seek(long dlibMove, int dwOrigin, System.IntPtr plibNewPosition);
         void SetSize(long libNewSize);
         void CopyTo(System.Runtime.InteropServices.ComTypes.IStream pstm, long cb, System.IntPtr pcbRead, System.IntPtr pcbWritten);
