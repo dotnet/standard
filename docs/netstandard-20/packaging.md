@@ -55,7 +55,7 @@ version and continue to target the current version. This is especially useful
 for .NET Standard, as the API version controls on which platforms you can run.
 
 > ***Note***: You might ask yourself what *implementation* means for the .NET
-> Standard package since it's an API spec but not an actualy implementation. The
+> Standard package since it's an API spec but not an actual implementation. The
 > package also contains tooling support, for example, the list of available .NET
 > Standard versions and, in some cases, even the necessary support for targeting
 > existing .NET platforms that were shipped before a given version of .NET
