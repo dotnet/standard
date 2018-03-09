@@ -85,6 +85,11 @@ namespace Microsoft.DotNet.Build.Tasks
         public bool TreatMetaPackagesAsTrimmable { get; set; }
 
         /// <summary>
+        /// True to include files that are associated via OriginalItemSpec relation (though not necessarily any other reference).
+        /// </summary>
+        public bool IncludeRelatedFiles { get; set; }
+
+        /// <summary>
         /// A subset of ReferenceCopyLocalPaths after trimming has been done.
         /// </summary>
         [Output]
@@ -121,6 +126,14 @@ namespace Microsoft.DotNet.Build.Tasks
                     foreach(var file in fileNode.Dependencies.Where(f => !trimmable.IsFileTrimmable(f.Name)))
                     {
                         IncludeNode(fileRoots, file);
+                    }
+
+                    if (IncludeRelatedFiles)
+                    {
+                        foreach (var file in fileNode.RelatedFiles.Where(f => !trimmable.IsFileTrimmable(f.Name)))
+                        {
+                            IncludeNode(fileRoots, file);
+                        }
                     }
 
                     if (fileNode.Package != null && !IsPackageTrimmable(fileNode.Package))

@@ -40,9 +40,10 @@ In your project (*.csproj* file) make the following change.
 `@(TrimmableFiles)` - Files which should be trimmed from the application.  See [trimmable](#trimmable).  
 `@(TrimmablePackages)` - Packages which should be trimmed from the application.  See [trimmable](#trimmable).  
 `$(TrimFilesPreferNativeImages)` - Prefer a file with the `.ni.dll` extension over a file with the `.dll` extension.  `.ni.dll` files are native images and significantly larger than a managed assembly but will load faster since they don't need to be JIT compiled.  Default is `false`.
-`$(RootPackageReference)` - Set to `false` to indicate that `PackageReferences` should not be considered as *[roots](roots)*.  Default is `true`.
-`$(RootProjectReference)` - Set to `false` to indicate that `ProjectReferences` should not be considered as *[roots](roots)*.  Default is `true`.
+`$(RootPackageReference)` - Set to `false` to indicate that `PackageReferences` should not be considered as *[roots](#roots)*.  Default is `true`.
+`$(RootProjectReference)` - Set to `false` to indicate that `ProjectReferences` should not be considered as *[roots](#roots)*.  Default is `true`.
 `$(TreatMetaPackagesAsTrimmable)` - When set to `true` indicates that meta-packages (packages without any file assets) should be treated as *[trimmable](#trimmable)*.  Default is `true`.
+`$(TrimFilesIncludeRelatedFiles)` - When set to `true` indicates that related files will be included when the file they are related to is included.  Default is `true`. See [related files](#Related-files)
 
 **Examples:**
 - Specify TrimFilesRootFiles to include file `System.IO.Pipes.dll`.
@@ -69,13 +70,32 @@ In your project (*.csproj* file) make the following change.
 </PropertyGroup>
 ```
 
-- Specify RootPackageReference to prefer avoid *rooting* packages directly reference by the project.
+- Specify RootPackageReference to avoid *rooting* packages directly referenced by the project.
 
 ```xml
 <PropertyGroup>
   <RootPackageReference>false</RootPackageReference>
 </PropertyGroup>
 ```
+
+- Specify RootProjectReference to avoid *rooting* projects directly referenced by the project.
+
+```xml
+<PropertyGroup>
+  <RootProjectReference>false</RootProjectReference>
+</PropertyGroup>
+```
+
+
+- Specify TrimFilesIncludeRelatedFiles as false to omit [related files](#Related-files) from the output.
+
+```xml
+<PropertyGroup>
+  <TrimFilesIncludeRelatedFiles>false</TrimFilesIncludeRelatedFiles>
+</PropertyGroup>
+```
+
+
 
 ## How it works
 The trimming task examines all of the binaries and packages that make up your project and constructs a graph of the two that is related.  We start by identifying roots that are included in the application then we traverse the relationships between those to determine if other files or packages should be included in the app.
@@ -106,6 +126,9 @@ Not all relationships can be discovered statically.  A file may define relations
 
 For example:
 Suppose `foo.dll` depends on `somelibrary.dll` but that dependency is dynamic.  The developer of `foo.dll` can specify this dependency by placing a file foo.dll.dependencies next to foo.dll where the content of that file is a single line: `somelibrary.dll`.
+
+#### Related files
+MSBuild locates related files when it resovles assemblies: things like PDBs, XML docs, and pri files.  These are defined by AllowedReferenceRelatedFileExtensions and are added by ResolveAssemblyReferences and represented with OriginalItemSpec pointing to the item they were related to.  We'll include these related files by default when ever the file they are related to is included.
 
 ### Package relationships
 Packages are related to other packages by dependencies.  Files are related to packages if they are contained in a package.

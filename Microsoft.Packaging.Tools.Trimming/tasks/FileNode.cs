@@ -6,6 +6,7 @@ using Microsoft.Build.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection.Metadata;
 using System.Reflection.Metadata.Ecma335;
 using System.Reflection.PortableExecutable;
@@ -15,6 +16,7 @@ namespace Microsoft.DotNet.Build.Tasks
     internal class FileNode : IIsIncluded
     {
         private ISet<FileNode> dependencies;
+        private ISet<FileNode> relatedFiles = new HashSet<FileNode>();
         private bool followTypeForwards;
         private IDictionary<string, FileNode> typeForwards = new Dictionary<string, FileNode>();
 
@@ -71,6 +73,7 @@ namespace Microsoft.DotNet.Build.Tasks
         public string SourceFile { get; }
         public NuGetPackageNode Package { get; }
         public IEnumerable<FileNode> Dependencies { get { return dependencies; } }
+        public IEnumerable<FileNode> RelatedFiles { get { return relatedFiles; } }
 
         public override string ToString()
         {
@@ -299,7 +302,7 @@ namespace Microsoft.DotNet.Build.Tasks
 
             if (File.Exists(additionalDependenciesFile))
             {
-                foreach(var additionalDependency in File.ReadAllLines(additionalDependenciesFile))
+                foreach (var additionalDependency in File.ReadAllLines(additionalDependenciesFile))
                 {
                     if (additionalDependency.Length == 0 || additionalDependency[0] == '#')
                     {
@@ -314,6 +317,53 @@ namespace Microsoft.DotNet.Build.Tasks
                     else
                     {
                         log.LogMessage(LogImportance.Low, $"Could not locate explicit dependency {additionalDependency} of {SourceFile} specified in {additionalDependenciesFile}.");
+                    }
+                }
+            }
+
+            // Files may be related to other files via OriginalItemSpec
+            if (OriginalItem != null)
+            {
+                var relatedToPath = OriginalItem.GetMetadata("OriginalItemSpec");
+
+                if (!String.IsNullOrEmpty(relatedToPath))
+                {
+                    var relatedToFileName = Path.GetFileName(relatedToPath);
+
+                    FileNode relatedTo = null;
+                    if (allFiles.TryGetValue(relatedToFileName, out relatedTo))
+                    {
+                        if (relatedTo.IsAggregate)
+                        {
+                            bool found = false;
+                            foreach (var dependency in relatedTo.Dependencies)
+                            {
+                                if (dependency.SourceFile.Equals(relatedToPath, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    found = true;
+                                    dependency.relatedFiles.Add(this);
+                                    break;
+                                }
+                            }
+
+                            if (!found)
+                            {
+                                log.LogMessage(LogImportance.Low, $"Could not locate explicit parent {relatedToPath} of {SourceFile} specified in OriginalItemSpec.  Considered {string.Join(";", relatedTo.Dependencies.Select(d => d.SourceFile))} but they did not match");
+                            }
+                        }
+                        else if (relatedTo.SourceFile.Equals(relatedToPath, StringComparison.OrdinalIgnoreCase))
+                        {
+                            relatedTo.relatedFiles.Add(this);
+                        }
+                        else
+                        {
+                            log.LogMessage(LogImportance.Low, $"Could not locate explicit parent {relatedToPath} of {SourceFile} specified in OriginalItemSpec.  Considered {relatedTo.SourceFile} but it didn't match.");
+                        }
+                    }
+                    
+                    if (relatedTo == null)
+                    {
+                        log.LogMessage(LogImportance.Low, $"Could not locate explicit parent {relatedToPath} of {SourceFile} specified in OriginalItemSpec.");
                     }
                 }
             }

@@ -10,6 +10,7 @@
 
   <PropertyGroup>
     <TreatMetaPackagesAsTrimmable Condition="'$(TreatMetaPackagesAsTrimmable)' == ''">true</TreatMetaPackagesAsTrimmable>
+    <TrimFilesIncludeRelatedFiles Condition="'$(TrimFilesIncludeRelatedFiles)' == ''">true</TrimFilesIncludeRelatedFiles>
   </PropertyGroup>
   
   <Target Name="_determineTrimPackageInputs">
@@ -62,7 +63,8 @@
                RuntimeItems="@(ReferenceCopyLocalPaths)"
                OtherRuntimeItems="@(_trimOtherRuntimeItems)"
                PreferNativeImages="$(TrimFilesPreferNativeImages)"
-               TreatMetaPackagesAsTrimmable="$(TreatMetaPackagesAsTrimmable)">
+               TreatMetaPackagesAsTrimmable="$(TreatMetaPackagesAsTrimmable)"
+               IncludeRelatedFiles="$(TrimFilesIncludeRelatedFiles)">
       <Output ItemName="_ReferenceCopyLocalPathsAfterTrimming" TaskParameter="RuntimeItemsAfterTrimming" />
       <Output ItemName="_ConflictPackageFiles" TaskParameter="TrimmedItems" />
     </TrimFiles>
@@ -86,7 +88,8 @@
                RuntimeIdentifier="$(RuntimeIdentifier)"
                RuntimeItems="@(ResolvedAssembliesToPublish)"
                PreferNativeImages="$(TrimFilesPreferNativeImages)"
-               TreatMetaPackagesAsTrimmable="$(TreatMetaPackagesAsTrimmable)">
+               TreatMetaPackagesAsTrimmable="$(TreatMetaPackagesAsTrimmable)"
+               IncludeRelatedFiles="$(TrimFilesIncludeRelatedFiles)">
       <Output ItemName="_ResolvedAssembliesToPublishAfterTrimming" TaskParameter="RuntimeItemsAfterTrimming" />
       <Output ItemName="_PublishConflictPackageFiles" TaskParameter="TrimmedItems" />
     </TrimFiles>
