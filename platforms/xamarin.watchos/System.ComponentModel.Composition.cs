@@ -283,8 +283,8 @@ namespace System.ComponentModel.Composition.Hosting
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
         public void SetValue(object key, object value) { }
-        public bool TryGetValue<T>(object key, bool localAtomicCompositionOnly, out T value) { value = default(T); throw null; }
-        public bool TryGetValue<T>(object key, out T value) { value = default(T); throw null; }
+        public bool TryGetValue<T>(object key, bool localAtomicCompositionOnly, out T value) { throw null; }
+        public bool TryGetValue<T>(object key, out T value) { throw null; }
     }
     public partial class CatalogExportProvider : System.ComponentModel.Composition.Hosting.ExportProvider, System.IDisposable
     {
@@ -439,7 +439,7 @@ namespace System.ComponentModel.Composition.Hosting
         public System.Lazy<T, TMetadataView> GetExport<T, TMetadataView>(string contractName) { throw null; }
         protected virtual void OnExportsChanged(System.ComponentModel.Composition.Hosting.ExportsChangeEventArgs e) { }
         protected virtual void OnExportsChanging(System.ComponentModel.Composition.Hosting.ExportsChangeEventArgs e) { }
-        public bool TryGetExports(System.ComponentModel.Composition.Primitives.ImportDefinition definition, System.ComponentModel.Composition.Hosting.AtomicComposition atomicComposition, out System.Collections.Generic.IEnumerable<System.ComponentModel.Composition.Primitives.Export> exports) { exports = default(System.Collections.Generic.IEnumerable<System.ComponentModel.Composition.Primitives.Export>); throw null; }
+        public bool TryGetExports(System.ComponentModel.Composition.Primitives.ImportDefinition definition, System.ComponentModel.Composition.Hosting.AtomicComposition atomicComposition, out System.Collections.Generic.IEnumerable<System.ComponentModel.Composition.Primitives.Export> exports) { throw null; }
     }
     public partial class ExportsChangeEventArgs : System.EventArgs
     {
@@ -615,9 +615,10 @@ namespace System.ComponentModel.Composition.ReflectionModel
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct LazyMemberInfo
     {
-        public LazyMemberInfo(System.Reflection.MemberInfo member) { throw null;}
-        public LazyMemberInfo(System.Reflection.MemberTypes memberType, System.Func<System.Reflection.MemberInfo[]> accessorsCreator) { throw null;}
-        public LazyMemberInfo(System.Reflection.MemberTypes memberType, params System.Reflection.MemberInfo[] accessors) { throw null;}
+        private object _dummy;
+        public LazyMemberInfo(System.Reflection.MemberInfo member) { throw null; }
+        public LazyMemberInfo(System.Reflection.MemberTypes memberType, System.Func<System.Reflection.MemberInfo[]> accessorsCreator) { throw null; }
+        public LazyMemberInfo(System.Reflection.MemberTypes memberType, params System.Reflection.MemberInfo[] accessors) { throw null; }
         public System.Reflection.MemberTypes MemberType { get { throw null; } }
         public override bool Equals(object obj) { throw null; }
         public System.Reflection.MemberInfo[] GetAccessors() { throw null; }
@@ -642,6 +643,6 @@ namespace System.ComponentModel.Composition.ReflectionModel
         public static bool IsDisposalRequired(System.ComponentModel.Composition.Primitives.ComposablePartDefinition partDefinition) { throw null; }
         public static bool IsExportFactoryImportDefinition(System.ComponentModel.Composition.Primitives.ImportDefinition importDefinition) { throw null; }
         public static bool IsImportingParameter(System.ComponentModel.Composition.Primitives.ImportDefinition importDefinition) { throw null; }
-        public static bool TryMakeGenericPartDefinition(System.ComponentModel.Composition.Primitives.ComposablePartDefinition partDefinition, System.Collections.Generic.IEnumerable<System.Type> genericParameters, out System.ComponentModel.Composition.Primitives.ComposablePartDefinition specialization) { specialization = default(System.ComponentModel.Composition.Primitives.ComposablePartDefinition); throw null; }
+        public static bool TryMakeGenericPartDefinition(System.ComponentModel.Composition.Primitives.ComposablePartDefinition partDefinition, System.Collections.Generic.IEnumerable<System.Type> genericParameters, out System.ComponentModel.Composition.Primitives.ComposablePartDefinition specialization) { throw null; }
     }
 }
