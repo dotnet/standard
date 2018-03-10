@@ -2,189 +2,16 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-namespace AddressBook
-{
-}
-namespace AddressBookUI
-{
-}
-namespace AudioToolbox
-{
-}
-namespace AudioUnit
-{
-}
-namespace AVFoundation
-{
-}
-namespace AVKit
-{
-}
-namespace CallKit
-{
-}
-namespace CloudKit
-{
-}
-namespace Contacts
-{
-}
-namespace ContactsUI
-{
-}
-namespace CoreAnimation
-{
-}
-namespace CoreBluetooth
-{
-}
-namespace CoreData
-{
-}
-namespace CoreFoundation
-{
-}
-namespace CoreGraphics
-{
-}
-namespace CoreImage
-{
-}
-namespace CoreLocation
-{
-}
-namespace CoreMedia
-{
-}
-namespace CoreMidi
-{
-}
-namespace CoreServices
-{
-}
-namespace CoreSpotlight
-{
-}
-namespace CoreText
-{
-}
-namespace EventKitUI
-{
-}
-namespace ExternalAccessory
-{
-}
-namespace Foundation
-{
-}
-namespace GameKit
-{
-}
-namespace GameplayKit
-{
-}
-namespace GLKit
-{
-}
-namespace HealthKit
-{
-}
-namespace HomeKit
-{
-}
-namespace iAd
-{
-}
-namespace Intents
-{
-}
-namespace IntentsUI
-{
-}
-namespace JavaScriptCore
-{
-}
-namespace MapKit
-{
-}
-namespace MediaPlayer
-{
-}
-namespace Messages
-{
-}
-namespace MessageUI
-{
-}
-namespace Metal
-{
-}
-namespace MetalKit
-{
-}
-namespace ModelIO
-{
-}
-namespace MultipeerConnectivity
-{
-}
-namespace NetworkExtension
-{
-}
-namespace NotificationCenter
-{
-}
-namespace ObjCRuntime
-{
-}
-namespace OpenGLES
-{
-}
-namespace PassKit
-{
-}
-namespace Photos
-{
-}
-namespace PhotosUI
-{
-}
-namespace PushKit
-{
-}
-namespace QuickLook
-{
-}
-namespace ReplayKit
-{
-}
-namespace SafariServices
-{
-}
-namespace SceneKit
-{
-}
-namespace Security
-{
-}
-namespace Speech
-{
-}
-namespace SpriteKit
-{
-}
-namespace StoreKit
-{
-}
 namespace System.Drawing
 {
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct Point
     {
+        private int _dummy;
         public static readonly System.Drawing.Point Empty;
-        public Point(System.Drawing.Size sz) { throw null;}
-        public Point(int dw) { throw null;}
-        public Point(int x, int y) { throw null;}
+        public Point(System.Drawing.Size sz) { throw null; }
+        public Point(int dw) { throw null; }
+        public Point(int x, int y) { throw null; }
         [System.ComponentModel.BrowsableAttribute(false)]
         public bool IsEmpty { get { throw null; } }
         public int X { get { throw null; } set { } }
@@ -209,8 +36,9 @@ namespace System.Drawing
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct PointF
     {
+        private int _dummy;
         public static readonly System.Drawing.PointF Empty;
-        public PointF(float x, float y) { throw null;}
+        public PointF(float x, float y) { throw null; }
         [System.ComponentModel.BrowsableAttribute(false)]
         public bool IsEmpty { get { throw null; } }
         public float X { get { throw null; } set { } }
@@ -232,9 +60,10 @@ namespace System.Drawing
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct Rectangle
     {
+        private int _dummy;
         public static readonly System.Drawing.Rectangle Empty;
-        public Rectangle(System.Drawing.Point location, System.Drawing.Size size) { throw null;}
-        public Rectangle(int x, int y, int width, int height) { throw null;}
+        public Rectangle(System.Drawing.Point location, System.Drawing.Size size) { throw null; }
+        public Rectangle(int x, int y, int width, int height) { throw null; }
         [System.ComponentModel.BrowsableAttribute(false)]
         public int Bottom { get { throw null; } }
         public int Height { get { throw null; } set { } }
@@ -278,9 +107,10 @@ namespace System.Drawing
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct RectangleF
     {
+        private int _dummy;
         public static readonly System.Drawing.RectangleF Empty;
-        public RectangleF(System.Drawing.PointF location, System.Drawing.SizeF size) { throw null;}
-        public RectangleF(float x, float y, float width, float height) { throw null;}
+        public RectangleF(System.Drawing.PointF location, System.Drawing.SizeF size) { throw null; }
+        public RectangleF(float x, float y, float width, float height) { throw null; }
         [System.ComponentModel.BrowsableAttribute(false)]
         public float Bottom { get { throw null; } }
         public float Height { get { throw null; } set { } }
@@ -322,9 +152,10 @@ namespace System.Drawing
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct Size
     {
+        private int _dummy;
         public static readonly System.Drawing.Size Empty;
-        public Size(System.Drawing.Point pt) { throw null;}
-        public Size(int width, int height) { throw null;}
+        public Size(System.Drawing.Point pt) { throw null; }
+        public Size(int width, int height) { throw null; }
         public int Height { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public bool IsEmpty { get { throw null; } }
@@ -347,10 +178,11 @@ namespace System.Drawing
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SizeF
     {
+        private int _dummy;
         public static readonly System.Drawing.SizeF Empty;
-        public SizeF(System.Drawing.PointF pt) { throw null;}
-        public SizeF(System.Drawing.SizeF size) { throw null;}
-        public SizeF(float width, float height) { throw null;}
+        public SizeF(System.Drawing.PointF pt) { throw null; }
+        public SizeF(System.Drawing.SizeF size) { throw null; }
+        public SizeF(float width, float height) { throw null; }
         public float Height { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public bool IsEmpty { get { throw null; } }
@@ -368,28 +200,4 @@ namespace System.Drawing
         public System.Drawing.Size ToSize() { throw null; }
         public override string ToString() { throw null; }
     }
-}
-namespace UIKit
-{
-}
-namespace UserNotifications
-{
-}
-namespace UserNotificationsUI
-{
-}
-namespace VideoSubscriberAccount
-{
-}
-namespace VideoToolbox
-{
-}
-namespace WatchConnectivity
-{
-}
-namespace WatchKit
-{
-}
-namespace WebKit
-{
 }
