@@ -2553,6 +2553,7 @@ namespace System.Xml.Serialization
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct XmlDeserializationEvents
     {
+        private object _dummy;
         public System.Xml.Serialization.XmlAttributeEventHandler OnUnknownAttribute { get { throw null; } set { } }
         public System.Xml.Serialization.XmlElementEventHandler OnUnknownElement { get { throw null; } set { } }
         public System.Xml.Serialization.XmlNodeEventHandler OnUnknownNode { get { throw null; } set { } }
@@ -2818,13 +2819,13 @@ namespace System.Xml.Serialization
         protected bool ReadNull() { throw null; }
         protected System.Xml.XmlQualifiedName ReadNullableQualifiedName() { throw null; }
         protected string ReadNullableString() { throw null; }
-        protected bool ReadReference(out string fixupReference) { fixupReference = default(string); throw null; }
+        protected bool ReadReference(out string fixupReference) { throw null; }
         protected object ReadReferencedElement() { throw null; }
         protected object ReadReferencedElement(string name, string ns) { throw null; }
         protected void ReadReferencedElements() { }
-        protected object ReadReferencingElement(string name, string ns, bool elementCanBeType, out string fixupReference) { fixupReference = default(string); throw null; }
-        protected object ReadReferencingElement(string name, string ns, out string fixupReference) { fixupReference = default(string); throw null; }
-        protected object ReadReferencingElement(out string fixupReference) { fixupReference = default(string); throw null; }
+        protected object ReadReferencingElement(string name, string ns, bool elementCanBeType, out string fixupReference) { throw null; }
+        protected object ReadReferencingElement(string name, string ns, out string fixupReference) { throw null; }
+        protected object ReadReferencingElement(out string fixupReference) { throw null; }
         protected System.Xml.Serialization.IXmlSerializable ReadSerializable(System.Xml.Serialization.IXmlSerializable serializable) { throw null; }
         protected System.Xml.Serialization.IXmlSerializable ReadSerializable(System.Xml.Serialization.IXmlSerializable serializable, bool wrappedAny) { throw null; }
         protected string ReadString(string value) { throw null; }
@@ -3099,6 +3100,7 @@ namespace System.Xml.XmlConfiguration
     public sealed partial class XmlReaderSection
     {
         public XmlReaderSection() { }
+        public string CollapseWhiteSpaceIntoEmptyStringString { get { throw null; } set { } }
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
     public sealed partial class XsltConfigSection
@@ -3482,6 +3484,7 @@ namespace System.Xml.Xsl.Runtime
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct StringConcat
     {
+        private object _dummy;
         public string Delimiter { get { throw null; } set { } }
         public void Clear() { }
         public void Concat(string value) { }
