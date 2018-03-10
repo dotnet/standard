@@ -21,7 +21,7 @@ namespace System.Web
         public static string UrlDecode(byte[] bytes, int offset, int count, System.Text.Encoding e) { throw null; }
         public static string UrlDecode(byte[] bytes, System.Text.Encoding e) { throw null; }
         public static string UrlDecode(string str) { throw null; }
-        public static string UrlDecode(string s, System.Text.Encoding e) { throw null; }
+        public static string UrlDecode(string str, System.Text.Encoding e) { throw null; }
         public static byte[] UrlDecodeToBytes(byte[] bytes) { throw null; }
         public static byte[] UrlDecodeToBytes(byte[] bytes, int offset, int count) { throw null; }
         public static byte[] UrlDecodeToBytes(string str) { throw null; }
@@ -29,14 +29,14 @@ namespace System.Web
         public static string UrlEncode(byte[] bytes) { throw null; }
         public static string UrlEncode(byte[] bytes, int offset, int count) { throw null; }
         public static string UrlEncode(string str) { throw null; }
-        public static string UrlEncode(string s, System.Text.Encoding Enc) { throw null; }
+        public static string UrlEncode(string str, System.Text.Encoding e) { throw null; }
         public static byte[] UrlEncodeToBytes(byte[] bytes) { throw null; }
         public static byte[] UrlEncodeToBytes(byte[] bytes, int offset, int count) { throw null; }
         public static byte[] UrlEncodeToBytes(string str) { throw null; }
         public static byte[] UrlEncodeToBytes(string str, System.Text.Encoding e) { throw null; }
         public static string UrlEncodeUnicode(string str) { throw null; }
         public static byte[] UrlEncodeUnicodeToBytes(string str) { throw null; }
-        public static string UrlPathEncode(string s) { throw null; }
+        public static string UrlPathEncode(string str) { throw null; }
     }
 }
 namespace System.Web.Services
@@ -1451,7 +1451,7 @@ namespace System.Web.Util
         public HttpEncoder() { }
         public static System.Web.Util.HttpEncoder Current { get { throw null; } set { } }
         public static System.Web.Util.HttpEncoder Default { get { throw null; } }
-        protected internal virtual void HeaderNameValueEncode(string headerName, string headerValue, out string encodedHeaderName, out string encodedHeaderValue) { encodedHeaderName = default(string); encodedHeaderValue = default(string); }
+        protected internal virtual void HeaderNameValueEncode(string headerName, string headerValue, out string encodedHeaderName, out string encodedHeaderValue) { throw null; }
         protected internal virtual void HtmlAttributeEncode(string value, System.IO.TextWriter output) { }
         protected internal virtual void HtmlDecode(string value, System.IO.TextWriter output) { }
         protected internal virtual void HtmlEncode(string value, System.IO.TextWriter output) { }

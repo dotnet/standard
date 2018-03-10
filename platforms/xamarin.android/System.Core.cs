@@ -17,6 +17,7 @@ namespace Microsoft.Win32.SafeHandles
     public abstract partial class SafeNCryptHandle : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid
     {
         protected SafeNCryptHandle() : base (default(bool)) { }
+        protected SafeNCryptHandle(System.IntPtr handle, System.Runtime.InteropServices.SafeHandle parentHandle) : base (default(bool)) { }
         public override bool IsInvalid { get { throw null; } }
         protected override bool ReleaseHandle() { throw null; }
         protected abstract bool ReleaseNativeHandle();
@@ -24,6 +25,7 @@ namespace Microsoft.Win32.SafeHandles
     public sealed partial class SafeNCryptKeyHandle : Microsoft.Win32.SafeHandles.SafeNCryptHandle
     {
         public SafeNCryptKeyHandle() { }
+        public SafeNCryptKeyHandle(System.IntPtr handle, System.Runtime.InteropServices.SafeHandle parentHandle) { }
         protected override bool ReleaseNativeHandle() { throw null; }
     }
     public sealed partial class SafeNCryptProviderHandle : Microsoft.Win32.SafeHandles.SafeNCryptHandle
@@ -69,6 +71,8 @@ namespace System.Collections.Generic
         public HashSet(System.Collections.Generic.IEnumerable<T> collection) { }
         public HashSet(System.Collections.Generic.IEnumerable<T> collection, System.Collections.Generic.IEqualityComparer<T> comparer) { }
         public HashSet(System.Collections.Generic.IEqualityComparer<T> comparer) { }
+        public HashSet(int capacity) { }
+        public HashSet(int capacity, System.Collections.Generic.IEqualityComparer<T> comparer) { }
         protected HashSet(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public System.Collections.Generic.IEqualityComparer<T> Comparer { get { throw null; } }
         public int Count { get { throw null; } }
@@ -98,10 +102,12 @@ namespace System.Collections.Generic
         System.Collections.Generic.IEnumerator<T> System.Collections.Generic.IEnumerable<T>.GetEnumerator() { throw null; }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
         public void TrimExcess() { }
+        public bool TryGetValue(T equalValue, out T actualValue) { throw null; }
         public void UnionWith(System.Collections.Generic.IEnumerable<T> other) { }
         [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
         public partial struct Enumerator : System.Collections.Generic.IEnumerator<T>, System.Collections.IEnumerator, System.IDisposable
         {
+            private T _current;
             public T Current { get { throw null; } }
             object System.Collections.IEnumerator.Current { get { throw null; } }
             public void Dispose() { }
@@ -220,18 +226,18 @@ namespace System.Dynamic
         protected DynamicObject() { }
         public virtual System.Collections.Generic.IEnumerable<string> GetDynamicMemberNames() { throw null; }
         public virtual System.Dynamic.DynamicMetaObject GetMetaObject(System.Linq.Expressions.Expression parameter) { throw null; }
-        public virtual bool TryBinaryOperation(System.Dynamic.BinaryOperationBinder binder, object arg, out object result) { result = default(object); throw null; }
-        public virtual bool TryConvert(System.Dynamic.ConvertBinder binder, out object result) { result = default(object); throw null; }
-        public virtual bool TryCreateInstance(System.Dynamic.CreateInstanceBinder binder, object[] args, out object result) { result = default(object); throw null; }
+        public virtual bool TryBinaryOperation(System.Dynamic.BinaryOperationBinder binder, object arg, out object result) { throw null; }
+        public virtual bool TryConvert(System.Dynamic.ConvertBinder binder, out object result) { throw null; }
+        public virtual bool TryCreateInstance(System.Dynamic.CreateInstanceBinder binder, object[] args, out object result) { throw null; }
         public virtual bool TryDeleteIndex(System.Dynamic.DeleteIndexBinder binder, object[] indexes) { throw null; }
         public virtual bool TryDeleteMember(System.Dynamic.DeleteMemberBinder binder) { throw null; }
-        public virtual bool TryGetIndex(System.Dynamic.GetIndexBinder binder, object[] indexes, out object result) { result = default(object); throw null; }
-        public virtual bool TryGetMember(System.Dynamic.GetMemberBinder binder, out object result) { result = default(object); throw null; }
-        public virtual bool TryInvoke(System.Dynamic.InvokeBinder binder, object[] args, out object result) { result = default(object); throw null; }
-        public virtual bool TryInvokeMember(System.Dynamic.InvokeMemberBinder binder, object[] args, out object result) { result = default(object); throw null; }
+        public virtual bool TryGetIndex(System.Dynamic.GetIndexBinder binder, object[] indexes, out object result) { throw null; }
+        public virtual bool TryGetMember(System.Dynamic.GetMemberBinder binder, out object result) { throw null; }
+        public virtual bool TryInvoke(System.Dynamic.InvokeBinder binder, object[] args, out object result) { throw null; }
+        public virtual bool TryInvokeMember(System.Dynamic.InvokeMemberBinder binder, object[] args, out object result) { throw null; }
         public virtual bool TrySetIndex(System.Dynamic.SetIndexBinder binder, object[] indexes, object value) { throw null; }
         public virtual bool TrySetMember(System.Dynamic.SetMemberBinder binder, object value) { throw null; }
-        public virtual bool TryUnaryOperation(System.Dynamic.UnaryOperationBinder binder, out object result) { result = default(object); throw null; }
+        public virtual bool TryUnaryOperation(System.Dynamic.UnaryOperationBinder binder, out object result) { throw null; }
     }
     public sealed partial class ExpandoObject : System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string, object>>, System.Collections.Generic.IDictionary<string, object>, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, object>>, System.Collections.IEnumerable, System.ComponentModel.INotifyPropertyChanged, System.Dynamic.IDynamicMetaObjectProvider
     {
@@ -250,7 +256,7 @@ namespace System.Dynamic
         void System.Collections.Generic.IDictionary<System.String,System.Object>.Add(string key, object value) { }
         bool System.Collections.Generic.IDictionary<System.String,System.Object>.ContainsKey(string key) { throw null; }
         bool System.Collections.Generic.IDictionary<System.String,System.Object>.Remove(string key) { throw null; }
-        bool System.Collections.Generic.IDictionary<System.String,System.Object>.TryGetValue(string key, out object value) { value = default(object); throw null; }
+        bool System.Collections.Generic.IDictionary<System.String,System.Object>.TryGetValue(string key, out object value) { throw null; }
         System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<string, object>> System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.GetEnumerator() { throw null; }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
         System.Dynamic.DynamicMetaObject System.Dynamic.IDynamicMetaObjectProvider.GetMetaObject(System.Linq.Expressions.Expression parameter) { throw null; }
@@ -1124,6 +1130,7 @@ namespace System.Linq
         public static bool All<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, bool>> predicate) { throw null; }
         public static bool Any<TSource>(this System.Linq.IQueryable<TSource> source) { throw null; }
         public static bool Any<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, bool>> predicate) { throw null; }
+        public static System.Linq.IQueryable<TSource> Append<TSource>(this System.Linq.IQueryable<TSource> source, TSource element) { throw null; }
         public static System.Linq.IQueryable AsQueryable(this System.Collections.IEnumerable source) { throw null; }
         public static System.Linq.IQueryable<TElement> AsQueryable<TElement>(this System.Collections.Generic.IEnumerable<TElement> source) { throw null; }
         public static decimal Average(this System.Linq.IQueryable<decimal> source) { throw null; }
@@ -1193,6 +1200,7 @@ namespace System.Linq
         public static System.Linq.IOrderedQueryable<TSource> OrderByDescending<TSource, TKey>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, TKey>> keySelector, System.Collections.Generic.IComparer<TKey> comparer) { throw null; }
         public static System.Linq.IOrderedQueryable<TSource> OrderBy<TSource, TKey>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, TKey>> keySelector) { throw null; }
         public static System.Linq.IOrderedQueryable<TSource> OrderBy<TSource, TKey>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, TKey>> keySelector, System.Collections.Generic.IComparer<TKey> comparer) { throw null; }
+        public static System.Linq.IQueryable<TSource> Prepend<TSource>(this System.Linq.IQueryable<TSource> source, TSource element) { throw null; }
         public static System.Linq.IQueryable<TSource> Reverse<TSource>(this System.Linq.IQueryable<TSource> source) { throw null; }
         public static System.Linq.IQueryable<TResult> SelectMany<TSource, TResult>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, System.Collections.Generic.IEnumerable<TResult>>> selector) { throw null; }
         public static System.Linq.IQueryable<TResult> SelectMany<TSource, TResult>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, int, System.Collections.Generic.IEnumerable<TResult>>> selector) { throw null; }
@@ -1684,8 +1692,8 @@ namespace System.Linq.Expressions
         public static System.Linq.Expressions.TryExpression TryCatchFinally(System.Linq.Expressions.Expression body, System.Linq.Expressions.Expression @finally, params System.Linq.Expressions.CatchBlock[] handlers) { throw null; }
         public static System.Linq.Expressions.TryExpression TryFault(System.Linq.Expressions.Expression body, System.Linq.Expressions.Expression fault) { throw null; }
         public static System.Linq.Expressions.TryExpression TryFinally(System.Linq.Expressions.Expression body, System.Linq.Expressions.Expression @finally) { throw null; }
-        public static bool TryGetActionType(System.Type[] typeArgs, out System.Type actionType) { actionType = default(System.Type); throw null; }
-        public static bool TryGetFuncType(System.Type[] typeArgs, out System.Type funcType) { funcType = default(System.Type); throw null; }
+        public static bool TryGetActionType(System.Type[] typeArgs, out System.Type actionType) { throw null; }
+        public static bool TryGetFuncType(System.Type[] typeArgs, out System.Type funcType) { throw null; }
         public static System.Linq.Expressions.UnaryExpression TypeAs(System.Linq.Expressions.Expression expression, System.Type type) { throw null; }
         public static System.Linq.Expressions.TypeBinaryExpression TypeEqual(System.Linq.Expressions.Expression expression, System.Type type) { throw null; }
         public static System.Linq.Expressions.TypeBinaryExpression TypeIs(System.Linq.Expressions.Expression expression, System.Type type) { throw null; }
@@ -2284,7 +2292,7 @@ namespace System.Runtime.CompilerServices
         public static bool ExpandoTryDeleteValue(System.Dynamic.ExpandoObject expando, object indexClass, int index, string name, bool ignoreCase) { throw null; }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("do not use this method", true)]
-        public static bool ExpandoTryGetValue(System.Dynamic.ExpandoObject expando, object indexClass, int index, string name, bool ignoreCase, out object value) { value = default(object); throw null; }
+        public static bool ExpandoTryGetValue(System.Dynamic.ExpandoObject expando, object indexClass, int index, string name, bool ignoreCase, out object value) { throw null; }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static object ExpandoTrySetValue(System.Dynamic.ExpandoObject expando, object indexClass, int index, object value, string name, bool ignoreCase) { throw null; }
@@ -2350,9 +2358,9 @@ namespace System.Security.Cryptography
         public override System.Security.Cryptography.CipherMode Mode { get { throw null; } set { } }
         public override System.Security.Cryptography.PaddingMode Padding { get { throw null; } set { } }
         public override System.Security.Cryptography.ICryptoTransform CreateDecryptor() { throw null; }
-        public override System.Security.Cryptography.ICryptoTransform CreateDecryptor(byte[] rgbKey, byte[] rgbIV) { throw null; }
+        public override System.Security.Cryptography.ICryptoTransform CreateDecryptor(byte[] key, byte[] iv) { throw null; }
         public override System.Security.Cryptography.ICryptoTransform CreateEncryptor() { throw null; }
-        public override System.Security.Cryptography.ICryptoTransform CreateEncryptor(byte[] rgbKey, byte[] rgbIV) { throw null; }
+        public override System.Security.Cryptography.ICryptoTransform CreateEncryptor(byte[] key, byte[] iv) { throw null; }
         protected override void Dispose(bool disposing) { }
         public override void GenerateIV() { }
         public override void GenerateKey() { }
@@ -2495,7 +2503,7 @@ namespace System.Security.Cryptography
         public System.Security.Cryptography.CngPropertyCollection Parameters { get { throw null; } }
         public System.IntPtr ParentWindowHandle { get { throw null; } set { } }
         public System.Security.Cryptography.CngProvider Provider { get { throw null; } set { } }
-        public System.Security.Cryptography.CngUIPolicy UIPolicy { get { throw null; } set { } }
+        public System.Security.Cryptography.CngUIPolicy UIPolicy { get { throw null; } [System.Security.Permissions.UIPermissionAttribute(System.Security.Permissions.SecurityAction.Demand, Window=(System.Security.Permissions.UIPermissionWindow)(1)), System.Security.Permissions.HostProtectionAttribute(System.Security.Permissions.SecurityAction.LinkDemand, UI=true)]set { } }
     }
     [System.FlagsAttribute]
     public enum CngKeyHandleOpenOptions
@@ -2523,7 +2531,8 @@ namespace System.Security.Cryptography
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct CngProperty : System.IEquatable<System.Security.Cryptography.CngProperty>
     {
-        public CngProperty(string name, byte[] value, System.Security.Cryptography.CngPropertyOptions options) { throw null;}
+        private object _dummy;
+        public CngProperty(string name, byte[] value, System.Security.Cryptography.CngPropertyOptions options) { throw null; }
         public string Name { get { throw null; } }
         public System.Security.Cryptography.CngPropertyOptions Options { get { throw null; } }
         public override bool Equals(object obj) { throw null; }
@@ -2631,9 +2640,12 @@ namespace System.Security.Cryptography
     }
     public abstract partial class ECDiffieHellmanPublicKey : System.IDisposable
     {
+        protected ECDiffieHellmanPublicKey() { }
         protected ECDiffieHellmanPublicKey(byte[] keyBlob) { }
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
+        public virtual System.Security.Cryptography.ECParameters ExportExplicitParameters() { throw null; }
+        public virtual System.Security.Cryptography.ECParameters ExportParameters() { throw null; }
         public virtual byte[] ToByteArray() { throw null; }
         public virtual string ToXmlString() { throw null; }
     }
@@ -2667,9 +2679,22 @@ namespace System.Security.Cryptography
         public ECDsaCng(int keySize) { }
         public ECDsaCng(System.Security.Cryptography.CngKey key) { }
         public ECDsaCng(System.Security.Cryptography.ECCurve curve) { }
+        public System.Security.Cryptography.CngAlgorithm HashAlgorithm { get { throw null; } set { } }
         public System.Security.Cryptography.CngKey Key { get { throw null; } }
+        public void FromXmlString(string xml, System.Security.Cryptography.ECKeyXmlFormat format) { }
+        public byte[] SignData(byte[] data) { throw null; }
+        public byte[] SignData(byte[] data, int offset, int count) { throw null; }
+        public byte[] SignData(System.IO.Stream data) { throw null; }
         public override byte[] SignHash(byte[] hash) { throw null; }
+        public string ToXmlString(System.Security.Cryptography.ECKeyXmlFormat format) { throw null; }
+        public bool VerifyData(byte[] data, byte[] signature) { throw null; }
+        public bool VerifyData(byte[] data, int offset, int count, byte[] signature) { throw null; }
+        public bool VerifyData(System.IO.Stream data, byte[] signature) { throw null; }
         public override bool VerifyHash(byte[] hash, byte[] signature) { throw null; }
+    }
+    public enum ECKeyXmlFormat
+    {
+        Rfc4050 = 0,
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct ECParameters
@@ -2746,6 +2771,13 @@ namespace System.Security.Cryptography.X509Certificates
     {
         public static System.Security.Cryptography.RSA GetRSAPrivateKey(this System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { throw null; }
         public static System.Security.Cryptography.RSA GetRSAPublicKey(this System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { throw null; }
+    }
+    public enum TrustStatus
+    {
+        KnownIdentity = 2,
+        Trusted = 3,
+        UnknownIdentity = 1,
+        Untrusted = 0,
     }
 }
 namespace System.Threading
