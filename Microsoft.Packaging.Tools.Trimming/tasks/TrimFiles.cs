@@ -4,6 +4,8 @@
 
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
+using Microsoft.NET.Build.Tasks;
+using NuGet.Frameworks;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -46,6 +48,11 @@ namespace Microsoft.DotNet.Build.Tasks
         /// </summary>
         [Required]
         public ITaskItem[] PackageDependencies { get; set; }
+
+        /// <summary>
+        /// Project assets file.  In case of missing package dependencies this will be used to load the package graph.
+        /// </summary>
+        public string ProjectAssetsFile { get; set; }
 
         /// <summary>
         /// Target framework to use when determining package dependencies.  Should be long form, IE: .NETCoreApp,Version=v1.0
@@ -107,6 +114,11 @@ namespace Microsoft.DotNet.Build.Tasks
 
             // Build the package graph
             var packages = GetPackagesFromPackageDependencies();
+
+            if (packages.Count == 0)
+            {
+                packages = GetPackagesFromAssetsFile();
+            }
 
             // Build file graph
             var files = GetFiles(packages);
@@ -292,6 +304,46 @@ namespace Microsoft.DotNet.Build.Tasks
                 var childNode = GetOrCreatePackageNode(packages, childPackage);
 
                 parentNode.AddDependency(childNode);
+            }
+
+            return packages;
+        }
+
+        internal IDictionary<string, NuGetPackageNode> GetPackagesFromAssetsFile()
+        {
+            Dictionary<string, NuGetPackageNode> packages = new Dictionary<string, NuGetPackageNode>(StringComparer.OrdinalIgnoreCase);
+
+            if (string.IsNullOrEmpty(ProjectAssetsFile))
+            {
+                return packages;
+            }
+
+            if (string.IsNullOrEmpty(TargetFramework))
+            {
+                Log.LogError($"{nameof(TargetFramework)} was not specified and is required when {nameof(ProjectAssetsFile)} is present.");
+                return packages;
+            }
+
+            var lockFile = new LockFileCache(BuildEngine4).GetLockFile(ProjectAssetsFile);
+            var lockFileTarget = lockFile.GetTarget(NuGetFramework.Parse(TargetFramework), RuntimeIdentifier);
+
+            if (lockFileTarget == null)
+            {
+                var targetString = string.IsNullOrEmpty(RuntimeIdentifier) ? TargetFramework : $"{TargetFramework}/{RuntimeIdentifier}";
+                Log.LogError($"Missing target section {targetString} from assets file {ProjectAssetsFile}.  Ensure you have restored this project previously.");
+                return packages;
+            }
+            
+            foreach (var library in lockFileTarget.Libraries)
+            {
+                var parentNode = GetOrCreatePackageNode(packages, library.Name);
+
+                foreach(var dependency in library.Dependencies)
+                {
+                    var childNode = GetOrCreatePackageNode(packages, dependency.Id);
+
+                    parentNode.AddDependency(childNode);
+                }
             }
 
             return packages;
