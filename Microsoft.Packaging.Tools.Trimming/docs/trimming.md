@@ -43,7 +43,7 @@ In your project (*.csproj* file) make the following change.
 `$(RootPackageReference)` - Set to `false` to indicate that `PackageReferences` should not be considered as *[roots](#roots)*.  Default is `true`.
 `$(RootProjectReference)` - Set to `false` to indicate that `ProjectReferences` should not be considered as *[roots](#roots)*.  Default is `true`.
 `$(TreatMetaPackagesAsTrimmable)` - When set to `true` indicates that meta-packages (packages without any file assets) should be treated as *[trimmable](#trimmable)*.  Default is `true`.
-`$(TrimFilesIncludeRelatedFiles)` - When set to `true` indicates that related files will be included when the file they are related to is included.  Default is `true`. See [related files](#Related-files)
+`$(TrimFilesIncludeRelatedFiles)` - When set to `true` indicates that related files will be included when the file they are related to is included.  Default is `true`. See [related files](#related-files)
 
 **Examples:**
 - Specify TrimFilesRootFiles to include file `System.IO.Pipes.dll`.
@@ -87,7 +87,7 @@ In your project (*.csproj* file) make the following change.
 ```
 
 
-- Specify TrimFilesIncludeRelatedFiles as false to omit [related files](#Related-files) from the output.
+- Specify TrimFilesIncludeRelatedFiles as false to omit [related files](#related-files) from the output.
 
 ```xml
 <PropertyGroup>
