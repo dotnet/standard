@@ -10,6 +10,7 @@
     <ContractProject>..\ref\netstandard.csproj</ContractProject>
     <ResolveMatchingContract>true</ResolveMatchingContract>
     <RunApiCompatForSrc>true</RunApiCompatForSrc>
+    <RunMatchingRefApiCompat>false</RunMatchingRefApiCompat>
     <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
     <ApiCompatBaseline>$(MSBuildProjectDirectory)\ApiCompatBaseline.$(TargetGroup).txt</ApiCompatBaseline>
     <NoWarn>$(NoWarn);618</NoWarn>
