@@ -5,19 +5,21 @@
 namespace System.Numerics
 {
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct BigInteger : System.IComparable, System.IComparable<System.Numerics.BigInteger>, System.IEquatable<System.Numerics.BigInteger>, System.IFormattable
+    public readonly partial struct BigInteger : System.IComparable, System.IComparable<System.Numerics.BigInteger>, System.IEquatable<System.Numerics.BigInteger>, System.IFormattable
     {
+        private readonly object _dummy;
         [System.CLSCompliantAttribute(false)]
-        public BigInteger(byte[] value) { throw null;}
-        public BigInteger(decimal value) { throw null;}
-        public BigInteger(double value) { throw null;}
-        public BigInteger(int value) { throw null;}
-        public BigInteger(long value) { throw null;}
-        public BigInteger(float value) { throw null;}
+        public BigInteger(byte[] value) { throw null; }
+        public BigInteger(decimal value) { throw null; }
+        public BigInteger(double value) { throw null; }
+        public BigInteger(int value) { throw null; }
+        public BigInteger(long value) { throw null; }
+        public BigInteger(System.ReadOnlySpan<byte> value, bool isUnsigned = false, bool isBigEndian = false) { throw null; }
+        public BigInteger(float value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public BigInteger(uint value) { throw null;}
+        public BigInteger(uint value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public BigInteger(ulong value) { throw null;}
+        public BigInteger(ulong value) { throw null; }
         public bool IsEven { get { throw null; } }
         public bool IsOne { get { throw null; } }
         public bool IsPowerOfTwo { get { throw null; } }
@@ -35,12 +37,13 @@ namespace System.Numerics
         [System.CLSCompliantAttribute(false)]
         public int CompareTo(ulong other) { throw null; }
         public static System.Numerics.BigInteger Divide(System.Numerics.BigInteger dividend, System.Numerics.BigInteger divisor) { throw null; }
-        public static System.Numerics.BigInteger DivRem(System.Numerics.BigInteger dividend, System.Numerics.BigInteger divisor, out System.Numerics.BigInteger remainder) { remainder = default(System.Numerics.BigInteger); throw null; }
+        public static System.Numerics.BigInteger DivRem(System.Numerics.BigInteger dividend, System.Numerics.BigInteger divisor, out System.Numerics.BigInteger remainder) { throw null; }
         public bool Equals(long other) { throw null; }
         public bool Equals(System.Numerics.BigInteger other) { throw null; }
         public override bool Equals(object obj) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public bool Equals(ulong other) { throw null; }
+        public int GetByteCount(bool isUnsigned = false) { throw null; }
         public override int GetHashCode() { throw null; }
         public static System.Numerics.BigInteger GreatestCommonDivisor(System.Numerics.BigInteger left, System.Numerics.BigInteger right) { throw null; }
         public static double Log(System.Numerics.BigInteger value) { throw null; }
@@ -138,6 +141,7 @@ namespace System.Numerics
         public static System.Numerics.BigInteger operator -(System.Numerics.BigInteger left, System.Numerics.BigInteger right) { throw null; }
         public static System.Numerics.BigInteger operator -(System.Numerics.BigInteger value) { throw null; }
         public static System.Numerics.BigInteger operator +(System.Numerics.BigInteger value) { throw null; }
+        public static System.Numerics.BigInteger Parse(System.ReadOnlySpan<char> value, System.Globalization.NumberStyles style = (System.Globalization.NumberStyles)(7), System.IFormatProvider provider = null) { throw null; }
         public static System.Numerics.BigInteger Parse(string value) { throw null; }
         public static System.Numerics.BigInteger Parse(string value, System.Globalization.NumberStyles style) { throw null; }
         public static System.Numerics.BigInteger Parse(string value, System.Globalization.NumberStyles style, System.IFormatProvider provider) { throw null; }
@@ -146,20 +150,26 @@ namespace System.Numerics
         public static System.Numerics.BigInteger Remainder(System.Numerics.BigInteger dividend, System.Numerics.BigInteger divisor) { throw null; }
         public static System.Numerics.BigInteger Subtract(System.Numerics.BigInteger left, System.Numerics.BigInteger right) { throw null; }
         public byte[] ToByteArray() { throw null; }
+        public byte[] ToByteArray(bool isUnsigned = false, bool isBigEndian = false) { throw null; }
         public override string ToString() { throw null; }
         public string ToString(System.IFormatProvider provider) { throw null; }
         public string ToString(string format) { throw null; }
         public string ToString(string format, System.IFormatProvider provider) { throw null; }
-        public static bool TryParse(string value, System.Globalization.NumberStyles style, System.IFormatProvider provider, out System.Numerics.BigInteger result) { result = default(System.Numerics.BigInteger); throw null; }
-        public static bool TryParse(string value, out System.Numerics.BigInteger result) { result = default(System.Numerics.BigInteger); throw null; }
+        public bool TryFormat(System.Span<char> destination, out int charsWritten, System.ReadOnlySpan<char> format = default(System.ReadOnlySpan<char>), System.IFormatProvider provider = null) { throw null; }
+        public static bool TryParse(System.ReadOnlySpan<char> value, System.Globalization.NumberStyles style, System.IFormatProvider provider, out System.Numerics.BigInteger result) { throw null; }
+        public static bool TryParse(System.ReadOnlySpan<char> value, out System.Numerics.BigInteger result) { throw null; }
+        public static bool TryParse(string value, System.Globalization.NumberStyles style, System.IFormatProvider provider, out System.Numerics.BigInteger result) { throw null; }
+        public static bool TryParse(string value, out System.Numerics.BigInteger result) { throw null; }
+        public bool TryWriteBytes(System.Span<byte> destination, out int bytesWritten, bool isUnsigned = false, bool isBigEndian = false) { throw null; }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct Complex : System.IEquatable<System.Numerics.Complex>, System.IFormattable
     {
+        private int _dummy;
         public static readonly System.Numerics.Complex ImaginaryOne;
         public static readonly System.Numerics.Complex One;
         public static readonly System.Numerics.Complex Zero;
-        public Complex(double real, double imaginary) { throw null;}
+        public Complex(double real, double imaginary) { throw null; }
         public double Imaginary { get { throw null; } }
         public double Magnitude { get { throw null; } }
         public double Phase { get { throw null; } }
@@ -229,7 +239,7 @@ namespace System.Numerics
         public float M22;
         public float M31;
         public float M32;
-        public Matrix3x2(float m11, float m12, float m21, float m22, float m31, float m32) { throw null;}
+        public Matrix3x2(float m11, float m12, float m21, float m22, float m31, float m32) { throw null; }
         public static System.Numerics.Matrix3x2 Identity { get { throw null; } }
         public bool IsIdentity { get { throw null; } }
         public System.Numerics.Vector2 Translation { get { throw null; } set { } }
@@ -250,7 +260,7 @@ namespace System.Numerics
         public override bool Equals(object obj) { throw null; }
         public float GetDeterminant() { throw null; }
         public override int GetHashCode() { throw null; }
-        public static bool Invert(System.Numerics.Matrix3x2 matrix, out System.Numerics.Matrix3x2 result) { result = default(System.Numerics.Matrix3x2); throw null; }
+        public static bool Invert(System.Numerics.Matrix3x2 matrix, out System.Numerics.Matrix3x2 result) { throw null; }
         public static System.Numerics.Matrix3x2 Lerp(System.Numerics.Matrix3x2 matrix1, System.Numerics.Matrix3x2 matrix2, float amount) { throw null; }
         public static System.Numerics.Matrix3x2 Multiply(System.Numerics.Matrix3x2 value1, System.Numerics.Matrix3x2 value2) { throw null; }
         public static System.Numerics.Matrix3x2 Multiply(System.Numerics.Matrix3x2 value1, float value2) { throw null; }
@@ -284,8 +294,8 @@ namespace System.Numerics
         public float M42;
         public float M43;
         public float M44;
-        public Matrix4x4(System.Numerics.Matrix3x2 value) { throw null;}
-        public Matrix4x4(float m11, float m12, float m13, float m14, float m21, float m22, float m23, float m24, float m31, float m32, float m33, float m34, float m41, float m42, float m43, float m44) { throw null;}
+        public Matrix4x4(System.Numerics.Matrix3x2 value) { throw null; }
+        public Matrix4x4(float m11, float m12, float m13, float m14, float m21, float m22, float m23, float m24, float m31, float m32, float m33, float m34, float m41, float m42, float m43, float m44) { throw null; }
         public static System.Numerics.Matrix4x4 Identity { get { throw null; } }
         public bool IsIdentity { get { throw null; } }
         public System.Numerics.Vector3 Translation { get { throw null; } set { } }
@@ -318,12 +328,12 @@ namespace System.Numerics
         public static System.Numerics.Matrix4x4 CreateTranslation(System.Numerics.Vector3 position) { throw null; }
         public static System.Numerics.Matrix4x4 CreateTranslation(float xPosition, float yPosition, float zPosition) { throw null; }
         public static System.Numerics.Matrix4x4 CreateWorld(System.Numerics.Vector3 position, System.Numerics.Vector3 forward, System.Numerics.Vector3 up) { throw null; }
-        public static bool Decompose(System.Numerics.Matrix4x4 matrix, out System.Numerics.Vector3 scale, out System.Numerics.Quaternion rotation, out System.Numerics.Vector3 translation) { scale = default(System.Numerics.Vector3); rotation = default(System.Numerics.Quaternion); translation = default(System.Numerics.Vector3); throw null; }
+        public static bool Decompose(System.Numerics.Matrix4x4 matrix, out System.Numerics.Vector3 scale, out System.Numerics.Quaternion rotation, out System.Numerics.Vector3 translation) { throw null; }
         public bool Equals(System.Numerics.Matrix4x4 other) { throw null; }
         public override bool Equals(object obj) { throw null; }
         public float GetDeterminant() { throw null; }
         public override int GetHashCode() { throw null; }
-        public static bool Invert(System.Numerics.Matrix4x4 matrix, out System.Numerics.Matrix4x4 result) { result = default(System.Numerics.Matrix4x4); throw null; }
+        public static bool Invert(System.Numerics.Matrix4x4 matrix, out System.Numerics.Matrix4x4 result) { throw null; }
         public static System.Numerics.Matrix4x4 Lerp(System.Numerics.Matrix4x4 matrix1, System.Numerics.Matrix4x4 matrix2, float amount) { throw null; }
         public static System.Numerics.Matrix4x4 Multiply(System.Numerics.Matrix4x4 value1, System.Numerics.Matrix4x4 value2) { throw null; }
         public static System.Numerics.Matrix4x4 Multiply(System.Numerics.Matrix4x4 value1, float value2) { throw null; }
@@ -345,9 +355,9 @@ namespace System.Numerics
     {
         public float D;
         public System.Numerics.Vector3 Normal;
-        public Plane(System.Numerics.Vector3 normal, float d) { throw null;}
-        public Plane(System.Numerics.Vector4 value) { throw null;}
-        public Plane(float x, float y, float z, float d) { throw null;}
+        public Plane(System.Numerics.Vector3 normal, float d) { throw null; }
+        public Plane(System.Numerics.Vector4 value) { throw null; }
+        public Plane(float x, float y, float z, float d) { throw null; }
         public static System.Numerics.Plane CreateFromVertices(System.Numerics.Vector3 point1, System.Numerics.Vector3 point2, System.Numerics.Vector3 point3) { throw null; }
         public static float Dot(System.Numerics.Plane plane, System.Numerics.Vector4 value) { throw null; }
         public static float DotCoordinate(System.Numerics.Plane plane, System.Numerics.Vector3 value) { throw null; }
@@ -369,8 +379,8 @@ namespace System.Numerics
         public float X;
         public float Y;
         public float Z;
-        public Quaternion(System.Numerics.Vector3 vectorPart, float scalarPart) { throw null;}
-        public Quaternion(float x, float y, float z, float w) { throw null;}
+        public Quaternion(System.Numerics.Vector3 vectorPart, float scalarPart) { throw null; }
+        public Quaternion(float x, float y, float z, float w) { throw null; }
         public static System.Numerics.Quaternion Identity { get { throw null; } }
         public bool IsIdentity { get { throw null; } }
         public static System.Numerics.Quaternion Add(System.Numerics.Quaternion value1, System.Numerics.Quaternion value2) { throw null; }
@@ -409,8 +419,8 @@ namespace System.Numerics
     {
         public float X;
         public float Y;
-        public Vector2(float value) { throw null;}
-        public Vector2(float x, float y) { throw null;}
+        public Vector2(float value) { throw null; }
+        public Vector2(float x, float y) { throw null; }
         public static System.Numerics.Vector2 One { get { throw null; } }
         public static System.Numerics.Vector2 UnitX { get { throw null; } }
         public static System.Numerics.Vector2 UnitY { get { throw null; } }
@@ -466,9 +476,9 @@ namespace System.Numerics
         public float X;
         public float Y;
         public float Z;
-        public Vector3(System.Numerics.Vector2 value, float z) { throw null;}
-        public Vector3(float value) { throw null;}
-        public Vector3(float x, float y, float z) { throw null;}
+        public Vector3(System.Numerics.Vector2 value, float z) { throw null; }
+        public Vector3(float value) { throw null; }
+        public Vector3(float x, float y, float z) { throw null; }
         public static System.Numerics.Vector3 One { get { throw null; } }
         public static System.Numerics.Vector3 UnitX { get { throw null; } }
         public static System.Numerics.Vector3 UnitY { get { throw null; } }
@@ -525,10 +535,10 @@ namespace System.Numerics
         public float X;
         public float Y;
         public float Z;
-        public Vector4(System.Numerics.Vector2 value, float z, float w) { throw null;}
-        public Vector4(System.Numerics.Vector3 value, float w) { throw null;}
-        public Vector4(float value) { throw null;}
-        public Vector4(float x, float y, float z, float w) { throw null;}
+        public Vector4(System.Numerics.Vector2 value, float z, float w) { throw null; }
+        public Vector4(System.Numerics.Vector3 value, float w) { throw null; }
+        public Vector4(float value) { throw null; }
+        public Vector4(float x, float y, float z, float w) { throw null; }
         public static System.Numerics.Vector4 One { get { throw null; } }
         public static System.Numerics.Vector4 UnitW { get { throw null; } }
         public static System.Numerics.Vector4 UnitX { get { throw null; } }

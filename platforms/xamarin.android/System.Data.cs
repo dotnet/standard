@@ -36,7 +36,6 @@ namespace Microsoft.SqlServer.Server
         public virtual long GetBytes(int ordinal, long fieldOffset, byte[] buffer, int bufferOffset, int length) { throw null; }
         public virtual char GetChar(int ordinal) { throw null; }
         public virtual long GetChars(int ordinal, long fieldOffset, char[] buffer, int bufferOffset, int length) { throw null; }
-        public virtual System.Data.IDataReader GetData(int ordinal) { throw null; }
         public virtual string GetDataTypeName(int ordinal) { throw null; }
         public virtual System.DateTime GetDateTime(int ordinal) { throw null; }
         public virtual System.DateTimeOffset GetDateTimeOffset(int ordinal) { throw null; }
@@ -110,6 +109,7 @@ namespace Microsoft.SqlServer.Server
         public virtual void SetTimeSpan(int ordinal, System.TimeSpan value) { }
         public virtual void SetValue(int ordinal, object value) { }
         public virtual int SetValues(params object[] values) { throw null; }
+        System.Data.IDataReader System.Data.IDataRecord.GetData(int ordinal) { throw null; }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(10624), AllowMultiple=false, Inherited=false)]
     public partial class SqlFacetAttribute : System.Attribute
@@ -148,6 +148,8 @@ namespace Microsoft.SqlServer.Server
         public SqlMetaData(string name, System.Data.SqlDbType dbType, string database, string owningSchema, string objectName) { }
         public SqlMetaData(string name, System.Data.SqlDbType dbType, string database, string owningSchema, string objectName, bool useServerDefault, bool isUniqueKey, System.Data.SqlClient.SortOrder columnSortOrder, int sortOrdinal) { }
         public SqlMetaData(string name, System.Data.SqlDbType dbType, System.Type userDefinedType) { }
+        public SqlMetaData(string name, System.Data.SqlDbType dbType, System.Type userDefinedType, string serverTypeName) { }
+        public SqlMetaData(string name, System.Data.SqlDbType dbType, System.Type userDefinedType, string serverTypeName, bool useServerDefault, bool isUniqueKey, System.Data.SqlClient.SortOrder columnSortOrder, int sortOrdinal) { }
         public System.Data.SqlTypes.SqlCompareOptions CompareOptions { get { throw null; } }
         public System.Data.DbType DbType { get { throw null; } }
         public bool IsUniqueKey { get { throw null; } }
@@ -160,6 +162,7 @@ namespace Microsoft.SqlServer.Server
         public System.Data.SqlClient.SortOrder SortOrder { get { throw null; } }
         public int SortOrdinal { get { throw null; } }
         public System.Data.SqlDbType SqlDbType { get { throw null; } }
+        public System.Type Type { get { throw null; } }
         public string TypeName { get { throw null; } }
         public bool UseServerDefault { get { throw null; } }
         public string XmlSchemaCollectionDatabase { get { throw null; } }
@@ -1299,7 +1302,7 @@ namespace System.Data
         public int RowCount { get { throw null; } }
         public void CopyToRows(System.Data.DataRow[] array) { }
         public void CopyToRows(System.Data.DataRow[] array, int arrayIndex) { }
-        public override void GetObjectData(System.Runtime.Serialization.SerializationInfo si, System.Runtime.Serialization.StreamingContext context) { }
+        public override void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
     }
     public enum DbType
     {
@@ -2225,7 +2228,7 @@ namespace System.Data.Common
         System.ComponentModel.PropertyDescriptorCollection System.ComponentModel.ICustomTypeDescriptor.GetProperties(System.Attribute[] attributes) { throw null; }
         object System.ComponentModel.ICustomTypeDescriptor.GetPropertyOwner(System.ComponentModel.PropertyDescriptor pd) { throw null; }
         public override string ToString() { throw null; }
-        public virtual bool TryGetValue(string keyword, out object value) { value = default(object); throw null; }
+        public virtual bool TryGetValue(string keyword, out object value) { throw null; }
     }
     public abstract partial class DbDataAdapter : System.Data.Common.DataAdapter, System.Data.IDataAdapter, System.Data.IDbDataAdapter, System.ICloneable
     {
@@ -2271,7 +2274,7 @@ namespace System.Data.Common
         public System.Data.DataTable FillSchema(System.Data.DataTable dataTable, System.Data.SchemaType schemaType) { throw null; }
         protected virtual System.Data.DataTable FillSchema(System.Data.DataTable dataTable, System.Data.SchemaType schemaType, System.Data.IDbCommand command, System.Data.CommandBehavior behavior) { throw null; }
         protected virtual System.Data.IDataParameter GetBatchedParameter(int commandIdentifier, int parameterIndex) { throw null; }
-        protected virtual bool GetBatchedRecordsAffected(int commandIdentifier, out int recordsAffected, out System.Exception error) { recordsAffected = default(int); error = default(System.Exception); throw null; }
+        protected virtual bool GetBatchedRecordsAffected(int commandIdentifier, out int recordsAffected, out System.Exception error) { throw null; }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
         public override System.Data.IDataParameter[] GetFillParameters() { throw null; }
         protected virtual void InitializeBatching() { }
@@ -2381,6 +2384,11 @@ namespace System.Data.Common
         public System.Threading.Tasks.Task<bool> ReadAsync() { throw null; }
         public virtual System.Threading.Tasks.Task<bool> ReadAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
         System.Data.IDataReader System.Data.IDataRecord.GetData(int ordinal) { throw null; }
+    }
+    public static partial class DbDataReaderExtensions
+    {
+        public static bool CanGetColumnSchema(this System.Data.Common.DbDataReader reader) { throw null; }
+        public static System.Collections.ObjectModel.ReadOnlyCollection<System.Data.Common.DbColumn> GetColumnSchema(this System.Data.Common.DbDataReader reader) { throw null; }
     }
     public abstract partial class DbDataRecord : System.ComponentModel.ICustomTypeDescriptor, System.Data.IDataRecord
     {
@@ -2812,6 +2820,14 @@ namespace System.Data.SqlClient
         public void WriteToServer(System.Data.IDataReader reader) { }
         public System.Threading.Tasks.Task WriteToServerAsync(System.Data.Common.DbDataReader reader) { throw null; }
         public System.Threading.Tasks.Task WriteToServerAsync(System.Data.Common.DbDataReader reader, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task WriteToServerAsync(System.Data.DataRow[] rows) { throw null; }
+        public System.Threading.Tasks.Task WriteToServerAsync(System.Data.DataRow[] rows, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task WriteToServerAsync(System.Data.DataTable table) { throw null; }
+        public System.Threading.Tasks.Task WriteToServerAsync(System.Data.DataTable table, System.Data.DataRowState rowState) { throw null; }
+        public System.Threading.Tasks.Task WriteToServerAsync(System.Data.DataTable table, System.Data.DataRowState rowState, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task WriteToServerAsync(System.Data.DataTable table, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task WriteToServerAsync(System.Data.IDataReader reader) { throw null; }
+        public System.Threading.Tasks.Task WriteToServerAsync(System.Data.IDataReader reader, System.Threading.CancellationToken cancellationToken) { throw null; }
     }
     public sealed partial class SqlBulkCopyColumnMapping
     {
@@ -2899,42 +2915,24 @@ namespace System.Data.SqlClient
         public SqlClientPermissionAttribute(System.Security.Permissions.SecurityAction action) : base (default(System.Security.Permissions.SecurityAction)) { }
         public override System.Security.IPermission CreatePermission() { throw null; }
     }
-    [System.ComponentModel.DefaultEventAttribute("RecordsAffected")]
-    [System.ComponentModel.ToolboxItemAttribute("System.Drawing.Design.ToolboxItem, System.Drawing, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     public sealed partial class SqlCommand : System.Data.Common.DbCommand, System.Data.IDbCommand, System.ICloneable, System.IDisposable
     {
         public SqlCommand() { }
         public SqlCommand(string cmdText) { }
         public SqlCommand(string cmdText, System.Data.SqlClient.SqlConnection connection) { }
         public SqlCommand(string cmdText, System.Data.SqlClient.SqlConnection connection, System.Data.SqlClient.SqlTransaction transaction) { }
-        [System.ComponentModel.DefaultValueAttribute("")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public override string CommandText { get { throw null; } set { } }
         public override int CommandTimeout { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute((System.Data.CommandType)(1))]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public override System.Data.CommandType CommandType { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute(null)]
         public new System.Data.SqlClient.SqlConnection Connection { get { throw null; } set { } }
         protected override System.Data.Common.DbConnection DbConnection { get { throw null; } set { } }
         protected override System.Data.Common.DbParameterCollection DbParameterCollection { get { throw null; } }
         protected override System.Data.Common.DbTransaction DbTransaction { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DefaultValueAttribute(true)]
-        [System.ComponentModel.DesignOnlyAttribute(true)]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override bool DesignTimeVisible { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public System.Data.Sql.SqlNotificationRequest Notification { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute(true)]
         public bool NotificationAutoEnlist { get { throw null; } set { } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(2))]
         public new System.Data.SqlClient.SqlParameterCollection Parameters { get { throw null; } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public new System.Data.SqlClient.SqlTransaction Transaction { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute((System.Data.UpdateRowSource)(3))]
         public override System.Data.UpdateRowSource UpdatedRowSource { get { throw null; } set { } }
         public event System.Data.StatementCompletedEventHandler StatementCompleted { add { } remove { } }
         public System.IAsyncResult BeginExecuteNonQuery() { throw null; }
@@ -2954,7 +2952,9 @@ namespace System.Data.SqlClient
         public System.Data.SqlClient.SqlDataReader EndExecuteReader(System.IAsyncResult asyncResult) { throw null; }
         public System.Xml.XmlReader EndExecuteXmlReader(System.IAsyncResult asyncResult) { throw null; }
         protected override System.Data.Common.DbDataReader ExecuteDbDataReader(System.Data.CommandBehavior behavior) { throw null; }
+        protected override System.Threading.Tasks.Task<System.Data.Common.DbDataReader> ExecuteDbDataReaderAsync(System.Data.CommandBehavior behavior, System.Threading.CancellationToken cancellationToken) { throw null; }
         public override int ExecuteNonQuery() { throw null; }
+        public override System.Threading.Tasks.Task<int> ExecuteNonQueryAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
         public new System.Data.SqlClient.SqlDataReader ExecuteReader() { throw null; }
         public new System.Data.SqlClient.SqlDataReader ExecuteReader(System.Data.CommandBehavior behavior) { throw null; }
         public new System.Threading.Tasks.Task<System.Data.SqlClient.SqlDataReader> ExecuteReaderAsync() { throw null; }
@@ -2962,6 +2962,7 @@ namespace System.Data.SqlClient
         public new System.Threading.Tasks.Task<System.Data.SqlClient.SqlDataReader> ExecuteReaderAsync(System.Data.CommandBehavior behavior, System.Threading.CancellationToken cancellationToken) { throw null; }
         public new System.Threading.Tasks.Task<System.Data.SqlClient.SqlDataReader> ExecuteReaderAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
         public override object ExecuteScalar() { throw null; }
+        public override System.Threading.Tasks.Task<object> ExecuteScalarAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
         public System.Xml.XmlReader ExecuteXmlReader() { throw null; }
         public System.Threading.Tasks.Task<System.Xml.XmlReader> ExecuteXmlReaderAsync() { throw null; }
         public System.Threading.Tasks.Task<System.Xml.XmlReader> ExecuteXmlReaderAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
@@ -2973,27 +2974,11 @@ namespace System.Data.SqlClient
     {
         public SqlCommandBuilder() { }
         public SqlCommandBuilder(System.Data.SqlClient.SqlDataAdapter adapter) { }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override System.Data.Common.CatalogLocation CatalogLocation { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override string CatalogSeparator { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute(null)]
         public new System.Data.SqlClient.SqlDataAdapter DataAdapter { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override string QuotePrefix { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override string QuoteSuffix { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override string SchemaSeparator { get { throw null; } set { } }
         protected override void ApplyParameterInfo(System.Data.Common.DbParameter parameter, System.Data.DataRow datarow, System.Data.StatementType statementType, bool whereClause) { }
         public static void DeriveParameters(System.Data.SqlClient.SqlCommand command) { }
@@ -3019,38 +3004,23 @@ namespace System.Data.SqlClient
         ResultSetOnly = 2,
         UseConnectionSetting = 0,
     }
-    [System.ComponentModel.DefaultEventAttribute("InfoMessage")]
     public sealed partial class SqlConnection : System.Data.Common.DbConnection, System.Data.IDbConnection, System.ICloneable, System.IDisposable
     {
         public SqlConnection() { }
         public SqlConnection(string connectionString) { }
-        public SqlConnection(string connectionString, System.Data.SqlClient.SqlCredential cred) { }
+        public SqlConnection(string connectionString, System.Data.SqlClient.SqlCredential credential) { }
         public System.Guid ClientConnectionId { get { throw null; } }
-        [System.ComponentModel.DefaultValueAttribute("")]
-        [System.ComponentModel.RecommendedAsConfigurableAttribute(true)]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public override string ConnectionString { get { throw null; } set { } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public override int ConnectionTimeout { get { throw null; } }
         public System.Data.SqlClient.SqlCredential Credentials { get { throw null; } set { } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public override string Database { get { throw null; } }
-        [System.ComponentModel.BrowsableAttribute(true)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public override string DataSource { get { throw null; } }
         protected override System.Data.Common.DbProviderFactory DbProviderFactory { get { throw null; } }
         public bool FireInfoMessageEventOnUserErrors { get { throw null; } set { } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public int PacketSize { get { throw null; } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public override string ServerVersion { get { throw null; } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public override System.Data.ConnectionState State { get { throw null; } }
-        [System.ComponentModel.DefaultValueAttribute(false)]
         public bool StatisticsEnabled { get { throw null; } set { } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public string WorkstationId { get { throw null; } }
         public event System.Data.SqlClient.SqlInfoMessageEventHandler InfoMessage { add { } remove { } }
         protected override System.Data.Common.DbTransaction BeginDbTransaction(System.Data.IsolationLevel isolationLevel) { throw null; }
@@ -3066,10 +3036,13 @@ namespace System.Data.SqlClient
         public new System.Data.SqlClient.SqlCommand CreateCommand() { throw null; }
         protected override System.Data.Common.DbCommand CreateDbCommand() { throw null; }
         protected override void Dispose(bool disposing) { }
+        public override void EnlistTransaction(System.Transactions.Transaction transaction) { }
         public override System.Data.DataTable GetSchema() { throw null; }
         public override System.Data.DataTable GetSchema(string collectionName) { throw null; }
         public override System.Data.DataTable GetSchema(string collectionName, string[] restrictionValues) { throw null; }
+        protected override void OnStateChange(System.Data.StateChangeEventArgs stateChange) { }
         public override void Open() { }
+        public override System.Threading.Tasks.Task OpenAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
         public void ResetStatistics() { }
         public System.Collections.IDictionary RetrieveStatistics() { throw null; }
         object System.ICloneable.Clone() { throw null; }
@@ -3079,162 +3052,78 @@ namespace System.Data.SqlClient
         Disabled = 0,
         Enabled = 1,
     }
-    [System.ComponentModel.DefaultPropertyAttribute("DataSource")]
     public sealed partial class SqlConnectionStringBuilder : System.Data.Common.DbConnectionStringBuilder
     {
         public SqlConnectionStringBuilder() { }
         public SqlConnectionStringBuilder(string connectionString) { }
-        [System.ComponentModel.DisplayNameAttribute("ApplicationIntent")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public System.Data.SqlClient.ApplicationIntent ApplicationIntent { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Application Name")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public string ApplicationName { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Asynchronous Processing")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
+        [System.ObsoleteAttribute("This property is ignored beginning in .NET Framework 4.5.For more information about SqlClient support for asynchronous programming, seehttps://docs.microsoft.com/en-us/dotnet/framework/data/adonet/asynchronous-programming")]
         public bool AsynchronousProcessing { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("AttachDbFilename")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public string AttachDBFilename { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Authentication")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public System.Data.SqlClient.SqlAuthenticationMethod Authentication { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Column Encryption Setting")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public System.Data.SqlClient.SqlConnectionColumnEncryptionSetting ColumnEncryptionSetting { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DisplayNameAttribute("Connection Reset")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
-        [System.ObsoleteAttribute("ConnectionReset has been deprecated.  SqlConnection will ignore the 'connection reset' keyword and always reset the connection")]
+        [System.ObsoleteAttribute("ConnectionReset has been deprecated.  SqlConnection will ignore the 'connection reset'keyword and always reset the connection")]
         public bool ConnectionReset { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("ConnectRetryCount")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public int ConnectRetryCount { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("ConnectRetryInterval")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public int ConnectRetryInterval { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Connect Timeout")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public int ConnectTimeout { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Context Connection")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public bool ContextConnection { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Current Language")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public string CurrentLanguage { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Data Source")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public string DataSource { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Encrypt")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public bool Encrypt { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Enlist")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public bool Enlist { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Failover Partner")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public string FailoverPartner { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Initial Catalog")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public string InitialCatalog { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Integrated Security")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public bool IntegratedSecurity { get { throw null; } set { } }
-        public override bool IsFixedSize { get { throw null; } }
         public override object this[string keyword] { get { throw null; } set { } }
         public override System.Collections.ICollection Keys { get { throw null; } }
-        [System.ComponentModel.DisplayNameAttribute("Load Balance Timeout")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public int LoadBalanceTimeout { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Max Pool Size")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public int MaxPoolSize { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Min Pool Size")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public int MinPoolSize { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("MultipleActiveResultSets")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public bool MultipleActiveResultSets { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("MultiSubnetFailover")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public bool MultiSubnetFailover { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Network Library")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public string NetworkLibrary { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Packet Size")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public int PacketSize { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Password")]
-        [System.ComponentModel.PasswordPropertyTextAttribute(true)]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public string Password { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Persist Security Info")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public bool PersistSecurityInfo { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("PoolBlockingPeriod")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public System.Data.SqlClient.PoolBlockingPeriod PoolBlockingPeriod { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Pooling")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public bool Pooling { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Replication")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public bool Replication { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Transaction Binding")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public string TransactionBinding { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("TransparentNetworkIPResolution")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public bool TransparentNetworkIPResolution { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("TrustServerCertificate")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public bool TrustServerCertificate { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("Type System Version")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public string TypeSystemVersion { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("User ID")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public string UserID { get { throw null; } set { } }
-        [System.ComponentModel.DisplayNameAttribute("User Instance")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public bool UserInstance { get { throw null; } set { } }
         public override System.Collections.ICollection Values { get { throw null; } }
-        [System.ComponentModel.DisplayNameAttribute("Workstation ID")]
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public string WorkstationID { get { throw null; } set { } }
         public override void Clear() { }
         public override bool ContainsKey(string keyword) { throw null; }
-        protected override void GetProperties(System.Collections.Hashtable propertyDescriptors) { }
         public override bool Remove(string keyword) { throw null; }
         public override bool ShouldSerialize(string keyword) { throw null; }
-        public override bool TryGetValue(string keyword, out object value) { value = default(object); throw null; }
+        public override bool TryGetValue(string keyword, out object value) { throw null; }
     }
     public sealed partial class SqlCredential
     {
-        public SqlCredential(string user, System.Security.SecureString password) { }
+        public SqlCredential(string userId, System.Security.SecureString password) { }
         public System.Security.SecureString Password { get { throw null; } }
         public string UserId { get { throw null; } }
     }
-    [System.ComponentModel.DefaultEventAttribute("RowUpdated")]
-    [System.ComponentModel.ToolboxItemAttribute("Microsoft.VSDesigner.Data.VS.SqlDataAdapterToolboxItem, Microsoft.VSDesigner, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     public sealed partial class SqlDataAdapter : System.Data.Common.DbDataAdapter, System.Data.IDataAdapter, System.Data.IDbDataAdapter, System.ICloneable
     {
         public SqlDataAdapter() { }
         public SqlDataAdapter(System.Data.SqlClient.SqlCommand selectCommand) { }
         public SqlDataAdapter(string selectCommandText, System.Data.SqlClient.SqlConnection selectConnection) { }
         public SqlDataAdapter(string selectCommandText, string selectConnectionString) { }
-        [System.ComponentModel.DefaultValueAttribute(null)]
         public new System.Data.SqlClient.SqlCommand DeleteCommand { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute(null)]
         public new System.Data.SqlClient.SqlCommand InsertCommand { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute(null)]
         public new System.Data.SqlClient.SqlCommand SelectCommand { get { throw null; } set { } }
         System.Data.IDbCommand System.Data.IDbDataAdapter.DeleteCommand { get { throw null; } set { } }
         System.Data.IDbCommand System.Data.IDbDataAdapter.InsertCommand { get { throw null; } set { } }
         System.Data.IDbCommand System.Data.IDbDataAdapter.SelectCommand { get { throw null; } set { } }
         System.Data.IDbCommand System.Data.IDbDataAdapter.UpdateCommand { get { throw null; } set { } }
         public override int UpdateBatchSize { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute(null)]
         public new System.Data.SqlClient.SqlCommand UpdateCommand { get { throw null; } set { } }
         public event System.Data.SqlClient.SqlRowUpdatedEventHandler RowUpdated { add { } remove { } }
         public event System.Data.SqlClient.SqlRowUpdatingEventHandler RowUpdating { add { } remove { } }
@@ -3244,13 +3133,14 @@ namespace System.Data.SqlClient
         protected override System.Data.Common.RowUpdatingEventArgs CreateRowUpdatingEvent(System.Data.DataRow dataRow, System.Data.IDbCommand command, System.Data.StatementType statementType, System.Data.Common.DataTableMapping tableMapping) { throw null; }
         protected override int ExecuteBatch() { throw null; }
         protected override System.Data.IDataParameter GetBatchedParameter(int commandIdentifier, int parameterIndex) { throw null; }
+        protected override bool GetBatchedRecordsAffected(int commandIdentifier, out int recordsAffected, out System.Exception error) { throw null; }
         protected override void InitializeBatching() { }
         protected override void OnRowUpdated(System.Data.Common.RowUpdatedEventArgs value) { }
         protected override void OnRowUpdating(System.Data.Common.RowUpdatingEventArgs value) { }
         object System.ICloneable.Clone() { throw null; }
         protected override void TerminateBatching() { }
     }
-    public partial class SqlDataReader : System.Data.Common.DbDataReader, System.Data.IDataReader, System.Data.IDataRecord, System.IDisposable
+    public partial class SqlDataReader : System.Data.Common.DbDataReader, System.Data.Common.IDbColumnSchemaGenerator, System.Data.IDataReader, System.Data.IDataRecord, System.IDisposable
     {
         internal SqlDataReader() { }
         protected System.Data.SqlClient.SqlConnection Connection { get { throw null; } }
@@ -3263,12 +3153,13 @@ namespace System.Data.SqlClient
         public override int RecordsAffected { get { throw null; } }
         public override int VisibleFieldCount { get { throw null; } }
         public override void Close() { }
+        protected override void Dispose(bool disposing) { }
         public override bool GetBoolean(int i) { throw null; }
         public override byte GetByte(int i) { throw null; }
         public override long GetBytes(int i, long dataIndex, byte[] buffer, int bufferIndex, int length) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override char GetChar(int i) { throw null; }
         public override long GetChars(int i, long dataIndex, char[] buffer, int bufferIndex, int length) { throw null; }
+        public System.Collections.ObjectModel.ReadOnlyCollection<System.Data.Common.DbColumn> GetColumnSchema() { throw null; }
         public override string GetDataTypeName(int i) { throw null; }
         public override System.DateTime GetDateTime(int i) { throw null; }
         public virtual System.DateTimeOffset GetDateTimeOffset(int i) { throw null; }
@@ -3314,11 +3205,13 @@ namespace System.Data.SqlClient
         public override object GetValue(int i) { throw null; }
         public override int GetValues(object[] values) { throw null; }
         public virtual System.Xml.XmlReader GetXmlReader(int i) { throw null; }
-        protected bool IsCommandBehavior(System.Data.CommandBehavior condition) { throw null; }
+        protected internal bool IsCommandBehavior(System.Data.CommandBehavior condition) { throw null; }
         public override bool IsDBNull(int i) { throw null; }
         public override System.Threading.Tasks.Task<bool> IsDBNullAsync(int i, System.Threading.CancellationToken cancellationToken) { throw null; }
         public override bool NextResult() { throw null; }
+        public override System.Threading.Tasks.Task<bool> NextResultAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
         public override bool Read() { throw null; }
+        public override System.Threading.Tasks.Task<bool> ReadAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
     }
     public sealed partial class SQLDebugging
     {
@@ -3351,7 +3244,6 @@ namespace System.Data.SqlClient
         public byte State { get { throw null; } }
         public override string ToString() { throw null; }
     }
-    [System.ComponentModel.ListBindableAttribute(false)]
     public sealed partial class SqlErrorCollection : System.Collections.ICollection, System.Collections.IEnumerable
     {
         internal SqlErrorCollection() { }
@@ -3368,7 +3260,6 @@ namespace System.Data.SqlClient
         internal SqlException() { }
         public byte Class { get { throw null; } }
         public System.Guid ClientConnectionId { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(2))]
         public System.Data.SqlClient.SqlErrorCollection Errors { get { throw null; } }
         public int LineNumber { get { throw null; } }
         public override string Message { get { throw null; } }
@@ -3378,6 +3269,7 @@ namespace System.Data.SqlClient
         public override string Source { get { throw null; } }
         public byte State { get { throw null; } }
         public override void GetObjectData(System.Runtime.Serialization.SerializationInfo si, System.Runtime.Serialization.StreamingContext context) { }
+        public override string ToString() { throw null; }
     }
     public sealed partial class SqlInfoMessageEventArgs : System.EventArgs
     {
@@ -3406,6 +3298,7 @@ namespace System.Data.SqlClient
         Insert = 1,
         Invalid = 9,
         Isolation = 11,
+        Merge = 16,
         Options = 10,
         PreviousFire = 14,
         Query = 8,
@@ -3441,42 +3334,30 @@ namespace System.Data.SqlClient
         public SqlParameter() { }
         public SqlParameter(string parameterName, System.Data.SqlDbType dbType) { }
         public SqlParameter(string parameterName, System.Data.SqlDbType dbType, int size) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
         public SqlParameter(string parameterName, System.Data.SqlDbType dbType, int size, System.Data.ParameterDirection direction, bool isNullable, byte precision, byte scale, string sourceColumn, System.Data.DataRowVersion sourceVersion, object value) { }
         public SqlParameter(string parameterName, System.Data.SqlDbType dbType, int size, System.Data.ParameterDirection direction, byte precision, byte scale, string sourceColumn, System.Data.DataRowVersion sourceVersion, bool sourceColumnNullMapping, object value, string xmlSchemaCollectionDatabase, string xmlSchemaCollectionOwningSchema, string xmlSchemaCollectionName) { }
         public SqlParameter(string parameterName, System.Data.SqlDbType dbType, int size, string sourceColumn) { }
         public SqlParameter(string parameterName, object value) { }
-        [System.ComponentModel.BrowsableAttribute(false)]
         public System.Data.SqlTypes.SqlCompareOptions CompareInfo { get { throw null; } set { } }
         public override System.Data.DbType DbType { get { throw null; } set { } }
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public override System.Data.ParameterDirection Direction { get { throw null; } set { } }
         public override bool IsNullable { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
         public int LocaleId { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
         public int Offset { get { throw null; } set { } }
         public override string ParameterName { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute(0)]
+        [System.ComponentModel.DefaultValueAttribute((byte)0)]
         public new byte Precision { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute(0)]
+        [System.ComponentModel.DefaultValueAttribute((byte)0)]
         public new byte Scale { get { throw null; } set { } }
         public override int Size { get { throw null; } set { } }
         public override string SourceColumn { get { throw null; } set { } }
         public override bool SourceColumnNullMapping { get { throw null; } set { } }
         public override System.Data.DataRowVersion SourceVersion { get { throw null; } set { } }
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         [System.Data.Common.DbProviderSpecificTypePropertyAttribute(true)]
         public System.Data.SqlDbType SqlDbType { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public object SqlValue { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
         public string TypeName { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
         public string UdtTypeName { get { throw null; } set { } }
-        [System.ComponentModel.RefreshPropertiesAttribute((System.ComponentModel.RefreshProperties)(1))]
         public override object Value { get { throw null; } set { } }
         public string XmlSchemaCollectionDatabase { get { throw null; } set { } }
         public string XmlSchemaCollectionName { get { throw null; } set { } }
@@ -3486,29 +3367,18 @@ namespace System.Data.SqlClient
         object System.ICloneable.Clone() { throw null; }
         public override string ToString() { throw null; }
     }
-    [System.ComponentModel.ListBindableAttribute(false)]
     public sealed partial class SqlParameterCollection : System.Data.Common.DbParameterCollection, System.Collections.ICollection, System.Collections.IEnumerable, System.Collections.IList, System.Data.IDataParameterCollection
     {
         internal SqlParameterCollection() { }
         public override int Count { get { throw null; } }
-        public override bool IsFixedSize { get { throw null; } }
-        public override bool IsReadOnly { get { throw null; } }
-        public override bool IsSynchronized { get { throw null; } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public new System.Data.SqlClient.SqlParameter this[int index] { get { throw null; } set { } }
-        [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public new System.Data.SqlClient.SqlParameter this[string parameterName] { get { throw null; } set { } }
         public override object SyncRoot { get { throw null; } }
         public System.Data.SqlClient.SqlParameter Add(System.Data.SqlClient.SqlParameter value) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override int Add(object value) { throw null; }
         public System.Data.SqlClient.SqlParameter Add(string parameterName, System.Data.SqlDbType sqlDbType) { throw null; }
         public System.Data.SqlClient.SqlParameter Add(string parameterName, System.Data.SqlDbType sqlDbType, int size) { throw null; }
         public System.Data.SqlClient.SqlParameter Add(string parameterName, System.Data.SqlDbType sqlDbType, int size, string sourceColumn) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        [System.ObsoleteAttribute("Do not call this method.")]
         public System.Data.SqlClient.SqlParameter Add(string parameterName, object value) { throw null; }
         public override void AddRange(System.Array values) { }
         public void AddRange(System.Data.SqlClient.SqlParameter[] values) { }
@@ -3554,7 +3424,7 @@ namespace System.Data.SqlClient
         public new System.Data.SqlClient.SqlCommand Command { get { throw null; } set { } }
     }
     public delegate void SqlRowUpdatingEventHandler(object sender, System.Data.SqlClient.SqlRowUpdatingEventArgs e);
-    public sealed partial class SqlTransaction : System.Data.Common.DbTransaction, System.Data.IDbTransaction, System.IDisposable
+    public sealed partial class SqlTransaction : System.Data.Common.DbTransaction
     {
         internal SqlTransaction() { }
         public new System.Data.SqlClient.SqlConnection Connection { get { throw null; } }
@@ -3583,8 +3453,9 @@ namespace System.Data.SqlTypes
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlBinary : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
+        private object _dummy;
         public static readonly System.Data.SqlTypes.SqlBinary Null;
-        public SqlBinary(byte[] value) { throw null;}
+        public SqlBinary(byte[] value) { throw null; }
         public bool IsNull { get { throw null; } }
         public byte this[int index] { get { throw null; } }
         public int Length { get { throw null; } }
@@ -3622,13 +3493,14 @@ namespace System.Data.SqlTypes
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlBoolean : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
+        private int _dummy;
         public static readonly System.Data.SqlTypes.SqlBoolean False;
         public static readonly System.Data.SqlTypes.SqlBoolean Null;
         public static readonly System.Data.SqlTypes.SqlBoolean One;
         public static readonly System.Data.SqlTypes.SqlBoolean True;
         public static readonly System.Data.SqlTypes.SqlBoolean Zero;
-        public SqlBoolean(bool value) { throw null;}
-        public SqlBoolean(int value) { throw null;}
+        public SqlBoolean(bool value) { throw null; }
+        public SqlBoolean(int value) { throw null; }
         public byte ByteValue { get { throw null; } }
         public bool IsFalse { get { throw null; } }
         public bool IsNull { get { throw null; } }
@@ -3692,11 +3564,12 @@ namespace System.Data.SqlTypes
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlByte : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
+        private int _dummy;
         public static readonly System.Data.SqlTypes.SqlByte MaxValue;
         public static readonly System.Data.SqlTypes.SqlByte MinValue;
         public static readonly System.Data.SqlTypes.SqlByte Null;
         public static readonly System.Data.SqlTypes.SqlByte Zero;
-        public SqlByte(byte value) { throw null;}
+        public SqlByte(byte value) { throw null; }
         public bool IsNull { get { throw null; } }
         public byte Value { get { throw null; } }
         public static System.Data.SqlTypes.SqlByte Add(System.Data.SqlTypes.SqlByte x, System.Data.SqlTypes.SqlByte y) { throw null; }
@@ -3832,18 +3705,19 @@ namespace System.Data.SqlTypes
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlDateTime : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
+        private int _dummy;
         public static readonly System.Data.SqlTypes.SqlDateTime MaxValue;
         public static readonly System.Data.SqlTypes.SqlDateTime MinValue;
         public static readonly System.Data.SqlTypes.SqlDateTime Null;
         public static readonly int SQLTicksPerHour;
         public static readonly int SQLTicksPerMinute;
         public static readonly int SQLTicksPerSecond;
-        public SqlDateTime(System.DateTime value) { throw null;}
-        public SqlDateTime(int dayTicks, int timeTicks) { throw null;}
-        public SqlDateTime(int year, int month, int day) { throw null;}
-        public SqlDateTime(int year, int month, int day, int hour, int minute, int second) { throw null;}
-        public SqlDateTime(int year, int month, int day, int hour, int minute, int second, double millisecond) { throw null;}
-        public SqlDateTime(int year, int month, int day, int hour, int minute, int second, int bilisecond) { throw null;}
+        public SqlDateTime(System.DateTime value) { throw null; }
+        public SqlDateTime(int dayTicks, int timeTicks) { throw null; }
+        public SqlDateTime(int year, int month, int day) { throw null; }
+        public SqlDateTime(int year, int month, int day, int hour, int minute, int second) { throw null; }
+        public SqlDateTime(int year, int month, int day, int hour, int minute, int second, double millisecond) { throw null; }
+        public SqlDateTime(int year, int month, int day, int hour, int minute, int second, int bilisecond) { throw null; }
         public int DayTicks { get { throw null; } }
         public bool IsNull { get { throw null; } }
         public int TimeTicks { get { throw null; } }
@@ -3883,17 +3757,18 @@ namespace System.Data.SqlTypes
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlDecimal : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
+        private int _dummy;
         public static readonly byte MaxPrecision;
         public static readonly byte MaxScale;
         public static readonly System.Data.SqlTypes.SqlDecimal MaxValue;
         public static readonly System.Data.SqlTypes.SqlDecimal MinValue;
         public static readonly System.Data.SqlTypes.SqlDecimal Null;
-        public SqlDecimal(byte bPrecision, byte bScale, bool fPositive, int data1, int data2, int data3, int data4) { throw null;}
-        public SqlDecimal(byte bPrecision, byte bScale, bool fPositive, int[] bits) { throw null;}
-        public SqlDecimal(decimal value) { throw null;}
-        public SqlDecimal(double dVal) { throw null;}
-        public SqlDecimal(int value) { throw null;}
-        public SqlDecimal(long value) { throw null;}
+        public SqlDecimal(byte bPrecision, byte bScale, bool fPositive, int data1, int data2, int data3, int data4) { throw null; }
+        public SqlDecimal(byte bPrecision, byte bScale, bool fPositive, int[] bits) { throw null; }
+        public SqlDecimal(decimal value) { throw null; }
+        public SqlDecimal(double dVal) { throw null; }
+        public SqlDecimal(int value) { throw null; }
+        public SqlDecimal(long value) { throw null; }
         public byte[] BinData { get { throw null; } }
         public int[] Data { get { throw null; } }
         public bool IsNull { get { throw null; } }
@@ -3969,11 +3844,12 @@ namespace System.Data.SqlTypes
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlDouble : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
+        private int _dummy;
         public static readonly System.Data.SqlTypes.SqlDouble MaxValue;
         public static readonly System.Data.SqlTypes.SqlDouble MinValue;
         public static readonly System.Data.SqlTypes.SqlDouble Null;
         public static readonly System.Data.SqlTypes.SqlDouble Zero;
-        public SqlDouble(double value) { throw null;}
+        public SqlDouble(double value) { throw null; }
         public bool IsNull { get { throw null; } }
         public double Value { get { throw null; } }
         public static System.Data.SqlTypes.SqlDouble Add(System.Data.SqlTypes.SqlDouble x, System.Data.SqlTypes.SqlDouble y) { throw null; }
@@ -4032,11 +3908,12 @@ namespace System.Data.SqlTypes
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlGuid : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
+        private object _dummy;
         public static readonly System.Data.SqlTypes.SqlGuid Null;
-        public SqlGuid(byte[] value) { throw null;}
-        public SqlGuid(System.Guid g) { throw null;}
-        public SqlGuid(int a, short b, short c, byte d, byte e, byte f, byte g, byte h, byte i, byte j, byte k) { throw null;}
-        public SqlGuid(string s) { throw null;}
+        public SqlGuid(byte[] value) { throw null; }
+        public SqlGuid(System.Guid g) { throw null; }
+        public SqlGuid(int a, short b, short c, byte d, byte e, byte f, byte g, byte h, byte i, byte j, byte k) { throw null; }
+        public SqlGuid(string s) { throw null; }
         public bool IsNull { get { throw null; } }
         public System.Guid Value { get { throw null; } }
         public int CompareTo(System.Data.SqlTypes.SqlGuid value) { throw null; }
@@ -4073,11 +3950,12 @@ namespace System.Data.SqlTypes
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlInt16 : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
+        private int _dummy;
         public static readonly System.Data.SqlTypes.SqlInt16 MaxValue;
         public static readonly System.Data.SqlTypes.SqlInt16 MinValue;
         public static readonly System.Data.SqlTypes.SqlInt16 Null;
         public static readonly System.Data.SqlTypes.SqlInt16 Zero;
-        public SqlInt16(short value) { throw null;}
+        public SqlInt16(short value) { throw null; }
         public bool IsNull { get { throw null; } }
         public short Value { get { throw null; } }
         public static System.Data.SqlTypes.SqlInt16 Add(System.Data.SqlTypes.SqlInt16 x, System.Data.SqlTypes.SqlInt16 y) { throw null; }
@@ -4147,11 +4025,12 @@ namespace System.Data.SqlTypes
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlInt32 : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
+        private int _dummy;
         public static readonly System.Data.SqlTypes.SqlInt32 MaxValue;
         public static readonly System.Data.SqlTypes.SqlInt32 MinValue;
         public static readonly System.Data.SqlTypes.SqlInt32 Null;
         public static readonly System.Data.SqlTypes.SqlInt32 Zero;
-        public SqlInt32(int value) { throw null;}
+        public SqlInt32(int value) { throw null; }
         public bool IsNull { get { throw null; } }
         public int Value { get { throw null; } }
         public static System.Data.SqlTypes.SqlInt32 Add(System.Data.SqlTypes.SqlInt32 x, System.Data.SqlTypes.SqlInt32 y) { throw null; }
@@ -4221,11 +4100,12 @@ namespace System.Data.SqlTypes
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlInt64 : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
+        private int _dummy;
         public static readonly System.Data.SqlTypes.SqlInt64 MaxValue;
         public static readonly System.Data.SqlTypes.SqlInt64 MinValue;
         public static readonly System.Data.SqlTypes.SqlInt64 Null;
         public static readonly System.Data.SqlTypes.SqlInt64 Zero;
-        public SqlInt64(long value) { throw null;}
+        public SqlInt64(long value) { throw null; }
         public bool IsNull { get { throw null; } }
         public long Value { get { throw null; } }
         public static System.Data.SqlTypes.SqlInt64 Add(System.Data.SqlTypes.SqlInt64 x, System.Data.SqlTypes.SqlInt64 y) { throw null; }
@@ -4295,14 +4175,15 @@ namespace System.Data.SqlTypes
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlMoney : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
+        private int _dummy;
         public static readonly System.Data.SqlTypes.SqlMoney MaxValue;
         public static readonly System.Data.SqlTypes.SqlMoney MinValue;
         public static readonly System.Data.SqlTypes.SqlMoney Null;
         public static readonly System.Data.SqlTypes.SqlMoney Zero;
-        public SqlMoney(decimal value) { throw null;}
-        public SqlMoney(double value) { throw null;}
-        public SqlMoney(int value) { throw null;}
-        public SqlMoney(long value) { throw null;}
+        public SqlMoney(decimal value) { throw null; }
+        public SqlMoney(double value) { throw null; }
+        public SqlMoney(int value) { throw null; }
+        public SqlMoney(long value) { throw null; }
         public bool IsNull { get { throw null; } }
         public decimal Value { get { throw null; } }
         public static System.Data.SqlTypes.SqlMoney Add(System.Data.SqlTypes.SqlMoney x, System.Data.SqlTypes.SqlMoney y) { throw null; }
@@ -4379,12 +4260,13 @@ namespace System.Data.SqlTypes
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlSingle : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
+        private int _dummy;
         public static readonly System.Data.SqlTypes.SqlSingle MaxValue;
         public static readonly System.Data.SqlTypes.SqlSingle MinValue;
         public static readonly System.Data.SqlTypes.SqlSingle Null;
         public static readonly System.Data.SqlTypes.SqlSingle Zero;
-        public SqlSingle(double value) { throw null;}
-        public SqlSingle(float value) { throw null;}
+        public SqlSingle(double value) { throw null; }
+        public SqlSingle(float value) { throw null; }
         public bool IsNull { get { throw null; } }
         public float Value { get { throw null; } }
         public static System.Data.SqlTypes.SqlSingle Add(System.Data.SqlTypes.SqlSingle x, System.Data.SqlTypes.SqlSingle y) { throw null; }
@@ -4443,6 +4325,7 @@ namespace System.Data.SqlTypes
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlString : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
+        private object _dummy;
         public static readonly int BinarySort;
         public static readonly int BinarySort2;
         public static readonly int IgnoreCase;
@@ -4450,13 +4333,13 @@ namespace System.Data.SqlTypes
         public static readonly int IgnoreNonSpace;
         public static readonly int IgnoreWidth;
         public static readonly System.Data.SqlTypes.SqlString Null;
-        public SqlString(int lcid, System.Data.SqlTypes.SqlCompareOptions compareOptions, byte[] data) { throw null;}
-        public SqlString(int lcid, System.Data.SqlTypes.SqlCompareOptions compareOptions, byte[] data, bool fUnicode) { throw null;}
-        public SqlString(int lcid, System.Data.SqlTypes.SqlCompareOptions compareOptions, byte[] data, int index, int count) { throw null;}
-        public SqlString(int lcid, System.Data.SqlTypes.SqlCompareOptions compareOptions, byte[] data, int index, int count, bool fUnicode) { throw null;}
-        public SqlString(string data) { throw null;}
-        public SqlString(string data, int lcid) { throw null;}
-        public SqlString(string data, int lcid, System.Data.SqlTypes.SqlCompareOptions compareOptions) { throw null;}
+        public SqlString(int lcid, System.Data.SqlTypes.SqlCompareOptions compareOptions, byte[] data) { throw null; }
+        public SqlString(int lcid, System.Data.SqlTypes.SqlCompareOptions compareOptions, byte[] data, bool fUnicode) { throw null; }
+        public SqlString(int lcid, System.Data.SqlTypes.SqlCompareOptions compareOptions, byte[] data, int index, int count) { throw null; }
+        public SqlString(int lcid, System.Data.SqlTypes.SqlCompareOptions compareOptions, byte[] data, int index, int count, bool fUnicode) { throw null; }
+        public SqlString(string data) { throw null; }
+        public SqlString(string data, int lcid) { throw null; }
+        public SqlString(string data, int lcid, System.Data.SqlTypes.SqlCompareOptions compareOptions) { throw null; }
         public System.Globalization.CompareInfo CompareInfo { get { throw null; } }
         public System.Globalization.CultureInfo CultureInfo { get { throw null; } }
         public bool IsNull { get { throw null; } }

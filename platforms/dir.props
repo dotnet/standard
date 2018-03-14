@@ -4,5 +4,6 @@
 
   <PropertyGroup>
     <IsReferenceAssembly>true</IsReferenceAssembly>
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
 </Project>

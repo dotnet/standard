@@ -23,6 +23,9 @@ namespace System.IO.Compression
         internal ZipArchiveEntry() { }
         public System.IO.Compression.ZipArchive Archive { get { throw null; } }
         public long CompressedLength { get { throw null; } }
+        [System.CLSCompliantAttribute(false)]
+        public uint Crc32 { get { throw null; } }
+        public int ExternalAttributes { get { throw null; } set { } }
         public string FullName { get { throw null; } }
         public System.DateTimeOffset LastWriteTime { get { throw null; } set { } }
         public long Length { get { throw null; } }

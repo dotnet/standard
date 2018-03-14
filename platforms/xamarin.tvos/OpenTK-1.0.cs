@@ -2,26 +2,12 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-namespace OpenTK
-{
-}
-namespace OpenTK.Audio
-{
-}
-namespace OpenTK.Graphics
-{
-}
-namespace OpenTK.Platform
-{
-}
-namespace OpenTK.Platform.iPhoneOS
-{
-}
 namespace System.Drawing
 {
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct Color
     {
+        private object _dummy;
         public static readonly System.Drawing.Color Empty;
         public byte A { get { throw null; } }
         public static System.Drawing.Color AliceBlue { get { throw null; } }

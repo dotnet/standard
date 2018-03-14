@@ -2,71 +2,12 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-namespace AVFoundation
-{
-}
-namespace ClockKit
-{
-}
-namespace CloudKit
-{
-}
-namespace Contacts
-{
-}
-namespace CoreData
-{
-}
-namespace CoreFoundation
-{
-}
-namespace CoreGraphics
-{
-}
-namespace CoreLocation
-{
-}
-namespace CoreText
-{
-}
-namespace Foundation
-{
-}
-namespace GameKit
-{
-}
-namespace HealthKit
-{
-}
-namespace HomeKit
-{
-}
-namespace Intents
-{
-}
-namespace MapKit
-{
-}
-namespace ObjCRuntime
-{
-}
-namespace PassKit
-{
-}
-namespace SceneKit
-{
-}
-namespace Security
-{
-}
-namespace SpriteKit
-{
-}
 namespace System.Drawing
 {
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct Color
     {
+        private object _dummy;
         public static readonly System.Drawing.Color Empty;
         public byte A { get { throw null; } }
         public static System.Drawing.Color AliceBlue { get { throw null; } }
@@ -415,10 +356,11 @@ namespace System.Drawing
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct Point
     {
+        private int _dummy;
         public static readonly System.Drawing.Point Empty;
-        public Point(System.Drawing.Size sz) { throw null;}
-        public Point(int dw) { throw null;}
-        public Point(int x, int y) { throw null;}
+        public Point(System.Drawing.Size sz) { throw null; }
+        public Point(int dw) { throw null; }
+        public Point(int x, int y) { throw null; }
         [System.ComponentModel.BrowsableAttribute(false)]
         public bool IsEmpty { get { throw null; } }
         public int X { get { throw null; } set { } }
@@ -443,8 +385,9 @@ namespace System.Drawing
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct PointF
     {
+        private int _dummy;
         public static readonly System.Drawing.PointF Empty;
-        public PointF(float x, float y) { throw null;}
+        public PointF(float x, float y) { throw null; }
         [System.ComponentModel.BrowsableAttribute(false)]
         public bool IsEmpty { get { throw null; } }
         public float X { get { throw null; } set { } }
@@ -466,9 +409,10 @@ namespace System.Drawing
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct Rectangle
     {
+        private int _dummy;
         public static readonly System.Drawing.Rectangle Empty;
-        public Rectangle(System.Drawing.Point location, System.Drawing.Size size) { throw null;}
-        public Rectangle(int x, int y, int width, int height) { throw null;}
+        public Rectangle(System.Drawing.Point location, System.Drawing.Size size) { throw null; }
+        public Rectangle(int x, int y, int width, int height) { throw null; }
         [System.ComponentModel.BrowsableAttribute(false)]
         public int Bottom { get { throw null; } }
         public int Height { get { throw null; } set { } }
@@ -512,9 +456,10 @@ namespace System.Drawing
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct RectangleF
     {
+        private int _dummy;
         public static readonly System.Drawing.RectangleF Empty;
-        public RectangleF(System.Drawing.PointF location, System.Drawing.SizeF size) { throw null;}
-        public RectangleF(float x, float y, float width, float height) { throw null;}
+        public RectangleF(System.Drawing.PointF location, System.Drawing.SizeF size) { throw null; }
+        public RectangleF(float x, float y, float width, float height) { throw null; }
         [System.ComponentModel.BrowsableAttribute(false)]
         public float Bottom { get { throw null; } }
         public float Height { get { throw null; } set { } }
@@ -556,9 +501,10 @@ namespace System.Drawing
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct Size
     {
+        private int _dummy;
         public static readonly System.Drawing.Size Empty;
-        public Size(System.Drawing.Point pt) { throw null;}
-        public Size(int width, int height) { throw null;}
+        public Size(System.Drawing.Point pt) { throw null; }
+        public Size(int width, int height) { throw null; }
         public int Height { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public bool IsEmpty { get { throw null; } }
@@ -581,10 +527,11 @@ namespace System.Drawing
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SizeF
     {
+        private int _dummy;
         public static readonly System.Drawing.SizeF Empty;
-        public SizeF(System.Drawing.PointF pt) { throw null;}
-        public SizeF(System.Drawing.SizeF size) { throw null;}
-        public SizeF(float width, float height) { throw null;}
+        public SizeF(System.Drawing.PointF pt) { throw null; }
+        public SizeF(System.Drawing.SizeF size) { throw null; }
+        public SizeF(float width, float height) { throw null; }
         public float Height { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public bool IsEmpty { get { throw null; } }
@@ -602,16 +549,4 @@ namespace System.Drawing
         public System.Drawing.Size ToSize() { throw null; }
         public override string ToString() { throw null; }
     }
-}
-namespace UIKit
-{
-}
-namespace UserNotifications
-{
-}
-namespace WatchConnectivity
-{
-}
-namespace WatchKit
-{
 }
