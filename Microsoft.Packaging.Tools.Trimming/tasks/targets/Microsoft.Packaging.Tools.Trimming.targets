@@ -65,6 +65,8 @@
                OtherRuntimeItems="@(_trimOtherRuntimeItems)"
                PreferNativeImages="$(TrimFilesPreferNativeImages)"
                TreatMetaPackagesAsTrimmable="$(TreatMetaPackagesAsTrimmable)"
+               TreatMultiPackagesAsTrimmable="$(TreatMultiPackagesAsTrimmable)"
+               TreatAllPackagesAsTrimmable="$(TreatAllPackagesAsTrimmable)"
                IncludeRelatedFiles="$(TrimFilesIncludeRelatedFiles)">
       <Output ItemName="_ReferenceCopyLocalPathsAfterTrimming" TaskParameter="RuntimeItemsAfterTrimming" />
       <Output ItemName="_ConflictPackageFiles" TaskParameter="TrimmedItems" />
@@ -91,6 +93,8 @@
                RuntimeItems="@(ResolvedAssembliesToPublish)"
                PreferNativeImages="$(TrimFilesPreferNativeImages)"
                TreatMetaPackagesAsTrimmable="$(TreatMetaPackagesAsTrimmable)"
+               TreatMultiPackagesAsTrimmable="$(TreatMultiPackagesAsTrimmable)"
+               TreatAllPackagesAsTrimmable="$(TreatAllPackagesAsTrimmable)"
                IncludeRelatedFiles="$(TrimFilesIncludeRelatedFiles)">
       <Output ItemName="_ResolvedAssembliesToPublishAfterTrimming" TaskParameter="RuntimeItemsAfterTrimming" />
       <Output ItemName="_PublishConflictPackageFiles" TaskParameter="TrimmedItems" />

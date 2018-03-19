@@ -43,6 +43,8 @@ In your project (*.csproj* file) make the following change.
 `$(RootPackageReference)` - Set to `false` to indicate that `PackageReferences` should not be considered as *[roots](#roots)*.  Default is `true`.
 `$(RootProjectReference)` - Set to `false` to indicate that `ProjectReferences` should not be considered as *[roots](#roots)*.  Default is `true`.
 `$(TreatMetaPackagesAsTrimmable)` - When set to `true` indicates that meta-packages (packages without any file assets) should be treated as *[trimmable](#trimmable)*.  Default is `true`.
+`$(TreatMultiPackagesAsTrimmable)` - When set to `true` indicates that multi-packages (packages with more than one file asset) should be treated as *[trimmable](#trimmable)* unless all files are included.  Default is `false`.
+`$(TreatAllPackagesAsTrimmable)` - When set to `true` indicates that all packages should be treated as *[trimmable](#trimmable)*.  Default is `false`.  Note that this has precedence over `TreatMetaPackagesAsTrimmable` and `TreatMultiPackagesAsTrimmable`.  Setting this to `true` effectively disables all package-graph walking so only static file-dependenices are considered.
 `$(TrimFilesIncludeRelatedFiles)` - When set to `true` indicates that related files will be included when the file they are related to is included.  Default is `true`. See [related files](#related-files)
 
 **Examples:**

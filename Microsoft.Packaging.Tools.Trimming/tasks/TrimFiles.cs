@@ -92,6 +92,16 @@ namespace Microsoft.DotNet.Build.Tasks
         public bool TreatMetaPackagesAsTrimmable { get; set; }
 
         /// <summary>
+        /// True to treat packages with more than one file as trimmable unless all files have been included.
+        /// </summary>
+        public bool TreatMultiPackagesAsTrimmable { get; set; }
+
+        /// <summary>
+        /// True to treat all packages as trimmable.
+        /// </summary>
+        public bool TreatAllPackagesAsTrimmable { get; set; }
+
+        /// <summary>
         /// True to include files that are associated via OriginalItemSpec relation (though not necessarily any other reference).
         /// </summary>
         public bool IncludeRelatedFiles { get; set; }
@@ -418,8 +428,10 @@ namespace Microsoft.DotNet.Build.Tasks
 
         private bool IsPackageTrimmable(NuGetPackageNode package)
         {
-            return trimmable.IsPackageTrimmable(package.Id) ||
-                (TreatMetaPackagesAsTrimmable && package.IsMetaPackage);
+            return TreatAllPackagesAsTrimmable || 
+                trimmable.IsPackageTrimmable(package.Id) ||
+                (TreatMetaPackagesAsTrimmable && package.IsMetaPackage) ||
+                (TreatMultiPackagesAsTrimmable && package.IsMultiPackage && package.Files.Any(f => !f.IsIncluded));
         }
 
         private static void IncludeNode<T>(Queue<T> queue, T node) where T : IIsIncluded
