@@ -106,6 +106,8 @@ namespace Microsoft.DotNet.Build.Tasks
         /// </summary>
         public bool IncludeRelatedFiles { get; set; }
 
+        public string DirectedGraphFile { get; set; }
+
         /// <summary>
         /// A subset of ReferenceCopyLocalPaths after trimming has been done.
         /// </summary>
@@ -138,7 +140,9 @@ namespace Microsoft.DotNet.Build.Tasks
 
             Queue<NuGetPackageNode> packageRoots = GetPackageRoots(packages, trimmable);
             Queue<FileNode> fileRoots = GetFileRoots(files, trimmable);
-            
+            var originalPackageRoots = packageRoots.ToArray();
+            var originalFileRoots = fileRoots.ToArray();
+
             while (packageRoots.Count > 0 || fileRoots.Count > 0)
             {
                 while (fileRoots.Count > 0)
@@ -185,6 +189,11 @@ namespace Microsoft.DotNet.Build.Tasks
             RuntimeItemsAfterTrimming = RuntimeItems.Except(excludedItems).ToArray();
 
             LogResults(files.Values);
+
+            if (!string.IsNullOrEmpty(DirectedGraphFile))
+            {
+                DirectedGraphWriter.WriteGraph(DirectedGraphFile, files.Values, packages.Values, originalFileRoots, originalPackageRoots);
+            }
 
             return !Log.HasLoggedErrors;
         }
@@ -310,8 +319,14 @@ namespace Microsoft.DotNet.Build.Tasks
                 var parentPackage = packageDepedency.GetMetadata("ParentPackage");
                 var childPackage = packageDepedency.ItemSpec;
 
-                var parentNode = GetOrCreatePackageNode(packages, parentPackage);
+
                 var childNode = GetOrCreatePackageNode(packages, childPackage);
+
+                var parentNode = GetOrCreatePackageNode(packages, parentPackage);
+                if (string.IsNullOrEmpty(parentPackage))
+                {
+                    continue;
+                }
 
                 parentNode.AddDependency(childNode);
             }

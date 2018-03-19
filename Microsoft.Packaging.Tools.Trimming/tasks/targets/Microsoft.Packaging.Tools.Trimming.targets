@@ -67,7 +67,8 @@
                TreatMetaPackagesAsTrimmable="$(TreatMetaPackagesAsTrimmable)"
                TreatMultiPackagesAsTrimmable="$(TreatMultiPackagesAsTrimmable)"
                TreatAllPackagesAsTrimmable="$(TreatAllPackagesAsTrimmable)"
-               IncludeRelatedFiles="$(TrimFilesIncludeRelatedFiles)">
+               IncludeRelatedFiles="$(TrimFilesIncludeRelatedFiles)"
+               DirectedGraphFile="$(TrimFilesDirectedGraphFile)">
       <Output ItemName="_ReferenceCopyLocalPathsAfterTrimming" TaskParameter="RuntimeItemsAfterTrimming" />
       <Output ItemName="_ConflictPackageFiles" TaskParameter="TrimmedItems" />
     </TrimFiles>
@@ -95,7 +96,8 @@
                TreatMetaPackagesAsTrimmable="$(TreatMetaPackagesAsTrimmable)"
                TreatMultiPackagesAsTrimmable="$(TreatMultiPackagesAsTrimmable)"
                TreatAllPackagesAsTrimmable="$(TreatAllPackagesAsTrimmable)"
-               IncludeRelatedFiles="$(TrimFilesIncludeRelatedFiles)">
+               IncludeRelatedFiles="$(TrimFilesIncludeRelatedFiles)"
+               DirectedGraphFile="$(TrimFilesDirectedGraphFile)">
       <Output ItemName="_ResolvedAssembliesToPublishAfterTrimming" TaskParameter="RuntimeItemsAfterTrimming" />
       <Output ItemName="_PublishConflictPackageFiles" TaskParameter="TrimmedItems" />
     </TrimFiles>
