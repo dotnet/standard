@@ -27,6 +27,7 @@ namespace Microsoft.DotNet.Build.Tasks
         public string Version { get; }
         public bool IsProject { get; }
         public bool IsMetaPackage { get { return Files.Count == 0; } }
+        public bool IsMultiPackage { get { return Files.Count > 1; } }
         public IEnumerable<NuGetPackageNode> Dependencies { get { return _dependencies; } }
         public IList<FileNode> Files { get; } = new List<FileNode>();
 

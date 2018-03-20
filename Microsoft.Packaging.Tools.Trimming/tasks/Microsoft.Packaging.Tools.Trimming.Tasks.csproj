@@ -17,6 +17,7 @@
   <ItemGroup>
     <Compile Include="Microsoft.NET.Build.Tasks\BuildErrorException.cs" />
     <Compile Include="Microsoft.NET.Build.Tasks\LockFileCache.cs" />
+    <Compile Include="DirectedGraphWriter.cs" />
     <Compile Include="ILog.cs" />
     <Compile Include="MSBuildLog.cs" />
     <Compile Include="NuGetUtilities.cs" />
@@ -70,6 +71,8 @@
     <TargetingPackReference Include="Microsoft.Build.Utilities.v4.0" />
     <TargetingPackReference Include="System.Runtime" />
     <TargetingPackReference Include="System.IO" />
+    <TargetingPackReference Include="System.Xml" />
+    <TargetingPackReference Include="System.Xml.Linq" />
     <PackageDestination Include="build/desktop" />
   </ItemGroup>
   <ItemGroup>

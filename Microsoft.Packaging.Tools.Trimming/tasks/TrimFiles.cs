@@ -92,9 +92,21 @@ namespace Microsoft.DotNet.Build.Tasks
         public bool TreatMetaPackagesAsTrimmable { get; set; }
 
         /// <summary>
+        /// True to treat packages with more than one file as trimmable unless all files have been included.
+        /// </summary>
+        public bool TreatMultiPackagesAsTrimmable { get; set; }
+
+        /// <summary>
+        /// True to treat all packages as trimmable.
+        /// </summary>
+        public bool TreatAllPackagesAsTrimmable { get; set; }
+
+        /// <summary>
         /// True to include files that are associated via OriginalItemSpec relation (though not necessarily any other reference).
         /// </summary>
         public bool IncludeRelatedFiles { get; set; }
+
+        public string DirectedGraphFile { get; set; }
 
         /// <summary>
         /// A subset of ReferenceCopyLocalPaths after trimming has been done.
@@ -128,7 +140,9 @@ namespace Microsoft.DotNet.Build.Tasks
 
             Queue<NuGetPackageNode> packageRoots = GetPackageRoots(packages, trimmable);
             Queue<FileNode> fileRoots = GetFileRoots(files, trimmable);
-            
+            var originalPackageRoots = packageRoots.ToArray();
+            var originalFileRoots = fileRoots.ToArray();
+
             while (packageRoots.Count > 0 || fileRoots.Count > 0)
             {
                 while (fileRoots.Count > 0)
@@ -175,6 +189,11 @@ namespace Microsoft.DotNet.Build.Tasks
             RuntimeItemsAfterTrimming = RuntimeItems.Except(excludedItems).ToArray();
 
             LogResults(files.Values);
+
+            if (!string.IsNullOrEmpty(DirectedGraphFile))
+            {
+                DirectedGraphWriter.WriteGraph(DirectedGraphFile, files.Values, packages.Values, originalFileRoots, originalPackageRoots);
+            }
 
             return !Log.HasLoggedErrors;
         }
@@ -300,8 +319,14 @@ namespace Microsoft.DotNet.Build.Tasks
                 var parentPackage = packageDepedency.GetMetadata("ParentPackage");
                 var childPackage = packageDepedency.ItemSpec;
 
-                var parentNode = GetOrCreatePackageNode(packages, parentPackage);
+
                 var childNode = GetOrCreatePackageNode(packages, childPackage);
+
+                var parentNode = GetOrCreatePackageNode(packages, parentPackage);
+                if (string.IsNullOrEmpty(parentPackage))
+                {
+                    continue;
+                }
 
                 parentNode.AddDependency(childNode);
             }
@@ -418,8 +443,10 @@ namespace Microsoft.DotNet.Build.Tasks
 
         private bool IsPackageTrimmable(NuGetPackageNode package)
         {
-            return trimmable.IsPackageTrimmable(package.Id) ||
-                (TreatMetaPackagesAsTrimmable && package.IsMetaPackage);
+            return TreatAllPackagesAsTrimmable || 
+                trimmable.IsPackageTrimmable(package.Id) ||
+                (TreatMetaPackagesAsTrimmable && package.IsMetaPackage) ||
+                (TreatMultiPackagesAsTrimmable && package.IsMultiPackage && package.Files.Any(f => !f.IsIncluded));
         }
 
         private static void IncludeNode<T>(Queue<T> queue, T node) where T : IIsIncluded

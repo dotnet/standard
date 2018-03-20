@@ -12,6 +12,21 @@
     <TreatMetaPackagesAsTrimmable Condition="'$(TreatMetaPackagesAsTrimmable)' == ''">true</TreatMetaPackagesAsTrimmable>
     <TrimFilesIncludeRelatedFiles Condition="'$(TrimFilesIncludeRelatedFiles)' == ''">true</TrimFilesIncludeRelatedFiles>
   </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <TrimFilesRootFiles>
+      <Visible>false</Visible>
+    </TrimFilesRootFiles>
+    <TrimFilesRootPackages>
+      <Visible>false</Visible>
+    </TrimFilesRootPackages>
+    <TrimmablePackages>
+      <Visible>false</Visible>
+    </TrimmablePackages>
+    <TrimmableFiles>
+      <Visible>false</Visible>
+    </TrimmableFiles>
+  </ItemDefinitionGroup>
   
   <Target Name="_determineTrimPackageInputs">
     <ItemGroup Condition="'$(RootPackageReference)' != 'false'">
@@ -65,7 +80,10 @@
                OtherRuntimeItems="@(_trimOtherRuntimeItems)"
                PreferNativeImages="$(TrimFilesPreferNativeImages)"
                TreatMetaPackagesAsTrimmable="$(TreatMetaPackagesAsTrimmable)"
-               IncludeRelatedFiles="$(TrimFilesIncludeRelatedFiles)">
+               TreatMultiPackagesAsTrimmable="$(TreatMultiPackagesAsTrimmable)"
+               TreatAllPackagesAsTrimmable="$(TreatAllPackagesAsTrimmable)"
+               IncludeRelatedFiles="$(TrimFilesIncludeRelatedFiles)"
+               DirectedGraphFile="$(TrimFilesDirectedGraphFile)">
       <Output ItemName="_ReferenceCopyLocalPathsAfterTrimming" TaskParameter="RuntimeItemsAfterTrimming" />
       <Output ItemName="_ConflictPackageFiles" TaskParameter="TrimmedItems" />
     </TrimFiles>
@@ -91,7 +109,10 @@
                RuntimeItems="@(ResolvedAssembliesToPublish)"
                PreferNativeImages="$(TrimFilesPreferNativeImages)"
                TreatMetaPackagesAsTrimmable="$(TreatMetaPackagesAsTrimmable)"
-               IncludeRelatedFiles="$(TrimFilesIncludeRelatedFiles)">
+               TreatMultiPackagesAsTrimmable="$(TreatMultiPackagesAsTrimmable)"
+               TreatAllPackagesAsTrimmable="$(TreatAllPackagesAsTrimmable)"
+               IncludeRelatedFiles="$(TrimFilesIncludeRelatedFiles)"
+               DirectedGraphFile="$(TrimFilesDirectedGraphFile)">
       <Output ItemName="_ResolvedAssembliesToPublishAfterTrimming" TaskParameter="RuntimeItemsAfterTrimming" />
       <Output ItemName="_PublishConflictPackageFiles" TaskParameter="TrimmedItems" />
     </TrimFiles>
