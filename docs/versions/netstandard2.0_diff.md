@@ -2,9 +2,54 @@
 
 [Overview](netstandard2.0.md) | [Previous](netstandard1.6_diff.md)
 
-***.NET Standard 2.0 is work in progress***
-
 ```diff
+ namespace Microsoft.Win32.SafeHandles {
++    public abstract class CriticalHandleMinusOneIsInvalid : CriticalHandle {
++        protected CriticalHandleMinusOneIsInvalid();
++        public override bool IsInvalid { get; }
++    }
++    public abstract class CriticalHandleZeroOrMinusOneIsInvalid : CriticalHandle {
++        protected CriticalHandleZeroOrMinusOneIsInvalid();
++        public override bool IsInvalid { get; }
++    }
+-    public sealed class SafeFileHandle : SafeHandle {
++    public sealed class SafeFileHandle : SafeHandleZeroOrMinusOneIsInvalid {
+-        public override bool IsInvalid { get; }
+
+     }
++    public abstract class SafeHandleMinusOneIsInvalid : SafeHandle {
++        protected SafeHandleMinusOneIsInvalid(bool ownsHandle);
++        public override bool IsInvalid { get; }
++    }
++    public abstract class SafeHandleZeroOrMinusOneIsInvalid : SafeHandle {
++        protected SafeHandleZeroOrMinusOneIsInvalid(bool ownsHandle);
++        public override bool IsInvalid { get; }
++    }
++    public sealed class SafeMemoryMappedFileHandle : SafeHandleZeroOrMinusOneIsInvalid {
++        protected override bool ReleaseHandle();
++    }
++    public sealed class SafeMemoryMappedViewHandle : SafeBuffer {
++        protected override bool ReleaseHandle();
++    }
++    public sealed class SafePipeHandle : SafeHandleZeroOrMinusOneIsInvalid {
++        public SafePipeHandle(IntPtr preexistingHandle, bool ownsHandle);
++        protected override bool ReleaseHandle();
++    }
++    public sealed class SafeProcessHandle : SafeHandleZeroOrMinusOneIsInvalid {
++        public SafeProcessHandle(IntPtr existingHandle, bool ownsHandle);
++        protected override bool ReleaseHandle();
++    }
+-    public sealed class SafeWaitHandle : SafeHandle {
++    public sealed class SafeWaitHandle : SafeHandleZeroOrMinusOneIsInvalid {
+-        public override bool IsInvalid { get; }
+
+     }
+-    public sealed class SafeX509ChainHandle : SafeHandle {
++    public sealed class SafeX509ChainHandle : SafeHandleZeroOrMinusOneIsInvalid {
+-        public override bool IsInvalid { get; }
+
+     }
+ }
  namespace System {
 +    public class AccessViolationException : SystemException {
 +        public AccessViolationException();
@@ -13,17 +58,13 @@
 +        public AccessViolationException(string message, Exception innerException);
 +    }
      public static class Activator {
++        public static object CreateInstance(Type type, object[] args, object[] activationAttributes);
 +        public static object CreateInstance(Type type, BindingFlags bindingAttr, Binder binder, object[] args, CultureInfo culture);
 +        public static object CreateInstance(Type type, BindingFlags bindingAttr, Binder binder, object[] args, CultureInfo culture, object[] activationAttributes);
-+        public static object CreateInstance(Type type, object[] args, object[] activationAttributes);
      }
      public class AggregateException : Exception {
 +        protected AggregateException(SerializationInfo info, StreamingContext context);
 +        public override void GetObjectData(SerializationInfo info, StreamingContext context);
-     }
-     public static class AppContext {
--        public static string TargetFrameworkName { get; }
--        public static object GetData(string name);
      }
 +    public sealed class AppDomain : MarshalByRefObject {
 +        public string BaseDirectory { get; }
@@ -40,6 +81,15 @@
 +        public TimeSpan MonitoringTotalProcessorTime { get; }
 +        public string RelativeSearchPath { get; }
 +        public bool ShadowCopyFiles { get; }
++        public event AssemblyLoadEventHandler AssemblyLoad;
++        public event ResolveEventHandler AssemblyResolve;
++        public event EventHandler DomainUnload;
++        public event EventHandler<FirstChanceExceptionEventArgs> FirstChanceException;
++        public event EventHandler ProcessExit;
++        public event ResolveEventHandler ReflectionOnlyAssemblyResolve;
++        public event ResolveEventHandler ResourceResolve;
++        public event ResolveEventHandler TypeResolve;
++        public event UnhandledExceptionEventHandler UnhandledException;
 +        public void AppendPrivatePath(string path);
 +        public string ApplyPolicy(string assemblyName);
 +        public void ClearPrivatePath();
@@ -59,9 +109,9 @@
 +        public Nullable<bool> IsCompatibilitySwitchSet(string value);
 +        public bool IsDefaultAppDomain();
 +        public bool IsFinalizingForUnload();
-+        public Assembly Load(AssemblyName assemblyRef);
 +        public Assembly Load(byte[] rawAssembly);
 +        public Assembly Load(byte[] rawAssembly, byte[] rawSymbolStore);
++        public Assembly Load(AssemblyName assemblyRef);
 +        public Assembly Load(string assemblyString);
 +        public Assembly[] ReflectionOnlyGetAssemblies();
 +        public void SetCachePath(string path);
@@ -73,15 +123,6 @@
 +        public void SetThreadPrincipal(IPrincipal principal);
 +        public override string ToString();
 +        public static void Unload(AppDomain domain);
-+        public event AssemblyLoadEventHandler AssemblyLoad;
-+        public event ResolveEventHandler AssemblyResolve;
-+        public event EventHandler DomainUnload;
-+        public event EventHandler<FirstChanceExceptionEventArgs> FirstChanceException;
-+        public event EventHandler ProcessExit;
-+        public event ResolveEventHandler ReflectionOnlyAssemblyResolve;
-+        public event ResolveEventHandler ResourceResolve;
-+        public event ResolveEventHandler TypeResolve;
-+        public event UnhandledExceptionEventHandler UnhandledException;
 +    }
 +    public class AppDomainUnloadedException : SystemException {
 +        public AppDomainUnloadedException();
@@ -105,12 +146,6 @@
 +        public ApplicationId Copy();
 +        public override bool Equals(object o);
 +        public override int GetHashCode();
-+        public override string ToString();
-+    }
-+    public sealed class ApplicationIdentity : ISerializable {
-+        public ApplicationIdentity(string applicationIdentityFullName);
-+        public string CodeBase { get; }
-+        public string FullName { get; }
 +        public override string ToString();
 +    }
 -    public class ArgumentException : Exception {
@@ -137,6 +172,14 @@
 +        public bool IsSynchronized { get; }
 +        public long LongLength { get; }
 +        public object SyncRoot { get; }
+-        bool System.Collections.ICollection.IsSynchronized { get; }
+
+-        object System.Collections.ICollection.SyncRoot { get; }
+
+-        bool System.Collections.IList.IsFixedSize { get; }
+
+-        bool System.Collections.IList.IsReadOnly { get; }
+
 +        public static ReadOnlyCollection<T> AsReadOnly<T>(T[] array);
 +        public static TOutput[] ConvertAll<TInput, TOutput>(TInput[] array, Converter<TInput, TOutput> converter);
 +        public static void Copy(Array sourceArray, Array destinationArray, long length);
@@ -168,12 +211,7 @@
 +        public AssemblyLoadEventArgs(Assembly loadedAssembly);
 +        public Assembly LoadedAssembly { get; }
 +    }
-+    public delegate void AssemblyLoadEventHandler(object sender, AssemblyLoadEventArgs args); {
-+        public AssemblyLoadEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, AssemblyLoadEventArgs args, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, AssemblyLoadEventArgs args);
-+    }
++    public delegate void AssemblyLoadEventHandler(object sender, AssemblyLoadEventArgs args);
      public abstract class Attribute {
 +        public virtual object TypeId { get; }
 +        public static Attribute GetCustomAttribute(Assembly element, Type attributeType);
@@ -221,14 +259,26 @@
 +        InsertLineBreaks = 1,
 +        None = 0,
 +    }
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct Boolean : IComparable, IComparable<bool>, IConvertible, IEquatable<bool> {
 +        public int CompareTo(object obj);
 +        public TypeCode GetTypeCode();
+-        int System.IComparable.CompareTo(object obj);
+
+-        TypeCode System.IConvertible.GetTypeCode();
+
+-        string System.IConvertible.ToString(IFormatProvider provider);
+
 +        public string ToString(IFormatProvider provider);
      }
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct Byte : IComparable, IComparable<byte>, IConvertible, IEquatable<byte>, IFormattable {
 +        public int CompareTo(object value);
 +        public TypeCode GetTypeCode();
+-        int System.IComparable.CompareTo(object value);
+
+-        TypeCode System.IConvertible.GetTypeCode();
+
      }
 +    public class CannotUnloadAppDomainException : SystemException {
 +        public CannotUnloadAppDomainException();
@@ -236,17 +286,25 @@
 +        public CannotUnloadAppDomainException(string message);
 +        public CannotUnloadAppDomainException(string message, Exception innerException);
 +    }
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct Char : IComparable, IComparable<char>, IConvertible, IEquatable<char> {
 +        public int CompareTo(object value);
 +        public TypeCode GetTypeCode();
-+        public static UnicodeCategory GetUnicodeCategory(char c);
++        public static UnicodeCategory GetUnicodeCategory(Char c);
 +        public static UnicodeCategory GetUnicodeCategory(string s, int index);
-+        public static char ToLower(char c, CultureInfo culture);
+-        int System.IComparable.CompareTo(object value);
+
+-        TypeCode System.IConvertible.GetTypeCode();
+
+-        string System.IConvertible.ToString(IFormatProvider provider);
+
++        public static Char ToLower(Char c, CultureInfo culture);
 +        public string ToString(IFormatProvider provider);
-+        public static char ToUpper(char c, CultureInfo culture);
++        public static Char ToUpper(Char c, CultureInfo culture);
      }
 +    public sealed class CharEnumerator : ICloneable, IDisposable, IEnumerator, IEnumerator<char> {
 +        public char Current { get; }
++        object System.Collections.IEnumerator.Current { get; }
 +        public object Clone();
 +        public void Dispose();
 +        public bool MoveNext();
@@ -349,16 +407,12 @@
 +        public static uint ToUInt32(DateTime value);
 +        public static ulong ToUInt64(DateTime value);
      }
-+    public delegate TOutput Converter<in TInput, out TOutput>(TInput input); {
-+        public Converter(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(TInput input, AsyncCallback callback, object @object);
-+        public virtual TOutput EndInvoke(IAsyncResult result);
-+        public virtual TOutput Invoke(TInput input);
-+    }
--    public sealed class DataMisalignedException : Exception {
-+    public sealed class DataMisalignedException : SystemException {
-     }
++    public delegate TOutput Converter<in TInput, out TOutput>(TInput input);
+-    public sealed class DataMisalignedException : Exception
++    public sealed class DataMisalignedException : SystemException
+-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Size=1)]
 -    public struct DateTime : IComparable, IComparable<DateTime>, IConvertible, IEquatable<DateTime>, IFormattable {
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Size=1)]
 +    public struct DateTime : IComparable, IComparable<DateTime>, IConvertible, IEquatable<DateTime>, IFormattable, ISerializable {
 +        public DateTime(int year, int month, int day, Calendar calendar);
 +        public DateTime(int year, int month, int day, int hour, int minute, int second, Calendar calendar);
@@ -367,33 +421,64 @@
 +        public int CompareTo(object value);
 +        public static DateTime FromOADate(double d);
 +        public TypeCode GetTypeCode();
+-        int System.IComparable.CompareTo(object value);
+
+-        TypeCode System.IConvertible.GetTypeCode();
+
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
 +        public string ToLongDateString();
 +        public string ToLongTimeString();
 +        public double ToOADate();
 +        public string ToShortDateString();
 +        public string ToShortTimeString();
      }
+-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Size=1)]
 -    public struct DateTimeOffset : IComparable, IComparable<DateTimeOffset>, IEquatable<DateTimeOffset>, IFormattable {
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Size=1)]
 +    public struct DateTimeOffset : IComparable, IComparable<DateTimeOffset>, IDeserializationCallback, IEquatable<DateTimeOffset>, IFormattable, ISerializable {
 +        public DateTimeOffset(int year, int month, int day, int hour, int minute, int second, int millisecond, Calendar calendar, TimeSpan offset);
++        void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
      }
 +    public sealed class DBNull : IConvertible, ISerializable {
 +        public static readonly DBNull Value;
 +        public void GetObjectData(SerializationInfo info, StreamingContext context);
 +        public TypeCode GetTypeCode();
++        bool System.IConvertible.ToBoolean(IFormatProvider provider);
++        byte System.IConvertible.ToByte(IFormatProvider provider);
++        char System.IConvertible.ToChar(IFormatProvider provider);
++        DateTime System.IConvertible.ToDateTime(IFormatProvider provider);
++        decimal System.IConvertible.ToDecimal(IFormatProvider provider);
++        double System.IConvertible.ToDouble(IFormatProvider provider);
++        short System.IConvertible.ToInt16(IFormatProvider provider);
++        int System.IConvertible.ToInt32(IFormatProvider provider);
++        long System.IConvertible.ToInt64(IFormatProvider provider);
++        sbyte System.IConvertible.ToSByte(IFormatProvider provider);
++        float System.IConvertible.ToSingle(IFormatProvider provider);
++        object System.IConvertible.ToType(Type type, IFormatProvider provider);
++        ushort System.IConvertible.ToUInt16(IFormatProvider provider);
++        uint System.IConvertible.ToUInt32(IFormatProvider provider);
++        ulong System.IConvertible.ToUInt64(IFormatProvider provider);
 +        public override string ToString();
 +        public string ToString(IFormatProvider provider);
 +    }
+-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 -    public struct Decimal : IComparable, IComparable<decimal>, IConvertible, IEquatable<decimal>, IFormattable {
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct Decimal : IComparable, IComparable<decimal>, IConvertible, IDeserializationCallback, IEquatable<decimal>, IFormattable {
 +        public int CompareTo(object value);
-+        public static decimal FromOACurrency(long cy);
++        public static Decimal FromOACurrency(long cy);
 +        public TypeCode GetTypeCode();
-+        public static decimal Round(decimal d);
-+        public static decimal Round(decimal d, int decimals);
-+        public static decimal Round(decimal d, int decimals, MidpointRounding mode);
-+        public static decimal Round(decimal d, MidpointRounding mode);
-+        public static long ToOACurrency(decimal value);
++        public static Decimal Round(Decimal d);
++        public static Decimal Round(Decimal d, int decimals);
++        public static Decimal Round(Decimal d, int decimals, MidpointRounding mode);
++        public static Decimal Round(Decimal d, MidpointRounding mode);
+-        int System.IComparable.CompareTo(object value);
+
+-        TypeCode System.IConvertible.GetTypeCode();
+
++        void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender);
++        public static long ToOACurrency(Decimal value);
      }
 -    public abstract class Delegate {
 +    public abstract class Delegate : ICloneable, ISerializable {
@@ -402,13 +487,13 @@
 +        public MethodInfo Method { get; }
 +        public virtual object Clone();
 +        protected virtual Delegate CombineImpl(Delegate d);
-+        public static Delegate CreateDelegate(Type type, MethodInfo method);
-+        public static Delegate CreateDelegate(Type type, MethodInfo method, bool throwOnBindFailure);
 +        public static Delegate CreateDelegate(Type type, object firstArgument, MethodInfo method);
 +        public static Delegate CreateDelegate(Type type, object firstArgument, MethodInfo method, bool throwOnBindFailure);
 +        public static Delegate CreateDelegate(Type type, object target, string method);
 +        public static Delegate CreateDelegate(Type type, object target, string method, bool ignoreCase);
 +        public static Delegate CreateDelegate(Type type, object target, string method, bool ignoreCase, bool throwOnBindFailure);
++        public static Delegate CreateDelegate(Type type, MethodInfo method);
++        public static Delegate CreateDelegate(Type type, MethodInfo method, bool throwOnBindFailure);
 +        public static Delegate CreateDelegate(Type type, Type target, string method);
 +        public static Delegate CreateDelegate(Type type, Type target, string method, bool ignoreCase);
 +        public static Delegate CreateDelegate(Type type, Type target, string method, bool ignoreCase, bool throwOnBindFailure);
@@ -423,9 +508,14 @@
      public class DllNotFoundException : TypeLoadException {
 +        protected DllNotFoundException(SerializationInfo info, StreamingContext context);
      }
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct Double : IComparable, IComparable<double>, IConvertible, IEquatable<double>, IFormattable {
 +        public int CompareTo(object value);
 +        public TypeCode GetTypeCode();
+-        int System.IComparable.CompareTo(object value);
+
+-        TypeCode System.IConvertible.GetTypeCode();
+
      }
 +    public class DuplicateWaitObjectException : ArgumentException {
 +        public DuplicateWaitObjectException();
@@ -442,6 +532,12 @@
 +    }
      public abstract class Enum : ValueType, IComparable, IConvertible, IFormattable {
 +        public TypeCode GetTypeCode();
+-        TypeCode System.IConvertible.GetTypeCode();
+
+-        string System.IConvertible.ToString(IFormatProvider provider);
+
+-        string System.IFormattable.ToString(string format, IFormatProvider provider);
+
 +        public static object ToObject(Type enumType, byte value);
 +        public static object ToObject(Type enumType, short value);
 +        public static object ToObject(Type enumType, int value);
@@ -454,6 +550,25 @@
 +        public string ToString(string format, IFormatProvider provider);
      }
      public static class Environment {
++        public static string CommandLine { get; }
++        public static string CurrentDirectory { get; set; }
++        public static int ExitCode { get; set; }
++        public static bool Is64BitOperatingSystem { get; }
++        public static bool Is64BitProcess { get; }
++        public static OperatingSystem OSVersion { get; }
++        public static string SystemDirectory { get; }
++        public static int SystemPageSize { get; }
++        public static string UserDomainName { get; }
++        public static bool UserInteractive { get; }
++        public static string UserName { get; }
++        public static Version Version { get; }
++        public static long WorkingSet { get; }
++        public static string GetEnvironmentVariable(string variable, EnvironmentVariableTarget target);
++        public static IDictionary GetEnvironmentVariables(EnvironmentVariableTarget target);
++        public static string GetFolderPath(Environment.SpecialFolder folder);
++        public static string GetFolderPath(Environment.SpecialFolder folder, Environment.SpecialFolderOption option);
++        public static string[] GetLogicalDrives();
++        public static void SetEnvironmentVariable(string variable, string value, EnvironmentVariableTarget target);
 +        public enum SpecialFolder {
 +            AdminTools = 48,
 +            ApplicationData = 26,
@@ -508,25 +623,6 @@
 +            DoNotVerify = 16384,
 +            None = 0,
 +        }
-+        public static string CommandLine { get; }
-+        public static string CurrentDirectory { get; set; }
-+        public static int ExitCode { get; set; }
-+        public static bool Is64BitOperatingSystem { get; }
-+        public static bool Is64BitProcess { get; }
-+        public static OperatingSystem OSVersion { get; }
-+        public static string SystemDirectory { get; }
-+        public static int SystemPageSize { get; }
-+        public static string UserDomainName { get; }
-+        public static bool UserInteractive { get; }
-+        public static string UserName { get; }
-+        public static Version Version { get; }
-+        public static long WorkingSet { get; }
-+        public static string GetEnvironmentVariable(string variable, EnvironmentVariableTarget target);
-+        public static IDictionary GetEnvironmentVariables(EnvironmentVariableTarget target);
-+        public static string GetFolderPath(Environment.SpecialFolder folder);
-+        public static string GetFolderPath(Environment.SpecialFolder folder, Environment.SpecialFolderOption option);
-+        public static string[] GetLogicalDrives();
-+        public static void SetEnvironmentVariable(string variable, string value, EnvironmentVariableTarget target);
      }
 +    public enum EnvironmentVariableTarget {
 +        Machine = 2,
@@ -537,9 +633,9 @@
 +    public class Exception : ISerializable {
 +        protected Exception(SerializationInfo info, StreamingContext context);
 +        public MethodBase TargetSite { get; }
++        protected event EventHandler<SafeSerializationEventArgs> SerializeObjectState;
 +        public virtual void GetObjectData(SerializationInfo info, StreamingContext context);
 +        public new Type GetType();
-+        protected event EventHandler<SafeSerializationEventArgs> SerializeObjectState;
      }
 +    public sealed class ExecutionEngineException : SystemException {
 +        public ExecutionEngineException();
@@ -601,8 +697,13 @@
 +    public class GopherStyleUriParser : UriParser {
 +        public GopherStyleUriParser();
 +    }
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct Guid : IComparable, IComparable<Guid>, IEquatable<Guid>, IFormattable {
 +        public int CompareTo(object value);
+-        int System.IComparable.CompareTo(object value);
+
+-        string System.IFormattable.ToString(string format, IFormatProvider provider);
+
 +        public string ToString(string format, IFormatProvider provider);
      }
 +    public class HttpStyleUriParser : UriParser {
@@ -611,31 +712,47 @@
 +    public interface ICloneable {
 +        object Clone();
 +    }
--    public sealed class IndexOutOfRangeException : Exception {
-+    public sealed class IndexOutOfRangeException : SystemException {
-     }
--    public sealed class InsufficientExecutionStackException : Exception {
-+    public sealed class InsufficientExecutionStackException : SystemException {
-     }
+-    public sealed class IndexOutOfRangeException : Exception
++    public sealed class IndexOutOfRangeException : SystemException
+-    public sealed class InsufficientExecutionStackException : Exception
++    public sealed class InsufficientExecutionStackException : SystemException
 +    public sealed class InsufficientMemoryException : OutOfMemoryException {
 +        public InsufficientMemoryException();
 +        public InsufficientMemoryException(string message);
 +        public InsufficientMemoryException(string message, Exception innerException);
 +    }
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct Int16 : IComparable, IComparable<short>, IConvertible, IEquatable<short>, IFormattable {
 +        public int CompareTo(object value);
 +        public TypeCode GetTypeCode();
+-        int System.IComparable.CompareTo(object value);
+
+-        TypeCode System.IConvertible.GetTypeCode();
+
      }
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct Int32 : IComparable, IComparable<int>, IConvertible, IEquatable<int>, IFormattable {
-+        public int CompareTo(object value);
++        public Int32 CompareTo(object value);
 +        public TypeCode GetTypeCode();
+-        Int32 System.IComparable.CompareTo(object value);
+
+-        TypeCode System.IConvertible.GetTypeCode();
+
      }
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct Int64 : IComparable, IComparable<long>, IConvertible, IEquatable<long>, IFormattable {
 +        public int CompareTo(object value);
 +        public TypeCode GetTypeCode();
+-        int System.IComparable.CompareTo(object value);
+
+-        TypeCode System.IConvertible.GetTypeCode();
+
      }
+-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 -    public struct IntPtr {
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct IntPtr : ISerializable {
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
      }
 -    public class InvalidCastException : Exception {
 +    public class InvalidCastException : SystemException {
@@ -645,9 +762,8 @@
 +    public class InvalidOperationException : SystemException {
 +        protected InvalidOperationException(SerializationInfo info, StreamingContext context);
      }
--    public sealed class InvalidProgramException : Exception {
-+    public sealed class InvalidProgramException : SystemException {
-     }
+-    public sealed class InvalidProgramException : Exception
++    public sealed class InvalidProgramException : SystemException
      public class InvalidTimeZoneException : Exception {
 +        protected InvalidTimeZoneException(SerializationInfo info, StreamingContext context);
      }
@@ -696,9 +812,9 @@
      }
 -    public class MissingMemberException : MemberAccessException {
 +    public class MissingMemberException : MemberAccessException, ISerializable {
++        protected byte[] Signature;
 +        protected string ClassName;
 +        protected string MemberName;
-+        protected byte[] Signature;
 +        protected MissingMemberException(SerializationInfo info, StreamingContext context);
 +        public MissingMemberException(string className, string memberName);
 +        public override void GetObjectData(SerializationInfo info, StreamingContext context);
@@ -708,6 +824,7 @@
 +        protected MissingMethodException(SerializationInfo info, StreamingContext context);
 +        public MissingMethodException(string className, string methodName);
      }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct ModuleHandle {
 +        public static readonly ModuleHandle EmptyHandle;
 +        public int MDStreamVersion { get; }
@@ -821,39 +938,52 @@
 +        public string Name { get; }
 +        public Assembly RequestingAssembly { get; }
 +    }
-+    public delegate Assembly ResolveEventHandler(object sender, ResolveEventArgs args); {
-+        public ResolveEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, ResolveEventArgs args, AsyncCallback callback, object @object);
-+        public virtual Assembly EndInvoke(IAsyncResult result);
-+        public virtual Assembly Invoke(object sender, ResolveEventArgs args);
-+    }
++    public delegate Assembly ResolveEventHandler(object sender, ResolveEventArgs args);
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
++    public struct RuntimeArgumentHandle
+-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 -    public struct RuntimeFieldHandle {
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct RuntimeFieldHandle : ISerializable {
 +        public IntPtr Value { get; }
 +        public void GetObjectData(SerializationInfo info, StreamingContext context);
      }
+-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 -    public struct RuntimeMethodHandle {
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct RuntimeMethodHandle : ISerializable {
 +        public IntPtr Value { get; }
 +        public IntPtr GetFunctionPointer();
 +        public void GetObjectData(SerializationInfo info, StreamingContext context);
      }
+-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 -    public struct RuntimeTypeHandle {
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct RuntimeTypeHandle : ISerializable {
 +        public IntPtr Value { get; }
 +        public ModuleHandle GetModuleHandle();
 +        public void GetObjectData(SerializationInfo info, StreamingContext context);
      }
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct SByte : IComparable, IComparable<sbyte>, IConvertible, IEquatable<sbyte>, IFormattable {
 +        public int CompareTo(object obj);
 +        public TypeCode GetTypeCode();
+-        int System.IComparable.CompareTo(object obj);
+
+-        TypeCode System.IConvertible.GetTypeCode();
+
      }
 +    public sealed class SerializableAttribute : Attribute {
 +        public SerializableAttribute();
 +    }
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct Single : IComparable, IComparable<float>, IConvertible, IEquatable<float>, IFormattable {
 +        public int CompareTo(object value);
 +        public TypeCode GetTypeCode();
+-        int System.IComparable.CompareTo(object value);
+
+-        TypeCode System.IConvertible.GetTypeCode();
+
      }
 +    public sealed class StackOverflowException : SystemException {
 +        public StackOverflowException();
@@ -866,26 +996,32 @@
 +        public unsafe String(sbyte* value, int startIndex, int length);
 +        public unsafe String(sbyte* value, int startIndex, int length, Encoding enc);
 +        public object Clone();
-+        public static int Compare(string strA, int indexA, string strB, int indexB, int length, bool ignoreCase);
-+        public static int Compare(string strA, int indexA, string strB, int indexB, int length, bool ignoreCase, CultureInfo culture);
-+        public static int Compare(string strA, int indexA, string strB, int indexB, int length, CultureInfo culture, CompareOptions options);
-+        public static int Compare(string strA, string strB, bool ignoreCase, CultureInfo culture);
-+        public static int Compare(string strA, string strB, CultureInfo culture, CompareOptions options);
++        public static int Compare(String strA, int indexA, String strB, int indexB, int length, bool ignoreCase);
++        public static int Compare(String strA, int indexA, String strB, int indexB, int length, bool ignoreCase, CultureInfo culture);
++        public static int Compare(String strA, int indexA, String strB, int indexB, int length, CultureInfo culture, CompareOptions options);
++        public static int Compare(String strA, String strB, bool ignoreCase, CultureInfo culture);
++        public static int Compare(String strA, String strB, CultureInfo culture, CompareOptions options);
 +        public int CompareTo(object value);
-+        public static string Copy(string str);
-+        public bool EndsWith(string value, bool ignoreCase, CultureInfo culture);
++        public static String Copy(String str);
++        public bool EndsWith(String value, bool ignoreCase, CultureInfo culture);
 +        public CharEnumerator GetEnumerator();
 +        public TypeCode GetTypeCode();
-+        public static string Intern(string str);
-+        public static string IsInterned(string str);
++        public static String Intern(String str);
++        public static String IsInterned(String str);
 +        public bool IsNormalized();
 +        public bool IsNormalized(NormalizationForm normalizationForm);
-+        public string Normalize();
-+        public string Normalize(NormalizationForm normalizationForm);
-+        public bool StartsWith(string value, bool ignoreCase, CultureInfo culture);
-+        public string ToLower(CultureInfo culture);
-+        public string ToString(IFormatProvider provider);
-+        public string ToUpper(CultureInfo culture);
++        public String Normalize();
++        public String Normalize(NormalizationForm normalizationForm);
++        public bool StartsWith(String value, bool ignoreCase, CultureInfo culture);
+-        int System.IComparable.CompareTo(object value);
+
+-        TypeCode System.IConvertible.GetTypeCode();
+
+-        String System.IConvertible.ToString(IFormatProvider provider);
+
++        public String ToLower(CultureInfo culture);
++        public String ToString(IFormatProvider provider);
++        public String ToUpper(CultureInfo culture);
      }
      public abstract class StringComparer : IComparer, IComparer<string>, IEqualityComparer, IEqualityComparer<string> {
 +        public static StringComparer InvariantCulture { get; }
@@ -894,11 +1030,23 @@
 +        public static StringComparer Create(CultureInfo culture, bool ignoreCase);
 +        public new bool Equals(object x, object y);
 +        public int GetHashCode(object obj);
+-        int System.Collections.IComparer.Compare(object x, object y);
+
+-        bool System.Collections.IEqualityComparer.Equals(object x, object y);
+
+-        int System.Collections.IEqualityComparer.GetHashCode(object obj);
+
      }
      public enum StringComparison {
 +        InvariantCulture = 2,
 +        InvariantCultureIgnoreCase = 3,
      }
++    public static class StringNormalizationExtensions {
++        public static bool IsNormalized(this string value);
++        public static bool IsNormalized(this string value, NormalizationForm normalizationForm);
++        public static string Normalize(this string value);
++        public static string Normalize(this string value, NormalizationForm normalizationForm);
++    }
 +    public class SystemException : Exception {
 +        public SystemException();
 +        protected SystemException(SerializationInfo info, StreamingContext context);
@@ -909,8 +1057,11 @@
 +    public class TimeoutException : SystemException {
 +        protected TimeoutException(SerializationInfo info, StreamingContext context);
      }
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct TimeSpan : IComparable, IComparable<TimeSpan>, IEquatable<TimeSpan>, IFormattable {
 +        public int CompareTo(object value);
+-        int System.IComparable.CompareTo(object value);
+
      }
 +    public abstract class TimeZone {
 +        protected TimeZone();
@@ -926,31 +1077,6 @@
 +    }
 -    public sealed class TimeZoneInfo : IEquatable<TimeZoneInfo> {
 +    public sealed class TimeZoneInfo : IDeserializationCallback, IEquatable<TimeZoneInfo>, ISerializable {
-+        public sealed class AdjustmentRule : IDeserializationCallback, IEquatable<TimeZoneInfo.AdjustmentRule>, ISerializable {
-+            public DateTime DateEnd { get; }
-+            public DateTime DateStart { get; }
-+            public TimeSpan DaylightDelta { get; }
-+            public TimeZoneInfo.TransitionTime DaylightTransitionEnd { get; }
-+            public TimeZoneInfo.TransitionTime DaylightTransitionStart { get; }
-+            public static TimeZoneInfo.AdjustmentRule CreateAdjustmentRule(DateTime dateStart, DateTime dateEnd, TimeSpan daylightDelta, TimeZoneInfo.TransitionTime daylightTransitionStart, TimeZoneInfo.TransitionTime daylightTransitionEnd);
-+            public bool Equals(TimeZoneInfo.AdjustmentRule other);
-+            public override int GetHashCode();
-+        }
-+        public struct TransitionTime : IDeserializationCallback, IEquatable<TimeZoneInfo.TransitionTime>, ISerializable {
-+            public int Day { get; }
-+            public DayOfWeek DayOfWeek { get; }
-+            public bool IsFixedDateRule { get; }
-+            public int Month { get; }
-+            public DateTime TimeOfDay { get; }
-+            public int Week { get; }
-+            public static TimeZoneInfo.TransitionTime CreateFixedDateRule(DateTime timeOfDay, int month, int day);
-+            public static TimeZoneInfo.TransitionTime CreateFloatingDateRule(DateTime timeOfDay, int month, int week, DayOfWeek dayOfWeek);
-+            public override bool Equals(object obj);
-+            public bool Equals(TimeZoneInfo.TransitionTime other);
-+            public override int GetHashCode();
-+            public static bool operator ==(TimeZoneInfo.TransitionTime t1, TimeZoneInfo.TransitionTime t2);
-+            public static bool operator !=(TimeZoneInfo.TransitionTime t1, TimeZoneInfo.TransitionTime t2);
-+        }
 +        public static void ClearCachedData();
 +        public static DateTime ConvertTimeBySystemTimeZoneId(DateTime dateTime, string destinationTimeZoneId);
 +        public static DateTime ConvertTimeBySystemTimeZoneId(DateTime dateTime, string sourceTimeZoneId, string destinationTimeZoneId);
@@ -965,13 +1091,110 @@
 +        public static TimeZoneInfo FromSerializedString(string source);
 +        public TimeZoneInfo.AdjustmentRule[] GetAdjustmentRules();
 +        public bool HasSameRules(TimeZoneInfo other);
++        void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
 +        public string ToSerializedString();
++        public sealed class AdjustmentRule : IDeserializationCallback, IEquatable<TimeZoneInfo.AdjustmentRule>, ISerializable {
++            public DateTime DateEnd { get; }
++            public DateTime DateStart { get; }
++            public TimeSpan DaylightDelta { get; }
++            public TimeZoneInfo.TransitionTime DaylightTransitionEnd { get; }
++            public TimeZoneInfo.TransitionTime DaylightTransitionStart { get; }
++            public static TimeZoneInfo.AdjustmentRule CreateAdjustmentRule(DateTime dateStart, DateTime dateEnd, TimeSpan daylightDelta, TimeZoneInfo.TransitionTime daylightTransitionStart, TimeZoneInfo.TransitionTime daylightTransitionEnd);
++            public bool Equals(TimeZoneInfo.AdjustmentRule other);
++            public override int GetHashCode();
++            void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender);
++            void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
++        }
++        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
++        public struct TransitionTime : IDeserializationCallback, IEquatable<TimeZoneInfo.TransitionTime>, ISerializable {
++            public int Day { get; }
++            public DayOfWeek DayOfWeek { get; }
++            public bool IsFixedDateRule { get; }
++            public int Month { get; }
++            public DateTime TimeOfDay { get; }
++            public int Week { get; }
++            public static TimeZoneInfo.TransitionTime CreateFixedDateRule(DateTime timeOfDay, int month, int day);
++            public static TimeZoneInfo.TransitionTime CreateFloatingDateRule(DateTime timeOfDay, int month, int week, DayOfWeek dayOfWeek);
++            public override bool Equals(object obj);
++            public bool Equals(TimeZoneInfo.TransitionTime other);
++            public override int GetHashCode();
++            public static bool operator ==(TimeZoneInfo.TransitionTime t1, TimeZoneInfo.TransitionTime t2);
++            public static bool operator !=(TimeZoneInfo.TransitionTime t1, TimeZoneInfo.TransitionTime t2);
++            void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender);
++            void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
++        }
      }
 +    public class TimeZoneNotFoundException : Exception {
 +        public TimeZoneNotFoundException();
 +        protected TimeZoneNotFoundException(SerializationInfo info, StreamingContext context);
 +        public TimeZoneNotFoundException(string message);
 +        public TimeZoneNotFoundException(string message, Exception innerException);
++    }
++    public static class TupleExtensions {
++        public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16, T17, T18, T19, T20, T21>>> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5, out T6 item6, out T7 item7, out T8 item8, out T9 item9, out T10 item10, out T11 item11, out T12 item12, out T13 item13, out T14 item14, out T15 item15, out T16 item16, out T17 item17, out T18 item18, out T19 item19, out T20 item20, out T21 item21);
++        public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16, T17, T18, T19, T20>>> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5, out T6 item6, out T7 item7, out T8 item8, out T9 item9, out T10 item10, out T11 item11, out T12 item12, out T13 item13, out T14 item14, out T15 item15, out T16 item16, out T17 item17, out T18 item18, out T19 item19, out T20 item20);
++        public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16, T17, T18, T19>>> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5, out T6 item6, out T7 item7, out T8 item8, out T9 item9, out T10 item10, out T11 item11, out T12 item12, out T13 item13, out T14 item14, out T15 item15, out T16 item16, out T17 item17, out T18 item18, out T19 item19);
++        public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16, T17, T18>>> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5, out T6 item6, out T7 item7, out T8 item8, out T9 item9, out T10 item10, out T11 item11, out T12 item12, out T13 item13, out T14 item14, out T15 item15, out T16 item16, out T17 item17, out T18 item18);
++        public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16, T17>>> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5, out T6 item6, out T7 item7, out T8 item8, out T9 item9, out T10 item10, out T11 item11, out T12 item12, out T13 item13, out T14 item14, out T15 item15, out T16 item16, out T17 item17);
++        public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16>>> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5, out T6 item6, out T7 item7, out T8 item8, out T9 item9, out T10 item10, out T11 item11, out T12 item12, out T13 item13, out T14 item14, out T15 item15, out T16 item16);
++        public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15>>> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5, out T6 item6, out T7 item7, out T8 item8, out T9 item9, out T10 item10, out T11 item11, out T12 item12, out T13 item13, out T14 item14, out T15 item15);
++        public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14>> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5, out T6 item6, out T7 item7, out T8 item8, out T9 item9, out T10 item10, out T11 item11, out T12 item12, out T13 item13, out T14 item14);
++        public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13>> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5, out T6 item6, out T7 item7, out T8 item8, out T9 item9, out T10 item10, out T11 item11, out T12 item12, out T13 item13);
++        public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12>> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5, out T6 item6, out T7 item7, out T8 item8, out T9 item9, out T10 item10, out T11 item11, out T12 item12);
++        public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11>> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5, out T6 item6, out T7 item7, out T8 item8, out T9 item9, out T10 item10, out T11 item11);
++        public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10>> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5, out T6 item6, out T7 item7, out T8 item8, out T9 item9, out T10 item10);
++        public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7, T8, T9>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9>> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5, out T6 item6, out T7 item7, out T8 item8, out T9 item9);
++        public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7, T8>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8>> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5, out T6 item6, out T7 item7, out T8 item8);
++        public static void Deconstruct<T1, T2, T3, T4, T5, T6, T7>(this Tuple<T1, T2, T3, T4, T5, T6, T7> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5, out T6 item6, out T7 item7);
++        public static void Deconstruct<T1, T2, T3, T4, T5, T6>(this Tuple<T1, T2, T3, T4, T5, T6> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5, out T6 item6);
++        public static void Deconstruct<T1, T2, T3, T4, T5>(this Tuple<T1, T2, T3, T4, T5> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4, out T5 item5);
++        public static void Deconstruct<T1, T2, T3, T4>(this Tuple<T1, T2, T3, T4> value, out T1 item1, out T2 item2, out T3 item3, out T4 item4);
++        public static void Deconstruct<T1, T2, T3>(this Tuple<T1, T2, T3> value, out T1 item1, out T2 item2, out T3 item3);
++        public static void Deconstruct<T1, T2>(this Tuple<T1, T2> value, out T1 item1, out T2 item2);
++        public static void Deconstruct<T1>(this Tuple<T1> value, out T1 item1);
++        public static Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16, T17, T18, T19, T20, T21>>> ToTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21>(this ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13, T14, ValueTuple<T15, T16, T17, T18, T19, T20, T21>>> value);
++        public static Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16, T17, T18, T19, T20>>> ToTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20>(this ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13, T14, ValueTuple<T15, T16, T17, T18, T19, T20>>> value);
++        public static Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16, T17, T18, T19>>> ToTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19>(this ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13, T14, ValueTuple<T15, T16, T17, T18, T19>>> value);
++        public static Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16, T17, T18>>> ToTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18>(this ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13, T14, ValueTuple<T15, T16, T17, T18>>> value);
++        public static Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16, T17>>> ToTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17>(this ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13, T14, ValueTuple<T15, T16, T17>>> value);
++        public static Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16>>> ToTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(this ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13, T14, ValueTuple<T15, T16>>> value);
++        public static Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15>>> ToTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(this ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13, T14, ValueTuple<T15>>> value);
++        public static Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14>> ToTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(this ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13, T14>> value);
++        public static Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13>> ToTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(this ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13>> value);
++        public static Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12>> ToTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(this ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12>> value);
++        public static Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11>> ToTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(this ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11>> value);
++        public static Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10>> ToTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(this ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10>> value);
++        public static Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9>> ToTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9>(this ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9>> value);
++        public static Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8>> ToTuple<T1, T2, T3, T4, T5, T6, T7, T8>(this ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8>> value);
++        public static Tuple<T1, T2, T3, T4, T5, T6, T7> ToTuple<T1, T2, T3, T4, T5, T6, T7>(this ValueTuple<T1, T2, T3, T4, T5, T6, T7> value);
++        public static Tuple<T1, T2, T3, T4, T5, T6> ToTuple<T1, T2, T3, T4, T5, T6>(this ValueTuple<T1, T2, T3, T4, T5, T6> value);
++        public static Tuple<T1, T2, T3, T4, T5> ToTuple<T1, T2, T3, T4, T5>(this ValueTuple<T1, T2, T3, T4, T5> value);
++        public static Tuple<T1, T2, T3, T4> ToTuple<T1, T2, T3, T4>(this ValueTuple<T1, T2, T3, T4> value);
++        public static Tuple<T1, T2, T3> ToTuple<T1, T2, T3>(this ValueTuple<T1, T2, T3> value);
++        public static Tuple<T1, T2> ToTuple<T1, T2>(this ValueTuple<T1, T2> value);
++        public static Tuple<T1> ToTuple<T1>(this ValueTuple<T1> value);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13, T14, ValueTuple<T15, T16, T17, T18, T19, T20, T21>>> ToValueTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16, T17, T18, T19, T20, T21>>> value);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13, T14, ValueTuple<T15, T16, T17, T18, T19, T20>>> ToValueTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16, T17, T18, T19, T20>>> value);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13, T14, ValueTuple<T15, T16, T17, T18, T19>>> ToValueTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16, T17, T18, T19>>> value);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13, T14, ValueTuple<T15, T16, T17, T18>>> ToValueTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16, T17, T18>>> value);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13, T14, ValueTuple<T15, T16, T17>>> ToValueTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16, T17>>> value);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13, T14, ValueTuple<T15, T16>>> ToValueTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15, T16>>> value);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13, T14, ValueTuple<T15>>> ToValueTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14, Tuple<T15>>> value);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13, T14>> ToValueTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13, T14>> value);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12, T13>> ToValueTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12, T13>> value);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11, T12>> ToValueTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11, T12>> value);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10, T11>> ToValueTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10, T11>> value);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9, T10>> ToValueTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9, T10>> value);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8, T9>> ToValueTuple<T1, T2, T3, T4, T5, T6, T7, T8, T9>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8, T9>> value);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8>> ToValueTuple<T1, T2, T3, T4, T5, T6, T7, T8>(this Tuple<T1, T2, T3, T4, T5, T6, T7, Tuple<T8>> value);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7> ToValueTuple<T1, T2, T3, T4, T5, T6, T7>(this Tuple<T1, T2, T3, T4, T5, T6, T7> value);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6> ToValueTuple<T1, T2, T3, T4, T5, T6>(this Tuple<T1, T2, T3, T4, T5, T6> value);
++        public static ValueTuple<T1, T2, T3, T4, T5> ToValueTuple<T1, T2, T3, T4, T5>(this Tuple<T1, T2, T3, T4, T5> value);
++        public static ValueTuple<T1, T2, T3, T4> ToValueTuple<T1, T2, T3, T4>(this Tuple<T1, T2, T3, T4> value);
++        public static ValueTuple<T1, T2, T3> ToValueTuple<T1, T2, T3>(this Tuple<T1, T2, T3> value);
++        public static ValueTuple<T1, T2> ToValueTuple<T1, T2>(this Tuple<T1, T2> value);
++        public static ValueTuple<T1> ToValueTuple<T1>(this Tuple<T1> value);
 +    }
 -    public abstract class Type {
 +    public abstract class Type : MemberInfo, IReflect {
@@ -1039,6 +1262,7 @@
 +        public override MemberTypes MemberType { get; }
 +        public abstract new Module Module { get; }
 -        public abstract string Name { get; }
+
 +        public override Type ReflectedType { get; }
 +        public virtual StructLayoutAttribute StructLayoutAttribute { get; }
 +        public ConstructorInfo TypeInitializer { get; }
@@ -1157,6 +1381,16 @@
      public enum TypeCode {
 +        DBNull = 2,
      }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
++    public struct TypedReference {
++        public override bool Equals(object o);
++        public override int GetHashCode();
++        public static Type GetTargetType(TypedReference value);
++        public static TypedReference MakeTypedReference(object target, FieldInfo[] flds);
++        public static void SetTypedReference(TypedReference target, object value);
++        public static RuntimeTypeHandle TargetTypeToken(TypedReference value);
++        public static object ToObject(TypedReference value);
++    }
 -    public sealed class TypeInitializationException : Exception {
 +    public sealed class TypeInitializationException : SystemException {
 +        public override void GetObjectData(SerializationInfo info, StreamingContext context);
@@ -1172,20 +1406,38 @@
 +        public TypeUnloadedException(string message);
 +        public TypeUnloadedException(string message, Exception innerException);
 +    }
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct UInt16 : IComparable, IComparable<ushort>, IConvertible, IEquatable<ushort>, IFormattable {
 +        public int CompareTo(object value);
 +        public TypeCode GetTypeCode();
+-        int System.IComparable.CompareTo(object value);
+
+-        TypeCode System.IConvertible.GetTypeCode();
+
      }
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct UInt32 : IComparable, IComparable<uint>, IConvertible, IEquatable<uint>, IFormattable {
 +        public int CompareTo(object value);
 +        public TypeCode GetTypeCode();
+-        int System.IComparable.CompareTo(object value);
+
+-        TypeCode System.IConvertible.GetTypeCode();
+
      }
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct UInt64 : IComparable, IComparable<ulong>, IConvertible, IEquatable<ulong>, IFormattable {
 +        public int CompareTo(object value);
 +        public TypeCode GetTypeCode();
+-        int System.IComparable.CompareTo(object value);
+
+-        TypeCode System.IConvertible.GetTypeCode();
+
      }
+-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 -    public struct UIntPtr {
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct UIntPtr : ISerializable {
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
      }
 -    public class UnauthorizedAccessException : Exception {
 +    public class UnauthorizedAccessException : SystemException {
@@ -1196,12 +1448,7 @@
 +        public object ExceptionObject { get; }
 +        public bool IsTerminating { get; }
 +    }
-+    public delegate void UnhandledExceptionEventHandler(object sender, UnhandledExceptionEventArgs e); {
-+        public UnhandledExceptionEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, UnhandledExceptionEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, UnhandledExceptionEventArgs e);
-+    }
++    public delegate void UnhandledExceptionEventHandler(object sender, UnhandledExceptionEventArgs e);
 -    public class Uri {
 +    public class Uri : ISerializable {
 +        public static readonly string SchemeDelimiter;
@@ -1234,11 +1481,13 @@
 +        protected virtual bool IsReservedCharacter(char character);
 +        public string MakeRelative(Uri toUri);
 +        protected virtual void Parse();
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +        protected virtual string Unescape(string path);
      }
 -    public class UriFormatException : FormatException {
 +    public class UriFormatException : FormatException, ISerializable {
 +        protected UriFormatException(SerializationInfo serializationInfo, StreamingContext streamingContext);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
      }
 +    public abstract class UriParser {
 +        protected UriParser();
@@ -1266,11 +1515,174 @@
 +        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType);
 +        public override bool IsValid(ITypeDescriptorContext context, object value);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Size=1)]
++    public struct ValueTuple : IComparable, IComparable<ValueTuple>, IEquatable<ValueTuple>, IStructuralComparable, IStructuralEquatable {
++        public int CompareTo(ValueTuple other);
++        public static ValueTuple Create();
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7, ValueTuple<T8>> Create<T1, T2, T3, T4, T5, T6, T7, T8>(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7, T8 item8);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6, T7> Create<T1, T2, T3, T4, T5, T6, T7>(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7);
++        public static ValueTuple<T1, T2, T3, T4, T5, T6> Create<T1, T2, T3, T4, T5, T6>(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6);
++        public static ValueTuple<T1, T2, T3, T4, T5> Create<T1, T2, T3, T4, T5>(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5);
++        public static ValueTuple<T1, T2, T3, T4> Create<T1, T2, T3, T4>(T1 item1, T2 item2, T3 item3, T4 item4);
++        public static ValueTuple<T1, T2, T3> Create<T1, T2, T3>(T1 item1, T2 item2, T3 item3);
++        public static ValueTuple<T1, T2> Create<T1, T2>(T1 item1, T2 item2);
++        public static ValueTuple<T1> Create<T1>(T1 item1);
++        public override bool Equals(object obj);
++        public bool Equals(ValueTuple other);
++        public override int GetHashCode();
++        int System.Collections.IStructuralComparable.CompareTo(object other, IComparer comparer);
++        bool System.Collections.IStructuralEquatable.Equals(object other, IEqualityComparer comparer);
++        int System.Collections.IStructuralEquatable.GetHashCode(IEqualityComparer comparer);
++        int System.IComparable.CompareTo(object other);
++        public override string ToString();
++    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
++    public struct ValueTuple<T1> : IComparable, IComparable<ValueTuple<T1>>, IEquatable<ValueTuple<T1>>, IStructuralComparable, IStructuralEquatable {
++        public T1 Item1;
++        public ValueTuple(T1 item1);
++        public int CompareTo(ValueTuple<T1> other);
++        public override bool Equals(object obj);
++        public bool Equals(ValueTuple<T1> other);
++        public override int GetHashCode();
++        int System.Collections.IStructuralComparable.CompareTo(object other, IComparer comparer);
++        bool System.Collections.IStructuralEquatable.Equals(object other, IEqualityComparer comparer);
++        int System.Collections.IStructuralEquatable.GetHashCode(IEqualityComparer comparer);
++        int System.IComparable.CompareTo(object other);
++        public override string ToString();
++    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
++    public struct ValueTuple<T1, T2> : IComparable, IComparable<ValueTuple<T1, T2>>, IEquatable<ValueTuple<T1, T2>>, IStructuralComparable, IStructuralEquatable {
++        public T1 Item1;
++        public T2 Item2;
++        public ValueTuple(T1 item1, T2 item2);
++        public int CompareTo(ValueTuple<T1, T2> other);
++        public override bool Equals(object obj);
++        public bool Equals(ValueTuple<T1, T2> other);
++        public override int GetHashCode();
++        int System.Collections.IStructuralComparable.CompareTo(object other, IComparer comparer);
++        bool System.Collections.IStructuralEquatable.Equals(object other, IEqualityComparer comparer);
++        int System.Collections.IStructuralEquatable.GetHashCode(IEqualityComparer comparer);
++        int System.IComparable.CompareTo(object other);
++        public override string ToString();
++    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
++    public struct ValueTuple<T1, T2, T3> : IComparable, IComparable<ValueTuple<T1, T2, T3>>, IEquatable<ValueTuple<T1, T2, T3>>, IStructuralComparable, IStructuralEquatable {
++        public T1 Item1;
++        public T2 Item2;
++        public T3 Item3;
++        public ValueTuple(T1 item1, T2 item2, T3 item3);
++        public int CompareTo(ValueTuple<T1, T2, T3> other);
++        public override bool Equals(object obj);
++        public bool Equals(ValueTuple<T1, T2, T3> other);
++        public override int GetHashCode();
++        int System.Collections.IStructuralComparable.CompareTo(object other, IComparer comparer);
++        bool System.Collections.IStructuralEquatable.Equals(object other, IEqualityComparer comparer);
++        int System.Collections.IStructuralEquatable.GetHashCode(IEqualityComparer comparer);
++        int System.IComparable.CompareTo(object other);
++        public override string ToString();
++    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
++    public struct ValueTuple<T1, T2, T3, T4> : IComparable, IComparable<ValueTuple<T1, T2, T3, T4>>, IEquatable<ValueTuple<T1, T2, T3, T4>>, IStructuralComparable, IStructuralEquatable {
++        public T1 Item1;
++        public T2 Item2;
++        public T3 Item3;
++        public T4 Item4;
++        public ValueTuple(T1 item1, T2 item2, T3 item3, T4 item4);
++        public int CompareTo(ValueTuple<T1, T2, T3, T4> other);
++        public override bool Equals(object obj);
++        public bool Equals(ValueTuple<T1, T2, T3, T4> other);
++        public override int GetHashCode();
++        int System.Collections.IStructuralComparable.CompareTo(object other, IComparer comparer);
++        bool System.Collections.IStructuralEquatable.Equals(object other, IEqualityComparer comparer);
++        int System.Collections.IStructuralEquatable.GetHashCode(IEqualityComparer comparer);
++        int System.IComparable.CompareTo(object other);
++        public override string ToString();
++    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
++    public struct ValueTuple<T1, T2, T3, T4, T5> : IComparable, IComparable<ValueTuple<T1, T2, T3, T4, T5>>, IEquatable<ValueTuple<T1, T2, T3, T4, T5>>, IStructuralComparable, IStructuralEquatable {
++        public T1 Item1;
++        public T2 Item2;
++        public T3 Item3;
++        public T4 Item4;
++        public T5 Item5;
++        public ValueTuple(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5);
++        public int CompareTo(ValueTuple<T1, T2, T3, T4, T5> other);
++        public override bool Equals(object obj);
++        public bool Equals(ValueTuple<T1, T2, T3, T4, T5> other);
++        public override int GetHashCode();
++        int System.Collections.IStructuralComparable.CompareTo(object other, IComparer comparer);
++        bool System.Collections.IStructuralEquatable.Equals(object other, IEqualityComparer comparer);
++        int System.Collections.IStructuralEquatable.GetHashCode(IEqualityComparer comparer);
++        int System.IComparable.CompareTo(object other);
++        public override string ToString();
++    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
++    public struct ValueTuple<T1, T2, T3, T4, T5, T6> : IComparable, IComparable<ValueTuple<T1, T2, T3, T4, T5, T6>>, IEquatable<ValueTuple<T1, T2, T3, T4, T5, T6>>, IStructuralComparable, IStructuralEquatable {
++        public T1 Item1;
++        public T2 Item2;
++        public T3 Item3;
++        public T4 Item4;
++        public T5 Item5;
++        public T6 Item6;
++        public ValueTuple(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6);
++        public int CompareTo(ValueTuple<T1, T2, T3, T4, T5, T6> other);
++        public override bool Equals(object obj);
++        public bool Equals(ValueTuple<T1, T2, T3, T4, T5, T6> other);
++        public override int GetHashCode();
++        int System.Collections.IStructuralComparable.CompareTo(object other, IComparer comparer);
++        bool System.Collections.IStructuralEquatable.Equals(object other, IEqualityComparer comparer);
++        int System.Collections.IStructuralEquatable.GetHashCode(IEqualityComparer comparer);
++        int System.IComparable.CompareTo(object other);
++        public override string ToString();
++    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
++    public struct ValueTuple<T1, T2, T3, T4, T5, T6, T7> : IComparable, IComparable<ValueTuple<T1, T2, T3, T4, T5, T6, T7>>, IEquatable<ValueTuple<T1, T2, T3, T4, T5, T6, T7>>, IStructuralComparable, IStructuralEquatable {
++        public T1 Item1;
++        public T2 Item2;
++        public T3 Item3;
++        public T4 Item4;
++        public T5 Item5;
++        public T6 Item6;
++        public T7 Item7;
++        public ValueTuple(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7);
++        public int CompareTo(ValueTuple<T1, T2, T3, T4, T5, T6, T7> other);
++        public override bool Equals(object obj);
++        public bool Equals(ValueTuple<T1, T2, T3, T4, T5, T6, T7> other);
++        public override int GetHashCode();
++        int System.Collections.IStructuralComparable.CompareTo(object other, IComparer comparer);
++        bool System.Collections.IStructuralEquatable.Equals(object other, IEqualityComparer comparer);
++        int System.Collections.IStructuralEquatable.GetHashCode(IEqualityComparer comparer);
++        int System.IComparable.CompareTo(object other);
++        public override string ToString();
++    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
++    public struct ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest> : IComparable, IComparable<ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest>>, IEquatable<ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest>>, IStructuralComparable, IStructuralEquatable where TRest : struct {
++        public T1 Item1;
++        public T2 Item2;
++        public T3 Item3;
++        public T4 Item4;
++        public T5 Item5;
++        public T6 Item6;
++        public T7 Item7;
++        public TRest Rest;
++        public ValueTuple(T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7, TRest rest);
++        public int CompareTo(ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest> other);
++        public override bool Equals(object obj);
++        public bool Equals(ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest> other);
++        public override int GetHashCode();
++        int System.Collections.IStructuralComparable.CompareTo(object other, IComparer comparer);
++        bool System.Collections.IStructuralEquatable.Equals(object other, IEqualityComparer comparer);
++        int System.Collections.IStructuralEquatable.GetHashCode(IEqualityComparer comparer);
++        int System.IComparable.CompareTo(object other);
++        public override string ToString();
++    }
 -    public sealed class Version : IComparable, IComparable<Version>, IEquatable<Version> {
 +    public sealed class Version : ICloneable, IComparable, IComparable<Version>, IEquatable<Version> {
 +        public Version();
 +        public object Clone();
 +        public int CompareTo(object version);
+-        int System.IComparable.CompareTo(object version);
+
      }
 -    public class WeakReference {
 +    public class WeakReference : ISerializable {
@@ -1279,9 +1691,12 @@
      }
 -    public sealed class WeakReference<T> where T : class {
 +    public sealed class WeakReference<T> : ISerializable where T : class {
+-        ~WeakReference();
+
 +        public void GetObjectData(SerializationInfo info, StreamingContext context);
      }
  }
+
  namespace System.CodeDom.Compiler {
 +    public class IndentedTextWriter : TextWriter {
 +        public const string DefaultTabString = "    ";
@@ -1325,6 +1740,7 @@
 +        public void WriteLineNoTabs(string s);
 +    }
  }
+
  namespace System.Collections {
 +    public class ArrayList : ICloneable, ICollection, IEnumerable, IList {
 +        public ArrayList();
@@ -1335,8 +1751,8 @@
 +        public virtual bool IsFixedSize { get; }
 +        public virtual bool IsReadOnly { get; }
 +        public virtual bool IsSynchronized { get; }
-+        public virtual object this[int index] { get; set; }
 +        public virtual object SyncRoot { get; }
++        public virtual object this[int index] { get; set; }
 +        public static ArrayList Adapter(IList list);
 +        public virtual int Add(object value);
 +        public virtual void AddRange(ICollection c);
@@ -1386,8 +1802,16 @@
 +        public bool IsReadOnly { get; }
 +        public bool IsSynchronized { get; }
 +        public object SyncRoot { get; }
+-        int System.Collections.ICollection.Count { get; }
+
+-        bool System.Collections.ICollection.IsSynchronized { get; }
+
+-        object System.Collections.ICollection.SyncRoot { get; }
+
 +        public object Clone();
 +        public void CopyTo(Array array, int index);
+-        void System.Collections.ICollection.CopyTo(Array array, int index);
+
      }
 +    public class CaseInsensitiveComparer : IComparer {
 +        public CaseInsensitiveComparer();
@@ -1410,6 +1834,11 @@
 +        public int Count { get; }
 +        protected ArrayList InnerList { get; }
 +        protected IList List { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
++        bool System.Collections.IList.IsFixedSize { get; }
++        bool System.Collections.IList.IsReadOnly { get; }
++        object System.Collections.IList.this[int index] { get; set; }
 +        public void Clear();
 +        public IEnumerator GetEnumerator();
 +        protected virtual void OnClear();
@@ -1422,6 +1851,12 @@
 +        protected virtual void OnSetComplete(int index, object oldValue, object newValue);
 +        protected virtual void OnValidate(object value);
 +        public void RemoveAt(int index);
++        void System.Collections.ICollection.CopyTo(Array array, int index);
++        int System.Collections.IList.Add(object value);
++        bool System.Collections.IList.Contains(object value);
++        int System.Collections.IList.IndexOf(object value);
++        void System.Collections.IList.Insert(int index, object value);
++        void System.Collections.IList.Remove(object value);
 +    }
 +    public sealed class Comparer : IComparer, ISerializable {
 +        public static readonly Comparer Default;
@@ -1435,6 +1870,13 @@
 +        public int Count { get; }
 +        protected IDictionary Dictionary { get; }
 +        protected Hashtable InnerHashtable { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
++        bool System.Collections.IDictionary.IsFixedSize { get; }
++        bool System.Collections.IDictionary.IsReadOnly { get; }
++        object System.Collections.IDictionary.this[object key] { get; set; }
++        ICollection System.Collections.IDictionary.Keys { get; }
++        ICollection System.Collections.IDictionary.Values { get; }
 +        public void Clear();
 +        public void CopyTo(Array array, int index);
 +        public IDictionaryEnumerator GetEnumerator();
@@ -1448,6 +1890,10 @@
 +        protected virtual void OnSet(object key, object oldValue, object newValue);
 +        protected virtual void OnSetComplete(object key, object oldValue, object newValue);
 +        protected virtual void OnValidate(object key, object value);
++        void System.Collections.IDictionary.Add(object key, object value);
++        bool System.Collections.IDictionary.Contains(object key);
++        void System.Collections.IDictionary.Remove(object key);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
 +    }
 +    public class Hashtable : ICloneable, ICollection, IDeserializationCallback, IDictionary, IEnumerable, ISerializable {
 +        public Hashtable();
@@ -1473,9 +1919,9 @@
 +        public virtual bool IsFixedSize { get; }
 +        public virtual bool IsReadOnly { get; }
 +        public virtual bool IsSynchronized { get; }
-+        public virtual object this[object key] { get; set; }
 +        public virtual ICollection Keys { get; }
 +        public virtual object SyncRoot { get; }
++        public virtual object this[object key] { get; set; }
 +        public virtual ICollection Values { get; }
 +        public virtual void Add(object key, object value);
 +        public virtual void Clear();
@@ -1491,6 +1937,7 @@
 +        public virtual void OnDeserialization(object sender);
 +        public virtual void Remove(object key);
 +        public static Hashtable Synchronized(Hashtable table);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
 +    }
 +    public interface IHashCodeProvider {
 +        int GetHashCode(object obj);
@@ -1519,7 +1966,10 @@
 +        protected ReadOnlyCollectionBase();
 +        public virtual int Count { get; }
 +        protected ArrayList InnerList { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
 +        public virtual IEnumerator GetEnumerator();
++        void System.Collections.ICollection.CopyTo(Array array, int index);
 +    }
 +    public class SortedList : ICloneable, ICollection, IDictionary, IEnumerable {
 +        public SortedList();
@@ -1533,9 +1983,9 @@
 +        public virtual bool IsFixedSize { get; }
 +        public virtual bool IsReadOnly { get; }
 +        public virtual bool IsSynchronized { get; }
-+        public virtual object this[object key] { get; set; }
 +        public virtual ICollection Keys { get; }
 +        public virtual object SyncRoot { get; }
++        public virtual object this[object key] { get; set; }
 +        public virtual ICollection Values { get; }
 +        public virtual void Add(object key, object value);
 +        public virtual void Clear();
@@ -1555,6 +2005,7 @@
 +        public virtual void RemoveAt(int index);
 +        public virtual void SetByIndex(int index, object value);
 +        public static SortedList Synchronized(SortedList list);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
 +        public virtual void TrimToSize();
 +    }
 +    public class Stack : ICloneable, ICollection, IEnumerable {
@@ -1576,6 +2027,7 @@
 +        public virtual object[] ToArray();
 +    }
  }
+
  namespace System.Collections.Generic {
 -    public class Dictionary<TKey, TValue> : ICollection, ICollection<KeyValuePair<TKey, TValue>>, IDictionary, IDictionary<TKey, TValue>, IEnumerable, IEnumerable<KeyValuePair<TKey, TValue>>, IReadOnlyCollection<KeyValuePair<TKey, TValue>>, IReadOnlyDictionary<TKey, TValue> {
 +    public class Dictionary<TKey, TValue> : ICollection, ICollection<KeyValuePair<TKey, TValue>>, IDeserializationCallback, IDictionary, IDictionary<TKey, TValue>, IEnumerable, IEnumerable<KeyValuePair<TKey, TValue>>, IReadOnlyCollection<KeyValuePair<TKey, TValue>>, IReadOnlyDictionary<TKey, TValue>, ISerializable {
@@ -1596,51 +2048,53 @@
      }
 -    public class LinkedList<T> : ICollection, ICollection<T>, IEnumerable, IEnumerable<T>, IReadOnlyCollection<T> {
 +    public class LinkedList<T> : ICollection, ICollection<T>, IDeserializationCallback, IEnumerable, IEnumerable<T>, IReadOnlyCollection<T>, ISerializable {
--        public struct Enumerator : IDisposable, IEnumerator, IEnumerator<T> {
-+        public struct Enumerator : IDeserializationCallback, IDisposable, IEnumerator, IEnumerator<T>, ISerializable {
-         }
 +        protected LinkedList(SerializationInfo info, StreamingContext context);
 +        public virtual void GetObjectData(SerializationInfo info, StreamingContext context);
 +        public virtual void OnDeserialization(object sender);
+-        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+-        public struct Enumerator : IDisposable, IEnumerator, IEnumerator<T> {
++        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
++        public struct Enumerator : IDeserializationCallback, IDisposable, IEnumerator, IEnumerator<T>, ISerializable {
++            void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender);
++            void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
+         }
      }
      public class List<T> : ICollection, ICollection<T>, IEnumerable, IEnumerable<T>, IList, IList<T>, IReadOnlyCollection<T>, IReadOnlyList<T> {
 +        public List<TOutput> ConvertAll<TOutput>(Converter<T, TOutput> converter);
      }
 -    public class SortedSet<T> : ICollection, ICollection<T>, IEnumerable, IEnumerable<T>, IReadOnlyCollection<T>, ISet<T> {
 +    public class SortedSet<T> : ICollection, ICollection<T>, IDeserializationCallback, IEnumerable, IEnumerable<T>, IReadOnlyCollection<T>, ISerializable, ISet<T> {
--        public struct Enumerator : IDisposable, IEnumerator, IEnumerator<T> {
-+        public struct Enumerator : IDeserializationCallback, IDisposable, IEnumerator, IEnumerator<T>, ISerializable {
-         }
 +        protected SortedSet(SerializationInfo info, StreamingContext context);
 +        public static IEqualityComparer<SortedSet<T>> CreateSetComparer();
 +        public static IEqualityComparer<SortedSet<T>> CreateSetComparer(IEqualityComparer<T> memberEqualityComparer);
 +        protected virtual void GetObjectData(SerializationInfo info, StreamingContext context);
 +        protected virtual void OnDeserialization(object sender);
++        void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
+-        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+-        public struct Enumerator : IDisposable, IEnumerator, IEnumerator<T> {
++        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
++        public struct Enumerator : IDeserializationCallback, IDisposable, IEnumerator, IEnumerator<T>, ISerializable {
++            void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender);
++            void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
+         }
      }
  }
+
  namespace System.Collections.ObjectModel {
      public class ObservableCollection<T> : Collection<T>, INotifyCollectionChanged, INotifyPropertyChanged {
 +        public ObservableCollection(List<T> list);
      }
  }
+
  namespace System.Collections.Specialized {
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct BitVector32 {
-+        public struct Section {
-+            public short Mask { get; }
-+            public short Offset { get; }
-+            public override bool Equals(object o);
-+            public bool Equals(BitVector32.Section obj);
-+            public override int GetHashCode();
-+            public static bool operator ==(BitVector32.Section a, BitVector32.Section b);
-+            public static bool operator !=(BitVector32.Section a, BitVector32.Section b);
-+            public override string ToString();
-+            public static string ToString(BitVector32.Section value);
-+        }
 +        public BitVector32(BitVector32 value);
 +        public BitVector32(int data);
 +        public int Data { get; }
-+        public bool this[int bit] { get; set; }
 +        public int this[BitVector32.Section section] { get; set; }
++        public bool this[int bit] { get; set; }
 +        public static int CreateMask();
 +        public static int CreateMask(int previous);
 +        public static BitVector32.Section CreateSection(short maxValue);
@@ -1649,6 +2103,18 @@
 +        public override int GetHashCode();
 +        public override string ToString();
 +        public static string ToString(BitVector32 value);
++        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
++        public struct Section {
++            public short Mask { get; }
++            public short Offset { get; }
++            public bool Equals(BitVector32.Section obj);
++            public override bool Equals(object o);
++            public override int GetHashCode();
++            public static bool operator ==(BitVector32.Section a, BitVector32.Section b);
++            public static bool operator !=(BitVector32.Section a, BitVector32.Section b);
++            public override string ToString();
++            public static string ToString(BitVector32.Section value);
++        }
 +    }
 +    public class CollectionsUtil {
 +        public CollectionsUtil();
@@ -1666,9 +2132,9 @@
 +        public bool IsFixedSize { get; }
 +        public bool IsReadOnly { get; }
 +        public bool IsSynchronized { get; }
-+        public object this[object key] { get; set; }
 +        public ICollection Keys { get; }
 +        public object SyncRoot { get; }
++        public object this[object key] { get; set; }
 +        public ICollection Values { get; }
 +        public void Add(object key, object value);
 +        public void Clear();
@@ -1676,6 +2142,7 @@
 +        public void CopyTo(Array array, int index);
 +        public IDictionaryEnumerator GetEnumerator();
 +        public void Remove(object key);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
 +    }
 +    public interface IOrderedDictionary : ICollection, IDictionary, IEnumerable {
 +        object this[int index] { get; set; }
@@ -1690,9 +2157,9 @@
 +        public bool IsFixedSize { get; }
 +        public bool IsReadOnly { get; }
 +        public bool IsSynchronized { get; }
-+        public object this[object key] { get; set; }
 +        public ICollection Keys { get; }
 +        public object SyncRoot { get; }
++        public object this[object key] { get; set; }
 +        public ICollection Values { get; }
 +        public void Add(object key, object value);
 +        public void Clear();
@@ -1700,14 +2167,9 @@
 +        public void CopyTo(Array array, int index);
 +        public IDictionaryEnumerator GetEnumerator();
 +        public void Remove(object key);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
 +    }
 +    public abstract class NameObjectCollectionBase : ICollection, IDeserializationCallback, IEnumerable, ISerializable {
-+        public class KeysCollection : ICollection, IEnumerable {
-+            public int Count { get; }
-+            public string this[int index] { get; }
-+            public virtual string Get(int index);
-+            public IEnumerator GetEnumerator();
-+        }
 +        protected NameObjectCollectionBase();
 +        protected NameObjectCollectionBase(IEqualityComparer equalityComparer);
 +        protected NameObjectCollectionBase(IHashCodeProvider hashProvider, IComparer comparer);
@@ -1718,6 +2180,8 @@
 +        public virtual int Count { get; }
 +        protected bool IsReadOnly { get; set; }
 +        public virtual NameObjectCollectionBase.KeysCollection Keys { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
 +        protected void BaseAdd(string name, object value);
 +        protected void BaseClear();
 +        protected object BaseGet(int index);
@@ -1734,16 +2198,26 @@
 +        public virtual IEnumerator GetEnumerator();
 +        public virtual void GetObjectData(SerializationInfo info, StreamingContext context);
 +        public virtual void OnDeserialization(object sender);
++        void System.Collections.ICollection.CopyTo(Array array, int index);
++        public class KeysCollection : ICollection, IEnumerable {
++            public int Count { get; }
++            bool System.Collections.ICollection.IsSynchronized { get; }
++            object System.Collections.ICollection.SyncRoot { get; }
++            public string this[int index] { get; }
++            public virtual string Get(int index);
++            public IEnumerator GetEnumerator();
++            void System.Collections.ICollection.CopyTo(Array array, int index);
++        }
 +    }
 +    public class NameValueCollection : NameObjectCollectionBase {
 +        public NameValueCollection();
 +        public NameValueCollection(IEqualityComparer equalityComparer);
 +        public NameValueCollection(IHashCodeProvider hashProvider, IComparer comparer);
++        public NameValueCollection(NameValueCollection col);
 +        public NameValueCollection(int capacity);
 +        public NameValueCollection(int capacity, IEqualityComparer equalityComparer);
 +        public NameValueCollection(int capacity, IHashCodeProvider hashProvider, IComparer comparer);
 +        public NameValueCollection(int capacity, NameValueCollection col);
-+        public NameValueCollection(NameValueCollection col);
 +        protected NameValueCollection(SerializationInfo info, StreamingContext context);
 +        public virtual string[] AllKeys { get; }
 +        public string this[int index] { get; }
@@ -1770,9 +2244,12 @@
 +        protected OrderedDictionary(SerializationInfo info, StreamingContext context);
 +        public int Count { get; }
 +        public bool IsReadOnly { get; }
++        public ICollection Keys { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
++        bool System.Collections.IDictionary.IsFixedSize { get; }
 +        public object this[int index] { get; set; }
 +        public object this[object key] { get; set; }
-+        public ICollection Keys { get; }
 +        public ICollection Values { get; }
 +        public void Add(object key, object value);
 +        public OrderedDictionary AsReadOnly();
@@ -1785,14 +2262,19 @@
 +        protected virtual void OnDeserialization(object sender);
 +        public void Remove(object key);
 +        public void RemoveAt(int index);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
++        void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender);
 +    }
 +    public class StringCollection : ICollection, IEnumerable, IList {
 +        public StringCollection();
 +        public int Count { get; }
 +        public bool IsReadOnly { get; }
 +        public bool IsSynchronized { get; }
-+        public string this[int index] { get; set; }
 +        public object SyncRoot { get; }
++        bool System.Collections.IList.IsFixedSize { get; }
++        bool System.Collections.IList.IsReadOnly { get; }
++        object System.Collections.IList.this[int index] { get; set; }
++        public string this[int index] { get; set; }
 +        public int Add(string value);
 +        public void AddRange(string[] value);
 +        public void Clear();
@@ -1803,14 +2285,21 @@
 +        public void Insert(int index, string value);
 +        public void Remove(string value);
 +        public void RemoveAt(int index);
++        void System.Collections.ICollection.CopyTo(Array array, int index);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
++        int System.Collections.IList.Add(object value);
++        bool System.Collections.IList.Contains(object value);
++        int System.Collections.IList.IndexOf(object value);
++        void System.Collections.IList.Insert(int index, object value);
++        void System.Collections.IList.Remove(object value);
 +    }
 +    public class StringDictionary : IEnumerable {
 +        public StringDictionary();
 +        public virtual int Count { get; }
 +        public virtual bool IsSynchronized { get; }
-+        public virtual string this[string key] { get; set; }
 +        public virtual ICollection Keys { get; }
 +        public virtual object SyncRoot { get; }
++        public virtual string this[string key] { get; set; }
 +        public virtual ICollection Values { get; }
 +        public virtual void Add(string key, string value);
 +        public virtual void Clear();
@@ -1826,18 +2315,14 @@
 +        public void Reset();
 +    }
  }
+
  namespace System.ComponentModel {
 +    public class AddingNewEventArgs : EventArgs {
 +        public AddingNewEventArgs();
 +        public AddingNewEventArgs(object newObject);
 +        public object NewObject { get; set; }
 +    }
-+    public delegate void AddingNewEventHandler(object sender, AddingNewEventArgs e); {
-+        public AddingNewEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, AddingNewEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, AddingNewEventArgs e);
-+    }
++    public delegate void AddingNewEventHandler(object sender, AddingNewEventArgs e);
 +    public sealed class AmbientValueAttribute : Attribute {
 +        public AmbientValueAttribute(bool value);
 +        public AmbientValueAttribute(byte value);
@@ -1867,12 +2352,7 @@
 +        public object UserState { get; }
 +        protected void RaiseExceptionIfNecessary();
 +    }
-+    public delegate void AsyncCompletedEventHandler(object sender, AsyncCompletedEventArgs e); {
-+        public AsyncCompletedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, AsyncCompletedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, AsyncCompletedEventArgs e);
-+    }
++    public delegate void AsyncCompletedEventHandler(object sender, AsyncCompletedEventArgs e);
 +    public sealed class AsyncOperation {
 +        public SynchronizationContext SynchronizationContext { get; }
 +        public object UserSuppliedState { get; }
@@ -1890,6 +2370,9 @@
 +        public AttributeCollection(params Attribute[] attributes);
 +        protected virtual Attribute[] Attributes { get; }
 +        public int Count { get; }
++        int System.Collections.ICollection.Count { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
 +        public virtual Attribute this[int index] { get; }
 +        public virtual Attribute this[Type attributeType] { get; }
 +        public bool Contains(Attribute attribute);
@@ -1900,6 +2383,7 @@
 +        public IEnumerator GetEnumerator();
 +        public bool Matches(Attribute attribute);
 +        public bool Matches(Attribute[] attributes);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
 +    }
 +    public class AttributeProviderAttribute : Attribute {
 +        public AttributeProviderAttribute(string typeName);
@@ -1914,6 +2398,9 @@
 +        public bool IsBusy { get; }
 +        public bool WorkerReportsProgress { get; set; }
 +        public bool WorkerSupportsCancellation { get; set; }
++        public event DoWorkEventHandler DoWork;
++        public event ProgressChangedEventHandler ProgressChanged;
++        public event RunWorkerCompletedEventHandler RunWorkerCompleted;
 +        public void CancelAsync();
 +        protected virtual void OnDoWork(DoWorkEventArgs e);
 +        protected virtual void OnProgressChanged(ProgressChangedEventArgs e);
@@ -1922,9 +2409,6 @@
 +        public void ReportProgress(int percentProgress, object userState);
 +        public void RunWorkerAsync();
 +        public void RunWorkerAsync(object argument);
-+        public event DoWorkEventHandler DoWork;
-+        public event ProgressChangedEventHandler ProgressChanged;
-+        public event RunWorkerCompletedEventHandler RunWorkerCompleted;
 +    }
 +    public abstract class BaseNumberConverter : TypeConverter {
 +        protected BaseNumberConverter();
@@ -1937,10 +2421,10 @@
 +        public static readonly BindableAttribute Default;
 +        public static readonly BindableAttribute No;
 +        public static readonly BindableAttribute Yes;
-+        public BindableAttribute(BindableSupport flags);
-+        public BindableAttribute(BindableSupport flags, BindingDirection direction);
 +        public BindableAttribute(bool bindable);
 +        public BindableAttribute(bool bindable, BindingDirection direction);
++        public BindableAttribute(BindableSupport flags);
++        public BindableAttribute(BindableSupport flags, BindingDirection direction);
 +        public bool Bindable { get; }
 +        public BindingDirection Direction { get; }
 +        public override bool Equals(object obj);
@@ -1969,6 +2453,18 @@
 +        protected virtual bool SupportsChangeNotificationCore { get; }
 +        protected virtual bool SupportsSearchingCore { get; }
 +        protected virtual bool SupportsSortingCore { get; }
++        bool System.ComponentModel.IBindingList.AllowEdit { get; }
++        bool System.ComponentModel.IBindingList.AllowNew { get; }
++        bool System.ComponentModel.IBindingList.AllowRemove { get; }
++        bool System.ComponentModel.IBindingList.IsSorted { get; }
++        ListSortDirection System.ComponentModel.IBindingList.SortDirection { get; }
++        PropertyDescriptor System.ComponentModel.IBindingList.SortProperty { get; }
++        bool System.ComponentModel.IBindingList.SupportsChangeNotification { get; }
++        bool System.ComponentModel.IBindingList.SupportsSearching { get; }
++        bool System.ComponentModel.IBindingList.SupportsSorting { get; }
++        bool System.ComponentModel.IRaiseItemChangedEvents.RaisesItemChangedEvents { get; }
++        public event AddingNewEventHandler AddingNew;
++        public event ListChangedEventHandler ListChanged;
 +        public T AddNew();
 +        protected virtual object AddNewCore();
 +        protected virtual void ApplySortCore(PropertyDescriptor prop, ListSortDirection direction);
@@ -1984,8 +2480,12 @@
 +        public void ResetBindings();
 +        public void ResetItem(int position);
 +        protected override void SetItem(int index, T item);
-+        public event AddingNewEventHandler AddingNew;
-+        public event ListChangedEventHandler ListChanged;
++        void System.ComponentModel.IBindingList.AddIndex(PropertyDescriptor prop);
++        object System.ComponentModel.IBindingList.AddNew();
++        void System.ComponentModel.IBindingList.ApplySort(PropertyDescriptor prop, ListSortDirection direction);
++        int System.ComponentModel.IBindingList.Find(PropertyDescriptor prop, object key);
++        void System.ComponentModel.IBindingList.RemoveIndex(PropertyDescriptor prop);
++        void System.ComponentModel.IBindingList.RemoveSort();
 +    }
 +    public class BooleanConverter : TypeConverter {
 +        public BooleanConverter();
@@ -2013,12 +2513,7 @@
 +        public CancelEventArgs(bool cancel);
 +        public bool Cancel { get; set; }
 +    }
-+    public delegate void CancelEventHandler(object sender, CancelEventArgs e); {
-+        public CancelEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, CancelEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, CancelEventArgs e);
-+    }
++    public delegate void CancelEventHandler(object sender, CancelEventArgs e);
 +    public class CategoryAttribute : Attribute {
 +        public CategoryAttribute();
 +        public CategoryAttribute(string category);
@@ -2058,12 +2553,7 @@
 +        public virtual CollectionChangeAction Action { get; }
 +        public virtual object Element { get; }
 +    }
-+    public delegate void CollectionChangeEventHandler(object sender, CollectionChangeEventArgs e); {
-+        public CollectionChangeEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, CollectionChangeEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, CollectionChangeEventArgs e);
-+    }
++    public delegate void CollectionChangeEventHandler(object sender, CollectionChangeEventArgs e);
 +    public class CollectionConverter : TypeConverter {
 +        public CollectionConverter();
 +        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType);
@@ -2087,12 +2577,12 @@
 +        protected bool DesignMode { get; }
 +        protected EventHandlerList Events { get; }
 +        public virtual ISite Site { get; set; }
++        public event EventHandler Disposed;
 +        public void Dispose();
 +        protected virtual void Dispose(bool disposing);
 +        ~Component();
 +        protected virtual object GetService(Type service);
 +        public override string ToString();
-+        public event EventHandler Disposed;
 +    }
 +    public class ComponentCollection : ReadOnlyCollectionBase {
 +        public ComponentCollection(IComponent[] components);
@@ -2334,12 +2824,7 @@
 +        public object Argument { get; }
 +        public object Result { get; set; }
 +    }
-+    public delegate void DoWorkEventHandler(object sender, DoWorkEventArgs e); {
-+        public DoWorkEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, DoWorkEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, DoWorkEventArgs e);
-+    }
++    public delegate void DoWorkEventHandler(object sender, DoWorkEventArgs e);
 +    public sealed class EditorAttribute : Attribute {
 +        public EditorAttribute();
 +        public EditorAttribute(string typeName, string baseTypeName);
@@ -2383,6 +2868,12 @@
 +        public EventDescriptorCollection(EventDescriptor[] events);
 +        public EventDescriptorCollection(EventDescriptor[] events, bool readOnly);
 +        public int Count { get; }
++        int System.Collections.ICollection.Count { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
++        bool System.Collections.IList.IsFixedSize { get; }
++        bool System.Collections.IList.IsReadOnly { get; }
++        object System.Collections.IList.this[int index] { get; set; }
 +        public virtual EventDescriptor this[int index] { get; }
 +        public virtual EventDescriptor this[string name] { get; }
 +        public int Add(EventDescriptor value);
@@ -2400,6 +2891,15 @@
 +        public virtual EventDescriptorCollection Sort(IComparer comparer);
 +        public virtual EventDescriptorCollection Sort(string[] names);
 +        public virtual EventDescriptorCollection Sort(string[] names, IComparer comparer);
++        void System.Collections.ICollection.CopyTo(Array array, int index);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
++        int System.Collections.IList.Add(object value);
++        void System.Collections.IList.Clear();
++        bool System.Collections.IList.Contains(object value);
++        int System.Collections.IList.IndexOf(object value);
++        void System.Collections.IList.Insert(int index, object value);
++        void System.Collections.IList.Remove(object value);
++        void System.Collections.IList.RemoveAt(int index);
 +    }
 +    public sealed class EventHandlerList : IDisposable {
 +        public EventHandlerList();
@@ -2435,12 +2935,7 @@
 +        public HandledEventArgs(bool defaultHandledValue);
 +        public bool Handled { get; set; }
 +    }
-+    public delegate void HandledEventHandler(object sender, HandledEventArgs e); {
-+        public HandledEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, HandledEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, HandledEventArgs e);
-+    }
++    public delegate void HandledEventHandler(object sender, HandledEventArgs e);
 +    public interface IBindingList : ICollection, IEnumerable, IList {
 +        bool AllowEdit { get; }
 +        bool AllowNew { get; }
@@ -2451,13 +2946,13 @@
 +        bool SupportsChangeNotification { get; }
 +        bool SupportsSearching { get; }
 +        bool SupportsSorting { get; }
++        event ListChangedEventHandler ListChanged;
 +        void AddIndex(PropertyDescriptor property);
 +        object AddNew();
 +        void ApplySort(PropertyDescriptor property, ListSortDirection direction);
 +        int Find(PropertyDescriptor property, object key);
 +        void RemoveIndex(PropertyDescriptor property);
 +        void RemoveSort();
-+        event ListChangedEventHandler ListChanged;
 +    }
 +    public interface IBindingListView : IBindingList, ICollection, IEnumerable, IList {
 +        string Filter { get; set; }
@@ -2704,29 +3199,24 @@
 +        public static readonly ListBindableAttribute Default;
 +        public static readonly ListBindableAttribute No;
 +        public static readonly ListBindableAttribute Yes;
-+        public ListBindableAttribute(BindableSupport flags);
 +        public ListBindableAttribute(bool listBindable);
++        public ListBindableAttribute(BindableSupport flags);
 +        public bool ListBindable { get; }
 +        public override bool Equals(object obj);
 +        public override int GetHashCode();
 +        public override bool IsDefaultAttribute();
 +    }
 +    public class ListChangedEventArgs : EventArgs {
-+        public ListChangedEventArgs(ListChangedType listChangedType, int newIndex);
-+        public ListChangedEventArgs(ListChangedType listChangedType, int newIndex, int oldIndex);
-+        public ListChangedEventArgs(ListChangedType listChangedType, int newIndex, PropertyDescriptor propDesc);
 +        public ListChangedEventArgs(ListChangedType listChangedType, PropertyDescriptor propDesc);
++        public ListChangedEventArgs(ListChangedType listChangedType, int newIndex);
++        public ListChangedEventArgs(ListChangedType listChangedType, int newIndex, PropertyDescriptor propDesc);
++        public ListChangedEventArgs(ListChangedType listChangedType, int newIndex, int oldIndex);
 +        public ListChangedType ListChangedType { get; }
 +        public int NewIndex { get; }
 +        public int OldIndex { get; }
 +        public PropertyDescriptor PropertyDescriptor { get; }
 +    }
-+    public delegate void ListChangedEventHandler(object sender, ListChangedEventArgs e); {
-+        public ListChangedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, ListChangedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, ListChangedEventArgs e);
-+    }
++    public delegate void ListChangedEventHandler(object sender, ListChangedEventArgs e);
 +    public enum ListChangedType {
 +        ItemAdded = 1,
 +        ItemChanged = 4,
@@ -2746,10 +3236,21 @@
 +        public ListSortDescriptionCollection();
 +        public ListSortDescriptionCollection(ListSortDescription[] sorts);
 +        public int Count { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
++        bool System.Collections.IList.IsFixedSize { get; }
++        bool System.Collections.IList.IsReadOnly { get; }
++        object System.Collections.IList.this[int index] { get; set; }
 +        public ListSortDescription this[int index] { get; set; }
 +        public bool Contains(object value);
 +        public void CopyTo(Array array, int index);
 +        public int IndexOf(object value);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
++        int System.Collections.IList.Add(object value);
++        void System.Collections.IList.Clear();
++        void System.Collections.IList.Insert(int index, object value);
++        void System.Collections.IList.Remove(object value);
++        void System.Collections.IList.RemoveAt(int index);
 +    }
 +    public enum ListSortDirection {
 +        Ascending = 0,
@@ -2782,12 +3283,12 @@
 +        public virtual bool DesignMode { get; }
 +        protected EventHandlerList Events { get; }
 +        public virtual ISite Site { get; set; }
++        public event EventHandler Disposed;
 +        public void Dispose();
 +        protected virtual void Dispose(bool disposing);
 +        ~MarshalByValueComponent();
 +        public virtual object GetService(Type service);
 +        public override string ToString();
-+        public event EventHandler Disposed;
 +    }
 +    public class MaskedTextProvider : ICloneable {
 +        public MaskedTextProvider(string mask);
@@ -2809,7 +3310,6 @@
 +        public bool IncludePrompt { get; set; }
 +        public static int InvalidIndex { get; }
 +        public bool IsPassword { get; set; }
-+        public char this[int index] { get; }
 +        public int LastAssignedPosition { get; }
 +        public int Length { get; }
 +        public string Mask { get; }
@@ -2820,6 +3320,7 @@
 +        public bool ResetOnPrompt { get; set; }
 +        public bool ResetOnSpace { get; set; }
 +        public bool SkipLiterals { get; set; }
++        public char this[int index] { get; }
 +        public bool Add(char input);
 +        public bool Add(char input, out int testPosition, out MaskedTextResultHint resultHint);
 +        public bool Add(string input);
@@ -2851,11 +3352,11 @@
 +        public bool RemoveAt(int startPosition, int endPosition);
 +        public bool RemoveAt(int startPosition, int endPosition, out int testPosition, out MaskedTextResultHint resultHint);
 +        public bool Replace(char input, int position);
-+        public bool Replace(char input, int startPosition, int endPosition, out int testPosition, out MaskedTextResultHint resultHint);
 +        public bool Replace(char input, int position, out int testPosition, out MaskedTextResultHint resultHint);
++        public bool Replace(char input, int startPosition, int endPosition, out int testPosition, out MaskedTextResultHint resultHint);
 +        public bool Replace(string input, int position);
-+        public bool Replace(string input, int startPosition, int endPosition, out int testPosition, out MaskedTextResultHint resultHint);
 +        public bool Replace(string input, int position, out int testPosition, out MaskedTextResultHint resultHint);
++        public bool Replace(string input, int startPosition, int endPosition, out int testPosition, out MaskedTextResultHint resultHint);
 +        public bool Set(string input);
 +        public bool Set(string input, out int testPosition, out MaskedTextResultHint resultHint);
 +        public string ToDisplayString();
@@ -2989,12 +3490,7 @@
 +        public int ProgressPercentage { get; }
 +        public object UserState { get; }
 +    }
-+    public delegate void ProgressChangedEventHandler(object sender, ProgressChangedEventArgs e); {
-+        public ProgressChangedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, ProgressChangedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, ProgressChangedEventArgs e);
-+    }
++    public delegate void ProgressChangedEventHandler(object sender, ProgressChangedEventArgs e);
 +    public abstract class PropertyDescriptor : MemberDescriptor {
 +        protected PropertyDescriptor(MemberDescriptor descr);
 +        protected PropertyDescriptor(MemberDescriptor descr, Attribute[] attrs);
@@ -3032,6 +3528,17 @@
 +        public PropertyDescriptorCollection(PropertyDescriptor[] properties);
 +        public PropertyDescriptorCollection(PropertyDescriptor[] properties, bool readOnly);
 +        public int Count { get; }
++        int System.Collections.ICollection.Count { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
++        bool System.Collections.IDictionary.IsFixedSize { get; }
++        bool System.Collections.IDictionary.IsReadOnly { get; }
++        object System.Collections.IDictionary.this[object key] { get; set; }
++        ICollection System.Collections.IDictionary.Keys { get; }
++        ICollection System.Collections.IDictionary.Values { get; }
++        bool System.Collections.IList.IsFixedSize { get; }
++        bool System.Collections.IList.IsReadOnly { get; }
++        object System.Collections.IList.this[int index] { get; set; }
 +        public virtual PropertyDescriptor this[int index] { get; }
 +        public virtual PropertyDescriptor this[string name] { get; }
 +        public int Add(PropertyDescriptor value);
@@ -3050,6 +3557,19 @@
 +        public virtual PropertyDescriptorCollection Sort(IComparer comparer);
 +        public virtual PropertyDescriptorCollection Sort(string[] names);
 +        public virtual PropertyDescriptorCollection Sort(string[] names, IComparer comparer);
++        void System.Collections.IDictionary.Add(object key, object value);
++        void System.Collections.IDictionary.Clear();
++        bool System.Collections.IDictionary.Contains(object key);
++        IDictionaryEnumerator System.Collections.IDictionary.GetEnumerator();
++        void System.Collections.IDictionary.Remove(object key);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
++        int System.Collections.IList.Add(object value);
++        void System.Collections.IList.Clear();
++        bool System.Collections.IList.Contains(object value);
++        int System.Collections.IList.IndexOf(object value);
++        void System.Collections.IList.Insert(int index, object value);
++        void System.Collections.IList.Remove(object value);
++        void System.Collections.IList.RemoveAt(int index);
 +    }
 +    public class PropertyTabAttribute : Attribute {
 +        public PropertyTabAttribute();
@@ -3060,8 +3580,8 @@
 +        public Type[] TabClasses { get; }
 +        protected string[] TabClassNames { get; }
 +        public PropertyTabScope[] TabScopes { get; }
-+        public override bool Equals(object other);
 +        public bool Equals(PropertyTabAttribute other);
++        public override bool Equals(object other);
 +        public override int GetHashCode();
 +        protected void InitializeArrays(string[] tabClassNames, PropertyTabScope[] tabScopes);
 +        protected void InitializeArrays(Type[] tabClasses, PropertyTabScope[] tabScopes);
@@ -3117,12 +3637,7 @@
 +        public object ComponentChanged { get; }
 +        public Type TypeChanged { get; }
 +    }
-+    public delegate void RefreshEventHandler(RefreshEventArgs e); {
-+        public RefreshEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(RefreshEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(RefreshEventArgs e);
-+    }
++    public delegate void RefreshEventHandler(RefreshEventArgs e);
 +    public enum RefreshProperties {
 +        All = 1,
 +        None = 0,
@@ -3153,12 +3668,7 @@
 +        public object Result { get; }
 +        public new object UserState { get; }
 +    }
-+    public delegate void RunWorkerCompletedEventHandler(object sender, RunWorkerCompletedEventArgs e); {
-+        public RunWorkerCompletedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, RunWorkerCompletedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, RunWorkerCompletedEventArgs e);
-+    }
++    public delegate void RunWorkerCompletedEventHandler(object sender, RunWorkerCompletedEventArgs e);
 +    public class SByteConverter : BaseNumberConverter {
 +        public SByteConverter();
 +    }
@@ -3220,23 +3730,6 @@
 +        Require = 3,
 +    }
 +    public class TypeConverter {
-+        protected abstract class SimplePropertyDescriptor : PropertyDescriptor {
-+            protected SimplePropertyDescriptor(Type componentType, string name, Type propertyType);
-+            protected SimplePropertyDescriptor(Type componentType, string name, Type propertyType, Attribute[] attributes);
-+            public override Type ComponentType { get; }
-+            public override bool IsReadOnly { get; }
-+            public override Type PropertyType { get; }
-+            public override bool CanResetValue(object component);
-+            public override void ResetValue(object component);
-+            public override bool ShouldSerializeValue(object component);
-+        }
-+        public class StandardValuesCollection : ICollection, IEnumerable {
-+            public StandardValuesCollection(ICollection values);
-+            public int Count { get; }
-+            public object this[int index] { get; }
-+            public void CopyTo(Array array, int index);
-+            public IEnumerator GetEnumerator();
-+        }
 +        public TypeConverter();
 +        public virtual bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType);
 +        public bool CanConvertFrom(Type sourceType);
@@ -3276,6 +3769,28 @@
 +        public virtual bool IsValid(ITypeDescriptorContext context, object value);
 +        public bool IsValid(object value);
 +        protected PropertyDescriptorCollection SortProperties(PropertyDescriptorCollection props, string[] names);
++        protected abstract class SimplePropertyDescriptor : PropertyDescriptor {
++            protected SimplePropertyDescriptor(Type componentType, string name, Type propertyType);
++            protected SimplePropertyDescriptor(Type componentType, string name, Type propertyType, Attribute[] attributes);
++            public override Type ComponentType { get; }
++            public override bool IsReadOnly { get; }
++            public override Type PropertyType { get; }
++            public override bool CanResetValue(object component);
++            public override void ResetValue(object component);
++            public override bool ShouldSerializeValue(object component);
++        }
++        public class StandardValuesCollection : ICollection, IEnumerable {
++            public StandardValuesCollection(ICollection values);
++            public int Count { get; }
++            int System.Collections.ICollection.Count { get; }
++            bool System.Collections.ICollection.IsSynchronized { get; }
++            object System.Collections.ICollection.SyncRoot { get; }
++            public object this[int index] { get; }
++            public void CopyTo(Array array, int index);
++            public IEnumerator GetEnumerator();
++            void System.Collections.ICollection.CopyTo(Array array, int index);
++            IEnumerator System.Collections.IEnumerable.GetEnumerator();
++        }
 +    }
 +    public sealed class TypeConverterAttribute : Attribute {
 +        public static readonly TypeConverterAttribute Default;
@@ -3312,6 +3827,7 @@
 +        public static IComNativeDescriptorHandler ComNativeDescriptorHandler { get; set; }
 +        public static Type ComObjectType { get; }
 +        public static Type InterfaceType { get; }
++        public static event RefreshEventHandler Refreshed;
 +        public static TypeDescriptionProvider AddAttributes(object instance, params Attribute[] attributes);
 +        public static TypeDescriptionProvider AddAttributes(Type type, params Attribute[] attributes);
 +        public static void AddEditorTable(Type editorBaseType, Hashtable table);
@@ -3364,9 +3880,9 @@
 +        public static TypeDescriptionProvider GetProvider(Type type);
 +        public static Type GetReflectionType(object instance);
 +        public static Type GetReflectionType(Type type);
++        public static void Refresh(object component);
 +        public static void Refresh(Assembly assembly);
 +        public static void Refresh(Module module);
-+        public static void Refresh(object component);
 +        public static void Refresh(Type type);
 +        public static void RemoveAssociation(object primary, object secondary);
 +        public static void RemoveAssociations(object primary);
@@ -3375,7 +3891,6 @@
 +        public static void RemoveProviderTransparent(TypeDescriptionProvider provider, object instance);
 +        public static void RemoveProviderTransparent(TypeDescriptionProvider provider, Type type);
 +        public static void SortDescriptorArray(IList infos);
-+        public static event RefreshEventHandler Refreshed;
 +    }
 +    public abstract class TypeListConverter : TypeConverter {
 +        protected TypeListConverter(Type[] types);
@@ -3413,18 +3928,14 @@
 +        public override void GetObjectData(SerializationInfo info, StreamingContext context);
      }
  }
+
 +namespace System.ComponentModel.Design {
 +    public class ActiveDesignerEventArgs : EventArgs {
 +        public ActiveDesignerEventArgs(IDesignerHost oldDesigner, IDesignerHost newDesigner);
 +        public IDesignerHost NewDesigner { get; }
 +        public IDesignerHost OldDesigner { get; }
 +    }
-+    public delegate void ActiveDesignerEventHandler(object sender, ActiveDesignerEventArgs e); {
-+        public ActiveDesignerEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, ActiveDesignerEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, ActiveDesignerEventArgs e);
-+    }
++    public delegate void ActiveDesignerEventHandler(object sender, ActiveDesignerEventArgs e);
 +    public class CheckoutException : ExternalException {
 +        public static readonly CheckoutException Canceled;
 +        public CheckoutException();
@@ -3448,80 +3959,74 @@
 +        public object NewValue { get; }
 +        public object OldValue { get; }
 +    }
-+    public delegate void ComponentChangedEventHandler(object sender, ComponentChangedEventArgs e); {
-+        public ComponentChangedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, ComponentChangedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, ComponentChangedEventArgs e);
-+    }
++    public delegate void ComponentChangedEventHandler(object sender, ComponentChangedEventArgs e);
 +    public sealed class ComponentChangingEventArgs : EventArgs {
 +        public ComponentChangingEventArgs(object component, MemberDescriptor member);
 +        public object Component { get; }
 +        public MemberDescriptor Member { get; }
 +    }
-+    public delegate void ComponentChangingEventHandler(object sender, ComponentChangingEventArgs e); {
-+        public ComponentChangingEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, ComponentChangingEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, ComponentChangingEventArgs e);
-+    }
++    public delegate void ComponentChangingEventHandler(object sender, ComponentChangingEventArgs e);
 +    public class ComponentEventArgs : EventArgs {
 +        public ComponentEventArgs(IComponent component);
 +        public virtual IComponent Component { get; }
 +    }
-+    public delegate void ComponentEventHandler(object sender, ComponentEventArgs e); {
-+        public ComponentEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, ComponentEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, ComponentEventArgs e);
-+    }
++    public delegate void ComponentEventHandler(object sender, ComponentEventArgs e);
 +    public class ComponentRenameEventArgs : EventArgs {
 +        public ComponentRenameEventArgs(object component, string oldName, string newName);
 +        public object Component { get; }
 +        public virtual string NewName { get; }
 +        public virtual string OldName { get; }
 +    }
-+    public delegate void ComponentRenameEventHandler(object sender, ComponentRenameEventArgs e); {
-+        public ComponentRenameEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, ComponentRenameEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, ComponentRenameEventArgs e);
-+    }
++    public delegate void ComponentRenameEventHandler(object sender, ComponentRenameEventArgs e);
 +    public class DesignerCollection : ICollection, IEnumerable {
-+        public DesignerCollection(IDesignerHost[] designers);
 +        public DesignerCollection(IList designers);
++        public DesignerCollection(IDesignerHost[] designers);
 +        public int Count { get; }
++        int System.Collections.ICollection.Count { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
 +        public virtual IDesignerHost this[int index] { get; }
 +        public IEnumerator GetEnumerator();
++        void System.Collections.ICollection.CopyTo(Array array, int index);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
 +    }
 +    public class DesignerEventArgs : EventArgs {
 +        public DesignerEventArgs(IDesignerHost host);
 +        public IDesignerHost Designer { get; }
 +    }
-+    public delegate void DesignerEventHandler(object sender, DesignerEventArgs e); {
-+        public DesignerEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, DesignerEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, DesignerEventArgs e);
-+    }
++    public delegate void DesignerEventHandler(object sender, DesignerEventArgs e);
 +    public abstract class DesignerOptionService : IDesignerOptionService {
-+        public sealed class DesignerOptionCollection : ICollection, IEnumerable, IList {
-+            public int Count { get; }
-+            public DesignerOptionService.DesignerOptionCollection this[int index] { get; }
-+            public DesignerOptionService.DesignerOptionCollection this[string name] { get; }
-+            public string Name { get; }
-+            public DesignerOptionService.DesignerOptionCollection Parent { get; }
-+            public PropertyDescriptorCollection Properties { get; }
-+            public void CopyTo(Array array, int index);
-+            public IEnumerator GetEnumerator();
-+            public int IndexOf(DesignerOptionService.DesignerOptionCollection value);
-+            public bool ShowDialog();
-+        }
 +        protected DesignerOptionService();
 +        public DesignerOptionService.DesignerOptionCollection Options { get; }
 +        protected DesignerOptionService.DesignerOptionCollection CreateOptionCollection(DesignerOptionService.DesignerOptionCollection parent, string name, object value);
 +        protected virtual void PopulateOptionCollection(DesignerOptionService.DesignerOptionCollection options);
 +        protected virtual bool ShowDialog(DesignerOptionService.DesignerOptionCollection options, object optionObject);
++        object System.ComponentModel.Design.IDesignerOptionService.GetOptionValue(string pageName, string valueName);
++        void System.ComponentModel.Design.IDesignerOptionService.SetOptionValue(string pageName, string valueName, object value);
++        public sealed class DesignerOptionCollection : ICollection, IEnumerable, IList {
++            public int Count { get; }
++            public string Name { get; }
++            public DesignerOptionService.DesignerOptionCollection Parent { get; }
++            public PropertyDescriptorCollection Properties { get; }
++            bool System.Collections.ICollection.IsSynchronized { get; }
++            object System.Collections.ICollection.SyncRoot { get; }
++            bool System.Collections.IList.IsFixedSize { get; }
++            bool System.Collections.IList.IsReadOnly { get; }
++            object System.Collections.IList.this[int index] { get; set; }
++            public DesignerOptionService.DesignerOptionCollection this[int index] { get; }
++            public DesignerOptionService.DesignerOptionCollection this[string name] { get; }
++            public void CopyTo(Array array, int index);
++            public IEnumerator GetEnumerator();
++            public int IndexOf(DesignerOptionService.DesignerOptionCollection value);
++            public bool ShowDialog();
++            int System.Collections.IList.Add(object value);
++            void System.Collections.IList.Clear();
++            bool System.Collections.IList.Contains(object value);
++            int System.Collections.IList.IndexOf(object value);
++            void System.Collections.IList.Insert(int index, object value);
++            void System.Collections.IList.Remove(object value);
++            void System.Collections.IList.RemoveAt(int index);
++        }
 +    }
 +    public abstract class DesignerTransaction : IDisposable {
 +        protected DesignerTransaction();
@@ -3535,6 +4040,7 @@
 +        ~DesignerTransaction();
 +        protected abstract void OnCancel();
 +        protected abstract void OnCommit();
++        void System.IDisposable.Dispose();
 +    }
 +    public class DesignerTransactionCloseEventArgs : EventArgs {
 +        public DesignerTransactionCloseEventArgs(bool commit);
@@ -3542,12 +4048,7 @@
 +        public bool LastTransaction { get; }
 +        public bool TransactionCommitted { get; }
 +    }
-+    public delegate void DesignerTransactionCloseEventHandler(object sender, DesignerTransactionCloseEventArgs e); {
-+        public DesignerTransactionCloseEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, DesignerTransactionCloseEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, DesignerTransactionCloseEventArgs e);
-+    }
++    public delegate void DesignerTransactionCloseEventHandler(object sender, DesignerTransactionCloseEventArgs e);
 +    public class DesignerVerb : MenuCommand {
 +        public DesignerVerb(string text, EventHandler handler);
 +        public DesignerVerb(string text, EventHandler handler, CommandID startCommandID);
@@ -3604,8 +4105,6 @@
 +        GeneralKeyword = 1,
 +    }
 +    public interface IComponentChangeService {
-+        void OnComponentChanged(object component, MemberDescriptor member, object oldValue, object newValue);
-+        void OnComponentChanging(object component, MemberDescriptor member);
 +        event ComponentEventHandler ComponentAdded;
 +        event ComponentEventHandler ComponentAdding;
 +        event ComponentChangedEventHandler ComponentChanged;
@@ -3613,6 +4112,8 @@
 +        event ComponentEventHandler ComponentRemoved;
 +        event ComponentEventHandler ComponentRemoving;
 +        event ComponentRenameEventHandler ComponentRename;
++        void OnComponentChanged(object component, MemberDescriptor member, object oldValue, object newValue);
++        void OnComponentChanging(object component, MemberDescriptor member);
 +    }
 +    public interface IComponentDiscoveryService {
 +        ICollection GetComponentTypes(IDesignerHost designerHost, Type baseType);
@@ -3650,6 +4151,13 @@
 +        IComponent RootComponent { get; }
 +        string RootComponentClassName { get; }
 +        string TransactionDescription { get; }
++        event EventHandler Activated;
++        event EventHandler Deactivated;
++        event EventHandler LoadComplete;
++        event DesignerTransactionCloseEventHandler TransactionClosed;
++        event DesignerTransactionCloseEventHandler TransactionClosing;
++        event EventHandler TransactionOpened;
++        event EventHandler TransactionOpening;
 +        void Activate();
 +        IComponent CreateComponent(Type componentClass);
 +        IComponent CreateComponent(Type componentClass, string name);
@@ -3658,13 +4166,6 @@
 +        void DestroyComponent(IComponent component);
 +        IDesigner GetDesigner(IComponent component);
 +        Type GetType(string typeName);
-+        event EventHandler Activated;
-+        event EventHandler Deactivated;
-+        event EventHandler LoadComplete;
-+        event DesignerTransactionCloseEventHandler TransactionClosed;
-+        event DesignerTransactionCloseEventHandler TransactionClosing;
-+        event EventHandler TransactionOpened;
-+        event EventHandler TransactionOpening;
 +    }
 +    public interface IDesignerHostTransactionState {
 +        bool IsClosingTransaction { get; }
@@ -3736,18 +4237,18 @@
 +    public interface ISelectionService {
 +        object PrimarySelection { get; }
 +        int SelectionCount { get; }
++        event EventHandler SelectionChanged;
++        event EventHandler SelectionChanging;
 +        bool GetComponentSelected(object component);
 +        ICollection GetSelectedComponents();
 +        void SetSelectedComponents(ICollection components);
 +        void SetSelectedComponents(ICollection components, SelectionTypes selectionType);
-+        event EventHandler SelectionChanged;
-+        event EventHandler SelectionChanging;
 +    }
 +    public interface IServiceContainer : IServiceProvider {
-+        void AddService(Type serviceType, object serviceInstance);
-+        void AddService(Type serviceType, object serviceInstance, bool promote);
 +        void AddService(Type serviceType, ServiceCreatorCallback callback);
 +        void AddService(Type serviceType, ServiceCreatorCallback callback, bool promote);
++        void AddService(Type serviceType, object serviceInstance);
++        void AddService(Type serviceType, object serviceInstance, bool promote);
 +        void RemoveService(Type serviceType);
 +        void RemoveService(Type serviceType, bool promote);
 +    }
@@ -3781,11 +4282,11 @@
 +        public virtual IDictionary Properties { get; }
 +        public virtual bool Supported { get; set; }
 +        public virtual bool Visible { get; set; }
++        public event EventHandler CommandChanged;
 +        public virtual void Invoke();
 +        public virtual void Invoke(object arg);
 +        protected virtual void OnCommandChanged(EventArgs e);
 +        public override string ToString();
-+        public event EventHandler CommandChanged;
 +    }
 +    public enum SelectionTypes {
 +        Add = 64,
@@ -3804,22 +4305,17 @@
 +        public ServiceContainer();
 +        public ServiceContainer(IServiceProvider parentProvider);
 +        protected virtual Type[] DefaultServices { get; }
-+        public void AddService(Type serviceType, object serviceInstance);
-+        public virtual void AddService(Type serviceType, object serviceInstance, bool promote);
 +        public void AddService(Type serviceType, ServiceCreatorCallback callback);
 +        public virtual void AddService(Type serviceType, ServiceCreatorCallback callback, bool promote);
++        public void AddService(Type serviceType, object serviceInstance);
++        public virtual void AddService(Type serviceType, object serviceInstance, bool promote);
 +        public void Dispose();
 +        protected virtual void Dispose(bool disposing);
 +        public virtual object GetService(Type serviceType);
 +        public void RemoveService(Type serviceType);
 +        public virtual void RemoveService(Type serviceType, bool promote);
 +    }
-+    public delegate object ServiceCreatorCallback(IServiceContainer container, Type serviceType); {
-+        public ServiceCreatorCallback(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(IServiceContainer container, Type serviceType, AsyncCallback callback, object @object);
-+        public virtual object EndInvoke(IAsyncResult result);
-+        public virtual object Invoke(IServiceContainer container, Type serviceType);
-+    }
++    public delegate object ServiceCreatorCallback(IServiceContainer container, Type serviceType);
 +    public class StandardCommands {
 +        public static readonly CommandID AlignBottom;
 +        public static readonly CommandID AlignHorizontalCenters;
@@ -3900,6 +4396,7 @@
 +        WindowsForms = 1,
 +    }
 +}
+
 +namespace System.ComponentModel.Design.Serialization {
 +    public abstract class ComponentSerializationService {
 +        protected ComponentSerializationService();
@@ -3960,6 +4457,8 @@
 +    public interface IDesignerSerializationManager : IServiceProvider {
 +        ContextStack Context { get; }
 +        PropertyDescriptorCollection Properties { get; }
++        event ResolveNameEventHandler ResolveName;
++        event EventHandler SerializationComplete;
 +        void AddSerializationProvider(IDesignerSerializationProvider provider);
 +        object CreateInstance(Type type, ICollection arguments, string name, bool addToContainer);
 +        object GetInstance(string name);
@@ -3969,8 +4468,6 @@
 +        void RemoveSerializationProvider(IDesignerSerializationProvider provider);
 +        void ReportError(object errorInformation);
 +        void SetName(object instance, string name);
-+        event ResolveNameEventHandler ResolveName;
-+        event EventHandler SerializationComplete;
 +    }
 +    public interface IDesignerSerializationProvider {
 +        object GetSerializer(IDesignerSerializationManager manager, object currentSerializer, Type objectType, Type serializerType);
@@ -3992,6 +4489,7 @@
 +        public MemberInfo MemberInfo { get; }
 +        public object Invoke();
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct MemberRelationship {
 +        public static readonly MemberRelationship Empty;
 +        public MemberRelationship(object owner, MemberDescriptor member);
@@ -4016,12 +4514,7 @@
 +        public string Name { get; }
 +        public object Value { get; set; }
 +    }
-+    public delegate void ResolveNameEventHandler(object sender, ResolveNameEventArgs e); {
-+        public ResolveNameEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, ResolveNameEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, ResolveNameEventArgs e);
-+    }
++    public delegate void ResolveNameEventHandler(object sender, ResolveNameEventArgs e);
 +    public sealed class RootDesignerSerializerAttribute : Attribute {
 +        public RootDesignerSerializerAttribute(string serializerTypeName, string baseSerializerTypeName, bool reloadable);
 +        public RootDesignerSerializerAttribute(string serializerTypeName, Type baseSerializerType, bool reloadable);
@@ -4037,8 +4530,10 @@
 +        public abstract void Close();
 +        protected virtual void Dispose(bool disposing);
 +        public abstract void Save(Stream stream);
++        void System.IDisposable.Dispose();
 +    }
 +}
+
 +namespace System.Configuration.Assemblies {
 +    public enum AssemblyHashAlgorithm {
 +        MD5 = 32771,
@@ -4054,6 +4549,7 @@
 +        SameProcess = 2,
 +    }
 +}
+
 +namespace System.Data {
 +    public enum AcceptRejectRule {
 +        Cascade = 1,
@@ -4097,8 +4593,10 @@
 +        public override string ToString();
 +    }
 +    public sealed class ConstraintCollection : InternalDataCollectionBase {
++        protected override ArrayList List { get; }
 +        public Constraint this[int index] { get; }
 +        public Constraint this[string name] { get; }
++        public event CollectionChangeEventHandler CollectionChanged;
 +        public void Add(Constraint constraint);
 +        public Constraint Add(string name, DataColumn column, bool primaryKey);
 +        public Constraint Add(string name, DataColumn primaryKeyColumn, DataColumn foreignKeyColumn);
@@ -4114,7 +4612,6 @@
 +        public void Remove(Constraint constraint);
 +        public void Remove(string name);
 +        public void RemoveAt(int index);
-+        public event CollectionChangeEventHandler CollectionChanged;
 +    }
 +    public class ConstraintException : DataException {
 +        public ConstraintException();
@@ -4160,15 +4657,12 @@
 +        public object ProposedValue { get; set; }
 +        public DataRow Row { get; }
 +    }
-+    public delegate void DataColumnChangeEventHandler(object sender, DataColumnChangeEventArgs e); {
-+        public DataColumnChangeEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, DataColumnChangeEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, DataColumnChangeEventArgs e);
-+    }
++    public delegate void DataColumnChangeEventHandler(object sender, DataColumnChangeEventArgs e);
 +    public sealed class DataColumnCollection : InternalDataCollectionBase {
++        protected override ArrayList List { get; }
 +        public DataColumn this[int index] { get; }
 +        public DataColumn this[string name] { get; }
++        public event CollectionChangeEventHandler CollectionChanged;
 +        public DataColumn Add();
 +        public void Add(DataColumn column);
 +        public DataColumn Add(string columnName);
@@ -4184,7 +4678,6 @@
 +        public void Remove(DataColumn column);
 +        public void Remove(string name);
 +        public void RemoveAt(int index);
-+        public event CollectionChangeEventHandler CollectionChanged;
 +    }
 +    public class DataException : SystemException {
 +        public DataException();
@@ -4218,6 +4711,7 @@
 +        protected DataRelationCollection();
 +        public abstract DataRelation this[int index] { get; }
 +        public abstract DataRelation this[string name] { get; }
++        public event CollectionChangeEventHandler CollectionChanged;
 +        public virtual DataRelation Add(DataColumn parentColumn, DataColumn childColumn);
 +        public virtual DataRelation Add(DataColumn[] parentColumns, DataColumn[] childColumns);
 +        public void Add(DataRelation relation);
@@ -4240,21 +4734,20 @@
 +        public void Remove(string name);
 +        public void RemoveAt(int index);
 +        protected virtual void RemoveCore(DataRelation relation);
-+        public event CollectionChangeEventHandler CollectionChanged;
 +    }
 +    public class DataRow {
 +        protected internal DataRow(DataRowBuilder builder);
 +        public bool HasErrors { get; }
 +        public object[] ItemArray { get; set; }
++        public string RowError { get; set; }
++        public DataRowState RowState { get; }
++        public DataTable Table { get; }
 +        public object this[DataColumn column, DataRowVersion version] { get; }
 +        public object this[DataColumn column] { get; set; }
 +        public object this[int columnIndex, DataRowVersion version] { get; }
 +        public object this[int columnIndex] { get; set; }
 +        public object this[string columnName, DataRowVersion version] { get; }
 +        public object this[string columnName] { get; set; }
-+        public string RowError { get; set; }
-+        public DataRowState RowState { get; }
-+        public DataTable Table { get; }
 +        public void AcceptChanges();
 +        public void BeginEdit();
 +        public void CancelEdit();
@@ -4308,12 +4801,7 @@
 +        public DataRowAction Action { get; }
 +        public DataRow Row { get; }
 +    }
-+    public delegate void DataRowChangeEventHandler(object sender, DataRowChangeEventArgs e); {
-+        public DataRowChangeEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, DataRowChangeEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, DataRowChangeEventArgs e);
-+    }
++    public delegate void DataRowChangeEventHandler(object sender, DataRowChangeEventArgs e);
 +    public sealed class DataRowCollection : InternalDataCollectionBase {
 +        public override int Count { get; }
 +        public DataRow this[int index] { get; }
@@ -4349,10 +4837,13 @@
 +        public DataView DataView { get; }
 +        public bool IsEdit { get; }
 +        public bool IsNew { get; }
-+        public object this[int ndx] { get; set; }
-+        public object this[string property] { get; set; }
 +        public DataRow Row { get; }
 +        public DataRowVersion RowVersion { get; }
++        string System.ComponentModel.IDataErrorInfo.Error { get; }
++        string System.ComponentModel.IDataErrorInfo.this[string colName] { get; }
++        public object this[int ndx] { get; set; }
++        public object this[string property] { get; set; }
++        public event PropertyChangedEventHandler PropertyChanged;
 +        public void BeginEdit();
 +        public void CancelEdit();
 +        public DataView CreateChildView(DataRelation relation);
@@ -4363,7 +4854,18 @@
 +        public void EndEdit();
 +        public override bool Equals(object other);
 +        public override int GetHashCode();
-+        public event PropertyChangedEventHandler PropertyChanged;
++        AttributeCollection System.ComponentModel.ICustomTypeDescriptor.GetAttributes();
++        string System.ComponentModel.ICustomTypeDescriptor.GetClassName();
++        string System.ComponentModel.ICustomTypeDescriptor.GetComponentName();
++        TypeConverter System.ComponentModel.ICustomTypeDescriptor.GetConverter();
++        EventDescriptor System.ComponentModel.ICustomTypeDescriptor.GetDefaultEvent();
++        PropertyDescriptor System.ComponentModel.ICustomTypeDescriptor.GetDefaultProperty();
++        object System.ComponentModel.ICustomTypeDescriptor.GetEditor(Type editorBaseType);
++        EventDescriptorCollection System.ComponentModel.ICustomTypeDescriptor.GetEvents();
++        EventDescriptorCollection System.ComponentModel.ICustomTypeDescriptor.GetEvents(Attribute[] attributes);
++        PropertyDescriptorCollection System.ComponentModel.ICustomTypeDescriptor.GetProperties();
++        PropertyDescriptorCollection System.ComponentModel.ICustomTypeDescriptor.GetProperties(Attribute[] attributes);
++        object System.ComponentModel.ICustomTypeDescriptor.GetPropertyOwner(PropertyDescriptor pd);
 +    }
 +    public class DataSet : MarshalByValueComponent, IListSource, ISerializable, ISupportInitialize, ISupportInitializeNotification, IXmlSerializable {
 +        public DataSet();
@@ -4384,7 +4886,10 @@
 +        public SerializationFormat RemotingFormat { get; set; }
 +        public virtual SchemaSerializationMode SchemaSerializationMode { get; set; }
 +        public override ISite Site { get; set; }
++        bool System.ComponentModel.IListSource.ContainsListCollection { get; }
 +        public DataTableCollection Tables { get; }
++        public event EventHandler Initialized;
++        public event MergeFailedEventHandler MergeFailed;
 +        public void AcceptChanges();
 +        public void BeginInit();
 +        public void Clear();
@@ -4406,8 +4911,8 @@
 +        public bool HasChanges();
 +        public bool HasChanges(DataRowState rowStates);
 +        public void InferXmlSchema(Stream stream, string[] nsArray);
-+        public void InferXmlSchema(string fileName, string[] nsArray);
 +        public void InferXmlSchema(TextReader reader, string[] nsArray);
++        public void InferXmlSchema(string fileName, string[] nsArray);
 +        public void InferXmlSchema(XmlReader reader, string[] nsArray);
 +        protected virtual void InitializeDerivedDataSet();
 +        protected bool IsBinarySerialized(SerializationInfo info, StreamingContext context);
@@ -4427,39 +4932,41 @@
 +        protected internal void RaisePropertyChanging(string name);
 +        public XmlReadMode ReadXml(Stream stream);
 +        public XmlReadMode ReadXml(Stream stream, XmlReadMode mode);
-+        public XmlReadMode ReadXml(string fileName);
-+        public XmlReadMode ReadXml(string fileName, XmlReadMode mode);
 +        public XmlReadMode ReadXml(TextReader reader);
 +        public XmlReadMode ReadXml(TextReader reader, XmlReadMode mode);
++        public XmlReadMode ReadXml(string fileName);
++        public XmlReadMode ReadXml(string fileName, XmlReadMode mode);
 +        public XmlReadMode ReadXml(XmlReader reader);
 +        public XmlReadMode ReadXml(XmlReader reader, XmlReadMode mode);
 +        public void ReadXmlSchema(Stream stream);
-+        public void ReadXmlSchema(string fileName);
 +        public void ReadXmlSchema(TextReader reader);
++        public void ReadXmlSchema(string fileName);
 +        public void ReadXmlSchema(XmlReader reader);
 +        protected virtual void ReadXmlSerializable(XmlReader reader);
 +        public virtual void RejectChanges();
 +        public virtual void Reset();
 +        protected virtual bool ShouldSerializeRelations();
 +        protected virtual bool ShouldSerializeTables();
++        IList System.ComponentModel.IListSource.GetList();
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader reader);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public void WriteXml(Stream stream);
 +        public void WriteXml(Stream stream, XmlWriteMode mode);
-+        public void WriteXml(string fileName);
-+        public void WriteXml(string fileName, XmlWriteMode mode);
 +        public void WriteXml(TextWriter writer);
 +        public void WriteXml(TextWriter writer, XmlWriteMode mode);
++        public void WriteXml(string fileName);
++        public void WriteXml(string fileName, XmlWriteMode mode);
 +        public void WriteXml(XmlWriter writer);
 +        public void WriteXml(XmlWriter writer, XmlWriteMode mode);
 +        public void WriteXmlSchema(Stream stream);
 +        public void WriteXmlSchema(Stream stream, Converter<Type, string> multipleTargetConverter);
-+        public void WriteXmlSchema(string fileName);
-+        public void WriteXmlSchema(string fileName, Converter<Type, string> multipleTargetConverter);
 +        public void WriteXmlSchema(TextWriter writer);
 +        public void WriteXmlSchema(TextWriter writer, Converter<Type, string> multipleTargetConverter);
++        public void WriteXmlSchema(string fileName);
++        public void WriteXmlSchema(string fileName, Converter<Type, string> multipleTargetConverter);
 +        public void WriteXmlSchema(XmlWriter writer);
 +        public void WriteXmlSchema(XmlWriter writer, Converter<Type, string> multipleTargetConverter);
-+        public event EventHandler Initialized;
-+        public event MergeFailedEventHandler MergeFailed;
 +    }
 +    public enum DataSetDateTime {
 +        Local = 1,
@@ -4496,7 +5003,18 @@
 +        public SerializationFormat RemotingFormat { get; set; }
 +        public DataRowCollection Rows { get; }
 +        public override ISite Site { get; set; }
++        bool System.ComponentModel.IListSource.ContainsListCollection { get; }
 +        public string TableName { get; set; }
++        public event DataColumnChangeEventHandler ColumnChanged;
++        public event DataColumnChangeEventHandler ColumnChanging;
++        public event EventHandler Initialized;
++        public event DataRowChangeEventHandler RowChanged;
++        public event DataRowChangeEventHandler RowChanging;
++        public event DataRowChangeEventHandler RowDeleted;
++        public event DataRowChangeEventHandler RowDeleting;
++        public event DataTableClearEventHandler TableCleared;
++        public event DataTableClearEventHandler TableClearing;
++        public event DataTableNewRowEventHandler TableNewRow;
 +        public void AcceptChanges();
 +        public virtual void BeginInit();
 +        public void BeginLoadData();
@@ -4539,12 +5057,12 @@
 +        protected virtual void OnTableClearing(DataTableClearEventArgs e);
 +        protected virtual void OnTableNewRow(DataTableNewRowEventArgs e);
 +        public XmlReadMode ReadXml(Stream stream);
-+        public XmlReadMode ReadXml(string fileName);
 +        public XmlReadMode ReadXml(TextReader reader);
++        public XmlReadMode ReadXml(string fileName);
 +        public XmlReadMode ReadXml(XmlReader reader);
 +        public void ReadXmlSchema(Stream stream);
-+        public void ReadXmlSchema(string fileName);
 +        public void ReadXmlSchema(TextReader reader);
++        public void ReadXmlSchema(string fileName);
 +        public void ReadXmlSchema(XmlReader reader);
 +        protected virtual void ReadXmlSerializable(XmlReader reader);
 +        public void RejectChanges();
@@ -4553,41 +5071,35 @@
 +        public DataRow[] Select(string filterExpression);
 +        public DataRow[] Select(string filterExpression, string sort);
 +        public DataRow[] Select(string filterExpression, string sort, DataViewRowState recordStates);
++        IList System.ComponentModel.IListSource.GetList();
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader reader);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public override string ToString();
 +        public void WriteXml(Stream stream);
 +        public void WriteXml(Stream stream, bool writeHierarchy);
 +        public void WriteXml(Stream stream, XmlWriteMode mode);
 +        public void WriteXml(Stream stream, XmlWriteMode mode, bool writeHierarchy);
-+        public void WriteXml(string fileName);
-+        public void WriteXml(string fileName, bool writeHierarchy);
-+        public void WriteXml(string fileName, XmlWriteMode mode);
-+        public void WriteXml(string fileName, XmlWriteMode mode, bool writeHierarchy);
 +        public void WriteXml(TextWriter writer);
 +        public void WriteXml(TextWriter writer, bool writeHierarchy);
 +        public void WriteXml(TextWriter writer, XmlWriteMode mode);
 +        public void WriteXml(TextWriter writer, XmlWriteMode mode, bool writeHierarchy);
++        public void WriteXml(string fileName);
++        public void WriteXml(string fileName, bool writeHierarchy);
++        public void WriteXml(string fileName, XmlWriteMode mode);
++        public void WriteXml(string fileName, XmlWriteMode mode, bool writeHierarchy);
 +        public void WriteXml(XmlWriter writer);
 +        public void WriteXml(XmlWriter writer, bool writeHierarchy);
 +        public void WriteXml(XmlWriter writer, XmlWriteMode mode);
 +        public void WriteXml(XmlWriter writer, XmlWriteMode mode, bool writeHierarchy);
 +        public void WriteXmlSchema(Stream stream);
 +        public void WriteXmlSchema(Stream stream, bool writeHierarchy);
-+        public void WriteXmlSchema(string fileName);
-+        public void WriteXmlSchema(string fileName, bool writeHierarchy);
 +        public void WriteXmlSchema(TextWriter writer);
 +        public void WriteXmlSchema(TextWriter writer, bool writeHierarchy);
++        public void WriteXmlSchema(string fileName);
++        public void WriteXmlSchema(string fileName, bool writeHierarchy);
 +        public void WriteXmlSchema(XmlWriter writer);
 +        public void WriteXmlSchema(XmlWriter writer, bool writeHierarchy);
-+        public event DataColumnChangeEventHandler ColumnChanged;
-+        public event DataColumnChangeEventHandler ColumnChanging;
-+        public event EventHandler Initialized;
-+        public event DataRowChangeEventHandler RowChanged;
-+        public event DataRowChangeEventHandler RowChanging;
-+        public event DataRowChangeEventHandler RowDeleted;
-+        public event DataRowChangeEventHandler RowDeleting;
-+        public event DataTableClearEventHandler TableCleared;
-+        public event DataTableClearEventHandler TableClearing;
-+        public event DataTableNewRowEventHandler TableNewRow;
 +    }
 +    public sealed class DataTableClearEventArgs : EventArgs {
 +        public DataTableClearEventArgs(DataTable dataTable);
@@ -4595,16 +5107,14 @@
 +        public string TableName { get; }
 +        public string TableNamespace { get; }
 +    }
-+    public delegate void DataTableClearEventHandler(object sender, DataTableClearEventArgs e); {
-+        public DataTableClearEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, DataTableClearEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, DataTableClearEventArgs e);
-+    }
++    public delegate void DataTableClearEventHandler(object sender, DataTableClearEventArgs e);
 +    public sealed class DataTableCollection : InternalDataCollectionBase {
++        protected override ArrayList List { get; }
 +        public DataTable this[int index] { get; }
 +        public DataTable this[string name, string tableNamespace] { get; }
 +        public DataTable this[string name] { get; }
++        public event CollectionChangeEventHandler CollectionChanged;
++        public event CollectionChangeEventHandler CollectionChanging;
 +        public DataTable Add();
 +        public void Add(DataTable table);
 +        public DataTable Add(string name);
@@ -4622,19 +5132,12 @@
 +        public void Remove(string name);
 +        public void Remove(string name, string tableNamespace);
 +        public void RemoveAt(int index);
-+        public event CollectionChangeEventHandler CollectionChanged;
-+        public event CollectionChangeEventHandler CollectionChanging;
 +    }
 +    public sealed class DataTableNewRowEventArgs : EventArgs {
 +        public DataTableNewRowEventArgs(DataRow dataRow);
 +        public DataRow Row { get; }
 +    }
-+    public delegate void DataTableNewRowEventHandler(object sender, DataTableNewRowEventArgs e); {
-+        public DataTableNewRowEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, DataTableNewRowEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, DataTableNewRowEventArgs e);
-+    }
++    public delegate void DataTableNewRowEventHandler(object sender, DataTableNewRowEventArgs e);
 +    public sealed class DataTableReader : DbDataReader {
 +        public DataTableReader(DataTable dataTable);
 +        public DataTableReader(DataTable[] dataTables);
@@ -4642,9 +5145,9 @@
 +        public override int FieldCount { get; }
 +        public override bool HasRows { get; }
 +        public override bool IsClosed { get; }
++        public override int RecordsAffected { get; }
 +        public override object this[int ordinal] { get; }
 +        public override object this[string name] { get; }
-+        public override int RecordsAffected { get; }
 +        public override void Close();
 +        public override bool GetBoolean(int ordinal);
 +        public override byte GetByte(int ordinal);
@@ -4687,11 +5190,31 @@
 +        public DataViewManager DataViewManager { get; }
 +        public bool IsInitialized { get; }
 +        protected bool IsOpen { get; }
-+        public DataRowView this[int recordIndex] { get; }
 +        public virtual string RowFilter { get; set; }
 +        public DataViewRowState RowStateFilter { get; set; }
 +        public string Sort { get; set; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
++        bool System.Collections.IList.IsFixedSize { get; }
++        bool System.Collections.IList.IsReadOnly { get; }
++        object System.Collections.IList.this[int recordIndex] { get; set; }
++        bool System.ComponentModel.IBindingList.AllowEdit { get; }
++        bool System.ComponentModel.IBindingList.AllowNew { get; }
++        bool System.ComponentModel.IBindingList.AllowRemove { get; }
++        bool System.ComponentModel.IBindingList.IsSorted { get; }
++        ListSortDirection System.ComponentModel.IBindingList.SortDirection { get; }
++        PropertyDescriptor System.ComponentModel.IBindingList.SortProperty { get; }
++        bool System.ComponentModel.IBindingList.SupportsChangeNotification { get; }
++        bool System.ComponentModel.IBindingList.SupportsSearching { get; }
++        bool System.ComponentModel.IBindingList.SupportsSorting { get; }
++        string System.ComponentModel.IBindingListView.Filter { get; set; }
++        ListSortDescriptionCollection System.ComponentModel.IBindingListView.SortDescriptions { get; }
++        bool System.ComponentModel.IBindingListView.SupportsAdvancedSorting { get; }
++        bool System.ComponentModel.IBindingListView.SupportsFiltering { get; }
 +        public DataTable Table { get; set; }
++        public DataRowView this[int recordIndex] { get; }
++        public event EventHandler Initialized;
++        public event ListChangedEventHandler ListChanged;
 +        public virtual DataRowView AddNew();
 +        public void BeginInit();
 +        protected void Close();
@@ -4710,14 +5233,29 @@
 +        protected virtual void OnListChanged(ListChangedEventArgs e);
 +        protected void Open();
 +        protected void Reset();
++        int System.Collections.IList.Add(object value);
++        void System.Collections.IList.Clear();
++        bool System.Collections.IList.Contains(object value);
++        int System.Collections.IList.IndexOf(object value);
++        void System.Collections.IList.Insert(int index, object value);
++        void System.Collections.IList.Remove(object value);
++        void System.Collections.IList.RemoveAt(int index);
++        void System.ComponentModel.IBindingList.AddIndex(PropertyDescriptor property);
++        object System.ComponentModel.IBindingList.AddNew();
++        void System.ComponentModel.IBindingList.ApplySort(PropertyDescriptor property, ListSortDirection direction);
++        int System.ComponentModel.IBindingList.Find(PropertyDescriptor property, object key);
++        void System.ComponentModel.IBindingList.RemoveIndex(PropertyDescriptor property);
++        void System.ComponentModel.IBindingList.RemoveSort();
++        void System.ComponentModel.IBindingListView.ApplySort(ListSortDescriptionCollection sorts);
++        void System.ComponentModel.IBindingListView.RemoveFilter();
++        PropertyDescriptorCollection System.ComponentModel.ITypedList.GetItemProperties(PropertyDescriptor[] listAccessors);
++        string System.ComponentModel.ITypedList.GetListName(PropertyDescriptor[] listAccessors);
 +        public DataTable ToTable();
 +        public DataTable ToTable(bool distinct, params string[] columnNames);
 +        public DataTable ToTable(string tableName);
 +        public DataTable ToTable(string tableName, bool distinct, params string[] columnNames);
 +        protected void UpdateIndex();
 +        protected virtual void UpdateIndex(bool force);
-+        public event EventHandler Initialized;
-+        public event ListChangedEventHandler ListChanged;
 +    }
 +    public class DataViewManager : MarshalByValueComponent, IBindingList, ICollection, IEnumerable, IList, ITypedList {
 +        public DataViewManager();
@@ -4725,11 +5263,43 @@
 +        public DataSet DataSet { get; set; }
 +        public string DataViewSettingCollectionString { get; set; }
 +        public DataViewSettingCollection DataViewSettings { get; }
++        int System.Collections.ICollection.Count { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
++        bool System.Collections.IList.IsFixedSize { get; }
++        bool System.Collections.IList.IsReadOnly { get; }
++        object System.Collections.IList.this[int index] { get; set; }
++        bool System.ComponentModel.IBindingList.AllowEdit { get; }
++        bool System.ComponentModel.IBindingList.AllowNew { get; }
++        bool System.ComponentModel.IBindingList.AllowRemove { get; }
++        bool System.ComponentModel.IBindingList.IsSorted { get; }
++        ListSortDirection System.ComponentModel.IBindingList.SortDirection { get; }
++        PropertyDescriptor System.ComponentModel.IBindingList.SortProperty { get; }
++        bool System.ComponentModel.IBindingList.SupportsChangeNotification { get; }
++        bool System.ComponentModel.IBindingList.SupportsSearching { get; }
++        bool System.ComponentModel.IBindingList.SupportsSorting { get; }
++        public event ListChangedEventHandler ListChanged;
 +        public DataView CreateDataView(DataTable table);
 +        protected virtual void OnListChanged(ListChangedEventArgs e);
 +        protected virtual void RelationCollectionChanged(object sender, CollectionChangeEventArgs e);
++        void System.Collections.ICollection.CopyTo(Array array, int index);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
++        int System.Collections.IList.Add(object value);
++        void System.Collections.IList.Clear();
++        bool System.Collections.IList.Contains(object value);
++        int System.Collections.IList.IndexOf(object value);
++        void System.Collections.IList.Insert(int index, object value);
++        void System.Collections.IList.Remove(object value);
++        void System.Collections.IList.RemoveAt(int index);
++        void System.ComponentModel.IBindingList.AddIndex(PropertyDescriptor property);
++        object System.ComponentModel.IBindingList.AddNew();
++        void System.ComponentModel.IBindingList.ApplySort(PropertyDescriptor property, ListSortDirection direction);
++        int System.ComponentModel.IBindingList.Find(PropertyDescriptor property, object key);
++        void System.ComponentModel.IBindingList.RemoveIndex(PropertyDescriptor property);
++        void System.ComponentModel.IBindingList.RemoveSort();
++        PropertyDescriptorCollection System.ComponentModel.ITypedList.GetItemProperties(PropertyDescriptor[] listAccessors);
++        string System.ComponentModel.ITypedList.GetListName(PropertyDescriptor[] listAccessors);
 +        protected virtual void TableCollectionChanged(object sender, CollectionChangeEventArgs e);
-+        public event ListChangedEventHandler ListChanged;
 +    }
 +    public enum DataViewRowState {
 +        Added = 4,
@@ -4753,10 +5323,10 @@
 +        public virtual int Count { get; }
 +        public bool IsReadOnly { get; }
 +        public bool IsSynchronized { get; }
++        public object SyncRoot { get; }
 +        public virtual DataViewSetting this[DataTable table] { get; set; }
 +        public virtual DataViewSetting this[int index] { get; set; }
 +        public virtual DataViewSetting this[string tableName] { get; }
-+        public object SyncRoot { get; }
 +        public void CopyTo(Array ar, int index);
 +        public void CopyTo(DataViewSetting[] ar, int index);
 +        public IEnumerator GetEnumerator();
@@ -4826,12 +5396,7 @@
 +        public Exception Errors { get; set; }
 +        public object[] Values { get; }
 +    }
-+    public delegate void FillErrorEventHandler(object sender, FillErrorEventArgs e); {
-+        public FillErrorEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, FillErrorEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, FillErrorEventArgs e);
-+    }
++    public delegate void FillErrorEventHandler(object sender, FillErrorEventArgs e);
 +    public class ForeignKeyConstraint : Constraint {
 +        public ForeignKeyConstraint(DataColumn parentColumn, DataColumn childColumn);
 +        public ForeignKeyConstraint(DataColumn[] parentColumns, DataColumn[] childColumns);
@@ -5036,12 +5601,7 @@
 +        public string Conflict { get; }
 +        public DataTable Table { get; }
 +    }
-+    public delegate void MergeFailedEventHandler(object sender, MergeFailedEventArgs e); {
-+        public MergeFailedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, MergeFailedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, MergeFailedEventArgs e);
-+    }
++    public delegate void MergeFailedEventHandler(object sender, MergeFailedEventArgs e);
 +    public enum MissingMappingAction {
 +        Error = 3,
 +        Ignore = 2,
@@ -5144,22 +5704,12 @@
 +        public ConnectionState CurrentState { get; }
 +        public ConnectionState OriginalState { get; }
 +    }
-+    public delegate void StateChangeEventHandler(object sender, StateChangeEventArgs e); {
-+        public StateChangeEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, StateChangeEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, StateChangeEventArgs e);
-+    }
++    public delegate void StateChangeEventHandler(object sender, StateChangeEventArgs e);
 +    public sealed class StatementCompletedEventArgs : EventArgs {
 +        public StatementCompletedEventArgs(int recordCount);
 +        public int RecordCount { get; }
 +    }
-+    public delegate void StatementCompletedEventHandler(object sender, StatementCompletedEventArgs e); {
-+        public StatementCompletedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, StatementCompletedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, StatementCompletedEventArgs e);
-+    }
++    public delegate void StatementCompletedEventHandler(object sender, StatementCompletedEventArgs e);
 +    public enum StatementType {
 +        Batch = 4,
 +        Delete = 3,
@@ -5228,6 +5778,7 @@
 +        WriteSchema = 0,
 +    }
 +}
+
 +namespace System.Data.Common {
 +    public enum CatalogLocation {
 +        End = 2,
@@ -5243,7 +5794,9 @@
 +        public MissingMappingAction MissingMappingAction { get; set; }
 +        public MissingSchemaAction MissingSchemaAction { get; set; }
 +        public virtual bool ReturnProviderSpecificTypes { get; set; }
++        ITableMappingCollection System.Data.IDataAdapter.TableMappings { get; }
 +        public DataTableMappingCollection TableMappings { get; }
++        public event FillErrorEventHandler FillError;
 +        protected virtual DataAdapter CloneInternals();
 +        protected virtual DataTableMappingCollection CreateTableMappings();
 +        protected override void Dispose(bool disposing);
@@ -5262,7 +5815,6 @@
 +        public virtual bool ShouldSerializeFillLoadOption();
 +        protected virtual bool ShouldSerializeTableMappings();
 +        public virtual int Update(DataSet dataSet);
-+        public event FillErrorEventHandler FillError;
 +    }
 +    public sealed class DataColumnMapping : MarshalByRefObject, ICloneable, IColumnMapping {
 +        public DataColumnMapping();
@@ -5271,11 +5823,18 @@
 +        public string SourceColumn { get; set; }
 +        public DataColumn GetDataColumnBySchemaAction(DataTable dataTable, Type dataType, MissingSchemaAction schemaAction);
 +        public static DataColumn GetDataColumnBySchemaAction(string sourceColumn, string dataSetColumn, DataTable dataTable, Type dataType, MissingSchemaAction schemaAction);
++        object System.ICloneable.Clone();
 +        public override string ToString();
 +    }
 +    public sealed class DataColumnMappingCollection : MarshalByRefObject, ICollection, IColumnMappingCollection, IEnumerable, IList {
 +        public DataColumnMappingCollection();
 +        public int Count { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
++        bool System.Collections.IList.IsFixedSize { get; }
++        bool System.Collections.IList.IsReadOnly { get; }
++        object System.Collections.IList.this[int index] { get; set; }
++        object System.Data.IColumnMappingCollection.this[string index] { get; set; }
 +        public DataColumnMapping this[int index] { get; set; }
 +        public DataColumnMapping this[string sourceColumn] { get; set; }
 +        public int Add(object value);
@@ -5300,6 +5859,8 @@
 +        public void Remove(object value);
 +        public void RemoveAt(int index);
 +        public void RemoveAt(string sourceColumn);
++        IColumnMapping System.Data.IColumnMappingCollection.Add(string sourceColumnName, string dataSetColumnName);
++        IColumnMapping System.Data.IColumnMappingCollection.GetByDataSetColumn(string dataSetColumnName);
 +    }
 +    public sealed class DataTableMapping : MarshalByRefObject, ICloneable, ITableMapping {
 +        public DataTableMapping();
@@ -5308,14 +5869,22 @@
 +        public DataColumnMappingCollection ColumnMappings { get; }
 +        public string DataSetTable { get; set; }
 +        public string SourceTable { get; set; }
++        IColumnMappingCollection System.Data.ITableMapping.ColumnMappings { get; }
 +        public DataColumnMapping GetColumnMappingBySchemaAction(string sourceColumn, MissingMappingAction mappingAction);
 +        public DataColumn GetDataColumn(string sourceColumn, Type dataType, DataTable dataTable, MissingMappingAction mappingAction, MissingSchemaAction schemaAction);
 +        public DataTable GetDataTableBySchemaAction(DataSet dataSet, MissingSchemaAction schemaAction);
++        object System.ICloneable.Clone();
 +        public override string ToString();
 +    }
 +    public sealed class DataTableMappingCollection : MarshalByRefObject, ICollection, IEnumerable, IList, ITableMappingCollection {
 +        public DataTableMappingCollection();
 +        public int Count { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
++        bool System.Collections.IList.IsFixedSize { get; }
++        bool System.Collections.IList.IsReadOnly { get; }
++        object System.Collections.IList.this[int index] { get; set; }
++        object System.Data.ITableMappingCollection.this[string index] { get; set; }
 +        public DataTableMapping this[int index] { get; set; }
 +        public DataTableMapping this[string sourceTable] { get; set; }
 +        public int Add(object value);
@@ -5339,6 +5908,35 @@
 +        public void Remove(object value);
 +        public void RemoveAt(int index);
 +        public void RemoveAt(string sourceTable);
++        ITableMapping System.Data.ITableMappingCollection.Add(string sourceTableName, string dataSetTableName);
++        ITableMapping System.Data.ITableMappingCollection.GetByDataSetTable(string dataSetTableName);
++    }
++    public abstract class DbColumn {
++        protected DbColumn();
++        public Nullable<bool> AllowDBNull { get; protected set; }
++        public string BaseCatalogName { get; protected set; }
++        public string BaseColumnName { get; protected set; }
++        public string BaseSchemaName { get; protected set; }
++        public string BaseServerName { get; protected set; }
++        public string BaseTableName { get; protected set; }
++        public string ColumnName { get; protected set; }
++        public Nullable<int> ColumnOrdinal { get; protected set; }
++        public Nullable<int> ColumnSize { get; protected set; }
++        public Type DataType { get; protected set; }
++        public string DataTypeName { get; protected set; }
++        public Nullable<bool> IsAliased { get; protected set; }
++        public Nullable<bool> IsAutoIncrement { get; protected set; }
++        public Nullable<bool> IsExpression { get; protected set; }
++        public Nullable<bool> IsHidden { get; protected set; }
++        public Nullable<bool> IsIdentity { get; protected set; }
++        public Nullable<bool> IsKey { get; protected set; }
++        public Nullable<bool> IsLong { get; protected set; }
++        public Nullable<bool> IsReadOnly { get; protected set; }
++        public Nullable<bool> IsUnique { get; protected set; }
++        public Nullable<int> NumericPrecision { get; protected set; }
++        public Nullable<int> NumericScale { get; protected set; }
++        public virtual object this[string property] { get; }
++        public string UdtAssemblyQualifiedName { get; protected set; }
 +    }
 +    public abstract class DbCommand : Component, IDbCommand, IDisposable {
 +        protected DbCommand();
@@ -5351,6 +5949,9 @@
 +        protected abstract DbTransaction DbTransaction { get; set; }
 +        public abstract bool DesignTimeVisible { get; set; }
 +        public DbParameterCollection Parameters { get; }
++        IDbConnection System.Data.IDbCommand.Connection { get; set; }
++        IDataParameterCollection System.Data.IDbCommand.Parameters { get; }
++        IDbTransaction System.Data.IDbCommand.Transaction { get; set; }
 +        public DbTransaction Transaction { get; set; }
 +        public abstract UpdateRowSource UpdatedRowSource { get; set; }
 +        public abstract void Cancel();
@@ -5364,13 +5965,16 @@
 +        public DbDataReader ExecuteReader();
 +        public DbDataReader ExecuteReader(CommandBehavior behavior);
 +        public Task<DbDataReader> ExecuteReaderAsync();
-+        public Task<DbDataReader> ExecuteReaderAsync(CancellationToken cancellationToken);
 +        public Task<DbDataReader> ExecuteReaderAsync(CommandBehavior behavior);
 +        public Task<DbDataReader> ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken);
++        public Task<DbDataReader> ExecuteReaderAsync(CancellationToken cancellationToken);
 +        public abstract object ExecuteScalar();
 +        public Task<object> ExecuteScalarAsync();
 +        public virtual Task<object> ExecuteScalarAsync(CancellationToken cancellationToken);
 +        public abstract void Prepare();
++        IDbDataParameter System.Data.IDbCommand.CreateParameter();
++        IDataReader System.Data.IDbCommand.ExecuteReader();
++        IDataReader System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior);
 +    }
 +    public abstract class DbCommandBuilder : Component {
 +        protected DbCommandBuilder();
@@ -5410,6 +6014,7 @@
 +        protected virtual DbProviderFactory DbProviderFactory { get; }
 +        public abstract string ServerVersion { get; }
 +        public abstract ConnectionState State { get; }
++        public virtual event StateChangeEventHandler StateChange;
 +        protected abstract DbTransaction BeginDbTransaction(IsolationLevel isolationLevel);
 +        public DbTransaction BeginTransaction();
 +        public DbTransaction BeginTransaction(IsolationLevel isolationLevel);
@@ -5417,6 +6022,7 @@
 +        public abstract void Close();
 +        public DbCommand CreateCommand();
 +        protected abstract DbCommand CreateDbCommand();
++        public virtual void EnlistTransaction(Transaction transaction);
 +        public virtual DataTable GetSchema();
 +        public virtual DataTable GetSchema(string collectionName);
 +        public virtual DataTable GetSchema(string collectionName, string[] restrictionValues);
@@ -5424,7 +6030,9 @@
 +        public abstract void Open();
 +        public Task OpenAsync();
 +        public virtual Task OpenAsync(CancellationToken cancellationToken);
-+        public virtual event StateChangeEventHandler StateChange;
++        IDbTransaction System.Data.IDbConnection.BeginTransaction();
++        IDbTransaction System.Data.IDbConnection.BeginTransaction(IsolationLevel isolationLevel);
++        IDbCommand System.Data.IDbConnection.CreateCommand();
 +    }
 +    public class DbConnectionStringBuilder : ICollection, ICustomTypeDescriptor, IDictionary, IEnumerable {
 +        public DbConnectionStringBuilder();
@@ -5434,8 +6042,11 @@
 +        public virtual int Count { get; }
 +        public virtual bool IsFixedSize { get; }
 +        public bool IsReadOnly { get; }
-+        public virtual object this[string keyword] { get; set; }
 +        public virtual ICollection Keys { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
++        object System.Collections.IDictionary.this[object keyword] { get; set; }
++        public virtual object this[string keyword] { get; set; }
 +        public virtual ICollection Values { get; }
 +        public void Add(string keyword, object value);
 +        public static void AppendKeyValuePair(StringBuilder builder, string keyword, string value);
@@ -5447,6 +6058,24 @@
 +        protected virtual void GetProperties(Hashtable propertyDescriptors);
 +        public virtual bool Remove(string keyword);
 +        public virtual bool ShouldSerialize(string keyword);
++        void System.Collections.ICollection.CopyTo(Array array, int index);
++        void System.Collections.IDictionary.Add(object keyword, object value);
++        bool System.Collections.IDictionary.Contains(object keyword);
++        IDictionaryEnumerator System.Collections.IDictionary.GetEnumerator();
++        void System.Collections.IDictionary.Remove(object keyword);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
++        AttributeCollection System.ComponentModel.ICustomTypeDescriptor.GetAttributes();
++        string System.ComponentModel.ICustomTypeDescriptor.GetClassName();
++        string System.ComponentModel.ICustomTypeDescriptor.GetComponentName();
++        TypeConverter System.ComponentModel.ICustomTypeDescriptor.GetConverter();
++        EventDescriptor System.ComponentModel.ICustomTypeDescriptor.GetDefaultEvent();
++        PropertyDescriptor System.ComponentModel.ICustomTypeDescriptor.GetDefaultProperty();
++        object System.ComponentModel.ICustomTypeDescriptor.GetEditor(Type editorBaseType);
++        EventDescriptorCollection System.ComponentModel.ICustomTypeDescriptor.GetEvents();
++        EventDescriptorCollection System.ComponentModel.ICustomTypeDescriptor.GetEvents(Attribute[] attributes);
++        PropertyDescriptorCollection System.ComponentModel.ICustomTypeDescriptor.GetProperties();
++        PropertyDescriptorCollection System.ComponentModel.ICustomTypeDescriptor.GetProperties(Attribute[] attributes);
++        object System.ComponentModel.ICustomTypeDescriptor.GetPropertyOwner(PropertyDescriptor pd);
 +        public override string ToString();
 +        public virtual bool TryGetValue(string keyword, out object value);
 +    }
@@ -5458,6 +6087,10 @@
 +        protected internal CommandBehavior FillCommandBehavior { get; set; }
 +        public DbCommand InsertCommand { get; set; }
 +        public DbCommand SelectCommand { get; set; }
++        IDbCommand System.Data.IDbDataAdapter.DeleteCommand { get; set; }
++        IDbCommand System.Data.IDbDataAdapter.InsertCommand { get; set; }
++        IDbCommand System.Data.IDbDataAdapter.SelectCommand { get; set; }
++        IDbCommand System.Data.IDbDataAdapter.UpdateCommand { get; set; }
 +        public virtual int UpdateBatchSize { get; set; }
 +        public DbCommand UpdateCommand { get; set; }
 +        protected virtual int AddToBatch(IDbCommand command);
@@ -5485,6 +6118,7 @@
 +        protected virtual void InitializeBatching();
 +        protected virtual void OnRowUpdated(RowUpdatedEventArgs value);
 +        protected virtual void OnRowUpdating(RowUpdatingEventArgs value);
++        object System.ICloneable.Clone();
 +        protected virtual void TerminateBatching();
 +        public int Update(DataRow[] dataRows);
 +        protected virtual int Update(DataRow[] dataRows, DataTableMapping tableMapping);
@@ -5498,9 +6132,9 @@
 +        public abstract int FieldCount { get; }
 +        public abstract bool HasRows { get; }
 +        public abstract bool IsClosed { get; }
++        public abstract int RecordsAffected { get; }
 +        public abstract object this[int ordinal] { get; }
 +        public abstract object this[string name] { get; }
-+        public abstract int RecordsAffected { get; }
 +        public virtual int VisibleFieldCount { get; }
 +        public virtual void Close();
 +        public void Dispose();
@@ -5546,6 +6180,11 @@
 +        public abstract bool Read();
 +        public Task<bool> ReadAsync();
 +        public virtual Task<bool> ReadAsync(CancellationToken cancellationToken);
++        IDataReader System.Data.IDataRecord.GetData(int ordinal);
++    }
++    public static class DbDataReaderExtensions {
++        public static bool CanGetColumnSchema(this DbDataReader reader);
++        public static ReadOnlyCollection<DbColumn> GetColumnSchema(this DbDataReader reader);
 +    }
 +    public abstract class DbDataRecord : ICustomTypeDescriptor, IDataRecord {
 +        protected DbDataRecord();
@@ -5575,6 +6214,18 @@
 +        public abstract object GetValue(int i);
 +        public abstract int GetValues(object[] values);
 +        public abstract bool IsDBNull(int i);
++        AttributeCollection System.ComponentModel.ICustomTypeDescriptor.GetAttributes();
++        string System.ComponentModel.ICustomTypeDescriptor.GetClassName();
++        string System.ComponentModel.ICustomTypeDescriptor.GetComponentName();
++        TypeConverter System.ComponentModel.ICustomTypeDescriptor.GetConverter();
++        EventDescriptor System.ComponentModel.ICustomTypeDescriptor.GetDefaultEvent();
++        PropertyDescriptor System.ComponentModel.ICustomTypeDescriptor.GetDefaultProperty();
++        object System.ComponentModel.ICustomTypeDescriptor.GetEditor(Type editorBaseType);
++        EventDescriptorCollection System.ComponentModel.ICustomTypeDescriptor.GetEvents();
++        EventDescriptorCollection System.ComponentModel.ICustomTypeDescriptor.GetEvents(Attribute[] attributes);
++        PropertyDescriptorCollection System.ComponentModel.ICustomTypeDescriptor.GetProperties();
++        PropertyDescriptorCollection System.ComponentModel.ICustomTypeDescriptor.GetProperties(Attribute[] attributes);
++        object System.ComponentModel.ICustomTypeDescriptor.GetPropertyOwner(PropertyDescriptor pd);
 +    }
 +    public abstract class DbDataSourceEnumerator {
 +        protected DbDataSourceEnumerator();
@@ -5660,6 +6311,8 @@
 +        public abstract string SourceColumn { get; set; }
 +        public abstract bool SourceColumnNullMapping { get; set; }
 +        public virtual DataRowVersion SourceVersion { get; set; }
++        byte System.Data.IDbDataParameter.Precision { get; set; }
++        byte System.Data.IDbDataParameter.Scale { get; set; }
 +        public abstract object Value { get; set; }
 +        public abstract void ResetDbType();
 +    }
@@ -5669,9 +6322,11 @@
 +        public virtual bool IsFixedSize { get; }
 +        public virtual bool IsReadOnly { get; }
 +        public virtual bool IsSynchronized { get; }
++        public abstract object SyncRoot { get; }
++        object System.Collections.IList.this[int index] { get; set; }
++        object System.Data.IDataParameterCollection.this[string parameterName] { get; set; }
 +        public DbParameter this[int index] { get; set; }
 +        public DbParameter this[string parameterName] { get; set; }
-+        public abstract object SyncRoot { get; }
 +        public abstract int Add(object value);
 +        public abstract void AddRange(Array values);
 +        public abstract void Clear();
@@ -5710,6 +6365,7 @@
 +        public DbConnection Connection { get; }
 +        protected abstract DbConnection DbConnection { get; }
 +        public abstract IsolationLevel IsolationLevel { get; }
++        IDbConnection System.Data.IDbTransaction.Connection { get; }
 +        public abstract void Commit();
 +        public void Dispose();
 +        protected virtual void Dispose(bool disposing);
@@ -5721,6 +6377,9 @@
 +        NotSupported = 1,
 +        Unknown = 0,
 +        Unrelated = 2,
++    }
++    public interface IDbColumnSchemaGenerator {
++        ReadOnlyCollection<DbColumn> GetColumnSchema();
 +    }
 +    public enum IdentifierCase {
 +        Insensitive = 1,
@@ -5793,6 +6452,7 @@
 +        RightOuter = 4,
 +    }
 +}
+
 +namespace System.Data.SqlTypes {
 +    public interface INullable {
 +        bool IsNull { get; }
@@ -5802,19 +6462,20 @@
 +        public SqlAlreadyFilledException(string message);
 +        public SqlAlreadyFilledException(string message, Exception e);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SqlBinary : IComparable, INullable, IXmlSerializable {
 +        public static readonly SqlBinary Null;
 +        public SqlBinary(byte[] value);
 +        public bool IsNull { get; }
-+        public byte this[int index] { get; }
 +        public int Length { get; }
++        public byte this[int index] { get; }
 +        public byte[] Value { get; }
 +        public static SqlBinary Add(SqlBinary x, SqlBinary y);
-+        public int CompareTo(object value);
 +        public int CompareTo(SqlBinary value);
++        public int CompareTo(object value);
 +        public static SqlBinary Concat(SqlBinary x, SqlBinary y);
-+        public override bool Equals(object value);
 +        public static SqlBoolean Equals(SqlBinary x, SqlBinary y);
++        public override bool Equals(object value);
 +        public override int GetHashCode();
 +        public static XmlQualifiedName GetXsdType(XmlSchemaSet schemaSet);
 +        public static SqlBoolean GreaterThan(SqlBinary x, SqlBinary y);
@@ -5832,9 +6493,13 @@
 +        public static SqlBoolean operator !=(SqlBinary x, SqlBinary y);
 +        public static SqlBoolean operator <(SqlBinary x, SqlBinary y);
 +        public static SqlBoolean operator <=(SqlBinary x, SqlBinary y);
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader reader);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public SqlGuid ToSqlGuid();
 +        public override string ToString();
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SqlBoolean : IComparable, INullable, IXmlSerializable {
 +        public static readonly SqlBoolean False;
 +        public static readonly SqlBoolean Null;
@@ -5849,10 +6514,10 @@
 +        public bool IsTrue { get; }
 +        public bool Value { get; }
 +        public static SqlBoolean And(SqlBoolean x, SqlBoolean y);
-+        public int CompareTo(object value);
 +        public int CompareTo(SqlBoolean value);
-+        public override bool Equals(object value);
++        public int CompareTo(object value);
 +        public static SqlBoolean Equals(SqlBoolean x, SqlBoolean y);
++        public override bool Equals(object value);
 +        public override int GetHashCode();
 +        public static XmlQualifiedName GetXsdType(XmlSchemaSet schemaSet);
 +        public static SqlBoolean GreaterThan(SqlBoolean x, SqlBoolean y);
@@ -5887,6 +6552,9 @@
 +        public static bool operator true(SqlBoolean x);
 +        public static SqlBoolean Or(SqlBoolean x, SqlBoolean y);
 +        public static SqlBoolean Parse(string s);
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader reader);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public SqlByte ToSqlByte();
 +        public SqlDecimal ToSqlDecimal();
 +        public SqlDouble ToSqlDouble();
@@ -5899,6 +6567,7 @@
 +        public override string ToString();
 +        public static SqlBoolean Xor(SqlBoolean x, SqlBoolean y);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SqlByte : IComparable, INullable, IXmlSerializable {
 +        public static readonly SqlByte MaxValue;
 +        public static readonly SqlByte MinValue;
@@ -5910,11 +6579,11 @@
 +        public static SqlByte Add(SqlByte x, SqlByte y);
 +        public static SqlByte BitwiseAnd(SqlByte x, SqlByte y);
 +        public static SqlByte BitwiseOr(SqlByte x, SqlByte y);
-+        public int CompareTo(object value);
 +        public int CompareTo(SqlByte value);
++        public int CompareTo(object value);
 +        public static SqlByte Divide(SqlByte x, SqlByte y);
-+        public override bool Equals(object value);
 +        public static SqlBoolean Equals(SqlByte x, SqlByte y);
++        public override bool Equals(object value);
 +        public override int GetHashCode();
 +        public static XmlQualifiedName GetXsdType(XmlSchemaSet schemaSet);
 +        public static SqlBoolean GreaterThan(SqlByte x, SqlByte y);
@@ -5954,6 +6623,9 @@
 +        public static SqlByte operator -(SqlByte x, SqlByte y);
 +        public static SqlByte Parse(string s);
 +        public static SqlByte Subtract(SqlByte x, SqlByte y);
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader reader);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public SqlBoolean ToSqlBoolean();
 +        public SqlDecimal ToSqlDecimal();
 +        public SqlDouble ToSqlDouble();
@@ -5973,12 +6645,12 @@
 +        public SqlBytes(Stream s);
 +        public byte[] Buffer { get; }
 +        public bool IsNull { get; }
-+        public byte this[long offset] { get; set; }
 +        public long Length { get; }
 +        public long MaxLength { get; }
 +        public static SqlBytes Null { get; }
 +        public StorageState Storage { get; }
 +        public Stream Stream { get; set; }
++        public byte this[long offset] { get; set; }
 +        public byte[] Value { get; }
 +        public static XmlQualifiedName GetXsdType(XmlSchemaSet schemaSet);
 +        public static explicit operator SqlBytes (SqlBinary value);
@@ -5986,6 +6658,10 @@
 +        public long Read(long offset, byte[] buffer, int offsetInBuffer, int count);
 +        public void SetLength(long value);
 +        public void SetNull();
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader r);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public SqlBinary ToSqlBinary();
 +        public void Write(long offset, byte[] buffer, int offsetInBuffer, int count);
 +    }
@@ -5995,11 +6671,11 @@
 +        public SqlChars(SqlString value);
 +        public char[] Buffer { get; }
 +        public bool IsNull { get; }
-+        public char this[long offset] { get; set; }
 +        public long Length { get; }
 +        public long MaxLength { get; }
 +        public static SqlChars Null { get; }
 +        public StorageState Storage { get; }
++        public char this[long offset] { get; set; }
 +        public char[] Value { get; }
 +        public static XmlQualifiedName GetXsdType(XmlSchemaSet schemaSet);
 +        public static explicit operator SqlString (SqlChars value);
@@ -6007,6 +6683,10 @@
 +        public long Read(long offset, char[] buffer, int offsetInBuffer, int count);
 +        public void SetLength(long value);
 +        public void SetNull();
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader r);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public SqlString ToSqlString();
 +        public void Write(long offset, char[] buffer, int offsetInBuffer, int count);
 +    }
@@ -6019,6 +6699,7 @@
 +        IgnoreWidth = 16,
 +        None = 0,
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SqlDateTime : IComparable, INullable, IXmlSerializable {
 +        public static readonly SqlDateTime MaxValue;
 +        public static readonly SqlDateTime MinValue;
@@ -6037,10 +6718,10 @@
 +        public int TimeTicks { get; }
 +        public DateTime Value { get; }
 +        public static SqlDateTime Add(SqlDateTime x, TimeSpan t);
-+        public int CompareTo(object value);
 +        public int CompareTo(SqlDateTime value);
-+        public override bool Equals(object value);
++        public int CompareTo(object value);
 +        public static SqlBoolean Equals(SqlDateTime x, SqlDateTime y);
++        public override bool Equals(object value);
 +        public override int GetHashCode();
 +        public static XmlQualifiedName GetXsdType(XmlSchemaSet schemaSet);
 +        public static SqlBoolean GreaterThan(SqlDateTime x, SqlDateTime y);
@@ -6061,9 +6742,13 @@
 +        public static SqlDateTime operator -(SqlDateTime x, TimeSpan t);
 +        public static SqlDateTime Parse(string s);
 +        public static SqlDateTime Subtract(SqlDateTime x, TimeSpan t);
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader reader);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public SqlString ToSqlString();
 +        public override string ToString();
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SqlDecimal : IComparable, INullable, IXmlSerializable {
 +        public static readonly byte MaxPrecision;
 +        public static readonly byte MaxScale;
@@ -6087,12 +6772,12 @@
 +        public static SqlDecimal Add(SqlDecimal x, SqlDecimal y);
 +        public static SqlDecimal AdjustScale(SqlDecimal n, int digits, bool fRound);
 +        public static SqlDecimal Ceiling(SqlDecimal n);
-+        public int CompareTo(object value);
 +        public int CompareTo(SqlDecimal value);
++        public int CompareTo(object value);
 +        public static SqlDecimal ConvertToPrecScale(SqlDecimal n, int precision, int scale);
 +        public static SqlDecimal Divide(SqlDecimal x, SqlDecimal y);
-+        public override bool Equals(object value);
 +        public static SqlBoolean Equals(SqlDecimal x, SqlDecimal y);
++        public override bool Equals(object value);
 +        public static SqlDecimal Floor(SqlDecimal n);
 +        public override int GetHashCode();
 +        public static XmlQualifiedName GetXsdType(XmlSchemaSet schemaSet);
@@ -6105,21 +6790,21 @@
 +        public static SqlDecimal operator +(SqlDecimal x, SqlDecimal y);
 +        public static SqlDecimal operator /(SqlDecimal x, SqlDecimal y);
 +        public static SqlBoolean operator ==(SqlDecimal x, SqlDecimal y);
-+        public static explicit operator SqlDecimal (double x);
 +        public static explicit operator SqlDecimal (SqlBoolean x);
 +        public static explicit operator decimal (SqlDecimal x);
 +        public static explicit operator SqlDecimal (SqlDouble x);
 +        public static explicit operator SqlDecimal (SqlSingle x);
 +        public static explicit operator SqlDecimal (SqlString x);
++        public static explicit operator SqlDecimal (double x);
 +        public static SqlBoolean operator >(SqlDecimal x, SqlDecimal y);
 +        public static SqlBoolean operator >=(SqlDecimal x, SqlDecimal y);
-+        public static implicit operator SqlDecimal (decimal x);
-+        public static implicit operator SqlDecimal (long x);
 +        public static implicit operator SqlDecimal (SqlByte x);
 +        public static implicit operator SqlDecimal (SqlInt16 x);
 +        public static implicit operator SqlDecimal (SqlInt32 x);
 +        public static implicit operator SqlDecimal (SqlInt64 x);
 +        public static implicit operator SqlDecimal (SqlMoney x);
++        public static implicit operator SqlDecimal (decimal x);
++        public static implicit operator SqlDecimal (long x);
 +        public static SqlBoolean operator !=(SqlDecimal x, SqlDecimal y);
 +        public static SqlBoolean operator <(SqlDecimal x, SqlDecimal y);
 +        public static SqlBoolean operator <=(SqlDecimal x, SqlDecimal y);
@@ -6131,6 +6816,9 @@
 +        public static SqlDecimal Round(SqlDecimal n, int position);
 +        public static SqlInt32 Sign(SqlDecimal n);
 +        public static SqlDecimal Subtract(SqlDecimal x, SqlDecimal y);
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader reader);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public double ToDouble();
 +        public SqlBoolean ToSqlBoolean();
 +        public SqlByte ToSqlByte();
@@ -6144,6 +6832,7 @@
 +        public override string ToString();
 +        public static SqlDecimal Truncate(SqlDecimal n, int position);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SqlDouble : IComparable, INullable, IXmlSerializable {
 +        public static readonly SqlDouble MaxValue;
 +        public static readonly SqlDouble MinValue;
@@ -6153,11 +6842,11 @@
 +        public bool IsNull { get; }
 +        public double Value { get; }
 +        public static SqlDouble Add(SqlDouble x, SqlDouble y);
-+        public int CompareTo(object value);
 +        public int CompareTo(SqlDouble value);
++        public int CompareTo(object value);
 +        public static SqlDouble Divide(SqlDouble x, SqlDouble y);
-+        public override bool Equals(object value);
 +        public static SqlBoolean Equals(SqlDouble x, SqlDouble y);
++        public override bool Equals(object value);
 +        public override int GetHashCode();
 +        public static XmlQualifiedName GetXsdType(XmlSchemaSet schemaSet);
 +        public static SqlBoolean GreaterThan(SqlDouble x, SqlDouble y);
@@ -6174,7 +6863,6 @@
 +        public static explicit operator SqlDouble (SqlString x);
 +        public static SqlBoolean operator >(SqlDouble x, SqlDouble y);
 +        public static SqlBoolean operator >=(SqlDouble x, SqlDouble y);
-+        public static implicit operator SqlDouble (double x);
 +        public static implicit operator SqlDouble (SqlByte x);
 +        public static implicit operator SqlDouble (SqlDecimal x);
 +        public static implicit operator SqlDouble (SqlInt16 x);
@@ -6182,6 +6870,7 @@
 +        public static implicit operator SqlDouble (SqlInt64 x);
 +        public static implicit operator SqlDouble (SqlMoney x);
 +        public static implicit operator SqlDouble (SqlSingle x);
++        public static implicit operator SqlDouble (double x);
 +        public static SqlBoolean operator !=(SqlDouble x, SqlDouble y);
 +        public static SqlBoolean operator <(SqlDouble x, SqlDouble y);
 +        public static SqlBoolean operator <=(SqlDouble x, SqlDouble y);
@@ -6190,6 +6879,9 @@
 +        public static SqlDouble operator -(SqlDouble x);
 +        public static SqlDouble Parse(string s);
 +        public static SqlDouble Subtract(SqlDouble x, SqlDouble y);
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader reader);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public SqlBoolean ToSqlBoolean();
 +        public SqlByte ToSqlByte();
 +        public SqlDecimal ToSqlDecimal();
@@ -6201,6 +6893,7 @@
 +        public SqlString ToSqlString();
 +        public override string ToString();
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SqlGuid : IComparable, INullable, IXmlSerializable {
 +        public static readonly SqlGuid Null;
 +        public SqlGuid(byte[] value);
@@ -6209,10 +6902,10 @@
 +        public SqlGuid(string s);
 +        public bool IsNull { get; }
 +        public Guid Value { get; }
-+        public int CompareTo(object value);
 +        public int CompareTo(SqlGuid value);
-+        public override bool Equals(object value);
++        public int CompareTo(object value);
 +        public static SqlBoolean Equals(SqlGuid x, SqlGuid y);
++        public override bool Equals(object value);
 +        public override int GetHashCode();
 +        public static XmlQualifiedName GetXsdType(XmlSchemaSet schemaSet);
 +        public static SqlBoolean GreaterThan(SqlGuid x, SqlGuid y);
@@ -6231,11 +6924,15 @@
 +        public static SqlBoolean operator <(SqlGuid x, SqlGuid y);
 +        public static SqlBoolean operator <=(SqlGuid x, SqlGuid y);
 +        public static SqlGuid Parse(string s);
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader reader);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public byte[] ToByteArray();
 +        public SqlBinary ToSqlBinary();
 +        public SqlString ToSqlString();
 +        public override string ToString();
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SqlInt16 : IComparable, INullable, IXmlSerializable {
 +        public static readonly SqlInt16 MaxValue;
 +        public static readonly SqlInt16 MinValue;
@@ -6247,11 +6944,11 @@
 +        public static SqlInt16 Add(SqlInt16 x, SqlInt16 y);
 +        public static SqlInt16 BitwiseAnd(SqlInt16 x, SqlInt16 y);
 +        public static SqlInt16 BitwiseOr(SqlInt16 x, SqlInt16 y);
-+        public int CompareTo(object value);
 +        public int CompareTo(SqlInt16 value);
++        public int CompareTo(object value);
 +        public static SqlInt16 Divide(SqlInt16 x, SqlInt16 y);
-+        public override bool Equals(object value);
 +        public static SqlBoolean Equals(SqlInt16 x, SqlInt16 y);
++        public override bool Equals(object value);
 +        public override int GetHashCode();
 +        public static XmlQualifiedName GetXsdType(XmlSchemaSet schemaSet);
 +        public static SqlBoolean GreaterThan(SqlInt16 x, SqlInt16 y);
@@ -6280,8 +6977,8 @@
 +        public static explicit operator SqlInt16 (SqlString x);
 +        public static SqlBoolean operator >(SqlInt16 x, SqlInt16 y);
 +        public static SqlBoolean operator >=(SqlInt16 x, SqlInt16 y);
-+        public static implicit operator SqlInt16 (short x);
 +        public static implicit operator SqlInt16 (SqlByte x);
++        public static implicit operator SqlInt16 (short x);
 +        public static SqlBoolean operator !=(SqlInt16 x, SqlInt16 y);
 +        public static SqlBoolean operator <(SqlInt16 x, SqlInt16 y);
 +        public static SqlBoolean operator <=(SqlInt16 x, SqlInt16 y);
@@ -6292,6 +6989,9 @@
 +        public static SqlInt16 operator -(SqlInt16 x);
 +        public static SqlInt16 Parse(string s);
 +        public static SqlInt16 Subtract(SqlInt16 x, SqlInt16 y);
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader reader);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public SqlBoolean ToSqlBoolean();
 +        public SqlByte ToSqlByte();
 +        public SqlDecimal ToSqlDecimal();
@@ -6304,6 +7004,7 @@
 +        public override string ToString();
 +        public static SqlInt16 Xor(SqlInt16 x, SqlInt16 y);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SqlInt32 : IComparable, INullable, IXmlSerializable {
 +        public static readonly SqlInt32 MaxValue;
 +        public static readonly SqlInt32 MinValue;
@@ -6315,11 +7016,11 @@
 +        public static SqlInt32 Add(SqlInt32 x, SqlInt32 y);
 +        public static SqlInt32 BitwiseAnd(SqlInt32 x, SqlInt32 y);
 +        public static SqlInt32 BitwiseOr(SqlInt32 x, SqlInt32 y);
-+        public int CompareTo(object value);
 +        public int CompareTo(SqlInt32 value);
++        public int CompareTo(object value);
 +        public static SqlInt32 Divide(SqlInt32 x, SqlInt32 y);
-+        public override bool Equals(object value);
 +        public static SqlBoolean Equals(SqlInt32 x, SqlInt32 y);
++        public override bool Equals(object value);
 +        public override int GetHashCode();
 +        public static XmlQualifiedName GetXsdType(XmlSchemaSet schemaSet);
 +        public static SqlBoolean GreaterThan(SqlInt32 x, SqlInt32 y);
@@ -6347,9 +7048,9 @@
 +        public static explicit operator SqlInt32 (SqlString x);
 +        public static SqlBoolean operator >(SqlInt32 x, SqlInt32 y);
 +        public static SqlBoolean operator >=(SqlInt32 x, SqlInt32 y);
-+        public static implicit operator SqlInt32 (int x);
 +        public static implicit operator SqlInt32 (SqlByte x);
 +        public static implicit operator SqlInt32 (SqlInt16 x);
++        public static implicit operator SqlInt32 (int x);
 +        public static SqlBoolean operator !=(SqlInt32 x, SqlInt32 y);
 +        public static SqlBoolean operator <(SqlInt32 x, SqlInt32 y);
 +        public static SqlBoolean operator <=(SqlInt32 x, SqlInt32 y);
@@ -6360,6 +7061,9 @@
 +        public static SqlInt32 operator -(SqlInt32 x);
 +        public static SqlInt32 Parse(string s);
 +        public static SqlInt32 Subtract(SqlInt32 x, SqlInt32 y);
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader reader);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public SqlBoolean ToSqlBoolean();
 +        public SqlByte ToSqlByte();
 +        public SqlDecimal ToSqlDecimal();
@@ -6372,6 +7076,7 @@
 +        public override string ToString();
 +        public static SqlInt32 Xor(SqlInt32 x, SqlInt32 y);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SqlInt64 : IComparable, INullable, IXmlSerializable {
 +        public static readonly SqlInt64 MaxValue;
 +        public static readonly SqlInt64 MinValue;
@@ -6383,11 +7088,11 @@
 +        public static SqlInt64 Add(SqlInt64 x, SqlInt64 y);
 +        public static SqlInt64 BitwiseAnd(SqlInt64 x, SqlInt64 y);
 +        public static SqlInt64 BitwiseOr(SqlInt64 x, SqlInt64 y);
-+        public int CompareTo(object value);
 +        public int CompareTo(SqlInt64 value);
++        public int CompareTo(object value);
 +        public static SqlInt64 Divide(SqlInt64 x, SqlInt64 y);
-+        public override bool Equals(object value);
 +        public static SqlBoolean Equals(SqlInt64 x, SqlInt64 y);
++        public override bool Equals(object value);
 +        public override int GetHashCode();
 +        public static XmlQualifiedName GetXsdType(XmlSchemaSet schemaSet);
 +        public static SqlBoolean GreaterThan(SqlInt64 x, SqlInt64 y);
@@ -6414,10 +7119,10 @@
 +        public static explicit operator SqlInt64 (SqlString x);
 +        public static SqlBoolean operator >(SqlInt64 x, SqlInt64 y);
 +        public static SqlBoolean operator >=(SqlInt64 x, SqlInt64 y);
-+        public static implicit operator SqlInt64 (long x);
 +        public static implicit operator SqlInt64 (SqlByte x);
 +        public static implicit operator SqlInt64 (SqlInt16 x);
 +        public static implicit operator SqlInt64 (SqlInt32 x);
++        public static implicit operator SqlInt64 (long x);
 +        public static SqlBoolean operator !=(SqlInt64 x, SqlInt64 y);
 +        public static SqlBoolean operator <(SqlInt64 x, SqlInt64 y);
 +        public static SqlBoolean operator <=(SqlInt64 x, SqlInt64 y);
@@ -6428,6 +7133,9 @@
 +        public static SqlInt64 operator -(SqlInt64 x);
 +        public static SqlInt64 Parse(string s);
 +        public static SqlInt64 Subtract(SqlInt64 x, SqlInt64 y);
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader reader);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public SqlBoolean ToSqlBoolean();
 +        public SqlByte ToSqlByte();
 +        public SqlDecimal ToSqlDecimal();
@@ -6440,6 +7148,7 @@
 +        public override string ToString();
 +        public static SqlInt64 Xor(SqlInt64 x, SqlInt64 y);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SqlMoney : IComparable, INullable, IXmlSerializable {
 +        public static readonly SqlMoney MaxValue;
 +        public static readonly SqlMoney MinValue;
@@ -6452,11 +7161,11 @@
 +        public bool IsNull { get; }
 +        public decimal Value { get; }
 +        public static SqlMoney Add(SqlMoney x, SqlMoney y);
-+        public int CompareTo(object value);
 +        public int CompareTo(SqlMoney value);
++        public int CompareTo(object value);
 +        public static SqlMoney Divide(SqlMoney x, SqlMoney y);
-+        public override bool Equals(object value);
 +        public static SqlBoolean Equals(SqlMoney x, SqlMoney y);
++        public override bool Equals(object value);
 +        public override int GetHashCode();
 +        public static XmlQualifiedName GetXsdType(XmlSchemaSet schemaSet);
 +        public static SqlBoolean GreaterThan(SqlMoney x, SqlMoney y);
@@ -6468,21 +7177,21 @@
 +        public static SqlMoney operator +(SqlMoney x, SqlMoney y);
 +        public static SqlMoney operator /(SqlMoney x, SqlMoney y);
 +        public static SqlBoolean operator ==(SqlMoney x, SqlMoney y);
-+        public static explicit operator SqlMoney (double x);
 +        public static explicit operator SqlMoney (SqlBoolean x);
 +        public static explicit operator SqlMoney (SqlDecimal x);
 +        public static explicit operator SqlMoney (SqlDouble x);
 +        public static explicit operator decimal (SqlMoney x);
 +        public static explicit operator SqlMoney (SqlSingle x);
 +        public static explicit operator SqlMoney (SqlString x);
++        public static explicit operator SqlMoney (double x);
 +        public static SqlBoolean operator >(SqlMoney x, SqlMoney y);
 +        public static SqlBoolean operator >=(SqlMoney x, SqlMoney y);
-+        public static implicit operator SqlMoney (decimal x);
-+        public static implicit operator SqlMoney (long x);
 +        public static implicit operator SqlMoney (SqlByte x);
 +        public static implicit operator SqlMoney (SqlInt16 x);
 +        public static implicit operator SqlMoney (SqlInt32 x);
 +        public static implicit operator SqlMoney (SqlInt64 x);
++        public static implicit operator SqlMoney (decimal x);
++        public static implicit operator SqlMoney (long x);
 +        public static SqlBoolean operator !=(SqlMoney x, SqlMoney y);
 +        public static SqlBoolean operator <(SqlMoney x, SqlMoney y);
 +        public static SqlBoolean operator <=(SqlMoney x, SqlMoney y);
@@ -6491,6 +7200,9 @@
 +        public static SqlMoney operator -(SqlMoney x);
 +        public static SqlMoney Parse(string s);
 +        public static SqlMoney Subtract(SqlMoney x, SqlMoney y);
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader reader);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public decimal ToDecimal();
 +        public double ToDouble();
 +        public int ToInt32();
@@ -6516,6 +7228,7 @@
 +        public SqlNullValueException(string message);
 +        public SqlNullValueException(string message, Exception e);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SqlSingle : IComparable, INullable, IXmlSerializable {
 +        public static readonly SqlSingle MaxValue;
 +        public static readonly SqlSingle MinValue;
@@ -6526,11 +7239,11 @@
 +        public bool IsNull { get; }
 +        public float Value { get; }
 +        public static SqlSingle Add(SqlSingle x, SqlSingle y);
-+        public int CompareTo(object value);
 +        public int CompareTo(SqlSingle value);
++        public int CompareTo(object value);
 +        public static SqlSingle Divide(SqlSingle x, SqlSingle y);
-+        public override bool Equals(object value);
 +        public static SqlBoolean Equals(SqlSingle x, SqlSingle y);
++        public override bool Equals(object value);
 +        public override int GetHashCode();
 +        public static XmlQualifiedName GetXsdType(XmlSchemaSet schemaSet);
 +        public static SqlBoolean GreaterThan(SqlSingle x, SqlSingle y);
@@ -6548,13 +7261,13 @@
 +        public static explicit operator SqlSingle (SqlString x);
 +        public static SqlBoolean operator >(SqlSingle x, SqlSingle y);
 +        public static SqlBoolean operator >=(SqlSingle x, SqlSingle y);
-+        public static implicit operator SqlSingle (float x);
 +        public static implicit operator SqlSingle (SqlByte x);
 +        public static implicit operator SqlSingle (SqlDecimal x);
 +        public static implicit operator SqlSingle (SqlInt16 x);
 +        public static implicit operator SqlSingle (SqlInt32 x);
 +        public static implicit operator SqlSingle (SqlInt64 x);
 +        public static implicit operator SqlSingle (SqlMoney x);
++        public static implicit operator SqlSingle (float x);
 +        public static SqlBoolean operator !=(SqlSingle x, SqlSingle y);
 +        public static SqlBoolean operator <(SqlSingle x, SqlSingle y);
 +        public static SqlBoolean operator <=(SqlSingle x, SqlSingle y);
@@ -6563,6 +7276,9 @@
 +        public static SqlSingle operator -(SqlSingle x);
 +        public static SqlSingle Parse(string s);
 +        public static SqlSingle Subtract(SqlSingle x, SqlSingle y);
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader reader);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public SqlBoolean ToSqlBoolean();
 +        public SqlByte ToSqlByte();
 +        public SqlDecimal ToSqlDecimal();
@@ -6574,14 +7290,15 @@
 +        public SqlString ToSqlString();
 +        public override string ToString();
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SqlString : IComparable, INullable, IXmlSerializable {
++        public static readonly SqlString Null;
 +        public static readonly int BinarySort;
 +        public static readonly int BinarySort2;
 +        public static readonly int IgnoreCase;
 +        public static readonly int IgnoreKanaType;
 +        public static readonly int IgnoreNonSpace;
 +        public static readonly int IgnoreWidth;
-+        public static readonly SqlString Null;
 +        public SqlString(int lcid, SqlCompareOptions compareOptions, byte[] data);
 +        public SqlString(int lcid, SqlCompareOptions compareOptions, byte[] data, bool fUnicode);
 +        public SqlString(int lcid, SqlCompareOptions compareOptions, byte[] data, int index, int count);
@@ -6598,11 +7315,11 @@
 +        public static SqlString Add(SqlString x, SqlString y);
 +        public SqlString Clone();
 +        public static CompareOptions CompareOptionsFromSqlCompareOptions(SqlCompareOptions compareOptions);
-+        public int CompareTo(object value);
 +        public int CompareTo(SqlString value);
++        public int CompareTo(object value);
 +        public static SqlString Concat(SqlString x, SqlString y);
-+        public override bool Equals(object value);
 +        public static SqlBoolean Equals(SqlString x, SqlString y);
++        public override bool Equals(object value);
 +        public override int GetHashCode();
 +        public byte[] GetNonUnicodeBytes();
 +        public byte[] GetUnicodeBytes();
@@ -6632,6 +7349,9 @@
 +        public static SqlBoolean operator !=(SqlString x, SqlString y);
 +        public static SqlBoolean operator <(SqlString x, SqlString y);
 +        public static SqlBoolean operator <=(SqlString x, SqlString y);
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader reader);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +        public SqlBoolean ToSqlBoolean();
 +        public SqlByte ToSqlByte();
 +        public SqlDateTime ToSqlDateTime();
@@ -6665,6 +7385,9 @@
 +        public string Value { get; }
 +        public XmlReader CreateReader();
 +        public static XmlQualifiedName GetXsdType(XmlSchemaSet schemaSet);
++        XmlSchema System.Xml.Serialization.IXmlSerializable.GetSchema();
++        void System.Xml.Serialization.IXmlSerializable.ReadXml(XmlReader r);
++        void System.Xml.Serialization.IXmlSerializable.WriteXml(XmlWriter writer);
 +    }
 +    public enum StorageState {
 +        Buffer = 0,
@@ -6672,6 +7395,7 @@
 +        UnmanagedBuffer = 2,
 +    }
 +}
+
  namespace System.Diagnostics {
 +    public class BooleanSwitch : Switch {
 +        public BooleanSwitch(string displayName, string description);
@@ -6689,17 +7413,11 @@
 +    public class DataReceivedEventArgs : EventArgs {
 +        public string Data { get; }
 +    }
-+    public delegate void DataReceivedEventHandler(object sender, DataReceivedEventArgs e); {
-+        public DataReceivedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, DataReceivedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, DataReceivedEventArgs e);
-+    }
++    public delegate void DataReceivedEventHandler(object sender, DataReceivedEventArgs e);
      public static class Debug {
 +        public static bool AutoFlush { get; set; }
 +        public static int IndentLevel { get; set; }
 +        public static int IndentSize { get; set; }
-+        public static TraceListenerCollection Listeners { get; }
 +        public static void Close();
 +        public static void Flush();
 +        public static void Indent();
@@ -6747,16 +7465,21 @@
 +    public class DelimitedListTraceListener : TextWriterTraceListener {
 +        public DelimitedListTraceListener(Stream stream);
 +        public DelimitedListTraceListener(Stream stream, string name);
-+        public DelimitedListTraceListener(string fileName);
-+        public DelimitedListTraceListener(string fileName, string name);
 +        public DelimitedListTraceListener(TextWriter writer);
 +        public DelimitedListTraceListener(TextWriter writer, string name);
++        public DelimitedListTraceListener(string fileName);
++        public DelimitedListTraceListener(string fileName, string name);
 +        public string Delimiter { get; set; }
-+        protected internal override string[] GetSupportedAttributes();
++        protected override string[] GetSupportedAttributes();
 +        public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, object data);
 +        public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, params object[] data);
 +        public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string message);
 +        public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string format, params object[] args);
++    }
++    public class EventTypeFilter : TraceFilter {
++        public EventTypeFilter(SourceLevels level);
++        public SourceLevels EventType { get; set; }
++        public override bool ShouldTrace(TraceEventCache cache, string source, TraceEventType eventType, int id, string formatOrMessage, object[] args, object data1, object[] data);
 +    }
 +    public sealed class FileVersionInfo {
 +        public string Comments { get; }
@@ -6845,6 +7568,9 @@
 +        public long VirtualMemorySize64 { get; }
 +        public int WorkingSet { get; }
 +        public long WorkingSet64 { get; }
++        public event DataReceivedEventHandler ErrorDataReceived;
++        public event EventHandler Exited;
++        public event DataReceivedEventHandler OutputDataReceived;
 +        public void BeginErrorReadLine();
 +        public void BeginOutputReadLine();
 +        public void CancelErrorRead();
@@ -6875,9 +7601,6 @@
 +        public bool WaitForExit(int milliseconds);
 +        public bool WaitForInputIdle();
 +        public bool WaitForInputIdle(int milliseconds);
-+        public event DataReceivedEventHandler ErrorDataReceived;
-+        public event EventHandler Exited;
-+        public event DataReceivedEventHandler OutputDataReceived;
 +    }
 +    public class ProcessModule : Component {
 +        public IntPtr BaseAddress { get; }
@@ -7003,17 +7726,25 @@
 +        public virtual int GetNativeOffset();
 +        public override string ToString();
 +    }
++    public static class StackFrameExtensions {
++        public static IntPtr GetNativeImageBase(this StackFrame stackFrame);
++        public static IntPtr GetNativeIP(this StackFrame stackFrame);
++        public static bool HasILOffset(this StackFrame stackFrame);
++        public static bool HasMethod(this StackFrame stackFrame);
++        public static bool HasNativeImage(this StackFrame stackFrame);
++        public static bool HasSource(this StackFrame stackFrame);
++    }
 +    public class StackTrace {
 +        public const int METHODS_TO_SKIP = 0;
 +        public StackTrace();
 +        public StackTrace(bool fNeedFileInfo);
++        public StackTrace(StackFrame frame);
 +        public StackTrace(Exception e);
 +        public StackTrace(Exception e, bool fNeedFileInfo);
 +        public StackTrace(Exception e, int skipFrames);
 +        public StackTrace(Exception e, int skipFrames, bool fNeedFileInfo);
 +        public StackTrace(int skipFrames);
 +        public StackTrace(int skipFrames, bool fNeedFileInfo);
-+        public StackTrace(StackFrame frame);
 +        public virtual int FrameCount { get; }
 +        public virtual StackFrame GetFrame(int index);
 +        public virtual StackFrame[] GetFrames();
@@ -7027,7 +7758,7 @@
 +        public string DisplayName { get; }
 +        protected int SwitchSetting { get; set; }
 +        protected string Value { get; set; }
-+        protected internal virtual string[] GetSupportedAttributes();
++        protected virtual string[] GetSupportedAttributes();
 +        protected virtual void OnSwitchSettingChanged();
 +        protected virtual void OnValueChanged();
 +    }
@@ -7046,10 +7777,10 @@
 +        public TextWriterTraceListener();
 +        public TextWriterTraceListener(Stream stream);
 +        public TextWriterTraceListener(Stream stream, string name);
-+        public TextWriterTraceListener(string fileName);
-+        public TextWriterTraceListener(string fileName, string name);
 +        public TextWriterTraceListener(TextWriter writer);
 +        public TextWriterTraceListener(TextWriter writer, string name);
++        public TextWriterTraceListener(string fileName);
++        public TextWriterTraceListener(string fileName, string name);
 +        public TextWriter Writer { get; set; }
 +        public override void Close();
 +        protected override void Dispose(bool disposing);
@@ -7181,7 +7912,7 @@
 +        public virtual void Fail(string message);
 +        public virtual void Fail(string message, string detailMessage);
 +        public virtual void Flush();
-+        protected internal virtual string[] GetSupportedAttributes();
++        protected virtual string[] GetSupportedAttributes();
 +        public virtual void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, object data);
 +        public virtual void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, params object[] data);
 +        public virtual void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id);
@@ -7200,6 +7931,11 @@
 +    }
 +    public class TraceListenerCollection : ICollection, IEnumerable, IList {
 +        public int Count { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
++        bool System.Collections.IList.IsFixedSize { get; }
++        bool System.Collections.IList.IsReadOnly { get; }
++        object System.Collections.IList.this[int index] { get; set; }
 +        public TraceListener this[int i] { get; set; }
 +        public TraceListener this[string name] { get; }
 +        public int Add(TraceListener listener);
@@ -7211,9 +7947,15 @@
 +        public IEnumerator GetEnumerator();
 +        public int IndexOf(TraceListener listener);
 +        public void Insert(int index, TraceListener listener);
-+        public void Remove(string name);
 +        public void Remove(TraceListener listener);
++        public void Remove(string name);
 +        public void RemoveAt(int index);
++        void System.Collections.ICollection.CopyTo(Array array, int index);
++        int System.Collections.IList.Add(object value);
++        bool System.Collections.IList.Contains(object value);
++        int System.Collections.IList.IndexOf(object value);
++        void System.Collections.IList.Insert(int index, object value);
++        void System.Collections.IList.Remove(object value);
 +    }
 +    public enum TraceOptions {
 +        Callstack = 32,
@@ -7233,7 +7975,7 @@
 +        public SourceSwitch Switch { get; set; }
 +        public void Close();
 +        public void Flush();
-+        protected internal virtual string[] GetSupportedAttributes();
++        protected virtual string[] GetSupportedAttributes();
 +        public void TraceData(TraceEventType eventType, int id, object data);
 +        public void TraceData(TraceEventType eventType, int id, params object[] data);
 +        public void TraceEvent(TraceEventType eventType, int id);
@@ -7255,13 +7997,16 @@
 +        protected override void OnValueChanged();
 +    }
  }
+
  namespace System.Diagnostics.CodeAnalysis {
 +    public sealed class ExcludeFromCodeCoverageAttribute : Attribute {
 +        public ExcludeFromCodeCoverageAttribute();
 +    }
  }
+
 +namespace System.Diagnostics.Contracts {
 +    public static class Contract {
++        public static event EventHandler<ContractFailedEventArgs> ContractFailed;
 +        public static void Assert(bool condition);
 +        public static void Assert(bool condition, string userMessage);
 +        public static void Assume(bool condition);
@@ -7271,20 +8016,19 @@
 +        public static void Ensures(bool condition, string userMessage);
 +        public static void EnsuresOnThrow<TException>(bool condition) where TException : Exception;
 +        public static void EnsuresOnThrow<TException>(bool condition, string userMessage) where TException : Exception;
-+        public static bool Exists<T>(IEnumerable<T> collection, Predicate<T> predicate);
 +        public static bool Exists(int fromInclusive, int toExclusive, Predicate<int> predicate);
-+        public static bool ForAll<T>(IEnumerable<T> collection, Predicate<T> predicate);
++        public static bool Exists<T>(IEnumerable<T> collection, Predicate<T> predicate);
 +        public static bool ForAll(int fromInclusive, int toExclusive, Predicate<int> predicate);
++        public static bool ForAll<T>(IEnumerable<T> collection, Predicate<T> predicate);
 +        public static void Invariant(bool condition);
 +        public static void Invariant(bool condition, string userMessage);
 +        public static T OldValue<T>(T value);
-+        public static void Requires<TException>(bool condition) where TException : Exception;
-+        public static void Requires<TException>(bool condition, string userMessage) where TException : Exception;
 +        public static void Requires(bool condition);
 +        public static void Requires(bool condition, string userMessage);
++        public static void Requires<TException>(bool condition) where TException : Exception;
++        public static void Requires<TException>(bool condition, string userMessage) where TException : Exception;
 +        public static T Result<T>();
 +        public static T ValueAtReturn<T>(out T value);
-+        public static event EventHandler<ContractFailedEventArgs> ContractFailed;
 +    }
 +    public sealed class ContractAbbreviatorAttribute : Attribute {
 +        public ContractAbbreviatorAttribute();
@@ -7348,12 +8092,7 @@
 +        public PureAttribute();
 +    }
 +}
-+namespace System.Diagnostics.Contracts.Internal {
-+    public static class ContractHelper {
-+        public static string RaiseContractFailedEvent(ContractFailureKind failureKind, string userMessage, string conditionText, Exception innerException);
-+        public static void TriggerFailure(ContractFailureKind kind, string displayMessage, string userMessage, string conditionText, Exception innerException);
-+    }
-+}
+
 +namespace System.Diagnostics.SymbolStore {
 +    public interface ISymbolBinder {
 +        ISymbolReader GetReader(int importer, string filename, string searchPath);
@@ -7460,10 +8199,11 @@
 +        NativeSectionOffset = 10,
 +        NativeStackRegister = 8,
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SymbolToken {
 +        public SymbolToken(int val);
-+        public override bool Equals(object obj);
 +        public bool Equals(SymbolToken obj);
++        public override bool Equals(object obj);
 +        public override int GetHashCode();
 +        public int GetToken();
 +        public static bool operator ==(SymbolToken a, SymbolToken b);
@@ -7492,22 +8232,18 @@
 +        public SymLanguageVendor();
 +    }
 +}
+
  namespace System.Diagnostics.Tracing {
--    public class EventCounter {
--        public EventCounter(string name, EventSource eventSource);
--        public void WriteMetric(float value);
--    }
      public enum EventKeywords : long {
 +        MicrosoftTelemetry = (long)562949953421312,
-     }
-     public class EventSource : IDisposable {
--        public event EventHandler<EventCommandEventArgs> EventCommandExecuted;
      }
      public class EventSourceException : Exception {
 +        protected EventSourceException(SerializationInfo info, StreamingContext context);
      }
  }
+
 +namespace System.Drawing {
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct Color {
 +        public static readonly Color Empty;
 +        public byte A { get; }
@@ -7571,9 +8307,7 @@
 +        public static Color IndianRed { get; }
 +        public static Color Indigo { get; }
 +        public bool IsEmpty { get; }
-+        public bool IsKnownColor { get; }
 +        public bool IsNamedColor { get; }
-+        public bool IsSystemColor { get; }
 +        public static Color Ivory { get; }
 +        public static Color Khaki { get; }
 +        public static Color Lavender { get; }
@@ -7665,7 +8399,6 @@
 +        public static Color FromArgb(int alpha, Color baseColor);
 +        public static Color FromArgb(int red, int green, int blue);
 +        public static Color FromArgb(int alpha, int red, int green, int blue);
-+        public static Color FromKnownColor(KnownColor color);
 +        public static Color FromName(string name);
 +        public float GetBrightness();
 +        public override int GetHashCode();
@@ -7674,190 +8407,14 @@
 +        public static bool operator ==(Color left, Color right);
 +        public static bool operator !=(Color left, Color right);
 +        public int ToArgb();
-+        public KnownColor ToKnownColor();
 +        public override string ToString();
 +    }
-+    public enum KnownColor {
-+        ActiveBorder = 1,
-+        ActiveCaption = 2,
-+        ActiveCaptionText = 3,
-+        AliceBlue = 28,
-+        AntiqueWhite = 29,
-+        AppWorkspace = 4,
-+        Aqua = 30,
-+        Aquamarine = 31,
-+        Azure = 32,
-+        Beige = 33,
-+        Bisque = 34,
-+        Black = 35,
-+        BlanchedAlmond = 36,
-+        Blue = 37,
-+        BlueViolet = 38,
-+        Brown = 39,
-+        BurlyWood = 40,
-+        ButtonFace = 168,
-+        ButtonHighlight = 169,
-+        ButtonShadow = 170,
-+        CadetBlue = 41,
-+        Chartreuse = 42,
-+        Chocolate = 43,
-+        Control = 5,
-+        ControlDark = 6,
-+        ControlDarkDark = 7,
-+        ControlLight = 8,
-+        ControlLightLight = 9,
-+        ControlText = 10,
-+        Coral = 44,
-+        CornflowerBlue = 45,
-+        Cornsilk = 46,
-+        Crimson = 47,
-+        Cyan = 48,
-+        DarkBlue = 49,
-+        DarkCyan = 50,
-+        DarkGoldenrod = 51,
-+        DarkGray = 52,
-+        DarkGreen = 53,
-+        DarkKhaki = 54,
-+        DarkMagenta = 55,
-+        DarkOliveGreen = 56,
-+        DarkOrange = 57,
-+        DarkOrchid = 58,
-+        DarkRed = 59,
-+        DarkSalmon = 60,
-+        DarkSeaGreen = 61,
-+        DarkSlateBlue = 62,
-+        DarkSlateGray = 63,
-+        DarkTurquoise = 64,
-+        DarkViolet = 65,
-+        DeepPink = 66,
-+        DeepSkyBlue = 67,
-+        Desktop = 11,
-+        DimGray = 68,
-+        DodgerBlue = 69,
-+        Firebrick = 70,
-+        FloralWhite = 71,
-+        ForestGreen = 72,
-+        Fuchsia = 73,
-+        Gainsboro = 74,
-+        GhostWhite = 75,
-+        Gold = 76,
-+        Goldenrod = 77,
-+        GradientActiveCaption = 171,
-+        GradientInactiveCaption = 172,
-+        Gray = 78,
-+        GrayText = 12,
-+        Green = 79,
-+        GreenYellow = 80,
-+        Highlight = 13,
-+        HighlightText = 14,
-+        Honeydew = 81,
-+        HotPink = 82,
-+        HotTrack = 15,
-+        InactiveBorder = 16,
-+        InactiveCaption = 17,
-+        InactiveCaptionText = 18,
-+        IndianRed = 83,
-+        Indigo = 84,
-+        Info = 19,
-+        InfoText = 20,
-+        Ivory = 85,
-+        Khaki = 86,
-+        Lavender = 87,
-+        LavenderBlush = 88,
-+        LawnGreen = 89,
-+        LemonChiffon = 90,
-+        LightBlue = 91,
-+        LightCoral = 92,
-+        LightCyan = 93,
-+        LightGoldenrodYellow = 94,
-+        LightGray = 95,
-+        LightGreen = 96,
-+        LightPink = 97,
-+        LightSalmon = 98,
-+        LightSeaGreen = 99,
-+        LightSkyBlue = 100,
-+        LightSlateGray = 101,
-+        LightSteelBlue = 102,
-+        LightYellow = 103,
-+        Lime = 104,
-+        LimeGreen = 105,
-+        Linen = 106,
-+        Magenta = 107,
-+        Maroon = 108,
-+        MediumAquamarine = 109,
-+        MediumBlue = 110,
-+        MediumOrchid = 111,
-+        MediumPurple = 112,
-+        MediumSeaGreen = 113,
-+        MediumSlateBlue = 114,
-+        MediumSpringGreen = 115,
-+        MediumTurquoise = 116,
-+        MediumVioletRed = 117,
-+        Menu = 21,
-+        MenuBar = 173,
-+        MenuHighlight = 174,
-+        MenuText = 22,
-+        MidnightBlue = 118,
-+        MintCream = 119,
-+        MistyRose = 120,
-+        Moccasin = 121,
-+        NavajoWhite = 122,
-+        Navy = 123,
-+        OldLace = 124,
-+        Olive = 125,
-+        OliveDrab = 126,
-+        Orange = 127,
-+        OrangeRed = 128,
-+        Orchid = 129,
-+        PaleGoldenrod = 130,
-+        PaleGreen = 131,
-+        PaleTurquoise = 132,
-+        PaleVioletRed = 133,
-+        PapayaWhip = 134,
-+        PeachPuff = 135,
-+        Peru = 136,
-+        Pink = 137,
-+        Plum = 138,
-+        PowderBlue = 139,
-+        Purple = 140,
-+        Red = 141,
-+        RosyBrown = 142,
-+        RoyalBlue = 143,
-+        SaddleBrown = 144,
-+        Salmon = 145,
-+        SandyBrown = 146,
-+        ScrollBar = 23,
-+        SeaGreen = 147,
-+        SeaShell = 148,
-+        Sienna = 149,
-+        Silver = 150,
-+        SkyBlue = 151,
-+        SlateBlue = 152,
-+        SlateGray = 153,
-+        Snow = 154,
-+        SpringGreen = 155,
-+        SteelBlue = 156,
-+        Tan = 157,
-+        Teal = 158,
-+        Thistle = 159,
-+        Tomato = 160,
-+        Transparent = 27,
-+        Turquoise = 161,
-+        Violet = 162,
-+        Wheat = 163,
-+        White = 164,
-+        WhiteSmoke = 165,
-+        Window = 24,
-+        WindowFrame = 25,
-+        WindowText = 26,
-+        Yellow = 166,
-+        YellowGreen = 167,
-+    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct Point {
 +        public static readonly Point Empty;
++        public Point(Size sz);
 +        public Point(int dw);
 +        public Point(int x, int y);
-+        public Point(Size sz);
 +        public bool IsEmpty { get; }
 +        public int X { get; set; }
 +        public int Y { get; set; }
@@ -7865,8 +8422,8 @@
 +        public static Point Ceiling(PointF value);
 +        public override bool Equals(object obj);
 +        public override int GetHashCode();
-+        public void Offset(int dx, int dy);
 +        public void Offset(Point p);
++        public void Offset(int dx, int dy);
 +        public static Point operator +(Point pt, Size sz);
 +        public static bool operator ==(Point left, Point right);
 +        public static explicit operator Size (Point p);
@@ -7878,6 +8435,7 @@
 +        public override string ToString();
 +        public static Point Truncate(PointF value);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct PointF {
 +        public static readonly PointF Empty;
 +        public PointF(float x, float y);
@@ -7898,10 +8456,11 @@
 +        public static PointF Subtract(PointF pt, SizeF sz);
 +        public override string ToString();
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct Rectangle {
 +        public static readonly Rectangle Empty;
-+        public Rectangle(int x, int y, int width, int height);
 +        public Rectangle(Point location, Size size);
++        public Rectangle(int x, int y, int width, int height);
 +        public int Bottom { get; }
 +        public int Height { get; set; }
 +        public bool IsEmpty { get; }
@@ -7914,20 +8473,20 @@
 +        public int X { get; set; }
 +        public int Y { get; set; }
 +        public static Rectangle Ceiling(RectangleF value);
-+        public bool Contains(int x, int y);
 +        public bool Contains(Point pt);
 +        public bool Contains(Rectangle rect);
++        public bool Contains(int x, int y);
 +        public override bool Equals(object obj);
 +        public static Rectangle FromLTRB(int left, int top, int right, int bottom);
 +        public override int GetHashCode();
-+        public void Inflate(int width, int height);
 +        public static Rectangle Inflate(Rectangle rect, int x, int y);
 +        public void Inflate(Size size);
++        public void Inflate(int width, int height);
 +        public void Intersect(Rectangle rect);
 +        public static Rectangle Intersect(Rectangle a, Rectangle b);
 +        public bool IntersectsWith(Rectangle rect);
-+        public void Offset(int x, int y);
 +        public void Offset(Point pos);
++        public void Offset(int x, int y);
 +        public static bool operator ==(Rectangle left, Rectangle right);
 +        public static bool operator !=(Rectangle left, Rectangle right);
 +        public static Rectangle Round(RectangleF value);
@@ -7935,6 +8494,7 @@
 +        public static Rectangle Truncate(RectangleF value);
 +        public static Rectangle Union(Rectangle a, Rectangle b);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct RectangleF {
 +        public static readonly RectangleF Empty;
 +        public RectangleF(PointF location, SizeF size);
@@ -7957,8 +8517,8 @@
 +        public static RectangleF FromLTRB(float left, float top, float right, float bottom);
 +        public override int GetHashCode();
 +        public static RectangleF Inflate(RectangleF rect, float x, float y);
-+        public void Inflate(float x, float y);
 +        public void Inflate(SizeF size);
++        public void Inflate(float x, float y);
 +        public void Intersect(RectangleF rect);
 +        public static RectangleF Intersect(RectangleF a, RectangleF b);
 +        public bool IntersectsWith(RectangleF rect);
@@ -7970,10 +8530,11 @@
 +        public override string ToString();
 +        public static RectangleF Union(RectangleF a, RectangleF b);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct Size {
 +        public static readonly Size Empty;
-+        public Size(int width, int height);
 +        public Size(Point pt);
++        public Size(int width, int height);
 +        public int Height { get; set; }
 +        public bool IsEmpty { get; }
 +        public int Width { get; set; }
@@ -7992,11 +8553,12 @@
 +        public override string ToString();
 +        public static Size Truncate(SizeF value);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SizeF {
 +        public static readonly SizeF Empty;
 +        public SizeF(PointF pt);
-+        public SizeF(float width, float height);
 +        public SizeF(SizeF size);
++        public SizeF(float width, float height);
 +        public float Height { get; set; }
 +        public bool IsEmpty { get; }
 +        public float Width { get; set; }
@@ -8014,6 +8576,7 @@
 +        public override string ToString();
 +    }
 +}
+
 +namespace System.Dynamic {
 +    public abstract class BinaryOperationBinder : DynamicMetaObjectBinder {
 +        protected BinaryOperationBinder(ExpressionType operation);
@@ -8127,6 +8690,24 @@
 +    }
 +    public sealed class ExpandoObject : ICollection<KeyValuePair<string, object>>, IDictionary<string, object>, IDynamicMetaObjectProvider, IEnumerable, IEnumerable<KeyValuePair<string, object>>, INotifyPropertyChanged {
 +        public ExpandoObject();
++        int System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.Count { get; }
++        bool System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.IsReadOnly { get; }
++        object System.Collections.Generic.IDictionary<System.String,System.Object>.this[string key] { get; set; }
++        ICollection<string> System.Collections.Generic.IDictionary<System.String,System.Object>.Keys { get; }
++        ICollection<object> System.Collections.Generic.IDictionary<System.String,System.Object>.Values { get; }
++        event PropertyChangedEventHandler System.ComponentModel.INotifyPropertyChanged.PropertyChanged;
++        void System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.Add(KeyValuePair<string, object> item);
++        void System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.Clear();
++        bool System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.Contains(KeyValuePair<string, object> item);
++        void System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.CopyTo(KeyValuePair<string, object>[] array, int arrayIndex);
++        bool System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.Remove(KeyValuePair<string, object> item);
++        void System.Collections.Generic.IDictionary<System.String,System.Object>.Add(string key, object value);
++        bool System.Collections.Generic.IDictionary<System.String,System.Object>.ContainsKey(string key);
++        bool System.Collections.Generic.IDictionary<System.String,System.Object>.Remove(string key);
++        bool System.Collections.Generic.IDictionary<System.String,System.Object>.TryGetValue(string key, out object value);
++        IEnumerator<KeyValuePair<string, object>> System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.GetEnumerator();
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
++        DynamicMetaObject System.Dynamic.IDynamicMetaObjectProvider.GetMetaObject(Expression parameter);
 +    }
 +    public abstract class GetIndexBinder : DynamicMetaObjectBinder {
 +        protected GetIndexBinder(CallInfo callInfo);
@@ -8196,6 +8777,7 @@
 +        public abstract DynamicMetaObject FallbackUnaryOperation(DynamicMetaObject target, DynamicMetaObject errorSuggestion);
 +    }
 +}
+
  namespace System.Globalization {
 -    public abstract class Calendar {
 +    public abstract class Calendar : ICloneable {
@@ -8236,6 +8818,7 @@
 +        public static bool IsSortable(string text);
 +        public virtual int LastIndexOf(string source, char value, int startIndex);
 +        public virtual int LastIndexOf(string source, string value, int startIndex);
++        void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender);
      }
 -    public class CultureInfo : IFormatProvider {
 +    public class CultureInfo : ICloneable, IFormatProvider {
@@ -8301,6 +8884,9 @@
      public abstract class EastAsianLunisolarCalendar : Calendar {
 +        public override CalendarAlgorithmType AlgorithmType { get; }
      }
++    public static class GlobalizationExtensions {
++        public static StringComparer GetStringComparer(this CompareInfo compareInfo, CompareOptions options);
++    }
      public class GregorianCalendar : Calendar {
 +        public const int ADEra = 1;
 +        public override CalendarAlgorithmType AlgorithmType { get; }
@@ -8375,8 +8961,8 @@
 +        public SortVersion(int fullVersion, Guid sortId);
 +        public int FullVersion { get; }
 +        public Guid SortId { get; }
-+        public override bool Equals(object obj);
 +        public bool Equals(SortVersion other);
++        public override bool Equals(object obj);
 +        public override int GetHashCode();
 +        public static bool operator ==(SortVersion left, SortVersion right);
 +        public static bool operator !=(SortVersion left, SortVersion right);
@@ -8400,6 +8986,7 @@
 +        public virtual int OEMCodePage { get; }
 +        public virtual object Clone();
 +        public static TextInfo ReadOnly(TextInfo textInfo);
++        void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender);
 +        public string ToTitleCase(string str);
      }
      public class ThaiBuddhistCalendar : Calendar {
@@ -8412,6 +8999,7 @@
 +        protected override int DaysInYearBeforeMinSupportedYear { get; }
      }
  }
+
  namespace System.IO {
      public class BinaryReader : IDisposable {
 +        public virtual void Close();
@@ -8443,6 +9031,7 @@
 +        public long TotalSize { get; }
 +        public string VolumeLabel { get; set; }
 +        public static DriveInfo[] GetDrives();
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
 +        public override string ToString();
 +    }
 +    public class DriveNotFoundException : IOException {
@@ -8467,12 +9056,7 @@
 +        public ErrorEventArgs(Exception exception);
 +        public virtual Exception GetException();
 +    }
-+    public delegate void ErrorEventHandler(object sender, ErrorEventArgs e); {
-+        public ErrorEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, ErrorEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, ErrorEventArgs e);
-+    }
++    public delegate void ErrorEventHandler(object sender, ErrorEventArgs e);
      public static class File {
 +        public static void Decrypt(string path);
 +        public static void Encrypt(string path);
@@ -8516,12 +9100,7 @@
 +        public string FullPath { get; }
 +        public string Name { get; }
 +    }
-+    public delegate void FileSystemEventHandler(object sender, FileSystemEventArgs e); {
-+        public FileSystemEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, FileSystemEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, FileSystemEventArgs e);
-+    }
++    public delegate void FileSystemEventHandler(object sender, FileSystemEventArgs e);
 -    public abstract class FileSystemInfo {
 +    public abstract class FileSystemInfo : MarshalByRefObject, ISerializable {
 +        protected FileSystemInfo(SerializationInfo info, StreamingContext context);
@@ -8539,6 +9118,11 @@
 +        public string Path { get; set; }
 +        public override ISite Site { get; set; }
 +        public ISynchronizeInvoke SynchronizingObject { get; set; }
++        public event FileSystemEventHandler Changed;
++        public event FileSystemEventHandler Created;
++        public event FileSystemEventHandler Deleted;
++        public event ErrorEventHandler Error;
++        public event RenamedEventHandler Renamed;
 +        public void BeginInit();
 +        protected override void Dispose(bool disposing);
 +        public void EndInit();
@@ -8549,11 +9133,6 @@
 +        protected void OnRenamed(RenamedEventArgs e);
 +        public WaitForChangedResult WaitForChanged(WatcherChangeTypes changeType);
 +        public WaitForChangedResult WaitForChanged(WatcherChangeTypes changeType, int timeout);
-+        public event FileSystemEventHandler Changed;
-+        public event FileSystemEventHandler Created;
-+        public event FileSystemEventHandler Deleted;
-+        public event ErrorEventHandler Error;
-+        public event RenamedEventHandler Renamed;
 +    }
 +    public class InternalBufferOverflowException : SystemException {
 +        public InternalBufferOverflowException();
@@ -8561,9 +9140,8 @@
 +        public InternalBufferOverflowException(string message);
 +        public InternalBufferOverflowException(string message, Exception inner);
 +    }
--    public sealed class InvalidDataException : Exception {
-+    public sealed class InvalidDataException : SystemException {
-     }
+-    public sealed class InvalidDataException : Exception
++    public sealed class InvalidDataException : SystemException
 -    public class IOException : Exception {
 +    public class IOException : SystemException {
 +        protected IOException(SerializationInfo info, StreamingContext context);
@@ -8593,12 +9171,7 @@
 +        public string OldFullPath { get; }
 +        public string OldName { get; }
 +    }
-+    public delegate void RenamedEventHandler(object sender, RenamedEventArgs e); {
-+        public RenamedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, RenamedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, RenamedEventArgs e);
-+    }
++    public delegate void RenamedEventHandler(object sender, RenamedEventArgs e);
 -    public abstract class Stream : IDisposable {
 +    public abstract class Stream : MarshalByRefObject, IDisposable {
 +        public virtual IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, object state);
@@ -8669,7 +9242,6 @@
 +        public ushort ReadUInt16(long position);
 +        public uint ReadUInt32(long position);
 +        public ulong ReadUInt64(long position);
-+        public void Write<T>(long position, ref T structure) where T : struct;
 +        public void Write(long position, bool value);
 +        public void Write(long position, byte value);
 +        public void Write(long position, char value);
@@ -8683,6 +9255,7 @@
 +        public void Write(long position, ushort value);
 +        public void Write(long position, uint value);
 +        public void Write(long position, ulong value);
++        public void Write<T>(long position, ref T structure) where T : struct;
 +        public void WriteArray<T>(long position, T[] array, int offset, int count) where T : struct;
 +    }
 +    public class UnmanagedMemoryStream : Stream {
@@ -8712,6 +9285,7 @@
 +        public override Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken);
 +        public override void WriteByte(byte value);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct WaitForChangedResult {
 +        public WatcherChangeTypes ChangeType { get; set; }
 +        public string Name { get; set; }
@@ -8726,6 +9300,7 @@
 +        Renamed = 8,
 +    }
  }
+
  namespace System.IO.Compression {
      public class DeflateStream : Stream {
 +        public override IAsyncResult BeginRead(byte[] array, int offset, int count, AsyncCallback asyncCallback, object asyncState);
@@ -8733,7 +9308,9 @@
 +        public override int EndRead(IAsyncResult asyncResult);
 +        public override void EndWrite(IAsyncResult asyncResult);
 -        public override Task<int> ReadAsync(byte[] array, int offset, int count, CancellationToken cancellationToken);
+
 -        public override Task WriteAsync(byte[] array, int offset, int count, CancellationToken cancellationToken);
+
      }
      public class GZipStream : Stream {
 +        public override IAsyncResult BeginRead(byte[] array, int offset, int count, AsyncCallback asyncCallback, object asyncState);
@@ -8741,9 +9318,12 @@
 +        public override int EndRead(IAsyncResult asyncResult);
 +        public override void EndWrite(IAsyncResult asyncResult);
 -        public override Task<int> ReadAsync(byte[] array, int offset, int count, CancellationToken cancellationToken);
+
 -        public override Task WriteAsync(byte[] array, int offset, int count, CancellationToken cancellationToken);
+
      }
  }
+
 +namespace System.IO.IsolatedStorage {
 +    public interface INormalizeForIsolatedStorage {
 +        object Normalize();
@@ -8859,6 +9439,7 @@
 +        User = 1,
 +    }
 +}
+
 +namespace System.IO.MemoryMappedFiles {
 +    public class MemoryMappedFile : IDisposable {
 +        public SafeMemoryMappedFileHandle SafeMemoryMappedFileHandle { get; }
@@ -8916,15 +9497,18 @@
 +    public sealed class MemoryMappedViewAccessor : UnmanagedMemoryAccessor {
 +        public long PointerOffset { get; }
 +        public SafeMemoryMappedViewHandle SafeMemoryMappedViewHandle { get; }
++        protected override void Dispose(bool disposing);
 +        public void Flush();
 +    }
 +    public sealed class MemoryMappedViewStream : UnmanagedMemoryStream {
 +        public long PointerOffset { get; }
 +        public SafeMemoryMappedViewHandle SafeMemoryMappedViewHandle { get; }
++        protected override void Dispose(bool disposing);
 +        public override void Flush();
 +        public override void SetLength(long value);
 +    }
 +}
+
 +namespace System.IO.Pipes {
 +    public sealed class AnonymousPipeClientStream : PipeStream {
 +        public AnonymousPipeClientStream(PipeDirection direction, SafePipeHandle safePipeHandle);
@@ -8936,12 +9520,13 @@
 +    public sealed class AnonymousPipeServerStream : PipeStream {
 +        public AnonymousPipeServerStream();
 +        public AnonymousPipeServerStream(PipeDirection direction);
++        public AnonymousPipeServerStream(PipeDirection direction, SafePipeHandle serverSafePipeHandle, SafePipeHandle clientSafePipeHandle);
 +        public AnonymousPipeServerStream(PipeDirection direction, HandleInheritability inheritability);
 +        public AnonymousPipeServerStream(PipeDirection direction, HandleInheritability inheritability, int bufferSize);
-+        public AnonymousPipeServerStream(PipeDirection direction, SafePipeHandle serverSafePipeHandle, SafePipeHandle clientSafePipeHandle);
 +        public SafePipeHandle ClientSafePipeHandle { get; }
 +        public override PipeTransmissionMode ReadMode { set; }
 +        public override PipeTransmissionMode TransmissionMode { get; }
++        protected override void Dispose(bool disposing);
 +        public void DisposeLocalCopyOfClientHandle();
 +        public string GetClientHandleAsString();
 +    }
@@ -8949,18 +9534,18 @@
 +        public NamedPipeClientStream(PipeDirection direction, bool isAsync, bool isConnected, SafePipeHandle safePipeHandle);
 +        public NamedPipeClientStream(string pipeName);
 +        public NamedPipeClientStream(string serverName, string pipeName);
-+        public NamedPipeClientStream(string serverName, string pipeName, PipeAccessRights desiredAccessRights, PipeOptions options, TokenImpersonationLevel impersonationLevel, HandleInheritability inheritability);
 +        public NamedPipeClientStream(string serverName, string pipeName, PipeDirection direction);
 +        public NamedPipeClientStream(string serverName, string pipeName, PipeDirection direction, PipeOptions options);
 +        public NamedPipeClientStream(string serverName, string pipeName, PipeDirection direction, PipeOptions options, TokenImpersonationLevel impersonationLevel);
 +        public NamedPipeClientStream(string serverName, string pipeName, PipeDirection direction, PipeOptions options, TokenImpersonationLevel impersonationLevel, HandleInheritability inheritability);
 +        public int NumberOfServerInstances { get; }
++        protected internal override void CheckPipePropertyOperations();
 +        public void Connect();
 +        public void Connect(int timeout);
 +        public Task ConnectAsync();
-+        public Task ConnectAsync(CancellationToken cancellationToken);
 +        public Task ConnectAsync(int timeout);
 +        public Task ConnectAsync(int timeout, CancellationToken cancellationToken);
++        public Task ConnectAsync(CancellationToken cancellationToken);
 +    }
 +    public sealed class NamedPipeServerStream : PipeStream {
 +        public const int MaxAllowedServerInstances = -1;
@@ -8979,25 +9564,6 @@
 +        public void WaitForConnection();
 +        public Task WaitForConnectionAsync();
 +        public Task WaitForConnectionAsync(CancellationToken cancellationToken);
-+    }
-+    public enum PipeAccessRights {
-+        AccessSystemSecurity = 16777216,
-+        ChangePermissions = 262144,
-+        CreateNewInstance = 4,
-+        Delete = 65536,
-+        FullControl = 2032031,
-+        Read = 131209,
-+        ReadAttributes = 128,
-+        ReadData = 1,
-+        ReadExtendedAttributes = 8,
-+        ReadPermissions = 131072,
-+        ReadWrite = 131483,
-+        Synchronize = 1048576,
-+        TakeOwnership = 524288,
-+        Write = 274,
-+        WriteAttributes = 256,
-+        WriteData = 2,
-+        WriteExtendedAttributes = 16,
 +    }
 +    public enum PipeDirection {
 +        In = 1,
@@ -9044,22 +9610,14 @@
 +        public override void Write(byte[] buffer, int offset, int count);
 +        public override void WriteByte(byte value);
 +    }
-+    public delegate void PipeStreamImpersonationWorker(); {
-+        public PipeStreamImpersonationWorker(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke();
-+    }
++    public delegate void PipeStreamImpersonationWorker();
 +    public enum PipeTransmissionMode {
 +        Byte = 0,
 +        Message = 1,
 +    }
 +}
+
  namespace System.Linq {
-     public static class Enumerable {
--        public static IEnumerable<TSource> Append<TSource>(this IEnumerable<TSource> source, TSource element);
--        public static IEnumerable<TSource> Prepend<TSource>(this IEnumerable<TSource> source, TSource element);
-     }
 +    public abstract class EnumerableExecutor {
 +        protected EnumerableExecutor();
 +    }
@@ -9070,50 +9628,61 @@
 +        protected EnumerableQuery();
 +    }
 +    public class EnumerableQuery<T> : EnumerableQuery, IEnumerable, IEnumerable<T>, IOrderedQueryable, IOrderedQueryable<T>, IQueryable, IQueryable<T>, IQueryProvider {
-+        public EnumerableQuery(Expression expression);
 +        public EnumerableQuery(IEnumerable<T> enumerable);
++        public EnumerableQuery(Expression expression);
++        Type System.Linq.IQueryable.ElementType { get; }
++        Expression System.Linq.IQueryable.Expression { get; }
++        IQueryProvider System.Linq.IQueryable.Provider { get; }
++        IEnumerator<T> System.Collections.Generic.IEnumerable<T>.GetEnumerator();
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
++        IQueryable System.Linq.IQueryProvider.CreateQuery(Expression expression);
++        IQueryable<S> System.Linq.IQueryProvider.CreateQuery<S>(Expression expression);
++        object System.Linq.IQueryProvider.Execute(Expression expression);
++        S System.Linq.IQueryProvider.Execute<S>(Expression expression);
 +        public override string ToString();
 +    }
+-    public interface IOrderedEnumerable<out TElement> : IEnumerable, IEnumerable<TElement>
++    public interface IOrderedEnumerable<TElement> : IEnumerable, IEnumerable<TElement>
 +    public class OrderedParallelQuery<TSource> : ParallelQuery<TSource> {
 +        public override IEnumerator<TSource> GetEnumerator();
 +    }
 +    public static class ParallelEnumerable {
-+        public static TSource Aggregate<TSource>(this ParallelQuery<TSource> source, Func<TSource, TSource, TSource> func);
-+        public static TAccumulate Aggregate<TSource, TAccumulate>(this ParallelQuery<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func);
-+        public static TResult Aggregate<TSource, TAccumulate, TResult>(this ParallelQuery<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector);
-+        public static TResult Aggregate<TSource, TAccumulate, TResult>(this ParallelQuery<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> updateAccumulatorFunc, Func<TAccumulate, TAccumulate, TAccumulate> combineAccumulatorsFunc, Func<TAccumulate, TResult> resultSelector);
 +        public static TResult Aggregate<TSource, TAccumulate, TResult>(this ParallelQuery<TSource> source, Func<TAccumulate> seedFactory, Func<TAccumulate, TSource, TAccumulate> updateAccumulatorFunc, Func<TAccumulate, TAccumulate, TAccumulate> combineAccumulatorsFunc, Func<TAccumulate, TResult> resultSelector);
++        public static TResult Aggregate<TSource, TAccumulate, TResult>(this ParallelQuery<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> updateAccumulatorFunc, Func<TAccumulate, TAccumulate, TAccumulate> combineAccumulatorsFunc, Func<TAccumulate, TResult> resultSelector);
++        public static TResult Aggregate<TSource, TAccumulate, TResult>(this ParallelQuery<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector);
++        public static TAccumulate Aggregate<TSource, TAccumulate>(this ParallelQuery<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func);
++        public static TSource Aggregate<TSource>(this ParallelQuery<TSource> source, Func<TSource, TSource, TSource> func);
 +        public static bool All<TSource>(this ParallelQuery<TSource> source, Func<TSource, bool> predicate);
 +        public static bool Any<TSource>(this ParallelQuery<TSource> source);
 +        public static bool Any<TSource>(this ParallelQuery<TSource> source, Func<TSource, bool> predicate);
 +        public static IEnumerable<TSource> AsEnumerable<TSource>(this ParallelQuery<TSource> source);
-+        public static ParallelQuery<TSource> AsOrdered<TSource>(this ParallelQuery<TSource> source);
 +        public static ParallelQuery AsOrdered(this ParallelQuery source);
++        public static ParallelQuery<TSource> AsOrdered<TSource>(this ParallelQuery<TSource> source);
++        public static ParallelQuery AsParallel(this IEnumerable source);
 +        public static ParallelQuery<TSource> AsParallel<TSource>(this Partitioner<TSource> source);
 +        public static ParallelQuery<TSource> AsParallel<TSource>(this IEnumerable<TSource> source);
-+        public static ParallelQuery AsParallel(this IEnumerable source);
 +        public static IEnumerable<TSource> AsSequential<TSource>(this ParallelQuery<TSource> source);
 +        public static ParallelQuery<TSource> AsUnordered<TSource>(this ParallelQuery<TSource> source);
-+        public static double Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, int> selector);
-+        public static double Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, long> selector);
-+        public static double Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, double> selector);
-+        public static Nullable<double> Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<int>> selector);
-+        public static Nullable<double> Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<long>> selector);
-+        public static float Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, float> selector);
-+        public static decimal Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, decimal> selector);
-+        public static Nullable<double> Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<double>> selector);
-+        public static Nullable<float> Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<float>> selector);
-+        public static Nullable<decimal> Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<decimal>> selector);
++        public static decimal Average(this ParallelQuery<decimal> source);
++        public static double Average(this ParallelQuery<double> source);
 +        public static double Average(this ParallelQuery<int> source);
 +        public static double Average(this ParallelQuery<long> source);
-+        public static double Average(this ParallelQuery<double> source);
++        public static Nullable<decimal> Average(this ParallelQuery<Nullable<decimal>> source);
++        public static Nullable<double> Average(this ParallelQuery<Nullable<double>> source);
 +        public static Nullable<double> Average(this ParallelQuery<Nullable<int>> source);
 +        public static Nullable<double> Average(this ParallelQuery<Nullable<long>> source);
-+        public static float Average(this ParallelQuery<float> source);
-+        public static decimal Average(this ParallelQuery<decimal> source);
-+        public static Nullable<double> Average(this ParallelQuery<Nullable<double>> source);
 +        public static Nullable<float> Average(this ParallelQuery<Nullable<float>> source);
-+        public static Nullable<decimal> Average(this ParallelQuery<Nullable<decimal>> source);
++        public static float Average(this ParallelQuery<float> source);
++        public static decimal Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, decimal> selector);
++        public static double Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, double> selector);
++        public static double Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, int> selector);
++        public static double Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, long> selector);
++        public static Nullable<decimal> Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<decimal>> selector);
++        public static Nullable<double> Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<double>> selector);
++        public static Nullable<double> Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<int>> selector);
++        public static Nullable<double> Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<long>> selector);
++        public static Nullable<float> Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<float>> selector);
++        public static float Average<TSource>(this ParallelQuery<TSource> source, Func<TSource, float> selector);
 +        public static ParallelQuery<TResult> Cast<TResult>(this ParallelQuery source);
 +        public static ParallelQuery<TSource> Concat<TSource>(this ParallelQuery<TSource> first, IEnumerable<TSource> second);
 +        public static ParallelQuery<TSource> Concat<TSource>(this ParallelQuery<TSource> first, ParallelQuery<TSource> second);
@@ -9129,33 +9698,33 @@
 +        public static TSource ElementAtOrDefault<TSource>(this ParallelQuery<TSource> source, int index);
 +        public static ParallelQuery<TResult> Empty<TResult>();
 +        public static ParallelQuery<TSource> Except<TSource>(this ParallelQuery<TSource> first, IEnumerable<TSource> second);
-+        public static ParallelQuery<TSource> Except<TSource>(this ParallelQuery<TSource> first, ParallelQuery<TSource> second);
 +        public static ParallelQuery<TSource> Except<TSource>(this ParallelQuery<TSource> first, IEnumerable<TSource> second, IEqualityComparer<TSource> comparer);
++        public static ParallelQuery<TSource> Except<TSource>(this ParallelQuery<TSource> first, ParallelQuery<TSource> second);
 +        public static ParallelQuery<TSource> Except<TSource>(this ParallelQuery<TSource> first, ParallelQuery<TSource> second, IEqualityComparer<TSource> comparer);
 +        public static TSource First<TSource>(this ParallelQuery<TSource> source);
 +        public static TSource First<TSource>(this ParallelQuery<TSource> source, Func<TSource, bool> predicate);
 +        public static TSource FirstOrDefault<TSource>(this ParallelQuery<TSource> source);
 +        public static TSource FirstOrDefault<TSource>(this ParallelQuery<TSource> source, Func<TSource, bool> predicate);
 +        public static void ForAll<TSource>(this ParallelQuery<TSource> source, Action<TSource> action);
-+        public static ParallelQuery<IGrouping<TKey, TSource>> GroupBy<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector);
-+        public static ParallelQuery<IGrouping<TKey, TSource>> GroupBy<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer);
-+        public static ParallelQuery<IGrouping<TKey, TElement>> GroupBy<TSource, TKey, TElement>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector);
-+        public static ParallelQuery<TResult> GroupBy<TSource, TKey, TResult>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, Func<TKey, IEnumerable<TSource>, TResult> resultSelector);
-+        public static ParallelQuery<IGrouping<TKey, TElement>> GroupBy<TSource, TKey, TElement>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, IEqualityComparer<TKey> comparer);
-+        public static ParallelQuery<TResult> GroupBy<TSource, TKey, TResult>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, Func<TKey, IEnumerable<TSource>, TResult> resultSelector, IEqualityComparer<TKey> comparer);
 +        public static ParallelQuery<TResult> GroupBy<TSource, TKey, TElement, TResult>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, Func<TKey, IEnumerable<TElement>, TResult> resultSelector);
 +        public static ParallelQuery<TResult> GroupBy<TSource, TKey, TElement, TResult>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, Func<TKey, IEnumerable<TElement>, TResult> resultSelector, IEqualityComparer<TKey> comparer);
++        public static ParallelQuery<IGrouping<TKey, TElement>> GroupBy<TSource, TKey, TElement>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector);
++        public static ParallelQuery<IGrouping<TKey, TElement>> GroupBy<TSource, TKey, TElement>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, IEqualityComparer<TKey> comparer);
++        public static ParallelQuery<TResult> GroupBy<TSource, TKey, TResult>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, Func<TKey, IEnumerable<TSource>, TResult> resultSelector);
++        public static ParallelQuery<TResult> GroupBy<TSource, TKey, TResult>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, Func<TKey, IEnumerable<TSource>, TResult> resultSelector, IEqualityComparer<TKey> comparer);
++        public static ParallelQuery<IGrouping<TKey, TSource>> GroupBy<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector);
++        public static ParallelQuery<IGrouping<TKey, TSource>> GroupBy<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer);
 +        public static ParallelQuery<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(this ParallelQuery<TOuter> outer, IEnumerable<TInner> inner, Func<TOuter, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector, Func<TOuter, IEnumerable<TInner>, TResult> resultSelector);
-+        public static ParallelQuery<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(this ParallelQuery<TOuter> outer, ParallelQuery<TInner> inner, Func<TOuter, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector, Func<TOuter, IEnumerable<TInner>, TResult> resultSelector);
 +        public static ParallelQuery<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(this ParallelQuery<TOuter> outer, IEnumerable<TInner> inner, Func<TOuter, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector, Func<TOuter, IEnumerable<TInner>, TResult> resultSelector, IEqualityComparer<TKey> comparer);
++        public static ParallelQuery<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(this ParallelQuery<TOuter> outer, ParallelQuery<TInner> inner, Func<TOuter, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector, Func<TOuter, IEnumerable<TInner>, TResult> resultSelector);
 +        public static ParallelQuery<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(this ParallelQuery<TOuter> outer, ParallelQuery<TInner> inner, Func<TOuter, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector, Func<TOuter, IEnumerable<TInner>, TResult> resultSelector, IEqualityComparer<TKey> comparer);
 +        public static ParallelQuery<TSource> Intersect<TSource>(this ParallelQuery<TSource> first, IEnumerable<TSource> second);
-+        public static ParallelQuery<TSource> Intersect<TSource>(this ParallelQuery<TSource> first, ParallelQuery<TSource> second);
 +        public static ParallelQuery<TSource> Intersect<TSource>(this ParallelQuery<TSource> first, IEnumerable<TSource> second, IEqualityComparer<TSource> comparer);
++        public static ParallelQuery<TSource> Intersect<TSource>(this ParallelQuery<TSource> first, ParallelQuery<TSource> second);
 +        public static ParallelQuery<TSource> Intersect<TSource>(this ParallelQuery<TSource> first, ParallelQuery<TSource> second, IEqualityComparer<TSource> comparer);
 +        public static ParallelQuery<TResult> Join<TOuter, TInner, TKey, TResult>(this ParallelQuery<TOuter> outer, IEnumerable<TInner> inner, Func<TOuter, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector, Func<TOuter, TInner, TResult> resultSelector);
-+        public static ParallelQuery<TResult> Join<TOuter, TInner, TKey, TResult>(this ParallelQuery<TOuter> outer, ParallelQuery<TInner> inner, Func<TOuter, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector, Func<TOuter, TInner, TResult> resultSelector);
 +        public static ParallelQuery<TResult> Join<TOuter, TInner, TKey, TResult>(this ParallelQuery<TOuter> outer, IEnumerable<TInner> inner, Func<TOuter, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector, Func<TOuter, TInner, TResult> resultSelector, IEqualityComparer<TKey> comparer);
++        public static ParallelQuery<TResult> Join<TOuter, TInner, TKey, TResult>(this ParallelQuery<TOuter> outer, ParallelQuery<TInner> inner, Func<TOuter, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector, Func<TOuter, TInner, TResult> resultSelector);
 +        public static ParallelQuery<TResult> Join<TOuter, TInner, TKey, TResult>(this ParallelQuery<TOuter> outer, ParallelQuery<TInner> inner, Func<TOuter, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector, Func<TOuter, TInner, TResult> resultSelector, IEqualityComparer<TKey> comparer);
 +        public static TSource Last<TSource>(this ParallelQuery<TSource> source);
 +        public static TSource Last<TSource>(this ParallelQuery<TSource> source, Func<TSource, bool> predicate);
@@ -9163,50 +9732,50 @@
 +        public static TSource LastOrDefault<TSource>(this ParallelQuery<TSource> source, Func<TSource, bool> predicate);
 +        public static long LongCount<TSource>(this ParallelQuery<TSource> source);
 +        public static long LongCount<TSource>(this ParallelQuery<TSource> source, Func<TSource, bool> predicate);
-+        public static TSource Max<TSource>(this ParallelQuery<TSource> source);
-+        public static int Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, int> selector);
-+        public static long Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, long> selector);
-+        public static double Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, double> selector);
-+        public static Nullable<int> Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<int>> selector);
-+        public static Nullable<long> Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<long>> selector);
-+        public static float Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, float> selector);
-+        public static decimal Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, decimal> selector);
-+        public static Nullable<double> Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<double>> selector);
-+        public static Nullable<float> Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<float>> selector);
-+        public static Nullable<decimal> Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<decimal>> selector);
-+        public static TResult Max<TSource, TResult>(this ParallelQuery<TSource> source, Func<TSource, TResult> selector);
++        public static decimal Max(this ParallelQuery<decimal> source);
++        public static double Max(this ParallelQuery<double> source);
 +        public static int Max(this ParallelQuery<int> source);
 +        public static long Max(this ParallelQuery<long> source);
-+        public static double Max(this ParallelQuery<double> source);
++        public static Nullable<decimal> Max(this ParallelQuery<Nullable<decimal>> source);
++        public static Nullable<double> Max(this ParallelQuery<Nullable<double>> source);
 +        public static Nullable<int> Max(this ParallelQuery<Nullable<int>> source);
 +        public static Nullable<long> Max(this ParallelQuery<Nullable<long>> source);
-+        public static float Max(this ParallelQuery<float> source);
-+        public static decimal Max(this ParallelQuery<decimal> source);
-+        public static Nullable<double> Max(this ParallelQuery<Nullable<double>> source);
 +        public static Nullable<float> Max(this ParallelQuery<Nullable<float>> source);
-+        public static Nullable<decimal> Max(this ParallelQuery<Nullable<decimal>> source);
-+        public static TSource Min<TSource>(this ParallelQuery<TSource> source);
-+        public static int Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, int> selector);
-+        public static long Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, long> selector);
-+        public static double Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, double> selector);
-+        public static Nullable<int> Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<int>> selector);
-+        public static Nullable<long> Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<long>> selector);
-+        public static float Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, float> selector);
-+        public static decimal Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, decimal> selector);
-+        public static Nullable<double> Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<double>> selector);
-+        public static Nullable<float> Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<float>> selector);
-+        public static Nullable<decimal> Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<decimal>> selector);
-+        public static TResult Min<TSource, TResult>(this ParallelQuery<TSource> source, Func<TSource, TResult> selector);
++        public static float Max(this ParallelQuery<float> source);
++        public static TResult Max<TSource, TResult>(this ParallelQuery<TSource> source, Func<TSource, TResult> selector);
++        public static TSource Max<TSource>(this ParallelQuery<TSource> source);
++        public static decimal Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, decimal> selector);
++        public static double Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, double> selector);
++        public static int Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, int> selector);
++        public static long Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, long> selector);
++        public static Nullable<decimal> Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<decimal>> selector);
++        public static Nullable<double> Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<double>> selector);
++        public static Nullable<int> Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<int>> selector);
++        public static Nullable<long> Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<long>> selector);
++        public static Nullable<float> Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<float>> selector);
++        public static float Max<TSource>(this ParallelQuery<TSource> source, Func<TSource, float> selector);
++        public static decimal Min(this ParallelQuery<decimal> source);
++        public static double Min(this ParallelQuery<double> source);
 +        public static int Min(this ParallelQuery<int> source);
 +        public static long Min(this ParallelQuery<long> source);
-+        public static double Min(this ParallelQuery<double> source);
++        public static Nullable<decimal> Min(this ParallelQuery<Nullable<decimal>> source);
++        public static Nullable<double> Min(this ParallelQuery<Nullable<double>> source);
 +        public static Nullable<int> Min(this ParallelQuery<Nullable<int>> source);
 +        public static Nullable<long> Min(this ParallelQuery<Nullable<long>> source);
-+        public static float Min(this ParallelQuery<float> source);
-+        public static decimal Min(this ParallelQuery<decimal> source);
-+        public static Nullable<double> Min(this ParallelQuery<Nullable<double>> source);
 +        public static Nullable<float> Min(this ParallelQuery<Nullable<float>> source);
-+        public static Nullable<decimal> Min(this ParallelQuery<Nullable<decimal>> source);
++        public static float Min(this ParallelQuery<float> source);
++        public static TResult Min<TSource, TResult>(this ParallelQuery<TSource> source, Func<TSource, TResult> selector);
++        public static TSource Min<TSource>(this ParallelQuery<TSource> source);
++        public static decimal Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, decimal> selector);
++        public static double Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, double> selector);
++        public static int Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, int> selector);
++        public static long Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, long> selector);
++        public static Nullable<decimal> Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<decimal>> selector);
++        public static Nullable<double> Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<double>> selector);
++        public static Nullable<int> Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<int>> selector);
++        public static Nullable<long> Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<long>> selector);
++        public static Nullable<float> Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<float>> selector);
++        public static float Min<TSource>(this ParallelQuery<TSource> source, Func<TSource, float> selector);
 +        public static ParallelQuery<TResult> OfType<TResult>(this ParallelQuery source);
 +        public static OrderedParallelQuery<TSource> OrderBy<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector);
 +        public static OrderedParallelQuery<TSource> OrderBy<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer);
@@ -9215,15 +9784,15 @@
 +        public static ParallelQuery<int> Range(int start, int count);
 +        public static ParallelQuery<TResult> Repeat<TResult>(TResult element, int count);
 +        public static ParallelQuery<TSource> Reverse<TSource>(this ParallelQuery<TSource> source);
-+        public static ParallelQuery<TResult> Select<TSource, TResult>(this ParallelQuery<TSource> source, Func<TSource, TResult> selector);
 +        public static ParallelQuery<TResult> Select<TSource, TResult>(this ParallelQuery<TSource> source, Func<TSource, int, TResult> selector);
-+        public static ParallelQuery<TResult> SelectMany<TSource, TResult>(this ParallelQuery<TSource> source, Func<TSource, IEnumerable<TResult>> selector);
-+        public static ParallelQuery<TResult> SelectMany<TSource, TResult>(this ParallelQuery<TSource> source, Func<TSource, int, IEnumerable<TResult>> selector);
++        public static ParallelQuery<TResult> Select<TSource, TResult>(this ParallelQuery<TSource> source, Func<TSource, TResult> selector);
 +        public static ParallelQuery<TResult> SelectMany<TSource, TCollection, TResult>(this ParallelQuery<TSource> source, Func<TSource, IEnumerable<TCollection>> collectionSelector, Func<TSource, TCollection, TResult> resultSelector);
 +        public static ParallelQuery<TResult> SelectMany<TSource, TCollection, TResult>(this ParallelQuery<TSource> source, Func<TSource, int, IEnumerable<TCollection>> collectionSelector, Func<TSource, TCollection, TResult> resultSelector);
++        public static ParallelQuery<TResult> SelectMany<TSource, TResult>(this ParallelQuery<TSource> source, Func<TSource, IEnumerable<TResult>> selector);
++        public static ParallelQuery<TResult> SelectMany<TSource, TResult>(this ParallelQuery<TSource> source, Func<TSource, int, IEnumerable<TResult>> selector);
 +        public static bool SequenceEqual<TSource>(this ParallelQuery<TSource> first, IEnumerable<TSource> second);
-+        public static bool SequenceEqual<TSource>(this ParallelQuery<TSource> first, ParallelQuery<TSource> second);
 +        public static bool SequenceEqual<TSource>(this ParallelQuery<TSource> first, IEnumerable<TSource> second, IEqualityComparer<TSource> comparer);
++        public static bool SequenceEqual<TSource>(this ParallelQuery<TSource> first, ParallelQuery<TSource> second);
 +        public static bool SequenceEqual<TSource>(this ParallelQuery<TSource> first, ParallelQuery<TSource> second, IEqualityComparer<TSource> comparer);
 +        public static TSource Single<TSource>(this ParallelQuery<TSource> source);
 +        public static TSource Single<TSource>(this ParallelQuery<TSource> source, Func<TSource, bool> predicate);
@@ -9232,26 +9801,26 @@
 +        public static ParallelQuery<TSource> Skip<TSource>(this ParallelQuery<TSource> source, int count);
 +        public static ParallelQuery<TSource> SkipWhile<TSource>(this ParallelQuery<TSource> source, Func<TSource, bool> predicate);
 +        public static ParallelQuery<TSource> SkipWhile<TSource>(this ParallelQuery<TSource> source, Func<TSource, int, bool> predicate);
-+        public static int Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, int> selector);
-+        public static long Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, long> selector);
-+        public static double Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, double> selector);
-+        public static Nullable<int> Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<int>> selector);
-+        public static Nullable<long> Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<long>> selector);
-+        public static float Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, float> selector);
-+        public static decimal Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, decimal> selector);
-+        public static Nullable<double> Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<double>> selector);
-+        public static Nullable<float> Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<float>> selector);
-+        public static Nullable<decimal> Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<decimal>> selector);
++        public static decimal Sum(this ParallelQuery<decimal> source);
++        public static double Sum(this ParallelQuery<double> source);
 +        public static int Sum(this ParallelQuery<int> source);
 +        public static long Sum(this ParallelQuery<long> source);
-+        public static double Sum(this ParallelQuery<double> source);
++        public static Nullable<decimal> Sum(this ParallelQuery<Nullable<decimal>> source);
++        public static Nullable<double> Sum(this ParallelQuery<Nullable<double>> source);
 +        public static Nullable<int> Sum(this ParallelQuery<Nullable<int>> source);
 +        public static Nullable<long> Sum(this ParallelQuery<Nullable<long>> source);
-+        public static float Sum(this ParallelQuery<float> source);
-+        public static decimal Sum(this ParallelQuery<decimal> source);
-+        public static Nullable<double> Sum(this ParallelQuery<Nullable<double>> source);
 +        public static Nullable<float> Sum(this ParallelQuery<Nullable<float>> source);
-+        public static Nullable<decimal> Sum(this ParallelQuery<Nullable<decimal>> source);
++        public static float Sum(this ParallelQuery<float> source);
++        public static decimal Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, decimal> selector);
++        public static double Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, double> selector);
++        public static int Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, int> selector);
++        public static long Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, long> selector);
++        public static Nullable<decimal> Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<decimal>> selector);
++        public static Nullable<double> Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<double>> selector);
++        public static Nullable<int> Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<int>> selector);
++        public static Nullable<long> Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<long>> selector);
++        public static Nullable<float> Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, Nullable<float>> selector);
++        public static float Sum<TSource>(this ParallelQuery<TSource> source, Func<TSource, float> selector);
 +        public static ParallelQuery<TSource> Take<TSource>(this ParallelQuery<TSource> source, int count);
 +        public static ParallelQuery<TSource> TakeWhile<TSource>(this ParallelQuery<TSource> source, Func<TSource, bool> predicate);
 +        public static ParallelQuery<TSource> TakeWhile<TSource>(this ParallelQuery<TSource> source, Func<TSource, int, bool> predicate);
@@ -9260,18 +9829,18 @@
 +        public static OrderedParallelQuery<TSource> ThenByDescending<TSource, TKey>(this OrderedParallelQuery<TSource> source, Func<TSource, TKey> keySelector);
 +        public static OrderedParallelQuery<TSource> ThenByDescending<TSource, TKey>(this OrderedParallelQuery<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer);
 +        public static TSource[] ToArray<TSource>(this ParallelQuery<TSource> source);
-+        public static Dictionary<TKey, TSource> ToDictionary<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector);
-+        public static Dictionary<TKey, TSource> ToDictionary<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer);
 +        public static Dictionary<TKey, TElement> ToDictionary<TSource, TKey, TElement>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector);
 +        public static Dictionary<TKey, TElement> ToDictionary<TSource, TKey, TElement>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, IEqualityComparer<TKey> comparer);
++        public static Dictionary<TKey, TSource> ToDictionary<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector);
++        public static Dictionary<TKey, TSource> ToDictionary<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer);
 +        public static List<TSource> ToList<TSource>(this ParallelQuery<TSource> source);
-+        public static ILookup<TKey, TSource> ToLookup<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector);
-+        public static ILookup<TKey, TSource> ToLookup<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer);
 +        public static ILookup<TKey, TElement> ToLookup<TSource, TKey, TElement>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector);
 +        public static ILookup<TKey, TElement> ToLookup<TSource, TKey, TElement>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, IEqualityComparer<TKey> comparer);
++        public static ILookup<TKey, TSource> ToLookup<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector);
++        public static ILookup<TKey, TSource> ToLookup<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer);
 +        public static ParallelQuery<TSource> Union<TSource>(this ParallelQuery<TSource> first, IEnumerable<TSource> second);
-+        public static ParallelQuery<TSource> Union<TSource>(this ParallelQuery<TSource> first, ParallelQuery<TSource> second);
 +        public static ParallelQuery<TSource> Union<TSource>(this ParallelQuery<TSource> first, IEnumerable<TSource> second, IEqualityComparer<TSource> comparer);
++        public static ParallelQuery<TSource> Union<TSource>(this ParallelQuery<TSource> first, ParallelQuery<TSource> second);
 +        public static ParallelQuery<TSource> Union<TSource>(this ParallelQuery<TSource> first, ParallelQuery<TSource> second, IEqualityComparer<TSource> comparer);
 +        public static ParallelQuery<TSource> Where<TSource>(this ParallelQuery<TSource> source, Func<TSource, bool> predicate);
 +        public static ParallelQuery<TSource> Where<TSource>(this ParallelQuery<TSource> source, Func<TSource, int, bool> predicate);
@@ -9292,39 +9861,41 @@
 +        FullyBuffered = 3,
 +        NotBuffered = 1,
 +    }
-+    public class ParallelQuery : IEnumerable
++    public class ParallelQuery : IEnumerable {
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
++    }
 +    public class ParallelQuery<TSource> : ParallelQuery, IEnumerable, IEnumerable<TSource> {
 +        public virtual IEnumerator<TSource> GetEnumerator();
 +    }
 +    public static class Queryable {
-+        public static TSource Aggregate<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, TSource, TSource>> func);
-+        public static TAccumulate Aggregate<TSource, TAccumulate>(this IQueryable<TSource> source, TAccumulate seed, Expression<Func<TAccumulate, TSource, TAccumulate>> func);
 +        public static TResult Aggregate<TSource, TAccumulate, TResult>(this IQueryable<TSource> source, TAccumulate seed, Expression<Func<TAccumulate, TSource, TAccumulate>> func, Expression<Func<TAccumulate, TResult>> selector);
++        public static TAccumulate Aggregate<TSource, TAccumulate>(this IQueryable<TSource> source, TAccumulate seed, Expression<Func<TAccumulate, TSource, TAccumulate>> func);
++        public static TSource Aggregate<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, TSource, TSource>> func);
 +        public static bool All<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate);
 +        public static bool Any<TSource>(this IQueryable<TSource> source);
 +        public static bool Any<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate);
-+        public static IQueryable<TElement> AsQueryable<TElement>(this IEnumerable<TElement> source);
 +        public static IQueryable AsQueryable(this IEnumerable source);
-+        public static double Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, int>> selector);
-+        public static double Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, long>> selector);
-+        public static double Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, double>> selector);
-+        public static Nullable<double> Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<int>>> selector);
-+        public static Nullable<double> Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<long>>> selector);
-+        public static float Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, float>> selector);
-+        public static decimal Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, decimal>> selector);
-+        public static Nullable<double> Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<double>>> selector);
-+        public static Nullable<float> Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<float>>> selector);
-+        public static Nullable<decimal> Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<decimal>>> selector);
++        public static IQueryable<TElement> AsQueryable<TElement>(this IEnumerable<TElement> source);
++        public static decimal Average(this IQueryable<decimal> source);
++        public static double Average(this IQueryable<double> source);
 +        public static double Average(this IQueryable<int> source);
 +        public static double Average(this IQueryable<long> source);
-+        public static double Average(this IQueryable<double> source);
++        public static Nullable<decimal> Average(this IQueryable<Nullable<decimal>> source);
++        public static Nullable<double> Average(this IQueryable<Nullable<double>> source);
 +        public static Nullable<double> Average(this IQueryable<Nullable<int>> source);
 +        public static Nullable<double> Average(this IQueryable<Nullable<long>> source);
-+        public static float Average(this IQueryable<float> source);
-+        public static decimal Average(this IQueryable<decimal> source);
-+        public static Nullable<double> Average(this IQueryable<Nullable<double>> source);
 +        public static Nullable<float> Average(this IQueryable<Nullable<float>> source);
-+        public static Nullable<decimal> Average(this IQueryable<Nullable<decimal>> source);
++        public static float Average(this IQueryable<float> source);
++        public static decimal Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, decimal>> selector);
++        public static double Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, double>> selector);
++        public static double Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, int>> selector);
++        public static double Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, long>> selector);
++        public static Nullable<decimal> Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<decimal>>> selector);
++        public static Nullable<double> Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<double>>> selector);
++        public static Nullable<double> Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<int>>> selector);
++        public static Nullable<double> Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<long>>> selector);
++        public static Nullable<float> Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<float>>> selector);
++        public static float Average<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, float>> selector);
 +        public static IQueryable<TResult> Cast<TResult>(this IQueryable source);
 +        public static IQueryable<TSource> Concat<TSource>(this IQueryable<TSource> source1, IEnumerable<TSource> source2);
 +        public static bool Contains<TSource>(this IQueryable<TSource> source, TSource item);
@@ -9343,14 +9914,14 @@
 +        public static TSource First<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate);
 +        public static TSource FirstOrDefault<TSource>(this IQueryable<TSource> source);
 +        public static TSource FirstOrDefault<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate);
-+        public static IQueryable<IGrouping<TKey, TSource>> GroupBy<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector);
-+        public static IQueryable<IGrouping<TKey, TSource>> GroupBy<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector, IEqualityComparer<TKey> comparer);
-+        public static IQueryable<IGrouping<TKey, TElement>> GroupBy<TSource, TKey, TElement>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector, Expression<Func<TSource, TElement>> elementSelector);
-+        public static IQueryable<TResult> GroupBy<TSource, TKey, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector, Expression<Func<TKey, IEnumerable<TSource>, TResult>> resultSelector);
-+        public static IQueryable<IGrouping<TKey, TElement>> GroupBy<TSource, TKey, TElement>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector, Expression<Func<TSource, TElement>> elementSelector, IEqualityComparer<TKey> comparer);
-+        public static IQueryable<TResult> GroupBy<TSource, TKey, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector, Expression<Func<TKey, IEnumerable<TSource>, TResult>> resultSelector, IEqualityComparer<TKey> comparer);
 +        public static IQueryable<TResult> GroupBy<TSource, TKey, TElement, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector, Expression<Func<TSource, TElement>> elementSelector, Expression<Func<TKey, IEnumerable<TElement>, TResult>> resultSelector);
 +        public static IQueryable<TResult> GroupBy<TSource, TKey, TElement, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector, Expression<Func<TSource, TElement>> elementSelector, Expression<Func<TKey, IEnumerable<TElement>, TResult>> resultSelector, IEqualityComparer<TKey> comparer);
++        public static IQueryable<IGrouping<TKey, TElement>> GroupBy<TSource, TKey, TElement>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector, Expression<Func<TSource, TElement>> elementSelector);
++        public static IQueryable<IGrouping<TKey, TElement>> GroupBy<TSource, TKey, TElement>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector, Expression<Func<TSource, TElement>> elementSelector, IEqualityComparer<TKey> comparer);
++        public static IQueryable<TResult> GroupBy<TSource, TKey, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector, Expression<Func<TKey, IEnumerable<TSource>, TResult>> resultSelector);
++        public static IQueryable<TResult> GroupBy<TSource, TKey, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector, Expression<Func<TKey, IEnumerable<TSource>, TResult>> resultSelector, IEqualityComparer<TKey> comparer);
++        public static IQueryable<IGrouping<TKey, TSource>> GroupBy<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector);
++        public static IQueryable<IGrouping<TKey, TSource>> GroupBy<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector, IEqualityComparer<TKey> comparer);
 +        public static IQueryable<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(this IQueryable<TOuter> outer, IEnumerable<TInner> inner, Expression<Func<TOuter, TKey>> outerKeySelector, Expression<Func<TInner, TKey>> innerKeySelector, Expression<Func<TOuter, IEnumerable<TInner>, TResult>> resultSelector);
 +        public static IQueryable<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(this IQueryable<TOuter> outer, IEnumerable<TInner> inner, Expression<Func<TOuter, TKey>> outerKeySelector, Expression<Func<TInner, TKey>> innerKeySelector, Expression<Func<TOuter, IEnumerable<TInner>, TResult>> resultSelector, IEqualityComparer<TKey> comparer);
 +        public static IQueryable<TSource> Intersect<TSource>(this IQueryable<TSource> source1, IEnumerable<TSource> source2);
@@ -9363,22 +9934,22 @@
 +        public static TSource LastOrDefault<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate);
 +        public static long LongCount<TSource>(this IQueryable<TSource> source);
 +        public static long LongCount<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate);
-+        public static TSource Max<TSource>(this IQueryable<TSource> source);
 +        public static TResult Max<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector);
-+        public static TSource Min<TSource>(this IQueryable<TSource> source);
++        public static TSource Max<TSource>(this IQueryable<TSource> source);
 +        public static TResult Min<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector);
++        public static TSource Min<TSource>(this IQueryable<TSource> source);
 +        public static IQueryable<TResult> OfType<TResult>(this IQueryable source);
 +        public static IOrderedQueryable<TSource> OrderBy<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector);
 +        public static IOrderedQueryable<TSource> OrderBy<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector, IComparer<TKey> comparer);
 +        public static IOrderedQueryable<TSource> OrderByDescending<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector);
 +        public static IOrderedQueryable<TSource> OrderByDescending<TSource, TKey>(this IQueryable<TSource> source, Expression<Func<TSource, TKey>> keySelector, IComparer<TKey> comparer);
 +        public static IQueryable<TSource> Reverse<TSource>(this IQueryable<TSource> source);
-+        public static IQueryable<TResult> Select<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector);
 +        public static IQueryable<TResult> Select<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, int, TResult>> selector);
-+        public static IQueryable<TResult> SelectMany<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, IEnumerable<TResult>>> selector);
-+        public static IQueryable<TResult> SelectMany<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, int, IEnumerable<TResult>>> selector);
++        public static IQueryable<TResult> Select<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector);
 +        public static IQueryable<TResult> SelectMany<TSource, TCollection, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, IEnumerable<TCollection>>> collectionSelector, Expression<Func<TSource, TCollection, TResult>> resultSelector);
 +        public static IQueryable<TResult> SelectMany<TSource, TCollection, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, int, IEnumerable<TCollection>>> collectionSelector, Expression<Func<TSource, TCollection, TResult>> resultSelector);
++        public static IQueryable<TResult> SelectMany<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, IEnumerable<TResult>>> selector);
++        public static IQueryable<TResult> SelectMany<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, int, IEnumerable<TResult>>> selector);
 +        public static bool SequenceEqual<TSource>(this IQueryable<TSource> source1, IEnumerable<TSource> source2);
 +        public static bool SequenceEqual<TSource>(this IQueryable<TSource> source1, IEnumerable<TSource> source2, IEqualityComparer<TSource> comparer);
 +        public static TSource Single<TSource>(this IQueryable<TSource> source);
@@ -9388,26 +9959,26 @@
 +        public static IQueryable<TSource> Skip<TSource>(this IQueryable<TSource> source, int count);
 +        public static IQueryable<TSource> SkipWhile<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate);
 +        public static IQueryable<TSource> SkipWhile<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, int, bool>> predicate);
-+        public static int Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, int>> selector);
-+        public static long Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, long>> selector);
-+        public static double Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, double>> selector);
-+        public static Nullable<int> Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<int>>> selector);
-+        public static Nullable<long> Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<long>>> selector);
-+        public static float Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, float>> selector);
-+        public static decimal Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, decimal>> selector);
-+        public static Nullable<double> Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<double>>> selector);
-+        public static Nullable<float> Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<float>>> selector);
-+        public static Nullable<decimal> Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<decimal>>> selector);
++        public static decimal Sum(this IQueryable<decimal> source);
++        public static double Sum(this IQueryable<double> source);
 +        public static int Sum(this IQueryable<int> source);
 +        public static long Sum(this IQueryable<long> source);
-+        public static double Sum(this IQueryable<double> source);
++        public static Nullable<decimal> Sum(this IQueryable<Nullable<decimal>> source);
++        public static Nullable<double> Sum(this IQueryable<Nullable<double>> source);
 +        public static Nullable<int> Sum(this IQueryable<Nullable<int>> source);
 +        public static Nullable<long> Sum(this IQueryable<Nullable<long>> source);
-+        public static float Sum(this IQueryable<float> source);
-+        public static decimal Sum(this IQueryable<decimal> source);
-+        public static Nullable<double> Sum(this IQueryable<Nullable<double>> source);
 +        public static Nullable<float> Sum(this IQueryable<Nullable<float>> source);
-+        public static Nullable<decimal> Sum(this IQueryable<Nullable<decimal>> source);
++        public static float Sum(this IQueryable<float> source);
++        public static decimal Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, decimal>> selector);
++        public static double Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, double>> selector);
++        public static int Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, int>> selector);
++        public static long Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, long>> selector);
++        public static Nullable<decimal> Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<decimal>>> selector);
++        public static Nullable<double> Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<double>>> selector);
++        public static Nullable<int> Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<int>>> selector);
++        public static Nullable<long> Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<long>>> selector);
++        public static Nullable<float> Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, Nullable<float>>> selector);
++        public static float Sum<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, float>> selector);
 +        public static IQueryable<TSource> Take<TSource>(this IQueryable<TSource> source, int count);
 +        public static IQueryable<TSource> TakeWhile<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate);
 +        public static IQueryable<TSource> TakeWhile<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, int, bool>> predicate);
@@ -9422,26 +9993,31 @@
 +        public static IQueryable<TResult> Zip<TFirst, TSecond, TResult>(this IQueryable<TFirst> source1, IEnumerable<TSecond> source2, Expression<Func<TFirst, TSecond, TResult>> resultSelector);
 +    }
  }
+
  namespace System.Linq.Expressions {
 +    public class DynamicExpression : Expression, IArgumentProvider, IDynamicExpression {
 +        public ReadOnlyCollection<Expression> Arguments { get; }
 +        public CallSiteBinder Binder { get; }
 +        public Type DelegateType { get; }
 +        public sealed override ExpressionType NodeType { get; }
++        int System.Linq.Expressions.IArgumentProvider.ArgumentCount { get; }
 +        public override Type Type { get; }
 +        protected internal override Expression Accept(ExpressionVisitor visitor);
++        public static new DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, IEnumerable<Expression> arguments);
 +        public static new DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, Expression arg0);
 +        public static new DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, Expression arg0, Expression arg1);
 +        public static new DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, Expression arg0, Expression arg1, Expression arg2);
 +        public static new DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, Expression arg0, Expression arg1, Expression arg2, Expression arg3);
 +        public static new DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, params Expression[] arguments);
-+        public static new DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, IEnumerable<Expression> arguments);
++        public static new DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, IEnumerable<Expression> arguments);
 +        public static new DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, Expression arg0);
 +        public static new DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, Expression arg0, Expression arg1);
 +        public static new DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, Expression arg0, Expression arg1, Expression arg2);
 +        public static new DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, Expression arg0, Expression arg1, Expression arg2, Expression arg3);
 +        public static new DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, params Expression[] arguments);
-+        public static new DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, IEnumerable<Expression> arguments);
++        Expression System.Linq.Expressions.IArgumentProvider.GetArgument(int index);
++        object System.Linq.Expressions.IDynamicExpression.CreateCallSite();
++        Expression System.Linq.Expressions.IDynamicExpression.Rewrite(Expression[] args);
 +        public DynamicExpression Update(IEnumerable<Expression> arguments);
 +    }
 +    public abstract class DynamicExpressionVisitor : ExpressionVisitor {
@@ -9450,34 +10026,33 @@
 +    }
      public abstract class Expression {
 +        protected Expression(ExpressionType nodeType, Type type);
++        public static DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, IEnumerable<Expression> arguments);
 +        public static DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, Expression arg0);
 +        public static DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, Expression arg0, Expression arg1);
 +        public static DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, Expression arg0, Expression arg1, Expression arg2);
 +        public static DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, Expression arg0, Expression arg1, Expression arg2, Expression arg3);
 +        public static DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, params Expression[] arguments);
-+        public static DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, IEnumerable<Expression> arguments);
++        public static DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, IEnumerable<Expression> arguments);
 +        public static DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, Expression arg0);
 +        public static DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, Expression arg0, Expression arg1);
 +        public static DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, Expression arg0, Expression arg1, Expression arg2);
 +        public static DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, Expression arg0, Expression arg1, Expression arg2, Expression arg3);
 +        public static DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, params Expression[] arguments);
-+        public static DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, IEnumerable<Expression> arguments);
      }
      public sealed class Expression<TDelegate> : LambdaExpression {
--        public new TDelegate Compile(bool preferInterpretation);
 +        public new TDelegate Compile(DebugInfoGenerator debugInfoGenerator);
      }
      public abstract class ExpressionVisitor {
 +        protected internal virtual Expression VisitDynamic(DynamicExpression node);
      }
      public abstract class LambdaExpression : Expression {
--        public Delegate Compile(bool preferInterpretation);
 +        public Delegate Compile(DebugInfoGenerator debugInfoGenerator);
      }
      public abstract class MemberBinding {
 +        protected MemberBinding(MemberBindingType type, MemberInfo member);
      }
  }
+
  namespace System.Net {
 +    public class AuthenticationManager {
 +        public static ICredentialPolicy CredentialPolicy { get; set; }
@@ -9489,12 +10064,7 @@
 +        public static void Unregister(IAuthenticationModule authenticationModule);
 +        public static void Unregister(string authenticationScheme);
 +    }
-+    public delegate AuthenticationSchemes AuthenticationSchemeSelector(HttpListenerRequest httpRequest); {
-+        public AuthenticationSchemeSelector(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(HttpListenerRequest httpRequest, AsyncCallback callback, object @object);
-+        public virtual AuthenticationSchemes EndInvoke(IAsyncResult result);
-+        public virtual AuthenticationSchemes Invoke(HttpListenerRequest httpRequest);
-+    }
++    public delegate AuthenticationSchemes AuthenticationSchemeSelector(HttpListenerRequest httpRequest);
 +    public class Authorization {
 +        public Authorization(string token);
 +        public Authorization(string token, bool finished);
@@ -9505,19 +10075,20 @@
 +        public bool MutuallyAuthenticated { get; set; }
 +        public string[] ProtectionRealm { get; set; }
 +    }
-+    public delegate IPEndPoint BindIPEndPoint(ServicePoint servicePoint, IPEndPoint remoteEndPoint, int retryCount); {
-+        public BindIPEndPoint(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(ServicePoint servicePoint, IPEndPoint remoteEndPoint, int retryCount, AsyncCallback callback, object @object);
-+        public virtual IPEndPoint EndInvoke(IAsyncResult result);
-+        public virtual IPEndPoint Invoke(ServicePoint servicePoint, IPEndPoint remoteEndPoint, int retryCount);
-+    }
++    public delegate IPEndPoint BindIPEndPoint(ServicePoint servicePoint, IPEndPoint remoteEndPoint, int retryCount);
      public class CookieCollection : ICollection, IEnumerable {
 +        public bool IsReadOnly { get; }
 +        public bool IsSynchronized { get; }
-+        public Cookie this[int index] { get; }
 +        public object SyncRoot { get; }
+-        bool System.Collections.ICollection.IsSynchronized { get; }
+
+-        object System.Collections.ICollection.SyncRoot { get; }
+
++        public Cookie this[int index] { get; }
 +        public void CopyTo(Array array, int index);
 +        public void CopyTo(Cookie[] array, int index);
+-        void System.Collections.ICollection.CopyTo(Array array, int index);
+
      }
      public class CookieContainer {
 +        public CookieContainer(int capacity);
@@ -9529,6 +10100,7 @@
 +    public class CookieException : FormatException, ISerializable {
 +        protected CookieException(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +        public override void GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
      }
 +    public static class Dns {
 +        public static IAsyncResult BeginGetHostAddresses(string hostNameOrAddress, AsyncCallback requestCallback, object state);
@@ -9555,39 +10127,16 @@
 +    public class DownloadDataCompletedEventArgs : AsyncCompletedEventArgs {
 +        public byte[] Result { get; }
 +    }
-+    public delegate void DownloadDataCompletedEventHandler(object sender, DownloadDataCompletedEventArgs e); {
-+        public DownloadDataCompletedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, DownloadDataCompletedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, DownloadDataCompletedEventArgs e);
-+    }
++    public delegate void DownloadDataCompletedEventHandler(object sender, DownloadDataCompletedEventArgs e);
 +    public class DownloadProgressChangedEventArgs : ProgressChangedEventArgs {
 +        public long BytesReceived { get; }
 +        public long TotalBytesToReceive { get; }
 +    }
-+    public delegate void DownloadProgressChangedEventHandler(object sender, DownloadProgressChangedEventArgs e); {
-+        public DownloadProgressChangedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, DownloadProgressChangedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, DownloadProgressChangedEventArgs e);
-+    }
++    public delegate void DownloadProgressChangedEventHandler(object sender, DownloadProgressChangedEventArgs e);
 +    public class DownloadStringCompletedEventArgs : AsyncCompletedEventArgs {
 +        public string Result { get; }
 +    }
-+    public delegate void DownloadStringCompletedEventHandler(object sender, DownloadStringCompletedEventArgs e); {
-+        public DownloadStringCompletedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, DownloadStringCompletedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, DownloadStringCompletedEventArgs e);
-+    }
-+    public class EndpointPermission {
-+        public string Hostname { get; }
-+        public int Port { get; }
-+        public TransportType Transport { get; }
-+        public override bool Equals(object obj);
-+        public override int GetHashCode();
-+        public override string ToString();
-+    }
++    public delegate void DownloadStringCompletedEventHandler(object sender, DownloadStringCompletedEventArgs e);
 +    public class FileWebRequest : WebRequest, ISerializable {
 +        protected FileWebRequest(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +        public override string ConnectionGroupName { get; set; }
@@ -9609,6 +10158,7 @@
 +        protected override void GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +        public override Stream GetRequestStream();
 +        public override WebResponse GetResponse();
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +    }
 +    public class FileWebResponse : WebResponse, ISerializable {
 +        protected FileWebResponse(SerializationInfo serializationInfo, StreamingContext streamingContext);
@@ -9620,6 +10170,7 @@
 +        public override void Close();
 +        protected override void GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +        public override Stream GetResponseStream();
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +    }
 +    public enum FtpStatusCode {
 +        AccountNeeded = 532,
@@ -9709,19 +10260,8 @@
 +        public static IWebProxy Select { get; set; }
 +        public static IWebProxy GetEmptyWebProxy();
 +    }
-+    public delegate void HttpContinueDelegate(int StatusCode, WebHeaderCollection httpHeaders); {
-+        public HttpContinueDelegate(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(int StatusCode, WebHeaderCollection httpHeaders, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(int StatusCode, WebHeaderCollection httpHeaders);
-+    }
++    public delegate void HttpContinueDelegate(int StatusCode, WebHeaderCollection httpHeaders);
 +    public sealed class HttpListener : IDisposable {
-+        public delegate ExtendedProtectionPolicy ExtendedProtectionSelector(HttpListenerRequest request); {
-+            public ExtendedProtectionSelector(object @object, IntPtr method);
-+            public virtual IAsyncResult BeginInvoke(HttpListenerRequest request, AsyncCallback callback, object @object);
-+            public virtual ExtendedProtectionPolicy EndInvoke(IAsyncResult result);
-+            public virtual ExtendedProtectionPolicy Invoke(HttpListenerRequest request);
-+        }
 +        public HttpListener();
 +        public AuthenticationSchemes AuthenticationSchemes { get; set; }
 +        public AuthenticationSchemeSelector AuthenticationSchemeSelectorDelegate { get; set; }
@@ -9743,6 +10283,8 @@
 +        public Task<HttpListenerContext> GetContextAsync();
 +        public void Start();
 +        public void Stop();
++        void System.IDisposable.Dispose();
++        public delegate ExtendedProtectionPolicy ExtendedProtectionSelector(HttpListenerRequest request);
 +    }
 +    public class HttpListenerBasicIdentity : GenericIdentity {
 +        public HttpListenerBasicIdentity(string username, string password);
@@ -9775,6 +10317,7 @@
 +        public void CopyTo(string[] array, int offset);
 +        public IEnumerator<string> GetEnumerator();
 +        public bool Remove(string uriPrefix);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
 +    }
 +    public sealed class HttpListenerRequest {
 +        public string[] AcceptTypes { get; }
@@ -9833,6 +10376,7 @@
 +        public void CopyFrom(HttpListenerResponse templateResponse);
 +        public void Redirect(string url);
 +        public void SetCookie(Cookie cookie);
++        void System.IDisposable.Dispose();
 +    }
 +    public class HttpListenerTimeoutManager {
 +        public TimeSpan DrainEntityBody { get; set; }
@@ -9917,10 +10461,9 @@
 +        Warning = 9,
 +        WwwAuthenticate = 29,
 +    }
-+    public class HttpVersion {
++    public static class HttpVersion {
 +        public static readonly Version Version10;
 +        public static readonly Version Version11;
-+        public HttpVersion();
 +    }
 +    public class HttpWebRequest : WebRequest, ISerializable {
 +        protected HttpWebRequest(SerializationInfo serializationInfo, StreamingContext streamingContext);
@@ -9987,6 +10530,7 @@
 +        public override Stream GetRequestStream();
 +        public Stream GetRequestStream(out TransportContext context);
 +        public override WebResponse GetResponse();
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +    }
 +    public class HttpWebResponse : WebResponse, ISerializable {
 +        protected HttpWebResponse(SerializationInfo serializationInfo, StreamingContext streamingContext);
@@ -10010,15 +10554,13 @@
 +        protected override void GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +        public string GetResponseHeader(string headerName);
 +        public override Stream GetResponseStream();
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +    }
 +    public interface IAuthenticationModule {
 +        string AuthenticationType { get; }
 +        bool CanPreAuthenticate { get; }
 +        Authorization Authenticate(string challenge, WebRequest request, ICredentials credentials);
 +        Authorization PreAuthenticate(WebRequest request, ICredentials credentials);
-+    }
-+    public interface ICertificatePolicy {
-+        bool CheckValidationResult(ServicePoint srvPoint, X509Certificate certificate, WebRequest request, int certificateProblem);
 +    }
 +    public interface ICredentialPolicy {
 +        bool ShouldSendCredential(Uri challengeUri, WebRequest request, NetworkCredential credential, IAuthenticationModule authenticationModule);
@@ -10040,10 +10582,6 @@
 +    public interface IWebRequestCreate {
 +        WebRequest Create(Uri uri);
 +    }
-+    public enum NetworkAccess {
-+        Accept = 128,
-+        Connect = 64,
-+    }
      public class NetworkCredential : ICredentials, ICredentialsByHost {
 +        public NetworkCredential(string userName, SecureString password);
 +        public NetworkCredential(string userName, SecureString password, string domain);
@@ -10052,26 +10590,17 @@
 +    public class OpenReadCompletedEventArgs : AsyncCompletedEventArgs {
 +        public Stream Result { get; }
 +    }
-+    public delegate void OpenReadCompletedEventHandler(object sender, OpenReadCompletedEventArgs e); {
-+        public OpenReadCompletedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, OpenReadCompletedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, OpenReadCompletedEventArgs e);
-+    }
++    public delegate void OpenReadCompletedEventHandler(object sender, OpenReadCompletedEventArgs e);
 +    public class OpenWriteCompletedEventArgs : AsyncCompletedEventArgs {
 +        public Stream Result { get; }
 +    }
-+    public delegate void OpenWriteCompletedEventHandler(object sender, OpenWriteCompletedEventArgs e); {
-+        public OpenWriteCompletedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, OpenWriteCompletedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, OpenWriteCompletedEventArgs e);
-+    }
++    public delegate void OpenWriteCompletedEventHandler(object sender, OpenWriteCompletedEventArgs e);
 +    public class ProtocolViolationException : InvalidOperationException, ISerializable {
 +        public ProtocolViolationException();
 +        protected ProtocolViolationException(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +        public ProtocolViolationException(string message);
 +        public override void GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +    }
 +    public enum SecurityProtocolType {
 +        Ssl3 = 48,
@@ -10101,7 +10630,6 @@
 +    public class ServicePointManager {
 +        public const int DefaultNonPersistentConnectionLimit = 4;
 +        public const int DefaultPersistentConnectionLimit = 2;
-+        public static ICertificatePolicy CertificatePolicy { get; set; }
 +        public static bool CheckCertificateRevocationList { get; set; }
 +        public static int DefaultConnectionLimit { get; set; }
 +        public static int DnsRefreshTimeout { get; set; }
@@ -10119,64 +10647,29 @@
 +        public static ServicePoint FindServicePoint(Uri address, IWebProxy proxy);
 +        public static void SetTcpKeepAlive(bool enabled, int keepAliveTime, int keepAliveInterval);
 +    }
-     public abstract class TransportContext {
-+        public virtual IEnumerable<TokenBinding> GetTlsTokenBindings();
-     }
-+    public enum TransportType {
-+        All = 3,
-+        Connectionless = 1,
-+        ConnectionOriented = 2,
-+        Tcp = 2,
-+        Udp = 1,
-+    }
 +    public class UploadDataCompletedEventArgs : AsyncCompletedEventArgs {
 +        public byte[] Result { get; }
 +    }
-+    public delegate void UploadDataCompletedEventHandler(object sender, UploadDataCompletedEventArgs e); {
-+        public UploadDataCompletedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, UploadDataCompletedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, UploadDataCompletedEventArgs e);
-+    }
++    public delegate void UploadDataCompletedEventHandler(object sender, UploadDataCompletedEventArgs e);
 +    public class UploadFileCompletedEventArgs : AsyncCompletedEventArgs {
 +        public byte[] Result { get; }
 +    }
-+    public delegate void UploadFileCompletedEventHandler(object sender, UploadFileCompletedEventArgs e); {
-+        public UploadFileCompletedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, UploadFileCompletedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, UploadFileCompletedEventArgs e);
-+    }
++    public delegate void UploadFileCompletedEventHandler(object sender, UploadFileCompletedEventArgs e);
 +    public class UploadProgressChangedEventArgs : ProgressChangedEventArgs {
 +        public long BytesReceived { get; }
 +        public long BytesSent { get; }
 +        public long TotalBytesToReceive { get; }
 +        public long TotalBytesToSend { get; }
 +    }
-+    public delegate void UploadProgressChangedEventHandler(object sender, UploadProgressChangedEventArgs e); {
-+        public UploadProgressChangedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, UploadProgressChangedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, UploadProgressChangedEventArgs e);
-+    }
++    public delegate void UploadProgressChangedEventHandler(object sender, UploadProgressChangedEventArgs e);
 +    public class UploadStringCompletedEventArgs : AsyncCompletedEventArgs {
 +        public string Result { get; }
 +    }
-+    public delegate void UploadStringCompletedEventHandler(object sender, UploadStringCompletedEventArgs e); {
-+        public UploadStringCompletedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, UploadStringCompletedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, UploadStringCompletedEventArgs e);
-+    }
++    public delegate void UploadStringCompletedEventHandler(object sender, UploadStringCompletedEventArgs e);
 +    public class UploadValuesCompletedEventArgs : AsyncCompletedEventArgs {
 +        public byte[] Result { get; }
 +    }
-+    public delegate void UploadValuesCompletedEventHandler(object sender, UploadValuesCompletedEventArgs e); {
-+        public UploadValuesCompletedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, UploadValuesCompletedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, UploadValuesCompletedEventArgs e);
-+    }
++    public delegate void UploadValuesCompletedEventHandler(object sender, UploadValuesCompletedEventArgs e);
 +    public class WebClient : Component {
 +        public WebClient();
 +        public string BaseAddress { get; set; }
@@ -10189,6 +10682,17 @@
 +        public NameValueCollection QueryString { get; set; }
 +        public WebHeaderCollection ResponseHeaders { get; }
 +        public bool UseDefaultCredentials { get; set; }
++        public event DownloadDataCompletedEventHandler DownloadDataCompleted;
++        public event AsyncCompletedEventHandler DownloadFileCompleted;
++        public event DownloadProgressChangedEventHandler DownloadProgressChanged;
++        public event DownloadStringCompletedEventHandler DownloadStringCompleted;
++        public event OpenReadCompletedEventHandler OpenReadCompleted;
++        public event OpenWriteCompletedEventHandler OpenWriteCompleted;
++        public event UploadDataCompletedEventHandler UploadDataCompleted;
++        public event UploadFileCompletedEventHandler UploadFileCompleted;
++        public event UploadProgressChangedEventHandler UploadProgressChanged;
++        public event UploadStringCompletedEventHandler UploadStringCompleted;
++        public event UploadValuesCompletedEventHandler UploadValuesCompleted;
 +        public void CancelAsync();
 +        public byte[] DownloadData(string address);
 +        public byte[] DownloadData(Uri address);
@@ -10283,17 +10787,6 @@
 +        public Task<byte[]> UploadValuesTaskAsync(string address, string method, NameValueCollection data);
 +        public Task<byte[]> UploadValuesTaskAsync(Uri address, NameValueCollection data);
 +        public Task<byte[]> UploadValuesTaskAsync(Uri address, string method, NameValueCollection data);
-+        public event DownloadDataCompletedEventHandler DownloadDataCompleted;
-+        public event AsyncCompletedEventHandler DownloadFileCompleted;
-+        public event DownloadProgressChangedEventHandler DownloadProgressChanged;
-+        public event DownloadStringCompletedEventHandler DownloadStringCompleted;
-+        public event OpenReadCompletedEventHandler OpenReadCompleted;
-+        public event OpenWriteCompletedEventHandler OpenWriteCompleted;
-+        public event UploadDataCompletedEventHandler UploadDataCompleted;
-+        public event UploadFileCompletedEventHandler UploadFileCompleted;
-+        public event UploadProgressChangedEventHandler UploadProgressChanged;
-+        public event UploadStringCompletedEventHandler UploadStringCompleted;
-+        public event UploadValuesCompletedEventHandler UploadValuesCompleted;
 +    }
 +    public class WebException : InvalidOperationException, ISerializable {
 +        public WebException();
@@ -10305,6 +10798,7 @@
 +        public WebResponse Response { get; }
 +        public WebExceptionStatus Status { get; }
 +        public override void GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +    }
 +    public enum WebExceptionStatus {
 +        CacheEntryNotFound = 18,
@@ -10334,9 +10828,9 @@
 +        protected WebHeaderCollection(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +        public override string[] AllKeys { get; }
 +        public override int Count { get; }
++        public override NameObjectCollectionBase.KeysCollection Keys { get; }
 +        public string this[HttpRequestHeader header] { get; set; }
 +        public string this[HttpResponseHeader header] { get; set; }
-+        public override NameObjectCollectionBase.KeysCollection Keys { get; }
 +        public void Add(HttpRequestHeader header, string value);
 +        public void Add(HttpResponseHeader header, string value);
 +        public void Add(string header);
@@ -10359,6 +10853,7 @@
 +        public void Set(HttpRequestHeader header, string value);
 +        public void Set(HttpResponseHeader header, string value);
 +        public override void Set(string name, string value);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +        public byte[] ToByteArray();
 +        public override string ToString();
 +    }
@@ -10384,6 +10879,7 @@
 +        protected virtual void GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +        public Uri GetProxy(Uri destination);
 +        public bool IsBypassed(Uri host);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +    }
 +    public abstract class WebRequest : MarshalByRefObject, ISerializable {
 +        protected WebRequest();
@@ -10421,6 +10917,7 @@
 +        public virtual Task<WebResponse> GetResponseAsync();
 +        public static IWebProxy GetSystemWebProxy();
 +        public static bool RegisterPrefix(string prefix, IWebRequestCreate creator);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +    }
 +    public static class WebRequestMethods {
 +        public static class File {
@@ -10466,12 +10963,14 @@
 +        protected virtual void Dispose(bool disposing);
 +        protected virtual void GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +        public virtual Stream GetResponseStream();
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +    }
      public static class WebUtility {
 +        public static void HtmlDecode(string value, TextWriter output);
 +        public static void HtmlEncode(string value, TextWriter output);
      }
  }
+
 +namespace System.Net.Cache {
 +    public enum HttpCacheAgeControl {
 +        MaxAge = 2,
@@ -10522,80 +11021,90 @@
 +        public override string ToString();
 +    }
 +}
- namespace System.Net.Http {
-     public class HttpClientHandler : HttpMessageHandler {
--        public bool CheckCertificateRevocationList { get; set; }
--        public X509CertificateCollection ClientCertificates { get; }
--        public ICredentials DefaultProxyCredentials { get; set; }
--        public int MaxConnectionsPerServer { get; set; }
--        public int MaxResponseHeadersLength { get; set; }
--        public IDictionary<string, object> Properties { get; }
--        public Func<HttpRequestMessage, X509Certificate2, X509Chain, SslPolicyErrors, bool> ServerCertificateCustomValidationCallback { get; set; }
--        public SslProtocols SslProtocols { get; set; }
-     }
- }
+
  namespace System.Net.Http.Headers {
 -    public class AuthenticationHeaderValue {
 +    public class AuthenticationHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class CacheControlHeaderValue {
 +    public class CacheControlHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class ContentDispositionHeaderValue {
 +    public class ContentDispositionHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class ContentRangeHeaderValue {
 +    public class ContentRangeHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class EntityTagHeaderValue {
 +    public class EntityTagHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class MediaTypeHeaderValue {
 +    public class MediaTypeHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public sealed class MediaTypeWithQualityHeaderValue : MediaTypeHeaderValue {
 +    public sealed class MediaTypeWithQualityHeaderValue : MediaTypeHeaderValue, ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class NameValueHeaderValue {
 +    public class NameValueHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class NameValueWithParametersHeaderValue : NameValueHeaderValue {
 +    public class NameValueWithParametersHeaderValue : NameValueHeaderValue, ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class ProductHeaderValue {
 +    public class ProductHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class ProductInfoHeaderValue {
 +    public class ProductInfoHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class RangeConditionHeaderValue {
 +    public class RangeConditionHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class RangeHeaderValue {
 +    public class RangeHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class RangeItemHeaderValue {
 +    public class RangeItemHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class RetryConditionHeaderValue {
 +    public class RetryConditionHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class StringWithQualityHeaderValue {
 +    public class StringWithQualityHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class TransferCodingHeaderValue {
 +    public class TransferCodingHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public sealed class TransferCodingWithQualityHeaderValue : TransferCodingHeaderValue {
 +    public sealed class TransferCodingWithQualityHeaderValue : TransferCodingHeaderValue, ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class ViaHeaderValue {
 +    public class ViaHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
 -    public class WarningHeaderValue {
 +    public class WarningHeaderValue : ICloneable {
++        object System.ICloneable.Clone();
      }
  }
+
 +namespace System.Net.Mail {
 +    public class AlternateView : AttachmentBase {
 +        public AlternateView(Stream contentStream);
@@ -10612,7 +11121,11 @@
 +        protected override void Dispose(bool disposing);
 +    }
 +    public sealed class AlternateViewCollection : Collection<AlternateView>, IDisposable {
++        protected override void ClearItems();
 +        public void Dispose();
++        protected override void InsertItem(int index, AlternateView item);
++        protected override void RemoveItem(int index);
++        protected override void SetItem(int index, AlternateView item);
 +    }
 +    public class Attachment : AttachmentBase {
 +        public Attachment(Stream contentStream, ContentType contentType);
@@ -10643,7 +11156,11 @@
 +        protected virtual void Dispose(bool disposing);
 +    }
 +    public sealed class AttachmentCollection : Collection<Attachment>, IDisposable {
++        protected override void ClearItems();
 +        public void Dispose();
++        protected override void InsertItem(int index, Attachment item);
++        protected override void RemoveItem(int index);
++        protected override void SetItem(int index, Attachment item);
 +    }
 +    public enum DeliveryNotificationOptions {
 +        Delay = 4,
@@ -10665,7 +11182,11 @@
 +        public static LinkedResource CreateLinkedResourceFromString(string content, Encoding contentEncoding, string mediaType);
 +    }
 +    public sealed class LinkedResourceCollection : Collection<LinkedResource>, IDisposable {
++        protected override void ClearItems();
 +        public void Dispose();
++        protected override void InsertItem(int index, LinkedResource item);
++        protected override void RemoveItem(int index);
++        protected override void SetItem(int index, LinkedResource item);
 +    }
 +    public class MailAddress {
 +        public MailAddress(string address);
@@ -10718,17 +11239,7 @@
 +        Low = 1,
 +        Normal = 0,
 +    }
-+    public delegate void SendCompletedEventHandler(object sender, AsyncCompletedEventArgs e); {
-+        public SendCompletedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, AsyncCompletedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, AsyncCompletedEventArgs e);
-+    }
-+    public enum SmtpAccess {
-+        Connect = 1,
-+        ConnectToUnrestrictedPort = 2,
-+        None = 0,
-+    }
++    public delegate void SendCompletedEventHandler(object sender, AsyncCompletedEventArgs e);
 +    public class SmtpClient : IDisposable {
 +        public SmtpClient();
 +        public SmtpClient(string host);
@@ -10741,9 +11252,11 @@
 +        public string Host { get; set; }
 +        public string PickupDirectoryLocation { get; set; }
 +        public int Port { get; set; }
++        public ServicePoint ServicePoint { get; }
 +        public string TargetName { get; set; }
 +        public int Timeout { get; set; }
 +        public bool UseDefaultCredentials { get; set; }
++        public event SendCompletedEventHandler SendCompleted;
 +        public void Dispose();
 +        protected virtual void Dispose(bool disposing);
 +        protected void OnSendCompleted(AsyncCompletedEventArgs e);
@@ -10754,7 +11267,6 @@
 +        public void SendAsyncCancel();
 +        public Task SendMailAsync(MailMessage message);
 +        public Task SendMailAsync(string from, string recipients, string subject, string body);
-+        public event SendCompletedEventHandler SendCompleted;
 +    }
 +    public enum SmtpDeliveryFormat {
 +        International = 1,
@@ -10767,24 +11279,26 @@
 +    }
 +    public class SmtpException : Exception, ISerializable {
 +        public SmtpException();
-+        protected SmtpException(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +        public SmtpException(SmtpStatusCode statusCode);
 +        public SmtpException(SmtpStatusCode statusCode, string message);
++        protected SmtpException(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +        public SmtpException(string message);
 +        public SmtpException(string message, Exception innerException);
 +        public SmtpStatusCode StatusCode { get; set; }
 +        public override void GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +    }
 +    public class SmtpFailedRecipientException : SmtpException, ISerializable {
 +        public SmtpFailedRecipientException();
-+        protected SmtpFailedRecipientException(SerializationInfo info, StreamingContext context);
 +        public SmtpFailedRecipientException(SmtpStatusCode statusCode, string failedRecipient);
 +        public SmtpFailedRecipientException(SmtpStatusCode statusCode, string failedRecipient, string serverResponse);
++        protected SmtpFailedRecipientException(SerializationInfo info, StreamingContext context);
 +        public SmtpFailedRecipientException(string message);
 +        public SmtpFailedRecipientException(string message, Exception innerException);
 +        public SmtpFailedRecipientException(string message, string failedRecipient, Exception innerException);
 +        public string FailedRecipient { get; }
 +        public override void GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +    }
 +    public class SmtpFailedRecipientsException : SmtpFailedRecipientException, ISerializable {
 +        public SmtpFailedRecipientsException();
@@ -10794,6 +11308,7 @@
 +        public SmtpFailedRecipientsException(string message, SmtpFailedRecipientException[] innerExceptions);
 +        public SmtpFailedRecipientException[] InnerExceptions { get; }
 +        public override void GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +    }
 +    public enum SmtpStatusCode {
 +        BadCommandSequence = 503,
@@ -10823,6 +11338,7 @@
 +        UserNotLocalWillForward = 251,
 +    }
 +}
+
 +namespace System.Net.Mime {
 +    public class ContentDisposition {
 +        public ContentDisposition();
@@ -10883,6 +11399,7 @@
 +        Unknown = -1,
 +    }
 +}
+
  namespace System.Net.NetworkInformation {
 +    public enum DuplicateAddressDetectionState {
 +        Deprecated = 3,
@@ -10906,6 +11423,7 @@
 +        public virtual void CopyTo(GatewayIPAddressInformation[] array, int offset);
 +        public virtual IEnumerator<GatewayIPAddressInformation> GetEnumerator();
 +        public virtual bool Remove(GatewayIPAddressInformation address);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
 +    }
 +    public abstract class IcmpV4Statistics {
 +        protected IcmpV4Statistics();
@@ -10987,6 +11505,7 @@
 +        public virtual void CopyTo(IPAddressInformation[] array, int offset);
 +        public virtual IEnumerator<IPAddressInformation> GetEnumerator();
 +        public virtual bool Remove(IPAddressInformation address);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
 +    }
 +    public abstract class IPGlobalProperties {
 +        protected IPGlobalProperties();
@@ -11144,6 +11663,7 @@
 +        public virtual void CopyTo(MulticastIPAddressInformation[] array, int offset);
 +        public virtual IEnumerator<MulticastIPAddressInformation> GetEnumerator();
 +        public virtual bool Remove(MulticastIPAddressInformation address);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
 +    }
 +    public enum NetBiosNodeType {
 +        Broadcast = 1,
@@ -11152,29 +11672,14 @@
 +        Peer2Peer = 2,
 +        Unknown = 0,
 +    }
-+    public delegate void NetworkAddressChangedEventHandler(object sender, EventArgs e); {
-+        public NetworkAddressChangedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, EventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, EventArgs e);
-+    }
-+    public delegate void NetworkAvailabilityChangedEventHandler(object sender, NetworkAvailabilityEventArgs e); {
-+        public NetworkAvailabilityChangedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, NetworkAvailabilityEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, NetworkAvailabilityEventArgs e);
-+    }
++    public delegate void NetworkAddressChangedEventHandler(object sender, EventArgs e);
++    public delegate void NetworkAvailabilityChangedEventHandler(object sender, NetworkAvailabilityEventArgs e);
 +    public class NetworkAvailabilityEventArgs : EventArgs {
 +        public bool IsAvailable { get; }
 +    }
 +    public static class NetworkChange {
 +        public static event NetworkAddressChangedEventHandler NetworkAddressChanged;
 +        public static event NetworkAvailabilityChangedEventHandler NetworkAvailabilityChanged;
-+    }
-+    public enum NetworkInformationAccess {
-+        None = 0,
-+        Ping = 4,
-+        Read = 1,
 +    }
 +    public class NetworkInformationException : Win32Exception {
 +        public NetworkInformationException();
@@ -11256,6 +11761,7 @@
 +    }
 +    public class Ping : Component {
 +        public Ping();
++        public event PingCompletedEventHandler PingCompleted;
 +        protected override void Dispose(bool disposing);
 +        protected void OnPingCompleted(PingCompletedEventArgs e);
 +        public PingReply Send(IPAddress address);
@@ -11266,12 +11772,12 @@
 +        public PingReply Send(string hostNameOrAddress, int timeout);
 +        public PingReply Send(string hostNameOrAddress, int timeout, byte[] buffer);
 +        public PingReply Send(string hostNameOrAddress, int timeout, byte[] buffer, PingOptions options);
-+        public void SendAsync(IPAddress address, int timeout, byte[] buffer, object userToken);
 +        public void SendAsync(IPAddress address, int timeout, byte[] buffer, PingOptions options, object userToken);
++        public void SendAsync(IPAddress address, int timeout, byte[] buffer, object userToken);
 +        public void SendAsync(IPAddress address, int timeout, object userToken);
 +        public void SendAsync(IPAddress address, object userToken);
-+        public void SendAsync(string hostNameOrAddress, int timeout, byte[] buffer, object userToken);
 +        public void SendAsync(string hostNameOrAddress, int timeout, byte[] buffer, PingOptions options, object userToken);
++        public void SendAsync(string hostNameOrAddress, int timeout, byte[] buffer, object userToken);
 +        public void SendAsync(string hostNameOrAddress, int timeout, object userToken);
 +        public void SendAsync(string hostNameOrAddress, object userToken);
 +        public void SendAsyncCancel();
@@ -11283,17 +11789,11 @@
 +        public Task<PingReply> SendPingAsync(string hostNameOrAddress, int timeout);
 +        public Task<PingReply> SendPingAsync(string hostNameOrAddress, int timeout, byte[] buffer);
 +        public Task<PingReply> SendPingAsync(string hostNameOrAddress, int timeout, byte[] buffer, PingOptions options);
-+        public event PingCompletedEventHandler PingCompleted;
 +    }
 +    public class PingCompletedEventArgs : AsyncCompletedEventArgs {
 +        public PingReply Reply { get; }
 +    }
-+    public delegate void PingCompletedEventHandler(object sender, PingCompletedEventArgs e); {
-+        public PingCompletedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, PingCompletedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, PingCompletedEventArgs e);
-+    }
++    public delegate void PingCompletedEventHandler(object sender, PingCompletedEventArgs e);
 +    public class PingException : InvalidOperationException {
 +        protected PingException(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +        public PingException(string message);
@@ -11405,8 +11905,10 @@
 +        public virtual void CopyTo(UnicastIPAddressInformation[] array, int offset);
 +        public virtual IEnumerator<UnicastIPAddressInformation> GetEnumerator();
 +        public virtual bool Remove(UnicastIPAddressInformation address);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
 +    }
  }
+
  namespace System.Net.Security {
 +    public abstract class AuthenticatedStream : Stream {
 +        protected AuthenticatedStream(Stream innerStream, bool leaveInnerStreamOpen);
@@ -11424,12 +11926,7 @@
 +        NoEncryption = 2,
 +        RequireEncryption = 0,
 +    }
-+    public delegate X509Certificate LocalCertificateSelectionCallback(object sender, string targetHost, X509CertificateCollection localCertificates, X509Certificate remoteCertificate, string[] acceptableIssuers); {
-+        public LocalCertificateSelectionCallback(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, string targetHost, X509CertificateCollection localCertificates, X509Certificate remoteCertificate, string[] acceptableIssuers, AsyncCallback callback, object @object);
-+        public virtual X509Certificate EndInvoke(IAsyncResult result);
-+        public virtual X509Certificate Invoke(object sender, string targetHost, X509CertificateCollection localCertificates, X509Certificate remoteCertificate, string[] acceptableIssuers);
-+    }
++    public delegate X509Certificate LocalCertificateSelectionCallback(object sender, string targetHost, X509CertificateCollection localCertificates, X509Certificate remoteCertificate, string[] acceptableIssuers);
 +    public class NegotiateStream : AuthenticatedStream {
 +        public NegotiateStream(Stream innerStream);
 +        public NegotiateStream(Stream innerStream, bool leaveInnerStreamOpen);
@@ -11459,22 +11956,22 @@
 +        public virtual Task AuthenticateAsClientAsync(NetworkCredential credential, string targetName);
 +        public virtual Task AuthenticateAsClientAsync(NetworkCredential credential, string targetName, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel allowedImpersonationLevel);
 +        public virtual void AuthenticateAsServer();
-+        public virtual void AuthenticateAsServer(ExtendedProtectionPolicy policy);
-+        public virtual void AuthenticateAsServer(NetworkCredential credential, ExtendedProtectionPolicy policy, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel requiredImpersonationLevel);
 +        public virtual void AuthenticateAsServer(NetworkCredential credential, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel requiredImpersonationLevel);
++        public virtual void AuthenticateAsServer(NetworkCredential credential, ExtendedProtectionPolicy policy, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel requiredImpersonationLevel);
++        public virtual void AuthenticateAsServer(ExtendedProtectionPolicy policy);
 +        public virtual Task AuthenticateAsServerAsync();
-+        public virtual Task AuthenticateAsServerAsync(ExtendedProtectionPolicy policy);
-+        public virtual Task AuthenticateAsServerAsync(NetworkCredential credential, ExtendedProtectionPolicy policy, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel requiredImpersonationLevel);
 +        public virtual Task AuthenticateAsServerAsync(NetworkCredential credential, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel requiredImpersonationLevel);
++        public virtual Task AuthenticateAsServerAsync(NetworkCredential credential, ExtendedProtectionPolicy policy, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel requiredImpersonationLevel);
++        public virtual Task AuthenticateAsServerAsync(ExtendedProtectionPolicy policy);
 +        public virtual IAsyncResult BeginAuthenticateAsClient(AsyncCallback asyncCallback, object asyncState);
 +        public virtual IAsyncResult BeginAuthenticateAsClient(NetworkCredential credential, ChannelBinding binding, string targetName, AsyncCallback asyncCallback, object asyncState);
 +        public virtual IAsyncResult BeginAuthenticateAsClient(NetworkCredential credential, ChannelBinding binding, string targetName, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel allowedImpersonationLevel, AsyncCallback asyncCallback, object asyncState);
 +        public virtual IAsyncResult BeginAuthenticateAsClient(NetworkCredential credential, string targetName, AsyncCallback asyncCallback, object asyncState);
 +        public virtual IAsyncResult BeginAuthenticateAsClient(NetworkCredential credential, string targetName, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel allowedImpersonationLevel, AsyncCallback asyncCallback, object asyncState);
 +        public virtual IAsyncResult BeginAuthenticateAsServer(AsyncCallback asyncCallback, object asyncState);
-+        public virtual IAsyncResult BeginAuthenticateAsServer(ExtendedProtectionPolicy policy, AsyncCallback asyncCallback, object asyncState);
-+        public virtual IAsyncResult BeginAuthenticateAsServer(NetworkCredential credential, ExtendedProtectionPolicy policy, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel requiredImpersonationLevel, AsyncCallback asyncCallback, object asyncState);
 +        public virtual IAsyncResult BeginAuthenticateAsServer(NetworkCredential credential, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel requiredImpersonationLevel, AsyncCallback asyncCallback, object asyncState);
++        public virtual IAsyncResult BeginAuthenticateAsServer(NetworkCredential credential, ExtendedProtectionPolicy policy, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel requiredImpersonationLevel, AsyncCallback asyncCallback, object asyncState);
++        public virtual IAsyncResult BeginAuthenticateAsServer(ExtendedProtectionPolicy policy, AsyncCallback asyncCallback, object asyncState);
 +        public override IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback asyncCallback, object asyncState);
 +        public override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback asyncCallback, object asyncState);
 +        protected override void Dispose(bool disposing);
@@ -11493,12 +11990,7 @@
 +        None = 0,
 +        Sign = 1,
 +    }
-+    public delegate bool RemoteCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors); {
-+        public RemoteCertificateValidationCallback(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors, AsyncCallback callback, object @object);
-+        public virtual bool EndInvoke(IAsyncResult result);
-+        public virtual bool Invoke(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors);
-+    }
++    public delegate bool RemoteCertificateValidationCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors);
 +    public class SslStream : AuthenticatedStream {
 +        public SslStream(Stream innerStream);
 +        public SslStream(Stream innerStream, bool leaveInnerStreamOpen);
@@ -11556,6 +12048,7 @@
 +        public override void Write(byte[] buffer, int offset, int count);
 +    }
  }
+
  namespace System.Net.Sockets {
      public enum AddressFamily {
 +        Max = 29,
@@ -11572,7 +12065,9 @@
 +        public override int EndRead(IAsyncResult asyncResult);
 +        public override void EndWrite(IAsyncResult asyncResult);
 -        public override Task<int> ReadAsync(byte[] buffer, int offset, int size, CancellationToken cancellationToken);
+
 -        public override Task WriteAsync(byte[] buffer, int offset, int size, CancellationToken cancellationToken);
+
      }
 +    public enum ProtocolFamily {
 +        AppleTalk = 16,
@@ -11665,9 +12160,7 @@
 +        protected SocketException(SerializationInfo serializationInfo, StreamingContext streamingContext);
 +        public override int ErrorCode { get; }
      }
-     public enum SocketFlags {
-+        MaxIOVectorLength = 16,
-     }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SocketInformation {
 +        public SocketInformationOptions Options { get; set; }
 +        public byte[] ProtocolInformation { get; set; }
@@ -11678,31 +12171,6 @@
 +        NonBlocking = 1,
 +        UseOnlyOverlappedIO = 8,
 +    }
--    public struct SocketReceiveFromResult {
--        public int ReceivedBytes;
--        public EndPoint RemoteEndPoint;
--    }
--    public struct SocketReceiveMessageFromResult {
--        public IPPacketInformation PacketInformation;
--        public int ReceivedBytes;
--        public EndPoint RemoteEndPoint;
--        public SocketFlags SocketFlags;
--    }
--    public static class SocketTaskExtensions {
--        public static Task<Socket> AcceptAsync(this Socket socket);
--        public static Task<Socket> AcceptAsync(this Socket socket, Socket acceptSocket);
--        public static Task ConnectAsync(this Socket socket, EndPoint remoteEP);
--        public static Task ConnectAsync(this Socket socket, IPAddress address, int port);
--        public static Task ConnectAsync(this Socket socket, IPAddress[] addresses, int port);
--        public static Task ConnectAsync(this Socket socket, string host, int port);
--        public static Task<int> ReceiveAsync(this Socket socket, ArraySegment<byte> buffer, SocketFlags socketFlags);
--        public static Task<int> ReceiveAsync(this Socket socket, IList<ArraySegment<byte>> buffers, SocketFlags socketFlags);
--        public static Task<SocketReceiveFromResult> ReceiveFromAsync(this Socket socket, ArraySegment<byte> buffer, SocketFlags socketFlags, EndPoint remoteEndPoint);
--        public static Task<SocketReceiveMessageFromResult> ReceiveMessageFromAsync(this Socket socket, ArraySegment<byte> buffer, SocketFlags socketFlags, EndPoint remoteEndPoint);
--        public static Task<int> SendAsync(this Socket socket, ArraySegment<byte> buffer, SocketFlags socketFlags);
--        public static Task<int> SendAsync(this Socket socket, IList<ArraySegment<byte>> buffers, SocketFlags socketFlags);
--        public static Task<int> SendToAsync(this Socket socket, ArraySegment<byte> buffer, SocketFlags socketFlags, EndPoint remoteEP);
--    }
      public class TcpClient : IDisposable {
 +        public TcpClient(IPEndPoint localEP);
 +        public TcpClient(string hostname, int port);
@@ -11755,6 +12223,7 @@
 +        public Task<int> SendAsync(byte[] datagram, int bytes);
      }
  }
+
 +namespace System.Net.WebSockets {
 +    public sealed class ClientWebSocket : WebSocket {
 +        public ClientWebSocket();
@@ -11811,7 +12280,6 @@
 +        public static WebSocket CreateClientWebSocket(Stream innerStream, string subProtocol, int receiveBufferSize, int sendBufferSize, TimeSpan keepAliveInterval, bool useZeroMaskingKey, ArraySegment<byte> internalBuffer);
 +        public static ArraySegment<byte> CreateServerBuffer(int receiveBufferSize);
 +        public abstract void Dispose();
-+        public static bool IsApplicationTargeting45();
 +        protected static bool IsStateTerminal(WebSocketState state);
 +        public abstract Task<WebSocketReceiveResult> ReceiveAsync(ArraySegment<byte> buffer, CancellationToken cancellationToken);
 +        public static void RegisterPrefixes();
@@ -11862,8 +12330,6 @@
 +        public WebSocketException(int nativeError);
 +        public WebSocketException(int nativeError, Exception innerException);
 +        public WebSocketException(int nativeError, string message);
-+        public WebSocketException(string message);
-+        public WebSocketException(string message, Exception innerException);
 +        public WebSocketException(WebSocketError error);
 +        public WebSocketException(WebSocketError error, Exception innerException);
 +        public WebSocketException(WebSocketError error, int nativeError);
@@ -11872,6 +12338,8 @@
 +        public WebSocketException(WebSocketError error, int nativeError, string message, Exception innerException);
 +        public WebSocketException(WebSocketError error, string message);
 +        public WebSocketException(WebSocketError error, string message, Exception innerException);
++        public WebSocketException(string message);
++        public WebSocketException(string message, Exception innerException);
 +        public override int ErrorCode { get; }
 +        public WebSocketError WebSocketErrorCode { get; }
 +        public override void GetObjectData(SerializationInfo info, StreamingContext context);
@@ -11900,361 +12368,19 @@
 +        Open = 2,
 +    }
 +}
+
  namespace System.Numerics {
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct BigInteger : IComparable, IComparable<BigInteger>, IEquatable<BigInteger>, IFormattable {
 +        public int CompareTo(object obj);
+-        int System.IComparable.CompareTo(object obj);
+
      }
-+    public struct Matrix3x2 : IEquatable<Matrix3x2> {
-+        public float M11;
-+        public float M12;
-+        public float M21;
-+        public float M22;
-+        public float M31;
-+        public float M32;
-+        public Matrix3x2(float m11, float m12, float m21, float m22, float m31, float m32);
-+        public static Matrix3x2 Identity { get; }
-+        public bool IsIdentity { get; }
-+        public Vector2 Translation { get; set; }
-+        public static Matrix3x2 Add(Matrix3x2 value1, Matrix3x2 value2);
-+        public static Matrix3x2 CreateRotation(float radians);
-+        public static Matrix3x2 CreateRotation(float radians, Vector2 centerPoint);
-+        public static Matrix3x2 CreateScale(float scale);
-+        public static Matrix3x2 CreateScale(float xScale, float yScale);
-+        public static Matrix3x2 CreateScale(float xScale, float yScale, Vector2 centerPoint);
-+        public static Matrix3x2 CreateScale(float scale, Vector2 centerPoint);
-+        public static Matrix3x2 CreateScale(Vector2 scales);
-+        public static Matrix3x2 CreateScale(Vector2 scales, Vector2 centerPoint);
-+        public static Matrix3x2 CreateSkew(float radiansX, float radiansY);
-+        public static Matrix3x2 CreateSkew(float radiansX, float radiansY, Vector2 centerPoint);
-+        public static Matrix3x2 CreateTranslation(float xPosition, float yPosition);
-+        public static Matrix3x2 CreateTranslation(Vector2 position);
-+        public bool Equals(Matrix3x2 other);
-+        public override bool Equals(object obj);
-+        public float GetDeterminant();
-+        public override int GetHashCode();
-+        public static bool Invert(Matrix3x2 matrix, out Matrix3x2 result);
-+        public static Matrix3x2 Lerp(Matrix3x2 matrix1, Matrix3x2 matrix2, float amount);
-+        public static Matrix3x2 Multiply(Matrix3x2 value1, Matrix3x2 value2);
-+        public static Matrix3x2 Multiply(Matrix3x2 value1, float value2);
-+        public static Matrix3x2 Negate(Matrix3x2 value);
-+        public static Matrix3x2 operator +(Matrix3x2 value1, Matrix3x2 value2);
-+        public static bool operator ==(Matrix3x2 value1, Matrix3x2 value2);
-+        public static bool operator !=(Matrix3x2 value1, Matrix3x2 value2);
-+        public static Matrix3x2 operator *(Matrix3x2 value1, Matrix3x2 value2);
-+        public static Matrix3x2 operator *(Matrix3x2 value1, float value2);
-+        public static Matrix3x2 operator -(Matrix3x2 value1, Matrix3x2 value2);
-+        public static Matrix3x2 operator -(Matrix3x2 value);
-+        public static Matrix3x2 Subtract(Matrix3x2 value1, Matrix3x2 value2);
-+        public override string ToString();
-+    }
-+    public struct Matrix4x4 : IEquatable<Matrix4x4> {
-+        public float M11;
-+        public float M12;
-+        public float M13;
-+        public float M14;
-+        public float M21;
-+        public float M22;
-+        public float M23;
-+        public float M24;
-+        public float M31;
-+        public float M32;
-+        public float M33;
-+        public float M34;
-+        public float M41;
-+        public float M42;
-+        public float M43;
-+        public float M44;
-+        public Matrix4x4(Matrix3x2 value);
-+        public Matrix4x4(float m11, float m12, float m13, float m14, float m21, float m22, float m23, float m24, float m31, float m32, float m33, float m34, float m41, float m42, float m43, float m44);
-+        public static Matrix4x4 Identity { get; }
-+        public bool IsIdentity { get; }
-+        public Vector3 Translation { get; set; }
-+        public static Matrix4x4 Add(Matrix4x4 value1, Matrix4x4 value2);
-+        public static Matrix4x4 CreateBillboard(Vector3 objectPosition, Vector3 cameraPosition, Vector3 cameraUpVector, Vector3 cameraForwardVector);
-+        public static Matrix4x4 CreateConstrainedBillboard(Vector3 objectPosition, Vector3 cameraPosition, Vector3 rotateAxis, Vector3 cameraForwardVector, Vector3 objectForwardVector);
-+        public static Matrix4x4 CreateFromAxisAngle(Vector3 axis, float angle);
-+        public static Matrix4x4 CreateFromQuaternion(Quaternion quaternion);
-+        public static Matrix4x4 CreateFromYawPitchRoll(float yaw, float pitch, float roll);
-+        public static Matrix4x4 CreateLookAt(Vector3 cameraPosition, Vector3 cameraTarget, Vector3 cameraUpVector);
-+        public static Matrix4x4 CreateOrthographic(float width, float height, float zNearPlane, float zFarPlane);
-+        public static Matrix4x4 CreateOrthographicOffCenter(float left, float right, float bottom, float top, float zNearPlane, float zFarPlane);
-+        public static Matrix4x4 CreatePerspective(float width, float height, float nearPlaneDistance, float farPlaneDistance);
-+        public static Matrix4x4 CreatePerspectiveFieldOfView(float fieldOfView, float aspectRatio, float nearPlaneDistance, float farPlaneDistance);
-+        public static Matrix4x4 CreatePerspectiveOffCenter(float left, float right, float bottom, float top, float nearPlaneDistance, float farPlaneDistance);
-+        public static Matrix4x4 CreateReflection(Plane value);
-+        public static Matrix4x4 CreateRotationX(float radians);
-+        public static Matrix4x4 CreateRotationX(float radians, Vector3 centerPoint);
-+        public static Matrix4x4 CreateRotationY(float radians);
-+        public static Matrix4x4 CreateRotationY(float radians, Vector3 centerPoint);
-+        public static Matrix4x4 CreateRotationZ(float radians);
-+        public static Matrix4x4 CreateRotationZ(float radians, Vector3 centerPoint);
-+        public static Matrix4x4 CreateScale(float scale);
-+        public static Matrix4x4 CreateScale(float xScale, float yScale, float zScale);
-+        public static Matrix4x4 CreateScale(float xScale, float yScale, float zScale, Vector3 centerPoint);
-+        public static Matrix4x4 CreateScale(float scale, Vector3 centerPoint);
-+        public static Matrix4x4 CreateScale(Vector3 scales);
-+        public static Matrix4x4 CreateScale(Vector3 scales, Vector3 centerPoint);
-+        public static Matrix4x4 CreateShadow(Vector3 lightDirection, Plane plane);
-+        public static Matrix4x4 CreateTranslation(float xPosition, float yPosition, float zPosition);
-+        public static Matrix4x4 CreateTranslation(Vector3 position);
-+        public static Matrix4x4 CreateWorld(Vector3 position, Vector3 forward, Vector3 up);
-+        public static bool Decompose(Matrix4x4 matrix, out Vector3 scale, out Quaternion rotation, out Vector3 translation);
-+        public bool Equals(Matrix4x4 other);
-+        public override bool Equals(object obj);
-+        public float GetDeterminant();
-+        public override int GetHashCode();
-+        public static bool Invert(Matrix4x4 matrix, out Matrix4x4 result);
-+        public static Matrix4x4 Lerp(Matrix4x4 matrix1, Matrix4x4 matrix2, float amount);
-+        public static Matrix4x4 Multiply(Matrix4x4 value1, Matrix4x4 value2);
-+        public static Matrix4x4 Multiply(Matrix4x4 value1, float value2);
-+        public static Matrix4x4 Negate(Matrix4x4 value);
-+        public static Matrix4x4 operator +(Matrix4x4 value1, Matrix4x4 value2);
-+        public static bool operator ==(Matrix4x4 value1, Matrix4x4 value2);
-+        public static bool operator !=(Matrix4x4 value1, Matrix4x4 value2);
-+        public static Matrix4x4 operator *(Matrix4x4 value1, Matrix4x4 value2);
-+        public static Matrix4x4 operator *(Matrix4x4 value1, float value2);
-+        public static Matrix4x4 operator -(Matrix4x4 value1, Matrix4x4 value2);
-+        public static Matrix4x4 operator -(Matrix4x4 value);
-+        public static Matrix4x4 Subtract(Matrix4x4 value1, Matrix4x4 value2);
-+        public override string ToString();
-+        public static Matrix4x4 Transform(Matrix4x4 value, Quaternion rotation);
-+        public static Matrix4x4 Transpose(Matrix4x4 matrix);
-+    }
-+    public struct Plane : IEquatable<Plane> {
-+        public float D;
-+        public Vector3 Normal;
-+        public Plane(float x, float y, float z, float d);
-+        public Plane(Vector3 normal, float d);
-+        public Plane(Vector4 value);
-+        public static Plane CreateFromVertices(Vector3 point1, Vector3 point2, Vector3 point3);
-+        public static float Dot(Plane plane, Vector4 value);
-+        public static float DotCoordinate(Plane plane, Vector3 value);
-+        public static float DotNormal(Plane plane, Vector3 value);
-+        public override bool Equals(object obj);
-+        public bool Equals(Plane other);
-+        public override int GetHashCode();
-+        public static Plane Normalize(Plane value);
-+        public static bool operator ==(Plane value1, Plane value2);
-+        public static bool operator !=(Plane value1, Plane value2);
-+        public override string ToString();
-+        public static Plane Transform(Plane plane, Matrix4x4 matrix);
-+        public static Plane Transform(Plane plane, Quaternion rotation);
-+    }
-+    public struct Quaternion : IEquatable<Quaternion> {
-+        public float W;
-+        public float X;
-+        public float Y;
-+        public float Z;
-+        public Quaternion(float x, float y, float z, float w);
-+        public Quaternion(Vector3 vectorPart, float scalarPart);
-+        public static Quaternion Identity { get; }
-+        public bool IsIdentity { get; }
-+        public static Quaternion Add(Quaternion value1, Quaternion value2);
-+        public static Quaternion Concatenate(Quaternion value1, Quaternion value2);
-+        public static Quaternion Conjugate(Quaternion value);
-+        public static Quaternion CreateFromAxisAngle(Vector3 axis, float angle);
-+        public static Quaternion CreateFromRotationMatrix(Matrix4x4 matrix);
-+        public static Quaternion CreateFromYawPitchRoll(float yaw, float pitch, float roll);
-+        public static Quaternion Divide(Quaternion value1, Quaternion value2);
-+        public static float Dot(Quaternion quaternion1, Quaternion quaternion2);
-+        public override bool Equals(object obj);
-+        public bool Equals(Quaternion other);
-+        public override int GetHashCode();
-+        public static Quaternion Inverse(Quaternion value);
-+        public float Length();
-+        public float LengthSquared();
-+        public static Quaternion Lerp(Quaternion quaternion1, Quaternion quaternion2, float amount);
-+        public static Quaternion Multiply(Quaternion value1, Quaternion value2);
-+        public static Quaternion Multiply(Quaternion value1, float value2);
-+        public static Quaternion Negate(Quaternion value);
-+        public static Quaternion Normalize(Quaternion value);
-+        public static Quaternion operator +(Quaternion value1, Quaternion value2);
-+        public static Quaternion operator /(Quaternion value1, Quaternion value2);
-+        public static bool operator ==(Quaternion value1, Quaternion value2);
-+        public static bool operator !=(Quaternion value1, Quaternion value2);
-+        public static Quaternion operator *(Quaternion value1, Quaternion value2);
-+        public static Quaternion operator *(Quaternion value1, float value2);
-+        public static Quaternion operator -(Quaternion value1, Quaternion value2);
-+        public static Quaternion operator -(Quaternion value);
-+        public static Quaternion Slerp(Quaternion quaternion1, Quaternion quaternion2, float amount);
-+        public static Quaternion Subtract(Quaternion value1, Quaternion value2);
-+        public override string ToString();
-+    }
-+    public struct Vector2 : IEquatable<Vector2>, IFormattable {
-+        public float X;
-+        public float Y;
-+        public Vector2(float value);
-+        public Vector2(float x, float y);
-+        public static Vector2 One { get; }
-+        public static Vector2 UnitX { get; }
-+        public static Vector2 UnitY { get; }
-+        public static Vector2 Zero { get; }
-+        public static Vector2 Abs(Vector2 value);
-+        public static Vector2 Add(Vector2 left, Vector2 right);
-+        public static Vector2 Clamp(Vector2 value1, Vector2 min, Vector2 max);
-+        public void CopyTo(float[] array);
-+        public void CopyTo(float[] array, int index);
-+        public static float Distance(Vector2 value1, Vector2 value2);
-+        public static float DistanceSquared(Vector2 value1, Vector2 value2);
-+        public static Vector2 Divide(Vector2 left, float divisor);
-+        public static Vector2 Divide(Vector2 left, Vector2 right);
-+        public static float Dot(Vector2 value1, Vector2 value2);
-+        public override bool Equals(object obj);
-+        public bool Equals(Vector2 other);
-+        public override int GetHashCode();
-+        public float Length();
-+        public float LengthSquared();
-+        public static Vector2 Lerp(Vector2 value1, Vector2 value2, float amount);
-+        public static Vector2 Max(Vector2 value1, Vector2 value2);
-+        public static Vector2 Min(Vector2 value1, Vector2 value2);
-+        public static Vector2 Multiply(float left, Vector2 right);
-+        public static Vector2 Multiply(Vector2 left, float right);
-+        public static Vector2 Multiply(Vector2 left, Vector2 right);
-+        public static Vector2 Negate(Vector2 value);
-+        public static Vector2 Normalize(Vector2 value);
-+        public static Vector2 operator +(Vector2 left, Vector2 right);
-+        public static Vector2 operator /(Vector2 value1, float value2);
-+        public static Vector2 operator /(Vector2 left, Vector2 right);
-+        public static bool operator ==(Vector2 left, Vector2 right);
-+        public static bool operator !=(Vector2 left, Vector2 right);
-+        public static Vector2 operator *(float left, Vector2 right);
-+        public static Vector2 operator *(Vector2 left, float right);
-+        public static Vector2 operator *(Vector2 left, Vector2 right);
-+        public static Vector2 operator -(Vector2 left, Vector2 right);
-+        public static Vector2 operator -(Vector2 value);
-+        public static Vector2 Reflect(Vector2 vector, Vector2 normal);
-+        public static Vector2 SquareRoot(Vector2 value);
-+        public static Vector2 Subtract(Vector2 left, Vector2 right);
-+        public override string ToString();
-+        public string ToString(string format);
-+        public string ToString(string format, IFormatProvider formatProvider);
-+        public static Vector2 Transform(Vector2 position, Matrix3x2 matrix);
-+        public static Vector2 Transform(Vector2 position, Matrix4x4 matrix);
-+        public static Vector2 Transform(Vector2 value, Quaternion rotation);
-+        public static Vector2 TransformNormal(Vector2 normal, Matrix3x2 matrix);
-+        public static Vector2 TransformNormal(Vector2 normal, Matrix4x4 matrix);
-+    }
-+    public struct Vector3 : IEquatable<Vector3>, IFormattable {
-+        public float X;
-+        public float Y;
-+        public float Z;
-+        public Vector3(float value);
-+        public Vector3(float x, float y, float z);
-+        public Vector3(Vector2 value, float z);
-+        public static Vector3 One { get; }
-+        public static Vector3 UnitX { get; }
-+        public static Vector3 UnitY { get; }
-+        public static Vector3 UnitZ { get; }
-+        public static Vector3 Zero { get; }
-+        public static Vector3 Abs(Vector3 value);
-+        public static Vector3 Add(Vector3 left, Vector3 right);
-+        public static Vector3 Clamp(Vector3 value1, Vector3 min, Vector3 max);
-+        public void CopyTo(float[] array);
-+        public void CopyTo(float[] array, int index);
-+        public static Vector3 Cross(Vector3 vector1, Vector3 vector2);
-+        public static float Distance(Vector3 value1, Vector3 value2);
-+        public static float DistanceSquared(Vector3 value1, Vector3 value2);
-+        public static Vector3 Divide(Vector3 left, float divisor);
-+        public static Vector3 Divide(Vector3 left, Vector3 right);
-+        public static float Dot(Vector3 vector1, Vector3 vector2);
-+        public override bool Equals(object obj);
-+        public bool Equals(Vector3 other);
-+        public override int GetHashCode();
-+        public float Length();
-+        public float LengthSquared();
-+        public static Vector3 Lerp(Vector3 value1, Vector3 value2, float amount);
-+        public static Vector3 Max(Vector3 value1, Vector3 value2);
-+        public static Vector3 Min(Vector3 value1, Vector3 value2);
-+        public static Vector3 Multiply(float left, Vector3 right);
-+        public static Vector3 Multiply(Vector3 left, float right);
-+        public static Vector3 Multiply(Vector3 left, Vector3 right);
-+        public static Vector3 Negate(Vector3 value);
-+        public static Vector3 Normalize(Vector3 value);
-+        public static Vector3 operator +(Vector3 left, Vector3 right);
-+        public static Vector3 operator /(Vector3 value1, float value2);
-+        public static Vector3 operator /(Vector3 left, Vector3 right);
-+        public static bool operator ==(Vector3 left, Vector3 right);
-+        public static bool operator !=(Vector3 left, Vector3 right);
-+        public static Vector3 operator *(float left, Vector3 right);
-+        public static Vector3 operator *(Vector3 left, float right);
-+        public static Vector3 operator *(Vector3 left, Vector3 right);
-+        public static Vector3 operator -(Vector3 left, Vector3 right);
-+        public static Vector3 operator -(Vector3 value);
-+        public static Vector3 Reflect(Vector3 vector, Vector3 normal);
-+        public static Vector3 SquareRoot(Vector3 value);
-+        public static Vector3 Subtract(Vector3 left, Vector3 right);
-+        public override string ToString();
-+        public string ToString(string format);
-+        public string ToString(string format, IFormatProvider formatProvider);
-+        public static Vector3 Transform(Vector3 position, Matrix4x4 matrix);
-+        public static Vector3 Transform(Vector3 value, Quaternion rotation);
-+        public static Vector3 TransformNormal(Vector3 normal, Matrix4x4 matrix);
-+    }
-+    public struct Vector4 : IEquatable<Vector4>, IFormattable {
-+        public float W;
-+        public float X;
-+        public float Y;
-+        public float Z;
-+        public Vector4(float value);
-+        public Vector4(float x, float y, float z, float w);
-+        public Vector4(Vector2 value, float z, float w);
-+        public Vector4(Vector3 value, float w);
-+        public static Vector4 One { get; }
-+        public static Vector4 UnitW { get; }
-+        public static Vector4 UnitX { get; }
-+        public static Vector4 UnitY { get; }
-+        public static Vector4 UnitZ { get; }
-+        public static Vector4 Zero { get; }
-+        public static Vector4 Abs(Vector4 value);
-+        public static Vector4 Add(Vector4 left, Vector4 right);
-+        public static Vector4 Clamp(Vector4 value1, Vector4 min, Vector4 max);
-+        public void CopyTo(float[] array);
-+        public void CopyTo(float[] array, int index);
-+        public static float Distance(Vector4 value1, Vector4 value2);
-+        public static float DistanceSquared(Vector4 value1, Vector4 value2);
-+        public static Vector4 Divide(Vector4 left, float divisor);
-+        public static Vector4 Divide(Vector4 left, Vector4 right);
-+        public static float Dot(Vector4 vector1, Vector4 vector2);
-+        public override bool Equals(object obj);
-+        public bool Equals(Vector4 other);
-+        public override int GetHashCode();
-+        public float Length();
-+        public float LengthSquared();
-+        public static Vector4 Lerp(Vector4 value1, Vector4 value2, float amount);
-+        public static Vector4 Max(Vector4 value1, Vector4 value2);
-+        public static Vector4 Min(Vector4 value1, Vector4 value2);
-+        public static Vector4 Multiply(float left, Vector4 right);
-+        public static Vector4 Multiply(Vector4 left, float right);
-+        public static Vector4 Multiply(Vector4 left, Vector4 right);
-+        public static Vector4 Negate(Vector4 value);
-+        public static Vector4 Normalize(Vector4 vector);
-+        public static Vector4 operator +(Vector4 left, Vector4 right);
-+        public static Vector4 operator /(Vector4 value1, float value2);
-+        public static Vector4 operator /(Vector4 left, Vector4 right);
-+        public static bool operator ==(Vector4 left, Vector4 right);
-+        public static bool operator !=(Vector4 left, Vector4 right);
-+        public static Vector4 operator *(float left, Vector4 right);
-+        public static Vector4 operator *(Vector4 left, float right);
-+        public static Vector4 operator *(Vector4 left, Vector4 right);
-+        public static Vector4 operator -(Vector4 left, Vector4 right);
-+        public static Vector4 operator -(Vector4 value);
-+        public static Vector4 SquareRoot(Vector4 value);
-+        public static Vector4 Subtract(Vector4 left, Vector4 right);
-+        public override string ToString();
-+        public string ToString(string format);
-+        public string ToString(string format, IFormatProvider formatProvider);
-+        public static Vector4 Transform(Vector2 position, Matrix4x4 matrix);
-+        public static Vector4 Transform(Vector2 value, Quaternion rotation);
-+        public static Vector4 Transform(Vector3 position, Matrix4x4 matrix);
-+        public static Vector4 Transform(Vector3 value, Quaternion rotation);
-+        public static Vector4 Transform(Vector4 vector, Matrix4x4 matrix);
-+        public static Vector4 Transform(Vector4 value, Quaternion rotation);
-+    }
  }
+
  namespace System.Reflection {
--    public sealed class AmbiguousMatchException : Exception {
-+    public sealed class AmbiguousMatchException : SystemException {
-     }
+-    public sealed class AmbiguousMatchException : Exception
++    public sealed class AmbiguousMatchException : SystemException
 -    public abstract class Assembly : ICustomAttributeProvider {
 +    public abstract class Assembly : ICustomAttributeProvider, ISerializable {
 +        protected Assembly();
@@ -12268,6 +12394,7 @@
 +        public virtual IEnumerable<Module> Modules { get; }
 +        public virtual bool ReflectionOnly { get; }
 +        public virtual SecurityRuleSet SecurityRuleSet { get; }
++        public virtual event ModuleResolveEventHandler ModuleResolve;
 +        public virtual object CreateInstance(string typeName, bool ignoreCase, BindingFlags bindingAttr, Binder binder, object[] args, CultureInfo culture, object[] activationAttributes);
 +        public static Assembly GetAssembly(Type type);
 +        public static Assembly GetCallingAssembly();
@@ -12303,8 +12430,13 @@
 +        public static Assembly ReflectionOnlyLoad(byte[] rawAssembly);
 +        public static Assembly ReflectionOnlyLoad(string assemblyString);
 +        public static Assembly ReflectionOnlyLoadFrom(string assemblyFile);
+-        object[] System.Reflection.ICustomAttributeProvider.GetCustomAttributes(bool inherit);
+
+-        object[] System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type attributeType, bool inherit);
+
+-        bool System.Reflection.ICustomAttributeProvider.IsDefined(Type attributeType, bool inherit);
+
 +        public static Assembly UnsafeLoadFrom(string assemblyFile);
-+        public virtual event ModuleResolveEventHandler ModuleResolve;
      }
 +    public sealed class AssemblyAlgorithmIdAttribute : Attribute {
 +        public AssemblyAlgorithmIdAttribute(AssemblyHashAlgorithm algorithmId);
@@ -12357,9 +12489,9 @@
      }
      public abstract class ConstructorInfo : MethodBase {
 +        protected ConstructorInfo();
-+        public abstract object Invoke(BindingFlags invokeAttr, Binder binder, object[] parameters, CultureInfo culture);
 -        public virtual object Invoke(object[] parameters);
 +        public object Invoke(object[] parameters);
++        public abstract object Invoke(BindingFlags invokeAttr, Binder binder, object[] parameters, CultureInfo culture);
 +        public static bool operator ==(ConstructorInfo left, ConstructorInfo right);
 +        public static bool operator !=(ConstructorInfo left, ConstructorInfo right);
      }
@@ -12377,11 +12509,13 @@
 +        public CustomAttributeFormatException(string message);
 +        public CustomAttributeFormatException(string message, Exception inner);
 +    }
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct CustomAttributeNamedArgument {
-+        public CustomAttributeNamedArgument(MemberInfo memberInfo, CustomAttributeTypedArgument typedArgument);
 +        public CustomAttributeNamedArgument(MemberInfo memberInfo, object value);
++        public CustomAttributeNamedArgument(MemberInfo memberInfo, CustomAttributeTypedArgument typedArgument);
 +        public MemberInfo MemberInfo { get; }
      }
+     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
      public struct CustomAttributeTypedArgument {
 +        public CustomAttributeTypedArgument(object value);
 +        public CustomAttributeTypedArgument(Type argumentType, object value);
@@ -12424,11 +12558,13 @@
 +        public virtual bool IsSecurityCritical { get; }
 +        public virtual bool IsSecuritySafeCritical { get; }
 +        public virtual bool IsSecurityTransparent { get; }
++        public virtual object GetValueDirect(TypedReference obj);
 +        public static bool operator ==(FieldInfo left, FieldInfo right);
 +        public static bool operator !=(FieldInfo left, FieldInfo right);
 -        public virtual void SetValue(object obj, object value);
 +        public void SetValue(object obj, object value);
 +        public abstract void SetValue(object obj, object value, BindingFlags invokeAttr, Binder binder, CultureInfo culture);
++        public virtual void SetValueDirect(TypedReference obj, object value);
      }
 +    public enum ImageFileMachine {
 +        AMD64 = 34404,
@@ -12463,6 +12599,12 @@
 +        public abstract bool IsDefined(Type attributeType, bool inherit);
 +        public static bool operator ==(MemberInfo left, MemberInfo right);
 +        public static bool operator !=(MemberInfo left, MemberInfo right);
+-        object[] System.Reflection.ICustomAttributeProvider.GetCustomAttributes(bool inherit);
+
+-        object[] System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type attributeType, bool inherit);
+
+-        bool System.Reflection.ICustomAttributeProvider.IsDefined(Type attributeType, bool inherit);
+
      }
      public enum MethodAttributes {
 +        ReservedMask = 53248,
@@ -12477,9 +12619,9 @@
 +        public virtual MethodImplAttributes MethodImplementationFlags { get; }
 +        public static MethodBase GetCurrentMethod();
 +        public virtual MethodBody GetMethodBody();
-+        public abstract object Invoke(object obj, BindingFlags invokeAttr, Binder binder, object[] parameters, CultureInfo culture);
 -        public virtual object Invoke(object obj, object[] parameters);
 +        public object Invoke(object obj, object[] parameters);
++        public abstract object Invoke(object obj, BindingFlags invokeAttr, Binder binder, object[] parameters, CultureInfo culture);
 +        public static bool operator ==(MethodBase left, MethodBase right);
 +        public static bool operator !=(MethodBase left, MethodBase right);
      }
@@ -12502,6 +12644,7 @@
      }
 -    public sealed class Missing {
 +    public sealed class Missing : ISerializable {
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
      }
 -    public abstract class Module : ICustomAttributeProvider {
 +    public abstract class Module : ICustomAttributeProvider, ISerializable {
@@ -12516,7 +12659,6 @@
 +        protected virtual MethodInfo GetMethodImpl(string name, BindingFlags bindingAttr, Binder binder, CallingConventions callConvention, Type[] types, ParameterModifier[] modifiers);
 +        public virtual void GetObjectData(SerializationInfo info, StreamingContext context);
 +        public virtual void GetPEKind(out PortableExecutableKinds peKind, out ImageFileMachine machine);
-+        public virtual X509Certificate GetSignerCertificate();
 +        public virtual bool IsDefined(Type attributeType, bool inherit);
 +        public virtual bool IsResource();
 +        public static bool operator ==(Module left, Module right);
@@ -12531,13 +12673,14 @@
 +        public virtual string ResolveString(int metadataToken);
 +        public Type ResolveType(int metadataToken);
 +        public virtual Type ResolveType(int metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments);
+-        object[] System.Reflection.ICustomAttributeProvider.GetCustomAttributes(bool inherit);
+
+-        object[] System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type attributeType, bool inherit);
+
+-        bool System.Reflection.ICustomAttributeProvider.IsDefined(Type attributeType, bool inherit);
+
      }
-+    public delegate Module ModuleResolveEventHandler(object sender, ResolveEventArgs e); {
-+        public ModuleResolveEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, ResolveEventArgs e, AsyncCallback callback, object @object);
-+        public virtual Module EndInvoke(IAsyncResult result);
-+        public virtual Module Invoke(object sender, ResolveEventArgs e);
-+    }
++    public delegate Module ModuleResolveEventHandler(object sender, ResolveEventArgs e);
 +    public sealed class ObfuscateAssemblyAttribute : Attribute {
 +        public ObfuscateAssemblyAttribute(bool assemblyIsPrivate);
 +        public bool AssemblyIsPrivate { get; }
@@ -12557,12 +12700,12 @@
      }
 -    public class ParameterInfo : ICustomAttributeProvider {
 +    public class ParameterInfo : ICustomAttributeProvider, IObjectReference {
-+        protected ParameterAttributes AttrsImpl;
-+        protected Type ClassImpl;
++        protected int PositionImpl;
 +        protected object DefaultValueImpl;
 +        protected MemberInfo MemberImpl;
++        protected ParameterAttributes AttrsImpl;
 +        protected string NameImpl;
-+        protected int PositionImpl;
++        protected Type ClassImpl;
 +        protected ParameterInfo();
 +        public bool IsLcid { get; }
 +        public virtual int MetadataToken { get; }
@@ -12571,10 +12714,17 @@
 +        public virtual IList<CustomAttributeData> GetCustomAttributesData();
 +        public object GetRealObject(StreamingContext context);
 +        public virtual bool IsDefined(Type attributeType, bool inherit);
+-        object[] System.Reflection.ICustomAttributeProvider.GetCustomAttributes(bool inherit);
+
+-        object[] System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type attributeType, bool inherit);
+
+-        bool System.Reflection.ICustomAttributeProvider.IsDefined(Type attributeType, bool inherit);
+
 +        public override string ToString();
      }
 +    public sealed class Pointer : ISerializable {
 +        public unsafe static object Box(void* ptr, Type type);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
 +        public unsafe static void* Unbox(object ptr);
 +    }
 +    public enum PortableExecutableKinds {
@@ -12612,17 +12762,17 @@
 +        protected StrongNameKeyPair(SerializationInfo info, StreamingContext context);
 +        public StrongNameKeyPair(string keyPairContainer);
 +        public byte[] PublicKey { get; }
++        void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
 +    }
 -    public class TargetException : Exception {
 +    public class TargetException : ApplicationException {
 +        protected TargetException(SerializationInfo info, StreamingContext context);
      }
--    public sealed class TargetInvocationException : Exception {
-+    public sealed class TargetInvocationException : ApplicationException {
-     }
--    public sealed class TargetParameterCountException : Exception {
-+    public sealed class TargetParameterCountException : ApplicationException {
-     }
+-    public sealed class TargetInvocationException : Exception
++    public sealed class TargetInvocationException : ApplicationException
+-    public sealed class TargetParameterCountException : Exception
++    public sealed class TargetParameterCountException : ApplicationException
      public enum TypeAttributes {
 +        ReservedMask = 264192,
      }
@@ -12678,117 +12828,228 @@
 -    public abstract class TypeInfo : MemberInfo, IReflectableType {
 +    public abstract class TypeInfo : Type, IReflectableType {
 -        public abstract Assembly Assembly { get; }
+
 -        public abstract string AssemblyQualifiedName { get; }
+
 -        public abstract TypeAttributes Attributes { get; }
+
 -        public abstract Type BaseType { get; }
+
 -        public abstract bool ContainsGenericParameters { get; }
+
 -        public abstract MethodBase DeclaringMethod { get; }
+
 -        public abstract string FullName { get; }
+
 -        public abstract GenericParameterAttributes GenericParameterAttributes { get; }
+
 -        public abstract int GenericParameterPosition { get; }
+
 -        public abstract Type[] GenericTypeArguments { get; }
+
 -        public abstract Guid GUID { get; }
+
 -        public bool HasElementType { get; }
+
 -        public bool IsAbstract { get; }
+
 -        public bool IsAnsiClass { get; }
+
 -        public bool IsArray { get; }
+
 -        public bool IsAutoClass { get; }
+
 -        public bool IsAutoLayout { get; }
+
 -        public bool IsByRef { get; }
+
 -        public bool IsClass { get; }
+
 -        public virtual bool IsCOMObject { get; }
+
 -        public abstract bool IsEnum { get; }
+
 -        public bool IsExplicitLayout { get; }
+
 -        public abstract bool IsGenericParameter { get; }
+
 -        public abstract bool IsGenericType { get; }
+
 -        public abstract bool IsGenericTypeDefinition { get; }
+
 -        public bool IsImport { get; }
+
 -        public bool IsInterface { get; }
+
 -        public bool IsLayoutSequential { get; }
+
 -        public bool IsMarshalByRef { get; }
+
 -        public bool IsNested { get; }
+
 -        public bool IsNestedAssembly { get; }
+
 -        public bool IsNestedFamANDAssem { get; }
+
 -        public bool IsNestedFamily { get; }
+
 -        public bool IsNestedFamORAssem { get; }
+
 -        public bool IsNestedPrivate { get; }
+
 -        public bool IsNestedPublic { get; }
+
 -        public bool IsNotPublic { get; }
+
 -        public bool IsPointer { get; }
+
 -        public virtual bool IsPrimitive { get; }
+
 -        public bool IsPublic { get; }
+
 -        public bool IsSealed { get; }
+
 -        public abstract bool IsSerializable { get; }
+
 -        public bool IsSpecialName { get; }
+
 -        public bool IsUnicodeClass { get; }
+
 -        public virtual bool IsValueType { get; }
+
 -        public bool IsVisible { get; }
+
 -        public override MemberTypes MemberType { get; }
+
 -        public abstract string Namespace { get; }
+
 -        public virtual StructLayoutAttribute StructLayoutAttribute { get; }
+
 -        public ConstructorInfo TypeInitializer { get; }
+
 -        public virtual Type UnderlyingSystemType { get; }
+
 -        public virtual Type[] FindInterfaces(TypeFilter filter, object filterCriteria);
+
 -        public virtual MemberInfo[] FindMembers(MemberTypes memberType, BindingFlags bindingAttr, MemberFilter filter, object filterCriteria);
+
 -        public abstract int GetArrayRank();
+
 -        public ConstructorInfo GetConstructor(Type[] types);
+
 -        public ConstructorInfo[] GetConstructors();
+
 -        public virtual ConstructorInfo[] GetConstructors(BindingFlags bindingAttr);
+
 -        public virtual MemberInfo[] GetDefaultMembers();
+
 -        public abstract Type GetElementType();
+
 -        public virtual string GetEnumName(object value);
+
 -        public virtual string[] GetEnumNames();
+
 -        public virtual Type GetEnumUnderlyingType();
+
 -        public virtual Array GetEnumValues();
+
 -        public EventInfo GetEvent(string name);
+
 -        public virtual EventInfo GetEvent(string name, BindingFlags bindingAttr);
+
 -        public virtual EventInfo[] GetEvents();
+
 -        public virtual EventInfo[] GetEvents(BindingFlags bindingAttr);
+
 -        public FieldInfo GetField(string name);
+
 -        public virtual FieldInfo GetField(string name, BindingFlags bindingAttr);
+
 -        public FieldInfo[] GetFields();
+
 -        public virtual FieldInfo[] GetFields(BindingFlags bindingAttr);
+
 -        public virtual Type[] GetGenericArguments();
+
 -        public abstract Type[] GetGenericParameterConstraints();
+
 -        public abstract Type GetGenericTypeDefinition();
+
 -        public Type GetInterface(string name);
+
 -        public virtual Type GetInterface(string name, bool ignoreCase);
+
 -        public virtual Type[] GetInterfaces();
+
 -        public MemberInfo[] GetMember(string name);
+
 -        public virtual MemberInfo[] GetMember(string name, BindingFlags bindingAttr);
+
 -        public virtual MemberInfo[] GetMember(string name, MemberTypes type, BindingFlags bindingAttr);
+
 -        public MemberInfo[] GetMembers();
+
 -        public virtual MemberInfo[] GetMembers(BindingFlags bindingAttr);
+
 -        public MethodInfo GetMethod(string name);
+
 -        public MethodInfo GetMethod(string name, BindingFlags bindingAttr);
+
 -        public MethodInfo GetMethod(string name, Type[] types);
+
 -        public MethodInfo GetMethod(string name, Type[] types, ParameterModifier[] modifiers);
+
 -        public MethodInfo[] GetMethods();
+
 -        public virtual MethodInfo[] GetMethods(BindingFlags bindingAttr);
+
 -        public Type GetNestedType(string name);
+
 -        public virtual Type GetNestedType(string name, BindingFlags bindingAttr);
+
 -        public Type[] GetNestedTypes();
+
 -        public virtual Type[] GetNestedTypes(BindingFlags bindingAttr);
+
 -        public PropertyInfo[] GetProperties();
+
 -        public virtual PropertyInfo[] GetProperties(BindingFlags bindingAttr);
+
 -        public PropertyInfo GetProperty(string name);
+
 -        public PropertyInfo GetProperty(string name, BindingFlags bindingAttr);
+
 -        public PropertyInfo GetProperty(string name, Type returnType);
+
 -        public PropertyInfo GetProperty(string name, Type returnType, Type[] types);
+
 -        public PropertyInfo GetProperty(string name, Type returnType, Type[] types, ParameterModifier[] modifiers);
+
 -        public PropertyInfo GetProperty(string name, Type[] types);
+
 -        public virtual bool IsAssignableFrom(Type c);
+
 -        public virtual bool IsEnumDefined(object value);
+
 -        public virtual bool IsEquivalentTo(Type other);
+
 -        public virtual bool IsInstanceOfType(object o);
+
 -        public virtual bool IsSubclassOf(Type c);
+
 -        public abstract Type MakeArrayType();
+
 -        public abstract Type MakeArrayType(int rank);
+
 -        public abstract Type MakeByRefType();
+
 -        public abstract Type MakeGenericType(params Type[] typeArguments);
+
 -        public abstract Type MakePointerType();
+
      }
  }
+
  namespace System.Reflection.Emit {
      public enum FlowControl {
 +        Phi = 6,
@@ -12800,6 +13061,7 @@
 +        InlinePhi = 6,
      }
  }
+
  namespace System.Resources {
 +    public interface IResourceReader : IDisposable, IEnumerable {
 +        void Close();
@@ -12859,11 +13121,12 @@
 +        public void Dispose();
 +        public IDictionaryEnumerator GetEnumerator();
 +        public void GetResourceData(string resourceName, out string resourceType, out byte[] resourceData);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
 +    }
 +    public class ResourceSet : IDisposable, IEnumerable {
 +        protected ResourceSet();
-+        public ResourceSet(IResourceReader reader);
 +        public ResourceSet(Stream stream);
++        public ResourceSet(IResourceReader reader);
 +        public ResourceSet(string fileName);
 +        public virtual void Close();
 +        public void Dispose();
@@ -12876,15 +13139,16 @@
 +        public virtual string GetString(string name);
 +        public virtual string GetString(string name, bool ignoreCase);
 +        protected virtual void ReadResources();
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
 +    }
 +    public sealed class ResourceWriter : IDisposable, IResourceWriter {
 +        public ResourceWriter(Stream stream);
 +        public ResourceWriter(string fileName);
 +        public Func<Type, string> TypeNameConverter { get; set; }
 +        public void AddResource(string name, byte[] value);
-+        public void AddResource(string name, object value);
 +        public void AddResource(string name, Stream value);
 +        public void AddResource(string name, Stream value, bool closeAfterWrite);
++        public void AddResource(string name, object value);
 +        public void AddResource(string name, string value);
 +        public void AddResourceData(string name, string typeName, byte[] serializedData);
 +        public void Close();
@@ -12896,6 +13160,7 @@
 +        Satellite = 1,
 +    }
  }
+
  namespace System.Runtime {
 +    public sealed class AssemblyTargetedPatchBandAttribute : Attribute {
 +        public AssemblyTargetedPatchBandAttribute(string targetedPatchBand);
@@ -12913,6 +13178,7 @@
 +        public string Reason { get; }
 +    }
  }
+
  namespace System.Runtime.CompilerServices {
 +    public class CallConvCdecl {
 +        public CallConvCdecl();
@@ -12955,6 +13221,10 @@
 +        public CompilerGlobalScopeAttribute();
 +    }
 +    public static class CompilerMarshalOverride
+     public sealed class ConditionalWeakTable<TKey, TValue> where TKey : class where TValue : class {
+-        ~ConditionalWeakTable();
+
+     }
 +    public static class ContractHelper {
 +        public static string RaiseContractFailedEvent(ContractFailureKind failureKind, string userMessage, string conditionText, Exception innerException);
 +        public static void TriggerFailure(ContractFailureKind kind, string displayMessage, string userMessage, string conditionText, Exception innerException);
@@ -13039,6 +13309,12 @@
 +        public ReadOnlyCollectionBuilder(int capacity);
 +        public int Capacity { get; set; }
 +        public int Count { get; }
++        bool System.Collections.Generic.ICollection<T>.IsReadOnly { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
++        bool System.Collections.IList.IsFixedSize { get; }
++        bool System.Collections.IList.IsReadOnly { get; }
++        object System.Collections.IList.this[int index] { get; set; }
 +        public T this[int index] { get; set; }
 +        public void Add(T item);
 +        public void Clear();
@@ -13051,6 +13327,13 @@
 +        public void RemoveAt(int index);
 +        public void Reverse();
 +        public void Reverse(int index, int count);
++        void System.Collections.ICollection.CopyTo(Array array, int index);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
++        int System.Collections.IList.Add(object value);
++        bool System.Collections.IList.Contains(object value);
++        int System.Collections.IList.IndexOf(object value);
++        void System.Collections.IList.Insert(int index, object value);
++        void System.Collections.IList.Remove(object value);
 +        public T[] ToArray();
 +        public ReadOnlyCollection<T> ToReadOnlyCollection();
 +    }
@@ -13060,18 +13343,6 @@
 +    }
 +    public class RuleCache<T> where T : class
      public static class RuntimeHelpers {
-+        public delegate void CleanupCode(object userData, bool exceptionThrown); {
-+            public CleanupCode(object @object, IntPtr method);
-+            public virtual IAsyncResult BeginInvoke(object userData, bool exceptionThrown, AsyncCallback callback, object @object);
-+            public virtual void EndInvoke(IAsyncResult result);
-+            public virtual void Invoke(object userData, bool exceptionThrown);
-+        }
-+        public delegate void TryCode(object userData); {
-+            public TryCode(object @object, IntPtr method);
-+            public virtual IAsyncResult BeginInvoke(object userData, AsyncCallback callback, object @object);
-+            public virtual void EndInvoke(IAsyncResult result);
-+            public virtual void Invoke(object userData);
-+        }
 +        public static new bool Equals(object o1, object o2);
 +        public static void ExecuteCodeWithGuaranteedCleanup(RuntimeHelpers.TryCode code, RuntimeHelpers.CleanupCode backoutCode, object userData);
 +        public static void PrepareConstrainedRegions();
@@ -13082,6 +13353,8 @@
 +        public static void PrepareMethod(RuntimeMethodHandle method, RuntimeTypeHandle[] instantiation);
 +        public static void ProbeForSufficientStack();
 +        public static void RunModuleConstructor(ModuleHandle module);
++        public delegate void CleanupCode(object userData, bool exceptionThrown);
++        public delegate void TryCode(object userData);
      }
 +    public sealed class RuntimeWrappedException : Exception {
 +        public object WrappedException { get; }
@@ -13099,7 +13372,12 @@
 +    public sealed class SuppressIldasmAttribute : Attribute {
 +        public SuppressIldasmAttribute();
 +    }
++    public sealed class TupleElementNamesAttribute : Attribute {
++        public TupleElementNamesAttribute(string[] transformNames);
++        public IList<string> TransformNames { get; }
++    }
  }
+
 +namespace System.Runtime.ConstrainedExecution {
 +    public enum Cer {
 +        MayFail = 1,
@@ -13125,6 +13403,7 @@
 +        public Consistency ConsistencyGuarantee { get; }
 +    }
 +}
+
  namespace System.Runtime.ExceptionServices {
 +    public class FirstChanceExceptionEventArgs : EventArgs {
 +        public FirstChanceExceptionEventArgs(Exception exception);
@@ -13134,16 +13413,11 @@
 +        public HandleProcessCorruptedStateExceptionsAttribute();
 +    }
  }
+
  namespace System.Runtime.InteropServices {
 +    public sealed class AllowReversePInvokeCallsAttribute : Attribute {
 +        public AllowReversePInvokeCallsAttribute();
 +    }
--    public enum Architecture {
--        Arm = 2,
--        Arm64 = 3,
--        X64 = 1,
--        X86 = 0,
--    }
      public enum CallingConvention {
 +        FastCall = 5,
      }
@@ -13198,6 +13472,7 @@
 +        public virtual int ErrorCode { get; }
 +        public override string ToString();
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct HandleRef {
 +        public HandleRef(object wrapper, IntPtr handle);
 +        public IntPtr Handle { get; }
@@ -13230,6 +13505,7 @@
      public static class Marshal {
 +        public static object BindToMoniker(string monikerName);
 +        public static void ChangeWrapperHandleStrength(object otp, bool fIsWeak);
++        public static void CleanupUnusedObjectsInCurrentContext();
 +        public static void Prelink(MethodInfo m);
 +        public static void PrelinkAll(Type c);
 +        public static string PtrToStringAuto(IntPtr ptr);
@@ -13246,18 +13522,6 @@
 +    public class MarshalDirectiveException : SystemException {
 +        protected MarshalDirectiveException(SerializationInfo info, StreamingContext context);
      }
--    public struct OSPlatform : IEquatable<OSPlatform> {
--        public static OSPlatform Linux { get; }
--        public static OSPlatform OSX { get; }
--        public static OSPlatform Windows { get; }
--        public static OSPlatform Create(string osPlatform);
--        public override bool Equals(object obj);
--        public bool Equals(OSPlatform other);
--        public override int GetHashCode();
--        public static bool operator ==(OSPlatform left, OSPlatform right);
--        public static bool operator !=(OSPlatform left, OSPlatform right);
--        public override string ToString();
--    }
 +    public sealed class PrimaryInteropAssemblyAttribute : Attribute {
 +        public PrimaryInteropAssemblyAttribute(int major, int minor);
 +        public int MajorVersion { get; }
@@ -13275,13 +13539,6 @@
 +        public static object GetRuntimeInterfaceAsObject(Guid clsid, Guid riid);
 +        public static string GetSystemVersion();
 +    }
--    public static class RuntimeInformation {
--        public static string FrameworkDescription { get; }
--        public static Architecture OSArchitecture { get; }
--        public static string OSDescription { get; }
--        public static Architecture ProcessArchitecture { get; }
--        public static bool IsOSPlatform(OSPlatform osPlatform);
--    }
 -    public class SafeArrayRankMismatchException : Exception {
 +    public class SafeArrayRankMismatchException : SystemException {
 +        protected SafeArrayRankMismatchException(SerializationInfo info, StreamingContext context);
@@ -13293,6 +13550,7 @@
 -    public abstract class SafeBuffer : SafeHandle {
 +    public abstract class SafeBuffer : SafeHandleZeroOrMinusOneIsInvalid {
 -        public override bool IsInvalid { get; }
+
      }
 -    public abstract class SafeHandle : IDisposable {
 +    public abstract class SafeHandle : CriticalFinalizerObject, IDisposable {
@@ -13309,6 +13567,7 @@
 +        CustomMarshaler = 44,
      }
  }
+
  namespace System.Runtime.InteropServices.ComTypes {
 +    public interface IDataObject {
 +        int DAdvise(ref FORMATETC pFormatetc, ADVF advf, IAdviseSink adviseSink, out int connection);
@@ -13328,57 +13587,7 @@
 +        int Skip(int celt);
 +    }
  }
-+namespace System.Runtime.Remoting.Messaging {
-+    public class Header {
-+        public string HeaderNamespace;
-+        public bool MustUnderstand;
-+        public string Name;
-+        public object Value;
-+        public Header(string _Name, object _Value);
-+        public Header(string _Name, object _Value, bool _MustUnderstand);
-+        public Header(string _Name, object _Value, bool _MustUnderstand, string _HeaderNamespace);
-+    }
-+    public delegate object HeaderHandler(Header[] headers); {
-+        public HeaderHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(Header[] headers, AsyncCallback callback, object @object);
-+        public virtual object EndInvoke(IAsyncResult result);
-+        public virtual object Invoke(Header[] headers);
-+    }
-+    public interface IMessage {
-+        IDictionary Properties { get; }
-+    }
-+    public interface IMethodCallMessage : IMessage, IMethodMessage {
-+        int InArgCount { get; }
-+        object[] InArgs { get; }
-+        object GetInArg(int argNum);
-+        string GetInArgName(int index);
-+    }
-+    public interface IMethodMessage : IMessage {
-+        int ArgCount { get; }
-+        object[] Args { get; }
-+        bool HasVarArgs { get; }
-+        LogicalCallContext LogicalCallContext { get; }
-+        MethodBase MethodBase { get; }
-+        string MethodName { get; }
-+        object MethodSignature { get; }
-+        string TypeName { get; }
-+        string Uri { get; }
-+        object GetArg(int argNum);
-+        string GetArgName(int index);
-+    }
-+    public interface IRemotingFormatter : IFormatter {
-+        object Deserialize(Stream serializationStream, HeaderHandler handler);
-+        void Serialize(Stream serializationStream, object graph, Header[] headers);
-+    }
-+    public sealed class LogicalCallContext : ICloneable, ISerializable {
-+        public bool HasInfo { get; }
-+        public object Clone();
-+        public void FreeNamedDataSlot(string name);
-+        public object GetData(string name);
-+        public void GetObjectData(SerializationInfo info, StreamingContext context);
-+        public void SetData(string name, object data);
-+    }
-+}
+
 +namespace System.Runtime.Serialization {
 +    public sealed class CollectionDataContractAttribute : Attribute {
 +        public CollectionDataContractAttribute();
@@ -13416,8 +13625,8 @@
 +    }
 +    public sealed class DataContractSerializer : XmlObjectSerializer {
 +        public DataContractSerializer(Type type);
-+        public DataContractSerializer(Type type, DataContractSerializerSettings settings);
 +        public DataContractSerializer(Type type, IEnumerable<Type> knownTypes);
++        public DataContractSerializer(Type type, DataContractSerializerSettings settings);
 +        public DataContractSerializer(Type type, string rootName, string rootNamespace);
 +        public DataContractSerializer(Type type, string rootName, string rootNamespace, IEnumerable<Type> knownTypes);
 +        public DataContractSerializer(Type type, XmlDictionaryString rootName, XmlDictionaryString rootNamespace);
@@ -13442,6 +13651,10 @@
 +        public override void WriteObjectContent(XmlWriter writer, object graph);
 +        public override void WriteStartObject(XmlDictionaryWriter writer, object graph);
 +        public override void WriteStartObject(XmlWriter writer, object graph);
++    }
++    public static class DataContractSerializerExtensions {
++        public static ISerializationSurrogateProvider GetSerializationSurrogateProvider(this DataContractSerializer serializer);
++        public static void SetSerializationSurrogateProvider(this DataContractSerializer serializer, ISerializationSurrogateProvider provider);
 +    }
 +    public class DataContractSerializerSettings {
 +        public DataContractSerializerSettings();
@@ -13485,8 +13698,8 @@
 +    }
 +    public sealed class ExtensionDataObject
 +    public abstract class Formatter : IFormatter {
-+        protected ObjectIDGenerator m_idGenerator;
 +        protected Queue m_objectQueue;
++        protected ObjectIDGenerator m_idGenerator;
 +        protected Formatter();
 +        public abstract SerializationBinder Binder { get; set; }
 +        public abstract StreamingContext Context { get; set; }
@@ -13600,6 +13813,11 @@
 +        void GetObjectData(object obj, SerializationInfo info, StreamingContext context);
 +        object SetObjectData(object obj, SerializationInfo info, StreamingContext context, ISurrogateSelector selector);
 +    }
++    public interface ISerializationSurrogateProvider {
++        object GetDeserializedObject(object obj, Type targetType);
++        object GetObjectToSerialize(object obj, Type targetType);
++        Type GetSurrogateType(Type type);
++    }
 +    public interface ISurrogateSelector {
 +        void ChainSelector(ISurrogateSelector selector);
 +        ISurrogateSelector GetNextSelector();
@@ -13656,6 +13874,7 @@
 +        public virtual void BindToName(Type serializedType, out string assemblyName, out string typeName);
 +        public abstract Type BindToType(string assemblyName, string typeName);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct SerializationEntry {
 +        public string Name { get; }
 +        public Type ObjectType { get; }
@@ -13715,6 +13934,7 @@
 +        public SerializationEntry Current { get; }
 +        public string Name { get; }
 +        public Type ObjectType { get; }
++        object System.Collections.IEnumerator.Current { get; }
 +        public object Value { get; }
 +        public bool MoveNext();
 +        public void Reset();
@@ -13724,6 +13944,7 @@
 +        public void RaiseOnSerializedEvent();
 +        public void RegisterObject(object obj);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct StreamingContext {
 +        public StreamingContext(StreamingContextStates state);
 +        public StreamingContext(StreamingContextStates state, object additional);
@@ -13784,17 +14005,18 @@
 +        public XsdDataContractExporter(XmlSchemaSet schemas);
 +        public ExportOptions Options { get; set; }
 +        public XmlSchemaSet Schemas { get; }
-+        public bool CanExport(ICollection<Type> types);
 +        public bool CanExport(ICollection<Assembly> assemblies);
++        public bool CanExport(ICollection<Type> types);
 +        public bool CanExport(Type type);
-+        public void Export(ICollection<Type> types);
 +        public void Export(ICollection<Assembly> assemblies);
++        public void Export(ICollection<Type> types);
 +        public void Export(Type type);
 +        public XmlQualifiedName GetRootElementName(Type type);
 +        public XmlSchemaType GetSchemaType(Type type);
 +        public XmlQualifiedName GetSchemaTypeName(Type type);
 +    }
 +}
+
 +namespace System.Runtime.Serialization.Formatters {
 +    public enum FormatterAssemblyStyle {
 +        Full = 1,
@@ -13810,8 +14032,9 @@
 +        Low = 2,
 +    }
 +}
+
 +namespace System.Runtime.Serialization.Formatters.Binary {
-+    public sealed class BinaryFormatter : IFormatter, IRemotingFormatter {
++    public sealed class BinaryFormatter : IFormatter {
 +        public BinaryFormatter();
 +        public BinaryFormatter(ISurrogateSelector selector, StreamingContext context);
 +        public FormatterAssemblyStyle AssemblyFormat { get; set; }
@@ -13821,19 +14044,15 @@
 +        public ISurrogateSelector SurrogateSelector { get; set; }
 +        public FormatterTypeStyle TypeFormat { get; set; }
 +        public object Deserialize(Stream serializationStream);
-+        public object Deserialize(Stream serializationStream, HeaderHandler handler);
-+        public object DeserializeMethodResponse(Stream serializationStream, HeaderHandler handler, IMethodCallMessage methodCallMessage);
 +        public void Serialize(Stream serializationStream, object graph);
-+        public void Serialize(Stream serializationStream, object graph, Header[] headers);
-+        public object UnsafeDeserialize(Stream serializationStream, HeaderHandler handler);
-+        public object UnsafeDeserializeMethodResponse(Stream serializationStream, HeaderHandler handler, IMethodCallMessage methodCallMessage);
 +    }
 +}
+
 +namespace System.Runtime.Serialization.Json {
 +    public sealed class DataContractJsonSerializer : XmlObjectSerializer {
 +        public DataContractJsonSerializer(Type type);
-+        public DataContractJsonSerializer(Type type, DataContractJsonSerializerSettings settings);
 +        public DataContractJsonSerializer(Type type, IEnumerable<Type> knownTypes);
++        public DataContractJsonSerializer(Type type, DataContractJsonSerializerSettings settings);
 +        public DataContractJsonSerializer(Type type, string rootName);
 +        public DataContractJsonSerializer(Type type, string rootName, IEnumerable<Type> knownTypes);
 +        public DataContractJsonSerializer(Type type, XmlDictionaryString rootName);
@@ -13893,6 +14112,7 @@
 +        public static XmlDictionaryWriter CreateJsonWriter(Stream stream, Encoding encoding, bool ownsStream, bool indent, string indentChars);
 +    }
 +}
+
  namespace System.Runtime.Versioning {
 +    public sealed class ComponentGuaranteesAttribute : Attribute {
 +        public ComponentGuaranteesAttribute(ComponentGuaranteesOptions guarantees);
@@ -13928,6 +14148,7 @@
 +        public static string MakeVersionSafeName(string name, ResourceScope from, ResourceScope to, Type type);
 +    }
  }
+
  namespace System.Security {
      public sealed class AllowPartiallyTrustedCallersAttribute : Attribute {
 +        public PartialTrustVisibilityLevel PartialTrustVisibilityLevel { get; set; }
@@ -13960,6 +14181,12 @@
 +        public void MakeReadOnly();
 +        public void RemoveAt(int index);
 +        public void SetAt(int index, char c);
++    }
++    public static class SecureStringMarshal {
++        public static IntPtr SecureStringToCoTaskMemAnsi(SecureString s);
++        public static IntPtr SecureStringToCoTaskMemUnicode(SecureString s);
++        public static IntPtr SecureStringToGlobalAllocAnsi(SecureString s);
++        public static IntPtr SecureStringToGlobalAllocUnicode(SecureString s);
 +    }
      public sealed class SecurityCriticalAttribute : Attribute {
 +        public SecurityCriticalAttribute(SecurityCriticalScope scope);
@@ -14032,6 +14259,7 @@
 +        protected VerificationException(SerializationInfo info, StreamingContext context);
      }
  }
+
  namespace System.Security.Authentication {
 +    public class AuthenticationException : SystemException {
 +        public AuthenticationException();
@@ -14049,21 +14277,22 @@
 +        Default = 240,
      }
  }
+
  namespace System.Security.Authentication.ExtendedProtection {
--    public abstract class ChannelBinding : SafeHandle {
-+    public abstract class ChannelBinding : SafeHandleZeroOrMinusOneIsInvalid {
-     }
+-    public abstract class ChannelBinding : SafeHandle
++    public abstract class ChannelBinding : SafeHandleZeroOrMinusOneIsInvalid
 +    public class ExtendedProtectionPolicy : ISerializable {
++        protected ExtendedProtectionPolicy(SerializationInfo info, StreamingContext context);
 +        public ExtendedProtectionPolicy(PolicyEnforcement policyEnforcement);
 +        public ExtendedProtectionPolicy(PolicyEnforcement policyEnforcement, ChannelBinding customChannelBinding);
 +        public ExtendedProtectionPolicy(PolicyEnforcement policyEnforcement, ProtectionScenario protectionScenario, ICollection customServiceNames);
 +        public ExtendedProtectionPolicy(PolicyEnforcement policyEnforcement, ProtectionScenario protectionScenario, ServiceNameCollection customServiceNames);
-+        protected ExtendedProtectionPolicy(SerializationInfo info, StreamingContext context);
 +        public ChannelBinding CustomChannelBinding { get; }
 +        public ServiceNameCollection CustomServiceNames { get; }
 +        public static bool OSSupportsExtendedProtection { get; }
 +        public PolicyEnforcement PolicyEnforcement { get; }
 +        public ProtectionScenario ProtectionScenario { get; }
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
 +        public override string ToString();
 +    }
 +    public class ExtendedProtectionPolicyTypeConverter : TypeConverter {
@@ -14086,15 +14315,8 @@
 +        public ServiceNameCollection Merge(IEnumerable serviceNames);
 +        public ServiceNameCollection Merge(string serviceName);
 +    }
-+    public class TokenBinding {
-+        public TokenBindingType BindingType { get; }
-+        public byte[] GetRawTokenBindingId();
-+    }
-+    public enum TokenBindingType {
-+        Provided = 0,
-+        Referred = 1,
-+    }
  }
+
 +namespace System.Security.Claims {
 +    public class Claim {
 +        public Claim(BinaryReader reader);
@@ -14125,16 +14347,16 @@
 +        public const string DefaultNameClaimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name";
 +        public const string DefaultRoleClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
 +        public ClaimsIdentity();
-+        public ClaimsIdentity(BinaryReader reader);
-+        protected ClaimsIdentity(ClaimsIdentity other);
 +        public ClaimsIdentity(IEnumerable<Claim> claims);
 +        public ClaimsIdentity(IEnumerable<Claim> claims, string authenticationType);
 +        public ClaimsIdentity(IEnumerable<Claim> claims, string authenticationType, string nameType, string roleType);
++        public ClaimsIdentity(BinaryReader reader);
++        protected ClaimsIdentity(SerializationInfo info);
++        protected ClaimsIdentity(SerializationInfo info, StreamingContext context);
++        protected ClaimsIdentity(ClaimsIdentity other);
 +        public ClaimsIdentity(IIdentity identity);
 +        public ClaimsIdentity(IIdentity identity, IEnumerable<Claim> claims);
 +        public ClaimsIdentity(IIdentity identity, IEnumerable<Claim> claims, string authenticationType, string nameType, string roleType);
-+        protected ClaimsIdentity(SerializationInfo info);
-+        protected ClaimsIdentity(SerializationInfo info, StreamingContext context);
 +        public ClaimsIdentity(string authenticationType);
 +        public ClaimsIdentity(string authenticationType, string nameType, string roleType);
 +        public ClaimsIdentity Actor { get; set; }
@@ -14165,11 +14387,11 @@
 +    }
 +    public class ClaimsPrincipal : IPrincipal {
 +        public ClaimsPrincipal();
-+        public ClaimsPrincipal(BinaryReader reader);
 +        public ClaimsPrincipal(IEnumerable<ClaimsIdentity> identities);
++        public ClaimsPrincipal(BinaryReader reader);
++        protected ClaimsPrincipal(SerializationInfo info, StreamingContext context);
 +        public ClaimsPrincipal(IIdentity identity);
 +        public ClaimsPrincipal(IPrincipal principal);
-+        protected ClaimsPrincipal(SerializationInfo info, StreamingContext context);
 +        public virtual IEnumerable<Claim> Claims { get; }
 +        public static Func<ClaimsPrincipal> ClaimsPrincipalSelector { get; set; }
 +        public static ClaimsPrincipal Current { get; }
@@ -14278,10 +14500,13 @@
 +        public const string YearMonthDuration = "http://www.w3.org/TR/2002/WD-xquery-operators-20020816#yearMonthDuration";
 +    }
 +}
+
  namespace System.Security.Cryptography {
      public abstract class Aes : SymmetricAlgorithm {
 -        public override KeySizes[] LegalBlockSizes { get; }
+
 -        public override KeySizes[] LegalKeySizes { get; }
+
 -        public static Aes Create();
 +        public static new Aes Create();
 +        public static new Aes Create(string algorithmName);
@@ -14294,6 +14519,7 @@
 +        public override ICryptoTransform CreateDecryptor(byte[] key, byte[] iv);
 +        public override ICryptoTransform CreateEncryptor();
 +        public override ICryptoTransform CreateEncryptor(byte[] key, byte[] iv);
++        protected override void Dispose(bool disposing);
 +        public override void GenerateIV();
 +        public override void GenerateKey();
 +    }
@@ -14309,12 +14535,17 @@
 +        public override ICryptoTransform CreateDecryptor(byte[] key, byte[] iv);
 +        public override ICryptoTransform CreateEncryptor();
 +        public override ICryptoTransform CreateEncryptor(byte[] key, byte[] iv);
++        protected override void Dispose(bool disposing);
 +        public override void GenerateIV();
 +        public override void GenerateKey();
 +    }
      public sealed class AsnEncodedDataCollection : ICollection, IEnumerable {
 +        public bool IsSynchronized { get; }
 +        public object SyncRoot { get; }
+-        bool System.Collections.ICollection.IsSynchronized { get; }
+
+-        object System.Collections.ICollection.SyncRoot { get; }
+
      }
      public abstract class AsymmetricAlgorithm : IDisposable {
 +        public virtual string KeyExchangeAlgorithm { get; }
@@ -14356,180 +14587,6 @@
 +        CFB = 4,
 +        OFB = 3,
      }
-+    public sealed class CngAlgorithm : IEquatable<CngAlgorithm> {
-+        public CngAlgorithm(string algorithm);
-+        public string Algorithm { get; }
-+        public static CngAlgorithm ECDiffieHellmanP256 { get; }
-+        public static CngAlgorithm ECDiffieHellmanP384 { get; }
-+        public static CngAlgorithm ECDiffieHellmanP521 { get; }
-+        public static CngAlgorithm ECDsaP256 { get; }
-+        public static CngAlgorithm ECDsaP384 { get; }
-+        public static CngAlgorithm ECDsaP521 { get; }
-+        public static CngAlgorithm MD5 { get; }
-+        public static CngAlgorithm Rsa { get; }
-+        public static CngAlgorithm Sha1 { get; }
-+        public static CngAlgorithm Sha256 { get; }
-+        public static CngAlgorithm Sha384 { get; }
-+        public static CngAlgorithm Sha512 { get; }
-+        public bool Equals(CngAlgorithm other);
-+        public override bool Equals(object obj);
-+        public override int GetHashCode();
-+        public static bool operator ==(CngAlgorithm left, CngAlgorithm right);
-+        public static bool operator !=(CngAlgorithm left, CngAlgorithm right);
-+        public override string ToString();
-+    }
-+    public sealed class CngAlgorithmGroup : IEquatable<CngAlgorithmGroup> {
-+        public CngAlgorithmGroup(string algorithmGroup);
-+        public string AlgorithmGroup { get; }
-+        public static CngAlgorithmGroup DiffieHellman { get; }
-+        public static CngAlgorithmGroup Dsa { get; }
-+        public static CngAlgorithmGroup ECDiffieHellman { get; }
-+        public static CngAlgorithmGroup ECDsa { get; }
-+        public static CngAlgorithmGroup Rsa { get; }
-+        public bool Equals(CngAlgorithmGroup other);
-+        public override bool Equals(object obj);
-+        public override int GetHashCode();
-+        public static bool operator ==(CngAlgorithmGroup left, CngAlgorithmGroup right);
-+        public static bool operator !=(CngAlgorithmGroup left, CngAlgorithmGroup right);
-+        public override string ToString();
-+    }
-+    public enum CngExportPolicies {
-+        AllowArchiving = 4,
-+        AllowExport = 1,
-+        AllowPlaintextArchiving = 8,
-+        AllowPlaintextExport = 2,
-+        None = 0,
-+    }
-+    public sealed class CngKey : IDisposable {
-+        public CngAlgorithm Algorithm { get; }
-+        public CngAlgorithmGroup AlgorithmGroup { get; }
-+        public CngExportPolicies ExportPolicy { get; }
-+        public SafeNCryptKeyHandle Handle { get; }
-+        public bool IsEphemeral { get; }
-+        public bool IsMachineKey { get; }
-+        public string KeyName { get; }
-+        public int KeySize { get; }
-+        public CngKeyUsages KeyUsage { get; }
-+        public IntPtr ParentWindowHandle { get; set; }
-+        public CngProvider Provider { get; }
-+        public SafeNCryptProviderHandle ProviderHandle { get; }
-+        public CngUIPolicy UIPolicy { get; }
-+        public string UniqueName { get; }
-+        public static CngKey Create(CngAlgorithm algorithm);
-+        public static CngKey Create(CngAlgorithm algorithm, string keyName);
-+        public static CngKey Create(CngAlgorithm algorithm, string keyName, CngKeyCreationParameters creationParameters);
-+        public void Delete();
-+        public void Dispose();
-+        public static bool Exists(string keyName);
-+        public static bool Exists(string keyName, CngProvider provider);
-+        public static bool Exists(string keyName, CngProvider provider, CngKeyOpenOptions options);
-+        public byte[] Export(CngKeyBlobFormat format);
-+        public CngProperty GetProperty(string name, CngPropertyOptions options);
-+        public bool HasProperty(string name, CngPropertyOptions options);
-+        public static CngKey Import(byte[] keyBlob, CngKeyBlobFormat format);
-+        public static CngKey Import(byte[] keyBlob, CngKeyBlobFormat format, CngProvider provider);
-+        public static CngKey Open(SafeNCryptKeyHandle keyHandle, CngKeyHandleOpenOptions keyHandleOpenOptions);
-+        public static CngKey Open(string keyName);
-+        public static CngKey Open(string keyName, CngProvider provider);
-+        public static CngKey Open(string keyName, CngProvider provider, CngKeyOpenOptions openOptions);
-+        public void SetProperty(CngProperty property);
-+    }
-+    public sealed class CngKeyBlobFormat : IEquatable<CngKeyBlobFormat> {
-+        public CngKeyBlobFormat(string format);
-+        public static CngKeyBlobFormat EccPrivateBlob { get; }
-+        public static CngKeyBlobFormat EccPublicBlob { get; }
-+        public string Format { get; }
-+        public static CngKeyBlobFormat GenericPrivateBlob { get; }
-+        public static CngKeyBlobFormat GenericPublicBlob { get; }
-+        public static CngKeyBlobFormat OpaqueTransportBlob { get; }
-+        public static CngKeyBlobFormat Pkcs8PrivateBlob { get; }
-+        public bool Equals(CngKeyBlobFormat other);
-+        public override bool Equals(object obj);
-+        public override int GetHashCode();
-+        public static bool operator ==(CngKeyBlobFormat left, CngKeyBlobFormat right);
-+        public static bool operator !=(CngKeyBlobFormat left, CngKeyBlobFormat right);
-+        public override string ToString();
-+    }
-+    public enum CngKeyCreationOptions {
-+        MachineKey = 32,
-+        None = 0,
-+        OverwriteExistingKey = 128,
-+    }
-+    public sealed class CngKeyCreationParameters {
-+        public CngKeyCreationParameters();
-+        public Nullable<CngExportPolicies> ExportPolicy { get; set; }
-+        public CngKeyCreationOptions KeyCreationOptions { get; set; }
-+        public Nullable<CngKeyUsages> KeyUsage { get; set; }
-+        public CngPropertyCollection Parameters { get; }
-+        public IntPtr ParentWindowHandle { get; set; }
-+        public CngProvider Provider { get; set; }
-+        public CngUIPolicy UIPolicy { get; set; }
-+    }
-+    public enum CngKeyHandleOpenOptions {
-+        EphemeralKey = 1,
-+        None = 0,
-+    }
-+    public enum CngKeyOpenOptions {
-+        MachineKey = 32,
-+        None = 0,
-+        Silent = 64,
-+        UserKey = 0,
-+    }
-+    public enum CngKeyUsages {
-+        AllUsages = 16777215,
-+        Decryption = 1,
-+        KeyAgreement = 4,
-+        None = 0,
-+        Signing = 2,
-+    }
-+    public struct CngProperty : IEquatable<CngProperty> {
-+        public CngProperty(string name, byte[] value, CngPropertyOptions options);
-+        public string Name { get; }
-+        public CngPropertyOptions Options { get; }
-+        public bool Equals(CngProperty other);
-+        public override bool Equals(object obj);
-+        public override int GetHashCode();
-+        public byte[] GetValue();
-+        public static bool operator ==(CngProperty left, CngProperty right);
-+        public static bool operator !=(CngProperty left, CngProperty right);
-+    }
-+    public sealed class CngPropertyCollection : Collection<CngProperty> {
-+        public CngPropertyCollection();
-+    }
-+    public enum CngPropertyOptions {
-+        CustomProperty = 1073741824,
-+        None = 0,
-+        Persist = -2147483648,
-+    }
-+    public sealed class CngProvider : IEquatable<CngProvider> {
-+        public CngProvider(string provider);
-+        public static CngProvider MicrosoftSmartCardKeyStorageProvider { get; }
-+        public static CngProvider MicrosoftSoftwareKeyStorageProvider { get; }
-+        public string Provider { get; }
-+        public bool Equals(CngProvider other);
-+        public override bool Equals(object obj);
-+        public override int GetHashCode();
-+        public static bool operator ==(CngProvider left, CngProvider right);
-+        public static bool operator !=(CngProvider left, CngProvider right);
-+        public override string ToString();
-+    }
-+    public sealed class CngUIPolicy {
-+        public CngUIPolicy(CngUIProtectionLevels protectionLevel);
-+        public CngUIPolicy(CngUIProtectionLevels protectionLevel, string friendlyName);
-+        public CngUIPolicy(CngUIProtectionLevels protectionLevel, string friendlyName, string description);
-+        public CngUIPolicy(CngUIProtectionLevels protectionLevel, string friendlyName, string description, string useContext);
-+        public CngUIPolicy(CngUIProtectionLevels protectionLevel, string friendlyName, string description, string useContext, string creationTitle);
-+        public string CreationTitle { get; }
-+        public string Description { get; }
-+        public string FriendlyName { get; }
-+        public CngUIProtectionLevels ProtectionLevel { get; }
-+        public string UseContext { get; }
-+    }
-+    public enum CngUIProtectionLevels {
-+        ForceHighProtection = 2,
-+        None = 0,
-+        ProtectKey = 1,
-+    }
 +    public class CryptoConfig {
 +        public CryptoConfig();
 +        public static bool AllowOnlyFipsAlgorithms { get; }
@@ -14570,10 +14627,10 @@
 +        public string UniqueKeyContainerName { get; }
 +    }
 +    public sealed class CspParameters {
-+        public string KeyContainerName;
 +        public int KeyNumber;
-+        public string ProviderName;
 +        public int ProviderType;
++        public string KeyContainerName;
++        public string ProviderName;
 +        public CspParameters();
 +        public CspParameters(int dwTypeIn);
 +        public CspParameters(int dwTypeIn, string strProviderNameIn);
@@ -14621,9 +14678,9 @@
 +    }
 +    public sealed class DSACryptoServiceProvider : DSA, ICspAsymmetricAlgorithm {
 +        public DSACryptoServiceProvider();
-+        public DSACryptoServiceProvider(CspParameters parameters);
 +        public DSACryptoServiceProvider(int dwKeySize);
 +        public DSACryptoServiceProvider(int dwKeySize, CspParameters parameters);
++        public DSACryptoServiceProvider(CspParameters parameters);
 +        public CspKeyContainerInfo CspKeyContainerInfo { get; }
 +        public override string KeyExchangeAlgorithm { get; }
 +        public override int KeySize { get; }
@@ -14632,6 +14689,7 @@
 +        public override string SignatureAlgorithm { get; }
 +        public static bool UseMachineKeyStore { get; set; }
 +        public override byte[] CreateSignature(byte[] rgbHash);
++        protected override void Dispose(bool disposing);
 +        public byte[] ExportCspBlob(bool includePrivateParameters);
 +        public override DSAParameters ExportParameters(bool includePrivateParameters);
 +        public void ImportCspBlob(byte[] keyBlob);
@@ -14644,8 +14702,8 @@
 +        public bool VerifyHash(byte[] rgbHash, string str, byte[] rgbSignature);
 +        public override bool VerifySignature(byte[] rgbHash, byte[] rgbSignature);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct DSAParameters {
-+        public int Counter;
 +        public byte[] G;
 +        public byte[] J;
 +        public byte[] P;
@@ -14653,6 +14711,7 @@
 +        public byte[] Seed;
 +        public byte[] X;
 +        public byte[] Y;
++        public int Counter;
 +    }
 +    public class DSASignatureDeformatter : AsymmetricSignatureDeformatter {
 +        public DSASignatureDeformatter();
@@ -14668,54 +14727,6 @@
 +        public override void SetHashAlgorithm(string strName);
 +        public override void SetKey(AsymmetricAlgorithm key);
 +    }
--    public struct ECCurve {
--        public enum ECCurveType {
--            Characteristic2 = 4,
--            Implicit = 0,
--            Named = 5,
--            PrimeMontgomery = 3,
--            PrimeShortWeierstrass = 1,
--            PrimeTwistedEdwards = 2,
--        }
--        public static class NamedCurves {
--            public static ECCurve brainpoolP160r1 { get; }
--            public static ECCurve brainpoolP160t1 { get; }
--            public static ECCurve brainpoolP192r1 { get; }
--            public static ECCurve brainpoolP192t1 { get; }
--            public static ECCurve brainpoolP224r1 { get; }
--            public static ECCurve brainpoolP224t1 { get; }
--            public static ECCurve brainpoolP256r1 { get; }
--            public static ECCurve brainpoolP256t1 { get; }
--            public static ECCurve brainpoolP320r1 { get; }
--            public static ECCurve brainpoolP320t1 { get; }
--            public static ECCurve brainpoolP384r1 { get; }
--            public static ECCurve brainpoolP384t1 { get; }
--            public static ECCurve brainpoolP512r1 { get; }
--            public static ECCurve brainpoolP512t1 { get; }
--            public static ECCurve nistP256 { get; }
--            public static ECCurve nistP384 { get; }
--            public static ECCurve nistP521 { get; }
--        }
--        public byte[] A;
--        public byte[] B;
--        public byte[] Cofactor;
--        public ECCurve.ECCurveType CurveType;
--        public ECPoint G;
--        public Nullable<HashAlgorithmName> Hash;
--        public byte[] Order;
--        public byte[] Polynomial;
--        public byte[] Prime;
--        public byte[] Seed;
--        public bool IsCharacteristic2 { get; }
--        public bool IsExplicit { get; }
--        public bool IsNamed { get; }
--        public bool IsPrime { get; }
--        public Oid Oid { get; }
--        public static ECCurve CreateFromFriendlyName(string oidFriendlyName);
--        public static ECCurve CreateFromOid(Oid curveOid);
--        public static ECCurve CreateFromValue(string oidValue);
--        public void Validate();
--    }
 +    public abstract class ECDiffieHellmanPublicKey : IDisposable {
 +        protected ECDiffieHellmanPublicKey(byte[] keyBlob);
 +        public void Dispose();
@@ -14728,28 +14739,12 @@
 +        public override string SignatureAlgorithm { get; }
 -        public static ECDsa Create();
 +        public static new ECDsa Create();
--        public static ECDsa Create(ECCurve curve);
--        public static ECDsa Create(ECParameters parameters);
 +        public static new ECDsa Create(string algorithm);
--        public virtual ECParameters ExportExplicitParameters(bool includePrivateParameters);
--        public virtual ECParameters ExportParameters(bool includePrivateParameters);
--        public virtual void GenerateKey(ECCurve curve);
 -        protected abstract byte[] HashData(byte[] data, int offset, int count, HashAlgorithmName hashAlgorithm);
 +        protected virtual byte[] HashData(byte[] data, int offset, int count, HashAlgorithmName hashAlgorithm);
 -        protected abstract byte[] HashData(Stream data, HashAlgorithmName hashAlgorithm);
 +        protected virtual byte[] HashData(Stream data, HashAlgorithmName hashAlgorithm);
--        public virtual void ImportParameters(ECParameters parameters);
      }
--    public struct ECParameters {
--        public ECCurve Curve;
--        public byte[] D;
--        public ECPoint Q;
--        public void Validate();
--    }
--    public struct ECPoint {
--        public byte[] X;
--        public byte[] Y;
--    }
 +    public class FromBase64Transform : ICryptoTransform, IDisposable {
 +        public FromBase64Transform();
 +        public FromBase64Transform(FromBase64TransformMode whitespaces);
@@ -14770,8 +14765,8 @@
 +    }
 -    public abstract class HashAlgorithm : IDisposable {
 +    public abstract class HashAlgorithm : ICryptoTransform, IDisposable {
-+        protected int HashSizeValue;
 +        protected internal byte[] HashValue;
++        protected int HashSizeValue;
 +        protected int State;
 +        public virtual bool CanReuseTransform { get; }
 +        public virtual bool CanTransformMultipleBlocks { get; }
@@ -14791,61 +14786,82 @@
      }
      public class HMACMD5 : HMAC {
 -        public override int HashSize { get; }
+
 -        public override byte[] Key { get; set; }
+
 -        protected override void Dispose(bool disposing);
+
 -        protected override void HashCore(byte[] rgb, int ib, int cb);
+
 -        protected override byte[] HashFinal();
+
 -        public override void Initialize();
+
      }
      public class HMACSHA1 : HMAC {
 +        public HMACSHA1(byte[] key, bool useManagedSha1);
 -        public override int HashSize { get; }
+
 -        public override byte[] Key { get; set; }
+
 -        protected override void Dispose(bool disposing);
+
 -        protected override void HashCore(byte[] rgb, int ib, int cb);
+
 -        protected override byte[] HashFinal();
+
 -        public override void Initialize();
+
      }
      public class HMACSHA256 : HMAC {
 -        public override int HashSize { get; }
+
 -        public override byte[] Key { get; set; }
+
 -        protected override void Dispose(bool disposing);
+
 -        protected override void HashCore(byte[] rgb, int ib, int cb);
+
 -        protected override byte[] HashFinal();
+
 -        public override void Initialize();
+
      }
      public class HMACSHA384 : HMAC {
 -        public override int HashSize { get; }
+
 -        public override byte[] Key { get; set; }
+
 +        public bool ProduceLegacyHmacValues { get; set; }
 -        protected override void Dispose(bool disposing);
+
 -        protected override void HashCore(byte[] rgb, int ib, int cb);
+
 -        protected override byte[] HashFinal();
+
 -        public override void Initialize();
+
      }
      public class HMACSHA512 : HMAC {
 -        public override int HashSize { get; }
+
 -        public override byte[] Key { get; set; }
+
 +        public bool ProduceLegacyHmacValues { get; set; }
 -        protected override void Dispose(bool disposing);
+
 -        protected override void HashCore(byte[] rgb, int ib, int cb);
+
 -        protected override byte[] HashFinal();
+
 -        public override void Initialize();
+
      }
 +    public interface ICspAsymmetricAlgorithm {
 +        CspKeyContainerInfo CspKeyContainerInfo { get; }
 +        byte[] ExportCspBlob(bool includePrivateParameters);
 +        void ImportCspBlob(byte[] rawData);
 +    }
--    public sealed class IncrementalHash : IDisposable {
--        public HashAlgorithmName AlgorithmName { get; }
--        public void AppendData(byte[] data);
--        public void AppendData(byte[] data, int offset, int count);
--        public static IncrementalHash CreateHash(HashAlgorithmName hashAlgorithm);
--        public static IncrementalHash CreateHMAC(HashAlgorithmName hashAlgorithm, byte[] key);
--        public void Dispose();
--        public byte[] GetHashAndReset();
--    }
      public abstract class KeyedHashAlgorithm : HashAlgorithm {
 +        protected byte[] KeyValue;
 +        public static new KeyedHashAlgorithm Create();
@@ -14866,6 +14882,9 @@
      }
 +    public sealed class MD5CryptoServiceProvider : MD5 {
 +        public MD5CryptoServiceProvider();
++        protected override void Dispose(bool disposing);
++        protected override void HashCore(byte[] rgb, int ibStart, int cbSize);
++        protected override byte[] HashFinal();
 +        public override void Initialize();
 +    }
      public sealed class Oid {
@@ -14874,6 +14893,10 @@
      public sealed class OidCollection : ICollection, IEnumerable {
 +        public bool IsSynchronized { get; }
 +        public object SyncRoot { get; }
+-        bool System.Collections.ICollection.IsSynchronized { get; }
+
+-        object System.Collections.ICollection.SyncRoot { get; }
+
      }
      public enum PaddingMode {
 +        ANSIX923 = 4,
@@ -14943,6 +14966,7 @@
 +        public RNGCryptoServiceProvider(byte[] rgb);
 +        public RNGCryptoServiceProvider(CspParameters cspParams);
 +        public RNGCryptoServiceProvider(string str);
++        protected override void Dispose(bool disposing);
 +        public override void GetBytes(byte[] data);
 +        public override void GetNonZeroBytes(byte[] data);
 +    }
@@ -14969,23 +14993,11 @@
 -        public abstract bool VerifyHash(byte[] hash, byte[] signature, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding);
 +        public virtual bool VerifyHash(byte[] hash, byte[] signature, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding);
      }
-+    public sealed class RSACng : RSA {
-+        public RSACng();
-+        public RSACng(CngKey key);
-+        public RSACng(int keySize);
-+        public CngKey Key { get; }
-+        public override byte[] Decrypt(byte[] data, RSAEncryptionPadding padding);
-+        public override byte[] Encrypt(byte[] data, RSAEncryptionPadding padding);
-+        public override RSAParameters ExportParameters(bool includePrivateParameters);
-+        public override void ImportParameters(RSAParameters parameters);
-+        public override byte[] SignHash(byte[] hash, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding);
-+        public override bool VerifyHash(byte[] hash, byte[] signature, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding);
-+    }
 +    public sealed class RSACryptoServiceProvider : RSA, ICspAsymmetricAlgorithm {
 +        public RSACryptoServiceProvider();
-+        public RSACryptoServiceProvider(CspParameters parameters);
 +        public RSACryptoServiceProvider(int dwKeySize);
 +        public RSACryptoServiceProvider(int dwKeySize, CspParameters parameters);
++        public RSACryptoServiceProvider(CspParameters parameters);
 +        public CspKeyContainerInfo CspKeyContainerInfo { get; }
 +        public override string KeyExchangeAlgorithm { get; }
 +        public override int KeySize { get; }
@@ -14996,11 +15008,14 @@
 +        public byte[] Decrypt(byte[] rgb, bool fOAEP);
 +        public override byte[] Decrypt(byte[] data, RSAEncryptionPadding padding);
 +        public override byte[] DecryptValue(byte[] rgb);
++        protected override void Dispose(bool disposing);
 +        public byte[] Encrypt(byte[] rgb, bool fOAEP);
 +        public override byte[] Encrypt(byte[] data, RSAEncryptionPadding padding);
 +        public override byte[] EncryptValue(byte[] rgb);
 +        public byte[] ExportCspBlob(bool includePrivateParameters);
 +        public override RSAParameters ExportParameters(bool includePrivateParameters);
++        protected override byte[] HashData(byte[] data, int offset, int count, HashAlgorithmName hashAlgorithm);
++        protected override byte[] HashData(Stream data, HashAlgorithmName hashAlgorithm);
 +        public void ImportCspBlob(byte[] keyBlob);
 +        public override void ImportParameters(RSAParameters parameters);
 +        public byte[] SignData(byte[] buffer, int offset, int count, object halg);
@@ -15067,10 +15082,15 @@
      }
 +    public sealed class SHA1CryptoServiceProvider : SHA1 {
 +        public SHA1CryptoServiceProvider();
++        protected override void Dispose(bool disposing);
++        protected override void HashCore(byte[] rgb, int ibStart, int cbSize);
++        protected override byte[] HashFinal();
 +        public override void Initialize();
 +    }
 +    public sealed class SHA1Managed : SHA1 {
 +        public SHA1Managed();
++        protected override void HashCore(byte[] rgb, int ibStart, int cbSize);
++        protected override byte[] HashFinal();
 +        public override void Initialize();
 +    }
      public abstract class SHA256 : HashAlgorithm {
@@ -15078,8 +15098,17 @@
 +        public static new SHA256 Create();
 +        public static new SHA256 Create(string hashName);
      }
++    public sealed class SHA256CryptoServiceProvider : SHA256 {
++        public SHA256CryptoServiceProvider();
++        protected override void Dispose(bool disposing);
++        protected override void HashCore(byte[] array, int ibStart, int cbSize);
++        protected override byte[] HashFinal();
++        public override void Initialize();
++    }
 +    public sealed class SHA256Managed : SHA256 {
 +        public SHA256Managed();
++        protected override void HashCore(byte[] rgb, int ibStart, int cbSize);
++        protected override byte[] HashFinal();
 +        public override void Initialize();
 +    }
      public abstract class SHA384 : HashAlgorithm {
@@ -15087,8 +15116,17 @@
 +        public static new SHA384 Create();
 +        public static new SHA384 Create(string hashName);
      }
++    public sealed class SHA384CryptoServiceProvider : SHA384 {
++        public SHA384CryptoServiceProvider();
++        protected override void Dispose(bool disposing);
++        protected override void HashCore(byte[] array, int ibStart, int cbSize);
++        protected override byte[] HashFinal();
++        public override void Initialize();
++    }
 +    public sealed class SHA384Managed : SHA384 {
 +        public SHA384Managed();
++        protected override void HashCore(byte[] rgb, int ibStart, int cbSize);
++        protected override byte[] HashFinal();
 +        public override void Initialize();
 +    }
      public abstract class SHA512 : HashAlgorithm {
@@ -15096,8 +15134,17 @@
 +        public static new SHA512 Create();
 +        public static new SHA512 Create(string hashName);
      }
++    public sealed class SHA512CryptoServiceProvider : SHA512 {
++        public SHA512CryptoServiceProvider();
++        protected override void Dispose(bool disposing);
++        protected override void HashCore(byte[] array, int ibStart, int cbSize);
++        protected override byte[] HashFinal();
++        public override void Initialize();
++    }
 +    public sealed class SHA512Managed : SHA512 {
 +        public SHA512Managed();
++        protected override void HashCore(byte[] rgb, int ibStart, int cbSize);
++        protected override byte[] HashFinal();
 +        public override void Initialize();
 +    }
 +    public class SignatureDescription {
@@ -15134,7 +15181,9 @@
 +    }
      public abstract class TripleDES : SymmetricAlgorithm {
 -        public override KeySizes[] LegalBlockSizes { get; }
+
 -        public override KeySizes[] LegalKeySizes { get; }
+
 -        public static TripleDES Create();
 +        public static new TripleDES Create();
 +        public static new TripleDES Create(string str);
@@ -15147,6 +15196,7 @@
 +        public override void GenerateKey();
 +    }
  }
+
  namespace System.Security.Cryptography.X509Certificates {
      public sealed class PublicKey {
 +        public AsymmetricAlgorithm Key { get; }
@@ -15156,9 +15206,9 @@
 +        public X509Certificate(byte[] rawData, SecureString password);
 +        public X509Certificate(byte[] rawData, SecureString password, X509KeyStorageFlags keyStorageFlags);
 +        public X509Certificate(SerializationInfo info, StreamingContext context);
++        public X509Certificate(X509Certificate cert);
 +        public X509Certificate(string fileName, SecureString password);
 +        public X509Certificate(string fileName, SecureString password, X509KeyStorageFlags keyStorageFlags);
-+        public X509Certificate(X509Certificate cert);
 +        public static X509Certificate CreateFromCertFile(string filename);
 +        public static X509Certificate CreateFromSignedFile(string filename);
 +        public virtual byte[] Export(X509ContentType contentType, SecureString password);
@@ -15179,14 +15229,16 @@
 +        public virtual void Import(string fileName, SecureString password, X509KeyStorageFlags keyStorageFlags);
 +        public virtual void Import(string fileName, string password, X509KeyStorageFlags keyStorageFlags);
 +        public virtual void Reset();
++        void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
      }
      public class X509Certificate2 : X509Certificate {
 +        public X509Certificate2(byte[] rawData, SecureString password);
 +        public X509Certificate2(byte[] rawData, SecureString password, X509KeyStorageFlags keyStorageFlags);
 +        protected X509Certificate2(SerializationInfo info, StreamingContext context);
++        public X509Certificate2(X509Certificate certificate);
 +        public X509Certificate2(string fileName, SecureString password);
 +        public X509Certificate2(string fileName, SecureString password, X509KeyStorageFlags keyStorageFlags);
-+        public X509Certificate2(X509Certificate certificate);
 +        public AsymmetricAlgorithm PrivateKey { get; set; }
 +        public override void Import(byte[] rawData);
 +        public override void Import(byte[] rawData, SecureString password, X509KeyStorageFlags keyStorageFlags);
@@ -15200,10 +15252,37 @@
 -    public class X509CertificateCollection : ICollection, IEnumerable, IList {
 +    public class X509CertificateCollection : CollectionBase {
 -        public int Count { get; }
+
+-        bool System.Collections.ICollection.IsSynchronized { get; }
+
+-        object System.Collections.ICollection.SyncRoot { get; }
+
+-        bool System.Collections.IList.IsFixedSize { get; }
+
+-        bool System.Collections.IList.IsReadOnly { get; }
+
+-        object System.Collections.IList.this[int index] { get; set; }
+
 -        public void Clear();
+
 -        public X509CertificateCollection.X509CertificateEnumerator GetEnumerator();
 +        public new X509CertificateCollection.X509CertificateEnumerator GetEnumerator();
 -        public void RemoveAt(int index);
+
+-        void System.Collections.ICollection.CopyTo(Array array, int index);
+
+-        IEnumerator System.Collections.IEnumerable.GetEnumerator();
+
+-        int System.Collections.IList.Add(object value);
+
+-        bool System.Collections.IList.Contains(object value);
+
+-        int System.Collections.IList.IndexOf(object value);
+
+-        void System.Collections.IList.Insert(int index, object value);
+
+-        void System.Collections.IList.Remove(object value);
+
      }
      public class X509Chain : IDisposable {
 +        public X509Chain(bool useMachineContext);
@@ -15215,10 +15294,18 @@
      public sealed class X509ChainElementCollection : ICollection, IEnumerable {
 +        public bool IsSynchronized { get; }
 +        public object SyncRoot { get; }
+-        bool System.Collections.ICollection.IsSynchronized { get; }
+
+-        object System.Collections.ICollection.SyncRoot { get; }
+
      }
      public sealed class X509ExtensionCollection : ICollection, IEnumerable {
 +        public bool IsSynchronized { get; }
 +        public object SyncRoot { get; }
+-        bool System.Collections.ICollection.IsSynchronized { get; }
+
+-        object System.Collections.ICollection.SyncRoot { get; }
+
      }
 +    public enum X509IncludeOption {
 +        EndCertOnly = 2,
@@ -15237,6 +15324,7 @@
 +        public void RemoveRange(X509Certificate2Collection certificates);
      }
  }
+
 +namespace System.Security.Permissions {
 +    public abstract class CodeAccessSecurityAttribute : SecurityAttribute {
 +        protected CodeAccessSecurityAttribute(SecurityAction action);
@@ -15296,6 +15384,7 @@
 +        UnmanagedCode = 2,
 +    }
 +}
+
 +namespace System.Security.Principal {
 +    public class GenericIdentity : ClaimsIdentity {
 +        protected GenericIdentity(GenericIdentity identity);
@@ -15334,6 +15423,7 @@
 +        None = 0,
 +    }
 +}
+
  namespace System.Text {
      public abstract class Decoder {
 +        public unsafe virtual void Convert(byte* bytes, int byteCount, char* chars, int charCount, bool flush, out int bytesUsed, out int charsUsed, out bool completed);
@@ -15412,6 +15502,7 @@
 +    }
 -    public sealed class StringBuilder {
 +    public sealed class StringBuilder : ISerializable {
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
      }
      public class UnicodeEncoding : Encoding {
 +        public const int CharSize = 2;
@@ -15421,12 +15512,19 @@
 +        public unsafe override int GetChars(byte* bytes, int byteCount, char* chars, int charCount);
      }
  }
+
  namespace System.Text.RegularExpressions {
      public class CaptureCollection : ICollection, IEnumerable {
 +        public bool IsReadOnly { get; }
 +        public bool IsSynchronized { get; }
 +        public object SyncRoot { get; }
+-        bool System.Collections.ICollection.IsSynchronized { get; }
+
+-        object System.Collections.ICollection.SyncRoot { get; }
+
 +        public void CopyTo(Array array, int arrayIndex);
+-        void System.Collections.ICollection.CopyTo(Array array, int arrayIndex);
+
      }
      public class Group : Capture {
 +        public static Group Synchronized(Group inner);
@@ -15435,7 +15533,13 @@
 +        public bool IsReadOnly { get; }
 +        public bool IsSynchronized { get; }
 +        public object SyncRoot { get; }
+-        bool System.Collections.ICollection.IsSynchronized { get; }
+
+-        object System.Collections.ICollection.SyncRoot { get; }
+
 +        public void CopyTo(Array array, int arrayIndex);
+-        void System.Collections.ICollection.CopyTo(Array array, int arrayIndex);
+
      }
      public class Match : Group {
 +        public static Match Synchronized(Match inner);
@@ -15444,23 +15548,30 @@
 +        public bool IsReadOnly { get; }
 +        public bool IsSynchronized { get; }
 +        public object SyncRoot { get; }
+-        bool System.Collections.ICollection.IsSynchronized { get; }
+
+-        object System.Collections.ICollection.SyncRoot { get; }
+
 +        public void CopyTo(Array array, int arrayIndex);
+-        void System.Collections.ICollection.CopyTo(Array array, int arrayIndex);
+
      }
 -    public class Regex {
 +    public class Regex : ISerializable {
 +        protected internal Hashtable capnames;
 +        protected internal Hashtable caps;
 +        protected Regex(SerializationInfo info, StreamingContext context);
--        protected IDictionary CapNames { get; set; }
--        protected IDictionary Caps { get; set; }
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo si, StreamingContext context);
 +        protected bool UseOptionC();
 +        protected bool UseOptionR();
      }
 -    public class RegexMatchTimeoutException : TimeoutException {
 +    public class RegexMatchTimeoutException : TimeoutException, ISerializable {
 +        protected RegexMatchTimeoutException(SerializationInfo info, StreamingContext context);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo si, StreamingContext context);
      }
  }
+
  namespace System.Threading {
 -    public class AbandonedMutexException : Exception {
 +    public class AbandonedMutexException : SystemException {
@@ -15471,10 +15582,11 @@
 +        STA = 0,
 +        Unknown = 2,
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct AsyncFlowControl : IDisposable {
 +        public void Dispose();
-+        public bool Equals(AsyncFlowControl obj);
 +        public override bool Equals(object obj);
++        public bool Equals(AsyncFlowControl obj);
 +        public override int GetHashCode();
 +        public static bool operator ==(AsyncFlowControl a, AsyncFlowControl b);
 +        public static bool operator !=(AsyncFlowControl a, AsyncFlowControl b);
@@ -15513,15 +15625,11 @@
 +        public virtual void Revert(object previousState);
 +        public virtual object SetHostExecutionContext(HostExecutionContext hostExecutionContext);
 +    }
-+    public unsafe delegate void IOCompletionCallback(uint errorCode, uint numBytes, NativeOverlapped* pOVERLAP); {
-+        public IOCompletionCallback(object @object, IntPtr method);
-+        public unsafe virtual IAsyncResult BeginInvoke(uint errorCode, uint numBytes, NativeOverlapped* pOVERLAP, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public unsafe virtual void Invoke(uint errorCode, uint numBytes, NativeOverlapped* pOVERLAP);
-+    }
++    public unsafe delegate void IOCompletionCallback(uint errorCode, uint numBytes, NativeOverlapped* pOVERLAP);
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct LockCookie {
-+        public bool Equals(LockCookie obj);
 +        public override bool Equals(object obj);
++        public bool Equals(LockCookie obj);
 +        public override int GetHashCode();
 +        public static bool operator ==(LockCookie a, LockCookie b);
 +        public static bool operator !=(LockCookie a, LockCookie b);
@@ -15533,12 +15641,13 @@
 +        public static bool Wait(object obj, int millisecondsTimeout, bool exitContext);
 +        public static bool Wait(object obj, TimeSpan timeout, bool exitContext);
      }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct NativeOverlapped {
++        public int OffsetHigh;
++        public int OffsetLow;
 +        public IntPtr EventHandle;
 +        public IntPtr InternalHigh;
 +        public IntPtr InternalLow;
-+        public int OffsetHigh;
-+        public int OffsetLow;
 +    }
 +    public class Overlapped {
 +        public Overlapped();
@@ -15556,11 +15665,10 @@
 +        public unsafe NativeOverlapped* UnsafePack(IOCompletionCallback iocb);
 +        public unsafe NativeOverlapped* UnsafePack(IOCompletionCallback iocb, object userData);
 +    }
-+    public delegate void ParameterizedThreadStart(object obj); {
-+        public ParameterizedThreadStart(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object obj, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object obj);
++    public delegate void ParameterizedThreadStart(object obj);
++    public sealed class PreAllocatedOverlapped : IDisposable {
++        public PreAllocatedOverlapped(IOCompletionCallback callback, object state, object pinData);
++        public void Dispose();
 +    }
 +    public sealed class ReaderWriterLock : CriticalFinalizerObject {
 +        public ReaderWriterLock();
@@ -15684,12 +15792,7 @@
 +        public ThreadExceptionEventArgs(Exception t);
 +        public Exception Exception { get; }
 +    }
-+    public delegate void ThreadExceptionEventHandler(object sender, ThreadExceptionEventArgs e); {
-+        public ThreadExceptionEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, ThreadExceptionEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, ThreadExceptionEventArgs e);
-+    }
++    public delegate void ThreadExceptionEventHandler(object sender, ThreadExceptionEventArgs e);
 +    public class ThreadInterruptedException : SystemException {
 +        public ThreadInterruptedException();
 +        protected ThreadInterruptedException(SerializationInfo info, StreamingContext context);
@@ -15717,6 +15820,15 @@
 +        public static RegisteredWaitHandle UnsafeRegisterWaitForSingleObject(WaitHandle waitObject, WaitOrTimerCallback callBack, object state, TimeSpan timeout, bool executeOnlyOnce);
 +        public static RegisteredWaitHandle UnsafeRegisterWaitForSingleObject(WaitHandle waitObject, WaitOrTimerCallback callBack, object state, uint millisecondsTimeOutInterval, bool executeOnlyOnce);
 +    }
++    public sealed class ThreadPoolBoundHandle : IDisposable {
++        public SafeHandle Handle { get; }
++        public unsafe NativeOverlapped* AllocateNativeOverlapped(IOCompletionCallback callback, object state, object pinData);
++        public unsafe NativeOverlapped* AllocateNativeOverlapped(PreAllocatedOverlapped preAllocated);
++        public static ThreadPoolBoundHandle BindHandle(SafeHandle handle);
++        public void Dispose();
++        public unsafe void FreeNativeOverlapped(NativeOverlapped* overlapped);
++        public unsafe static object GetNativeOverlappedState(NativeOverlapped* overlapped);
++    }
 +    public enum ThreadPriority {
 +        AboveNormal = 3,
 +        BelowNormal = 1,
@@ -15724,12 +15836,7 @@
 +        Lowest = 0,
 +        Normal = 2,
 +    }
-+    public delegate void ThreadStart(); {
-+        public ThreadStart(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke();
-+    }
++    public delegate void ThreadStart();
 +    public sealed class ThreadStartException : SystemException
 +    public enum ThreadState {
 +        Aborted = 256,
@@ -15758,12 +15865,7 @@
 +        public bool Change(uint dueTime, uint period);
 +        public bool Dispose(WaitHandle notifyObject);
      }
-+    public delegate void WaitCallback(object state); {
-+        public WaitCallback(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object state, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object state);
-+    }
++    public delegate void WaitCallback(object state);
 -    public abstract class WaitHandle : IDisposable {
 +    public abstract class WaitHandle : MarshalByRefObject, IDisposable {
 +        public virtual IntPtr Handle { get; set; }
@@ -15783,50 +15885,47 @@
 +    public class WaitHandleCannotBeOpenedException : ApplicationException {
 +        protected WaitHandleCannotBeOpenedException(SerializationInfo info, StreamingContext context);
      }
-+    public delegate void WaitOrTimerCallback(object state, bool timedOut); {
-+        public WaitOrTimerCallback(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object state, bool timedOut, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object state, bool timedOut);
-+    }
++    public delegate void WaitOrTimerCallback(object state, bool timedOut);
  }
+
  namespace System.Threading.Tasks {
 +    public static class Parallel {
-+        public static ParallelLoopResult For<TLocal>(int fromInclusive, int toExclusive, Func<TLocal> localInit, Func<int, ParallelLoopState, TLocal, TLocal> body, Action<TLocal> localFinally);
-+        public static ParallelLoopResult For<TLocal>(long fromInclusive, long toExclusive, Func<TLocal> localInit, Func<long, ParallelLoopState, TLocal, TLocal> body, Action<TLocal> localFinally);
-+        public static ParallelLoopResult For<TLocal>(int fromInclusive, int toExclusive, ParallelOptions parallelOptions, Func<TLocal> localInit, Func<int, ParallelLoopState, TLocal, TLocal> body, Action<TLocal> localFinally);
-+        public static ParallelLoopResult For<TLocal>(long fromInclusive, long toExclusive, ParallelOptions parallelOptions, Func<TLocal> localInit, Func<long, ParallelLoopState, TLocal, TLocal> body, Action<TLocal> localFinally);
-+        public static ParallelLoopResult For(int fromInclusive, int toExclusive, Action<int> body);
 +        public static ParallelLoopResult For(int fromInclusive, int toExclusive, Action<int, ParallelLoopState> body);
-+        public static ParallelLoopResult For(int fromInclusive, int toExclusive, ParallelOptions parallelOptions, Action<int> body);
++        public static ParallelLoopResult For(int fromInclusive, int toExclusive, Action<int> body);
 +        public static ParallelLoopResult For(int fromInclusive, int toExclusive, ParallelOptions parallelOptions, Action<int, ParallelLoopState> body);
-+        public static ParallelLoopResult For(long fromInclusive, long toExclusive, Action<long> body);
++        public static ParallelLoopResult For(int fromInclusive, int toExclusive, ParallelOptions parallelOptions, Action<int> body);
 +        public static ParallelLoopResult For(long fromInclusive, long toExclusive, Action<long, ParallelLoopState> body);
-+        public static ParallelLoopResult For(long fromInclusive, long toExclusive, ParallelOptions parallelOptions, Action<long> body);
++        public static ParallelLoopResult For(long fromInclusive, long toExclusive, Action<long> body);
 +        public static ParallelLoopResult For(long fromInclusive, long toExclusive, ParallelOptions parallelOptions, Action<long, ParallelLoopState> body);
-+        public static ParallelLoopResult ForEach<TSource>(Partitioner<TSource> source, Action<TSource> body);
-+        public static ParallelLoopResult ForEach<TSource>(IEnumerable<TSource> source, Action<TSource> body);
-+        public static ParallelLoopResult ForEach<TSource>(Partitioner<TSource> source, ParallelOptions parallelOptions, Action<TSource> body);
-+        public static ParallelLoopResult ForEach<TSource>(IEnumerable<TSource> source, ParallelOptions parallelOptions, Action<TSource> body);
-+        public static ParallelLoopResult ForEach<TSource>(Partitioner<TSource> source, Action<TSource, ParallelLoopState> body);
-+        public static ParallelLoopResult ForEach<TSource>(IEnumerable<TSource> source, Action<TSource, ParallelLoopState> body);
-+        public static ParallelLoopResult ForEach<TSource>(IEnumerable<TSource> source, Action<TSource, ParallelLoopState, long> body);
-+        public static ParallelLoopResult ForEach<TSource>(OrderablePartitioner<TSource> source, Action<TSource, ParallelLoopState, long> body);
-+        public static ParallelLoopResult ForEach<TSource>(Partitioner<TSource> source, ParallelOptions parallelOptions, Action<TSource, ParallelLoopState> body);
-+        public static ParallelLoopResult ForEach<TSource>(IEnumerable<TSource> source, ParallelOptions parallelOptions, Action<TSource, ParallelLoopState> body);
-+        public static ParallelLoopResult ForEach<TSource>(IEnumerable<TSource> source, ParallelOptions parallelOptions, Action<TSource, ParallelLoopState, long> body);
-+        public static ParallelLoopResult ForEach<TSource>(OrderablePartitioner<TSource> source, ParallelOptions parallelOptions, Action<TSource, ParallelLoopState, long> body);
-+        public static ParallelLoopResult ForEach<TSource, TLocal>(Partitioner<TSource> source, Func<TLocal> localInit, Func<TSource, ParallelLoopState, TLocal, TLocal> body, Action<TLocal> localFinally);
-+        public static ParallelLoopResult ForEach<TSource, TLocal>(IEnumerable<TSource> source, Func<TLocal> localInit, Func<TSource, ParallelLoopState, TLocal, TLocal> body, Action<TLocal> localFinally);
-+        public static ParallelLoopResult ForEach<TSource, TLocal>(IEnumerable<TSource> source, Func<TLocal> localInit, Func<TSource, ParallelLoopState, long, TLocal, TLocal> body, Action<TLocal> localFinally);
++        public static ParallelLoopResult For(long fromInclusive, long toExclusive, ParallelOptions parallelOptions, Action<long> body);
++        public static ParallelLoopResult For<TLocal>(int fromInclusive, int toExclusive, Func<TLocal> localInit, Func<int, ParallelLoopState, TLocal, TLocal> body, Action<TLocal> localFinally);
++        public static ParallelLoopResult For<TLocal>(int fromInclusive, int toExclusive, ParallelOptions parallelOptions, Func<TLocal> localInit, Func<int, ParallelLoopState, TLocal, TLocal> body, Action<TLocal> localFinally);
++        public static ParallelLoopResult For<TLocal>(long fromInclusive, long toExclusive, Func<TLocal> localInit, Func<long, ParallelLoopState, TLocal, TLocal> body, Action<TLocal> localFinally);
++        public static ParallelLoopResult For<TLocal>(long fromInclusive, long toExclusive, ParallelOptions parallelOptions, Func<TLocal> localInit, Func<long, ParallelLoopState, TLocal, TLocal> body, Action<TLocal> localFinally);
 +        public static ParallelLoopResult ForEach<TSource, TLocal>(OrderablePartitioner<TSource> source, Func<TLocal> localInit, Func<TSource, ParallelLoopState, long, TLocal, TLocal> body, Action<TLocal> localFinally);
-+        public static ParallelLoopResult ForEach<TSource, TLocal>(Partitioner<TSource> source, ParallelOptions parallelOptions, Func<TLocal> localInit, Func<TSource, ParallelLoopState, TLocal, TLocal> body, Action<TLocal> localFinally);
-+        public static ParallelLoopResult ForEach<TSource, TLocal>(IEnumerable<TSource> source, ParallelOptions parallelOptions, Func<TLocal> localInit, Func<TSource, ParallelLoopState, TLocal, TLocal> body, Action<TLocal> localFinally);
-+        public static ParallelLoopResult ForEach<TSource, TLocal>(IEnumerable<TSource> source, ParallelOptions parallelOptions, Func<TLocal> localInit, Func<TSource, ParallelLoopState, long, TLocal, TLocal> body, Action<TLocal> localFinally);
 +        public static ParallelLoopResult ForEach<TSource, TLocal>(OrderablePartitioner<TSource> source, ParallelOptions parallelOptions, Func<TLocal> localInit, Func<TSource, ParallelLoopState, long, TLocal, TLocal> body, Action<TLocal> localFinally);
++        public static ParallelLoopResult ForEach<TSource, TLocal>(Partitioner<TSource> source, Func<TLocal> localInit, Func<TSource, ParallelLoopState, TLocal, TLocal> body, Action<TLocal> localFinally);
++        public static ParallelLoopResult ForEach<TSource, TLocal>(Partitioner<TSource> source, ParallelOptions parallelOptions, Func<TLocal> localInit, Func<TSource, ParallelLoopState, TLocal, TLocal> body, Action<TLocal> localFinally);
++        public static ParallelLoopResult ForEach<TSource, TLocal>(IEnumerable<TSource> source, Func<TLocal> localInit, Func<TSource, ParallelLoopState, long, TLocal, TLocal> body, Action<TLocal> localFinally);
++        public static ParallelLoopResult ForEach<TSource, TLocal>(IEnumerable<TSource> source, Func<TLocal> localInit, Func<TSource, ParallelLoopState, TLocal, TLocal> body, Action<TLocal> localFinally);
++        public static ParallelLoopResult ForEach<TSource, TLocal>(IEnumerable<TSource> source, ParallelOptions parallelOptions, Func<TLocal> localInit, Func<TSource, ParallelLoopState, long, TLocal, TLocal> body, Action<TLocal> localFinally);
++        public static ParallelLoopResult ForEach<TSource, TLocal>(IEnumerable<TSource> source, ParallelOptions parallelOptions, Func<TLocal> localInit, Func<TSource, ParallelLoopState, TLocal, TLocal> body, Action<TLocal> localFinally);
++        public static ParallelLoopResult ForEach<TSource>(OrderablePartitioner<TSource> source, Action<TSource, ParallelLoopState, long> body);
++        public static ParallelLoopResult ForEach<TSource>(OrderablePartitioner<TSource> source, ParallelOptions parallelOptions, Action<TSource, ParallelLoopState, long> body);
++        public static ParallelLoopResult ForEach<TSource>(Partitioner<TSource> source, Action<TSource, ParallelLoopState> body);
++        public static ParallelLoopResult ForEach<TSource>(Partitioner<TSource> source, Action<TSource> body);
++        public static ParallelLoopResult ForEach<TSource>(Partitioner<TSource> source, ParallelOptions parallelOptions, Action<TSource, ParallelLoopState> body);
++        public static ParallelLoopResult ForEach<TSource>(Partitioner<TSource> source, ParallelOptions parallelOptions, Action<TSource> body);
++        public static ParallelLoopResult ForEach<TSource>(IEnumerable<TSource> source, Action<TSource, ParallelLoopState, long> body);
++        public static ParallelLoopResult ForEach<TSource>(IEnumerable<TSource> source, Action<TSource, ParallelLoopState> body);
++        public static ParallelLoopResult ForEach<TSource>(IEnumerable<TSource> source, Action<TSource> body);
++        public static ParallelLoopResult ForEach<TSource>(IEnumerable<TSource> source, ParallelOptions parallelOptions, Action<TSource, ParallelLoopState, long> body);
++        public static ParallelLoopResult ForEach<TSource>(IEnumerable<TSource> source, ParallelOptions parallelOptions, Action<TSource, ParallelLoopState> body);
++        public static ParallelLoopResult ForEach<TSource>(IEnumerable<TSource> source, ParallelOptions parallelOptions, Action<TSource> body);
 +        public static void Invoke(params Action[] actions);
 +        public static void Invoke(ParallelOptions parallelOptions, params Action[] actions);
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct ParallelLoopResult {
 +        public bool IsCompleted { get; }
 +        public Nullable<long> LowestBreakIteration { get; }
@@ -15857,16 +15956,12 @@
 +        protected TaskSchedulerException(SerializationInfo info, StreamingContext context);
      }
  }
+
 +namespace System.Timers {
 +    public class ElapsedEventArgs : EventArgs {
 +        public DateTime SignalTime { get; }
 +    }
-+    public delegate void ElapsedEventHandler(object sender, ElapsedEventArgs e); {
-+        public ElapsedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, ElapsedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, ElapsedEventArgs e);
-+    }
++    public delegate void ElapsedEventHandler(object sender, ElapsedEventArgs e);
 +    public class Timer : Component, ISupportInitialize {
 +        public Timer();
 +        public Timer(double interval);
@@ -15875,19 +15970,233 @@
 +        public double Interval { get; set; }
 +        public override ISite Site { get; set; }
 +        public ISynchronizeInvoke SynchronizingObject { get; set; }
++        public event ElapsedEventHandler Elapsed;
 +        public void BeginInit();
 +        public void Close();
 +        protected override void Dispose(bool disposing);
 +        public void EndInit();
 +        public void Start();
 +        public void Stop();
-+        public event ElapsedEventHandler Elapsed;
 +    }
 +    public class TimersDescriptionAttribute : DescriptionAttribute {
 +        public TimersDescriptionAttribute(string description);
 +        public override string Description { get; }
 +    }
 +}
+
++namespace System.Transactions {
++    public sealed class CommittableTransaction : Transaction, IAsyncResult {
++        public CommittableTransaction();
++        public CommittableTransaction(TimeSpan timeout);
++        public CommittableTransaction(TransactionOptions options);
++        object System.IAsyncResult.AsyncState { get; }
++        WaitHandle System.IAsyncResult.AsyncWaitHandle { get; }
++        bool System.IAsyncResult.CompletedSynchronously { get; }
++        bool System.IAsyncResult.IsCompleted { get; }
++        public IAsyncResult BeginCommit(AsyncCallback asyncCallback, object asyncState);
++        public void Commit();
++        public void EndCommit(IAsyncResult asyncResult);
++    }
++    public enum DependentCloneOption {
++        BlockCommitUntilComplete = 0,
++        RollbackIfNotComplete = 1,
++    }
++    public sealed class DependentTransaction : Transaction {
++        public void Complete();
++    }
++    public class Enlistment {
++        public void Done();
++    }
++    public enum EnlistmentOptions {
++        EnlistDuringPrepareRequired = 1,
++        None = 0,
++    }
++    public enum EnterpriseServicesInteropOption {
++        Automatic = 1,
++        Full = 2,
++        None = 0,
++    }
++    public delegate Transaction HostCurrentTransactionCallback();
++    public interface IDtcTransaction {
++        void Abort(IntPtr reason, int retaining, int async);
++        void Commit(int retaining, int commitType, int reserved);
++        void GetTransactionInfo(IntPtr transactionInformation);
++    }
++    public interface IEnlistmentNotification {
++        void Commit(Enlistment enlistment);
++        void InDoubt(Enlistment enlistment);
++        void Prepare(PreparingEnlistment preparingEnlistment);
++        void Rollback(Enlistment enlistment);
++    }
++    public interface IPromotableSinglePhaseNotification : ITransactionPromoter {
++        void Initialize();
++        void Rollback(SinglePhaseEnlistment singlePhaseEnlistment);
++        void SinglePhaseCommit(SinglePhaseEnlistment singlePhaseEnlistment);
++    }
++    public interface ISimpleTransactionSuperior : ITransactionPromoter {
++        void Rollback();
++    }
++    public interface ISinglePhaseNotification : IEnlistmentNotification {
++        void SinglePhaseCommit(SinglePhaseEnlistment singlePhaseEnlistment);
++    }
++    public enum IsolationLevel {
++        Chaos = 5,
++        ReadCommitted = 2,
++        ReadUncommitted = 3,
++        RepeatableRead = 1,
++        Serializable = 0,
++        Snapshot = 4,
++        Unspecified = 6,
++    }
++    public interface ITransactionPromoter {
++        byte[] Promote();
++    }
++    public class PreparingEnlistment : Enlistment {
++        public void ForceRollback();
++        public void ForceRollback(Exception e);
++        public void Prepared();
++        public byte[] RecoveryInformation();
++    }
++    public class SinglePhaseEnlistment : Enlistment {
++        public void Aborted();
++        public void Aborted(Exception e);
++        public void Committed();
++        public void InDoubt();
++        public void InDoubt(Exception e);
++    }
++    public sealed class SubordinateTransaction : Transaction {
++        public SubordinateTransaction(IsolationLevel isoLevel, ISimpleTransactionSuperior superior);
++    }
++    public class Transaction : IDisposable, ISerializable {
++        public static Transaction Current { get; set; }
++        public IsolationLevel IsolationLevel { get; }
++        public Guid PromoterType { get; }
++        public TransactionInformation TransactionInformation { get; }
++        public event TransactionCompletedEventHandler TransactionCompleted;
++        public Transaction Clone();
++        public DependentTransaction DependentClone(DependentCloneOption cloneOption);
++        public void Dispose();
++        public Enlistment EnlistDurable(Guid resourceManagerIdentifier, IEnlistmentNotification enlistmentNotification, EnlistmentOptions enlistmentOptions);
++        public Enlistment EnlistDurable(Guid resourceManagerIdentifier, ISinglePhaseNotification singlePhaseNotification, EnlistmentOptions enlistmentOptions);
++        public bool EnlistPromotableSinglePhase(IPromotableSinglePhaseNotification promotableSinglePhaseNotification);
++        public bool EnlistPromotableSinglePhase(IPromotableSinglePhaseNotification promotableSinglePhaseNotification, Guid promoterType);
++        public Enlistment EnlistVolatile(IEnlistmentNotification enlistmentNotification, EnlistmentOptions enlistmentOptions);
++        public Enlistment EnlistVolatile(ISinglePhaseNotification singlePhaseNotification, EnlistmentOptions enlistmentOptions);
++        public override bool Equals(object obj);
++        public override int GetHashCode();
++        public byte[] GetPromotedToken();
++        public static bool operator ==(Transaction x, Transaction y);
++        public static bool operator !=(Transaction x, Transaction y);
++        public Enlistment PromoteAndEnlistDurable(Guid resourceManagerIdentifier, IPromotableSinglePhaseNotification promotableNotification, ISinglePhaseNotification enlistmentNotification, EnlistmentOptions enlistmentOptions);
++        public void Rollback();
++        public void Rollback(Exception e);
++        public void SetDistributedTransactionIdentifier(IPromotableSinglePhaseNotification promotableNotification, Guid distributedTransactionIdentifier);
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo serializationInfo, StreamingContext context);
++    }
++    public class TransactionAbortedException : TransactionException {
++        public TransactionAbortedException();
++        protected TransactionAbortedException(SerializationInfo info, StreamingContext context);
++        public TransactionAbortedException(string message);
++        public TransactionAbortedException(string message, Exception innerException);
++    }
++    public delegate void TransactionCompletedEventHandler(object sender, TransactionEventArgs e);
++    public class TransactionEventArgs : EventArgs {
++        public TransactionEventArgs();
++        public Transaction Transaction { get; }
++    }
++    public class TransactionException : SystemException {
++        public TransactionException();
++        protected TransactionException(SerializationInfo info, StreamingContext context);
++        public TransactionException(string message);
++        public TransactionException(string message, Exception innerException);
++    }
++    public class TransactionInDoubtException : TransactionException {
++        public TransactionInDoubtException();
++        protected TransactionInDoubtException(SerializationInfo info, StreamingContext context);
++        public TransactionInDoubtException(string message);
++        public TransactionInDoubtException(string message, Exception innerException);
++    }
++    public class TransactionInformation {
++        public DateTime CreationTime { get; }
++        public Guid DistributedIdentifier { get; }
++        public string LocalIdentifier { get; }
++        public TransactionStatus Status { get; }
++    }
++    public static class TransactionInterop {
++        public static readonly Guid PromoterTypeDtc;
++        public static IDtcTransaction GetDtcTransaction(Transaction transaction);
++        public static byte[] GetExportCookie(Transaction transaction, byte[] whereabouts);
++        public static Transaction GetTransactionFromDtcTransaction(IDtcTransaction transactionNative);
++        public static Transaction GetTransactionFromExportCookie(byte[] cookie);
++        public static Transaction GetTransactionFromTransmitterPropagationToken(byte[] propagationToken);
++        public static byte[] GetTransmitterPropagationToken(Transaction transaction);
++        public static byte[] GetWhereabouts();
++    }
++    public static class TransactionManager {
++        public static TimeSpan DefaultTimeout { get; }
++        public static HostCurrentTransactionCallback HostCurrentCallback { get; set; }
++        public static TimeSpan MaximumTimeout { get; }
++        public static event TransactionStartedEventHandler DistributedTransactionStarted;
++        public static void RecoveryComplete(Guid resourceManagerIdentifier);
++        public static Enlistment Reenlist(Guid resourceManagerIdentifier, byte[] recoveryInformation, IEnlistmentNotification enlistmentNotification);
++    }
++    public class TransactionManagerCommunicationException : TransactionException {
++        public TransactionManagerCommunicationException();
++        protected TransactionManagerCommunicationException(SerializationInfo info, StreamingContext context);
++        public TransactionManagerCommunicationException(string message);
++        public TransactionManagerCommunicationException(string message, Exception innerException);
++    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
++    public struct TransactionOptions {
++        public IsolationLevel IsolationLevel { get; set; }
++        public TimeSpan Timeout { get; set; }
++        public override bool Equals(object obj);
++        public override int GetHashCode();
++        public static bool operator ==(TransactionOptions x, TransactionOptions y);
++        public static bool operator !=(TransactionOptions x, TransactionOptions y);
++    }
++    public class TransactionPromotionException : TransactionException {
++        public TransactionPromotionException();
++        protected TransactionPromotionException(SerializationInfo info, StreamingContext context);
++        public TransactionPromotionException(string message);
++        public TransactionPromotionException(string message, Exception innerException);
++    }
++    public sealed class TransactionScope : IDisposable {
++        public TransactionScope();
++        public TransactionScope(Transaction transactionToUse);
++        public TransactionScope(Transaction transactionToUse, TimeSpan scopeTimeout);
++        public TransactionScope(Transaction transactionToUse, TimeSpan scopeTimeout, EnterpriseServicesInteropOption interopOption);
++        public TransactionScope(Transaction transactionToUse, TimeSpan scopeTimeout, TransactionScopeAsyncFlowOption asyncFlowOption);
++        public TransactionScope(Transaction transactionToUse, TransactionScopeAsyncFlowOption asyncFlowOption);
++        public TransactionScope(TransactionScopeAsyncFlowOption asyncFlowOption);
++        public TransactionScope(TransactionScopeOption scopeOption);
++        public TransactionScope(TransactionScopeOption scopeOption, TimeSpan scopeTimeout);
++        public TransactionScope(TransactionScopeOption scopeOption, TimeSpan scopeTimeout, TransactionScopeAsyncFlowOption asyncFlowOption);
++        public TransactionScope(TransactionScopeOption scopeOption, TransactionOptions transactionOptions);
++        public TransactionScope(TransactionScopeOption scopeOption, TransactionOptions transactionOptions, EnterpriseServicesInteropOption interopOption);
++        public TransactionScope(TransactionScopeOption scopeOption, TransactionOptions transactionOptions, TransactionScopeAsyncFlowOption asyncFlowOption);
++        public TransactionScope(TransactionScopeOption scopeOption, TransactionScopeAsyncFlowOption asyncFlowOption);
++        public void Complete();
++        public void Dispose();
++    }
++    public enum TransactionScopeAsyncFlowOption {
++        Enabled = 1,
++        Suppress = 0,
++    }
++    public enum TransactionScopeOption {
++        Required = 0,
++        RequiresNew = 1,
++        Suppress = 2,
++    }
++    public delegate void TransactionStartedEventHandler(object sender, TransactionEventArgs e);
++    public enum TransactionStatus {
++        Aborted = 2,
++        Active = 0,
++        Committed = 1,
++        InDoubt = 3,
++    }
++}
+
 +namespace System.Web {
 +    public sealed class HttpUtility {
 +        public HttpUtility();
@@ -15902,8 +16211,8 @@
 +        public static string JavaScriptStringEncode(string value, bool addDoubleQuotes);
 +        public static NameValueCollection ParseQueryString(string query);
 +        public static NameValueCollection ParseQueryString(string query, Encoding encoding);
-+        public static string UrlDecode(byte[] bytes, Encoding e);
 +        public static string UrlDecode(byte[] bytes, int offset, int count, Encoding e);
++        public static string UrlDecode(byte[] bytes, Encoding e);
 +        public static string UrlDecode(string str);
 +        public static string UrlDecode(string str, Encoding e);
 +        public static byte[] UrlDecodeToBytes(byte[] bytes);
@@ -15923,6 +16232,7 @@
 +        public static string UrlPathEncode(string str);
 +    }
 +}
+
  namespace System.Xml {
      public enum DtdProcessing {
 +        Parse = 2,
@@ -15960,13 +16270,6 @@
 +        bool TryLookup(string value, out XmlDictionaryString result);
 +        bool TryLookup(XmlDictionaryString value, out XmlDictionaryString result);
 +    }
-+    public interface IXmlMtomReaderInitializer {
-+        void SetInput(byte[] buffer, int offset, int count, Encoding[] encodings, string contentType, XmlDictionaryReaderQuotas quotas, int maxBufferSize, OnXmlDictionaryReaderClose onClose);
-+        void SetInput(Stream stream, Encoding[] encodings, string contentType, XmlDictionaryReaderQuotas quotas, int maxBufferSize, OnXmlDictionaryReaderClose onClose);
-+    }
-+    public interface IXmlMtomWriterInitializer {
-+        void SetOutput(Stream stream, Encoding encoding, int maxSizeInBytes, string startInfo, string boundary, string startUri, bool writeMessageHeaders, bool ownsStream);
-+    }
 +    public interface IXmlTextReaderInitializer {
 +        void SetInput(byte[] buffer, int offset, int count, Encoding encoding, XmlDictionaryReaderQuotas quotas, OnXmlDictionaryReaderClose onClose);
 +        void SetInput(Stream stream, Encoding encoding, XmlDictionaryReaderQuotas quotas, OnXmlDictionaryReaderClose onClose);
@@ -15974,12 +16277,7 @@
 +    public interface IXmlTextWriterInitializer {
 +        void SetOutput(Stream stream, Encoding encoding, bool ownsStream);
 +    }
-+    public delegate void OnXmlDictionaryReaderClose(XmlDictionaryReader reader); {
-+        public OnXmlDictionaryReaderClose(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(XmlDictionaryReader reader, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(XmlDictionaryReader reader);
-+    }
++    public delegate void OnXmlDictionaryReaderClose(XmlDictionaryReader reader);
 +    public class UniqueId {
 +        public UniqueId();
 +        public UniqueId(byte[] guid);
@@ -16037,8 +16335,14 @@
 +        public override void WriteTo(XmlWriter w);
 +    }
 +    public sealed class XmlAttributeCollection : XmlNamedNodeMap, ICollection, IEnumerable {
++        int System.Collections.ICollection.Count { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
++        [System.Runtime.CompilerServices.IndexerName("ItemOf")]
 +        public XmlAttribute this[int i] { get; }
++        [System.Runtime.CompilerServices.IndexerName("ItemOf")]
 +        public XmlAttribute this[string localName, string namespaceURI] { get; }
++        [System.Runtime.CompilerServices.IndexerName("ItemOf")]
 +        public XmlAttribute this[string name] { get; }
 +        public XmlAttribute Append(XmlAttribute node);
 +        public void CopyTo(XmlAttribute[] array, int index);
@@ -16049,6 +16353,7 @@
 +        public void RemoveAll();
 +        public XmlAttribute RemoveAt(int i);
 +        public override XmlNode SetNamedItem(XmlNode node);
++        void System.Collections.ICollection.CopyTo(Array array, int index);
 +    }
 +    public class XmlBinaryReaderSession : IXmlDictionary {
 +        public XmlBinaryReaderSession();
@@ -16336,8 +16641,8 @@
 +        public virtual void WriteString(XmlDictionaryString value);
 +        protected virtual void WriteTextNode(XmlDictionaryReader reader, bool isAttribute);
 +        public virtual void WriteValue(Guid value);
-+        public virtual void WriteValue(IStreamProvider value);
 +        public virtual void WriteValue(TimeSpan value);
++        public virtual void WriteValue(IStreamProvider value);
 +        public virtual void WriteValue(UniqueId value);
 +        public virtual void WriteValue(XmlDictionaryString value);
 +        public virtual Task WriteValueAsync(IStreamProvider value);
@@ -16367,6 +16672,12 @@
 +        public override IXmlSchemaInfo SchemaInfo { get; }
 +        public XmlSchemaSet Schemas { get; set; }
 +        public virtual XmlResolver XmlResolver { set; }
++        public event XmlNodeChangedEventHandler NodeChanged;
++        public event XmlNodeChangedEventHandler NodeChanging;
++        public event XmlNodeChangedEventHandler NodeInserted;
++        public event XmlNodeChangedEventHandler NodeInserting;
++        public event XmlNodeChangedEventHandler NodeRemoved;
++        public event XmlNodeChangedEventHandler NodeRemoving;
 +        public override XmlNode CloneNode(bool deep);
 +        public XmlAttribute CreateAttribute(string name);
 +        public XmlAttribute CreateAttribute(string qualifiedName, string namespaceURI);
@@ -16395,25 +16706,19 @@
 +        public virtual XmlNodeList GetElementsByTagName(string localName, string namespaceURI);
 +        public virtual XmlNode ImportNode(XmlNode node, bool deep);
 +        public virtual void Load(Stream inStream);
-+        public virtual void Load(string filename);
 +        public virtual void Load(TextReader txtReader);
++        public virtual void Load(string filename);
 +        public virtual void Load(XmlReader reader);
 +        public virtual void LoadXml(string xml);
 +        public virtual XmlNode ReadNode(XmlReader reader);
 +        public virtual void Save(Stream outStream);
-+        public virtual void Save(string filename);
 +        public virtual void Save(TextWriter writer);
++        public virtual void Save(string filename);
 +        public virtual void Save(XmlWriter w);
 +        public void Validate(ValidationEventHandler validationEventHandler);
 +        public void Validate(ValidationEventHandler validationEventHandler, XmlNode nodeToValidate);
 +        public override void WriteContentTo(XmlWriter xw);
 +        public override void WriteTo(XmlWriter w);
-+        public event XmlNodeChangedEventHandler NodeChanged;
-+        public event XmlNodeChangedEventHandler NodeChanging;
-+        public event XmlNodeChangedEventHandler NodeInserted;
-+        public event XmlNodeChangedEventHandler NodeInserting;
-+        public event XmlNodeChangedEventHandler NodeRemoved;
-+        public event XmlNodeChangedEventHandler NodeRemoving;
 +    }
 +    public class XmlDocumentFragment : XmlNode {
 +        protected internal XmlDocumentFragment(XmlDocument ownerDocument);
@@ -16544,8 +16849,6 @@
 +        public virtual string InnerText { get; set; }
 +        public virtual string InnerXml { get; set; }
 +        public virtual bool IsReadOnly { get; }
-+        public virtual XmlElement this[string localname, string ns] { get; }
-+        public virtual XmlElement this[string name] { get; }
 +        public virtual XmlNode LastChild { get; }
 +        public abstract string LocalName { get; }
 +        public abstract string Name { get; }
@@ -16559,6 +16862,8 @@
 +        public virtual XmlNode PreviousSibling { get; }
 +        public virtual XmlNode PreviousText { get; }
 +        public virtual IXmlSchemaInfo SchemaInfo { get; }
++        public virtual XmlElement this[string localname, string ns] { get; }
++        public virtual XmlElement this[string name] { get; }
 +        public virtual string Value { get; set; }
 +        public virtual XmlNode AppendChild(XmlNode newChild);
 +        public virtual XmlNode Clone();
@@ -16579,6 +16884,8 @@
 +        public XmlNode SelectSingleNode(string xpath);
 +        public XmlNode SelectSingleNode(string xpath, XmlNamespaceManager nsmgr);
 +        public virtual bool Supports(string feature, string version);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
++        object System.ICloneable.Clone();
 +        public abstract void WriteContentTo(XmlWriter w);
 +        public abstract void WriteTo(XmlWriter w);
 +    }
@@ -16596,19 +16903,16 @@
 +        public XmlNode OldParent { get; }
 +        public string OldValue { get; }
 +    }
-+    public delegate void XmlNodeChangedEventHandler(object sender, XmlNodeChangedEventArgs e); {
-+        public XmlNodeChangedEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, XmlNodeChangedEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, XmlNodeChangedEventArgs e);
-+    }
++    public delegate void XmlNodeChangedEventHandler(object sender, XmlNodeChangedEventArgs e);
 +    public abstract class XmlNodeList : IDisposable, IEnumerable {
 +        protected XmlNodeList();
 +        public abstract int Count { get; }
++        [System.Runtime.CompilerServices.IndexerName("ItemOf")]
 +        public virtual XmlNode this[int i] { get; }
 +        public abstract IEnumerator GetEnumerator();
 +        public abstract XmlNode Item(int index);
 +        protected virtual void PrivateDisposeNodeList();
++        void System.IDisposable.Dispose();
 +    }
 +    public enum XmlNodeOrder {
 +        After = 1,
@@ -16659,6 +16963,9 @@
 +        public override string ReadString();
 +        public override void ResolveEntity();
 +        public override void Skip();
++        IDictionary<string, string> System.Xml.IXmlNamespaceResolver.GetNamespacesInScope(XmlNamespaceScope scope);
++        string System.Xml.IXmlNamespaceResolver.LookupNamespace(string prefix);
++        string System.Xml.IXmlNamespaceResolver.LookupPrefix(string namespaceName);
 +    }
 +    public class XmlNotation : XmlNode {
 +        public override string InnerXml { get; set; }
@@ -16697,8 +17004,8 @@
 +        public virtual IXmlSchemaInfo SchemaInfo { get; }
 +        public virtual void Close();
 +        public static XmlReader Create(Stream input, XmlReaderSettings settings, string baseUri);
-+        public static XmlReader Create(string inputUri, XmlReaderSettings settings, XmlParserContext inputContext);
 +        public static XmlReader Create(TextReader input, XmlReaderSettings settings, string baseUri);
++        public static XmlReader Create(string inputUri, XmlReaderSettings settings, XmlParserContext inputContext);
 +        public virtual DateTime ReadContentAsDateTime();
 +        public virtual DateTime ReadElementContentAsDateTime();
 +        public virtual DateTime ReadElementContentAsDateTime(string localName, string namespaceURI);
@@ -16760,6 +17067,8 @@
 +        public XmlTextReader(Stream input);
 +        public XmlTextReader(Stream input, XmlNameTable nt);
 +        public XmlTextReader(Stream xmlFragment, XmlNodeType fragType, XmlParserContext context);
++        public XmlTextReader(TextReader input);
++        public XmlTextReader(TextReader input, XmlNameTable nt);
 +        public XmlTextReader(string url);
 +        public XmlTextReader(string url, Stream input);
 +        public XmlTextReader(string url, Stream input, XmlNameTable nt);
@@ -16767,8 +17076,6 @@
 +        public XmlTextReader(string url, TextReader input, XmlNameTable nt);
 +        public XmlTextReader(string url, XmlNameTable nt);
 +        public XmlTextReader(string xmlFragment, XmlNodeType fragType, XmlParserContext context);
-+        public XmlTextReader(TextReader input);
-+        public XmlTextReader(TextReader input, XmlNameTable nt);
 +        protected XmlTextReader(XmlNameTable nt);
 +        public override int AttributeCount { get; }
 +        public override string BaseURI { get; }
@@ -16828,11 +17135,14 @@
 +        public void ResetState();
 +        public override void ResolveEntity();
 +        public override void Skip();
++        IDictionary<string, string> System.Xml.IXmlNamespaceResolver.GetNamespacesInScope(XmlNamespaceScope scope);
++        string System.Xml.IXmlNamespaceResolver.LookupNamespace(string prefix);
++        string System.Xml.IXmlNamespaceResolver.LookupPrefix(string namespaceName);
 +    }
 +    public class XmlTextWriter : XmlWriter {
 +        public XmlTextWriter(Stream w, Encoding encoding);
-+        public XmlTextWriter(string filename, Encoding encoding);
 +        public XmlTextWriter(TextWriter w);
++        public XmlTextWriter(string filename, Encoding encoding);
 +        public Stream BaseStream { get; }
 +        public Formatting Formatting { get; set; }
 +        public int Indentation { get; set; }
@@ -16929,6 +17239,7 @@
 +        public override string XmlLang { get; }
 +        public XmlResolver XmlResolver { set; }
 +        public override XmlSpace XmlSpace { get; }
++        public event ValidationEventHandler ValidationEventHandler;
 +        public override void Close();
 +        public override string GetAttribute(int i);
 +        public override string GetAttribute(string name);
@@ -16950,7 +17261,9 @@
 +        public override string ReadString();
 +        public object ReadTypedValue();
 +        public override void ResolveEntity();
-+        public event ValidationEventHandler ValidationEventHandler;
++        IDictionary<string, string> System.Xml.IXmlNamespaceResolver.GetNamespacesInScope(XmlNamespaceScope scope);
++        string System.Xml.IXmlNamespaceResolver.LookupNamespace(string prefix);
++        string System.Xml.IXmlNamespaceResolver.LookupPrefix(string namespaceName);
 +    }
 +    public class XmlWhitespace : XmlCharacterData {
 +        protected internal XmlWhitespace(string strData, XmlDocument doc);
@@ -16970,13 +17283,13 @@
 +        public static XmlWriter Create(string outputFileName, XmlWriterSettings settings);
 +        public virtual void WriteNode(XPathNavigator navigator, bool defattr);
 +        public virtual Task WriteNodeAsync(XPathNavigator navigator, bool defattr);
-+        public virtual void WriteValue(DateTime value);
      }
      public sealed class XmlWriterSettings {
 +        public bool DoNotEscapeUriAttributes { get; set; }
 +        public XmlOutputMethod OutputMethod { get; }
      }
  }
+
  namespace System.Xml.Linq {
      public class XDocument : XContainer {
 +        public void Save(string fileName);
@@ -16988,12 +17301,14 @@
      }
 -    public sealed class XName : IEquatable<XName> {
 +    public sealed class XName : IEquatable<XName>, ISerializable {
++        void System.Runtime.Serialization.ISerializable.GetObjectData(SerializationInfo info, StreamingContext context);
      }
      public class XStreamingElement {
 +        public void Save(string fileName);
 +        public void Save(string fileName, SaveOptions options);
      }
  }
+
 +namespace System.Xml.Resolvers {
 +    public enum XmlKnownDtds {
 +        All = 65535,
@@ -17020,6 +17335,7 @@
 +        public override bool SupportsType(Uri absoluteUri, Type type);
 +    }
 +}
+
  namespace System.Xml.Schema {
 +    public static class Extensions {
 +        public static IXmlSchemaInfo GetSchemaInfo(this XAttribute source);
@@ -17045,12 +17361,7 @@
 +        public string Message { get; }
 +        public XmlSeverityType Severity { get; }
 +    }
-+    public delegate void ValidationEventHandler(object sender, ValidationEventArgs e); {
-+        public ValidationEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, ValidationEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, ValidationEventArgs e);
-+    }
++    public delegate void ValidationEventHandler(object sender, ValidationEventArgs e);
 +    public sealed class XmlAtomicValue : XPathItem, ICloneable {
 +        public override bool IsNode { get; }
 +        public override object TypedValue { get; }
@@ -17063,6 +17374,7 @@
 +        public override Type ValueType { get; }
 +        public override XmlSchemaType XmlType { get; }
 +        public XmlAtomicValue Clone();
++        object System.ICloneable.Clone();
 +        public override string ToString();
 +        public override object ValueAs(Type type, IXmlNamespaceResolver nsResolver);
 +    }
@@ -17165,8 +17477,12 @@
 +        public XmlSchemaCollection();
 +        public XmlSchemaCollection(XmlNameTable nametable);
 +        public int Count { get; }
-+        public XmlSchema this[string ns] { get; }
 +        public XmlNameTable NameTable { get; }
++        int System.Collections.ICollection.Count { get; }
++        bool System.Collections.ICollection.IsSynchronized { get; }
++        object System.Collections.ICollection.SyncRoot { get; }
++        public XmlSchema this[string ns] { get; }
++        public event ValidationEventHandler ValidationEventHandler;
 +        public XmlSchema Add(string ns, string uri);
 +        public XmlSchema Add(string ns, XmlReader reader);
 +        public XmlSchema Add(string ns, XmlReader reader, XmlResolver resolver);
@@ -17177,11 +17493,15 @@
 +        public bool Contains(XmlSchema schema);
 +        public void CopyTo(XmlSchema[] array, int index);
 +        public XmlSchemaCollectionEnumerator GetEnumerator();
-+        public event ValidationEventHandler ValidationEventHandler;
++        void System.Collections.ICollection.CopyTo(Array array, int index);
++        IEnumerator System.Collections.IEnumerable.GetEnumerator();
 +    }
 +    public sealed class XmlSchemaCollectionEnumerator : IEnumerator {
 +        public XmlSchema Current { get; }
++        object System.Collections.IEnumerator.Current { get; }
 +        public bool MoveNext();
++        bool System.Collections.IEnumerator.MoveNext();
++        void System.Collections.IEnumerator.Reset();
 +    }
 +    public sealed class XmlSchemaCompilationSettings {
 +        public XmlSchemaCompilationSettings();
@@ -17356,15 +17676,15 @@
 +        public XmlSchemaAnnotation Annotation { get; set; }
 +    }
 +    public sealed class XmlSchemaInference {
-+        public enum InferenceOption {
-+            Relaxed = 1,
-+            Restricted = 0,
-+        }
 +        public XmlSchemaInference();
 +        public XmlSchemaInference.InferenceOption Occurrence { get; set; }
 +        public XmlSchemaInference.InferenceOption TypeInference { get; set; }
 +        public XmlSchemaSet InferSchema(XmlReader instanceDocument);
 +        public XmlSchemaSet InferSchema(XmlReader instanceDocument, XmlSchemaSet schemas);
++        public enum InferenceOption {
++            Relaxed = 1,
++            Restricted = 0,
++        }
 +    }
 +    public class XmlSchemaInferenceException : XmlSchemaException {
 +        public XmlSchemaInferenceException();
@@ -17448,13 +17768,16 @@
 +    }
 +    public class XmlSchemaObjectEnumerator : IEnumerator {
 +        public XmlSchemaObject Current { get; }
++        object System.Collections.IEnumerator.Current { get; }
 +        public bool MoveNext();
 +        public void Reset();
++        bool System.Collections.IEnumerator.MoveNext();
++        void System.Collections.IEnumerator.Reset();
 +    }
 +    public class XmlSchemaObjectTable {
 +        public int Count { get; }
-+        public XmlSchemaObject this[XmlQualifiedName name] { get; }
 +        public ICollection Names { get; }
++        public XmlSchemaObject this[XmlQualifiedName name] { get; }
 +        public ICollection Values { get; }
 +        public bool Contains(XmlQualifiedName name);
 +        public IDictionaryEnumerator GetEnumerator();
@@ -17491,6 +17814,7 @@
 +        public bool IsCompiled { get; }
 +        public XmlNameTable NameTable { get; }
 +        public XmlResolver XmlResolver { set; }
++        public event ValidationEventHandler ValidationEventHandler;
 +        public XmlSchema Add(string targetNamespace, string schemaUri);
 +        public XmlSchema Add(string targetNamespace, XmlReader schemaDocument);
 +        public XmlSchema Add(XmlSchema schema);
@@ -17504,7 +17828,6 @@
 +        public XmlSchema Reprocess(XmlSchema schema);
 +        public ICollection Schemas();
 +        public ICollection Schemas(string targetNamespace);
-+        public event ValidationEventHandler ValidationEventHandler;
 +    }
 +    public class XmlSchemaSimpleContent : XmlSchemaContentModel {
 +        public XmlSchemaSimpleContent();
@@ -17564,10 +17887,10 @@
 +        public string Name { get; set; }
 +        public XmlQualifiedName QualifiedName { get; }
 +        public XmlTypeCode TypeCode { get; }
-+        public static XmlSchemaComplexType GetBuiltInComplexType(XmlQualifiedName qualifiedName);
 +        public static XmlSchemaComplexType GetBuiltInComplexType(XmlTypeCode typeCode);
-+        public static XmlSchemaSimpleType GetBuiltInSimpleType(XmlQualifiedName qualifiedName);
++        public static XmlSchemaComplexType GetBuiltInComplexType(XmlQualifiedName qualifiedName);
 +        public static XmlSchemaSimpleType GetBuiltInSimpleType(XmlTypeCode typeCode);
++        public static XmlSchemaSimpleType GetBuiltInSimpleType(XmlQualifiedName qualifiedName);
 +        public static bool IsDerivedFrom(XmlSchemaType derivedType, XmlSchemaType baseType, XmlSchemaDerivationMethod except);
 +    }
 +    public class XmlSchemaUnique : XmlSchemaIdentityConstraint {
@@ -17603,6 +17926,7 @@
 +        public Uri SourceUri { get; set; }
 +        public object ValidationEventSender { get; set; }
 +        public XmlResolver XmlResolver { set; }
++        public event ValidationEventHandler ValidationEventHandler;
 +        public void AddSchema(XmlSchema schema);
 +        public void EndValidation();
 +        public XmlSchemaAttribute[] GetExpectedAttributes();
@@ -17622,7 +17946,6 @@
 +        public void ValidateText(XmlValueGetter elementValue);
 +        public void ValidateWhitespace(string elementValue);
 +        public void ValidateWhitespace(XmlValueGetter elementValue);
-+        public event ValidationEventHandler ValidationEventHandler;
 +    }
 +    public enum XmlSchemaValidity {
 +        Invalid = 2,
@@ -17697,13 +18020,9 @@
 +        UntypedAtomic = 11,
 +        YearMonthDuration = 53,
 +    }
-+    public delegate object XmlValueGetter(); {
-+        public XmlValueGetter(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(AsyncCallback callback, object @object);
-+        public virtual object EndInvoke(IAsyncResult result);
-+        public virtual object Invoke();
-+    }
++    public delegate object XmlValueGetter();
  }
+
  namespace System.Xml.Serialization {
 +    public enum CodeGenerationOptions {
 +        EnableDataBinding = 16,
@@ -17755,8 +18074,8 @@
 +        public SoapAttributeOverrides();
 +        public SoapAttributes this[Type type, string member] { get; }
 +        public SoapAttributes this[Type type] { get; }
-+        public void Add(Type type, SoapAttributes attributes);
 +        public void Add(Type type, string member, SoapAttributes attributes);
++        public void Add(Type type, SoapAttributes attributes);
 +    }
 +    public class SoapAttributes {
 +        public SoapAttributes();
@@ -17789,9 +18108,9 @@
 +    }
 +    public class SoapReflectionImporter {
 +        public SoapReflectionImporter();
++        public SoapReflectionImporter(string defaultNamespace);
 +        public SoapReflectionImporter(SoapAttributeOverrides attributeOverrides);
 +        public SoapReflectionImporter(SoapAttributeOverrides attributeOverrides, string defaultNamespace);
-+        public SoapReflectionImporter(string defaultNamespace);
 +        public XmlMembersMapping ImportMembersMapping(string elementName, string ns, XmlReflectionMember[] members);
 +        public XmlMembersMapping ImportMembersMapping(string elementName, string ns, XmlReflectionMember[] members, bool hasWrapperElement, bool writeAccessors);
 +        public XmlMembersMapping ImportMembersMapping(string elementName, string ns, XmlReflectionMember[] members, bool hasWrapperElement, bool writeAccessors, bool validate);
@@ -17819,12 +18138,7 @@
 +        public string UnreferencedId { get; }
 +        public object UnreferencedObject { get; }
 +    }
-+    public delegate void UnreferencedObjectEventHandler(object sender, UnreferencedObjectEventArgs e); {
-+        public UnreferencedObjectEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, UnreferencedObjectEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, UnreferencedObjectEventArgs e);
-+    }
++    public delegate void UnreferencedObjectEventHandler(object sender, UnreferencedObjectEventArgs e);
 +    public class XmlAnyAttributeAttribute : Attribute {
 +        public XmlAnyAttributeAttribute();
 +    }
@@ -17896,12 +18210,7 @@
 +        public int LinePosition { get; }
 +        public object ObjectBeingDeserialized { get; }
 +    }
-+    public delegate void XmlAttributeEventHandler(object sender, XmlAttributeEventArgs e); {
-+        public XmlAttributeEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, XmlAttributeEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, XmlAttributeEventArgs e);
-+    }
++    public delegate void XmlAttributeEventHandler(object sender, XmlAttributeEventArgs e);
 +    public class XmlAttributeOverrides {
 +        public XmlAttributeOverrides();
 +        public XmlAttributes this[Type type, string member] { get; }
@@ -17932,6 +18241,7 @@
 +        public XmlChoiceIdentifierAttribute(string name);
 +        public string MemberName { get; set; }
 +    }
++    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
 +    public struct XmlDeserializationEvents {
 +        public XmlAttributeEventHandler OnUnknownAttribute { get; set; }
 +        public XmlElementEventHandler OnUnknownElement { get; set; }
@@ -17968,12 +18278,7 @@
 +        public int LinePosition { get; }
 +        public object ObjectBeingDeserialized { get; }
 +    }
-+    public delegate void XmlElementEventHandler(object sender, XmlElementEventArgs e); {
-+        public XmlElementEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, XmlElementEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, XmlElementEventArgs e);
-+    }
++    public delegate void XmlElementEventHandler(object sender, XmlElementEventArgs e);
 +    public class XmlEnumAttribute : Attribute {
 +        public XmlEnumAttribute();
 +        public XmlEnumAttribute(string name);
@@ -18027,12 +18332,7 @@
 +        public object ObjectBeingDeserialized { get; }
 +        public string Text { get; }
 +    }
-+    public delegate void XmlNodeEventHandler(object sender, XmlNodeEventArgs e); {
-+        public XmlNodeEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, XmlNodeEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, XmlNodeEventArgs e);
-+    }
++    public delegate void XmlNodeEventHandler(object sender, XmlNodeEventArgs e);
 +    public class XmlReflectionImporter {
 +        public XmlReflectionImporter();
 +        public XmlReflectionImporter(string defaultNamespace);
@@ -18069,8 +18369,10 @@
 +    public class XmlSchemaEnumerator : IDisposable, IEnumerator, IEnumerator<XmlSchema> {
 +        public XmlSchemaEnumerator(XmlSchemas list);
 +        public XmlSchema Current { get; }
++        object System.Collections.IEnumerator.Current { get; }
 +        public void Dispose();
 +        public bool MoveNext();
++        void System.Collections.IEnumerator.Reset();
 +    }
 +    public class XmlSchemaExporter {
 +        public XmlSchemaExporter(XmlSchemas schemas);
@@ -18119,42 +18421,15 @@
 +        protected override void OnRemove(int index, object value);
 +        protected override void OnSet(int index, object oldValue, object newValue);
 +        public void Remove(XmlSchema schema);
++        IEnumerator<XmlSchema> System.Collections.Generic.IEnumerable<System.Xml.Schema.XmlSchema>.GetEnumerator();
 +    }
-+    public delegate void XmlSerializationCollectionFixupCallback(object collection, object collectionItems); {
-+        public XmlSerializationCollectionFixupCallback(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object collection, object collectionItems, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object collection, object collectionItems);
-+    }
-+    public delegate void XmlSerializationFixupCallback(object fixup); {
-+        public XmlSerializationFixupCallback(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object fixup, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object fixup);
-+    }
++    public delegate void XmlSerializationCollectionFixupCallback(object collection, object collectionItems);
++    public delegate void XmlSerializationFixupCallback(object fixup);
 +    public abstract class XmlSerializationGeneratedCode {
 +        protected XmlSerializationGeneratedCode();
 +    }
-+    public delegate object XmlSerializationReadCallback(); {
-+        public XmlSerializationReadCallback(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(AsyncCallback callback, object @object);
-+        public virtual object EndInvoke(IAsyncResult result);
-+        public virtual object Invoke();
-+    }
++    public delegate object XmlSerializationReadCallback();
 +    public abstract class XmlSerializationReader : XmlSerializationGeneratedCode {
-+        protected class CollectionFixup {
-+            public CollectionFixup(object collection, XmlSerializationCollectionFixupCallback callback, object collectionItems);
-+            public XmlSerializationCollectionFixupCallback Callback { get; }
-+            public object Collection { get; }
-+            public object CollectionItems { get; }
-+        }
-+        protected class Fixup {
-+            public Fixup(object o, XmlSerializationFixupCallback callback, int count);
-+            public Fixup(object o, XmlSerializationFixupCallback callback, string[] ids);
-+            public XmlSerializationFixupCallback Callback { get; }
-+            public string[] Ids { get; }
-+            public object Source { get; set; }
-+        }
 +        protected XmlSerializationReader();
 +        protected bool DecodeName { get; set; }
 +        protected XmlDocument Document { get; }
@@ -18232,13 +18507,21 @@
 +        protected void UnknownNode(object o);
 +        protected void UnknownNode(object o, string qnames);
 +        protected void UnreferencedObject(string id, object o);
++        protected class CollectionFixup {
++            public CollectionFixup(object collection, XmlSerializationCollectionFixupCallback callback, object collectionItems);
++            public XmlSerializationCollectionFixupCallback Callback { get; }
++            public object Collection { get; }
++            public object CollectionItems { get; }
++        }
++        protected class Fixup {
++            public Fixup(object o, XmlSerializationFixupCallback callback, int count);
++            public Fixup(object o, XmlSerializationFixupCallback callback, string[] ids);
++            public XmlSerializationFixupCallback Callback { get; }
++            public string[] Ids { get; }
++            public object Source { get; set; }
++        }
 +    }
-+    public delegate void XmlSerializationWriteCallback(object o); {
-+        public XmlSerializationWriteCallback(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object o, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object o);
-+    }
++    public delegate void XmlSerializationWriteCallback(object o);
 +    public abstract class XmlSerializationWriter : XmlSerializationGeneratedCode {
 +        protected XmlSerializationWriter();
 +        protected bool EscapeName { get; set; }
@@ -18346,34 +18629,34 @@
 +        public XmlSerializer(Type type, XmlAttributeOverrides overrides, Type[] extraTypes, XmlRootAttribute root, string defaultNamespace, string location);
 +        public XmlSerializer(Type type, XmlRootAttribute root);
 +        public XmlSerializer(XmlTypeMapping xmlTypeMapping);
++        public event XmlAttributeEventHandler UnknownAttribute;
++        public event XmlElementEventHandler UnknownElement;
++        public event XmlNodeEventHandler UnknownNode;
++        public event UnreferencedObjectEventHandler UnreferencedObject;
 +        public virtual bool CanDeserialize(XmlReader xmlReader);
 +        protected virtual XmlSerializationReader CreateReader();
 +        protected virtual XmlSerializationWriter CreateWriter();
 +        public object Deserialize(Stream stream);
 +        public object Deserialize(TextReader textReader);
++        protected virtual object Deserialize(XmlSerializationReader reader);
 +        public object Deserialize(XmlReader xmlReader);
 +        public object Deserialize(XmlReader xmlReader, string encodingStyle);
 +        public object Deserialize(XmlReader xmlReader, string encodingStyle, XmlDeserializationEvents events);
 +        public object Deserialize(XmlReader xmlReader, XmlDeserializationEvents events);
-+        protected virtual object Deserialize(XmlSerializationReader reader);
 +        public static XmlSerializer[] FromMappings(XmlMapping[] mappings);
 +        public static XmlSerializer[] FromMappings(XmlMapping[] mappings, Type type);
 +        public static XmlSerializer[] FromTypes(Type[] types);
 +        public static string GetXmlSerializerAssemblyName(Type type);
 +        public static string GetXmlSerializerAssemblyName(Type type, string defaultNamespace);
-+        protected virtual void Serialize(object o, XmlSerializationWriter writer);
 +        public void Serialize(Stream stream, object o);
 +        public void Serialize(Stream stream, object o, XmlSerializerNamespaces namespaces);
 +        public void Serialize(TextWriter textWriter, object o);
 +        public void Serialize(TextWriter textWriter, object o, XmlSerializerNamespaces namespaces);
++        protected virtual void Serialize(object o, XmlSerializationWriter writer);
 +        public void Serialize(XmlWriter xmlWriter, object o);
 +        public void Serialize(XmlWriter xmlWriter, object o, XmlSerializerNamespaces namespaces);
 +        public void Serialize(XmlWriter xmlWriter, object o, XmlSerializerNamespaces namespaces, string encodingStyle);
 +        public void Serialize(XmlWriter xmlWriter, object o, XmlSerializerNamespaces namespaces, string encodingStyle, string id);
-+        public event XmlAttributeEventHandler UnknownAttribute;
-+        public event XmlElementEventHandler UnknownElement;
-+        public event XmlNodeEventHandler UnknownNode;
-+        public event UnreferencedObjectEventHandler UnreferencedObject;
 +    }
 +    public sealed class XmlSerializerAssemblyAttribute : Attribute {
 +        public XmlSerializerAssemblyAttribute();
@@ -18405,8 +18688,8 @@
 +    }
 +    public class XmlSerializerNamespaces {
 +        public XmlSerializerNamespaces();
-+        public XmlSerializerNamespaces(XmlQualifiedName[] namespaces);
 +        public XmlSerializerNamespaces(XmlSerializerNamespaces namespaces);
++        public XmlSerializerNamespaces(XmlQualifiedName[] namespaces);
 +        public int Count { get; }
 +        public void Add(string prefix, string ns);
 +        public XmlQualifiedName[] ToArray();
@@ -18440,6 +18723,7 @@
 +        public string XsdTypeNamespace { get; }
 +    }
  }
+
 +namespace System.Xml.XPath {
 +    public static class Extensions {
 +        public static XPathNavigator CreateNavigator(this XNode node);
@@ -18453,6 +18737,9 @@
 +    }
 +    public interface IXPathNavigable {
 +        XPathNavigator CreateNavigator();
++    }
++    public static class XDocumentExtensions {
++        public static IXPathNavigable ToXPathNavigable(this XNode node);
 +    }
 +    public enum XmlCaseOrder {
 +        LowerFirst = 2,
@@ -18469,9 +18756,9 @@
 +    }
 +    public class XPathDocument : IXPathNavigable {
 +        public XPathDocument(Stream stream);
++        public XPathDocument(TextReader textReader);
 +        public XPathDocument(string uri);
 +        public XPathDocument(string uri, XmlSpace space);
-+        public XPathDocument(TextReader textReader);
 +        public XPathDocument(XmlReader reader);
 +        public XPathDocument(XmlReader reader, XmlSpace space);
 +        public XPathNavigator CreateNavigator();
@@ -18628,6 +18915,7 @@
 +        public virtual XPathNavigator SelectSingleNode(XPathExpression expression);
 +        public virtual void SetTypedValue(object typedValue);
 +        public virtual void SetValue(string value);
++        object System.ICloneable.Clone();
 +        public override string ToString();
 +        public override object ValueAs(Type returnType, IXmlNamespaceResolver nsResolver);
 +        public virtual void WriteSubtree(XmlWriter writer);
@@ -18640,6 +18928,7 @@
 +        public abstract XPathNodeIterator Clone();
 +        public virtual IEnumerator GetEnumerator();
 +        public abstract bool MoveNext();
++        object System.ICloneable.Clone();
 +    }
 +    public enum XPathNodeType {
 +        All = 9,
@@ -18663,6 +18952,7 @@
 +        String = 1,
 +    }
 +}
+
 +namespace System.Xml.Xsl {
 +    public interface IXsltContextFunction {
 +        XPathResultType[] ArgTypes { get; }
@@ -18681,19 +18971,14 @@
 +        public XslCompiledTransform();
 +        public XslCompiledTransform(bool enableDebug);
 +        public XmlWriterSettings OutputSettings { get; }
-+        public void Load(IXPathNavigable stylesheet);
-+        public void Load(IXPathNavigable stylesheet, XsltSettings settings, XmlResolver stylesheetResolver);
 +        public void Load(MethodInfo executeMethod, byte[] queryData, Type[] earlyBoundTypes);
 +        public void Load(string stylesheetUri);
 +        public void Load(string stylesheetUri, XsltSettings settings, XmlResolver stylesheetResolver);
 +        public void Load(Type compiledStylesheet);
 +        public void Load(XmlReader stylesheet);
 +        public void Load(XmlReader stylesheet, XsltSettings settings, XmlResolver stylesheetResolver);
-+        public void Transform(IXPathNavigable input, XmlWriter results);
-+        public void Transform(IXPathNavigable input, XsltArgumentList arguments, Stream results);
-+        public void Transform(IXPathNavigable input, XsltArgumentList arguments, TextWriter results);
-+        public void Transform(IXPathNavigable input, XsltArgumentList arguments, XmlWriter results);
-+        public void Transform(IXPathNavigable input, XsltArgumentList arguments, XmlWriter results, XmlResolver documentResolver);
++        public void Load(IXPathNavigable stylesheet);
++        public void Load(IXPathNavigable stylesheet, XsltSettings settings, XmlResolver stylesheetResolver);
 +        public void Transform(string inputUri, string resultsFile);
 +        public void Transform(string inputUri, XmlWriter results);
 +        public void Transform(string inputUri, XsltArgumentList arguments, Stream results);
@@ -18704,9 +18989,15 @@
 +        public void Transform(XmlReader input, XsltArgumentList arguments, TextWriter results);
 +        public void Transform(XmlReader input, XsltArgumentList arguments, XmlWriter results);
 +        public void Transform(XmlReader input, XsltArgumentList arguments, XmlWriter results, XmlResolver documentResolver);
++        public void Transform(IXPathNavigable input, XmlWriter results);
++        public void Transform(IXPathNavigable input, XsltArgumentList arguments, Stream results);
++        public void Transform(IXPathNavigable input, XsltArgumentList arguments, TextWriter results);
++        public void Transform(IXPathNavigable input, XsltArgumentList arguments, XmlWriter results);
++        public void Transform(IXPathNavigable input, XsltArgumentList arguments, XmlWriter results, XmlResolver documentResolver);
 +    }
 +    public class XsltArgumentList {
 +        public XsltArgumentList();
++        public event XsltMessageEncounteredEventHandler XsltMessageEncountered;
 +        public void AddExtensionObject(string namespaceUri, object extension);
 +        public void AddParam(string name, string namespaceUri, object parameter);
 +        public void Clear();
@@ -18714,7 +19005,6 @@
 +        public object GetParam(string name, string namespaceUri);
 +        public object RemoveExtensionObject(string namespaceUri);
 +        public object RemoveParam(string name, string namespaceUri);
-+        public event XsltMessageEncounteredEventHandler XsltMessageEncountered;
 +    }
 +    public class XsltCompileException : XsltException {
 +        public XsltCompileException();
@@ -18748,23 +19038,20 @@
 +        protected XsltMessageEncounteredEventArgs();
 +        public abstract string Message { get; }
 +    }
-+    public delegate void XsltMessageEncounteredEventHandler(object sender, XsltMessageEncounteredEventArgs e); {
-+        public XsltMessageEncounteredEventHandler(object @object, IntPtr method);
-+        public virtual IAsyncResult BeginInvoke(object sender, XsltMessageEncounteredEventArgs e, AsyncCallback callback, object @object);
-+        public virtual void EndInvoke(IAsyncResult result);
-+        public virtual void Invoke(object sender, XsltMessageEncounteredEventArgs e);
-+    }
++    public delegate void XsltMessageEncounteredEventHandler(object sender, XsltMessageEncounteredEventArgs e);
 +    public sealed class XslTransform {
 +        public XslTransform();
 +        public XmlResolver XmlResolver { set; }
-+        public void Load(IXPathNavigable stylesheet);
-+        public void Load(IXPathNavigable stylesheet, XmlResolver resolver);
 +        public void Load(string url);
 +        public void Load(string url, XmlResolver resolver);
 +        public void Load(XmlReader stylesheet);
 +        public void Load(XmlReader stylesheet, XmlResolver resolver);
++        public void Load(IXPathNavigable stylesheet);
++        public void Load(IXPathNavigable stylesheet, XmlResolver resolver);
 +        public void Load(XPathNavigator stylesheet);
 +        public void Load(XPathNavigator stylesheet, XmlResolver resolver);
++        public void Transform(string inputfile, string outputfile);
++        public void Transform(string inputfile, string outputfile, XmlResolver resolver);
 +        public XmlReader Transform(IXPathNavigable input, XsltArgumentList args);
 +        public void Transform(IXPathNavigable input, XsltArgumentList args, Stream output);
 +        public void Transform(IXPathNavigable input, XsltArgumentList args, Stream output, XmlResolver resolver);
@@ -18773,8 +19060,6 @@
 +        public XmlReader Transform(IXPathNavigable input, XsltArgumentList args, XmlResolver resolver);
 +        public void Transform(IXPathNavigable input, XsltArgumentList args, XmlWriter output);
 +        public void Transform(IXPathNavigable input, XsltArgumentList args, XmlWriter output, XmlResolver resolver);
-+        public void Transform(string inputfile, string outputfile);
-+        public void Transform(string inputfile, string outputfile, XmlResolver resolver);
 +        public XmlReader Transform(XPathNavigator input, XsltArgumentList args);
 +        public void Transform(XPathNavigator input, XsltArgumentList args, Stream output);
 +        public void Transform(XPathNavigator input, XsltArgumentList args, Stream output, XmlResolver resolver);
@@ -18793,62 +19078,4 @@
 +        public static XsltSettings TrustedXslt { get; }
 +    }
 +}
- namespace Microsoft.Win32.SafeHandles {
-+    public abstract class CriticalHandleMinusOneIsInvalid : CriticalHandle {
-+        protected CriticalHandleMinusOneIsInvalid();
-+        public override bool IsInvalid { get; }
-+    }
-+    public abstract class CriticalHandleZeroOrMinusOneIsInvalid : CriticalHandle {
-+        protected CriticalHandleZeroOrMinusOneIsInvalid();
-+        public override bool IsInvalid { get; }
-+    }
-+    public sealed class SafeAccessTokenHandle : SafeHandle {
-+        public SafeAccessTokenHandle(IntPtr handle);
-+        public static SafeAccessTokenHandle InvalidHandle { get; }
-+        public override bool IsInvalid { get; }
-+    }
--    public sealed class SafeFileHandle : SafeHandle {
-+    public sealed class SafeFileHandle : SafeHandleZeroOrMinusOneIsInvalid {
--        public override bool IsInvalid { get; }
-     }
-+    public abstract class SafeHandleMinusOneIsInvalid : SafeHandle {
-+        protected SafeHandleMinusOneIsInvalid(bool ownsHandle);
-+        public override bool IsInvalid { get; }
-+    }
-+    public abstract class SafeHandleZeroOrMinusOneIsInvalid : SafeHandle {
-+        protected SafeHandleZeroOrMinusOneIsInvalid(bool ownsHandle);
-+        public override bool IsInvalid { get; }
-+    }
-+    public sealed class SafeMemoryMappedFileHandle : SafeHandleZeroOrMinusOneIsInvalid {
-+    }
-+    public sealed class SafeMemoryMappedViewHandle : SafeBuffer
-+    public abstract class SafeNCryptHandle : SafeHandleZeroOrMinusOneIsInvalid {
-+        protected SafeNCryptHandle();
-+        protected override bool ReleaseHandle();
-+        protected abstract bool ReleaseNativeHandle();
-+    }
-+    public sealed class SafeNCryptKeyHandle : SafeNCryptHandle {
-+        public SafeNCryptKeyHandle();
-+    }
-+    public sealed class SafeNCryptProviderHandle : SafeNCryptHandle {
-+        public SafeNCryptProviderHandle();
-+    }
-+    public sealed class SafeNCryptSecretHandle : SafeNCryptHandle {
-+        public SafeNCryptSecretHandle();
-+    }
-+    public sealed class SafePipeHandle : SafeHandleZeroOrMinusOneIsInvalid {
-+        public SafePipeHandle(IntPtr preexistingHandle, bool ownsHandle);
-+    }
-+    public sealed class SafeProcessHandle : SafeHandleZeroOrMinusOneIsInvalid {
-+        public SafeProcessHandle(IntPtr existingHandle, bool ownsHandle);
-+    }
--    public sealed class SafeWaitHandle : SafeHandle {
-+    public sealed class SafeWaitHandle : SafeHandleZeroOrMinusOneIsInvalid {
--        public override bool IsInvalid { get; }
-     }
--    public sealed class SafeX509ChainHandle : SafeHandle {
-+    public sealed class SafeX509ChainHandle : SafeHandleZeroOrMinusOneIsInvalid {
--        public override bool IsInvalid { get; }
-     }
- }
-```
+
