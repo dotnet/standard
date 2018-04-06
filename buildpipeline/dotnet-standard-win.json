@@ -22,7 +22,7 @@
     {
       "environment": {},
       "enabled": true,
-      "continueOnError": true,
+      "continueOnError": false,
       "alwaysRun": false,
       "displayName": "Run script build.cmd",
       "timeoutInMinutes": 0,
