@@ -12,7 +12,7 @@
   <Choose>
     <When Condition="'$(TargetFrameworkIdentifier)' == '.NETStandard'">
       <ItemGroup>
-        <Reference Include="$(MSBuildThisFileDirectory)\ref\netstandard.dll">
+        <Reference Include="$(MSBuildThisFileDirectory)ref\netstandard.dll">
           <!-- Private = false to make these reference only -->
           <Private>false</Private>
           <!-- hide these from Assemblies view in Solution Explorer, they will be shown under packages -->
