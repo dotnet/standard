@@ -3,7 +3,7 @@
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.props))\dir.props" />
 
   <PropertyGroup>
-    <Version>2.0.2</Version>
+    <Version>2.0.3</Version>
     <HarvestStablePackage>false</HarvestStablePackage>
     <SkipPackageFileCheck>true</SkipPackageFileCheck>
     <OmitDependencies>true</OmitDependencies>
@@ -36,7 +36,7 @@
 
   <Target Name="StampTargets" BeforeTargets="GenerateNuSpec">
     <PropertyGroup>
-      <_FacadeFiles Condition="'%(File.Facade)' == 'true' AND '%(File.Extension)' == '.dll'" >@(File->'%24(MSBuildThisFileDirectory)\ref\%(FileName)%(Extension)')</_FacadeFiles>
+      <_FacadeFiles Condition="'%(File.Facade)' == 'true' AND '%(File.Extension)' == '.dll'" >@(File->'%24(MSBuildThisFileDirectory)ref\%(FileName)%(Extension)')</_FacadeFiles>
     </PropertyGroup>
     <Error Condition="'$(_FacadeFiles)' == ''" Text="Could not determine facade file names to write to targets" />
 
