@@ -12,7 +12,8 @@ namespace Microsoft.NET.Build.Tasks
     internal class LockFileCache
     {
         private IBuildEngine4 _buildEngine;
-        
+        private static string taskObjectPrefix = null;
+
         public LockFileCache(IBuildEngine4 buildEngine)
         {
             _buildEngine = buildEngine;
@@ -45,7 +46,12 @@ namespace Microsoft.NET.Build.Tasks
 
         private static string GetTaskObjectKey(string lockFilePath)
         {
-            return $"{nameof(LockFileCache)}:{lockFilePath}";
+            if (taskObjectPrefix == null)
+            {
+                taskObjectPrefix = typeof(LockFile).AssemblyQualifiedName;
+            }
+
+            return $"{taskObjectPrefix}:{lockFilePath}";
         }
 
         private LockFile LoadLockFile(string path)
