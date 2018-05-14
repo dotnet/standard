@@ -1,6 +1,7 @@
 {
   "build": [
     {
+      "environment": {},
       "enabled": true,
       "continueOnError": false,
       "alwaysRun": false,
@@ -18,6 +19,7 @@
       }
     },
     {
+      "environment": {},
       "enabled": true,
       "continueOnError": false,
       "alwaysRun": false,
@@ -37,6 +39,31 @@
       }
     },
     {
+      "environment": {},
+      "enabled": true,
+      "continueOnError": false,
+      "alwaysRun": false,
+      "displayName": "Publish to Artifact Services Drop",
+      "timeoutInMinutes": 0,
+      "task": {
+        "id": "f9d96d25-0c81-4e77-8282-1ad1f785cbb4",
+        "versionSpec": "0.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "dropServiceURI": "https://devdiv.artifacts.visualstudio.com/DefaultCollection",
+        "buildNumber": "dotnet/standard/$(SourceBranch)/$(OfficialBuildId)/packages/Release",
+        "sourcePath": "$(Build.SourcesDirectory)\\bin\\packages",
+        "dropExePath": "",
+        "toLowerCase": "true",
+        "detailedLog": "false",
+        "usePat": "false",
+        "retentionDays": "",
+        "dropMetadataContainerName": "DropMetadata"
+      }
+    },
+    {
+      "environment": {},
       "enabled": true,
       "continueOnError": false,
       "alwaysRun": false,
@@ -55,10 +82,52 @@
         "nuGetAdditionalArgs": "-Timeout 3600",
         "verbosity": "Detailed",
         "nuGetVersion": "3.5.0.1829",
-        "nuGetPath": ""
+        "nuGetPath": "",
+        "continueOnEmptyNupkgMatch": "false"
       }
     },
     {
+      "environment": {},
+      "enabled": true,
+      "continueOnError": false,
+      "alwaysRun": false,
+      "displayName": "packages -> Azure Feed",
+      "timeoutInMinutes": 0,
+      "condition": "and(succeeded(), eq(variables['PB_PublishToAzureFeed'], 'True'))",
+      "task": {
+        "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
+        "versionSpec": "1.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "filename": "build.cmd",
+        "arguments": "-- publish.msbuild /t:PublishToAzureBlobFeed /p:AccountKey=$(PB_PublishAccountKey) /p:ExpectedFeedUrl=$(PB_AzureFeedUrl)",
+        "workingFolder": "",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "environment": {},
+      "enabled": true,
+      "continueOnError": false,
+      "alwaysRun": false,
+      "displayName": "symbol packages -> Azure Feed",
+      "timeoutInMinutes": 0,
+      "condition": "and(succeeded(), eq(variables['PB_PublishToAzureFeed'], 'True'))",
+      "task": {
+        "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
+        "versionSpec": "1.*",
+        "definitionType": "task"
+      },
+      "inputs": {
+        "filename": "build.cmd",
+        "arguments": "-- publish.msbuild /t:PublishSymbolsToAzureBlobFeed /p:AccountKey=$(PB_PublishAccountKey) /p:ExpectedFeedUrl=$(PB_AzureSymbolFeedUrl) /p:PublishSymbols=$(PB_PublishSymbols)",
+        "workingFolder": "",
+        "failOnStandardError": "false"
+      }
+    },
+    {
+      "environment": {},
       "enabled": true,
       "continueOnError": false,
       "alwaysRun": false,
@@ -82,18 +151,6 @@
     {
       "enabled": false,
       "definition": {
-        "id": "7c555368-ca64-4199-add6-9ebaf0b0137d"
-      },
-      "inputs": {
-        "multipliers": "[]",
-        "parallel": "false",
-        "continueOnError": "true",
-        "additionalFields": "{}"
-      }
-    },
-    {
-      "enabled": false,
-      "definition": {
         "id": "a9db38f9-9fdc-478c-b0f9-464221e58316"
       },
       "inputs": {
@@ -108,6 +165,16 @@
         "id": "57578776-4c22-4526-aeb0-86b6da17ee9c"
       },
       "inputs": {
+        "additionalFields": "{}"
+      }
+    },
+    {
+      "enabled": false,
+      "definition": {
+        "id": "5d58cc01-7c75-450c-be18-a388ddb129ec"
+      },
+      "inputs": {
+        "branchFilters": "[\"+refs/heads/*\"]",
         "additionalFields": "{}"
       }
     }
@@ -148,6 +215,24 @@
     "PB_GitHubAuthToken": {
       "value": null,
       "isSecret": true
+    },
+    "PB_AzureFeedUrl": {
+      "value": "",
+      "isSecret": true
+    },
+    "PB_AzureSymbolFeedUrl": {
+      "value": "",
+      "isSecret": true
+    },
+    "PB_PublishSymbols": {
+      "value": "true"
+    },
+    "PB_PublishAccountKey": {
+      "value": null,
+      "isSecret": true
+    },
+    "PB_PublishToAzureFeed": {
+      "value": "False"
     }
   },
   "demands": [
@@ -172,6 +257,7 @@
   "buildNumberFormat": "$(date:yyyyMMdd)$(rev:-rr)",
   "jobAuthorizationScope": "projectCollection",
   "jobTimeoutInMinutes": 180,
+  "jobCancelTimeoutInMinutes": 5,
   "repository": {
     "properties": {
       "labelSources": "0",
@@ -179,7 +265,9 @@
       "fetchDepth": "0",
       "gitLfsSupport": "false",
       "skipSyncSource": "false",
-      "cleanOptions": "0"
+      "cleanOptions": "0",
+      "checkoutNestedSubmodules": "false",
+      "labelSourcesFormat": "$(build.buildNumber)"
     },
     "id": "529ccf9f-5708-47fb-a9ac-09c0fc4071dd",
     "type": "TfsGit",
@@ -189,27 +277,29 @@
     "clean": "true",
     "checkoutSubmodules": false
   },
+  "processParameters": {},
   "quality": "definition",
-  "defaultBranch": "master",
+  "drafts": [],
   "queue": {
+    "id": 36,
+    "name": "DotNet-Build",
     "pool": {
       "id": 39,
       "name": "DotNet-Build"
-    },
-    "id": 36,
-    "name": "DotNet-Build"
+    }
   },
-  "path": "\\",
-  "type": "build",
   "id": 4998,
   "name": "dotnet-standard-win",
-  "url": "https://devdiv.visualstudio.com/DefaultCollection/0bdbc590-a062-4c3f-b0f6-9383f67865ee/_apis/build/Definitions/4998",
+  "path": "\\",
+  "type": "build",
+  "queueStatus": "enabled",
   "project": {
     "id": "0bdbc590-a062-4c3f-b0f6-9383f67865ee",
     "name": "DevDiv",
     "description": "Visual Studio and DevDiv team project for git source code repositories.  Work items will be added for Adams, Dev14 work items are tracked in vstfdevdiv.  ",
     "url": "https://devdiv.visualstudio.com/DefaultCollection/_apis/projects/0bdbc590-a062-4c3f-b0f6-9383f67865ee",
     "state": "wellFormed",
-    "revision": 418097435
+    "revision": 418098253,
+    "visibility": "organization"
   }
 }
