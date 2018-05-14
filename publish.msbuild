@@ -5,12 +5,28 @@
   <PropertyGroup>
      <PublishPattern Condition="'$(PublishPattern)' == ''">$(PackageOutputRoot)**\*.nupkg</PublishPattern>
      <SymbolsPackagesPattern>$(PackageOutputRoot)**\*.symbols.nupkg</SymbolsPackagesPattern>
+     <!-- The SignFiles target needs OutDir to be defined -->
+     <OutDir>$(PackageOutputRoot)</OutDir>
   </PropertyGroup>
 
   <ItemGroup>
      <_PackagesToPublish Include="$(PublishPattern)" Exclude="$(SymbolsPackagesPattern)" />
      <_SymbolsPackagesToPublish Include="$(SymbolsPackagesPattern)" Condition="'$(PublishSymbols)' == 'true'" />
   </ItemGroup>      
+
+  <Target Name="GetPackagesToSign">
+    <ItemGroup>
+      <FilesToSign Include="@(_PackagesToPublish)">
+        <Authenticode>NuGet</Authenticode>
+      </FilesToSign>
+    </ItemGroup>
+    <Message Importance="High" Text="Attempting to sign package '%(FilesToSign.Identity)'" />
+  </Target>
+
+  <Target Name="SignPackages"
+          Condition="'$(SkipSigning)' != 'true' and '$(SignType)' != 'public'"
+          DependsOnTargets="GetPackagesToSign;SignFiles">
+  </Target>      
 
  <Target Name="PublishToAzureBlobFeed">
     <Error Condition="'@(_PackagesToPublish)'==''" Text="ItemsToPush for packages is empty." />
