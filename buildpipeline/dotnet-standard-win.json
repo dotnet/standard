@@ -52,7 +52,7 @@
         "definitionType": "task"
       },
       "inputs": {
-        "filename": "msbuild",
+        "filename": "Tools/msbuild.cmd",
         "arguments": "publish.msbuild /t:SignPackages /p:SignType=$(SignType)",
         "workingFolder": "$(Pipeline.SourcesDirectory)",
         "failOnStandardError": "false"
