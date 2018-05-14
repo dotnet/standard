@@ -7,7 +7,6 @@
       "alwaysRun": false,
       "displayName": "Install Signing Plugin",
       "timeoutInMinutes": 0,
-      "refName": "Task1",
       "task": {
         "id": "30666190-6959-11e5-9f96-f56098202fef",
         "versionSpec": "1.*",
@@ -26,7 +25,6 @@
       "alwaysRun": false,
       "displayName": "Run script build.cmd",
       "timeoutInMinutes": 0,
-      "refName": "Task2",
       "task": {
         "id": "bfc8bf76-e7ac-4a8c-9a55-a944a9f632fd",
         "versionSpec": "1.*",
@@ -47,7 +45,6 @@
       "alwaysRun": false,
       "displayName": "Publish to Artifact Services Drop",
       "timeoutInMinutes": 0,
-      "refName": "Task3",
       "task": {
         "id": "f9d96d25-0c81-4e77-8282-1ad1f785cbb4",
         "versionSpec": "0.*",
@@ -72,7 +69,6 @@
       "alwaysRun": false,
       "displayName": "NuGet Publisher ",
       "timeoutInMinutes": 0,
-      "refName": "Task4",
       "task": {
         "id": "333b11bd-d341-40d9-afcf-b32d5ce6f25b",
         "versionSpec": "0.*",
@@ -97,7 +93,7 @@
       "alwaysRun": false,
       "displayName": "packages -> Azure Feed",
       "timeoutInMinutes": 0,
-      "refName": "CmdLine1",
+      "condition": "and(succeeded(), eq(variables['PB_PublishToAzureFeed'], 'True'))",
       "task": {
         "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
         "versionSpec": "1.*",
@@ -117,7 +113,7 @@
       "alwaysRun": false,
       "displayName": "symbol packages -> Azure Feed",
       "timeoutInMinutes": 0,
-      "refName": "CmdLine1",
+      "condition": "and(succeeded(), eq(variables['PB_PublishToAzureFeed'], 'True'))",
       "task": {
         "id": "d9bafed4-0b18-4f58-968d-86655b4d2ce9",
         "versionSpec": "1.*",
@@ -137,7 +133,6 @@
       "alwaysRun": false,
       "displayName": "Update dotnet/versions",
       "timeoutInMinutes": 0,
-      "refName": "Task5",
       "task": {
         "id": "bfc8bf76-e7ac-4a8c-9a55-a944a9f632fd",
         "versionSpec": "1.*",
@@ -222,10 +217,12 @@
       "isSecret": true
     },
     "PB_AzureFeedUrl": {
-      "value": ""
+      "value": "",
+      "isSecret": true
     },
     "PB_AzureSymbolFeedUrl": {
-      "value": ""
+      "value": "",
+      "isSecret": true
     },
     "PB_PublishSymbols": {
       "value": "true"
