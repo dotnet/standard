@@ -8,13 +8,13 @@
        These ref versions are pulled from https://github.com/dotnet/versions.
   -->
   <PropertyGroup>
-    <BuildToolsCurrentRef>2c8e8995dc8b9a662f4558e96a6824c4ca6a1357</BuildToolsCurrentRef>
+    <BuildToolsCurrentRef>490015de35bfb73a258bb78ecd5241cc6e207908</BuildToolsCurrentRef>
   </PropertyGroup>
 
   <!-- Package versions used as toolsets --> 
   <PropertyGroup> 
     <FeedTasksPackage>Microsoft.DotNet.Build.Tasks.Feed</FeedTasksPackage> 
-    <FeedTasksPackageVersion>2.2.0-preview1-02810-02</FeedTasksPackageVersion> 
+    <FeedTasksPackageVersion>2.2.0-preview1-02817-01</FeedTasksPackageVersion> 
   </PropertyGroup> 
 
   <!-- Package dependency verification/auto-upgrade configuration. -->
