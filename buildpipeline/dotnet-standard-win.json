@@ -43,7 +43,7 @@
       "enabled": true,
       "continueOnError": false,
       "alwaysRun": false,
-      "displayName": "Sign Packages",
+      "displayName": "Sign packages",
       "timeoutInMinutes": 0,
       "condition": "and(succeeded(), in(variables.SignType, 'real', 'test'))",
       "task": {
@@ -52,8 +52,9 @@
         "definitionType": "task"
       },
       "inputs": {
-        "filename": "$(Build.SourcesDirectory)/Tools/msbuild.cmd",
-        "arguments": "publish.msbuild /t:SignPackages /p:SignType=$(SignType)",
+        "filename": "build.cmd",
+        "arguments": "-signpackages -OfficialBuildId=$(OfficialBuildId) -- /p:SignType=$(SignType)",
+        "modifyEnvironment": "false",
         "workingFolder": "$(Pipeline.SourcesDirectory)",
         "failOnStandardError": "false"
       }

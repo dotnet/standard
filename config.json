@@ -102,6 +102,12 @@
       "values": [],
       "defaultValue": ""
     },
+    "SignPackages": {
+      "description": "MsBuild target that signs the built packages.",
+      "valueType": "target",
+      "values": [],
+      "defaultValue": ""
+    },
     "Rebuild": {
       "description": "Does a rebuild which runs the clean and then the build targets.",
       "valueType": "target",
@@ -126,6 +132,16 @@
             "Project": "packages.builds",
             "FilterToOSGroup":"default",
             "MsBuildLogging":"/flp:v=normal;LogFile=build-packages.log"
+          }
+        },
+        "signpackages": {
+          "description": "Signs the NuGet packages.",
+          "settings": {
+            "Project": "packages.builds",
+            "settings":{
+              "SignPackages": "default"
+            },
+            "MsBuildLogging":"/flp:v=normal;LogFile=sign-packages.log"
           }
         },
         "debug":{
