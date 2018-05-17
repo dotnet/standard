@@ -134,7 +134,7 @@
             "MsBuildLogging":"/flp:v=normal;LogFile=build-packages.log"
           }
         },
-        "sign": {
+        "signpackages": {
           "description": "Signs the NuGet packages.",
           "settings": {
             "Project": "packages.builds",
