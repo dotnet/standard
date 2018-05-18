@@ -40,7 +40,7 @@ most target .NET Standard 1.1.
 
 **NOTE**: The table above reflects the mappings that will happen when we release the
 .NET Standard 2.0 tooling. You can see that .NET Framework 4.6.1 mapping is being moved from
-1.4 to 2.0. For the exact mapping table for pre-.NET Standard 2.0 tooling see [.NET Standard Library](https://docs.microsoft.com/en-us/dotnet/articles/standard/library)
+1.4 to 2.0. For the exact mapping table for pre-.NET Standard 2.0 tooling use the *[Interactive Table](http://immo.landwerth.net/netstandard-versions/#)*.
 
 ## How do I know which .NET Standard version I should target?
 
