@@ -53,7 +53,7 @@
       },
       "inputs": {
         "filename": "build.cmd",
-        "arguments": "-signpackages -OfficialBuildId=$(OfficialBuildId) -- /p:SignType=$(SignType)",
+        "arguments": "-signpkgs -OfficialBuildId=$(OfficialBuildId) -- /p:SignType=$(SignType)",
         "modifyEnvironment": "false",
         "workingFolder": "",
         "failOnStandardError": "false"
