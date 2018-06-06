@@ -149,6 +149,11 @@ namespace Microsoft.DotNet.Build.Tasks
                 {
                     var fileNode = fileRoots.Dequeue();
 
+                    if (fileNode.IsMissing)
+                    {
+                        Log.LogWarning($"File {fileNode.SourceFile} was included through references or roots but the file was missing.  It's dependencies will also be missing from the trimmed output.");
+                    }
+
                     foreach(var file in fileNode.Dependencies.Where(f => !trimmable.IsFileTrimmable(f.Name)))
                     {
                         IncludeNode(fileRoots, file);

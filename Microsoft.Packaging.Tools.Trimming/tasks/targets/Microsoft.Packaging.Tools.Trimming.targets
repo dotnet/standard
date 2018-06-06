@@ -56,12 +56,13 @@
     </ItemGroup>
   </Target>
   
-  <PropertyGroup Condition="'$(TrimUnusedDependencies)' == 'true'">
+  <PropertyGroup Condition="'$(TrimUnusedDependencies)' == 'true' AND '$(DesignTimeBuild)' != 'true'">
     <TrimFilesOnBuildAfter>CoreCompile</TrimFilesOnBuildAfter>
     <TrimFilesOnPublishBefore>ComputeFilesToPublish</TrimFilesOnPublishBefore>
   </PropertyGroup>
 
   <Target Name="TrimFilesOnBuild"
+          Condition="'$(BuildingProject)' == 'true'"
           DependsOnTargets="_determineTrimPackageInputs"
           AfterTargets="$(TrimFilesOnBuildAfter)">
     <ItemGroup>
@@ -95,6 +96,7 @@
   </Target>
 
   <Target Name="TrimFilesOnPublish"
+          Condition="'$(BuildingProject)' == 'true'"
           DependsOnTargets="_determineTrimPackageInputs"
           BeforeTargets="$(TrimFilesOnPublishBefore)">
 
