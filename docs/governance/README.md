@@ -22,17 +22,16 @@ environment (for instance, Xamarin for iOS cannot perform runtime code
 generation, based on Apple's app store policy).
 
 To ensure we don't end up adding large chunks of API surface that cannot be
-implemented, we have a review board that has to sign-off on API additions to
-the .NET Standard. The board is comprised of representatives from the following
-groups:
+implemented, we have a review board that has to sign-off on API additions to the
+.NET Standard. The board comprises representatives from the following groups:
 
   * **.NET platform**. The rationale here is that most, if not all, of the APIs
     that are part of .NET Standard are implemented and evolved by the .NET
     platform team.
-  * **Xamarin & Mono**. While Mono mostly copy code from .NET Framework & .NET
-    Core base class library, changes and extensions can impact their ability to
-    support the .NET Standard. Thus, we need to coordinate any changes with
-    Mono.
+  * **Xamarin & Mono**. While Mono mostly copies code from the .NET Framework &
+    .NET Core base class libraries, changes and extensions can impact their
+    ability to support the .NET Standard. Thus, we need to coordinate any
+    changes with Mono.
   * **Unity**. Same rationale as for Xamarin & Mono.
 
 The chairman of the review board is [@migueldeicaza](https://github.com/migueldeicaza).
@@ -49,20 +48,31 @@ vendors and API drivers appear, the review board will expand accordingly.
 
 * **Anybody can submit proposals** for API additions to the .NET Standard.
   Those will be tracked as issues and labeled with the [netstandard-api] label.
+* **We'll track features, not individual APIs**. In order to keep bookkeeping we
+  generally will usually file an issue per feature, rather than per API. The
+  issue description will then contain the APIs that should be added.
+* **New members on standardized types are automatically considered**. To prevent
+  accidental fragmentation, we'll automatically consider all members added by
+  any .NET implementation on types that are already in the standard. The
+  rationale here is that divergence at that the member level is not desirable
+  and unless there is something wrong with the API it's likely a good addition.
 * **Acceptance requires**
   - A **sponsorship from a board member**. That person will be assigned the
-    issue and is expected to shepard the issue until it's easier accepted or
-    rejected.
-  - A **prototypic implementation** in at least one .NET implementation. The
-    implementation must be open source so that other .NET implementations can
-    easily jump-start their own implementations or take it as-is.
+    issue and is expected to shepherd the issue until it's either accepted or
+    rejected. If no board member is willing to sponsor the proposal, it's
+    considered rejected.
+  - A **stable implementation** in at least one .NET implementation. The
+    implementation must be licensed under an open source license that is
+    compatible with MIT. This will allow other .NET implementations to jump-
+    start their own implementations or simply take the feature as-is.
 * **.NET Standard updates are planned** and will generally follow a set of
-  themes. We avoid grab-bag releases of .NET Standard and instead try to define
-  a set of goals that describe what kind of feature areas a particular .NET
-  Standard version provides. This simplifies answering the question which .NET
-  Standard a given library should depend on. It also makes it easier for .NET
-  implementations to decide whether it's worth implementing a higher version of
-  .NET Standard.
+  themes. We avoid releases with a large number of tiny features that aren't
+  part of a common set of scenarions (we call them "grab-bag-style releases").
+  Instead, we try to define a set of goals that describe what kind of feature
+  areas a particular .NET Standard version provides. This simplifies answering
+  the question which .NET Standard a given library should depend on. It also
+  makes it easier for .NET implementations to decide whether it's worth
+  implementing a higher version of .NET Standard.
 * **The version number** is subject to discussion and is generally a function of
   how significant the new version is. While we aren't planning on making
   breaking changes, we'll rev the major version if the new version adds large
@@ -72,15 +82,14 @@ vendors and API drivers appear, the review board will expand accordingly.
 
 ## Inclusion principles
 
-Not every .NET API needs (or even should be) part of the .NET Standard.
-
-If a library is written in pure IL (for example C#, VB.NET, F# etc.), and
+Not every .NET API needs to be (or even should be) part of the .NET Standard:
+if a library is written in pure IL (for example C#, VB.NET, F# etc.), and
 targets .NET Standard, then it can run across all current and future .NET
 implementations with no code changes. The only requirement on the .NET
 implementation is that it has to support at least the version of .NET Standard
 that the library was compiled for (or a higher version).
 
-Any modification to such a library, whether it's bug fixes, performance
+Any modifications to such a library, whether they're bug fixes, performance
 improvements, or additional APIs, will also work across all these .NET
 implementations as well. That means the library author has flexibility to make
 releases on their own cadence while consumers of the library have the choice on
@@ -97,9 +106,13 @@ surface. Hence, there is a lot of value in adding widely used concepts to the
 The following criteria helps us to identify APIs that should be part of .NET
 Standard:
 
-* **Ubiqutous APIs**. APIs in the .NET Standard must be implemented by all .NET
-  implementations. Thus, we're only interested in standardizing APIs that are
-  universal in nature and thus should be available everywhere.
+* **Ubiquitous APIs**. APIs in the .NET Standard must be implemented by all .NET
+  implementations (excluding .NET implementations that are no longer updated).
+  Thus, we're only interested in standardizing APIs that are universal in
+  nature. Please note that universal doesn't necessarily mean literally
+  everywhere. If that were the bar, we'd end up penalizing the common cases by
+  excluding a concept just because there are some rare cases where this concept
+  doesn't work or doesn't apply.
 
 * **Mature APIs**. APIs that are part of the .NET Standard can only be versioned
   when the standard itself is versioned. Thus, we generally only standardize
@@ -112,5 +125,6 @@ Standard:
 
 * **Widely-used APIs**. In order to enable a vibrant .NET ecosystem, it's
   important to have a common vocabulary of types that library authors can rely
-  on. Thus, it's beneficial to add widely used APIs to the .NET Standard as it
-  simplifies building reusable libraries with a minimal number of dependencies.
+  on (often called *exchange types*). Thus, it's beneficial to add widely used
+  APIs to the .NET Standard as it simplifies building reusable libraries with a
+  minimal number of dependencies.
