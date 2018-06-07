@@ -136,7 +136,7 @@ namespace Microsoft.DotNet.Build.Tasks
             
             if (File.Exists(SourceFile))
             {
-                PolulateDependenicesFromMetadata(allFiles, preferNativeImage, log, stack);
+                PopulateDependenciesFromMetadata(allFiles, preferNativeImage, log, stack);
             }
             else
             {
@@ -217,7 +217,7 @@ namespace Microsoft.DotNet.Build.Tasks
             stack.Pop();
         }
 
-        private void PolulateDependenicesFromMetadata(IDictionary<string, FileNode> allFiles, bool preferNativeImage, ILog log, Stack<FileNode> stack)
+        private void PopulateDependenciesFromMetadata(IDictionary<string, FileNode> allFiles, bool preferNativeImage, ILog log, Stack<FileNode> stack)
         {
             try
             { 
