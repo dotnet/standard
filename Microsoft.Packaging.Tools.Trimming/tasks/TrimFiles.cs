@@ -156,20 +156,20 @@ namespace Microsoft.DotNet.Build.Tasks
 
                     foreach(var file in fileNode.Dependencies.Where(f => !trimmable.IsFileTrimmable(f.Name)))
                     {
-                        IncludeNode(fileRoots, file);
+                        IncludeNode(fileRoots, file, fileNode);
                     }
 
                     if (IncludeRelatedFiles)
                     {
                         foreach (var file in fileNode.RelatedFiles.Where(f => !trimmable.IsFileTrimmable(f.Name)))
                         {
-                            IncludeNode(fileRoots, file);
+                            IncludeNode(fileRoots, file, fileNode);
                         }
                     }
 
                     if (fileNode.Package != null && !IsPackageTrimmable(fileNode.Package))
                     {
-                        IncludeNode(packageRoots, fileNode.Package);
+                        IncludeNode(packageRoots, fileNode.Package, fileNode);
                     }
                 }
 
@@ -179,12 +179,12 @@ namespace Microsoft.DotNet.Build.Tasks
 
                     foreach(var dependency in packageNode.Dependencies.Where(d => !IsPackageTrimmable(d)))
                     {
-                        IncludeNode(packageRoots, dependency);
+                        IncludeNode(packageRoots, dependency, packageNode);
                     }
 
                     foreach(var file in packageNode.Files.Where(f => !trimmable.IsFileTrimmable(f.Name)))
                     {
-                        IncludeNode(fileRoots, file);
+                        IncludeNode(fileRoots, file, packageNode);
                     }
                 }
             }
@@ -249,7 +249,7 @@ namespace Microsoft.DotNet.Build.Tasks
 
                     if (!IsPackageTrimmable(rootPackage))
                     {
-                        IncludeNode(packageRootQueue, rootPackage);
+                        IncludeRoot(packageRootQueue, rootPackage);
                     }
                 }
             }
@@ -284,7 +284,7 @@ namespace Microsoft.DotNet.Build.Tasks
                 FileNode rootFile;
                 if (files.TryGetValue(rootFilename, out rootFile))
                 {
-                    IncludeNode(fileRootQueue, rootFile);
+                    IncludeRoot(fileRootQueue, rootFile);
                 }
                 else
                 {
@@ -454,7 +454,43 @@ namespace Microsoft.DotNet.Build.Tasks
                 (TreatMultiPackagesAsTrimmable && package.IsMultiPackage && package.Files.Any(f => !f.IsIncluded));
         }
 
-        private static void IncludeNode<T>(Queue<T> queue, T node) where T : IIsIncluded
+        private void IncludeRoot(Queue<FileNode> queue, FileNode root)
+        {
+            Log.LogMessage(MessageImportance.Low, $"Including root file {root}.");
+            QueueNode(queue, root);
+        }
+
+        private void IncludeRoot(Queue<NuGetPackageNode> queue, NuGetPackageNode root)
+        {
+            Log.LogMessage(MessageImportance.Low, $"Including root package {root}.");
+            QueueNode(queue, root);
+        }
+
+        private void IncludeNode(Queue<FileNode> queue, FileNode child, FileNode parent)
+        {
+            Log.LogMessage(MessageImportance.Low, $"Including file {child} referenced by file {parent}.");
+            QueueNode(queue, child);
+        }
+
+        private void IncludeNode(Queue<NuGetPackageNode> queue, NuGetPackageNode child, FileNode parent)
+        {
+            Log.LogMessage(MessageImportance.Low, $"Including package {child} since it contains file {parent}.");
+            QueueNode(queue, child);
+        }
+
+        private void IncludeNode(Queue<FileNode> queue, FileNode child, NuGetPackageNode parent)
+        {
+            Log.LogMessage(MessageImportance.Low, $"Including file {child} part of package {parent}.");
+            QueueNode(queue, child);
+        }
+
+        private void IncludeNode(Queue<NuGetPackageNode> queue, NuGetPackageNode child, NuGetPackageNode parent)
+        {
+            Log.LogMessage(MessageImportance.Low, $"Including package {child} referenced by package {parent}.");
+            QueueNode(queue, child);
+        }
+
+        private static void QueueNode<T>(Queue<T> queue, T node) where T : IIsIncluded
         {
             if (!node.IsIncluded)
             {

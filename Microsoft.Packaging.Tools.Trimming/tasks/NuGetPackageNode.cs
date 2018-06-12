@@ -47,5 +47,10 @@ namespace Microsoft.DotNet.Build.Tasks
                 dependencyNode._dependencies.Add(this);
             }
         }
+
+        public override string ToString()
+        {
+            return Id;
+        }
     }
 }
