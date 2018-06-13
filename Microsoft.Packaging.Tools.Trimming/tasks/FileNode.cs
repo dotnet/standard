@@ -73,7 +73,7 @@ namespace Microsoft.DotNet.Build.Tasks
         public string PackageId { get; }
         public string SourceFile { get; }
         public NuGetPackageNode Package { get; }
-        public IEnumerable<FileNode> Dependencies { get { return dependencies; } }
+        public IEnumerable<FileNode> Dependencies { get { return dependencies ?? Enumerable.Empty<FileNode>(); } }
         public IEnumerable<FileNode> RelatedFiles { get { return relatedFiles; } }
 
         public override string ToString()
