@@ -22,8 +22,9 @@ environment (for instance, Xamarin for iOS cannot perform runtime code
 generation, based on Apple's app store policy).
 
 To ensure we don't end up adding large chunks of API surface that cannot be
-implemented, we have a review board that has to sign-off on API additions to the
-.NET Standard. The board comprises representatives from the following groups:
+implemented, we have a [review board](board.md) that has to sign-off on API
+additions to the .NET Standard. The board comprises representatives from the
+following groups:
 
   * **.NET platform**. The rationale here is that most, if not all, of the APIs
     that are part of .NET Standard are implemented and evolved by the .NET
@@ -33,6 +34,9 @@ implemented, we have a review board that has to sign-off on API additions to the
     ability to support the .NET Standard. Thus, we need to coordinate any
     changes with Mono.
   * **Unity**. Same rationale as for Xamarin & Mono.
+  * **.NET Foundation**. A set of people selected by the .NET Foundation that
+    represent the interests of the .NET community at large, which also includes
+    pure consumers of the .NET Standard.
 
 The chairman of the review board is [@migueldeicaza](https://github.com/migueldeicaza).
 For the most part, we strive to make decisions based on consensus, but as it is
@@ -41,8 +45,7 @@ so we need to have an ultimate tie breaker. And Miguel has a lot of expertise
 and experience building .NET implementations that are supported by multiple
 parties.
 
-Please note that the member list isn't meant to be closed: as more platform
-vendors and API drivers appear, the review board will expand accordingly.
+For a current member list, see [.NET Standard Review Board](board.md).
 
 ## Process
 
