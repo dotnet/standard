@@ -20,6 +20,9 @@
 |                          | [Joshua Peterson (@joshpeterson)](https://github.com/joshpeterson)
 | Chairman                 | [Miguel de Icaza (@migueldeicaza)](https://github.com/migueldeicaza)
 
+There is also a (public) GitHub team [nsboard](https://github.com/orgs/dotnet/teams/nsboard) you can
+use when you want the board to take a look at a particular issue.
+
 ## Member Criteria
 
 The purpose of the .NET Standard review board is to sign-off on API additions to
