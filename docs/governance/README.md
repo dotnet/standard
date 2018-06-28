@@ -70,7 +70,7 @@ For a current member list, see [.NET Standard Review Board](board.md).
     start their own implementations or simply take the feature as-is.
 * **.NET Standard updates are planned** and will generally follow a set of
   themes. We avoid releases with a large number of tiny features that aren't
-  part of a common set of scenarions (we call them "grab-bag-style releases").
+  part of a common set of scenarios (we call them "grab-bag-style releases").
   Instead, we try to define a set of goals that describe what kind of feature
   areas a particular .NET Standard version provides. This simplifies answering
   the question which .NET Standard a given library should depend on. It also
@@ -83,31 +83,68 @@ For a current member list, see [.NET Standard Review Board](board.md).
 
 [netstandard-api]: https://github.com/dotnet/standard/issues?q=is%3Aopen+is%3Aissue+label%3Anetstandard-api
 
+## "In the standard" vs "on top of the standard"
+
+The .NET Standard represents a set of fundamental APIs that are largely independent
+of the type of application you're building.
+
+People often ask us what the difference is between an API that is *part of the
+.NET Standard* (such as `XmlReader`) and an API that is *available for the .NET
+Standard* via NuGet package (such as `JsonReader` in JSON.NET).
+
+The key differences are:
+
+* **Who provides the API**. APIs that are part of .NET Standard need to be
+  provided by each .NET implementation, in other words they must ship in-box.
+  APIs delivered via a NuGet package are deployed with the application. This
+  allows any 3rd party to provide new APIs without putting them directly into
+  each .NET implementation.
+
+* **How the API can be updated**. APIs that are part of the .NET Standard can
+  only be updated when the standard itself and all implementations are updated.
+  In contrast, APIs that ship as NuGet packages can be updated at any point. And
+  so long they target the .NET Standard, will also be updated for all .NET
+  implementations at once.
+
+* **How the API is versioned**. This is the flip-side of the previous bullet
+  point. Since APIs delivered as NuGet package can be updated frequently there
+  is generally no agreement in a larger system which version to use. This can
+  generally be solved by NuGet to unify to the latest version required in a
+  given graph but it often leads to challenges, especially on .NET Framework
+  where the assembly binder is extremely picky about version numbers. In
+  contrast, APIs that ship as part of the .NET Standard (or any .NET
+  implementation for that matter) have essentially a fixed version number that
+  is a function of the version of the .NET Standard you're targeting. This
+  drastically reduces the complexity of package graphs and reduces versioning
+  conflicts.
+
+* **How the API is acquired**. APIs that are part of the .NET Standard are
+  always available and automatically referenced while APIs delivered as NuGet
+  packages need to be explicitly referenced. This can be simplified by project
+  templates but it tends to be much less convenient.
+
+* **Who can use the API**. APIs that are part of .NET Standard can only use
+  types that are also part of the .NET Standard. For example, in order to
+  provide new APIs on `String` that accept `Span<T>`, we need to add `Span<T>`
+  to .NET Standard as well. Sometimes it's possible to work this around by using
+  extension methods but this only works for specific case and isn't a general
+  solution.
+
+In the past, we've tried hard to ship new functionality as NuGet packages
+because we can update these APIs much faster. However, we're also often forced
+to ship the APIs directly with a .NET implementation. You can think of these
+events as "pushing down" the component into the platform layer. While doable,
+we've learned that doing this without breaking customers is extremely hard.
+Hence, we try to avoid doing this moving forward for APIs where we know up-front
+they need to be part of the platform layer.
+
 ## Inclusion principles
 
-Not every .NET API needs to be (or even should be) part of the .NET Standard:
-if a library is written in pure IL (for example C#, VB.NET, F# etc.), and
-targets .NET Standard, then it can run across all current and future .NET
-implementations with no code changes. The only requirement on the .NET
-implementation is that it has to support at least the version of .NET Standard
-that the library was compiled for (or a higher version).
+As the previous section explains not every .NET API needs to be -- or even
+should be -- part of the .NET Standard.
 
-Any modifications to such a library, whether they're bug fixes, performance
-improvements, or additional APIs, will also work across all these .NET
-implementations as well. That means the library author has flexibility to make
-releases on their own cadence while consumers of the library have the choice on
-when they upgrade the version they are using. If the library is made a part of
-.NET Standard, it can only version at the same cadence as the standard, so the
-update flexibility is much reduced.
-
-On the other hand, there are also downsides for APIs not being part of the
-standard. If an API ships as a library, it's much harder for any .NET
-implementation to use the types as part of their implementation or public API
-surface. Hence, there is a lot of value in adding widely used concepts to the
-.NET Standard in order to use them throughout all .NET implementations.
-
-The following criteria helps us to identify APIs that should be part of .NET
-Standard:
+The following criteria helps us to identify APIs that should be included into
+the .NET Standard:
 
 * **Ubiquitous APIs**. APIs in the .NET Standard must be implemented by all .NET
   implementations (excluding .NET implementations that are no longer updated).
@@ -116,6 +153,12 @@ Standard:
   everywhere. If that were the bar, we'd end up penalizing the common cases by
   excluding a concept just because there are some rare cases where this concept
   doesn't work or doesn't apply.
+
+* **Fundamental**. The standard is about foundational technologies. We want to
+  avoid adding concepts that are often subject to changes because they deal with
+  higher-level patterns and applications models. For that reason, dependency
+  injection (DI) or object-relational mappers (ORM) aren't good candidates for
+  the .NET Standard.
 
 * **Mature APIs**. APIs that are part of the .NET Standard can only be versioned
   when the standard itself is versioned. Thus, we generally only standardize
