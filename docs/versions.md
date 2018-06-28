@@ -67,7 +67,7 @@ Core. If the [.NET Standard review board][netstandard-board] believes the new
 APIs should be made available everywhere, they'll be added in a new .NET
 Standard version.
 
-[netstandard-board]: review-board/README.md
+[netstandard-board]: governance/README.md#review-board
 
 ## Mapping PCL Profiles to .NET Standard
 
