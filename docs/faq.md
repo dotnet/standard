@@ -324,7 +324,7 @@ However, right now our tooling will still burn in the reference to
 `NETStandard.Library`. There is no harm in that either, it will just become
 redundant moving forward.
 
-[netstandard-refdocs]: https://docs.microsoft.com/dotnet/api/?view=netstandard-1.6
+[netstandard-refdocs]: https://docs.microsoft.com/dotnet/api/?view=netstandard-2.0
 [netstandard-docs]: https://docs.microsoft.com/dotnet/standard/net-standard
 [netstandard-post]: https://blogs.msdn.microsoft.com/dotnet/2016/09/26/introducing-net-standard/
 [netstandard-spec]: planning/netstandard-20/README.md
