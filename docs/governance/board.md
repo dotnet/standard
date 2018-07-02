@@ -4,7 +4,8 @@
 
 | Area                     | People
 |--------------------------|-------------------------------------------------------------------------------
-| .NET Foundation          | TBD
+| .NET Foundation          | [Jon Skeet (@jskeet)](https://github.com/jskeet)
+|                          | [Oren Novotny (@onovotny)](https://github.com/onovotny)
 | .NET Platform            | [Immo Landwerth (@terrajobst)](https://github.com/terrajobst)
 |                          | [Jan Kotas (@jkotas)](https://github.com/jkotas)
 |                          | [Krzysztof Cwalina (@KrzysztofCwalina)](https://github.com/KrzysztofCwalina)
