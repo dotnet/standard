@@ -21,8 +21,8 @@
 |                          | [Joshua Peterson (@joshpeterson)](https://github.com/joshpeterson)
 | Chairman                 | [Miguel de Icaza (@migueldeicaza)](https://github.com/migueldeicaza)
 
-There is also a (public) GitHub team [nsboard](https://github.com/orgs/dotnet/teams/nsboard) you can
-use when you want the board to take a look at a particular issue.
+There is also a GitHub team **@nsboard** you can use for tagging when you want
+the board to take a look at a particular issue or pull requests.
 
 ## Member Criteria
 
