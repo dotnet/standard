@@ -38,7 +38,7 @@ following groups:
     represent the interests of the .NET community at large, which also includes
     pure consumers of the .NET Standard.
 
-The chairman of the review board is [@migueldeicaza](https://github.com/migueldeicaza).
+The chair of the review board is [@migueldeicaza](https://github.com/migueldeicaza).
 For the most part, we strive to make decisions based on consensus, but as it is
 with every group of engineers, consensus can be impossible to achieve at times
 so we need to have an ultimate tie breaker. And Miguel has a lot of expertise

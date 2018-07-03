@@ -19,7 +19,7 @@
 | Unity                    | [Jon Hogins (@JonathanHUnity)](https://github.com/JonathanHUnity)
 |                          | [Jonathan Chambers (@joncham)](https://github.com/joncham)
 |                          | [Joshua Peterson (@joshpeterson)](https://github.com/joshpeterson)
-| Chairman                 | [Miguel de Icaza (@migueldeicaza)](https://github.com/migueldeicaza)
+| Chair                    | [Miguel de Icaza (@migueldeicaza)](https://github.com/migueldeicaza)
 
 There is also a GitHub team **@nsboard** you can use for tagging when you want
 the board to take a look at a particular issue or pull requests.
@@ -38,7 +38,7 @@ The board comprises representatives from two general areas:
 * **.NET Foundation**. This is a list of people selected by the .NET Foundation
   who represent the interest of the .NET community.
 
-The .NET Standard review board will also have a chairman. For the most part, we
+The .NET Standard review board will also have a chair. For the most part, we
 strive to make decisions based on consensus, but as it is with every group of
 engineers, consensus can be impossible to achieve at times so we need to have an
 ultimate tie breaker.
