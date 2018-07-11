@@ -5,7 +5,7 @@
 namespace System.Drawing
 {
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct Color
+    public readonly partial struct Color
     {
         public static readonly System.Drawing.Color Empty;
         public byte A { get { throw null; } }

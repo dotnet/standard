@@ -260,7 +260,7 @@ namespace System.Collections.Generic
         public KeyNotFoundException(string message, System.Exception innerException) { }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct KeyValuePair<TKey, TValue>
+    public readonly partial struct KeyValuePair<TKey, TValue>
     {
         public KeyValuePair(TKey key, TValue value) { throw null;}
         public TKey Key { get { throw null; } }
