@@ -434,4 +434,47 @@ namespace System.Threading.Tasks
         public bool Observed { get { throw null; } }
         public void SetObserved() { }
     }
+    [System.Runtime.CompilerServices.AsyncMethodBuilderAttribute(typeof(System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder))]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public readonly partial struct ValueTask : System.IEquatable<System.Threading.Tasks.ValueTask>
+    {
+        public ValueTask(System.Threading.Tasks.Sources.IValueTaskSource source, short token) { throw null; }
+        public ValueTask(System.Threading.Tasks.Task task) { throw null; }
+        public bool IsCanceled { get { throw null; } }
+        public bool IsCompleted { get { throw null; } }
+        public bool IsCompletedSuccessfully { get { throw null; } }
+        public bool IsFaulted { get { throw null; } }
+        public System.Threading.Tasks.Task AsTask() { throw null; }
+        public System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable ConfigureAwait(bool continueOnCapturedContext) { throw null; }
+        public override bool Equals(object obj) { throw null; }
+        public bool Equals(System.Threading.Tasks.ValueTask other) { throw null; }
+        public System.Runtime.CompilerServices.ValueTaskAwaiter GetAwaiter() { throw null; }
+        public override int GetHashCode() { throw null; }
+        public static bool operator ==(System.Threading.Tasks.ValueTask left, System.Threading.Tasks.ValueTask right) { throw null; }
+        public static bool operator !=(System.Threading.Tasks.ValueTask left, System.Threading.Tasks.ValueTask right) { throw null; }
+        public System.Threading.Tasks.ValueTask Preserve() { throw null; }
+    }
+    [System.Runtime.CompilerServices.AsyncMethodBuilderAttribute(typeof(System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder<>))]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public readonly partial struct ValueTask<TResult> : System.IEquatable<System.Threading.Tasks.ValueTask<TResult>>
+    {
+        public ValueTask(System.Threading.Tasks.Sources.IValueTaskSource<TResult> source, short token) { throw null; }
+        public ValueTask(System.Threading.Tasks.Task<TResult> task) { throw null; }
+        public ValueTask(TResult result) { throw null; }
+        public bool IsCanceled { get { throw null; } }
+        public bool IsCompleted { get { throw null; } }
+        public bool IsCompletedSuccessfully { get { throw null; } }
+        public bool IsFaulted { get { throw null; } }
+        public TResult Result { get { throw null; } }
+        public System.Threading.Tasks.Task<TResult> AsTask() { throw null; }
+        public System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable<TResult> ConfigureAwait(bool continueOnCapturedContext) { throw null; }
+        public override bool Equals(object obj) { throw null; }
+        public bool Equals(System.Threading.Tasks.ValueTask<TResult> other) { throw null; }
+        public System.Runtime.CompilerServices.ValueTaskAwaiter<TResult> GetAwaiter() { throw null; }
+        public override int GetHashCode() { throw null; }
+        public static bool operator ==(System.Threading.Tasks.ValueTask<TResult> left, System.Threading.Tasks.ValueTask<TResult> right) { throw null; }
+        public static bool operator !=(System.Threading.Tasks.ValueTask<TResult> left, System.Threading.Tasks.ValueTask<TResult> right) { throw null; }
+        public System.Threading.Tasks.ValueTask<TResult> Preserve() { throw null; }
+        public override string ToString() { throw null; }
+    }
 }
