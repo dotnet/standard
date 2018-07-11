@@ -3843,6 +3843,7 @@ namespace System
         public bool IsAutoClass { get { throw null; } }
         public bool IsAutoLayout { get { throw null; } }
         public bool IsByRef { get { throw null; } }
+        public virtual bool IsByRefLike { get { throw null; } }
         public bool IsClass { get { throw null; } }
         public bool IsCOMObject { get { throw null; } }
         public virtual bool IsConstructedGenericType { get { throw null; } }
