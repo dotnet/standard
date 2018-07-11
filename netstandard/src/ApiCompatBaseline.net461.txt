@@ -4,6 +4,7 @@ MembersMustExist : Member 'System.AppContext.TargetFrameworkName.get()' does not
 TypeCannotChangeClassification : Type 'System.ArraySegment<T>' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 TypeCannotChangeClassification : Type 'System.ConsoleKeyInfo' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 TypeCannotChangeClassification : Type 'System.DateTime' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypeCannotChangeClassification : Type 'System.RuntimeArgumentHandle' is a 'struct' in the implementation but is a 'ref struct' in the contract.
 TypesMustExist : Type 'System.StringNormalizationExtensions' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.TimeZoneInfo.TransitionTime' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 CannotRemoveBaseTypeOrInterface : Type 'System.Tuple<T1>' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
@@ -15,6 +16,7 @@ CannotRemoveBaseTypeOrInterface : Type 'System.Tuple<T1, T2, T3, T4, T5, T6>' do
 CannotRemoveBaseTypeOrInterface : Type 'System.Tuple<T1, T2, T3, T4, T5, T6, T7>' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Tuple<T1, T2, T3, T4, T5, T6, T7, TRest>' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Type.IsByRefLike.get()' does not exist in the implementation but it does exist in the contract.
+TypeCannotChangeClassification : Type 'System.TypedReference' is a 'struct' in the implementation but is a 'ref struct' in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.ValueTuple' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.ValueTuple<T1>' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.ValueTuple<T1, T2>' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
@@ -195,4 +197,4 @@ TypesMustExist : Type 'System.Threading.ThreadPoolBoundHandle' does not exist in
 MembersMustExist : Member 'System.Threading.Tasks.Task.IsCompletedSuccessfully.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.Tasks.TaskCanceledException..ctor(System.String, System.Exception, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 196
+Total Issues: 198
