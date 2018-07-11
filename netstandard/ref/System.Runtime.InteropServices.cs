@@ -607,6 +607,28 @@ namespace System.Runtime.InteropServices
         public MarshalDirectiveException(string message) { }
         public MarshalDirectiveException(string message, System.Exception inner) { }
     }
+    public static partial class MemoryMarshal
+    {
+        public static System.ReadOnlySpan<byte> AsBytes<T>(System.ReadOnlySpan<T> span) where T : struct { throw null; }
+        public static System.Span<byte> AsBytes<T>(System.Span<T> span) where T : struct { throw null; }
+        public static System.Memory<T> AsMemory<T>(System.ReadOnlyMemory<T> memory) { throw null; }
+        public static System.ReadOnlySpan<TTo> Cast<TFrom, TTo>(System.ReadOnlySpan<TFrom> span) where TFrom : struct where TTo : struct { throw null; }
+        public static System.Span<TTo> Cast<TFrom, TTo>(System.Span<TFrom> span) where TFrom : struct where TTo : struct { throw null; }
+        public static System.Memory<T> CreateFromPinnedArray<T>(T[] array, int start, int length) { throw null; }
+        public static System.ReadOnlySpan<T> CreateReadOnlySpan<T>(ref T reference, int length) { throw null; }
+        public static System.Span<T> CreateSpan<T>(ref T reference, int length) { throw null; }
+        public static ref T GetReference<T>(System.ReadOnlySpan<T> span) { throw null; }
+        public static ref T GetReference<T>(System.Span<T> span) { throw null; }
+        public static T Read<T>(System.ReadOnlySpan<byte> source) where T : struct { throw null; }
+        public static System.Collections.Generic.IEnumerable<T> ToEnumerable<T>(System.ReadOnlyMemory<T> memory) { throw null; }
+        public static bool TryGetArray<T>(System.ReadOnlyMemory<T> memory, out System.ArraySegment<T> segment) { segment = default(System.ArraySegment<T>); throw null; }
+        public static bool TryGetMemoryManager<T, TManager>(System.ReadOnlyMemory<T> memory, out TManager manager) where TManager : System.Buffers.MemoryManager<T> { manager = default(TManager); throw null; }
+        public static bool TryGetMemoryManager<T, TManager>(System.ReadOnlyMemory<T> memory, out TManager manager, out int start, out int length) where TManager : System.Buffers.MemoryManager<T> { manager = default(TManager); start = default(int); length = default(int); throw null; }
+        public static bool TryGetString(System.ReadOnlyMemory<char> memory, out string text, out int start, out int length) { text = default(string); start = default(int); length = default(int); throw null; }
+        public static bool TryRead<T>(System.ReadOnlySpan<byte> source, out T value) where T : struct { value = default(T); throw null; }
+        public static bool TryWrite<T>(System.Span<byte> destination, ref T value) where T : struct { throw null; }
+        public static void Write<T>(System.Span<byte> destination, ref T value) where T : struct { }
+    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(2048), Inherited=false)]
     public sealed partial class OptionalAttribute : System.Attribute
     {
@@ -727,6 +749,12 @@ namespace System.Runtime.InteropServices
         public SEHException(string message) { }
         public SEHException(string message, System.Exception inner) { }
         public virtual bool CanResume() { throw null; }
+    }
+    public static partial class SequenceMarshal
+    {
+        public static bool TryGetArray<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.ArraySegment<T> segment) { segment = default(System.ArraySegment<T>); throw null; }
+        public static bool TryGetReadOnlyMemory<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.ReadOnlyMemory<T> memory) { memory = default(System.ReadOnlyMemory<T>); throw null; }
+        public static bool TryGetReadOnlySequenceSegment<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.Buffers.ReadOnlySequenceSegment<T> startSegment, out int startIndex, out System.Buffers.ReadOnlySequenceSegment<T> endSegment, out int endIndex) { startSegment = default(System.Buffers.ReadOnlySequenceSegment<T>); startIndex = default(int); endSegment = default(System.Buffers.ReadOnlySequenceSegment<T>); endIndex = default(int); throw null; }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited=false)]
     public sealed partial class StructLayoutAttribute : System.Attribute

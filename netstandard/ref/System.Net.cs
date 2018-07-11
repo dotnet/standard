@@ -726,6 +726,8 @@ namespace System.Net
         public IPAddress(byte[] address) { }
         public IPAddress(byte[] address, long scopeid) { }
         public IPAddress(long newAddress) { }
+        public IPAddress(System.ReadOnlySpan<byte> address) { }
+        public IPAddress(System.ReadOnlySpan<byte> address, long scopeid) { }
         [System.ObsoleteAttribute("This property has been deprecated. It is address family dependent. Please use IPAddress.Equals method to perform comparisons. http://go.microsoft.com/fwlink/?linkid=14202")]
         public long Address { get { throw null; } set { } }
         public System.Net.Sockets.AddressFamily AddressFamily { get { throw null; } }
@@ -747,9 +749,13 @@ namespace System.Net
         public static short NetworkToHostOrder(short network) { throw null; }
         public static int NetworkToHostOrder(int network) { throw null; }
         public static long NetworkToHostOrder(long network) { throw null; }
+        public static System.Net.IPAddress Parse(System.ReadOnlySpan<char> ipString) { throw null; }
         public static System.Net.IPAddress Parse(string ipString) { throw null; }
         public override string ToString() { throw null; }
+        public bool TryFormat(System.Span<char> destination, out int charsWritten) { charsWritten = default(int); throw null; }
+        public static bool TryParse(System.ReadOnlySpan<char> ipString, out System.Net.IPAddress address) { address = default(System.Net.IPAddress); throw null; }
         public static bool TryParse(string ipString, out System.Net.IPAddress address) { address = default(System.Net.IPAddress); throw null; }
+        public bool TryWriteBytes(System.Span<byte> destination, out int bytesWritten) { bytesWritten = default(int); throw null; }
     }
     public partial class IPEndPoint : System.Net.EndPoint
     {
