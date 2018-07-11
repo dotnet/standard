@@ -310,6 +310,12 @@ namespace System.Runtime.CompilerServices
     public static partial class IsPinned
     {
     }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(32767), Inherited = false)]
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    public sealed partial class IsReadOnlyAttribute : System.Attribute
+    {
+        public IsReadOnlyAttribute() { }
+    }
     public static partial class IsSignUnspecifiedByte
     {
     }

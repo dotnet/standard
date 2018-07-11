@@ -26,3 +26,4 @@ T:System.Runtime.CompilerServices.ITuple
 T:System.Collections.Generic.CollectionExtensions
 T:System.Collections.Generic.KeyValuePair
 T:System.Runtime.CompilerServices.RuntimeFeature
+T:System.Runtime.CompilerServices.IsReadOnlyAttribute

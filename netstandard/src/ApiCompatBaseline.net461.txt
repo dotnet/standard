@@ -124,6 +124,7 @@ CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.GetDeclaredNeste
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.GetDeclaredProperty(System.String)' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.ImplementedInterfaces.get()' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.IsAssignableFrom(System.Reflection.TypeInfo)' is non-virtual in the implementation but is virtual in the contract.
+TypesMustExist : Type 'System.Runtime.CompilerServices.IsReadOnlyAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.ITuple' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.RuntimeFeature' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.Serialization.DataContractSerializerExtensions' does not exist in the implementation but it does exist in the contract.
