@@ -3039,7 +3039,7 @@ namespace System
     }
     public delegate System.Reflection.Assembly ResolveEventHandler(object sender, System.ResolveEventArgs args);
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct RuntimeArgumentHandle
+    public ref partial struct RuntimeArgumentHandle
     {
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -4008,7 +4008,7 @@ namespace System
     }
     [System.CLSCompliantAttribute(false)]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct TypedReference
+    public ref partial struct TypedReference
     {
         public override bool Equals(object o) { throw null; }
         public override int GetHashCode() { throw null; }
