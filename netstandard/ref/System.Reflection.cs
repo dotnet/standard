@@ -896,7 +896,7 @@ namespace System.Reflection
         public override string ToString() { throw null; }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct ParameterModifier
+    public readonly partial struct ParameterModifier
     {
         public ParameterModifier(int parameterCount) { throw null;}
         public bool this[int index] { get { throw null; } set { } }

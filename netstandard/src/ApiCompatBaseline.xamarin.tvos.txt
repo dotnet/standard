@@ -1,16 +1,25 @@
 Compat issues with assembly netstandard:
+TypeCannotChangeClassification : Type 'System.ArraySegment<T>' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypeCannotChangeClassification : Type 'System.ConsoleKeyInfo' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypeCannotChangeClassification : Type 'System.DateTime' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypeCannotChangeClassification : Type 'System.TimeZoneInfo.TransitionTime' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Collections.BitArray.LeftShift(System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.BitArray.RightShift(System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.Generic.Dictionary<TKey, TValue>.TrimExcess()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.Generic.Dictionary<TKey, TValue>.TrimExcess(System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.Generic.HashSet<T>.EnsureCapacity(System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.ObjectModel.KeyedCollection<TKey, TItem>.TryGetValue(TKey, TItem)' does not exist in the implementation but it does exist in the contract.
+TypeCannotChangeClassification : Type 'System.Collections.Specialized.BitVector32.Section' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.ComponentModel.DefaultValueAttribute..ctor(System.SByte)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.ComponentModel.DefaultValueAttribute..ctor(System.UInt16)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.ComponentModel.DefaultValueAttribute..ctor(System.UInt32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.ComponentModel.DefaultValueAttribute..ctor(System.UInt64)' does not exist in the implementation but it does exist in the contract.
+TypeCannotChangeClassification : Type 'System.ComponentModel.Design.Serialization.MemberRelationship' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 TypesMustExist : Type 'System.Data.Common.DbProviderFactories' does not exist in the implementation but it does exist in the contract.
+TypeCannotChangeClassification : Type 'System.Diagnostics.SymbolStore.SymbolToken' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypeCannotChangeClassification : Type 'System.Drawing.Color' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Globalization.CharUnicodeInfo.GetUnicodeCategory(System.Int32)' does not exist in the implementation but it does exist in the contract.
+TypeCannotChangeClassification : Type 'System.Reflection.ParameterModifier' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 CannotSealType : Type 'System.Reflection.TypeInfo' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
 MembersMustExist : Member 'System.Reflection.TypeInfo..ctor()' does not exist in the implementation but it does exist in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.DeclaredConstructors' is non-virtual in the implementation but is virtual in the contract.
@@ -39,6 +48,13 @@ CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.GetDeclaredNeste
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.GetDeclaredProperty(System.String)' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.ImplementedInterfaces.get()' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.IsAssignableFrom(System.Reflection.TypeInfo)' is non-virtual in the implementation but is virtual in the contract.
+TypeCannotChangeClassification : Type 'System.Runtime.CompilerServices.ConfiguredTaskAwaitable' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypeCannotChangeClassification : Type 'System.Runtime.CompilerServices.ConfiguredTaskAwaitable.ConfiguredTaskAwaiter' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypeCannotChangeClassification : Type 'System.Runtime.CompilerServices.TaskAwaiter' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypeCannotChangeClassification : Type 'System.Runtime.CompilerServices.TaskAwaiter<TResult>' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypeCannotChangeClassification : Type 'System.Runtime.CompilerServices.YieldAwaitable.YieldAwaiter' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypeCannotChangeClassification : Type 'System.Runtime.Serialization.StreamingContext' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypeCannotChangeClassification : Type 'System.Security.Cryptography.HashAlgorithmName' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Text.Encoding.GetByteCount(System.String, System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.Encoding.GetBytes(System.String, System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.StringBuilder.Append(System.Text.StringBuilder)' does not exist in the implementation but it does exist in the contract.
@@ -55,10 +71,12 @@ CannotRemoveBaseTypeOrInterface : Type 'System.Text.RegularExpressions.GroupColl
 MembersMustExist : Member 'System.Text.RegularExpressions.GroupCollection.CopyTo(System.Text.RegularExpressions.Group[], System.Int32)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Text.RegularExpressions.MatchCollection' does not implement interface 'System.Collections.Generic.ICollection<System.Text.RegularExpressions.Match>' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Text.RegularExpressions.MatchCollection.CopyTo(System.Text.RegularExpressions.Match[], System.Int32)' does not exist in the implementation but it does exist in the contract.
+TypeCannotChangeClassification : Type 'System.Threading.CancellationToken' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypeCannotChangeClassification : Type 'System.Threading.CancellationTokenRegistration' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Threading.CancellationTokenRegistration.Token.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.Interlocked.MemoryBarrierProcessWide()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.LazyInitializer.EnsureInitialized<T>(T, System.Object, System.Func<T>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.Thread.GetCurrentProcessorId()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.ThreadPool.QueueUserWorkItem<TState>(System.Action<TState>, TState, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.Tasks.TaskCanceledException..ctor(System.String, System.Exception, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
-Total Issues: 62
+Total Issues: 80
