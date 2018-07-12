@@ -28,6 +28,12 @@ namespace System.Runtime.InteropServices
         public static bool operator ==(System.Runtime.InteropServices.ArrayWithOffset a, System.Runtime.InteropServices.ArrayWithOffset b) { throw null; }
         public static bool operator !=(System.Runtime.InteropServices.ArrayWithOffset a, System.Runtime.InteropServices.ArrayWithOffset b) { throw null; }
     }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1029), Inherited = false)]
+    public sealed partial class AutomationProxyAttribute : System.Attribute
+    {
+        public AutomationProxyAttribute(bool val) { }
+        public bool Value { get { throw null; } }
+    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(1037), Inherited=false)]
     public sealed partial class BestFitMappingAttribute : System.Attribute
     {
@@ -35,6 +41,8 @@ namespace System.Runtime.InteropServices
         public BestFitMappingAttribute(bool BestFitMapping) { }
         public bool BestFitMapping { get { throw null; } }
     }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ObsoleteAttribute("BStrWrapper and support for marshalling to the VARIANT type may be unavailable in future releases.")]
     public sealed partial class BStrWrapper
     {
         public BStrWrapper(object value) { }
@@ -65,7 +73,11 @@ namespace System.Runtime.InteropServices
     }
     public enum ClassInterfaceType
     {
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("Support for IDispatch may be unavailable in future releases.")]
         AutoDispatch = 1,
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("Support for IDispatch may be unavailable in future releases.")]
         AutoDual = 2,
         None = 0,
     }
@@ -81,6 +93,8 @@ namespace System.Runtime.InteropServices
         public ComAliasNameAttribute(string alias) { }
         public string Value { get { throw null; } }
     }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ObsoleteAttribute("ComAwareEventInfo may be unavailable in future releases.")]
     public partial class ComAwareEventInfo : System.Reflection.EventInfo
     {
         public ComAwareEventInfo(System.Type type, string eventName) { }
@@ -118,12 +132,16 @@ namespace System.Runtime.InteropServices
         public System.Type Value { get { throw null; } }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited=false)]
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ObsoleteAttribute("ComEventInterfaceAttribute may be unavailable in future releases.")]
     public sealed partial class ComEventInterfaceAttribute : System.Attribute
     {
         public ComEventInterfaceAttribute(System.Type SourceInterface, System.Type EventProvider) { }
         public System.Type EventProvider { get { throw null; } }
         public System.Type SourceInterface { get { throw null; } }
     }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ObsoleteAttribute("ComEventsHelper may be unavailable in future releases.")]
     public static partial class ComEventsHelper
     {
         public static void Combine(object rcw, System.Guid iid, int dispid, System.Delegate d) { }
@@ -145,7 +163,11 @@ namespace System.Runtime.InteropServices
     }
     public enum ComInterfaceType
     {
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("Support for IDispatch may be unavailable in future releases.")]
         InterfaceIsDual = 0,
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("Support for IDispatch may be unavailable in future releases.")]
         InterfaceIsIDispatch = 2,
         InterfaceIsIInspectable = 3,
         InterfaceIsIUnknown = 1,
@@ -162,6 +184,8 @@ namespace System.Runtime.InteropServices
         public ComRegisterFunctionAttribute() { }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=true)]
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ObsoleteAttribute("ComSourceInterfacesAttribute may be unavailable in future releases.")]
     public sealed partial class ComSourceInterfacesAttribute : System.Attribute
     {
         public ComSourceInterfacesAttribute(string sourceInterfaces) { }
@@ -196,17 +220,21 @@ namespace System.Runtime.InteropServices
         protected void SetHandle(System.IntPtr handle) { }
         public void SetHandleAsInvalid() { }
     }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ObsoleteAttribute("CurrencyWrapper and support for marshalling to the VARIANT type may be unavailable in future releases.")]
     public sealed partial class CurrencyWrapper
     {
         public CurrencyWrapper(decimal obj) { }
         public CurrencyWrapper(object obj) { }
         public decimal WrappedObject { get { throw null; } }
     }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
     public enum CustomQueryInterfaceMode
     {
         Allow = 1,
         Ignore = 0,
     }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
     public enum CustomQueryInterfaceResult
     {
         Failed = 2,
@@ -231,6 +259,8 @@ namespace System.Runtime.InteropServices
         public DefaultParameterValueAttribute(object value) { }
         public object Value { get { throw null; } }
     }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ObsoleteAttribute("DispatchWrapper and support for marshalling to the VARIANT type may be unavailable in future releases.")]
     public sealed partial class DispatchWrapper
     {
         public DispatchWrapper(object obj) { }
@@ -267,6 +297,8 @@ namespace System.Runtime.InteropServices
         UseDllDirectoryForDependencies = 256,
         UserDirectories = 1024,
     }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ObsoleteAttribute("ErrorWrapper and support for marshalling to the VARIANT type may be unavailable in future releases.")]
     public sealed partial class ErrorWrapper
     {
         public ErrorWrapper(System.Exception e) { }
@@ -341,6 +373,8 @@ namespace System.Runtime.InteropServices
         public static explicit operator System.IntPtr (System.Runtime.InteropServices.HandleRef value) { throw null; }
         public static System.IntPtr ToIntPtr(System.Runtime.InteropServices.HandleRef value) { throw null; }
     }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ObsoleteAttribute("ICustomAdapter may be unavailable in future releases.")]
     public partial interface ICustomAdapter
     {
         object GetUnderlyingObject();
@@ -357,9 +391,16 @@ namespace System.Runtime.InteropServices
         System.IntPtr MarshalManagedToNative(object ManagedObj);
         object MarshalNativeToManaged(System.IntPtr pNativeData);
     }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
     public partial interface ICustomQueryInterface
     {
         System.Runtime.InteropServices.CustomQueryInterfaceResult GetInterface(ref System.Guid iid, out System.IntPtr ppv);
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited = false)]
+    public sealed partial class ImportedFromTypeLibAttribute : System.Attribute
+    {
+        public ImportedFromTypeLibAttribute(string tlbFile) { }
+        public string Value { get { throw null; } }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(2048), Inherited=false)]
     public sealed partial class InAttribute : System.Attribute
@@ -399,6 +440,13 @@ namespace System.Runtime.InteropServices
         public LCIDConversionAttribute(int lcid) { }
         public int Value { get { throw null; } }
     }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited = false)]
+    public sealed partial class ManagedToNativeComInteropStubAttribute : System.Attribute
+    {
+        public ManagedToNativeComInteropStubAttribute(System.Type classType, string methodName) { }
+        public System.Type ClassType { get { throw null; } }
+        public string MethodName { get { throw null; } }
+    }
     public static partial class Marshal
     {
         public static readonly int SystemDefaultCharSize;
@@ -427,38 +475,47 @@ namespace System.Runtime.InteropServices
         public static void Copy(System.IntPtr source, float[] destination, int startIndex, int length) { }
         public static void Copy(System.IntPtr[] source, int startIndex, System.IntPtr destination, int length) { }
         public static void Copy(float[] source, int startIndex, System.IntPtr destination, int length) { }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public static System.IntPtr CreateAggregatedObject(System.IntPtr pOuter, object o) { throw null; }
         public static System.IntPtr CreateAggregatedObject<T>(System.IntPtr pOuter, T o) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public static object CreateWrapperOfType(object o, System.Type t) { throw null; }
         public static TWrapper CreateWrapperOfType<T, TWrapper>(T o) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public static void DestroyStructure(System.IntPtr ptr, System.Type structuretype) { }
         public static void DestroyStructure<T>(System.IntPtr ptr) { }
         public static int FinalReleaseComObject(object o) { throw null; }
         public static void FreeBSTR(System.IntPtr ptr) { }
         public static void FreeCoTaskMem(System.IntPtr ptr) { }
         public static void FreeHGlobal(System.IntPtr hglobal) { }
-//INTEROP        public static System.Guid GenerateGuidForType(System.Type type) { throw null; }
-//INTEROP        public static string GenerateProgIdForType(System.Type type) { throw null; }
+        public static System.Guid GenerateGuidForType(System.Type type) { throw null; }
+        public static string GenerateProgIdForType(System.Type type) { throw null; }
 //INTEROP        public static object GetActiveObject(string progID) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public static System.IntPtr GetComInterfaceForObject(object o, System.Type T) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public static System.IntPtr GetComInterfaceForObject(object o, System.Type T, System.Runtime.InteropServices.CustomQueryInterfaceMode mode) { throw null; }
         public static System.IntPtr GetComInterfaceForObject<T, TInterface>(T o) { throw null; }
 //INTEROP        public static System.IntPtr GetComInterfaceForObjectInContext(object o, System.Type t) { throw null; }
-//INTEROP        public static object GetComObjectData(object obj, object key) { throw null; }
+        public static object GetComObjectData(object obj, object key) { throw null; }
 //INTEROP        public static int GetComSlotForMethodInfo(System.Reflection.MemberInfo m) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public static System.Delegate GetDelegateForFunctionPointer(System.IntPtr ptr, System.Type t) { throw null; }
         public static TDelegate GetDelegateForFunctionPointer<TDelegate>(System.IntPtr ptr) { throw null; }
 //INTEROP        public static int GetEndComSlot(System.Type t) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("GetExceptionCode() may be unavailable in future releases.")]
         public static int GetExceptionCode() { throw null; }
         public static System.Exception GetExceptionForHR(int errorCode) { throw null; }
         public static System.Exception GetExceptionForHR(int errorCode, System.IntPtr errorInfo) { throw null; }
 //INTEROP        public static System.IntPtr GetExceptionPointers() { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public static System.IntPtr GetFunctionPointerForDelegate(System.Delegate d) { throw null; }
         public static System.IntPtr GetFunctionPointerForDelegate<TDelegate>(TDelegate d) { throw null; }
-//INTEROP        public static System.IntPtr GetHINSTANCE(System.Reflection.Module m) { throw null; }
+        public static System.IntPtr GetHINSTANCE(System.Reflection.Module m) { throw null; }
         public static int GetHRForException(System.Exception e) { throw null; }
         public static int GetHRForLastWin32Error() { throw null; }
-//INTEROP        public static System.IntPtr GetIDispatchForObject(object o) { throw null; }
+        public static System.IntPtr GetIDispatchForObject(object o) { throw null; }
 //INTEROP        public static System.IntPtr GetIDispatchForObjectInContext(object o) { throw null; }
 //INTEROP        public static System.IntPtr GetITypeInfoForType(System.Type t) { throw null; }
         public static System.IntPtr GetIUnknownForObject(object o) { throw null; }
@@ -467,17 +524,29 @@ namespace System.Runtime.InteropServices
 //INTEROP        [System.ObsoleteAttribute("The GetManagedThunkForUnmanagedMethodPtr method has been deprecated and will be removed in a future release.", false)]
 //INTEROP        public static System.IntPtr GetManagedThunkForUnmanagedMethodPtr(System.IntPtr pfnMethodToWrap, System.IntPtr pbSignature, int cbSignature) { throw null; }
 //INTEROP        public static System.Reflection.MemberInfo GetMethodInfoForComSlot(System.Type t, int slot, ref System.Runtime.InteropServices.ComMemberType memberType) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("GetNativeVariantForObject(Object, IntPtr) may be unavailable in future releases.")]
         public static void GetNativeVariantForObject(object obj, System.IntPtr pDstNativeVariant) { }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("GetNativeVariantForObject<T>(T, IntPtr) may be unavailable in future releases.")]
         public static void GetNativeVariantForObject<T>(T obj, System.IntPtr pDstNativeVariant) { }
         public static object GetObjectForIUnknown(System.IntPtr pUnk) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("GetObjectForNativeVariant(IntPtr) may be unavailable in future releases.")]
         public static object GetObjectForNativeVariant(System.IntPtr pSrcNativeVariant) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("GetObjectForNativeVariant<T>(IntPtr) may be unavailable in future releases.")]
         public static T GetObjectForNativeVariant<T>(System.IntPtr pSrcNativeVariant) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("GetObjectsForNativeVariants(IntPtr, Int32) may be unavailable in future releases.")]
         public static object[] GetObjectsForNativeVariants(System.IntPtr aSrcNativeVariant, int cVars) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("GetObjectsForNativeVariants<T>(IntPtr, Int32) may be unavailable in future releases.")]
         public static T[] GetObjectsForNativeVariants<T>(System.IntPtr aSrcNativeVariant, int cVars) { throw null; }
         public static int GetStartComSlot(System.Type t) { throw null; }
 //INTEROP        [System.ObsoleteAttribute("The GetThreadFromFiberCookie method has been deprecated.  Use the hosting API to perform this operation.", false)]
 //INTEROP        public static System.Threading.Thread GetThreadFromFiberCookie(int cookie) { throw null; }
-//INTEROP        public static object GetTypedObjectForIUnknown(System.IntPtr pUnk, System.Type t) { throw null; }
+        public static object GetTypedObjectForIUnknown(System.IntPtr pUnk, System.Type t) { throw null; }
 //INTEROP        public static System.Type GetTypeForITypeInfo(System.IntPtr piTypeInfo) { throw null; }
         public static System.Type GetTypeFromCLSID(System.Guid clsid) { throw null; }
         public static string GetTypeInfoName(System.Runtime.InteropServices.ComTypes.ITypeInfo typeInfo) { throw null; }
@@ -500,6 +569,7 @@ namespace System.Runtime.InteropServices
         public static bool IsComObject(object o) { throw null; }
 //INTEROP        public static bool IsTypeVisibleFromCom(System.Type t) { throw null; }
 //INTEROP        public static int NumParamBytes(System.Reflection.MethodInfo m) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public static System.IntPtr OffsetOf(System.Type t, string fieldName) { throw null; }
         public static System.IntPtr OffsetOf<T>(string fieldName) { throw null; }
         public static void Prelink(System.Reflection.MethodInfo m) { }
@@ -511,25 +581,39 @@ namespace System.Runtime.InteropServices
         public static string PtrToStringBSTR(System.IntPtr ptr) { throw null; }
         public static string PtrToStringUni(System.IntPtr ptr) { throw null; }
         public static string PtrToStringUni(System.IntPtr ptr, int len) { throw null; }
+        public static string PtrToStringUTF8(System.IntPtr ptr) { throw null; }
+        public static string PtrToStringUTF8(System.IntPtr ptr, int byteLen) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public static void PtrToStructure(System.IntPtr ptr, object structure) { }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public static object PtrToStructure(System.IntPtr ptr, System.Type structureType) { throw null; }
         public static T PtrToStructure<T>(System.IntPtr ptr) { throw null; }
         public static void PtrToStructure<T>(System.IntPtr ptr, T structure) { }
         public static int QueryInterface(System.IntPtr pUnk, ref System.Guid iid, out System.IntPtr ppv) { ppv = default(System.IntPtr); throw null; }
         public static byte ReadByte(System.IntPtr ptr) { throw null; }
         public static byte ReadByte(System.IntPtr ptr, int ofs) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("ReadByte(Object, Int32) may be unavailable in future releases.")]
         public static byte ReadByte(object ptr, int ofs) { throw null; }
         public static short ReadInt16(System.IntPtr ptr) { throw null; }
         public static short ReadInt16(System.IntPtr ptr, int ofs) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("ReadInt16(Object, Int32) may be unavailable in future releases.")]
         public static short ReadInt16(object ptr, int ofs) { throw null; }
         public static int ReadInt32(System.IntPtr ptr) { throw null; }
         public static int ReadInt32(System.IntPtr ptr, int ofs) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("ReadInt32(Object, Int32) may be unavailable in future releases.")]
         public static int ReadInt32(object ptr, int ofs) { throw null; }
         public static long ReadInt64(System.IntPtr ptr) { throw null; }
         public static long ReadInt64(System.IntPtr ptr, int ofs) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("ReadInt64(Object, Int32) may be unavailable in future releases.")]
         public static long ReadInt64(object ptr, int ofs) { throw null; }
         public static System.IntPtr ReadIntPtr(System.IntPtr ptr) { throw null; }
         public static System.IntPtr ReadIntPtr(System.IntPtr ptr, int ofs) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("ReadIntPtr(Object, Int32) may be unavailable in future releases.")]
         public static System.IntPtr ReadIntPtr(object ptr, int ofs) { throw null; }
         public static System.IntPtr ReAllocCoTaskMem(System.IntPtr pv, int cb) { throw null; }
         public static System.IntPtr ReAllocHGlobal(System.IntPtr pv, System.IntPtr cb) { throw null; }
@@ -537,13 +621,20 @@ namespace System.Runtime.InteropServices
         public static int ReleaseComObject(object o) { throw null; }
 //INTEROP        [System.ObsoleteAttribute("This API did not perform any operation and will be removed in future versions of the CLR.", false)]
 //INTEROP        public static void ReleaseThreadCache() { }
+        [System.CLSCompliantAttribute(false)]
         public static System.IntPtr SecureStringToBSTR(System.Security.SecureString s) { throw null; }
+        [System.CLSCompliantAttribute(false)]
         public static System.IntPtr SecureStringToCoTaskMemAnsi(System.Security.SecureString s) { throw null; }
+        [System.CLSCompliantAttribute(false)]
         public static System.IntPtr SecureStringToCoTaskMemUnicode(System.Security.SecureString s) { throw null; }
+        [System.CLSCompliantAttribute(false)]
         public static System.IntPtr SecureStringToGlobalAllocAnsi(System.Security.SecureString s) { throw null; }
+        [System.CLSCompliantAttribute(false)]
         public static System.IntPtr SecureStringToGlobalAllocUnicode(System.Security.SecureString s) { throw null; }
-//INTEROP        public static bool SetComObjectData(object obj, object key, object data) { throw null; }
+        public static bool SetComObjectData(object obj, object key, object data) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public static int SizeOf(object structure) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public static int SizeOf(System.Type t) { throw null; }
         public static int SizeOf<T>() { throw null; }
         public static int SizeOf<T>(T structure) { throw null; }
@@ -551,36 +642,52 @@ namespace System.Runtime.InteropServices
         public static System.IntPtr StringToCoTaskMemAnsi(string s) { throw null; }
         public static System.IntPtr StringToCoTaskMemAuto(string s) { throw null; }
         public static System.IntPtr StringToCoTaskMemUni(string s) { throw null; }
+        public static System.IntPtr StringToCoTaskMemUTF8(string s) { throw null; }
         public static System.IntPtr StringToHGlobalAnsi(string s) { throw null; }
         public static System.IntPtr StringToHGlobalAuto(string s) { throw null; }
         public static System.IntPtr StringToHGlobalUni(string s) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public static void StructureToPtr(object structure, System.IntPtr ptr, bool fDeleteOld) { }
         public static void StructureToPtr<T>(T structure, System.IntPtr ptr, bool fDeleteOld) { }
         public static void ThrowExceptionForHR(int errorCode) { }
         public static void ThrowExceptionForHR(int errorCode, System.IntPtr errorInfo) { }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public static System.IntPtr UnsafeAddrOfPinnedArrayElement(System.Array arr, int index) { throw null; }
         public static System.IntPtr UnsafeAddrOfPinnedArrayElement<T>(T[] arr, int index) { throw null; }
         public static void WriteByte(System.IntPtr ptr, byte val) { }
         public static void WriteByte(System.IntPtr ptr, int ofs, byte val) { }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("WriteByte(Object, Int32, Byte) may be unavailable in future releases.")]
         public static void WriteByte(object ptr, int ofs, byte val) { throw null; }
         public static void WriteInt16(System.IntPtr ptr, char val) { }
         public static void WriteInt16(System.IntPtr ptr, short val) { }
         public static void WriteInt16(System.IntPtr ptr, int ofs, char val) { }
         public static void WriteInt16(System.IntPtr ptr, int ofs, short val) { }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("WriteInt16(Object, Int32, Char) may be unavailable in future releases.")]
         public static void WriteInt16(object ptr, int ofs, char val) { ptr = default(object); }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("WriteInt16(Object, Int32, Int16) may be unavailable in future releases.")]
         public static void WriteInt16(object ptr, int ofs, short val) { throw null; }
         public static void WriteInt32(System.IntPtr ptr, int val) { }
         public static void WriteInt32(System.IntPtr ptr, int ofs, int val) { }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("WriteInt32(Object, Int32, Int32) may be unavailable in future releases.")]
         public static void WriteInt32(object ptr, int ofs, int val) { throw null; }
         public static void WriteInt64(System.IntPtr ptr, int ofs, long val) { }
         public static void WriteInt64(System.IntPtr ptr, long val) { }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("WriteInt64(Object, Int32, Int64) may be unavailable in future releases.")]
         public static void WriteInt64(object ptr, int ofs, long val) { throw null; }
         public static void WriteIntPtr(System.IntPtr ptr, int ofs, System.IntPtr val) { }
         public static void WriteIntPtr(System.IntPtr ptr, System.IntPtr val) { }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("WriteIntPtr(Object, Int32, IntPtr) may be unavailable in future releases.")]
         public static void WriteIntPtr(object ptr, int ofs, System.IntPtr val) { ptr = default(object); }
         public static void ZeroFreeBSTR(System.IntPtr s) { }
         public static void ZeroFreeCoTaskMemAnsi(System.IntPtr s) { }
         public static void ZeroFreeCoTaskMemUnicode(System.IntPtr s) { }
+        public static void ZeroFreeCoTaskMemUTF8(System.IntPtr s) { }
         public static void ZeroFreeGlobalAllocAnsi(System.IntPtr s) { }
         public static void ZeroFreeGlobalAllocUnicode(System.IntPtr s) { }
     }
@@ -746,6 +853,94 @@ namespace System.Runtime.InteropServices
         public string Identifier { get { throw null; } }
         public string Scope { get { throw null; } }
     }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited = false)]
+    public sealed partial class TypeLibFuncAttribute : System.Attribute
+    {
+        public TypeLibFuncAttribute(short flags) { }
+        public TypeLibFuncAttribute(System.Runtime.InteropServices.TypeLibFuncFlags flags) { }
+        public System.Runtime.InteropServices.TypeLibFuncFlags Value { get { throw null; } }
+    }
+    [System.FlagsAttribute]
+    public enum TypeLibFuncFlags
+    {
+        FBindable = 4,
+        FDefaultBind = 32,
+        FDefaultCollelem = 256,
+        FDisplayBind = 16,
+        FHidden = 64,
+        FImmediateBind = 4096,
+        FNonBrowsable = 1024,
+        FReplaceable = 2048,
+        FRequestEdit = 8,
+        FRestricted = 1,
+        FSource = 2,
+        FUiDefault = 512,
+        FUsesGetLastError = 128,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited = false)]
+    public sealed partial class TypeLibImportClassAttribute : System.Attribute
+    {
+        public TypeLibImportClassAttribute(System.Type importClass) { }
+        public string Value { get { throw null; } }
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1052), Inherited = false)]
+    public sealed partial class TypeLibTypeAttribute : System.Attribute
+    {
+        public TypeLibTypeAttribute(short flags) { }
+        public TypeLibTypeAttribute(System.Runtime.InteropServices.TypeLibTypeFlags flags) { }
+        public System.Runtime.InteropServices.TypeLibTypeFlags Value { get { throw null; } }
+    }
+    [System.FlagsAttribute]
+    public enum TypeLibTypeFlags
+    {
+        FAggregatable = 1024,
+        FAppObject = 1,
+        FCanCreate = 2,
+        FControl = 32,
+        FDispatchable = 4096,
+        FDual = 64,
+        FHidden = 16,
+        FLicensed = 4,
+        FNonExtensible = 128,
+        FOleAutomation = 256,
+        FPreDeclId = 8,
+        FReplaceable = 2048,
+        FRestricted = 512,
+        FReverseBind = 8192,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(256), Inherited = false)]
+    public sealed partial class TypeLibVarAttribute : System.Attribute
+    {
+        public TypeLibVarAttribute(short flags) { }
+        public TypeLibVarAttribute(System.Runtime.InteropServices.TypeLibVarFlags flags) { }
+        public System.Runtime.InteropServices.TypeLibVarFlags Value { get { throw null; } }
+    }
+    [System.FlagsAttribute]
+    public enum TypeLibVarFlags
+    {
+        FBindable = 4,
+        FDefaultBind = 32,
+        FDefaultCollelem = 256,
+        FDisplayBind = 16,
+        FHidden = 64,
+        FImmediateBind = 4096,
+        FNonBrowsable = 1024,
+        FReadOnly = 1,
+        FReplaceable = 2048,
+        FRequestEdit = 8,
+        FRestricted = 128,
+        FSource = 2,
+        FUiDefault = 512,
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited = false)]
+    public sealed partial class TypeLibVersionAttribute : System.Attribute
+    {
+        public TypeLibVersionAttribute(int major, int minor) { }
+        public int MajorVersion { get { throw null; } }
+        public int MinorVersion { get { throw null; } }
+    }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ObsoleteAttribute("UnknownWrapper and support for marshalling to the VARIANT type may be unavailable in future releases.")]
     public sealed partial class UnknownWrapper
     {
         public UnknownWrapper(object obj) { }
@@ -763,12 +958,18 @@ namespace System.Runtime.InteropServices
     }
     public enum UnmanagedType
     {
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("Marshalling as AnsiBStr may be unavailable in future releases.")]
         AnsiBStr = 35,
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("Marshalling arbitrary types may be unavailable in future releases. Please specify the type you wish to marshal as.")]
         AsAny = 40,
         Bool = 2,
         BStr = 19,
         ByValArray = 30,
         ByValTStr = 23,
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("Marshalling as Currency may be unavailable in future releases.")]
         Currency = 15,
         CustomMarshaler = 44,
         Error = 45,
@@ -778,6 +979,8 @@ namespace System.Runtime.InteropServices
         I2 = 5,
         I4 = 7,
         I8 = 9,
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("Marshalling as IDispatch may be unavailable in future releases.")]
         IDispatch = 26,
         IInspectable = 46,
         Interface = 28,
@@ -786,21 +989,34 @@ namespace System.Runtime.InteropServices
         LPStr = 20,
         LPStruct = 43,
         LPTStr = 22,
+        LPUTF8Str = 48,
         LPWStr = 21,
         R4 = 11,
         R8 = 12,
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("Marshalling as SafeArray may be unavailable in future releases.")]
         SafeArray = 29,
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("Applying UnmanagedType.Struct is unnecessary when marshalling a struct. Support for UnmanagedType.Struct when marshalling a reference type may be unavailable in future releases.")]
         Struct = 27,
         SysInt = 31,
         SysUInt = 32,
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("Marshalling as TBstr may be unavailable in future releases.")]
         TBStr = 36,
         U1 = 4,
         U2 = 6,
         U4 = 8,
         U8 = 10,
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("Marshalling as VariantBool may be unavailable in future releases.")]
         VariantBool = 37,
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("Marshalling as VBByRefString may be unavailable in future releases.")]
         VBByRefStr = 34,
     }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ObsoleteAttribute("Marshalling VARIANTs may be unavailable in future releases.")]
     public enum VarEnum
     {
         VT_ARRAY = 8192,
@@ -848,6 +1064,8 @@ namespace System.Runtime.InteropServices
         VT_VECTOR = 4096,
         VT_VOID = 24,
     }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ObsoleteAttribute("VariantWrapper and support for marshalling to the VARIANT type may be unavailable in future releases.")]
     public sealed partial class VariantWrapper
     {
         public VariantWrapper(object obj) { }
