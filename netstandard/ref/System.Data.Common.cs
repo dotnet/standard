@@ -724,6 +724,19 @@ namespace System.Data.Common
         protected abstract void SetParameter(int index, System.Data.Common.DbParameter value);
         protected abstract void SetParameter(string parameterName, System.Data.Common.DbParameter value);
     }
+    public static partial class DbProviderFactories
+    {
+        public static System.Data.Common.DbProviderFactory GetFactory(System.Data.Common.DbConnection connection) { throw null; }
+        public static System.Data.Common.DbProviderFactory GetFactory(System.Data.DataRow providerRow) { throw null; }
+        public static System.Data.Common.DbProviderFactory GetFactory(string providerInvariantName) { throw null; }
+        public static System.Data.DataTable GetFactoryClasses() { throw null; }
+        public static System.Collections.Generic.IEnumerable<string> GetProviderInvariantNames() { throw null; }
+        public static void RegisterFactory(string providerInvariantName, System.Data.Common.DbProviderFactory factory) { }
+        public static void RegisterFactory(string providerInvariantName, string factoryTypeAssemblyQualifiedName) { }
+        public static void RegisterFactory(string providerInvariantName, System.Type providerFactoryClass) { }
+        public static bool TryGetFactory(string providerInvariantName, out System.Data.Common.DbProviderFactory factory) { factory = default(System.Data.Common.DbProviderFactory); throw null; }
+        public static bool UnregisterFactory(string providerInvariantName) { throw null; }
+    }
     public abstract partial class DbProviderFactory
     {
         protected DbProviderFactory() { }
