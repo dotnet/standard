@@ -51,12 +51,13 @@ namespace System.Diagnostics.Tracing
         public bool EnableEvent(int eventId) { throw null; }
     }
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-    public class EventCounter
+    public partial class EventCounter : System.IDisposable
     {
         public EventCounter(string name, System.Diagnostics.Tracing.EventSource eventSource) { }
+        public void Dispose() { }
         public void WriteMetric(float value) { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited=false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited = false)]
     public partial class EventDataAttribute : System.Attribute
     {
         public EventDataAttribute() { }
@@ -115,6 +116,8 @@ namespace System.Diagnostics.Tracing
     public abstract partial class EventListener : System.IDisposable
     {
         protected EventListener() { }
+        public event System.EventHandler<System.Diagnostics.Tracing.EventSourceCreatedEventArgs> EventSourceCreated { add { } remove { } }
+        public event System.EventHandler<System.Diagnostics.Tracing.EventWrittenEventArgs> EventWritten { add { } remove { } }
         public void DisableEvents(System.Diagnostics.Tracing.EventSource eventSource) { }
         public virtual void Dispose() { }
         public void EnableEvents(System.Diagnostics.Tracing.EventSource eventSource, System.Diagnostics.Tracing.EventLevel level) { }
@@ -122,7 +125,7 @@ namespace System.Diagnostics.Tracing
         public void EnableEvents(System.Diagnostics.Tracing.EventSource eventSource, System.Diagnostics.Tracing.EventLevel level, System.Diagnostics.Tracing.EventKeywords matchAnyKeyword, System.Collections.Generic.IDictionary<string, string> arguments) { }
         protected static int EventSourceIndex(System.Diagnostics.Tracing.EventSource eventSource) { throw null; }
         protected internal virtual void OnEventSourceCreated(System.Diagnostics.Tracing.EventSource eventSource) { }
-        protected internal abstract void OnEventWritten(System.Diagnostics.Tracing.EventWrittenEventArgs eventData);
+        protected internal virtual void OnEventWritten(System.Diagnostics.Tracing.EventWrittenEventArgs eventData) { }
     }
     [System.FlagsAttribute]
     public enum EventManifestOptions
@@ -223,6 +226,11 @@ namespace System.Diagnostics.Tracing
         public string Guid { get { throw null; } set { } }
         public string LocalizationResources { get { throw null; } set { } }
         public string Name { get { throw null; } set { } }
+    }
+    public partial class EventSourceCreatedEventArgs : System.EventArgs
+    {
+        public EventSourceCreatedEventArgs() { }
+        public System.Diagnostics.Tracing.EventSource EventSource { get { throw null; } }
     }
     public partial class EventSourceException : System.Exception
     {

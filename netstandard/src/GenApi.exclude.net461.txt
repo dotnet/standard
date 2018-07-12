@@ -28,3 +28,4 @@ T:System.Collections.Generic.KeyValuePair
 T:System.Runtime.CompilerServices.RuntimeFeature
 T:System.Runtime.CompilerServices.IsReadOnlyAttribute
 T:System.Runtime.CompilerServices.IsByRefLikeAttribute
+T:System.Diagnostics.Tracing.EventSourceCreatedEventArgs
