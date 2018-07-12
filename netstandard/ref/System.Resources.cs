@@ -17,6 +17,7 @@ namespace System.Resources
         void Close();
         void Generate();
     }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
     public partial class MissingManifestResourceException : System.SystemException
     {
         public MissingManifestResourceException() { }
@@ -34,6 +35,7 @@ namespace System.Resources
         public string CultureName { get { throw null; } }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(1), AllowMultiple=false)]
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
     public sealed partial class NeutralResourcesLanguageAttribute : System.Attribute
     {
         public NeutralResourcesLanguageAttribute(string cultureName) { }
@@ -41,6 +43,7 @@ namespace System.Resources
         public string CultureName { get { throw null; } }
         public System.Resources.UltimateResourceFallbackLocation Location { get { throw null; } }
     }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
     public partial class ResourceManager
     {
         public static readonly int HeaderVersionNumber;
@@ -113,6 +116,7 @@ namespace System.Resources
         public void Generate() { }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(1), AllowMultiple=false)]
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
     public sealed partial class SatelliteContractVersionAttribute : System.Attribute
     {
         public SatelliteContractVersionAttribute(string version) { }
