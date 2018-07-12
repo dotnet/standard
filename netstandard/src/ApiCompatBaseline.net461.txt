@@ -138,6 +138,23 @@ MembersMustExist : Member 'System.Security.Cryptography.ECDsa.ImportParameters(S
 TypesMustExist : Type 'System.Security.Cryptography.ECParameters' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Security.Cryptography.ECPoint' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Security.Cryptography.IncrementalHash' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.Encoding.GetByteCount(System.String, System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.Encoding.GetBytes(System.String, System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.StringBuilder.Append(System.Text.StringBuilder)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.StringBuilder.Append(System.Text.StringBuilder, System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.StringBuilder.AppendJoin(System.Char, System.Object[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.StringBuilder.AppendJoin(System.Char, System.String[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.StringBuilder.AppendJoin(System.String, System.Object[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.StringBuilder.AppendJoin(System.String, System.String[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.StringBuilder.AppendJoin<T>(System.Char, System.Collections.Generic.IEnumerable<T>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.StringBuilder.AppendJoin<T>(System.String, System.Collections.Generic.IEnumerable<T>)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Text.RegularExpressions.CaptureCollection' does not implement interface 'System.Collections.Generic.ICollection<System.Text.RegularExpressions.Capture>' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Text.RegularExpressions.CaptureCollection.CopyTo(System.Text.RegularExpressions.Capture[], System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.RegularExpressions.Group.Name.get()' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Text.RegularExpressions.GroupCollection' does not implement interface 'System.Collections.Generic.ICollection<System.Text.RegularExpressions.Group>' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Text.RegularExpressions.GroupCollection.CopyTo(System.Text.RegularExpressions.Group[], System.Int32)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Text.RegularExpressions.MatchCollection' does not implement interface 'System.Collections.Generic.ICollection<System.Text.RegularExpressions.Match>' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Text.RegularExpressions.MatchCollection.CopyTo(System.Text.RegularExpressions.Match[], System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.RegularExpressions.Regex.CapNames.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.RegularExpressions.Regex.CapNames.set(System.Collections.IDictionary)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.RegularExpressions.Regex.Caps.get()' does not exist in the implementation but it does exist in the contract.
@@ -152,4 +169,4 @@ TypesMustExist : Type 'System.Threading.ThreadPoolBoundHandle' does not exist in
 MembersMustExist : Member 'System.Threading.Tasks.Task.IsCompletedSuccessfully.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.Tasks.TaskCanceledException..ctor(System.String, System.Exception, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 153
+Total Issues: 170
