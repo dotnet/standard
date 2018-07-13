@@ -4240,7 +4240,7 @@ namespace System
         public Uri(string uriString, bool dontEscape) { }
         public Uri(string uriString, System.UriKind uriKind) { }
         public Uri(System.Uri baseUri, string relativeUri) { }
-        [System.ObsoleteAttribute("The constructor has been deprecated. Please new Uri(Uri, string). The dontEscape parameter is deprecated and is always false. http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("The constructor has been deprecated. Please use new Uri(Uri, string). The dontEscape parameter is deprecated and is always false. http://go.microsoft.com/fwlink/?linkid=14202")]
         public Uri(System.Uri baseUri, string relativeUri, bool dontEscape) { }
         public Uri(System.Uri baseUri, System.Uri relativeUri) { }
         public string AbsolutePath { get { throw null; } }
