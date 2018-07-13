@@ -44,6 +44,7 @@
     <RunApiCompat>true</RunApiCompat>
     <AssemblyKey>Open</AssemblyKey>
     <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
+    <LangVersion>latest</LangVersion> <!-- default to allowing all language features -->
   </PropertyGroup>
 
   <!--
