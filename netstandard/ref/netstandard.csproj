@@ -66,6 +66,7 @@
     <Compile Include="System.Numerics.cs" />
     <Compile Include="System.Reflection.cs" />
     <Compile Include="System.Reflection.Emit.cs" />
+    <Compile Include="System.Reflection.Metadata.cs" />
     <Compile Include="System.Resources.cs" />
     <Compile Include="System.Runtime.CompilerServices.cs" />
     <Compile Include="System.Runtime.ConstrainedExecution.cs" />
