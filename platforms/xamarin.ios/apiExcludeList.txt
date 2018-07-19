@@ -10,8 +10,11 @@ N:AddressBookUI
 N:AssetsLibrary
 N:AudioToolbox
 N:AudioUnit
+N:BusinessChat
 N:CallKit
+N:ClassKit
 N:CloudKit
+N:Compression
 N:Contacts
 N:ContactsUI
 N:CoreAnimation
