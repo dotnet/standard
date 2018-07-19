@@ -6,8 +6,10 @@ N:Accounts
 N:AppKit
 N:AudioToolbox
 N:AudioUnit
+N:BusinessChat
 N:CFNetwork
 N:CloudKit
+N:Compression
 N:Contacts
 N:ContactsUI
 N:CoreAnimation
