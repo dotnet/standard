@@ -6,6 +6,7 @@ N:AdSupport
 N:AudioToolbox
 N:AudioUnit
 N:CloudKit
+N:Compression
 N:CoreAnimation
 N:CoreBluetooth
 N:CoreData

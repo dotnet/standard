@@ -799,7 +799,6 @@ namespace System
         public static double ToDouble(byte[] value, int startIndex) { throw null; }
         public static short ToInt16(byte[] value, int startIndex) { throw null; }
         public static int ToInt32(byte[] value, int startIndex) { throw null; }
-        public static int ToInt32(System.ReadOnlySpan<byte> value) { throw null; }
         public static long ToInt64(byte[] value, int startIndex) { throw null; }
         public static float ToSingle(byte[] value, int startIndex) { throw null; }
         public static string ToString(byte[] value) { throw null; }
@@ -2702,7 +2701,6 @@ namespace System
         public string ToString(System.IFormatProvider provider) { throw null; }
         public string ToString(string format) { throw null; }
         public string ToString(string format, System.IFormatProvider provider) { throw null; }
-        public bool TryFormat(System.Span<char> destination, out System.Int32 charsWritten, System.ReadOnlySpan<char> format = default(System.ReadOnlySpan<char>), System.IFormatProvider provider = null) { throw null; }
         public static bool TryParse(string s, System.Globalization.NumberStyles style, System.IFormatProvider provider, out System.Int32 result) { throw null; }
         public static bool TryParse(string s, out System.Int32 result) { throw null; }
     }
@@ -2959,91 +2957,6 @@ namespace System
         protected MemberAccessException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public MemberAccessException(string message) { }
         public MemberAccessException(string message, System.Exception inner) { }
-    }
-    public static partial class MemoryExtensions
-    {
-        public static System.ReadOnlySpan<byte> AsBytes<T>(this System.ReadOnlySpan<T> source) where T : struct { throw null; }
-        public static System.Span<byte> AsBytes<T>(this System.Span<T> source) where T : struct { throw null; }
-        public static System.ReadOnlyMemory<char> AsReadOnlyMemory(this string text) { throw null; }
-        public static System.ReadOnlyMemory<char> AsReadOnlyMemory(this string text, int start) { throw null; }
-        public static System.ReadOnlyMemory<char> AsReadOnlyMemory(this string text, int start, int length) { throw null; }
-        public static System.ReadOnlyMemory<T> AsReadOnlyMemory<T>(this System.Memory<T> memory) { throw null; }
-        public static System.ReadOnlySpan<char> AsReadOnlySpan(this string text) { throw null; }
-        public static System.ReadOnlySpan<char> AsReadOnlySpan(this string text, int start) { throw null; }
-        public static System.ReadOnlySpan<char> AsReadOnlySpan(this string text, int start, int length) { throw null; }
-        public static System.ReadOnlySpan<T> AsReadOnlySpan<T>(this System.ArraySegment<T> arraySegment) { throw null; }
-        public static System.ReadOnlySpan<T> AsReadOnlySpan<T>(this System.Span<T> span) { throw null; }
-        public static System.ReadOnlySpan<T> AsReadOnlySpan<T>(this T[] array) { throw null; }
-        public static System.Span<T> AsSpan<T>(this System.ArraySegment<T> arraySegment) { throw null; }
-        public static System.Span<T> AsSpan<T>(this T[] array) { throw null; }
-        public static int BinarySearch<T>(this System.ReadOnlySpan<T> span, System.IComparable<T> comparable) { throw null; }
-        public static int BinarySearch<T>(this System.Span<T> span, System.IComparable<T> comparable) { throw null; }
-        public static int BinarySearch<T, TComparer>(this System.ReadOnlySpan<T> span, T value, TComparer comparer) where TComparer : System.Collections.Generic.IComparer<T> { throw null; }
-        public static int BinarySearch<T, TComparable>(this System.ReadOnlySpan<T> span, TComparable comparable) where TComparable : System.IComparable<T> { throw null; }
-        public static int BinarySearch<T, TComparer>(this System.Span<T> span, T value, TComparer comparer) where TComparer : System.Collections.Generic.IComparer<T> { throw null; }
-        public static int BinarySearch<T, TComparable>(this System.Span<T> span, TComparable comparable) where TComparable : System.IComparable<T> { throw null; }
-        public static void CopyTo<T>(this T[] array, System.Memory<T> destination) { }
-        public static void CopyTo<T>(this T[] array, System.Span<T> destination) { }
-        public static bool EndsWith<T>(this System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> value) where T : System.IEquatable<T> { throw null; }
-        public static bool EndsWith<T>(this System.Span<T> span, System.ReadOnlySpan<T> value) where T : System.IEquatable<T> { throw null; }
-        public static int IndexOfAny<T>(this System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> values) where T : System.IEquatable<T> { throw null; }
-        public static int IndexOfAny<T>(this System.ReadOnlySpan<T> span, T value0, T value1) where T : System.IEquatable<T> { throw null; }
-        public static int IndexOfAny<T>(this System.ReadOnlySpan<T> span, T value0, T value1, T value2) where T : System.IEquatable<T> { throw null; }
-        public static int IndexOfAny<T>(this System.Span<T> span, System.ReadOnlySpan<T> values) where T : System.IEquatable<T> { throw null; }
-        public static int IndexOfAny<T>(this System.Span<T> span, T value0, T value1) where T : System.IEquatable<T> { throw null; }
-        public static int IndexOfAny<T>(this System.Span<T> span, T value0, T value1, T value2) where T : System.IEquatable<T> { throw null; }
-        public static int IndexOf<T>(this System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> value) where T : System.IEquatable<T> { throw null; }
-        public static int IndexOf<T>(this System.ReadOnlySpan<T> span, T value) where T : System.IEquatable<T> { throw null; }
-        public static int IndexOf<T>(this System.Span<T> span, System.ReadOnlySpan<T> value) where T : System.IEquatable<T> { throw null; }
-        public static int IndexOf<T>(this System.Span<T> span, T value) where T : System.IEquatable<T> { throw null; }
-        public static int LastIndexOfAny<T>(this System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> values) where T : System.IEquatable<T> { throw null; }
-        public static int LastIndexOfAny<T>(this System.ReadOnlySpan<T> span, T value0, T value1) where T : System.IEquatable<T> { throw null; }
-        public static int LastIndexOfAny<T>(this System.ReadOnlySpan<T> span, T value0, T value1, T value2) where T : System.IEquatable<T> { throw null; }
-        public static int LastIndexOfAny<T>(this System.Span<T> span, System.ReadOnlySpan<T> values) where T : System.IEquatable<T> { throw null; }
-        public static int LastIndexOfAny<T>(this System.Span<T> span, T value0, T value1) where T : System.IEquatable<T> { throw null; }
-        public static int LastIndexOfAny<T>(this System.Span<T> span, T value0, T value1, T value2) where T : System.IEquatable<T> { throw null; }
-        public static int LastIndexOf<T>(this System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> value) where T : System.IEquatable<T> { throw null; }
-        public static int LastIndexOf<T>(this System.ReadOnlySpan<T> span, T value) where T : System.IEquatable<T> { throw null; }
-        public static int LastIndexOf<T>(this System.Span<T> span, System.ReadOnlySpan<T> value) where T : System.IEquatable<T> { throw null; }
-        public static int LastIndexOf<T>(this System.Span<T> span, T value) where T : System.IEquatable<T> { throw null; }
-        public static System.ReadOnlySpan<TTo> NonPortableCast<TFrom, TTo>(this System.ReadOnlySpan<TFrom> source) where TFrom : struct where TTo : struct { throw null; }
-        public static System.Span<TTo> NonPortableCast<TFrom, TTo>(this System.Span<TFrom> source) where TFrom : struct where TTo : struct { throw null; }
-        public static bool Overlaps<T>(this System.ReadOnlySpan<T> first, System.ReadOnlySpan<T> second) { throw null; }
-        public static bool Overlaps<T>(this System.ReadOnlySpan<T> first, System.ReadOnlySpan<T> second, out int elementOffset) { throw null; }
-        public static bool Overlaps<T>(this System.Span<T> first, System.ReadOnlySpan<T> second) { throw null; }
-        public static bool Overlaps<T>(this System.Span<T> first, System.ReadOnlySpan<T> second, out int elementOffset) { throw null; }
-        public static void Reverse<T>(this System.Span<T> span) { }
-        public static int SequenceCompareTo<T>(this System.ReadOnlySpan<T> first, System.ReadOnlySpan<T> second) where T : System.IComparable<T> { throw null; }
-        public static int SequenceCompareTo<T>(this System.Span<T> first, System.ReadOnlySpan<T> second) where T : System.IComparable<T> { throw null; }
-        public static bool SequenceEqual<T>(this System.ReadOnlySpan<T> first, System.ReadOnlySpan<T> second) where T : System.IEquatable<T> { throw null; }
-        public static bool SequenceEqual<T>(this System.Span<T> first, System.ReadOnlySpan<T> second) where T : System.IEquatable<T> { throw null; }
-        public static bool StartsWith<T>(this System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> value) where T : System.IEquatable<T> { throw null; }
-        public static bool StartsWith<T>(this System.Span<T> span, System.ReadOnlySpan<T> value) where T : System.IEquatable<T> { throw null; }
-        public static bool TryGetString(this System.ReadOnlyMemory<char> readOnlyMemory, out string text, out int start, out int length) { throw null; }
-    }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public readonly partial struct Memory<T>
-    {
-        private readonly object _dummy;
-        public Memory(T[] array) { throw null; }
-        public Memory(T[] array, int start, int length) { throw null; }
-        public static System.Memory<T> Empty { get { throw null; } }
-        public bool IsEmpty { get { throw null; } }
-        public int Length { get { throw null; } }
-        public System.Span<T> Span { get { throw null; } }
-        public void CopyTo(System.Memory<T> destination) { }
-        public bool Equals(System.Memory<T> other) { throw null; }
-        public override bool Equals(object obj) { throw null; }
-        public override int GetHashCode() { throw null; }
-        public static implicit operator System.Memory<T> (System.ArraySegment<T> arraySegment) { throw null; }
-        public static implicit operator System.ReadOnlyMemory<T> (System.Memory<T> memory) { throw null; }
-        public static implicit operator System.Memory<T> (T[] array) { throw null; }
-        public System.Buffers.MemoryHandle Retain(bool pin = false) { throw null; }
-        public System.Memory<T> Slice(int start) { throw null; }
-        public System.Memory<T> Slice(int start, int length) { throw null; }
-        public T[] ToArray() { throw null; }
-        public bool TryCopyTo(System.Memory<T> destination) { throw null; }
-        public bool TryGetArray(out System.ArraySegment<T> arraySegment) { throw null; }
     }
     public partial class MethodAccessException : System.MemberAccessException
     {
@@ -3311,63 +3224,6 @@ namespace System
         public RankException(string message) { }
         public RankException(string message, System.Exception innerException) { }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public readonly partial struct ReadOnlyMemory<T>
-    {
-        private readonly object _dummy;
-        public ReadOnlyMemory(T[] array) { throw null; }
-        public ReadOnlyMemory(T[] array, int start, int length) { throw null; }
-        public static System.ReadOnlyMemory<T> Empty { get { throw null; } }
-        public bool IsEmpty { get { throw null; } }
-        public int Length { get { throw null; } }
-        public System.ReadOnlySpan<T> Span { get { throw null; } }
-        public void CopyTo(System.Memory<T> destination) { }
-        public override bool Equals(object obj) { throw null; }
-        public bool Equals(System.ReadOnlyMemory<T> other) { throw null; }
-        public override int GetHashCode() { throw null; }
-        public static implicit operator System.ReadOnlyMemory<T> (System.ArraySegment<T> arraySegment) { throw null; }
-        public static implicit operator System.ReadOnlyMemory<T> (T[] array) { throw null; }
-        public System.Buffers.MemoryHandle Retain(bool pin = false) { throw null; }
-        public System.ReadOnlyMemory<T> Slice(int start) { throw null; }
-        public System.ReadOnlyMemory<T> Slice(int start, int length) { throw null; }
-        public T[] ToArray() { throw null; }
-        public bool TryCopyTo(System.Memory<T> destination) { throw null; }
-    }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public readonly ref partial struct ReadOnlySpan<T>
-    {
-        private readonly object _dummy;
-        [System.CLSCompliantAttribute(false)]
-        public unsafe ReadOnlySpan(void* pointer, int length) { throw null; }
-        public ReadOnlySpan(T[] array) { throw null; }
-        public ReadOnlySpan(T[] array, int start, int length) { throw null; }
-        public static System.ReadOnlySpan<T> Empty { get { throw null; } }
-        public bool IsEmpty { get { throw null; } }
-        public ref readonly T this[int index] { get { throw null; } }
-        public int Length { get { throw null; } }
-        public void CopyTo(System.Span<T> destination) { }
-        public static System.ReadOnlySpan<T> DangerousCreate(object obj, ref T objectData, int length) { throw null; }
-        [System.ObsoleteAttribute("Equals() on ReadOnlySpan will always throw an exception. Use == instead.")]
-        public override bool Equals(object obj) { throw null; }
-        public System.ReadOnlySpan<T>.Enumerator GetEnumerator() { throw null; }
-        [System.ObsoleteAttribute("GetHashCode() on ReadOnlySpan will always throw an exception.")]
-        public override int GetHashCode() { throw null; }
-        public static bool operator ==(System.ReadOnlySpan<T> left, System.ReadOnlySpan<T> right) { throw null; }
-        public static implicit operator System.ReadOnlySpan<T> (System.ArraySegment<T> arraySegment) { throw null; }
-        public static implicit operator System.ReadOnlySpan<T> (T[] array) { throw null; }
-        public static bool operator !=(System.ReadOnlySpan<T> left, System.ReadOnlySpan<T> right) { throw null; }
-        public System.ReadOnlySpan<T> Slice(int start) { throw null; }
-        public System.ReadOnlySpan<T> Slice(int start, int length) { throw null; }
-        public T[] ToArray() { throw null; }
-        public bool TryCopyTo(System.Span<T> destination) { throw null; }
-        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-        public ref partial struct Enumerator
-        {
-            private object _dummy;
-            public ref readonly T Current { get { throw null; } }
-            public bool MoveNext() { throw null; }
-        }
-    }
     public partial class ResolveEventArgs : System.EventArgs
     {
         public ResolveEventArgs(string name) { }
@@ -3525,44 +3381,6 @@ namespace System
         public static bool TryParse(string s, System.Globalization.NumberStyles style, System.IFormatProvider provider, out System.Single result) { throw null; }
         public static bool TryParse(string s, out System.Single result) { throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public readonly ref partial struct Span<T>
-    {
-        private readonly object _dummy;
-        [System.CLSCompliantAttribute(false)]
-        public unsafe Span(void* pointer, int length) { throw null; }
-        public Span(T[] array) { throw null; }
-        public Span(T[] array, int start, int length) { throw null; }
-        public static System.Span<T> Empty { get { throw null; } }
-        public bool IsEmpty { get { throw null; } }
-        public ref T this[int index] { get { throw null; } }
-        public int Length { get { throw null; } }
-        public void Clear() { }
-        public void CopyTo(System.Span<T> destination) { }
-        public static System.Span<T> DangerousCreate(object obj, ref T objectData, int length) { throw null; }
-        [System.ObsoleteAttribute("Equals() on Span will always throw an exception. Use == instead.")]
-        public override bool Equals(object obj) { throw null; }
-        public void Fill(T value) { }
-        public System.Span<T>.Enumerator GetEnumerator() { throw null; }
-        [System.ObsoleteAttribute("GetHashCode() on Span will always throw an exception.")]
-        public override int GetHashCode() { throw null; }
-        public static bool operator ==(System.Span<T> left, System.Span<T> right) { throw null; }
-        public static implicit operator System.Span<T> (System.ArraySegment<T> arraySegment) { throw null; }
-        public static implicit operator System.ReadOnlySpan<T> (System.Span<T> span) { throw null; }
-        public static implicit operator System.Span<T> (T[] array) { throw null; }
-        public static bool operator !=(System.Span<T> left, System.Span<T> right) { throw null; }
-        public System.Span<T> Slice(int start) { throw null; }
-        public System.Span<T> Slice(int start, int length) { throw null; }
-        public T[] ToArray() { throw null; }
-        public bool TryCopyTo(System.Span<T> destination) { throw null; }
-        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-        public ref partial struct Enumerator
-        {
-            private object _dummy;
-            public ref T Current { get { throw null; } }
-            public bool MoveNext() { throw null; }
-        }
-    }
     public sealed partial class StackOverflowException : System.SystemException
     {
         public StackOverflowException() { }
@@ -3584,7 +3402,6 @@ namespace System
         public String(char c, int count) { }
         public String(char[] value) { }
         public String(char[] value, int startIndex, int length) { }
-        public String(System.ReadOnlySpan<char> value) { }
         [System.CLSCompliantAttribute(false)]
         public unsafe String(sbyte* value) { }
         [System.CLSCompliantAttribute(false)]
@@ -3682,7 +3499,6 @@ namespace System
         public System.String Normalize() { throw null; }
         public System.String Normalize(System.Text.NormalizationForm normalizationForm) { throw null; }
         public static bool operator ==(System.String a, System.String b) { throw null; }
-        public static implicit operator System.ReadOnlySpan<char> (System.String value) { throw null; }
         public static bool operator !=(System.String a, System.String b) { throw null; }
         public System.String PadLeft(int totalWidth) { throw null; }
         public System.String PadLeft(int totalWidth, char paddingChar) { throw null; }
@@ -4935,136 +4751,6 @@ namespace System.Buffers
         Done = 0,
         InvalidData = 3,
         NeedMoreData = 2,
-    }
-    public abstract partial class OwnedMemory<T> : System.Buffers.IRetainable, System.IDisposable
-    {
-        protected OwnedMemory() { }
-        public abstract bool IsDisposed { get; }
-        protected abstract bool IsRetained { get; }
-        public abstract int Length { get; }
-        public System.Memory<T> Memory { get { throw null; } }
-        public abstract System.Span<T> Span { get; }
-        public void Dispose() { }
-        protected abstract void Dispose(bool disposing);
-        public abstract System.Buffers.MemoryHandle Pin(int offset = 0);
-        public abstract bool Release();
-        public abstract void Retain();
-        protected internal abstract bool TryGetArray(out System.ArraySegment<T> arraySegment);
-    }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public readonly partial struct StandardFormat : System.IEquatable<System.Buffers.StandardFormat>
-    {
-        private readonly int _dummy;
-        public const byte MaxPrecision = (byte)99;
-        public const byte NoPrecision = (byte)255;
-        public StandardFormat(char symbol, byte precision = (byte)255) { throw null; }
-        public bool HasPrecision { get { throw null; } }
-        public bool IsDefault { get { throw null; } }
-        public byte Precision { get { throw null; } }
-        public char Symbol { get { throw null; } }
-        public bool Equals(System.Buffers.StandardFormat other) { throw null; }
-        public override bool Equals(object obj) { throw null; }
-        public override int GetHashCode() { throw null; }
-        public static bool operator ==(System.Buffers.StandardFormat left, System.Buffers.StandardFormat right) { throw null; }
-        public static implicit operator System.Buffers.StandardFormat (char symbol) { throw null; }
-        public static bool operator !=(System.Buffers.StandardFormat left, System.Buffers.StandardFormat right) { throw null; }
-        public static System.Buffers.StandardFormat Parse(System.ReadOnlySpan<char> format) { throw null; }
-        public static System.Buffers.StandardFormat Parse(string format) { throw null; }
-        public override string ToString() { throw null; }
-    }
-}
-namespace System.Buffers.Binary
-{
-    public static partial class BinaryPrimitives
-    {
-        public static short ReadInt16BigEndian(System.ReadOnlySpan<byte> buffer) { throw null; }
-        public static short ReadInt16LittleEndian(System.ReadOnlySpan<byte> buffer) { throw null; }
-        public static int ReadInt32BigEndian(System.ReadOnlySpan<byte> buffer) { throw null; }
-        public static int ReadInt32LittleEndian(System.ReadOnlySpan<byte> buffer) { throw null; }
-        public static long ReadInt64BigEndian(System.ReadOnlySpan<byte> buffer) { throw null; }
-        public static long ReadInt64LittleEndian(System.ReadOnlySpan<byte> buffer) { throw null; }
-        public static T ReadMachineEndian<T>(System.ReadOnlySpan<byte> buffer) where T : struct { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static ushort ReadUInt16BigEndian(System.ReadOnlySpan<byte> buffer) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static ushort ReadUInt16LittleEndian(System.ReadOnlySpan<byte> buffer) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static uint ReadUInt32BigEndian(System.ReadOnlySpan<byte> buffer) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static uint ReadUInt32LittleEndian(System.ReadOnlySpan<byte> buffer) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static ulong ReadUInt64BigEndian(System.ReadOnlySpan<byte> buffer) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static ulong ReadUInt64LittleEndian(System.ReadOnlySpan<byte> buffer) { throw null; }
-        public static byte ReverseEndianness(byte value) { throw null; }
-        public static short ReverseEndianness(short value) { throw null; }
-        public static int ReverseEndianness(int value) { throw null; }
-        public static long ReverseEndianness(long value) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static sbyte ReverseEndianness(sbyte value) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static ushort ReverseEndianness(ushort value) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static uint ReverseEndianness(uint value) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static ulong ReverseEndianness(ulong value) { throw null; }
-        public static bool TryReadInt16BigEndian(System.ReadOnlySpan<byte> buffer, out short value) { throw null; }
-        public static bool TryReadInt16LittleEndian(System.ReadOnlySpan<byte> buffer, out short value) { throw null; }
-        public static bool TryReadInt32BigEndian(System.ReadOnlySpan<byte> buffer, out int value) { throw null; }
-        public static bool TryReadInt32LittleEndian(System.ReadOnlySpan<byte> buffer, out int value) { throw null; }
-        public static bool TryReadInt64BigEndian(System.ReadOnlySpan<byte> buffer, out long value) { throw null; }
-        public static bool TryReadInt64LittleEndian(System.ReadOnlySpan<byte> buffer, out long value) { throw null; }
-        public static bool TryReadMachineEndian<T>(System.ReadOnlySpan<byte> buffer, out T value) where T : struct { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static bool TryReadUInt16BigEndian(System.ReadOnlySpan<byte> buffer, out ushort value) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static bool TryReadUInt16LittleEndian(System.ReadOnlySpan<byte> buffer, out ushort value) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static bool TryReadUInt32BigEndian(System.ReadOnlySpan<byte> buffer, out uint value) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static bool TryReadUInt32LittleEndian(System.ReadOnlySpan<byte> buffer, out uint value) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static bool TryReadUInt64BigEndian(System.ReadOnlySpan<byte> buffer, out ulong value) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static bool TryReadUInt64LittleEndian(System.ReadOnlySpan<byte> buffer, out ulong value) { throw null; }
-        public static bool TryWriteInt16BigEndian(System.Span<byte> buffer, short value) { throw null; }
-        public static bool TryWriteInt16LittleEndian(System.Span<byte> buffer, short value) { throw null; }
-        public static bool TryWriteInt32BigEndian(System.Span<byte> buffer, int value) { throw null; }
-        public static bool TryWriteInt32LittleEndian(System.Span<byte> buffer, int value) { throw null; }
-        public static bool TryWriteInt64BigEndian(System.Span<byte> buffer, long value) { throw null; }
-        public static bool TryWriteInt64LittleEndian(System.Span<byte> buffer, long value) { throw null; }
-        public static bool TryWriteMachineEndian<T>(System.Span<byte> buffer, ref T value) where T : struct { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static bool TryWriteUInt16BigEndian(System.Span<byte> buffer, ushort value) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static bool TryWriteUInt16LittleEndian(System.Span<byte> buffer, ushort value) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static bool TryWriteUInt32BigEndian(System.Span<byte> buffer, uint value) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static bool TryWriteUInt32LittleEndian(System.Span<byte> buffer, uint value) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static bool TryWriteUInt64BigEndian(System.Span<byte> buffer, ulong value) { throw null; }
-        [System.CLSCompliantAttribute(false)]
-        public static bool TryWriteUInt64LittleEndian(System.Span<byte> buffer, ulong value) { throw null; }
-        public static void WriteInt16BigEndian(System.Span<byte> buffer, short value) { }
-        public static void WriteInt16LittleEndian(System.Span<byte> buffer, short value) { }
-        public static void WriteInt32BigEndian(System.Span<byte> buffer, int value) { }
-        public static void WriteInt32LittleEndian(System.Span<byte> buffer, int value) { }
-        public static void WriteInt64BigEndian(System.Span<byte> buffer, long value) { }
-        public static void WriteInt64LittleEndian(System.Span<byte> buffer, long value) { }
-        public static void WriteMachineEndian<T>(System.Span<byte> buffer, ref T value) where T : struct { }
-        [System.CLSCompliantAttribute(false)]
-        public static void WriteUInt16BigEndian(System.Span<byte> buffer, ushort value) { }
-        [System.CLSCompliantAttribute(false)]
-        public static void WriteUInt16LittleEndian(System.Span<byte> buffer, ushort value) { }
-        [System.CLSCompliantAttribute(false)]
-        public static void WriteUInt32BigEndian(System.Span<byte> buffer, uint value) { }
-        [System.CLSCompliantAttribute(false)]
-        public static void WriteUInt32LittleEndian(System.Span<byte> buffer, uint value) { }
-        [System.CLSCompliantAttribute(false)]
-        public static void WriteUInt64BigEndian(System.Span<byte> buffer, ulong value) { }
-        [System.CLSCompliantAttribute(false)]
-        public static void WriteUInt64LittleEndian(System.Span<byte> buffer, ulong value) { }
     }
 }
 namespace System.Collections
@@ -8320,19 +8006,15 @@ namespace System.IO
         [System.ObsoleteAttribute("Do not call or override this method.")]
         protected virtual void ObjectInvariant() { }
         public abstract int Read(byte[] buffer, int offset, int count);
-        public virtual int Read(System.Span<byte> destination) { throw null; }
         public System.Threading.Tasks.Task<int> ReadAsync(byte[] buffer, int offset, int count) { throw null; }
         public virtual System.Threading.Tasks.Task<int> ReadAsync(byte[] buffer, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public virtual System.Threading.Tasks.ValueTask<int> ReadAsync(System.Memory<byte> destination, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public virtual int ReadByte() { throw null; }
         public abstract long Seek(long offset, System.IO.SeekOrigin origin);
         public abstract void SetLength(long value);
         public static System.IO.Stream Synchronized(System.IO.Stream stream) { throw null; }
         public abstract void Write(byte[] buffer, int offset, int count);
-        public virtual void Write(System.ReadOnlySpan<byte> source) { }
         public System.Threading.Tasks.Task WriteAsync(byte[] buffer, int offset, int count) { throw null; }
         public virtual System.Threading.Tasks.Task WriteAsync(byte[] buffer, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public virtual System.Threading.Tasks.Task WriteAsync(System.ReadOnlyMemory<byte> source, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public virtual void WriteByte(byte value) { }
     }
     public partial class StreamReader : System.IO.TextReader
@@ -12170,13 +11852,6 @@ namespace System.Runtime.InteropServices
         protected MarshalDirectiveException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public MarshalDirectiveException(string message) { }
         public MarshalDirectiveException(string message, System.Exception inner) { }
-    }
-    public static partial class MemoryMarshal
-    {
-        public static System.Memory<T> AsMemory<T>(System.ReadOnlyMemory<T> readOnlyMemory) { throw null; }
-        public static ref T GetReference<T>(System.ReadOnlySpan<T> span) { throw null; }
-        public static ref T GetReference<T>(System.Span<T> span) { throw null; }
-        public static bool TryGetArray<T>(System.ReadOnlyMemory<T> readOnlyMemory, out System.ArraySegment<T> arraySegment) { throw null; }
     }
     public delegate System.IntPtr ObjectCreationDelegate(System.IntPtr aggregator);
     [System.AttributeUsageAttribute((System.AttributeTargets)(2048), Inherited=false)]
@@ -19684,7 +19359,6 @@ namespace System.Text
         public unsafe string GetString(byte* bytes, int byteCount) { throw null; }
         public virtual string GetString(byte[] bytes) { throw null; }
         public virtual string GetString(byte[] bytes, int index, int count) { throw null; }
-        public string GetString(System.ReadOnlySpan<byte> bytes) { throw null; }
         public bool IsAlwaysNormalized() { throw null; }
         public virtual bool IsAlwaysNormalized(System.Text.NormalizationForm form) { throw null; }
         public static void RegisterProvider(System.Text.EncodingProvider provider) { }
