@@ -49,8 +49,33 @@ So generally speaking, consider the following guidelines:
 
 * You should target the lowest version you get away with.
 * If you target .NET Standard 1.x, add .NET Standard 2.0 as [another target][multi-target].
-  This makes your library take advantage of the enhancements in the latest version
-  of different .NET platforms, such as .NET Core.
+
+The benefits of targeting .NET Standard 2.0 can be summarized as:
+
+* The dependency graph for .NET Standard 2.0 dependencies is greatly simplified.
+* Consumers of the package running on .NET Standard 2.0 compatible frameworks
+  will need to download less package dependencies as a result.
+
+Take JSON.NET dependencies, for example:
+
+    .NETStandard 1.0
+        Microsoft.CSharp (>= 4.3.0)
+        NETStandard.Library (>= 1.6.1)
+        System.ComponentModel.TypeConverter (>= 4.3.0)
+        System.Runtime.Serialization.Primitives (>= 4.3.0)
+
+    .NETStandard 1.3
+        Microsoft.CSharp (>= 4.3.0)
+        NETStandard.Library (>= 1.6.1)
+        System.ComponentModel.TypeConverter (>= 4.3.0)
+        System.Runtime.Serialization.Formatters (>= 4.3.0)
+        System.Runtime.Serialization.Primitives (>= 4.3.0)
+        System.Xml.XmlDocument (>= 4.3.0)
+
+    .NETStandard 2.0
+        No dependencies.
+
+Notice there are no dependencies in .NET Standard 2.0 version of this package.
 
 To inform your decision, you should consider the compatibility matrix and the
 APIs additions linked from the table above.
