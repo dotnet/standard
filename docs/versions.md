@@ -54,7 +54,7 @@ The benefits of targeting .NET Standard 2.0 can be summarized as:
 
 * The dependency graph for .NET Standard 2.0 dependencies is greatly simplified.
 * Consumers of the package running on .NET Standard 2.0 compatible frameworks
-  will need to download less package dependencies as a result.
+  will need to download fewer package dependencies as a result.
 
 Take JSON.NET dependencies, for example:
 
