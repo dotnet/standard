@@ -16,18 +16,18 @@ is that you can target, based on which .NET platforms you intend to run on. For
 instance, if you want to run on .NET Framework 4.5 and .NET Core 1.0, you can at
 most target .NET Standard 1.1.
 
-|<div align="right">.NET Standard</div>|    [1.0] | [1.1] |   [1.2] |  [1.3] |   [1.4] |   [1.5]         | [1.6]         |         [2.0] |
-|:-------------------------------------|---------:|------:|--------:|-------:|--------:|----------------:|--------------:|--------------:|
-|.NET Core                             |     1.0  |  1.0  |    1.0  |   1.0  |    1.0  |    1.0          |**1.0**        |        **2.0**|
-|.NET Framework                        |     4.5  |**4.5**|**4.5.1**| **4.6**|  4.6.1  |  4.6.1 ~~4.6.2~~|4.6.1 ~~vNext~~|      **4.6.1**|
-|Mono                                  |     4.6  |  4.6  |    4.6  |   4.6  |    4.6  |    4.6          |**4.6**        |        **5.4**|
-|Xamarin.iOS                           |    10.0  | 10.0  |   10.0  |  10.0  |   10.0  |   10.0          |**10.0**       |      **10.14**|
-|Xamarin.Mac                           |     3.0  |  3.0  |    3.0  |   3.0  |    3.0  |    3.0          |**3.0**        |        **3.8**|
-|Xamarin.Android                       |     7.0  |  7.0  |    7.0  |   7.0  |    7.0  |    7.0          |**7.0**        |        **8.0**|
-|Universal Windows Platform            |    10.0  | 10.0  |   10.0  |  10.0  | **10.0**| 10.0.16299      |10.0.16299     | **10.0.16299**|
-|Windows                               |     8.0  |**8.0**|  **8.1**|        |         |                 |               |               |
-|Windows Phone                         |     8.1  |  8.1  |  **8.1**|        |         |                 |               |               |
-|Windows Phone Silverlight             |   **8.0**|       |         |        |         |                 |               |               |
+|<div align="right">.NET Standard</div>|   [1.0] |   [1.1] |   [1.2] |   [1.3] |   [1.4] |        [1.5] |        [1.6] |        [2.0] |
+|:-------------------------------------|--------:|--------:|--------:|--------:|--------:|-------------:|-------------:|-------------:|
+|.NET Core                             |    1.0  |    1.0  |  1.0    |    1.0  |    1.0  |   1.0        | **1.0**      | **2.0**      |
+|.NET Framework                        |    4.5  |  **4.5**|**4.5.1**|  **4.6**|    4.6.1|   4.6.1      |   4.6.1      | **4.6.1**    |
+|Mono                                  |    4.6  |    4.6  |  4.6    |    4.6  |    4.6  |   4.6        | **4.6**      | **5.4**      |
+|Xamarin.iOS                           |   10.0  |   10.0  | 10.0    |   10.0  |   10.0  |  10.0        |**10.0**      |**10.14**     |
+|Xamarin.Mac                           |    3.0  |    3.0  |  3.0    |    3.0  |    3.0  |   3.0        | **3.0**      | **3.8**      |
+|Xamarin.Android                       |    7.0  |    7.0  |  7.0    |    7.0  |    7.0  |   7.0        | **7.0**      | **8.0**      |
+|Universal Windows Platform            |   10.0  |   10.0  | 10.0    |   10.0  | **10.0**|  10.0.16299  |  10.0.16299  |**10.0.16299**|
+|Windows                               |    8.0  |  **8.0**|**8.1**  |         |         |              |              |              |
+|Windows Phone                         |    8.1  |    8.1  |**8.1**  |         |         |              |              |              |
+|Windows Phone Silverlight             |  **8.0**|         |         |         |         |              |              |              |
 
 [1.0]: versions/netstandard1.0.md
 [1.1]: versions/netstandard1.1.md
@@ -38,10 +38,6 @@ most target .NET Standard 1.1.
 [1.6]: versions/netstandard1.6.md
 [2.0]: versions/netstandard2.0.md
 
-**NOTE**: The table above reflects the mappings that will happen when we release the
-.NET Standard 2.0 tooling. You can see that .NET Framework 4.6.1 mapping is being moved from
-1.4 to 2.0.
-
 ## How do I know which .NET Standard version I should target?
 
 When choosing a .NET Standard version, you should consider this trade-off:
@@ -49,9 +45,17 @@ When choosing a .NET Standard version, you should consider this trade-off:
 * The higher the version, the more APIs are available to you.
 * The lower the version, the more platforms implement it.
 
-So generally speaking, you should target the lowest version you get away with.
+So generally speaking, consider the following guidelines:
+
+* You should target the lowest version you get away with.
+* If you target .NET Standard 1.x, add .NET Standard 2.0 as [another target][multi-target].
+  This makes your library take advantage of the enhancements in the latest version
+  of different .NET platforms, such as .NET Core.
+
 To inform your decision, you should consider the compatibility matrix and the
 APIs additions linked from the table above.
+
+[multi-target]: https://docs.microsoft.com/en-us/dotnet/standard/frameworks#how-to-specify-target-frameworks
 
 ## Versioning rules
 
