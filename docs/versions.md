@@ -47,7 +47,7 @@ When choosing a .NET Standard version, you should consider this trade-off:
 
 So generally speaking, consider the following guidelines:
 
-* You should target the lowest version you get away with.
+* You should target the lowest version you can get away with.
 * If you target .NET Standard 1.x, add .NET Standard 2.0 as [another target][multi-target].
 
 The benefits of targeting .NET Standard 2.0 can be summarized as:
