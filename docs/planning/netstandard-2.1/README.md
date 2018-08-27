@@ -1,6 +1,6 @@
-# .NET Standard vNext
+# .NET Standard 2.1
 
-This document describes the plan for .NET Standard *vNext*, which includes the
+This document describes the plan for .NET Standard 2.1, which includes the
 definition of its API surface.
 
 ## Goals
@@ -61,16 +61,6 @@ inclusion.*
 
 ## Open issues
 
-* **Version number**. In contrast to .NET Standard 2.0, which was a massive
-  update in terms of APIs and the .NET Framework compatibility mode, this update
-  seems relatively incremental. Also, the payload is comparable to .NET Core
-  2.1, hence .NET Standard 2.1 seems to make the most sense.
-    - .NET Core and .NET Standard aren't the same thing. People will expect that
-      the next version is `3.0` as that's what we called .NET Core. However, the
-      API set is closer to `2.1` and argubly makes more sense within the context
-      of the standard.
-  - We could make it date-based
-  - Or we could go with levels (10-16, 20, etc.)
 * **Some features require runtime work**. We need to make sure implementers are
   aware what adding these means to their runtime:
     - `Span<T>`
