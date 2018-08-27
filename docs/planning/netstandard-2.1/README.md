@@ -1,6 +1,6 @@
-# .NET Standard vNext
+# .NET Standard 2.1
 
-This document describes the plan for .NET Standard *vNext*, which includes the
+This document describes the plan for .NET Standard 2.1, which includes the
 definition of its API surface.
 
 ## Goals
@@ -59,18 +59,72 @@ From that list we made the following decisions:
 platform added any APIs at the base layer that would be good candidates for
 inclusion.*
 
+### Why and how did we decide to go with 2.1?
+
+We actually considered a variety of version numbers for this release. The pros
+and cons are listed below.
+
+* **2.1**
+  - The size of the API surface feels incremental, thus it's the most natural
+    choice after 2.0.
+  - Pros
+    + Obvious when looked at purely from .NET Standard
+    + Underlines messaging that .NET Standard and .NET Core are versioned
+      independently
+  - Cons
+    + Can be confusing for customers who expect that they can consume it from
+      .NET Core 2.1 and 2.2.
+    + Doesn't leave room to inject another version
+* **2.3**
+  - Allows us to ship a smaller standard (e.g. one without spans) if we had to.
+    Avoids confusion why you cannot use .NET Standard 2.1 from .NET Core
+    2.1 and 2.2.
+  - Pros
+    + Leaves room for another .NET Standard that is smaller
+    + Unlikely to cause confusion why .NET Core 2.1 and 2.2 cannot consume this
+      version
+    + Might hit 2.10 earlier and two digit version numbers are prone to version
+      comparison bugs
+  - Cons
+    + Can be confusing to customers as there is no 2.1 or 2.2 when rendered in
+      tables or drop downs
+    + We're unlikely having to inject a version number  
+* **3.0**
+  - Aligns with .NET Core, which will be released at the same time as .NET
+    Standard vNext
+  - Pros
+    + Leaves room for another .NET Standard that is smaller
+    + Simpler messaging when we ship .NET Core and .NET Standard and aligns with
+      what we did for .NET Core 2.0.
+  - Cons
+    + A 3.0 isn't really warranted for .NET Standard
+    + Perpetuates the problem of aligning .NET Core & .NET Standard versions and
+      requires arbitrary skipping of version numbers
+* **`<year>.<month>`**
+  - Using the `<year>.<month>` of when the standard is ratified makes the
+    version numbers simple to agree on.
+  - Pros
+    + Obvious separation between .NET Standard and any implementation,
+      specifically .NET Core
+  - Cons
+    + Massive change from 1.x to 2.0.
+    + Both versions will forever show up in tooling and will look odd
+* **Levels, letters, or code names**
+  - We could be using a different versioning scheme such as Android style API
+    levels or letters/code names.
+  - Pros
+    + Obvious separation between .NET Standard and any implementation,
+      specifically .NET Core
+  - Cons
+    + Our tooling still needs version numbers in assemblies and TFMs, which will
+      likely force developers to understand both schemes.
+
+Ultimately, we decided to go with **2.1** because in the end all versioning
+schemes have pros & cons and thus will cause *some* confusion, so we went with
+the versioning scheme that felt most natural for .NET Standard.
+
 ## Open issues
 
-* **Version number**. In contrast to .NET Standard 2.0, which was a massive
-  update in terms of APIs and the .NET Framework compatibility mode, this update
-  seems relatively incremental. Also, the payload is comparable to .NET Core
-  2.1, hence .NET Standard 2.1 seems to make the most sense.
-    - .NET Core and .NET Standard aren't the same thing. People will expect that
-      the next version is `3.0` as that's what we called .NET Core. However, the
-      API set is closer to `2.1` and argubly makes more sense within the context
-      of the standard.
-  - We could make it date-based
-  - Or we could go with levels (10-16, 20, etc.)
 * **Some features require runtime work**. We need to make sure implementers are
   aware what adding these means to their runtime:
     - `Span<T>`
