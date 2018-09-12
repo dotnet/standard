@@ -13,7 +13,7 @@ def branch = GithubBranchName
         def newJob = job(newJobName) {
             steps {
                 if (osName == 'Windows_NT') {
-                    batchFile("call \"C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\Tools\\VSDevcmd.bat\" && build.cmd -c")
+                    batchFile("build.cmd -c")
                 }
                 else {
                     shell("sudo HOME=\$WORKSPACE/tempHome ./build.sh -c")
