@@ -131,7 +131,7 @@ For example:
 Suppose `foo.dll` depends on `somelibrary.dll` but that dependency is dynamic.  The developer of `foo.dll` can specify this dependency by placing a file foo.dll.dependencies next to foo.dll where the content of that file is a single line: `somelibrary.dll`.
 
 #### Related files
-MSBuild locates related files when it resovles assemblies: things like PDBs, XML docs, and pri files.  These are defined by AllowedReferenceRelatedFileExtensions and are added by ResolveAssemblyReferences and represented with OriginalItemSpec pointing to the item they were related to.  We'll include these related files by default when ever the file they are related to is included.
+MSBuild locates related files when it resolves assemblies: things like PDBs, XML docs, and pri files.  These are defined by AllowedReferenceRelatedFileExtensions and are added by ResolveAssemblyReferences and represented with OriginalItemSpec pointing to the item they were related to.  We'll include these related files by default when ever the file they are related to is included.
 
 ### Package relationships
 Packages are related to other packages by dependencies.  Files are related to packages if they are contained in a package.
