@@ -15,6 +15,9 @@
   <PropertyGroup> 
     <FeedTasksPackage>Microsoft.DotNet.Build.Tasks.Feed</FeedTasksPackage> 
     <FeedTasksPackageVersion>3.0.0-preview1-03224-03</FeedTasksPackageVersion> 
+
+    <BuildToolsPackage>microsoft.dotnet.buildtools</BuildToolsPackage>
+    <BuildToolsPackageVersion>3.0.0-preview1-03224-03</BuildToolsPackageVersion>
   </PropertyGroup> 
 
   <!-- Package dependency verification/auto-upgrade configuration. -->

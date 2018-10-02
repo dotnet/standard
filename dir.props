@@ -11,6 +11,7 @@
     <BinDir Condition="'$(BinDir)'==''">$(ProjectDir)bin/</BinDir>
     <ObjDir Condition="'$(ObjDir)'==''">$(BinDir)obj/</ObjDir>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'==''">$(ObjDir)</BaseIntermediateOutputPath>
+    <RootIntermediateOutputPath Condition="'$(RootIntermediateOutputPath)'==''">$(BaseIntermediateOutputPath)</RootIntermediateOutputPath>
 
     <PackageOutputRoot Condition="'$(PackageOutputRoot)'=='' and '$(NonShippingPackage)' == 'true'">$(BinDir)packages_noship/</PackageOutputRoot>
     <PackageOutputRoot Condition="'$(PackageOutputRoot)'==''">$(BinDir)packages/</PackageOutputRoot>
@@ -19,6 +20,13 @@
     <PackagesDir>$(DotNetRestorePackagesPath)</PackagesDir>
     <PackagesDir Condition="'$(PackagesDir)'==''">$(ProjectDir)packages/</PackagesDir>
     <ToolsDir Condition="'$(ToolsDir)'==''">$(ProjectDir)Tools/</ToolsDir>
+
+    <!-- Respect environment variable for the .NET install directory if set; otherwise, use the current default location -->
+    <DotNetRoot Condition="'$(DotNetRoot)' == ''">$(DOTNET_INSTALL_DIR)</DotNetRoot>
+    <DotNetRoot Condition="'$(DotNetRoot)' == ''">$(ProjectDir).dotnet\</DotNetRoot>
+    <DotNetRoot Condition="!HasTrailingSlash('$(DotNetRoot)')">$(DotNetRoot)\</DotNetRoot>
+    <DotnetCliPath Condition="'$(DotnetCliPath)'==''">$(DotNetRoot)</DotnetCliPath>
+    <ToolHostCmd Condition="'$(ToolHostCmd)'==''">"$(DotNetRoot)dotnet"</ToolHostCmd>
   </PropertyGroup>
 
   <!-- Import Build tools common props file where repo-independent properties are found -->

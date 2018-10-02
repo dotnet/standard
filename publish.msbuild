@@ -2,12 +2,17 @@
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.props))\dir.props" />
   <Import Project="dir.targets" />
-  <Import Project="$(PackagesDir)/$(FeedTasksPackage)/$(FeedTasksPackageVersion)/build/$(FeedTasksPackage).targets" />
+
+  <PropertyGroup>
+    <ToolsNugetPropsFile>$(MSBuildThisFileDirectory)artifacts\toolset\Common\Tools.proj.nuget.g.props</ToolsNugetPropsFile>
+  </PropertyGroup>
+
+  <Import Project="$(ToolsNugetPropsFile)" Condition="Exists('$(ToolsNugetPropsFile)')" />
+  <Import Project="$(NuGetPackageRoot)/$(FeedTasksPackage)/$(FeedTasksPackageVersion)/build/$(FeedTasksPackage).targets" />
+
   <PropertyGroup>
      <PublishPattern Condition="'$(PublishPattern)' == ''">$(PackageOutputRoot)**\*.nupkg</PublishPattern>
      <SymbolsPackagesPattern>$(PackageOutputRoot)**\*.symbols.nupkg</SymbolsPackagesPattern>
-     <!-- The SignFiles target needs OutDir to be defined -->
-     <OutDir>$(PackageOutputRoot)</OutDir>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,19 +20,8 @@
      <_SymbolsPackagesToPublish Include="$(SymbolsPackagesPattern)" Condition="'$(PublishSymbols)' == 'true'" />
   </ItemGroup>
 
-  <Target Name="GetPackagesToSign">
-    <ItemGroup>
-      <FilesToSign Include="@(_PackagesToPublish)">
-        <Authenticode>NuGet</Authenticode>
-      </FilesToSign>
-    </ItemGroup>
-    <Message Importance="High" Text="Attempting to sign package '%(FilesToSign.Identity)'" />
-  </Target>
-
-  <Target Name="SignPackages"
-          Condition="'$(SkipSigning)' != 'true' and '$(SignType)' != 'public'"
-          DependsOnTargets="GetPackagesToSign;SignFiles">
-  </Target>      
+  <Target Name="Build"
+          DependsOnTargets="PublishToAzureBlobFeed;PublishSymbolsToAzureBlobFeed" />
 
   <Target Name="PublishToAzureBlobFeed">
     <Error Condition="'@(_PackagesToPublish)'==''" Text="ItemsToPush for packages is empty." />
