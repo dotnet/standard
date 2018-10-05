@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Condition="Exists('..\dir.props')" Project="..\dir.props" />
+
+  <PropertyGroup>
+    <!--
+    For non-SDK projects that import this file and then import Microsoft.Common.props,
+    tell Microsoft.Common.props not to import Directory.Build.props again
+    -->
+    <ImportDirectoryBuildProps>false</ImportDirectoryBuildProps>
+  </PropertyGroup>
+
+  <Import Condition="Exists('..\Directory.Build.props')" Project="..\Directory.Build.props" />
   <Import Project="$(MSBuildThisFileDirectory)dependencies.props" />
   <!-- Common repo directories -->
   <PropertyGroup>
@@ -27,6 +36,8 @@
     <DotNetRoot Condition="!HasTrailingSlash('$(DotNetRoot)')">$(DotNetRoot)\</DotNetRoot>
     <DotnetCliPath Condition="'$(DotnetCliPath)'==''">$(DotNetRoot)</DotnetCliPath>
     <ToolHostCmd Condition="'$(ToolHostCmd)'==''">"$(DotNetRoot)dotnet"</ToolHostCmd>
+
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
 
   <!-- Import Build tools common props file where repo-independent properties are found -->
@@ -51,7 +62,6 @@
     <OutputType>Library</OutputType>
     <RunApiCompat>true</RunApiCompat>
     <AssemblyKey>Open</AssemblyKey>
-    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
     <LangVersion>latest</LangVersion> <!-- default to allowing all language features -->
   </PropertyGroup>
 

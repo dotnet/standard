@@ -9,7 +9,7 @@
     <AssemblyOriginatorKeyFile Condition="'$(AssemblyKey)' == 'XamarinProducts'">$(MSBuildThisFileDirectory)xamarin-products.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
-  <Import Condition="Exists('..\dir.targets')" Project="..\dir.targets" />
+  <Import Condition="Exists('..\Directory.Build.targets')" Project="..\Directory.Build.targets" />
 
   <!-- We don't need full signing for these so not writing the required signing file -->
   <Target Name="WriteSigningRequired" />
