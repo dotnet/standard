@@ -1,7 +1,7 @@
 # Packaging for .NET Standard 2.0
 
 This document outlines how packaging for .NET Standard 2.0 will work. This
-covers package layout, versioning semantics, compatiblity with existing
+covers package layout, versioning semantics, compatibility with existing
 packages, and how package consumption will work.
 
 ## Requirements
@@ -9,7 +9,7 @@ packages, and how package consumption will work.
 * **Simple**. In order to be understandable, we want the .NET Standard package
   graph to be extremely simple, ideally a single package.
 * **Cumulative**. Upgrading this package should never result in changes of
-  platform compatiblity or API surface.
+  platform compatibility or API surface.
 * **Packages don't need to depend on the .NET Standard package**. This makes
   building packages that target .NET Standard similar to how it works for other
   .NET platforms (such as .NET Framework).
@@ -189,7 +189,7 @@ These come from the following sources:
 3. All assemblies that are outside of `NETStandard.Library` 1.x but contain
    types that are also in .NET Standard 2.0.
 
-Please note that (3) implies that our package compatibilty also has to support
+Please note that (3) implies that our package compatibility also has to support
 packages that are outside of the closure of `NETStandard.Library` 1.x.
 
 Packaging wise, this translates to the following list of packages we need to be
