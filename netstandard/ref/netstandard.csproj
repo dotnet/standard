@@ -11,6 +11,14 @@
     <DefaultBuildAllTarget>Build</DefaultBuildAllTarget>
     <BuildAllProjects>true</BuildAllProjects>
   </PropertyGroup>
+
+  <!-- Disable code paths that require project.assets.json files to be present or to be computed. -->
+  <PropertyGroup>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <ComputeNETCoreBuildOutputFiles>false</ComputeNETCoreBuildOutputFiles>
+    <GenerateRuntimeConfigurationFiles>false</GenerateRuntimeConfigurationFiles>
+  </PropertyGroup>
+  
   <ItemGroup>
     <!-- Mark netstandard as a framework assembly -->
     <AssemblyMetadata Include=".NETFrameworkAssembly">

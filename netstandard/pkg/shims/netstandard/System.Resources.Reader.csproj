@@ -8,4 +8,5 @@
     <Compile Include="System.Resources.Reader.Forwards.cs" />
     <ProjectReference Include="..\..\..\ref\netstandard.csproj" />
   </ItemGroup>
+	<Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
 </Project>

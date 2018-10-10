@@ -11,4 +11,5 @@
     <ProjectReference Include="..\..\..\..\platforms\extensions\System.Security.AccessControl.csproj" />
     <ProjectReference Include="..\..\..\..\platforms\extensions\System.Security.Principal.Windows.csproj" />
   </ItemGroup>
+	<Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
 </Project>

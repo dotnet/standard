@@ -38,6 +38,8 @@
     <ToolHostCmd Condition="'$(ToolHostCmd)'==''">"$(DotNetRoot)dotnet"</ToolHostCmd>
 
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <!-- Import Build tools common props file where repo-independent properties are found -->
