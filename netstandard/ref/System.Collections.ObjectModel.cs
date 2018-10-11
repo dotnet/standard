@@ -54,6 +54,7 @@ namespace System.Collections.ObjectModel
         public bool Remove(TKey key) { throw null; }
         protected override void RemoveItem(int index) { }
         protected override void SetItem(int index, TItem item) { }
+        public bool TryGetValue(TKey key, out TItem item) { item = default(TItem); throw null; }
     }
     public partial class ObservableCollection<T> : System.Collections.ObjectModel.Collection<T>, System.Collections.Specialized.INotifyCollectionChanged, System.ComponentModel.INotifyPropertyChanged
     {

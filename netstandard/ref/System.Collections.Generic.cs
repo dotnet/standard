@@ -4,6 +4,13 @@
 
 namespace System.Collections.Generic
 {
+    public static partial class CollectionExtensions
+    {
+        public static TValue GetValueOrDefault<TKey, TValue>(this System.Collections.Generic.IReadOnlyDictionary<TKey, TValue> dictionary, TKey key) { throw null; }
+        public static TValue GetValueOrDefault<TKey, TValue>(this System.Collections.Generic.IReadOnlyDictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue) { throw null; }
+        public static bool Remove<TKey, TValue>(this System.Collections.Generic.IDictionary<TKey, TValue> dictionary, TKey key, out TValue value) { value = default(TValue); throw null; }
+        public static bool TryAdd<TKey, TValue>(this System.Collections.Generic.IDictionary<TKey, TValue> dictionary, TKey key, TValue value) { throw null; }
+    }
     public abstract partial class Comparer<T> : System.Collections.Generic.IComparer<T>, System.Collections.IComparer
     {
         protected Comparer() { }
@@ -17,6 +24,8 @@ namespace System.Collections.Generic
         public Dictionary() { }
         public Dictionary(System.Collections.Generic.IDictionary<TKey, TValue> dictionary) { }
         public Dictionary(System.Collections.Generic.IDictionary<TKey, TValue> dictionary, System.Collections.Generic.IEqualityComparer<TKey> comparer) { }
+        public Dictionary(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<TKey, TValue>> collection) { }
+        public Dictionary(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<TKey, TValue>> collection, System.Collections.Generic.IEqualityComparer<TKey> comparer) { }
         public Dictionary(System.Collections.Generic.IEqualityComparer<TKey> comparer) { }
         public Dictionary(int capacity) { }
         public Dictionary(int capacity, System.Collections.Generic.IEqualityComparer<TKey> comparer) { }
@@ -42,10 +51,12 @@ namespace System.Collections.Generic
         public void Clear() { }
         public bool ContainsKey(TKey key) { throw null; }
         public bool ContainsValue(TValue value) { throw null; }
+        public int EnsureCapacity(int capacity) { throw null; }
         public System.Collections.Generic.Dictionary<TKey, TValue>.Enumerator GetEnumerator() { throw null; }
         public virtual void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public virtual void OnDeserialization(object sender) { }
         public bool Remove(TKey key) { throw null; }
+        public bool Remove(TKey key, out TValue value) { value = default(TValue); throw null; }
         void System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<TKey,TValue>>.Add(System.Collections.Generic.KeyValuePair<TKey, TValue> keyValuePair) { }
         bool System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<TKey,TValue>>.Contains(System.Collections.Generic.KeyValuePair<TKey, TValue> keyValuePair) { throw null; }
         void System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<TKey,TValue>>.CopyTo(System.Collections.Generic.KeyValuePair<TKey, TValue>[] array, int index) { }
@@ -57,6 +68,9 @@ namespace System.Collections.Generic
         System.Collections.IDictionaryEnumerator System.Collections.IDictionary.GetEnumerator() { throw null; }
         void System.Collections.IDictionary.Remove(object key) { }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
+        public void TrimExcess() { }
+        public void TrimExcess(int capacity) { }
+        public bool TryAdd(TKey key, TValue value) { throw null; }
         public bool TryGetValue(TKey key, out TValue value) { value = default(TValue); throw null; }
         [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
         public partial struct Enumerator : System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<TKey, TValue>>, System.Collections.IDictionaryEnumerator, System.Collections.IEnumerator, System.IDisposable
@@ -138,6 +152,8 @@ namespace System.Collections.Generic
         public HashSet(System.Collections.Generic.IEnumerable<T> collection) { }
         public HashSet(System.Collections.Generic.IEnumerable<T> collection, System.Collections.Generic.IEqualityComparer<T> comparer) { }
         public HashSet(System.Collections.Generic.IEqualityComparer<T> comparer) { }
+        public HashSet(int capacity) { }
+        public HashSet(int capacity, System.Collections.Generic.IEqualityComparer<T> comparer) { }
         protected HashSet(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public System.Collections.Generic.IEqualityComparer<T> Comparer { get { throw null; } }
         public int Count { get { throw null; } }
@@ -149,6 +165,7 @@ namespace System.Collections.Generic
         public void CopyTo(T[] array, int arrayIndex) { }
         public void CopyTo(T[] array, int arrayIndex, int count) { }
         public static System.Collections.Generic.IEqualityComparer<System.Collections.Generic.HashSet<T>> CreateSetComparer() { throw null; }
+        public int EnsureCapacity(int capacity) { throw null; }
         public void ExceptWith(System.Collections.Generic.IEnumerable<T> other) { }
         public System.Collections.Generic.HashSet<T>.Enumerator GetEnumerator() { throw null; }
         public virtual void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
@@ -167,6 +184,7 @@ namespace System.Collections.Generic
         System.Collections.Generic.IEnumerator<T> System.Collections.Generic.IEnumerable<T>.GetEnumerator() { throw null; }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
         public void TrimExcess() { }
+        public bool TryGetValue(T equalValue, out T actualValue) { actualValue = default(T); throw null; }
         public void UnionWith(System.Collections.Generic.IEnumerable<T> other) { }
         [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
         public partial struct Enumerator : System.Collections.Generic.IEnumerator<T>, System.Collections.IEnumerator, System.IDisposable
@@ -252,12 +270,16 @@ namespace System.Collections.Generic
         void SymmetricExceptWith(System.Collections.Generic.IEnumerable<T> other);
         void UnionWith(System.Collections.Generic.IEnumerable<T> other);
     }
-    public partial class KeyNotFoundException : System.SystemException, System.Runtime.Serialization.ISerializable
+    public partial class KeyNotFoundException : System.SystemException
     {
         public KeyNotFoundException() { }
         protected KeyNotFoundException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public KeyNotFoundException(string message) { }
         public KeyNotFoundException(string message, System.Exception innerException) { }
+    }
+    public static partial class KeyValuePair
+    {
+        public static System.Collections.Generic.KeyValuePair<TKey, TValue> Create<TKey, TValue>(TKey key, TValue value) { throw null; }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct KeyValuePair<TKey, TValue>
@@ -265,6 +287,8 @@ namespace System.Collections.Generic
         public KeyValuePair(TKey key, TValue value) { throw null;}
         public TKey Key { get { throw null; } }
         public TValue Value { get { throw null; } }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        public void Deconstruct(out TKey key, out TValue value) { key = default(TKey); value = default(TValue); }
         public override string ToString() { throw null; }
     }
     public partial class LinkedList<T> : System.Collections.Generic.ICollection<T>, System.Collections.Generic.IEnumerable<T>, System.Collections.Generic.IReadOnlyCollection<T>, System.Collections.ICollection, System.Collections.IEnumerable, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable
@@ -420,6 +444,8 @@ namespace System.Collections.Generic
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
         public T[] ToArray() { throw null; }
         public void TrimExcess() { }
+        public bool TryDequeue(out T result) { result = default(T); throw null; }
+        public bool TryPeek(out T result) { result = default(T); throw null; }
         [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
         public partial struct Enumerator : System.Collections.Generic.IEnumerator<T>, System.Collections.IEnumerator, System.IDisposable
         {
@@ -629,6 +655,7 @@ namespace System.Collections.Generic
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
         void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender) { }
         void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public bool TryGetValue(T equalValue, out T actualValue) { actualValue = default(T); throw null; }
         public void UnionWith(System.Collections.Generic.IEnumerable<T> other) { }
         [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
         public partial struct Enumerator : System.Collections.Generic.IEnumerator<T>, System.Collections.IEnumerator, System.IDisposable, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable
@@ -662,6 +689,8 @@ namespace System.Collections.Generic
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
         public T[] ToArray() { throw null; }
         public void TrimExcess() { }
+        public bool TryPeek(out T result) { result = default(T); throw null; }
+        public bool TryPop(out T result) { result = default(T); throw null; }
         [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
         public partial struct Enumerator : System.Collections.Generic.IEnumerator<T>, System.Collections.IEnumerator, System.IDisposable
         {

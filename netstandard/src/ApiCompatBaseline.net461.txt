@@ -19,6 +19,33 @@ CannotRemoveBaseTypeOrInterface : Type 'System.ValueTuple<T1, T2, T3, T4, T5>' d
 CannotRemoveBaseTypeOrInterface : Type 'System.ValueTuple<T1, T2, T3, T4, T5, T6>' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.ValueTuple<T1, T2, T3, T4, T5, T6, T7>' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest>' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Collections.BitArray.LeftShift(System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.BitArray.RightShift(System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.DictionaryEntry.Deconstruct(System.Object, System.Object)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Concurrent.ConcurrentBag<T>.Clear()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Concurrent.ConcurrentDictionary<TKey, TValue>.AddOrUpdate<TArg>(TKey, System.Func<TKey, TArg, TValue>, System.Func<TKey, TValue, TArg, TValue>, TArg)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Concurrent.ConcurrentDictionary<TKey, TValue>.GetOrAdd<TArg>(TKey, System.Func<TKey, TArg, TValue>, TArg)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Concurrent.ConcurrentQueue<T>.Clear()' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Collections.Generic.CollectionExtensions' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.Dictionary<TKey, TValue>..ctor(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<TKey, TValue>>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.Dictionary<TKey, TValue>..ctor(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<TKey, TValue>>, System.Collections.Generic.IEqualityComparer<TKey>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.Dictionary<TKey, TValue>.EnsureCapacity(System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.Dictionary<TKey, TValue>.Remove(TKey, TValue)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.Dictionary<TKey, TValue>.TrimExcess()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.Dictionary<TKey, TValue>.TrimExcess(System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.Dictionary<TKey, TValue>.TryAdd(TKey, TValue)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.HashSet<T>..ctor(System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.HashSet<T>..ctor(System.Int32, System.Collections.Generic.IEqualityComparer<T>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.HashSet<T>.EnsureCapacity(System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.HashSet<T>.TryGetValue(T, T)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Collections.Generic.KeyValuePair' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.KeyValuePair<TKey, TValue>.Deconstruct(TKey, TValue)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.Queue<T>.TryDequeue(T)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.Queue<T>.TryPeek(T)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.SortedSet<T>.TryGetValue(T, T)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.Stack<T>.TryPeek(T)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.Generic.Stack<T>.TryPop(T)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Collections.ObjectModel.KeyedCollection<TKey, TItem>.TryGetValue(TKey, TItem)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Data.Common.DbColumn' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Data.Common.DbDataReaderExtensions' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Data.Common.DbProviderFactories.GetProviderInvariantNames()' does not exist in the implementation but it does exist in the contract.
@@ -113,4 +140,4 @@ MembersMustExist : Member 'System.Text.RegularExpressions.Regex.Caps.set(System.
 TypesMustExist : Type 'System.Threading.PreAllocatedOverlapped' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Threading.ThreadPoolBoundHandle' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 114
+Total Issues: 141
