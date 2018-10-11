@@ -896,7 +896,7 @@ namespace System.Reflection
         public override string ToString() { throw null; }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct ParameterModifier
+    public readonly partial struct ParameterModifier
     {
         public ParameterModifier(int parameterCount) { throw null;}
         public bool this[int index] { get { throw null; } set { } }
@@ -1089,6 +1089,7 @@ namespace System.Reflection
         public override System.Type BaseType { get { throw null; } }
         public override string FullName { get { throw null; } }
         public override System.Guid GUID { get { throw null; } }
+        public override bool IsByRefLike { get { throw null; } }
         public override bool IsConstructedGenericType { get { throw null; } }
         public override int MetadataToken { get { throw null; } }
         public override System.Reflection.Module Module { get { throw null; } }

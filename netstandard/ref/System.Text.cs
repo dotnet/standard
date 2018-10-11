@@ -36,14 +36,17 @@ namespace System.Text
         [System.CLSCompliantAttribute(false)]
         public unsafe virtual void Convert(byte* bytes, int byteCount, char* chars, int charCount, bool flush, out int bytesUsed, out int charsUsed, out bool completed) { bytesUsed = default(int); charsUsed = default(int); completed = default(bool); }
         public virtual void Convert(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex, int charCount, bool flush, out int bytesUsed, out int charsUsed, out bool completed) { bytesUsed = default(int); charsUsed = default(int); completed = default(bool); }
+        public virtual void Convert(System.ReadOnlySpan<byte> bytes, System.Span<char> chars, bool flush, out int bytesUsed, out int charsUsed, out bool completed) { bytesUsed = default(int); charsUsed = default(int); completed = default(bool); }
         [System.CLSCompliantAttribute(false)]
         public unsafe virtual int GetCharCount(byte* bytes, int count, bool flush) { throw null; }
         public abstract int GetCharCount(byte[] bytes, int index, int count);
         public virtual int GetCharCount(byte[] bytes, int index, int count, bool flush) { throw null; }
+        public virtual int GetCharCount(System.ReadOnlySpan<byte> bytes, bool flush) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public unsafe virtual int GetChars(byte* bytes, int byteCount, char* chars, int charCount, bool flush) { throw null; }
         public abstract int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex);
         public virtual int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex, bool flush) { throw null; }
+        public virtual int GetChars(System.ReadOnlySpan<byte> bytes, System.Span<char> chars, bool flush) { throw null; }
         public virtual void Reset() { }
     }
     public sealed partial class DecoderExceptionFallback : System.Text.DecoderFallback
@@ -115,12 +118,15 @@ namespace System.Text
         [System.CLSCompliantAttribute(false)]
         public unsafe virtual void Convert(char* chars, int charCount, byte* bytes, int byteCount, bool flush, out int charsUsed, out int bytesUsed, out bool completed) { charsUsed = default(int); bytesUsed = default(int); completed = default(bool); }
         public virtual void Convert(char[] chars, int charIndex, int charCount, byte[] bytes, int byteIndex, int byteCount, bool flush, out int charsUsed, out int bytesUsed, out bool completed) { charsUsed = default(int); bytesUsed = default(int); completed = default(bool); }
+        public virtual void Convert(System.ReadOnlySpan<char> chars, System.Span<byte> bytes, bool flush, out int charsUsed, out int bytesUsed, out bool completed) { charsUsed = default(int); bytesUsed = default(int); completed = default(bool); }
         [System.CLSCompliantAttribute(false)]
         public unsafe virtual int GetByteCount(char* chars, int count, bool flush) { throw null; }
         public abstract int GetByteCount(char[] chars, int index, int count, bool flush);
+        public virtual int GetByteCount(System.ReadOnlySpan<char> chars, bool flush) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public unsafe virtual int GetBytes(char* chars, int charCount, byte* bytes, int byteCount, bool flush) { throw null; }
         public abstract int GetBytes(char[] chars, int charIndex, int charCount, byte[] bytes, int byteIndex, bool flush);
+        public virtual int GetBytes(System.ReadOnlySpan<char> chars, System.Span<byte> bytes, bool flush) { throw null; }
         public virtual void Reset() { }
     }
     public sealed partial class EncoderExceptionFallback : System.Text.EncoderFallback
@@ -209,6 +215,7 @@ namespace System.Text
         public virtual bool IsMailNewsSave { get { throw null; } }
         public bool IsReadOnly { get { throw null; } }
         public virtual bool IsSingleByte { get { throw null; } }
+        public virtual System.ReadOnlySpan<byte> Preamble { get { throw null; } }
         public static System.Text.Encoding Unicode { get { throw null; } }
         public static System.Text.Encoding UTF32 { get { throw null; } }
         public static System.Text.Encoding UTF7 { get { throw null; } }
@@ -223,23 +230,27 @@ namespace System.Text
         public unsafe virtual int GetByteCount(char* chars, int count) { throw null; }
         public virtual int GetByteCount(char[] chars) { throw null; }
         public abstract int GetByteCount(char[] chars, int index, int count);
+        public virtual int GetByteCount(System.ReadOnlySpan<char> chars) { throw null; }
         public virtual int GetByteCount(string s) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public unsafe virtual int GetBytes(char* chars, int charCount, byte* bytes, int byteCount) { throw null; }
         public virtual byte[] GetBytes(char[] chars) { throw null; }
         public virtual byte[] GetBytes(char[] chars, int index, int count) { throw null; }
         public abstract int GetBytes(char[] chars, int charIndex, int charCount, byte[] bytes, int byteIndex);
+        public virtual int GetBytes(System.ReadOnlySpan<char> chars, System.Span<byte> bytes) { throw null; }
         public virtual byte[] GetBytes(string s) { throw null; }
         public virtual int GetBytes(string s, int charIndex, int charCount, byte[] bytes, int byteIndex) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public unsafe virtual int GetCharCount(byte* bytes, int count) { throw null; }
         public virtual int GetCharCount(byte[] bytes) { throw null; }
         public abstract int GetCharCount(byte[] bytes, int index, int count);
+        public virtual int GetCharCount(System.ReadOnlySpan<byte> bytes) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public unsafe virtual int GetChars(byte* bytes, int byteCount, char* chars, int charCount) { throw null; }
         public virtual char[] GetChars(byte[] bytes) { throw null; }
         public virtual char[] GetChars(byte[] bytes, int index, int count) { throw null; }
         public abstract int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex);
+        public virtual int GetChars(System.ReadOnlySpan<byte> bytes, System.Span<char> chars) { throw null; }
         public virtual System.Text.Decoder GetDecoder() { throw null; }
         public virtual System.Text.Encoder GetEncoder() { throw null; }
         public static System.Text.Encoding GetEncoding(int codepage) { throw null; }
@@ -255,6 +266,7 @@ namespace System.Text
         public unsafe string GetString(byte* bytes, int byteCount) { throw null; }
         public virtual string GetString(byte[] bytes) { throw null; }
         public virtual string GetString(byte[] bytes, int index, int count) { throw null; }
+        public string GetString(System.ReadOnlySpan<byte> bytes) { throw null; }
         public bool IsAlwaysNormalized() { throw null; }
         public virtual bool IsAlwaysNormalized(System.Text.NormalizationForm form) { throw null; }
         public static void RegisterProvider(System.Text.EncodingProvider provider) { }
@@ -311,6 +323,7 @@ namespace System.Text
         public System.Text.StringBuilder Append(int value) { throw null; }
         public System.Text.StringBuilder Append(long value) { throw null; }
         public System.Text.StringBuilder Append(object value) { throw null; }
+        public System.Text.StringBuilder Append(System.ReadOnlySpan<char> value) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public System.Text.StringBuilder Append(sbyte value) { throw null; }
         public System.Text.StringBuilder Append(float value) { throw null; }
@@ -334,7 +347,9 @@ namespace System.Text
         public System.Text.StringBuilder AppendLine(string value) { throw null; }
         public System.Text.StringBuilder Clear() { throw null; }
         public void CopyTo(int sourceIndex, char[] destination, int destinationIndex, int count) { }
+        public void CopyTo(int sourceIndex, System.Span<char> destination, int count) { }
         public int EnsureCapacity(int capacity) { throw null; }
+        public bool Equals(System.ReadOnlySpan<char> span) { throw null; }
         public bool Equals(System.Text.StringBuilder sb) { throw null; }
         public System.Text.StringBuilder Insert(int index, bool value) { throw null; }
         public System.Text.StringBuilder Insert(int index, byte value) { throw null; }
@@ -347,6 +362,7 @@ namespace System.Text
         public System.Text.StringBuilder Insert(int index, int value) { throw null; }
         public System.Text.StringBuilder Insert(int index, long value) { throw null; }
         public System.Text.StringBuilder Insert(int index, object value) { throw null; }
+        public System.Text.StringBuilder Insert(int index, System.ReadOnlySpan<char> value) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public System.Text.StringBuilder Insert(int index, sbyte value) { throw null; }
         public System.Text.StringBuilder Insert(int index, float value) { throw null; }

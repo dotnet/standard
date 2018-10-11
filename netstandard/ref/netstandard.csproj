@@ -24,6 +24,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Microsoft.Win32.SafeHandles.cs" />
+    <Compile Include="System.Buffers.Binary.cs" />
+    <Compile Include="System.Buffers.cs" />
+    <Compile Include="System.Buffers.Text.cs" />
     <Compile Include="System.CodeDom.Compiler.cs" />
     <Compile Include="System.Collections.Concurrent.cs" />
     <Compile Include="System.Collections.cs" />
@@ -90,6 +93,7 @@
     <Compile Include="System.Text.RegularExpressions.cs" />
     <Compile Include="System.Threading.cs" />
     <Compile Include="System.Threading.Tasks.cs" />
+    <Compile Include="System.Threading.Tasks.Sources.cs" />
     <Compile Include="System.Timers.cs" />
     <Compile Include="System.Transactions.cs" />
     <Compile Include="System.Web.cs" />

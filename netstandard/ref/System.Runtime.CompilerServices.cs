@@ -10,6 +10,12 @@ namespace System.Runtime.CompilerServices
         public AccessedThroughPropertyAttribute(string propertyName) { }
         public string PropertyName { get { throw null; } }
     }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(5148), Inherited = false, AllowMultiple = false)]
+    public sealed partial class AsyncMethodBuilderAttribute : System.Attribute
+    {
+        public AsyncMethodBuilderAttribute(System.Type builderType) { }
+        public System.Type BuilderType { get { throw null; } }
+    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false, AllowMultiple=false)]
     public sealed partial class AsyncStateMachineAttribute : System.Runtime.CompilerServices.StateMachineAttribute
     {
@@ -34,6 +40,30 @@ namespace System.Runtime.CompilerServices
         public void AwaitOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine) where TAwaiter : System.Runtime.CompilerServices.INotifyCompletion where TStateMachine : System.Runtime.CompilerServices.IAsyncStateMachine { }
         public void AwaitUnsafeOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine) where TAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion where TStateMachine : System.Runtime.CompilerServices.IAsyncStateMachine { }
         public static System.Runtime.CompilerServices.AsyncTaskMethodBuilder<TResult> Create() { throw null; }
+        public void SetException(System.Exception exception) { }
+        public void SetResult(TResult result) { }
+        public void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine stateMachine) { }
+        public void Start<TStateMachine>(ref TStateMachine stateMachine) where TStateMachine : System.Runtime.CompilerServices.IAsyncStateMachine { }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct AsyncValueTaskMethodBuilder
+    {
+        public System.Threading.Tasks.ValueTask Task { get { throw null; } }
+        public void AwaitOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine) where TAwaiter : System.Runtime.CompilerServices.INotifyCompletion where TStateMachine : System.Runtime.CompilerServices.IAsyncStateMachine { }
+        public void AwaitUnsafeOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine) where TAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion where TStateMachine : System.Runtime.CompilerServices.IAsyncStateMachine { }
+        public static System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder Create() { throw null; }
+        public void SetException(System.Exception exception) { }
+        public void SetResult() { }
+        public void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine stateMachine) { }
+        public void Start<TStateMachine>(ref TStateMachine stateMachine) where TStateMachine : System.Runtime.CompilerServices.IAsyncStateMachine { }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct AsyncValueTaskMethodBuilder<TResult>
+    {
+        public System.Threading.Tasks.ValueTask<TResult> Task { get { throw null; } }
+        public void AwaitOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine) where TAwaiter : System.Runtime.CompilerServices.INotifyCompletion where TStateMachine : System.Runtime.CompilerServices.IAsyncStateMachine { }
+        public void AwaitUnsafeOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine) where TAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion where TStateMachine : System.Runtime.CompilerServices.IAsyncStateMachine { }
+        public static System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder<TResult> Create() { throw null; }
         public void SetException(System.Exception exception) { }
         public void SetResult(TResult result) { }
         public void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine stateMachine) { }
@@ -142,11 +172,11 @@ namespace System.Runtime.CompilerServices
         public delegate TValue CreateValueCallback(TKey key);
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct ConfiguredTaskAwaitable
+    public readonly partial struct ConfiguredTaskAwaitable
     {
         public System.Runtime.CompilerServices.ConfiguredTaskAwaitable.ConfiguredTaskAwaiter GetAwaiter() { throw null; }
         [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-        public partial struct ConfiguredTaskAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
+        public readonly partial struct ConfiguredTaskAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
         {
             public bool IsCompleted { get { throw null; } }
             public void GetResult() { }
@@ -155,11 +185,37 @@ namespace System.Runtime.CompilerServices
         }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct ConfiguredTaskAwaitable<TResult>
+    public readonly partial struct ConfiguredTaskAwaitable<TResult>
     {
         public System.Runtime.CompilerServices.ConfiguredTaskAwaitable<TResult>.ConfiguredTaskAwaiter GetAwaiter() { throw null; }
         [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-        public partial struct ConfiguredTaskAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
+        public readonly partial struct ConfiguredTaskAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
+        {
+            public bool IsCompleted { get { throw null; } }
+            public TResult GetResult() { throw null; }
+            public void OnCompleted(System.Action continuation) { }
+            public void UnsafeOnCompleted(System.Action continuation) { }
+        }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public readonly partial struct ConfiguredValueTaskAwaitable
+    {
+        public System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable.ConfiguredValueTaskAwaiter GetAwaiter() { throw null; }
+        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+        public readonly partial struct ConfiguredValueTaskAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
+        {
+            public bool IsCompleted { get { throw null; } }
+            public void GetResult() { }
+            public void OnCompleted(System.Action continuation) { }
+            public void UnsafeOnCompleted(System.Action continuation) { }
+        }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public readonly partial struct ConfiguredValueTaskAwaitable<TResult>
+    {
+        public System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable<TResult>.ConfiguredValueTaskAwaiter GetAwaiter() { throw null; }
+        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+        public readonly partial struct ConfiguredValueTaskAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
         {
             public bool IsCompleted { get { throw null; } }
             public TResult GetResult() { throw null; }
@@ -286,6 +342,12 @@ namespace System.Runtime.CompilerServices
     public static partial class IsBoxed
     {
     }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(8))]
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    public sealed partial class IsByRefLikeAttribute : System.Attribute
+    {
+        public IsByRefLikeAttribute() { }
+    }
     public static partial class IsByValue
     {
     }
@@ -309,6 +371,12 @@ namespace System.Runtime.CompilerServices
     }
     public static partial class IsPinned
     {
+    }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(32767), Inherited = false)]
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    public sealed partial class IsReadOnlyAttribute : System.Attribute
+    {
+        public IsReadOnlyAttribute() { }
     }
     public static partial class IsSignUnspecifiedByte
     {
@@ -493,7 +561,7 @@ namespace System.Runtime.CompilerServices
         public SuppressIldasmAttribute() { }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct TaskAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
+    public readonly partial struct TaskAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
     {
         public bool IsCompleted { get { throw null; } }
         public void GetResult() { }
@@ -501,7 +569,7 @@ namespace System.Runtime.CompilerServices
         public void UnsafeOnCompleted(System.Action continuation) { }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct TaskAwaiter<TResult> : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
+    public readonly partial struct TaskAwaiter<TResult> : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
     {
         public bool IsCompleted { get { throw null; } }
         public TResult GetResult() { throw null; }
@@ -532,12 +600,29 @@ namespace System.Runtime.CompilerServices
     {
         public UnsafeValueTypeAttribute() { }
     }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public readonly partial struct ValueTaskAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
+    {
+        public bool IsCompleted { get { throw null; } }
+        public void GetResult() { }
+        public void OnCompleted(System.Action continuation) { }
+        public void UnsafeOnCompleted(System.Action continuation) { }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public readonly partial struct ValueTaskAwaiter<TResult> : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
+    {
+        public bool IsCompleted { get { throw null; } }
+        public TResult GetResult() { throw null; }
+        public void OnCompleted(System.Action continuation) { }
+        public void UnsafeOnCompleted(System.Action continuation) { }
+    }
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Size=1)]
-    public partial struct YieldAwaitable
+    public readonly partial struct YieldAwaitable
     {
         public System.Runtime.CompilerServices.YieldAwaitable.YieldAwaiter GetAwaiter() { throw null; }
         [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Size=1)]
-        public partial struct YieldAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
+        public readonly partial struct YieldAwaiter : System.Runtime.CompilerServices.ICriticalNotifyCompletion, System.Runtime.CompilerServices.INotifyCompletion
         {
             public bool IsCompleted { get { throw null; } }
             public void GetResult() { }

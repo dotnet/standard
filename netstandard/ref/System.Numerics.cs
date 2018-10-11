@@ -5,7 +5,7 @@
 namespace System.Numerics
 {
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct BigInteger : System.IComparable, System.IComparable<System.Numerics.BigInteger>, System.IEquatable<System.Numerics.BigInteger>, System.IFormattable
+    public readonly partial struct BigInteger : System.IComparable, System.IComparable<System.Numerics.BigInteger>, System.IEquatable<System.Numerics.BigInteger>, System.IFormattable
     {
         [System.CLSCompliantAttribute(false)]
         public BigInteger(byte[] value) { throw null;}
@@ -13,6 +13,7 @@ namespace System.Numerics
         public BigInteger(double value) { throw null;}
         public BigInteger(int value) { throw null;}
         public BigInteger(long value) { throw null;}
+        public BigInteger(System.ReadOnlySpan<byte> value, bool isUnsigned = false, bool isBigEndian = false) { throw null; }
         public BigInteger(float value) { throw null;}
         [System.CLSCompliantAttribute(false)]
         public BigInteger(uint value) { throw null;}
@@ -138,6 +139,7 @@ namespace System.Numerics
         public static System.Numerics.BigInteger operator -(System.Numerics.BigInteger left, System.Numerics.BigInteger right) { throw null; }
         public static System.Numerics.BigInteger operator -(System.Numerics.BigInteger value) { throw null; }
         public static System.Numerics.BigInteger operator +(System.Numerics.BigInteger value) { throw null; }
+        public static System.Numerics.BigInteger Parse(System.ReadOnlySpan<char> value, System.Globalization.NumberStyles style = (System.Globalization.NumberStyles)(7), System.IFormatProvider provider = null) { throw null; }
         public static System.Numerics.BigInteger Parse(string value) { throw null; }
         public static System.Numerics.BigInteger Parse(string value, System.Globalization.NumberStyles style) { throw null; }
         public static System.Numerics.BigInteger Parse(string value, System.Globalization.NumberStyles style, System.IFormatProvider provider) { throw null; }
@@ -150,8 +152,12 @@ namespace System.Numerics
         public string ToString(System.IFormatProvider provider) { throw null; }
         public string ToString(string format) { throw null; }
         public string ToString(string format, System.IFormatProvider provider) { throw null; }
+        public bool TryFormat(System.Span<char> destination, out int charsWritten, System.ReadOnlySpan<char> format = default(System.ReadOnlySpan<char>), System.IFormatProvider provider = null) { charsWritten = default(int); throw null; }
+        public static bool TryParse(System.ReadOnlySpan<char> value, System.Globalization.NumberStyles style, System.IFormatProvider provider, out System.Numerics.BigInteger result) { result = default(System.Numerics.BigInteger); throw null; }
+        public static bool TryParse(System.ReadOnlySpan<char> value, out System.Numerics.BigInteger result) { result = default(System.Numerics.BigInteger); throw null; }
         public static bool TryParse(string value, System.Globalization.NumberStyles style, System.IFormatProvider provider, out System.Numerics.BigInteger result) { result = default(System.Numerics.BigInteger); throw null; }
         public static bool TryParse(string value, out System.Numerics.BigInteger result) { result = default(System.Numerics.BigInteger); throw null; }
+        public bool TryWriteBytes(System.Span<byte> destination, out int bytesWritten, bool isUnsigned = false, bool isBigEndian = false) { bytesWritten = default(int); throw null; }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct Complex : System.IEquatable<System.Numerics.Complex>, System.IFormattable
