@@ -76,6 +76,7 @@ namespace System.Globalization
         public static double GetNumericValue(char ch) { throw null; }
         public static double GetNumericValue(string s, int index) { throw null; }
         public static System.Globalization.UnicodeCategory GetUnicodeCategory(char ch) { throw null; }
+        public static System.Globalization.UnicodeCategory GetUnicodeCategory(int codePoint) { throw null; }
         public static System.Globalization.UnicodeCategory GetUnicodeCategory(string s, int index) { throw null; }
     }
     public partial class ChineseLunisolarCalendar : System.Globalization.EastAsianLunisolarCalendar
@@ -203,7 +204,7 @@ namespace System.Globalization
         public static System.Globalization.CultureInfo ReadOnly(System.Globalization.CultureInfo ci) { throw null; }
         public override string ToString() { throw null; }
     }
-    public partial class CultureNotFoundException : System.ArgumentException, System.Runtime.Serialization.ISerializable
+    public partial class CultureNotFoundException : System.ArgumentException
     {
         public CultureNotFoundException() { }
         protected CultureNotFoundException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }

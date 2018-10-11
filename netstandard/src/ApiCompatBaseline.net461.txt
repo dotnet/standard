@@ -59,6 +59,7 @@ TypesMustExist : Type 'System.Diagnostics.StackFrameExtensions' does not exist i
 TypesMustExist : Type 'System.Diagnostics.Tracing.EventCounter' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.Tracing.EventSource.add_EventCommandExecuted(System.EventHandler<System.Diagnostics.Tracing.EventCommandEventArgs>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.Tracing.EventSource.remove_EventCommandExecuted(System.EventHandler<System.Diagnostics.Tracing.EventCommandEventArgs>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Globalization.CharUnicodeInfo.GetUnicodeCategory(System.Int32)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Globalization.GlobalizationExtensions' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Linq.Enumerable.Append<TSource>(System.Collections.Generic.IEnumerable<TSource>, TSource)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Linq.Enumerable.Prepend<TSource>(System.Collections.Generic.IEnumerable<TSource>, TSource)' does not exist in the implementation but it does exist in the contract.
@@ -140,4 +141,4 @@ MembersMustExist : Member 'System.Text.RegularExpressions.Regex.Caps.set(System.
 TypesMustExist : Type 'System.Threading.PreAllocatedOverlapped' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Threading.ThreadPoolBoundHandle' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 141
+Total Issues: 142
