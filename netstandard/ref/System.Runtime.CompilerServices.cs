@@ -328,6 +328,11 @@ namespace System.Runtime.CompilerServices
     {
         public IteratorStateMachineAttribute(System.Type stateMachineType) : base (default(System.Type)) { }
     }
+    public partial interface ITuple
+    {
+        object this[int index] { get; }
+        int Length { get; }
+    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(2304), Inherited=false)]
     public sealed partial class IUnknownConstantAttribute : System.Runtime.CompilerServices.CustomConstantAttribute
     {
