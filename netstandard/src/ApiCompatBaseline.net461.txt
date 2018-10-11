@@ -35,6 +35,14 @@ MembersMustExist : Member 'System.Diagnostics.Tracing.EventSource.remove_EventCo
 TypesMustExist : Type 'System.Globalization.GlobalizationExtensions' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Linq.Enumerable.Append<TSource>(System.Collections.Generic.IEnumerable<TSource>, TSource)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Linq.Enumerable.Prepend<TSource>(System.Collections.Generic.IEnumerable<TSource>, TSource)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Linq.Enumerable.SkipLast<TSource>(System.Collections.Generic.IEnumerable<TSource>, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Linq.Enumerable.TakeLast<TSource>(System.Collections.Generic.IEnumerable<TSource>, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Linq.Enumerable.ToHashSet<TSource>(System.Collections.Generic.IEnumerable<TSource>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Linq.Enumerable.ToHashSet<TSource>(System.Collections.Generic.IEnumerable<TSource>, System.Collections.Generic.IEqualityComparer<TSource>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Linq.Queryable.Append<TSource>(System.Linq.IQueryable<TSource>, TSource)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Linq.Queryable.Prepend<TSource>(System.Linq.IQueryable<TSource>, TSource)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Linq.Queryable.SkipLast<TSource>(System.Linq.IQueryable<TSource>, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Linq.Queryable.TakeLast<TSource>(System.Linq.IQueryable<TSource>, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Linq.Expressions.Expression<TDelegate>.Compile(System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Linq.Expressions.LambdaExpression.Compile(System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Http.HttpClientHandler.CheckCertificateRevocationList.get()' does not exist in the implementation but it does exist in the contract.
@@ -105,4 +113,4 @@ MembersMustExist : Member 'System.Text.RegularExpressions.Regex.Caps.set(System.
 TypesMustExist : Type 'System.Threading.PreAllocatedOverlapped' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Threading.ThreadPoolBoundHandle' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 106
+Total Issues: 114
