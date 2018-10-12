@@ -1,0 +1,8 @@
+- terms:
+  - *NO MERGE*
+  locations:
+  - label_name
+- terms:
+  - fixup!
+  - squash!
+  locations: commit_subject
