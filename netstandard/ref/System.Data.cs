@@ -963,7 +963,7 @@ namespace System.Data
         public int RowCount { get { throw null; } }
         public void CopyToRows(System.Data.DataRow[] array) { }
         public void CopyToRows(System.Data.DataRow[] array, int arrayIndex) { }
-        public override void GetObjectData(System.Runtime.Serialization.SerializationInfo si, System.Runtime.Serialization.StreamingContext context) { }
+        public override void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
     }
     public enum DbType
     {
