@@ -224,12 +224,14 @@ namespace System.Text
         public virtual int GetByteCount(char[] chars) { throw null; }
         public abstract int GetByteCount(char[] chars, int index, int count);
         public virtual int GetByteCount(string s) { throw null; }
+        public int GetByteCount(string s, int index, int count) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public unsafe virtual int GetBytes(char* chars, int charCount, byte* bytes, int byteCount) { throw null; }
         public virtual byte[] GetBytes(char[] chars) { throw null; }
         public virtual byte[] GetBytes(char[] chars, int index, int count) { throw null; }
         public abstract int GetBytes(char[] chars, int charIndex, int charCount, byte[] bytes, int byteIndex);
         public virtual byte[] GetBytes(string s) { throw null; }
+        public byte[] GetBytes(string s, int index, int count) { throw null; }
         public virtual int GetBytes(string s, int charIndex, int charCount, byte[] bytes, int byteIndex) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public unsafe virtual int GetCharCount(byte* bytes, int count) { throw null; }
@@ -316,6 +318,8 @@ namespace System.Text
         public System.Text.StringBuilder Append(float value) { throw null; }
         public System.Text.StringBuilder Append(string value) { throw null; }
         public System.Text.StringBuilder Append(string value, int startIndex, int count) { throw null; }
+        public System.Text.StringBuilder Append(System.Text.StringBuilder value) { throw null; }
+        public System.Text.StringBuilder Append(System.Text.StringBuilder value, int startIndex, int count) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public System.Text.StringBuilder Append(ushort value) { throw null; }
         [System.CLSCompliantAttribute(false)]
@@ -330,6 +334,12 @@ namespace System.Text
         public System.Text.StringBuilder AppendFormat(string format, object arg0, object arg1) { throw null; }
         public System.Text.StringBuilder AppendFormat(string format, object arg0, object arg1, object arg2) { throw null; }
         public System.Text.StringBuilder AppendFormat(string format, params object[] args) { throw null; }
+        public System.Text.StringBuilder AppendJoin(char separator, params object[] values) { throw null; }
+        public System.Text.StringBuilder AppendJoin(char separator, params string[] values) { throw null; }
+        public System.Text.StringBuilder AppendJoin(string separator, params object[] values) { throw null; }
+        public System.Text.StringBuilder AppendJoin(string separator, params string[] values) { throw null; }
+        public System.Text.StringBuilder AppendJoin<T>(char separator, System.Collections.Generic.IEnumerable<T> values) { throw null; }
+        public System.Text.StringBuilder AppendJoin<T>(string separator, System.Collections.Generic.IEnumerable<T> values) { throw null; }
         public System.Text.StringBuilder AppendLine() { throw null; }
         public System.Text.StringBuilder AppendLine(string value) { throw null; }
         public System.Text.StringBuilder Clear() { throw null; }
