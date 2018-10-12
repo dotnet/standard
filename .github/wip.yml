@@ -1,7 +1,6 @@
 - terms:
   - *NO MERGE*
-  locations:
-  - label_name
+  locations: label_name
 - terms:
   - fixup!
   - squash!
