@@ -142,7 +142,14 @@ MembersMustExist : Member 'System.Text.RegularExpressions.Regex.CapNames.get()' 
 MembersMustExist : Member 'System.Text.RegularExpressions.Regex.CapNames.set(System.Collections.IDictionary)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.RegularExpressions.Regex.Caps.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.RegularExpressions.Regex.Caps.set(System.Collections.IDictionary)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Threading.CancellationTokenRegistration.Token.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Threading.Interlocked.MemoryBarrierProcessWide()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Threading.LazyInitializer.EnsureInitialized<T>(T, System.Object, System.Func<T>)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Threading.PreAllocatedOverlapped' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Threading.Thread.GetCurrentProcessorId()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Threading.ThreadPool.QueueUserWorkItem<TState>(System.Action<TState>, TState, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Threading.ThreadPoolBoundHandle' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Threading.Tasks.Task.IsCompletedSuccessfully.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Threading.Tasks.TaskCanceledException..ctor(System.String, System.Exception, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 146
+Total Issues: 153
