@@ -119,7 +119,7 @@ namespace System.ComponentModel
     {
         protected BaseNumberConverter() { }
         public override bool CanConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Type sourceType) { throw null; }
-        public override bool CanConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Type t) { throw null; }
+        public override bool CanConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Type destinationType) { throw null; }
         public override object ConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value) { throw null; }
         public override object ConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, System.Type destinationType) { throw null; }
     }
@@ -505,9 +505,17 @@ namespace System.ComponentModel
         public DefaultValueAttribute(int value) { }
         public DefaultValueAttribute(long value) { }
         public DefaultValueAttribute(object value) { }
+        [System.CLSCompliantAttribute(false)]
+        public DefaultValueAttribute(sbyte value) { }
         public DefaultValueAttribute(float value) { }
         public DefaultValueAttribute(string value) { }
         public DefaultValueAttribute(System.Type type, string value) { }
+        [System.CLSCompliantAttribute(false)]
+        public DefaultValueAttribute(ushort value) { }
+        [System.CLSCompliantAttribute(false)]
+        public DefaultValueAttribute(uint value) { }
+        [System.CLSCompliantAttribute(false)]
+        public DefaultValueAttribute(ulong value) { }
         public virtual object Value { get { throw null; } }
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }

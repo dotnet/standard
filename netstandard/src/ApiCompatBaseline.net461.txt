@@ -46,6 +46,10 @@ MembersMustExist : Member 'System.Collections.Generic.SortedSet<T>.TryGetValue(T
 MembersMustExist : Member 'System.Collections.Generic.Stack<T>.TryPeek(T)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.Generic.Stack<T>.TryPop(T)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.ObjectModel.KeyedCollection<TKey, TItem>.TryGetValue(TKey, TItem)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.ComponentModel.DefaultValueAttribute..ctor(System.SByte)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.ComponentModel.DefaultValueAttribute..ctor(System.UInt16)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.ComponentModel.DefaultValueAttribute..ctor(System.UInt32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.ComponentModel.DefaultValueAttribute..ctor(System.UInt64)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Data.Common.DbColumn' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Data.Common.DbDataReaderExtensions' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Data.Common.DbProviderFactories.GetProviderInvariantNames()' does not exist in the implementation but it does exist in the contract.
@@ -141,4 +145,4 @@ MembersMustExist : Member 'System.Text.RegularExpressions.Regex.Caps.set(System.
 TypesMustExist : Type 'System.Threading.PreAllocatedOverlapped' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Threading.ThreadPoolBoundHandle' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 142
+Total Issues: 146
