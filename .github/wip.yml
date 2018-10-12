@@ -1,5 +1,4 @@
-- terms:
-  - *NO MERGE*
+- terms: *NO MERGE*
   locations: label_name
 - terms:
   - fixup!
