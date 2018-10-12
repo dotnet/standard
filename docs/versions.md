@@ -28,6 +28,7 @@ most target .NET Standard 1.1.
 |Windows                               |    8.0  |  **8.0**|**8.1**  |         |         |              |              |              |
 |Windows Phone                         |    8.1  |    8.1  |**8.1**  |         |         |              |              |              |
 |Windows Phone Silverlight             |  **8.0**|         |         |         |         |              |              |              |
+|Unity                                 | 2018.1  |  2018.1 |  2018.1 |  2018.1 |  2018.1 |       2018.1 | 2018.1       |**2018.1**    |
 
 [1.0]: versions/netstandard1.0.md
 [1.1]: versions/netstandard1.1.md
