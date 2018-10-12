@@ -66,6 +66,3 @@ T:System.Runtime.InteropServices.MemoryMarshal
 T:System.Span`1
 T:System.Threading.Tasks.ValueTask
 T:System.Threading.Tasks.ValueTask`1
-T:System.IO.Compression.BrotliDecoder
-T:System.IO.Compression.BrotliEncoder
-T:System.IO.Compression.BrotliStream

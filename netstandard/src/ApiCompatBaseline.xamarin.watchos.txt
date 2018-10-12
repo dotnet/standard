@@ -215,9 +215,6 @@ MembersMustExist : Member 'System.IO.TextWriter.Write(System.ReadOnlySpan<System
 MembersMustExist : Member 'System.IO.TextWriter.WriteAsync(System.ReadOnlyMemory<System.Char>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.TextWriter.WriteLine(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.TextWriter.WriteLineAsync(System.ReadOnlyMemory<System.Char>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Compression.BrotliDecoder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Compression.BrotliEncoder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Compression.BrotliStream' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.IPAddress..ctor(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.IPAddress..ctor(System.ReadOnlySpan<System.Byte>, System.Int64)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.IPAddress.Parse(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
@@ -338,4 +335,4 @@ TypesMustExist : Type 'System.Threading.Tasks.Sources.IValueTaskSource' does not
 TypesMustExist : Type 'System.Threading.Tasks.Sources.IValueTaskSource<TResult>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Threading.Tasks.Sources.ValueTaskSourceOnCompletedFlags' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Threading.Tasks.Sources.ValueTaskSourceStatus' does not exist in the implementation but it does exist in the contract.
-Total Issues: 339
+Total Issues: 336

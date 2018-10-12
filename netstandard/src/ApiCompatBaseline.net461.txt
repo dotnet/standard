@@ -208,9 +208,6 @@ MembersMustExist : Member 'System.IO.TextWriter.WriteLine(System.ReadOnlySpan<Sy
 MembersMustExist : Member 'System.IO.TextWriter.WriteLineAsync(System.ReadOnlyMemory<System.Char>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.UnmanagedMemoryStream.Read(System.Span<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.UnmanagedMemoryStream.Write(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Compression.BrotliDecoder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Compression.BrotliEncoder' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.IO.Compression.BrotliStream' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Linq.Enumerable.Append<TSource>(System.Collections.Generic.IEnumerable<TSource>, TSource)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Linq.Enumerable.Prepend<TSource>(System.Collections.Generic.IEnumerable<TSource>, TSource)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Linq.Expressions.Expression<TDelegate>.Compile(System.Boolean)' does not exist in the implementation but it does exist in the contract.
@@ -370,4 +367,4 @@ TypesMustExist : Type 'System.Threading.Tasks.Sources.IValueTaskSource<TResult>'
 TypesMustExist : Type 'System.Threading.Tasks.Sources.ValueTaskSourceOnCompletedFlags' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Threading.Tasks.Sources.ValueTaskSourceStatus' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 371
+Total Issues: 368

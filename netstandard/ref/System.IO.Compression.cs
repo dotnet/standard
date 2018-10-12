@@ -4,49 +4,6 @@
 
 namespace System.IO.Compression
 {
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Size = 1)]
-    public partial struct BrotliDecoder : System.IDisposable
-    {
-        public System.Buffers.OperationStatus Decompress(System.ReadOnlySpan<byte> source, System.Span<byte> destination, out int bytesConsumed, out int bytesWritten) { bytesConsumed = default(int); bytesWritten = default(int); throw null; }
-        public void Dispose() { }
-        public static bool TryDecompress(System.ReadOnlySpan<byte> source, System.Span<byte> destination, out int bytesWritten) { bytesWritten = default(int); throw null; }
-    }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Size = 1)]
-    public partial struct BrotliEncoder : System.IDisposable
-    {
-        public BrotliEncoder(int quality, int window) { throw null; }
-        public System.Buffers.OperationStatus Compress(System.ReadOnlySpan<byte> source, System.Span<byte> destination, out int bytesConsumed, out int bytesWritten, bool isFinalBlock) { bytesConsumed = default(int); bytesWritten = default(int); throw null; }
-        public void Dispose() { }
-        public System.Buffers.OperationStatus Flush(System.Span<byte> destination, out int bytesWritten) { bytesWritten = default(int); throw null; }
-        public static int GetMaxCompressedLength(int inputSize) { throw null; }
-        public static bool TryCompress(System.ReadOnlySpan<byte> source, System.Span<byte> destination, out int bytesWritten) { bytesWritten = default(int); throw null; }
-        public static bool TryCompress(System.ReadOnlySpan<byte> source, System.Span<byte> destination, out int bytesWritten, int quality, int window) { bytesWritten = default(int); throw null; }
-    }
-    public sealed partial class BrotliStream : System.IO.Stream
-    {
-        public BrotliStream(System.IO.Stream stream, System.IO.Compression.CompressionLevel compressionLevel) { }
-        public BrotliStream(System.IO.Stream stream, System.IO.Compression.CompressionLevel compressionLevel, bool leaveOpen) { }
-        public BrotliStream(System.IO.Stream stream, System.IO.Compression.CompressionMode mode) { }
-        public BrotliStream(System.IO.Stream stream, System.IO.Compression.CompressionMode mode, bool leaveOpen) { }
-        public System.IO.Stream BaseStream { get { throw null; } }
-        public override bool CanRead { get { throw null; } }
-        public override bool CanSeek { get { throw null; } }
-        public override bool CanWrite { get { throw null; } }
-        public override long Length { get { throw null; } }
-        public override long Position { get { throw null; } set { } }
-        public override System.IAsyncResult BeginRead(byte[] buffer, int offset, int count, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
-        public override System.IAsyncResult BeginWrite(byte[] buffer, int offset, int count, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
-        protected override void Dispose(bool disposing) { }
-        public override int EndRead(System.IAsyncResult asyncResult) { throw null; }
-        public override void EndWrite(System.IAsyncResult asyncResult) { }
-        public override void Flush() { }
-        public override int Read(byte[] buffer, int offset, int count) { throw null; }
-        public override System.Threading.Tasks.Task<int> ReadAsync(byte[] buffer, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
-        public override long Seek(long offset, System.IO.SeekOrigin origin) { throw null; }
-        public override void SetLength(long value) { }
-        public override void Write(byte[] buffer, int offset, int count) { }
-        public override System.Threading.Tasks.Task WriteAsync(byte[] buffer, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
-    }
     public enum CompressionLevel
     {
         Fastest = 1,
