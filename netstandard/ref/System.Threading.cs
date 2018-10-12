@@ -100,6 +100,7 @@ namespace System.Threading
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct CancellationTokenRegistration : System.IDisposable, System.IEquatable<System.Threading.CancellationTokenRegistration>
     {
+        public System.Threading.CancellationToken Token { get { throw null; } }
         public void Dispose() { }
         public override bool Equals(object obj) { throw null; }
         public bool Equals(System.Threading.CancellationTokenRegistration other) { throw null; }
@@ -228,6 +229,7 @@ namespace System.Threading
         public static int Increment(ref int location) { throw null; }
         public static long Increment(ref long location) { throw null; }
         public static void MemoryBarrier() { }
+        public static void MemoryBarrierProcessWide() { }
         public static long Read(ref long location) { throw null; }
     }
     [System.CLSCompliantAttribute(false)]
@@ -238,6 +240,7 @@ namespace System.Threading
         public static T EnsureInitialized<T>(ref T target, ref bool initialized, ref object syncLock) { throw null; }
         public static T EnsureInitialized<T>(ref T target, ref bool initialized, ref object syncLock, System.Func<T> valueFactory) { throw null; }
         public static T EnsureInitialized<T>(ref T target, System.Func<T> valueFactory) where T : class { throw null; }
+        public static T EnsureInitialized<T>(ref T target, ref object syncLock, System.Func<T> valueFactory) where T : class { throw null; }
     }
     public enum LazyThreadSafetyMode
     {
@@ -553,6 +556,7 @@ namespace System.Threading
         public System.Threading.ApartmentState GetApartmentState() { throw null; }
         [System.ObsoleteAttribute("Thread.GetCompressedStack is no longer supported. Please use the System.Threading.CompressedStack class")]
         public System.Threading.CompressedStack GetCompressedStack() { throw null; }
+        public static int GetCurrentProcessorId() { throw null; }
         public static object GetData(System.LocalDataStoreSlot slot) { throw null; }
         public static System.AppDomain GetDomain() { throw null; }
         public static int GetDomainID() { throw null; }
@@ -658,6 +662,7 @@ namespace System.Threading
         public static void GetMinThreads(out int workerThreads, out int completionPortThreads) { workerThreads = default(int); completionPortThreads = default(int); }
         public static bool QueueUserWorkItem(System.Threading.WaitCallback callBack) { throw null; }
         public static bool QueueUserWorkItem(System.Threading.WaitCallback callBack, object state) { throw null; }
+        public static bool QueueUserWorkItem<TState>(System.Action<TState> callBack, TState state, bool preferLocal) { throw null; }
         public static System.Threading.RegisteredWaitHandle RegisterWaitForSingleObject(System.Threading.WaitHandle waitObject, System.Threading.WaitOrTimerCallback callBack, object state, int millisecondsTimeOutInterval, bool executeOnlyOnce) { throw null; }
         public static System.Threading.RegisteredWaitHandle RegisterWaitForSingleObject(System.Threading.WaitHandle waitObject, System.Threading.WaitOrTimerCallback callBack, object state, long millisecondsTimeOutInterval, bool executeOnlyOnce) { throw null; }
         public static System.Threading.RegisteredWaitHandle RegisterWaitForSingleObject(System.Threading.WaitHandle waitObject, System.Threading.WaitOrTimerCallback callBack, object state, System.TimeSpan timeout, bool executeOnlyOnce) { throw null; }
