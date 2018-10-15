@@ -1,0 +1,6 @@
+# This file lists the code owners that should be added to pull requests
+# See https://help.github.com/articles/about-codeowners/ for details.
+
+# The API surface is owned by the .NET Standard review board.
+# https://github.com/dotnet/standard/blob/master/docs/governance/README.md
+/netstandard/ref @nsboard-foundation @nsboard-platform @nsboard-tooling @nsboard-unity @nsboard-xamarin
