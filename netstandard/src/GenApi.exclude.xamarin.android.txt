@@ -38,3 +38,10 @@ T:System.Span`1
 T:System.Buffers.StandardFormat
 T:System.Buffers.Binary.BinaryPrimitives
 T:System.Runtime.InteropServices.MemoryMarshal
+T:System.IO.Enumeration.FileSystemEntry
+T:System.IO.Enumeration.FileSystemEnumerable`1
+T:System.IO.Enumeration.FileSystemEnumerator`1
+T:System.IO.Enumeration.FileSystemName
+T:System.IO.EnumerationOptions
+T:System.IO.MatchCasing
+T:System.IO.MatchType
