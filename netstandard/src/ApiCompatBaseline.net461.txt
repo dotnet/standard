@@ -401,8 +401,14 @@ TypesMustExist : Type 'System.Net.WebSockets.ValueWebSocketReceiveResult' does n
 MembersMustExist : Member 'System.Net.WebSockets.WebSocket.ReceiveAsync(System.Memory<System.Byte>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.WebSockets.WebSocket.SendAsync(System.ReadOnlyMemory<System.Byte>, System.Net.WebSockets.WebSocketMessageType, System.Boolean, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.Numerics.BigInteger' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+MembersMustExist : Member 'System.Numerics.BigInteger..ctor(System.ReadOnlySpan<System.Byte>, System.Boolean, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Numerics.BigInteger.GetByteCount(System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Numerics.BigInteger.Parse(System.ReadOnlySpan<System.Char>, System.Globalization.NumberStyles, System.IFormatProvider)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Numerics.BigInteger.ToByteArray(System.Boolean, System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Numerics.BigInteger.TryFormat(System.Span<System.Char>, System.Int32, System.ReadOnlySpan<System.Char>, System.IFormatProvider)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Numerics.BigInteger.TryParse(System.ReadOnlySpan<System.Char>, System.Globalization.NumberStyles, System.IFormatProvider, System.Numerics.BigInteger)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Numerics.BigInteger.TryParse(System.ReadOnlySpan<System.Char>, System.Numerics.BigInteger)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Numerics.BigInteger.TryWriteBytes(System.Span<System.Byte>, System.Int32, System.Boolean, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Numerics.Vector' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Numerics.Vector<T>' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Assembly.GetForwardedTypes()' does not exist in the implementation but it does exist in the contract.
@@ -554,4 +560,4 @@ MembersMustExist : Member 'System.Xml.Linq.XNode.WriteToAsync(System.Xml.XmlWrit
 MembersMustExist : Member 'System.Xml.Linq.XProcessingInstruction.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Linq.XText.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 555
+Total Issues: 561

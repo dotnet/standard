@@ -309,6 +309,12 @@ MembersMustExist : Member 'System.Net.Sockets.SocketTaskExtensions.ReceiveAsync(
 MembersMustExist : Member 'System.Net.Sockets.SocketTaskExtensions.SendAsync(System.Net.Sockets.Socket, System.ReadOnlyMemory<System.Byte>, System.Net.Sockets.SocketFlags, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.WebSockets.WebSocket.ReceiveAsync(System.Memory<System.Byte>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.WebSockets.WebSocket.SendAsync(System.ReadOnlyMemory<System.Byte>, System.Net.WebSockets.WebSocketMessageType, System.Boolean, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Numerics.BigInteger..ctor(System.ReadOnlySpan<System.Byte>, System.Boolean, System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Numerics.BigInteger.Parse(System.ReadOnlySpan<System.Char>, System.Globalization.NumberStyles, System.IFormatProvider)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Numerics.BigInteger.TryFormat(System.Span<System.Char>, System.Int32, System.ReadOnlySpan<System.Char>, System.IFormatProvider)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Numerics.BigInteger.TryParse(System.ReadOnlySpan<System.Char>, System.Globalization.NumberStyles, System.IFormatProvider, System.Numerics.BigInteger)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Numerics.BigInteger.TryParse(System.ReadOnlySpan<System.Char>, System.Numerics.BigInteger)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Numerics.BigInteger.TryWriteBytes(System.Span<System.Byte>, System.Int32, System.Boolean, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Numerics.Vector<T>..ctor(System.Span<T>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Assembly.GetForwardedTypes()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.BindingFlags System.Reflection.BindingFlags.DoNotWrapExceptions' does not exist in the implementation but it does exist in the contract.
@@ -422,4 +428,4 @@ MembersMustExist : Member 'System.Xml.Linq.XProcessingInstruction.WriteToAsync(S
 MembersMustExist : Member 'System.Xml.Linq.XText.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.Serialization.SchemaImporter' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xml.Serialization.XmlSchemaImporter' does not inherit from base type 'System.Xml.Serialization.SchemaImporter' in the implementation but it does in the contract.
-Total Issues: 423
+Total Issues: 429
