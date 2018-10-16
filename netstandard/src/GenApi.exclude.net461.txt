@@ -85,3 +85,8 @@ T:System.IO.MatchType
 T:System.HashCode
 T:System.MathF
 T:System.Reflection.Emit.DynamicMethod
+T:System.Security.Cryptography.ECDiffieHellman
+T:System.Security.Cryptography.X509Certificates.CertificateRequest
+T:System.Security.Cryptography.X509Certificates.DSACertificateExtensions
+T:System.Security.Cryptography.X509Certificates.SubjectAlternativeNameBuilder
+T:System.Security.Cryptography.X509Certificates.X509SignatureGenerator
