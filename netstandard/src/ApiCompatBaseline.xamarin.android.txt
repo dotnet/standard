@@ -374,8 +374,21 @@ MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.StringToCoTask
 TypesMustExist : Type 'System.Runtime.InteropServices.MemoryMarshal' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.Runtime.Serialization.StreamingContext' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 TypeCannotChangeClassification : Type 'System.Security.Cryptography.HashAlgorithmName' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+MembersMustExist : Member 'System.Text.Decoder.Convert(System.ReadOnlySpan<System.Byte>, System.Span<System.Char>, System.Boolean, System.Int32, System.Int32, System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.Decoder.GetCharCount(System.ReadOnlySpan<System.Byte>, System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.Decoder.GetChars(System.ReadOnlySpan<System.Byte>, System.Span<System.Char>, System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.Encoder.Convert(System.ReadOnlySpan<System.Char>, System.Span<System.Byte>, System.Boolean, System.Int32, System.Int32, System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.Encoder.GetByteCount(System.ReadOnlySpan<System.Char>, System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.Encoder.GetBytes(System.ReadOnlySpan<System.Char>, System.Span<System.Byte>, System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.Encoding.GetByteCount(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.Encoding.GetByteCount(System.String, System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.Encoding.GetBytes(System.ReadOnlySpan<System.Char>, System.Span<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.Encoding.GetBytes(System.String, System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.Encoding.GetCharCount(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.Encoding.GetChars(System.ReadOnlySpan<System.Byte>, System.Span<System.Char>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.Encoding.GetString(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.Encoding.Preamble.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.StringBuilder.Append(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.StringBuilder.Append(System.Text.StringBuilder)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.StringBuilder.Append(System.Text.StringBuilder, System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.StringBuilder.AppendJoin(System.Char, System.Object[])' does not exist in the implementation but it does exist in the contract.
@@ -384,6 +397,9 @@ MembersMustExist : Member 'System.Text.StringBuilder.AppendJoin(System.String, S
 MembersMustExist : Member 'System.Text.StringBuilder.AppendJoin(System.String, System.String[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.StringBuilder.AppendJoin<T>(System.Char, System.Collections.Generic.IEnumerable<T>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.StringBuilder.AppendJoin<T>(System.String, System.Collections.Generic.IEnumerable<T>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.StringBuilder.CopyTo(System.Int32, System.Span<System.Char>, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.StringBuilder.Equals(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Text.StringBuilder.Insert(System.Int32, System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Text.RegularExpressions.CaptureCollection' does not implement interface 'System.Collections.Generic.ICollection<System.Text.RegularExpressions.Capture>' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Text.RegularExpressions.CaptureCollection.CopyTo(System.Text.RegularExpressions.Capture[], System.Int32)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Text.RegularExpressions.GroupCollection' does not implement interface 'System.Collections.Generic.ICollection<System.Text.RegularExpressions.Group>' in the implementation but it does in the contract.
@@ -428,4 +444,4 @@ MembersMustExist : Member 'System.Xml.Linq.XProcessingInstruction.WriteToAsync(S
 MembersMustExist : Member 'System.Xml.Linq.XText.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.Serialization.SchemaImporter' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xml.Serialization.XmlSchemaImporter' does not inherit from base type 'System.Xml.Serialization.SchemaImporter' in the implementation but it does in the contract.
-Total Issues: 429
+Total Issues: 445
