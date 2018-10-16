@@ -42,10 +42,12 @@ namespace System.Net.Mime
     {
         public static partial class Application
         {
+            public const string Json = "application/json";
             public const string Octet = "application/octet-stream";
             public const string Pdf = "application/pdf";
             public const string Rtf = "application/rtf";
             public const string Soap = "application/soap+xml";
+            public const string Xml = "application/xml";
             public const string Zip = "application/zip";
         }
         public static partial class Image
