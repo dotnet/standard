@@ -26,6 +26,8 @@ T:System.Buffers.Text.Base64
 T:System.Buffers.Text.Utf8Formatter
 T:System.Buffers.Text.Utf8Parser
 T:System.Net.Http.ReadOnlyMemoryContent
+T:System.Buffers.IPinnable
+T:System.Security.Cryptography.CryptographicOperations
 T:System.Threading.Tasks.Sources.IValueTaskSource
 T:System.Threading.Tasks.Sources.IValueTaskSource`1
 T:System.Threading.Tasks.Sources.ValueTaskSourceOnCompletedFlags
