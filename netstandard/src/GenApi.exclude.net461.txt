@@ -29,3 +29,11 @@ T:System.Runtime.CompilerServices.RuntimeFeature
 T:System.Runtime.CompilerServices.IsReadOnlyAttribute
 T:System.Runtime.CompilerServices.IsByRefLikeAttribute
 T:System.Diagnostics.Tracing.EventSourceCreatedEventArgs
+T:System.Reflection.AssemblyExtensions
+T:System.Reflection.DispatchProxy
+T:System.Reflection.EventInfoExtensions
+T:System.Reflection.MemberInfoExtensions
+T:System.Reflection.MethodInfoExtensions
+T:System.Reflection.ModuleExtensions
+T:System.Reflection.PropertyInfoExtensions
+T:System.Reflection.TypeExtensions

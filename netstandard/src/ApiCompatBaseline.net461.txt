@@ -15,7 +15,19 @@ CannotRemoveBaseTypeOrInterface : Type 'System.Tuple<T1, T2, T3, T4, T5>' does n
 CannotRemoveBaseTypeOrInterface : Type 'System.Tuple<T1, T2, T3, T4, T5, T6>' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Tuple<T1, T2, T3, T4, T5, T6, T7>' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Tuple<T1, T2, T3, T4, T5, T6, T7, TRest>' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Type.GetMethod(System.String, System.Int32, System.Reflection.BindingFlags, System.Reflection.Binder, System.Reflection.CallingConventions, System.Type[], System.Reflection.ParameterModifier[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Type.GetMethod(System.String, System.Int32, System.Reflection.BindingFlags, System.Reflection.Binder, System.Type[], System.Reflection.ParameterModifier[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Type.GetMethod(System.String, System.Int32, System.Type[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Type.GetMethod(System.String, System.Int32, System.Type[], System.Reflection.ParameterModifier[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Type.GetMethodImpl(System.String, System.Int32, System.Reflection.BindingFlags, System.Reflection.Binder, System.Reflection.CallingConventions, System.Type[], System.Reflection.ParameterModifier[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Type.IsByRefLike.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Type.IsGenericMethodParameter.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Type.IsGenericTypeParameter.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Type.IsSignatureType.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Type.IsSZArray.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Type.IsTypeDefinition.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Type.IsVariableBoundArray.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Type.MakeGenericMethodParameter(System.Int32)' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.TypedReference' is a 'struct' in the implementation but is a 'ref struct' in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.ValueTuple' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.ValueTuple<T1>' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
@@ -118,8 +130,25 @@ TypesMustExist : Type 'System.Net.Sockets.SocketTaskExtensions' does not exist i
 TypeCannotChangeClassification : Type 'System.Numerics.BigInteger' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Numerics.BigInteger.GetByteCount(System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Numerics.BigInteger.ToByteArray(System.Boolean, System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Reflection.Assembly.GetForwardedTypes()' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Reflection.AssemblyExtensions' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Reflection.BindingFlags System.Reflection.BindingFlags.DoNotWrapExceptions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Reflection.DispatchProxy' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Reflection.EventInfoExtensions' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Reflection.MemberInfo.HasSameMetadataDefinitionAs(System.Reflection.MemberInfo)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Reflection.MemberInfoExtensions' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Reflection.MethodBase.IsConstructedGenericMethod.get()' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Reflection.MethodInfoExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Reflection.ModuleExtensions' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.Reflection.ParameterModifier' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypesMustExist : Type 'System.Reflection.PropertyInfoExtensions' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.TypeDelegator.IsByRefLike.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Reflection.TypeDelegator.IsGenericMethodParameter.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Reflection.TypeDelegator.IsGenericTypeParameter.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Reflection.TypeDelegator.IsSZArray.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Reflection.TypeDelegator.IsTypeDefinition.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Reflection.TypeDelegator.IsVariableBoundArray.get()' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Reflection.TypeExtensions' does not exist in the implementation but it does exist in the contract.
 CannotSealType : Type 'System.Reflection.TypeInfo' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
 MembersMustExist : Member 'System.Reflection.TypeInfo..ctor()' does not exist in the implementation but it does exist in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.DeclaredConstructors' is non-virtual in the implementation but is virtual in the contract.
@@ -240,4 +269,4 @@ MembersMustExist : Member 'System.Xml.Linq.XNode.WriteToAsync(System.Xml.XmlWrit
 MembersMustExist : Member 'System.Xml.Linq.XProcessingInstruction.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Linq.XText.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 241
+Total Issues: 270

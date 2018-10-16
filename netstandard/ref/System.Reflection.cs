@@ -50,6 +50,7 @@ namespace System.Reflection
         public virtual System.IO.FileStream GetFile(string name) { throw null; }
         public virtual System.IO.FileStream[] GetFiles() { throw null; }
         public virtual System.IO.FileStream[] GetFiles(bool getResourceModules) { throw null; }
+        public virtual System.Type[] GetForwardedTypes() { throw null; }
         public override int GetHashCode() { throw null; }
         public System.Reflection.Module[] GetLoadedModules() { throw null; }
         public virtual System.Reflection.Module[] GetLoadedModules(bool getResourceModules) { throw null; }
@@ -295,6 +296,7 @@ namespace System.Reflection
         CreateInstance = 512,
         DeclaredOnly = 2,
         Default = 0,
+        DoNotWrapExceptions = 33554432,
         ExactBinding = 65536,
         FlattenHierarchy = 64,
         GetField = 1024,
@@ -429,6 +431,12 @@ namespace System.Reflection
     {
         public DefaultMemberAttribute(string memberName) { }
         public string MemberName { get { throw null; } }
+    }
+    public abstract partial class DispatchProxy
+    {
+        protected DispatchProxy() { }
+        public static T Create<T, TProxy>() where TProxy : System.Reflection.DispatchProxy { throw null; }
+        protected abstract object Invoke(System.Reflection.MethodInfo targetMethod, object[] args);
     }
     [System.FlagsAttribute]
     public enum EventAttributes
@@ -640,6 +648,7 @@ namespace System.Reflection
         public abstract object[] GetCustomAttributes(System.Type attributeType, bool inherit);
         public virtual System.Collections.Generic.IList<System.Reflection.CustomAttributeData> GetCustomAttributesData() { throw null; }
         public override int GetHashCode() { throw null; }
+        public virtual bool HasSameMetadataDefinitionAs(System.Reflection.MemberInfo other) { throw null; }
         public abstract bool IsDefined(System.Type attributeType, bool inherit);
         public static bool operator ==(System.Reflection.MemberInfo left, System.Reflection.MemberInfo right) { throw null; }
         public static bool operator !=(System.Reflection.MemberInfo left, System.Reflection.MemberInfo right) { throw null; }
@@ -693,6 +702,7 @@ namespace System.Reflection
         public virtual bool ContainsGenericParameters { get { throw null; } }
         public bool IsAbstract { get { throw null; } }
         public bool IsAssembly { get { throw null; } }
+        public virtual bool IsConstructedGenericMethod { get { throw null; } }
         public bool IsConstructor { get { throw null; } }
         public bool IsFamily { get { throw null; } }
         public bool IsFamilyAndAssembly { get { throw null; } }
@@ -1091,6 +1101,11 @@ namespace System.Reflection
         public override System.Guid GUID { get { throw null; } }
         public override bool IsByRefLike { get { throw null; } }
         public override bool IsConstructedGenericType { get { throw null; } }
+        public override bool IsGenericMethodParameter { get { throw null; } }
+        public override bool IsGenericTypeParameter { get { throw null; } }
+        public override bool IsSZArray { get { throw null; } }
+        public override bool IsTypeDefinition { get { throw null; } }
+        public override bool IsVariableBoundArray { get { throw null; } }
         public override int MetadataToken { get { throw null; } }
         public override System.Reflection.Module Module { get { throw null; } }
         public override string Name { get { throw null; } }
