@@ -1,5 +1,19 @@
 Compat issues with assembly netstandard:
 TypeCannotChangeClassification : Type 'System.ArraySegment<T>' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+MembersMustExist : Member 'System.ArraySegment<T>.CopyTo(System.ArraySegment<T>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.ArraySegment<T>.CopyTo(T[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.ArraySegment<T>.CopyTo(T[], System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.ArraySegment<T>.Empty.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.ArraySegment<T>.GetEnumerator()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.ArraySegment<T>.Item.get(System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.ArraySegment<T>.Item.set(System.Int32, T)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.ArraySegment<T>.op_Implicit(T[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.ArraySegment<T>.Slice(System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.ArraySegment<T>.Slice(System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.ArraySegment<T>.ToArray()' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.ArraySegment<T>.Enumerator' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.BitConverter.Int32BitsToSingle(System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.BitConverter.SingleToInt32Bits(System.Single)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.BitConverter.ToBoolean(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.BitConverter.ToChar(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.BitConverter.ToDouble(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
@@ -33,6 +47,7 @@ MembersMustExist : Member 'System.Convert.TryFromBase64Chars(System.ReadOnlySpan
 MembersMustExist : Member 'System.Convert.TryFromBase64String(System.String, System.Span<System.Byte>, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Convert.TryToBase64Chars(System.ReadOnlySpan<System.Byte>, System.Span<System.Char>, System.Int32, System.Base64FormattingOptions)' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.DateTime' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+MembersMustExist : Member 'System.DateTime System.DateTime.UnixEpoch' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.DateTime.Parse(System.ReadOnlySpan<System.Char>, System.IFormatProvider, System.Globalization.DateTimeStyles)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.DateTime.ParseExact(System.ReadOnlySpan<System.Char>, System.ReadOnlySpan<System.Char>, System.IFormatProvider, System.Globalization.DateTimeStyles)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.DateTime.ParseExact(System.ReadOnlySpan<System.Char>, System.String[], System.IFormatProvider, System.Globalization.DateTimeStyles)' does not exist in the implementation but it does exist in the contract.
@@ -41,6 +56,7 @@ MembersMustExist : Member 'System.DateTime.TryParse(System.ReadOnlySpan<System.C
 MembersMustExist : Member 'System.DateTime.TryParse(System.ReadOnlySpan<System.Char>, System.IFormatProvider, System.Globalization.DateTimeStyles, System.DateTime)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.DateTime.TryParseExact(System.ReadOnlySpan<System.Char>, System.ReadOnlySpan<System.Char>, System.IFormatProvider, System.Globalization.DateTimeStyles, System.DateTime)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.DateTime.TryParseExact(System.ReadOnlySpan<System.Char>, System.String[], System.IFormatProvider, System.Globalization.DateTimeStyles, System.DateTime)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.DateTimeOffset System.DateTimeOffset.UnixEpoch' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.DateTimeOffset.Parse(System.ReadOnlySpan<System.Char>, System.IFormatProvider, System.Globalization.DateTimeStyles)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.DateTimeOffset.ParseExact(System.ReadOnlySpan<System.Char>, System.ReadOnlySpan<System.Char>, System.IFormatProvider, System.Globalization.DateTimeStyles)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.DateTimeOffset.ParseExact(System.ReadOnlySpan<System.Char>, System.String[], System.IFormatProvider, System.Globalization.DateTimeStyles)' does not exist in the implementation but it does exist in the contract.
@@ -53,10 +69,18 @@ MembersMustExist : Member 'System.Decimal.Parse(System.ReadOnlySpan<System.Char>
 MembersMustExist : Member 'System.Decimal.TryFormat(System.Span<System.Char>, System.Int32, System.ReadOnlySpan<System.Char>, System.IFormatProvider)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Decimal.TryParse(System.ReadOnlySpan<System.Char>, System.Decimal)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Decimal.TryParse(System.ReadOnlySpan<System.Char>, System.Globalization.NumberStyles, System.IFormatProvider, System.Decimal)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Double.IsNegative(System.Double)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Double.IsNormal(System.Double)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Double.IsSubnormal(System.Double)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Double.Parse(System.ReadOnlySpan<System.Char>, System.Globalization.NumberStyles, System.IFormatProvider)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Double.TryFormat(System.Span<System.Char>, System.Int32, System.ReadOnlySpan<System.Char>, System.IFormatProvider)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Double.TryParse(System.ReadOnlySpan<System.Char>, System.Double)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Double.TryParse(System.ReadOnlySpan<System.Char>, System.Globalization.NumberStyles, System.IFormatProvider, System.Double)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Enum.Parse<TEnum>(System.String)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Enum.Parse<TEnum>(System.String, System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Enum.TryParse(System.Type, System.String, System.Boolean, System.Object)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Enum.TryParse(System.Type, System.String, System.Object)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.GC.GetAllocatedBytesForCurrentThread()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Guid..ctor(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Guid.Parse(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Guid.ParseExact(System.ReadOnlySpan<System.Char>, System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
@@ -64,6 +88,7 @@ MembersMustExist : Member 'System.Guid.TryFormat(System.Span<System.Char>, Syste
 MembersMustExist : Member 'System.Guid.TryParse(System.ReadOnlySpan<System.Char>, System.Guid)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Guid.TryParseExact(System.ReadOnlySpan<System.Char>, System.ReadOnlySpan<System.Char>, System.Guid)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Guid.TryWriteBytes(System.Span<System.Byte>)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.HashCode' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Int16.Parse(System.ReadOnlySpan<System.Char>, System.Globalization.NumberStyles, System.IFormatProvider)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Int16.TryFormat(System.Span<System.Char>, System.Int32, System.ReadOnlySpan<System.Char>, System.IFormatProvider)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Int16.TryParse(System.ReadOnlySpan<System.Char>, System.Globalization.NumberStyles, System.IFormatProvider, System.Int16)' does not exist in the implementation but it does exist in the contract.
@@ -76,6 +101,24 @@ MembersMustExist : Member 'System.Int64.Parse(System.ReadOnlySpan<System.Char>, 
 MembersMustExist : Member 'System.Int64.TryFormat(System.Span<System.Char>, System.Int32, System.ReadOnlySpan<System.Char>, System.IFormatProvider)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Int64.TryParse(System.ReadOnlySpan<System.Char>, System.Globalization.NumberStyles, System.IFormatProvider, System.Int64)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Int64.TryParse(System.ReadOnlySpan<System.Char>, System.Int64)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IntPtr' does not implement interface 'System.IEquatable<System.IntPtr>' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Lazy<T>..ctor(T)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Math.Acosh(System.Double)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Math.Asinh(System.Double)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Math.Atanh(System.Double)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Math.Cbrt(System.Double)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Math.Clamp(System.Byte, System.Byte, System.Byte)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Math.Clamp(System.Decimal, System.Decimal, System.Decimal)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Math.Clamp(System.Double, System.Double, System.Double)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Math.Clamp(System.Int16, System.Int16, System.Int16)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Math.Clamp(System.Int32, System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Math.Clamp(System.Int64, System.Int64, System.Int64)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Math.Clamp(System.SByte, System.SByte, System.SByte)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Math.Clamp(System.Single, System.Single, System.Single)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Math.Clamp(System.UInt16, System.UInt16, System.UInt16)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Math.Clamp(System.UInt32, System.UInt32, System.UInt32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Math.Clamp(System.UInt64, System.UInt64, System.UInt64)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.MathF' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Memory<T>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.MemoryExtensions' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Random.NextBytes(System.Span<System.Byte>)' does not exist in the implementation but it does exist in the contract.
@@ -86,13 +129,48 @@ MembersMustExist : Member 'System.SByte.Parse(System.ReadOnlySpan<System.Char>, 
 MembersMustExist : Member 'System.SByte.TryFormat(System.Span<System.Char>, System.Int32, System.ReadOnlySpan<System.Char>, System.IFormatProvider)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.SByte.TryParse(System.ReadOnlySpan<System.Char>, System.Globalization.NumberStyles, System.IFormatProvider, System.SByte)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.SByte.TryParse(System.ReadOnlySpan<System.Char>, System.SByte)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Single.IsNegative(System.Single)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Single.IsNormal(System.Single)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Single.IsSubnormal(System.Single)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Single.Parse(System.ReadOnlySpan<System.Char>, System.Globalization.NumberStyles, System.IFormatProvider)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Single.TryFormat(System.Span<System.Char>, System.Int32, System.ReadOnlySpan<System.Char>, System.IFormatProvider)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Single.TryParse(System.ReadOnlySpan<System.Char>, System.Globalization.NumberStyles, System.IFormatProvider, System.Single)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Single.TryParse(System.ReadOnlySpan<System.Char>, System.Single)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Span<T>' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String..ctor(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Contains(System.Char)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Contains(System.Char, System.StringComparison)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Contains(System.String, System.StringComparison)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Create<TState>(System.Int32, TState, System.Buffers.SpanAction<System.Char, TState>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.EndsWith(System.Char)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.GetHashCode(System.StringComparison)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.IndexOf(System.Char, System.StringComparison)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Join(System.Char, System.Object[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Join(System.Char, System.String[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Join(System.Char, System.String[], System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Join<T>(System.Char, System.Collections.Generic.IEnumerable<T>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.op_Implicit(System.String)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Replace(System.String, System.String, System.Boolean, System.Globalization.CultureInfo)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Replace(System.String, System.String, System.StringComparison)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Split(System.Char, System.Int32, System.StringSplitOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Split(System.Char, System.StringSplitOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Split(System.String, System.Int32, System.StringSplitOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Split(System.String, System.StringSplitOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.StartsWith(System.Char)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Trim(System.Char)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.TrimEnd()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.TrimEnd(System.Char)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.TrimStart()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.TrimStart(System.Char)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.StringComparer.Create(System.Globalization.CultureInfo, System.Globalization.CompareOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.StringComparer.FromComparison(System.StringComparison)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.TimeSpan.Divide(System.Double)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.TimeSpan.Divide(System.TimeSpan)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.TimeSpan.Multiply(System.Double)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.TimeSpan.op_Division(System.TimeSpan, System.Double)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.TimeSpan.op_Division(System.TimeSpan, System.TimeSpan)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.TimeSpan.op_Multiply(System.Double, System.TimeSpan)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.TimeSpan.op_Multiply(System.TimeSpan, System.Double)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.TimeSpan.Parse(System.ReadOnlySpan<System.Char>, System.IFormatProvider)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.TimeSpan.ParseExact(System.ReadOnlySpan<System.Char>, System.ReadOnlySpan<System.Char>, System.IFormatProvider, System.Globalization.TimeSpanStyles)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.TimeSpan.ParseExact(System.ReadOnlySpan<System.Char>, System.String[], System.IFormatProvider, System.Globalization.TimeSpanStyles)' does not exist in the implementation but it does exist in the contract.
@@ -129,6 +207,7 @@ MembersMustExist : Member 'System.UInt64.Parse(System.ReadOnlySpan<System.Char>,
 MembersMustExist : Member 'System.UInt64.TryFormat(System.Span<System.Char>, System.Int32, System.ReadOnlySpan<System.Char>, System.IFormatProvider)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.UInt64.TryParse(System.ReadOnlySpan<System.Char>, System.Globalization.NumberStyles, System.IFormatProvider, System.UInt64)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.UInt64.TryParse(System.ReadOnlySpan<System.Char>, System.UInt64)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.UIntPtr' does not implement interface 'System.IEquatable<System.UIntPtr>' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Version.Parse(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Version.TryFormat(System.Span<System.Char>, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Version.TryFormat(System.Span<System.Char>, System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
@@ -449,4 +528,4 @@ MembersMustExist : Member 'System.Xml.Linq.XProcessingInstruction.WriteToAsync(S
 MembersMustExist : Member 'System.Xml.Linq.XText.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.Serialization.SchemaImporter' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xml.Serialization.XmlSchemaImporter' does not inherit from base type 'System.Xml.Serialization.SchemaImporter' in the implementation but it does in the contract.
-Total Issues: 450
+Total Issues: 529

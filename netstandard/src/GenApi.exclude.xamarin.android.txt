@@ -46,3 +46,5 @@ T:System.IO.Enumeration.FileSystemName
 T:System.IO.EnumerationOptions
 T:System.IO.MatchCasing
 T:System.IO.MatchType
+T:System.HashCode
+T:System.MathF
