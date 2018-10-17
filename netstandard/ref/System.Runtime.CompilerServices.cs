@@ -437,6 +437,11 @@ namespace System.Runtime.CompilerServices
         public RuntimeCompatibilityAttribute() { }
         public bool WrapNonExceptionThrows { get { throw null; } set { } }
     }
+    public static partial class RuntimeFeature
+    {
+        public const string PortablePdb = "PortablePdb";
+        public static bool IsSupported(string feature) { throw null; }
+    }
     public static partial class RuntimeHelpers
     {
         public static int OffsetToStringData { get { throw null; } }
