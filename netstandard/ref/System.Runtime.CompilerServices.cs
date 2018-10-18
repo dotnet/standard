@@ -286,6 +286,12 @@ namespace System.Runtime.CompilerServices
     public static partial class IsBoxed
     {
     }
+    [System.AttributeUsageAttribute((System.AttributeTargets)(8))]
+    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    public sealed partial class IsByRefLikeAttribute : System.Attribute
+    {
+        public IsByRefLikeAttribute() { }
+    }
     public static partial class IsByValue
     {
     }

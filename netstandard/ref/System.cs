@@ -3039,7 +3039,7 @@ namespace System
     }
     public delegate System.Reflection.Assembly ResolveEventHandler(object sender, System.ResolveEventArgs args);
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct RuntimeArgumentHandle
+    public ref partial struct RuntimeArgumentHandle
     {
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
@@ -3843,6 +3843,7 @@ namespace System
         public bool IsAutoClass { get { throw null; } }
         public bool IsAutoLayout { get { throw null; } }
         public bool IsByRef { get { throw null; } }
+        public virtual bool IsByRefLike { get { throw null; } }
         public bool IsClass { get { throw null; } }
         public bool IsCOMObject { get { throw null; } }
         public virtual bool IsConstructedGenericType { get { throw null; } }
@@ -4023,7 +4024,7 @@ namespace System
     }
     [System.CLSCompliantAttribute(false)]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct TypedReference
+    public ref partial struct TypedReference
     {
         public override bool Equals(object o) { throw null; }
         public override int GetHashCode() { throw null; }
