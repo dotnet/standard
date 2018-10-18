@@ -450,7 +450,7 @@ namespace System.Runtime.Serialization
         public void RegisterObject(object obj) { }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct StreamingContext
+    public readonly partial struct StreamingContext
     {
         public StreamingContext(System.Runtime.Serialization.StreamingContextStates state) { throw null;}
         public StreamingContext(System.Runtime.Serialization.StreamingContextStates state, object additional) { throw null;}

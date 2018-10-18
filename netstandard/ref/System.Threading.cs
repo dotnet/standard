@@ -79,7 +79,7 @@ namespace System.Threading
         public BarrierPostPhaseException(string message, System.Exception innerException) { }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct CancellationToken
+    public readonly partial struct CancellationToken
     {
         public CancellationToken(bool canceled) { throw null;}
         public bool CanBeCanceled { get { throw null; } }
@@ -98,7 +98,7 @@ namespace System.Threading
         public void ThrowIfCancellationRequested() { }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct CancellationTokenRegistration : System.IDisposable, System.IEquatable<System.Threading.CancellationTokenRegistration>
+    public readonly partial struct CancellationTokenRegistration : System.IDisposable, System.IEquatable<System.Threading.CancellationTokenRegistration>
     {
         public System.Threading.CancellationToken Token { get { throw null; } }
         public void Dispose() { }
