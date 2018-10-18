@@ -90,6 +90,7 @@
     <Compile Include="System.Text.RegularExpressions.cs" />
     <Compile Include="System.Threading.cs" />
     <Compile Include="System.Threading.Tasks.cs" />
+    <Compile Include="System.Threading.Tasks.Sources.cs" />
     <Compile Include="System.Timers.cs" />
     <Compile Include="System.Transactions.cs" />
     <Compile Include="System.Web.cs" />

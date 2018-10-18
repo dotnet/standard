@@ -131,24 +131,17 @@ TypeCannotChangeClassification : Type 'System.Numerics.BigInteger' is marked as 
 MembersMustExist : Member 'System.Numerics.BigInteger.GetByteCount(System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Numerics.BigInteger.ToByteArray(System.Boolean, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Assembly.GetForwardedTypes()' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.AssemblyExtensions' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.BindingFlags System.Reflection.BindingFlags.DoNotWrapExceptions' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Reflection.DispatchProxy' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.EventInfoExtensions' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.MemberInfo.HasSameMetadataDefinitionAs(System.Reflection.MemberInfo)' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.MemberInfoExtensions' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.MethodBase.IsConstructedGenericMethod.get()' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.MethodInfoExtensions' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.ModuleExtensions' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.Reflection.ParameterModifier' is marked as readonly in the contract so it must also be marked readonly in the implementation.
-TypesMustExist : Type 'System.Reflection.PropertyInfoExtensions' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.TypeDelegator.IsByRefLike.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.TypeDelegator.IsGenericMethodParameter.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.TypeDelegator.IsGenericTypeParameter.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.TypeDelegator.IsSZArray.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.TypeDelegator.IsTypeDefinition.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.TypeDelegator.IsVariableBoundArray.get()' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.TypeExtensions' does not exist in the implementation but it does exist in the contract.
 CannotSealType : Type 'System.Reflection.TypeInfo' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
 MembersMustExist : Member 'System.Reflection.TypeInfo..ctor()' does not exist in the implementation but it does exist in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.DeclaredConstructors' is non-virtual in the implementation but is virtual in the contract.
@@ -177,11 +170,18 @@ CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.GetDeclaredNeste
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.GetDeclaredProperty(System.String)' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.ImplementedInterfaces.get()' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.IsAssignableFrom(System.Reflection.TypeInfo)' is non-virtual in the implementation but is virtual in the contract.
+TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncMethodBuilderAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder<TResult>' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Runtime.CompilerServices.ConditionalWeakTable<TKey, TValue>' does not implement interface 'System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<TKey, TValue>>' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.ConditionalWeakTable<TKey, TValue>.AddOrUpdate(TKey, TValue)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.ConditionalWeakTable<TKey, TValue>.Clear()' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.Runtime.CompilerServices.ConfiguredTaskAwaitable' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 TypeCannotChangeClassification : Type 'System.Runtime.CompilerServices.ConfiguredTaskAwaitable.ConfiguredTaskAwaiter' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypeCannotChangeClassification : Type 'System.Runtime.CompilerServices.ConfiguredTaskAwaitable<TResult>' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypeCannotChangeClassification : Type 'System.Runtime.CompilerServices.ConfiguredTaskAwaitable<TResult>.ConfiguredTaskAwaiter' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypesMustExist : Type 'System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable<TResult>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.IsByRefLikeAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.IsReadOnlyAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.ITuple' does not exist in the implementation but it does exist in the contract.
@@ -192,6 +192,9 @@ MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeHelpers.TryEns
 MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeWrappedException..ctor(System.Object)' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.Runtime.CompilerServices.TaskAwaiter' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 TypeCannotChangeClassification : Type 'System.Runtime.CompilerServices.TaskAwaiter<TResult>' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypesMustExist : Type 'System.Runtime.CompilerServices.ValueTaskAwaiter' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.CompilerServices.ValueTaskAwaiter<TResult>' does not exist in the implementation but it does exist in the contract.
+TypeCannotChangeClassification : Type 'System.Runtime.CompilerServices.YieldAwaitable' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 TypeCannotChangeClassification : Type 'System.Runtime.CompilerServices.YieldAwaitable.YieldAwaiter' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(System.Exception)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.PtrToStringUTF8(System.IntPtr)' does not exist in the implementation but it does exist in the contract.
@@ -247,6 +250,12 @@ MembersMustExist : Member 'System.Threading.ThreadPool.QueueUserWorkItem<TState>
 TypesMustExist : Type 'System.Threading.ThreadPoolBoundHandle' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.Tasks.Task.IsCompletedSuccessfully.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.Tasks.TaskCanceledException..ctor(System.String, System.Exception, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Threading.Tasks.ValueTask' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Threading.Tasks.ValueTask<TResult>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Threading.Tasks.Sources.IValueTaskSource' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Threading.Tasks.Sources.IValueTaskSource<TResult>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Threading.Tasks.Sources.ValueTaskSourceOnCompletedFlags' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Threading.Tasks.Sources.ValueTaskSourceStatus' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Linq.XCData.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Linq.XComment.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Linq.XDocument.LoadAsync(System.IO.Stream, System.Xml.Linq.LoadOptions, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
@@ -269,4 +278,4 @@ MembersMustExist : Member 'System.Xml.Linq.XNode.WriteToAsync(System.Xml.XmlWrit
 MembersMustExist : Member 'System.Xml.Linq.XProcessingInstruction.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Linq.XText.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 270
+Total Issues: 279
