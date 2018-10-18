@@ -13,8 +13,15 @@ T:System.Data.Common.DbProviderFactories
 T:System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder
 T:System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable
 T:System.Runtime.CompilerServices.ValueTaskAwaiter
+T:System.Buffers.IPinnable
 T:System.Threading.Tasks.Sources.IValueTaskSource
 T:System.Threading.Tasks.Sources.IValueTaskSource`1
 T:System.Threading.Tasks.Sources.ValueTaskSourceOnCompletedFlags
 T:System.Threading.Tasks.Sources.ValueTaskSourceStatus
 T:System.Threading.Tasks.ValueTask
+T:System.MemoryExtensions
+T:System.Memory`1
+T:System.ReadOnlyMemory`1
+T:System.ReadOnlySpan`1
+T:System.Span`1
+T:System.Runtime.InteropServices.MemoryMarshal
