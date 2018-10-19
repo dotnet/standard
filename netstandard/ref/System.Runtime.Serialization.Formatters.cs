@@ -15,6 +15,11 @@ namespace System.Runtime.Serialization.Formatters
         TypesWhenNeeded = 0,
         XsdString = 2,
     }
+    public partial interface IFieldInfo
+    {
+        string[] FieldNames { get; set; }
+        System.Type[] FieldTypes { get; set; }
+    }
     public enum TypeFilterLevel
     {
         Full = 3,
