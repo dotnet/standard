@@ -19,7 +19,17 @@ MembersMustExist : Member 'System.ComponentModel.DefaultValueAttribute..ctor(Sys
 MembersMustExist : Member 'System.ComponentModel.DefaultValueAttribute..ctor(System.UInt64)' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.ComponentModel.Design.Serialization.MemberRelationship' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 TypesMustExist : Type 'System.Data.Common.DbProviderFactories' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Diagnostics.ProcessStartInfo.ArgumentList.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Diagnostics.ProcessStartInfo.StandardInputEncoding.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Diagnostics.ProcessStartInfo.StandardInputEncoding.set(System.Text.Encoding)' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.Diagnostics.SymbolStore.SymbolToken' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+CannotRemoveBaseTypeOrInterface : Type 'System.Diagnostics.Tracing.EventCounter' does not implement interface 'System.IDisposable' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Diagnostics.Tracing.EventCounter.Dispose()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Diagnostics.Tracing.EventListener.add_EventSourceCreated(System.EventHandler<System.Diagnostics.Tracing.EventSourceCreatedEventArgs>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Diagnostics.Tracing.EventListener.add_EventWritten(System.EventHandler<System.Diagnostics.Tracing.EventWrittenEventArgs>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Diagnostics.Tracing.EventListener.remove_EventSourceCreated(System.EventHandler<System.Diagnostics.Tracing.EventSourceCreatedEventArgs>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Diagnostics.Tracing.EventListener.remove_EventWritten(System.EventHandler<System.Diagnostics.Tracing.EventWrittenEventArgs>)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.Tracing.EventSourceCreatedEventArgs' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.Drawing.Color' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Globalization.CharUnicodeInfo.GetUnicodeCategory(System.Int32)' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.Reflection.ParameterModifier' is marked as readonly in the contract so it must also be marked readonly in the implementation.
@@ -106,4 +116,4 @@ MembersMustExist : Member 'System.Xml.Linq.XProcessingInstruction.WriteToAsync(S
 MembersMustExist : Member 'System.Xml.Linq.XText.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.Serialization.SchemaImporter' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xml.Serialization.XmlSchemaImporter' does not inherit from base type 'System.Xml.Serialization.SchemaImporter' in the implementation but it does in the contract.
-Total Issues: 107
+Total Issues: 117
