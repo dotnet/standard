@@ -36,10 +36,6 @@ while (($# > 0)); do
       arguments="$arguments --rebuild"
       shift 1
       ;;
-     -signPackages)
-      arguments="$arguments /p:SignPackages=true"
-      shift 1
-      ;;
      -publish)
       shift 1
       ;;

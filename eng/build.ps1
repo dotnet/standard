@@ -6,7 +6,7 @@ Param(
   [switch] $Restore,
   [switch] $Test,
   [switch] $Pack,
-  [switch] $SignPackages,
+  [switch] $Sign,
   [switch] $Publish,
   [Parameter(ValueFromRemainingArguments=$true)][String[]]$ExtraArgs
 )
@@ -21,7 +21,6 @@ foreach ($argument in $PSBoundParameters.Keys)
     "Release"      { $arguments += "-configuration Release " }
     "ExtraArgs"    { $arguments += $ExtraArgs }
     "c"            { $arguments += "-rebuild " }
-    "SignPackages" { $arguments += "/p:SignPackages=true " }
     "Publish"      { $arguments += "" }
     default        { $arguments += "/p:$argument=$($PSBoundParameters[$argument]) " }
   }
