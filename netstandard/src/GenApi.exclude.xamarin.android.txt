@@ -1,3 +1,11 @@
 T:System.Data.Common.DbProviderFactories
 T:System.Xml.Serialization.SchemaImporter
 T:System.Diagnostics.Tracing.EventSourceCreatedEventArgs
+T:System.Reflection.AssemblyExtensions
+T:System.Reflection.DispatchProxy
+T:System.Reflection.EventInfoExtensions
+T:System.Reflection.MemberInfoExtensions
+T:System.Reflection.MethodInfoExtensions
+T:System.Reflection.ModuleExtensions
+T:System.Reflection.PropertyInfoExtensions
+T:System.Reflection.TypeExtensions
