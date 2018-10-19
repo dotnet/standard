@@ -16,7 +16,7 @@
     <BuildDependsOn Condition="'$(SignPackages)'=='true'">$(BuildDependsOn);SignPackages</BuildDependsOn>
   </PropertyGroup>
 
-  <Import Project="$(ToolsDir)VersionTools.targets" Condition="Exists('$(ToolsDir)VersionTools.targets')" />
+  <Import Project="$(ToolsDir)\VersionTools.targets" Condition="Exists('$(ToolsDir)\VersionTools.targets')" />
 
    <Target Name="Restore">
     <ItemGroup>
@@ -44,20 +44,10 @@
 
   <Target Name="Pack">
     <ItemGroup>
-      <!-- file signing needs to happen before packaging -->
-      <_PackProjects Include="signing.builds" />
       <_PackProjects Include="packages.builds" Condition="'$(BuildPackages)'=='true'" />
     </ItemGroup>
 
     <MSBuild Projects="@(_PackProjects)" />
-  </Target>
-
-  <Target Name="SignPackages">
-    <ItemGroup>
-      <_SignPackagesProjects Include="signPackages.builds" />
-    </ItemGroup>
-
-    <MSBuild Projects="@(_SignPackagesProjects)" />
   </Target>
 
   <Target Name="Build" DependsOnTargets="$(BuildDependsOn)" />
