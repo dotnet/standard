@@ -1,1 +1,2 @@
 T:System.Data.Common.DbProviderFactories
+T:System.Xml.Serialization.SchemaImporter

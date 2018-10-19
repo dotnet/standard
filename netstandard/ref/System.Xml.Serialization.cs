@@ -47,6 +47,7 @@ namespace System.Xml.Serialization
     }
     public partial interface IXmlSerializable
     {
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         System.Xml.Schema.XmlSchema GetSchema();
         void ReadXml(System.Xml.XmlReader reader);
         void WriteXml(System.Xml.XmlWriter writer);
@@ -55,6 +56,10 @@ namespace System.Xml.Serialization
     {
         bool Normalized { get; set; }
         System.Xml.WhitespaceHandling WhitespaceHandling { get; set; }
+    }
+    public abstract partial class SchemaImporter
+    {
+        internal SchemaImporter() { }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(10624))]
     public partial class SoapAttributeAttribute : System.Attribute
@@ -149,7 +154,7 @@ namespace System.Xml.Serialization
         public object UnreferencedObject { get { throw null; } }
     }
     public delegate void UnreferencedObjectEventHandler(object sender, System.Xml.Serialization.UnreferencedObjectEventArgs e);
-    [System.AttributeUsageAttribute((System.AttributeTargets)(10624), AllowMultiple=false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(10624))]
     public partial class XmlAnyAttributeAttribute : System.Attribute
     {
         public XmlAnyAttributeAttribute() { }
@@ -368,7 +373,7 @@ namespace System.Xml.Serialization
         public string TypeName { get { throw null; } }
         public string TypeNamespace { get { throw null; } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(10624), AllowMultiple=false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(10624))]
     public partial class XmlNamespaceDeclarationsAttribute : System.Attribute
     {
         public XmlNamespaceDeclarationsAttribute() { }
@@ -442,8 +447,7 @@ namespace System.Xml.Serialization
         public System.Xml.XmlQualifiedName ExportTypeMapping(System.Xml.Serialization.XmlMembersMapping xmlMembersMapping) { throw null; }
         public void ExportTypeMapping(System.Xml.Serialization.XmlTypeMapping xmlTypeMapping) { }
     }
-    public partial class XmlSchemaImporter
-//CodeDOM : System.Xml.Serialization.SchemaImporter
+    public partial class XmlSchemaImporter : System.Xml.Serialization.SchemaImporter
     {
         public XmlSchemaImporter(System.Xml.Serialization.XmlSchemas schemas) { }
 //CODEDOM        public XmlSchemaImporter(System.Xml.Serialization.XmlSchemas schemas, System.Xml.Serialization.CodeGenerationOptions options, System.CodeDom.Compiler.CodeDomProvider codeProvider, System.Xml.Serialization.ImportContext context) { }
