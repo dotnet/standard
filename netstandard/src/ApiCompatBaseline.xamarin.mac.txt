@@ -22,8 +22,21 @@ MembersMustExist : Member 'System.Type.IsTypeDefinition.get()' does not exist in
 MembersMustExist : Member 'System.Type.IsVariableBoundArray.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Type.MakeGenericMethodParameter(System.Int32)' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.TypedReference' is a 'struct' in the implementation but is a 'ref struct' in the contract.
+TypesMustExist : Type 'System.Buffers.ArrayPool<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Buffers.BuffersExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Buffers.IBufferWriter<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Buffers.IMemoryOwner<T>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Buffers.IPinnable' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Buffers.MemoryHandle..ctor(System.Void*, System.Runtime.InteropServices.GCHandle, System.Buffers.IPinnable)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Buffers.MemoryManager<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Buffers.MemoryPool<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Buffers.ReadOnlySpanAction<T, TArg>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Buffers.SpanAction<T, TArg>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Buffers.StandardFormat' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Buffers.Binary.BinaryPrimitives' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Buffers.Text.Base64' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Buffers.Text.Utf8Formatter' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Buffers.Text.Utf8Parser' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.BitArray.LeftShift(System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.BitArray.RightShift(System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.Generic.Dictionary<TKey, TValue>.TrimExcess()' does not exist in the implementation but it does exist in the contract.
@@ -208,4 +221,4 @@ MembersMustExist : Member 'System.Xml.Linq.XProcessingInstruction.WriteToAsync(S
 MembersMustExist : Member 'System.Xml.Linq.XText.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.Serialization.SchemaImporter' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xml.Serialization.XmlSchemaImporter' does not inherit from base type 'System.Xml.Serialization.SchemaImporter' in the implementation but it does in the contract.
-Total Issues: 209
+Total Issues: 222
