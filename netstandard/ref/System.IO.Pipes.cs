@@ -78,6 +78,7 @@ namespace System.IO.Pipes
     public enum PipeOptions
     {
         Asynchronous = 1073741824,
+        CurrentUserOnly = 536870912,
         None = 0,
         WriteThrough = -2147483648,
     }
@@ -111,12 +112,14 @@ namespace System.IO.Pipes
 //ACLS        public System.IO.Pipes.PipeSecurity GetAccessControl() { throw null; }
         protected void InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle handle, bool isExposed, bool isAsync) { }
         public override int Read(byte[] buffer, int offset, int count) { buffer = default(byte[]); throw null; }
+        public override System.Threading.Tasks.Task<int> ReadAsync(byte[] buffer, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
         public override int ReadByte() { throw null; }
         public override long Seek(long offset, System.IO.SeekOrigin origin) { throw null; }
 //ACLS        public void SetAccessControl(System.IO.Pipes.PipeSecurity pipeSecurity) { }
         public override void SetLength(long value) { }
         public void WaitForPipeDrain() { }
         public override void Write(byte[] buffer, int offset, int count) { }
+        public override System.Threading.Tasks.Task WriteAsync(byte[] buffer, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
         public override void WriteByte(byte value) { }
     }
     public delegate void PipeStreamImpersonationWorker();
