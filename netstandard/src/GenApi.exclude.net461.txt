@@ -37,3 +37,16 @@ T:System.Reflection.MethodInfoExtensions
 T:System.Reflection.ModuleExtensions
 T:System.Reflection.PropertyInfoExtensions
 T:System.Reflection.TypeExtensions
+T:System.Threading.Tasks.Sources.IValueTaskSource
+T:System.Threading.Tasks.Sources.IValueTaskSource`1
+T:System.Threading.Tasks.Sources.ValueTaskSourceOnCompletedFlags
+T:System.Threading.Tasks.Sources.ValueTaskSourceStatus
+T:System.Runtime.CompilerServices.AsyncMethodBuilderAttribute
+T:System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder
+T:System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder`1
+T:System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable
+T:System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable`1
+T:System.Runtime.CompilerServices.ValueTaskAwaiter
+T:System.Runtime.CompilerServices.ValueTaskAwaiter`1
+T:System.Threading.Tasks.ValueTask
+T:System.Threading.Tasks.ValueTask`1
