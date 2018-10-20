@@ -365,6 +365,12 @@ MembersMustExist : Member 'System.Linq.Queryable.SkipLast<TSource>(System.Linq.I
 MembersMustExist : Member 'System.Linq.Queryable.TakeLast<TSource>(System.Linq.IQueryable<TSource>, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Linq.Expressions.Expression<TDelegate>.Compile(System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Linq.Expressions.LambdaExpression.Compile(System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.IPAddress..ctor(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.IPAddress..ctor(System.ReadOnlySpan<System.Byte>, System.Int64)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.IPAddress.Parse(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.IPAddress.TryFormat(System.Span<System.Char>, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.IPAddress.TryParse(System.ReadOnlySpan<System.Char>, System.Net.IPAddress)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.IPAddress.TryWriteBytes(System.Span<System.Byte>, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Http.HttpClientHandler.CheckCertificateRevocationList.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Http.HttpClientHandler.CheckCertificateRevocationList.set(System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Http.HttpClientHandler.ClientCertificates.get()' does not exist in the implementation but it does exist in the contract.
@@ -379,9 +385,21 @@ MembersMustExist : Member 'System.Net.Http.HttpClientHandler.ServerCertificateCu
 MembersMustExist : Member 'System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback.set(System.Func<System.Net.Http.HttpRequestMessage, System.Security.Cryptography.X509Certificates.X509Certificate2, System.Security.Cryptography.X509Certificates.X509Chain, System.Net.Security.SslPolicyErrors, System.Boolean>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Http.HttpClientHandler.SslProtocols.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Http.HttpClientHandler.SslProtocols.set(System.Security.Authentication.SslProtocols)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.Http.ReadOnlyMemoryContent' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.Sockets.Socket.Receive(System.Span<System.Byte>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.Sockets.Socket.Receive(System.Span<System.Byte>, System.Net.Sockets.SocketFlags)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.Sockets.Socket.Receive(System.Span<System.Byte>, System.Net.Sockets.SocketFlags, System.Net.Sockets.SocketError)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.Sockets.Socket.Send(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.Sockets.Socket.Send(System.ReadOnlySpan<System.Byte>, System.Net.Sockets.SocketFlags)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.Sockets.Socket.Send(System.ReadOnlySpan<System.Byte>, System.Net.Sockets.SocketFlags, System.Net.Sockets.SocketError)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.Sockets.SocketAsyncEventArgs.MemoryBuffer.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.Sockets.SocketAsyncEventArgs.SetBuffer(System.Memory<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.Sockets.SocketReceiveFromResult' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.Sockets.SocketReceiveMessageFromResult' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.Sockets.SocketTaskExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Net.WebSockets.ValueWebSocketReceiveResult' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.WebSockets.WebSocket.ReceiveAsync(System.Memory<System.Byte>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.WebSockets.WebSocket.SendAsync(System.ReadOnlyMemory<System.Byte>, System.Net.WebSockets.WebSocketMessageType, System.Boolean, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.Numerics.BigInteger' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Numerics.BigInteger.GetByteCount(System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Numerics.BigInteger.ToByteArray(System.Boolean, System.Boolean)' does not exist in the implementation but it does exist in the contract.
@@ -536,4 +554,4 @@ MembersMustExist : Member 'System.Xml.Linq.XNode.WriteToAsync(System.Xml.XmlWrit
 MembersMustExist : Member 'System.Xml.Linq.XProcessingInstruction.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Linq.XText.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 537
+Total Issues: 555
