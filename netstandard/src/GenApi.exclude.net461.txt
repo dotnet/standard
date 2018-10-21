@@ -83,3 +83,4 @@ T:System.IO.MatchCasing
 T:System.IO.MatchType
 T:System.HashCode
 T:System.MathF
+T:System.Reflection.Emit.DynamicMethod
