@@ -144,6 +144,19 @@ MembersMustExist : Member 'System.Globalization.CharUnicodeInfo.GetUnicodeCatego
 TypesMustExist : Type 'System.Globalization.GlobalizationExtensions' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.BufferedStream.BufferSize.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.BufferedStream.UnderlyingStream.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Directory.EnumerateDirectories(System.String, System.String, System.IO.EnumerationOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Directory.EnumerateFiles(System.String, System.String, System.IO.EnumerationOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Directory.EnumerateFileSystemEntries(System.String, System.String, System.IO.EnumerationOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Directory.GetDirectories(System.String, System.String, System.IO.EnumerationOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Directory.GetFiles(System.String, System.String, System.IO.EnumerationOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.Directory.GetFileSystemEntries(System.String, System.String, System.IO.EnumerationOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.DirectoryInfo.EnumerateDirectories(System.String, System.IO.EnumerationOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.DirectoryInfo.EnumerateFiles(System.String, System.IO.EnumerationOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.DirectoryInfo.EnumerateFileSystemInfos(System.String, System.IO.EnumerationOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.DirectoryInfo.GetDirectories(System.String, System.IO.EnumerationOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.DirectoryInfo.GetFiles(System.String, System.IO.EnumerationOptions)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.IO.DirectoryInfo.GetFileSystemInfos(System.String, System.IO.EnumerationOptions)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.EnumerationOptions' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.File.AppendAllLinesAsync(System.String, System.Collections.Generic.IEnumerable<System.String>, System.Text.Encoding, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.File.AppendAllLinesAsync(System.String, System.Collections.Generic.IEnumerable<System.String>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.File.AppendAllTextAsync(System.String, System.String, System.Text.Encoding, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
@@ -160,6 +173,8 @@ MembersMustExist : Member 'System.IO.File.WriteAllTextAsync(System.String, Syste
 MembersMustExist : Member 'System.IO.File.WriteAllTextAsync(System.String, System.String, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 CannotMakeMemberNonVirtual : Member 'System.IO.FileStream.Name' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.IO.FileStream.Name.get()' is non-virtual in the implementation but is virtual in the contract.
+TypesMustExist : Type 'System.IO.MatchCasing' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.MatchType' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Path.GetFullPath(System.String, System.String)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Path.GetRelativePath(System.String, System.String)' does not exist in the implementation but it does exist in the contract.
 CannotMakeMemberNonVirtual : Member 'System.IO.Stream.CopyTo(System.IO.Stream, System.Int32)' is non-virtual in the implementation but is virtual in the contract.
@@ -170,6 +185,10 @@ MembersMustExist : Member 'System.IO.Compression.ZipArchiveEntry.ExternalAttribu
 MembersMustExist : Member 'System.IO.Compression.ZipFile.ExtractToDirectory(System.String, System.String, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Compression.ZipFile.ExtractToDirectory(System.String, System.String, System.Text.Encoding, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Compression.ZipFileExtensions.ExtractToDirectory(System.IO.Compression.ZipArchive, System.String, System.Boolean)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.Enumeration.FileSystemEntry' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.Enumeration.FileSystemEnumerable<TResult>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.Enumeration.FileSystemEnumerator<TResult>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.Enumeration.FileSystemName' does not exist in the implementation but it does exist in the contract.
 CannotAddAbstractMembers : Member 'System.IO.IsolatedStorage.IsolatedStorage.GetPermission(System.Security.PermissionSet)' is abstract in the implementation but is missing in the contract.
 MembersMustExist : Member 'System.IO.Pipes.PipeOptions System.IO.Pipes.PipeOptions.CurrentUserOnly' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Linq.Enumerable.Append<TSource>(System.Collections.Generic.IEnumerable<TSource>, TSource)' does not exist in the implementation but it does exist in the contract.
@@ -353,4 +372,4 @@ MembersMustExist : Member 'System.Xml.Linq.XNode.WriteToAsync(System.Xml.XmlWrit
 MembersMustExist : Member 'System.Xml.Linq.XProcessingInstruction.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Linq.XText.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 354
+Total Issues: 373

@@ -51,6 +51,7 @@
     <Compile Include="System.Globalization.cs" />
     <Compile Include="System.IO.Compression.cs" />
     <Compile Include="System.IO.cs" />
+    <Compile Include="System.IO.Enumeration.cs" />
     <Compile Include="System.IO.IsolatedStorage.cs" />
     <Compile Include="System.IO.MemoryMappedFiles.cs" />
     <Compile Include="System.IO.Pipes.cs" />
