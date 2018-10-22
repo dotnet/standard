@@ -1,6 +1,6 @@
 # .NET Standard 2.0
 
-[Overview](../versions.md) | [Previous](netstandard1.6.md)
+[Overview](../versions.md) | [Previous](netstandard1.6.md) | [Next](netstandard2.1.md)
 
 * [APIs](netstandard2.0_ref.md)
 * [Diff with 1.6](netstandard2.0_diff.md)
