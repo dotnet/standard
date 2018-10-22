@@ -52,3 +52,4 @@ T:System.Drawing.SizeConverter
 T:System.Drawing.SizeFConverter
 T:System.HashCode
 T:System.MathF
+T:System.Reflection.Emit.DynamicMethod
