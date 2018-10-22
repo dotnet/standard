@@ -1,6 +1,6 @@
 # .NET Standard 2.0
 
-[Overview](netstandard2.0.md) | [Previous](netstandard1.6_ref.md)
+[Overview](netstandard2.0.md) | [Previous](netstandard1.6_ref.md) | [Previous](netstandard2.1_ref.md)
 
 ```C#
 namespace Microsoft.Win32.SafeHandles {
