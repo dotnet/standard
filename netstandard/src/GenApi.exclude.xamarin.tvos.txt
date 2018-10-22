@@ -12,7 +12,18 @@ T:System.Reflection.TypeExtensions
 T:System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder
 T:System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable
 T:System.Runtime.CompilerServices.ValueTaskAwaiter
+T:System.Buffers.ArrayPool`1
+T:System.Buffers.BuffersExtensions
+T:System.Buffers.IBufferWriter`1
+T:System.Buffers.IMemoryOwner`1
 T:System.Buffers.IPinnable
+T:System.Buffers.MemoryManager`1
+T:System.Buffers.MemoryPool`1
+T:System.Buffers.ReadOnlySpanAction`2
+T:System.Buffers.SpanAction`2
+T:System.Buffers.Text.Base64
+T:System.Buffers.Text.Utf8Formatter
+T:System.Buffers.Text.Utf8Parser
 T:System.Threading.Tasks.Sources.IValueTaskSource
 T:System.Threading.Tasks.Sources.IValueTaskSource`1
 T:System.Threading.Tasks.Sources.ValueTaskSourceOnCompletedFlags
@@ -23,4 +34,6 @@ T:System.Memory`1
 T:System.ReadOnlyMemory`1
 T:System.ReadOnlySpan`1
 T:System.Span`1
+T:System.Buffers.StandardFormat
+T:System.Buffers.Binary.BinaryPrimitives
 T:System.Runtime.InteropServices.MemoryMarshal
