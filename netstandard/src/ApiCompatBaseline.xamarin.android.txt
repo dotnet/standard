@@ -363,6 +363,9 @@ MembersMustExist : Member 'System.IO.TextWriter.WriteLine(System.ReadOnlySpan<Sy
 MembersMustExist : Member 'System.IO.TextWriter.WriteLineAsync(System.ReadOnlyMemory<System.Char>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.UnmanagedMemoryStream.Read(System.Span<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.UnmanagedMemoryStream.Write(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.Compression.BrotliDecoder' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.Compression.BrotliEncoder' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.Compression.BrotliStream' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Enumeration.FileSystemEntry' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Enumeration.FileSystemEnumerable<TResult>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Enumeration.FileSystemEnumerator<TResult>' does not exist in the implementation but it does exist in the contract.
@@ -604,4 +607,4 @@ MembersMustExist : Member 'System.Xml.Linq.XProcessingInstruction.WriteToAsync(S
 MembersMustExist : Member 'System.Xml.Linq.XText.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.Serialization.SchemaImporter' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xml.Serialization.XmlSchemaImporter' does not inherit from base type 'System.Xml.Serialization.SchemaImporter' in the implementation but it does in the contract.
-Total Issues: 605
+Total Issues: 608

@@ -61,3 +61,6 @@ T:System.Security.Cryptography.X509Certificates.CertificateRequest
 T:System.Security.Cryptography.X509Certificates.DSACertificateExtensions
 T:System.Security.Cryptography.X509Certificates.SubjectAlternativeNameBuilder
 T:System.Security.Cryptography.X509Certificates.X509SignatureGenerator
+T:System.IO.Compression.BrotliDecoder
+T:System.IO.Compression.BrotliEncoder
+T:System.IO.Compression.BrotliStream
