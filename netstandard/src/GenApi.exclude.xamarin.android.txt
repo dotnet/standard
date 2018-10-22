@@ -9,7 +9,6 @@ T:System.Reflection.MethodInfoExtensions
 T:System.Reflection.ModuleExtensions
 T:System.Reflection.PropertyInfoExtensions
 T:System.Reflection.TypeExtensions
-T:System.Data.Common.DbProviderFactories
 T:System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder
 T:System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable
 T:System.Runtime.CompilerServices.ValueTaskAwaiter
@@ -26,7 +25,6 @@ T:System.Buffers.Text.Base64
 T:System.Buffers.Text.Utf8Formatter
 T:System.Buffers.Text.Utf8Parser
 T:System.Net.Http.ReadOnlyMemoryContent
-T:System.Buffers.IPinnable
 T:System.Security.Cryptography.CryptographicOperations
 T:System.Threading.Tasks.Sources.IValueTaskSource
 T:System.Threading.Tasks.Sources.IValueTaskSource`1
@@ -50,7 +48,6 @@ T:System.IO.MatchCasing
 T:System.IO.MatchType
 T:System.HashCode
 T:System.MathF
-T:System.Runtime.InteropServices.MemoryMarshal
 T:System.Security.Cryptography.ECDiffieHellman
 T:System.Security.Cryptography.X509Certificates.CertificateRequest
 T:System.Security.Cryptography.X509Certificates.DSACertificateExtensions
