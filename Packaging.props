@@ -5,7 +5,7 @@
     <PackageDescriptionFile>$(ProjectDir)pkg/descriptions.json</PackageDescriptionFile>
     <PackageLicenseFile>$(ProjectDir)LICENSE.TXT</PackageLicenseFile>
     <PackageThirdPartyNoticesFile>$(ProjectDir)THIRD-PARTY-NOTICES.TXT</PackageThirdPartyNoticesFile>
-    <ReleaseNotes>https://go.microsoft.com/fwlink/?LinkID=799421</ReleaseNotes>
+    <ReleaseNotes>https://aka.ms/netstandard-release-notes</ReleaseNotes>
     <ProjectUrl>https://dot.net</ProjectUrl>
     <PackagingTaskDir>$(BuildToolsTaskDir)</PackagingTaskDir>
     <!-- defined in buildtools packaging.targets, but we need this before targets are imported -->
