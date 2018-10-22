@@ -50,3 +50,5 @@ T:System.Drawing.PointConverter
 T:System.Drawing.RectangleConverter
 T:System.Drawing.SizeConverter
 T:System.Drawing.SizeFConverter
+T:System.HashCode
+T:System.MathF

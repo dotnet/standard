@@ -73,6 +73,7 @@ namespace System
         public AggregateException(string message, System.Exception innerException) { }
         public AggregateException(string message, params System.Exception[] innerExceptions) { }
         public System.Collections.ObjectModel.ReadOnlyCollection<System.Exception> InnerExceptions { get { throw null; } }
+        public override string Message { get { throw null; } }
         public System.AggregateException Flatten() { throw null; }
         public override System.Exception GetBaseException() { throw null; }
         public override void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
@@ -202,8 +203,6 @@ namespace System
         [System.ObsoleteAttribute("AppDomain.GetCurrentThreadId has been deprecated because it does not provide a stable Id when managed threads are running on fibers (aka lightweight threads). To get a stable identifier for a managed thread, use the ManagedThreadId property on Thread.  http://go.microsoft.com/fwlink/?linkid=14202", false)]
         public static int GetCurrentThreadId() { throw null; }
         public object GetData(string name) { throw null; }
-        public new System.Type GetType() { throw null; }
-        public override object InitializeLifetimeService() { throw null; }
         public System.Nullable<bool> IsCompatibilitySwitchSet(string value) { throw null; }
         public bool IsDefaultAppDomain() { throw null; }
         public bool IsFinalizingForUnload() { throw null; }
@@ -262,7 +261,7 @@ namespace System
         public override int GetHashCode() { throw null; }
         public override string ToString() { throw null; }
     }
-    public partial class ArgumentException : System.SystemException, System.Runtime.Serialization.ISerializable
+    public partial class ArgumentException : System.SystemException
     {
         public ArgumentException() { }
         protected ArgumentException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
@@ -282,7 +281,7 @@ namespace System
         public ArgumentNullException(string message, System.Exception innerException) { }
         public ArgumentNullException(string paramName, string message) { }
     }
-    public partial class ArgumentOutOfRangeException : System.ArgumentException, System.Runtime.Serialization.ISerializable
+    public partial class ArgumentOutOfRangeException : System.ArgumentException
     {
         public ArgumentOutOfRangeException() { }
         protected ArgumentOutOfRangeException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
@@ -340,6 +339,8 @@ namespace System
         public static System.Array CreateInstance(System.Type elementType, params long[] lengths) { throw null; }
         public static T[] Empty<T>() { throw null; }
         public static bool Exists<T>(T[] array, System.Predicate<T> match) { throw null; }
+        public static void Fill<T>(T[] array, T value) { }
+        public static void Fill<T>(T[] array, T value, int startIndex, int count) { }
         public static T Find<T>(T[] array, System.Predicate<T> match) { throw null; }
         public static T[] FindAll<T>(T[] array, System.Predicate<T> match) { throw null; }
         public static int FindIndex<T>(T[] array, int startIndex, int count, System.Predicate<T> match) { throw null; }
@@ -379,6 +380,8 @@ namespace System
         public static void Resize<T>(ref T[] array, int newSize) { }
         public static void Reverse(System.Array array) { }
         public static void Reverse(System.Array array, int index, int length) { }
+        public static void Reverse<T>(T[] array) { }
+        public static void Reverse<T>(T[] array, int index, int length) { }
         public void SetValue(object value, int index) { }
         public void SetValue(object value, int index1, int index2) { }
         public void SetValue(object value, int index1, int index2, int index3) { }
@@ -423,25 +426,43 @@ namespace System
         public ArraySegment(T[] array, int offset, int count) { throw null;}
         public T[] Array { get { throw null; } }
         public int Count { get { throw null; } }
+        public static System.ArraySegment<T> Empty { get { throw null; } }
+        public T this[int index] { get { throw null; } set { } }
         public int Offset { get { throw null; } }
         bool System.Collections.Generic.ICollection<T>.IsReadOnly { get { throw null; } }
         T System.Collections.Generic.IList<T>.this[int index] { get { throw null; } set { } }
         T System.Collections.Generic.IReadOnlyList<T>.this[int index] { get { throw null; } }
+        public void CopyTo(System.ArraySegment<T> destination) { }
+        public void CopyTo(T[] destination) { }
+        public void CopyTo(T[] destination, int destinationIndex) { }
         public bool Equals(System.ArraySegment<T> obj) { throw null; }
         public override bool Equals(object obj) { throw null; }
+        public System.ArraySegment<T>.Enumerator GetEnumerator() { throw null; }
         public override int GetHashCode() { throw null; }
         public static bool operator ==(System.ArraySegment<T> a, System.ArraySegment<T> b) { throw null; }
+        public static implicit operator System.ArraySegment<T>(T[] array) { throw null; }
         public static bool operator !=(System.ArraySegment<T> a, System.ArraySegment<T> b) { throw null; }
+        public System.ArraySegment<T> Slice(int index) { throw null; }
+        public System.ArraySegment<T> Slice(int index, int count) { throw null; }
         void System.Collections.Generic.ICollection<T>.Add(T item) { }
         void System.Collections.Generic.ICollection<T>.Clear() { }
         bool System.Collections.Generic.ICollection<T>.Contains(T item) { throw null; }
-        void System.Collections.Generic.ICollection<T>.CopyTo(T[] array, int arrayIndex) { }
         bool System.Collections.Generic.ICollection<T>.Remove(T item) { throw null; }
         System.Collections.Generic.IEnumerator<T> System.Collections.Generic.IEnumerable<T>.GetEnumerator() { throw null; }
         int System.Collections.Generic.IList<T>.IndexOf(T item) { throw null; }
         void System.Collections.Generic.IList<T>.Insert(int index, T item) { }
         void System.Collections.Generic.IList<T>.RemoveAt(int index) { }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
+        public T[] ToArray() { throw null; }
+        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+        public partial struct Enumerator : System.Collections.Generic.IEnumerator<T>, System.Collections.IEnumerator, System.IDisposable
+        {
+            public T Current { get { throw null; } }
+            object System.Collections.IEnumerator.Current { get { throw null; } }
+            public void Dispose() { }
+            public bool MoveNext() { throw null; }
+            void System.Collections.IEnumerator.Reset() { }
+        }
     }
     public partial class ArrayTypeMismatchException : System.SystemException
     {
@@ -564,7 +585,9 @@ namespace System
         public static byte[] GetBytes(uint value) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static byte[] GetBytes(ulong value) { throw null; }
+        public static float Int32BitsToSingle(int value) { throw null; }
         public static double Int64BitsToDouble(long value) { throw null; }
+        public static int SingleToInt32Bits(float value) { throw null; }
         public static bool ToBoolean(byte[] value, int startIndex) { throw null; }
         public static bool ToBoolean(System.ReadOnlySpan<byte> value) { throw null; }
         public static char ToChar(byte[] value, int startIndex) { throw null; }
@@ -1553,6 +1576,7 @@ namespace System
     {
         public static readonly System.DateTime MaxValue;
         public static readonly System.DateTime MinValue;
+        public static readonly System.DateTime UnixEpoch;
         public DateTime(int year, int month, int day) { throw null;}
         public DateTime(int year, int month, int day, System.Globalization.Calendar calendar) { throw null;}
         public DateTime(int year, int month, int day, int hour, int minute, int second) { throw null;}
@@ -1679,6 +1703,7 @@ namespace System
     {
         public static readonly System.DateTimeOffset MaxValue;
         public static readonly System.DateTimeOffset MinValue;
+        public static readonly System.DateTimeOffset UnixEpoch;
         public DateTimeOffset(System.DateTime dateTime) { throw null;}
         public DateTimeOffset(System.DateTime dateTime, System.TimeSpan offset) { throw null;}
         public DateTimeOffset(int year, int month, int day, int hour, int minute, int second, int millisecond, System.Globalization.Calendar calendar, System.TimeSpan offset) { throw null;}
@@ -2000,10 +2025,14 @@ namespace System
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
         public System.TypeCode GetTypeCode() { throw null; }
+        public static bool IsFinite(System.Double d) { throw null; }
         public static bool IsInfinity(System.Double d) { throw null; }
         public static bool IsNaN(System.Double d) { throw null; }
+        public static bool IsNegative(System.Double d) { throw null; }
         public static bool IsNegativeInfinity(System.Double d) { throw null; }
+        public static bool IsNormal(System.Double d) { throw null; }
         public static bool IsPositiveInfinity(System.Double d) { throw null; }
+        public static bool IsSubnormal(System.Double d) { throw null; }
         public static bool operator ==(System.Double left, System.Double right) { throw null; }
         public static bool operator >(System.Double left, System.Double right) { throw null; }
         public static bool operator >=(System.Double left, System.Double right) { throw null; }
@@ -2071,6 +2100,8 @@ namespace System
         public static bool IsDefined(System.Type enumType, object value) { throw null; }
         public static object Parse(System.Type enumType, string value) { throw null; }
         public static object Parse(System.Type enumType, string value, bool ignoreCase) { throw null; }
+        public static TEnum Parse<TEnum>(string value) where TEnum : struct { throw null; }
+        public static TEnum Parse<TEnum>(string value, bool ignoreCase) where TEnum : struct { throw null; }
         bool System.IConvertible.ToBoolean(System.IFormatProvider provider) { throw null; }
         byte System.IConvertible.ToByte(System.IFormatProvider provider) { throw null; }
         char System.IConvertible.ToChar(System.IFormatProvider provider) { throw null; }
@@ -2105,6 +2136,8 @@ namespace System
         public string ToString(string format) { throw null; }
         [System.ObsoleteAttribute("The provider argument is not used. Please use ToString(String).")]
         public string ToString(string format, System.IFormatProvider provider) { throw null; }
+        public static bool TryParse(System.Type enumType, string value, bool ignoreCase, out object result) { result = default(object); throw null; }
+        public static bool TryParse(System.Type enumType, string value, out object result) { result = default(object); throw null; }
         public static bool TryParse<TEnum>(string value, out TEnum result) where TEnum : struct { result = default(TEnum); throw null; }
         public static bool TryParse<TEnum>(string value, bool ignoreCase, out TEnum result) where TEnum : struct { result = default(TEnum); throw null; }
     }
@@ -2309,6 +2342,7 @@ namespace System
         public static void Collect(int generation, System.GCCollectionMode mode, bool blocking, bool compacting) { }
         public static int CollectionCount(int generation) { throw null; }
         public static void EndNoGCRegion() { }
+        public static long GetAllocatedBytesForCurrentThread() { throw null; }
         public static int GetGeneration(object obj) { throw null; }
         public static int GetGeneration(System.WeakReference wo) { throw null; }
         public static long GetTotalMemory(bool forceFullCollection) { throw null; }
@@ -2398,6 +2432,27 @@ namespace System
         public static bool TryParseExact(System.ReadOnlySpan<char> input, System.ReadOnlySpan<char> format, out System.Guid result) { result = default(System.Guid); throw null; }
         public static bool TryParseExact(string input, string format, out System.Guid result) { result = default(System.Guid); throw null; }
         public bool TryWriteBytes(System.Span<byte> destination) { throw null; }
+    }
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public partial struct HashCode
+    {
+        public void Add<T>(T value) { }
+        public void Add<T>(T value, System.Collections.Generic.IEqualityComparer<T> comparer) { }
+        public static int Combine<T1>(T1 value1) { throw null; }
+        public static int Combine<T1, T2>(T1 value1, T2 value2) { throw null; }
+        public static int Combine<T1, T2, T3>(T1 value1, T2 value2, T3 value3) { throw null; }
+        public static int Combine<T1, T2, T3, T4>(T1 value1, T2 value2, T3 value3, T4 value4) { throw null; }
+        public static int Combine<T1, T2, T3, T4, T5>(T1 value1, T2 value2, T3 value3, T4 value4, T5 value5) { throw null; }
+        public static int Combine<T1, T2, T3, T4, T5, T6>(T1 value1, T2 value2, T3 value3, T4 value4, T5 value5, T6 value6) { throw null; }
+        public static int Combine<T1, T2, T3, T4, T5, T6, T7>(T1 value1, T2 value2, T3 value3, T4 value4, T5 value5, T6 value6, T7 value7) { throw null; }
+        public static int Combine<T1, T2, T3, T4, T5, T6, T7, T8>(T1 value1, T2 value2, T3 value3, T4 value4, T5 value5, T6 value6, T7 value7, T8 value8) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("HashCode is a mutable struct and should not be compared with other HashCodes.", true)]
+        public override bool Equals(object obj) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("HashCode is a mutable struct and should not be compared with other HashCodes. Use ToHashCode to retrieve the computed hash code.", true)]
+        public override int GetHashCode() { throw null; }
+        public int ToHashCode() { throw null; }
     }
     public partial class HttpStyleUriParser : System.UriParser
     {
@@ -2605,7 +2660,7 @@ namespace System
         public static bool TryParse(string s, out System.Int64 result) { result = default(long); throw null; }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct IntPtr : System.Runtime.Serialization.ISerializable
+    public partial struct IntPtr : System.IEquatable<System.IntPtr>, System.Runtime.Serialization.ISerializable
     {
         public static readonly System.IntPtr Zero;
         public IntPtr(int value) { throw null;}
@@ -2629,6 +2684,7 @@ namespace System
         public static bool operator !=(System.IntPtr value1, System.IntPtr value2) { throw null; }
         public static System.IntPtr operator -(System.IntPtr pointer, int offset) { throw null; }
         public static System.IntPtr Subtract(System.IntPtr pointer, int offset) { throw null; }
+        bool System.IEquatable<System.IntPtr>.Equals(System.IntPtr other) { throw null; }
         void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public int ToInt32() { throw null; }
         public long ToInt64() { throw null; }
@@ -2691,6 +2747,7 @@ namespace System
         public Lazy(System.Func<T> valueFactory, bool isThreadSafe) { }
         public Lazy(System.Func<T> valueFactory, System.Threading.LazyThreadSafetyMode mode) { }
         public Lazy(System.Threading.LazyThreadSafetyMode mode) { }
+        public Lazy(T value) { }
         public bool IsValueCreated { get { throw null; } }
         public T Value { get { throw null; } }
         public override string ToString() { throw null; }
@@ -2752,12 +2809,31 @@ namespace System
         public static sbyte Abs(sbyte value) { throw null; }
         public static float Abs(float value) { throw null; }
         public static double Acos(double d) { throw null; }
+        public static double Acosh(double d) { throw null; }
         public static double Asin(double d) { throw null; }
+        public static double Asinh(double d) { throw null; }
         public static double Atan(double d) { throw null; }
         public static double Atan2(double y, double x) { throw null; }
+        public static double Atanh(double d) { throw null; }
         public static long BigMul(int a, int b) { throw null; }
+        public static double Cbrt(double d) { throw null; }
         public static decimal Ceiling(decimal d) { throw null; }
         public static double Ceiling(double a) { throw null; }
+        public static byte Clamp(byte value, byte min, byte max) { throw null; }
+        public static decimal Clamp(decimal value, decimal min, decimal max) { throw null; }
+        public static double Clamp(double value, double min, double max) { throw null; }
+        public static short Clamp(short value, short min, short max) { throw null; }
+        public static int Clamp(int value, int min, int max) { throw null; }
+        public static long Clamp(long value, long min, long max) { throw null; }
+        [System.CLSCompliantAttribute(false)]
+        public static sbyte Clamp(sbyte value, sbyte min, sbyte max) { throw null; }
+        public static float Clamp(float value, float min, float max) { throw null; }
+        [System.CLSCompliantAttribute(false)]
+        public static ushort Clamp(ushort value, ushort min, ushort max) { throw null; }
+        [System.CLSCompliantAttribute(false)]
+        public static uint Clamp(uint value, uint min, uint max) { throw null; }
+        [System.CLSCompliantAttribute(false)]
+        public static ulong Clamp(ulong value, ulong min, ulong max) { throw null; }
         public static double Cos(double d) { throw null; }
         public static double Cosh(double value) { throw null; }
         public static int DivRem(int a, int b, out int result) { result = default(int); throw null; }
@@ -2823,6 +2899,43 @@ namespace System
         public static double Tanh(double value) { throw null; }
         public static decimal Truncate(decimal d) { throw null; }
         public static double Truncate(double d) { throw null; }
+    }
+    public static partial class MathF
+    {
+        public const float E = 2.71828175f;
+        public const float PI = 3.14159274f;
+        public static float Abs(float x) { throw null; }
+        public static float Acos(float x) { throw null; }
+        public static float Acosh(float x) { throw null; }
+        public static float Asin(float x) { throw null; }
+        public static float Asinh(float x) { throw null; }
+        public static float Atan(float x) { throw null; }
+        public static float Atan2(float y, float x) { throw null; }
+        public static float Atanh(float x) { throw null; }
+        public static float Cbrt(float x) { throw null; }
+        public static float Ceiling(float x) { throw null; }
+        public static float Cos(float x) { throw null; }
+        public static float Cosh(float x) { throw null; }
+        public static float Exp(float x) { throw null; }
+        public static float Floor(float x) { throw null; }
+        public static float IEEERemainder(float x, float y) { throw null; }
+        public static float Log(float x) { throw null; }
+        public static float Log(float x, float y) { throw null; }
+        public static float Log10(float x) { throw null; }
+        public static float Max(float x, float y) { throw null; }
+        public static float Min(float x, float y) { throw null; }
+        public static float Pow(float x, float y) { throw null; }
+        public static float Round(float x) { throw null; }
+        public static float Round(float x, int digits) { throw null; }
+        public static float Round(float x, int digits, System.MidpointRounding mode) { throw null; }
+        public static float Round(float x, System.MidpointRounding mode) { throw null; }
+        public static int Sign(float x) { throw null; }
+        public static float Sin(float x) { throw null; }
+        public static float Sinh(float x) { throw null; }
+        public static float Sqrt(float x) { throw null; }
+        public static float Tan(float x) { throw null; }
+        public static float Tanh(float x) { throw null; }
+        public static float Truncate(float x) { throw null; }
     }
     public partial class MemberAccessException : System.SystemException
     {
@@ -2971,7 +3084,7 @@ namespace System
         public override string Message { get { throw null; } }
         public override void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
     }
-    public partial class MissingMethodException : System.MissingMemberException, System.Runtime.Serialization.ISerializable
+    public partial class MissingMethodException : System.MissingMemberException
     {
         public MissingMethodException() { }
         protected MissingMethodException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
@@ -3396,10 +3509,14 @@ namespace System
         public bool Equals(System.Single obj) { throw null; }
         public override int GetHashCode() { throw null; }
         public System.TypeCode GetTypeCode() { throw null; }
+        public static bool IsFinite(System.Single f) { throw null; }
         public static bool IsInfinity(System.Single f) { throw null; }
         public static bool IsNaN(System.Single f) { throw null; }
+        public static bool IsNegative(System.Single f) { throw null; }
         public static bool IsNegativeInfinity(System.Single f) { throw null; }
+        public static bool IsNormal(System.Single f) { throw null; }
         public static bool IsPositiveInfinity(System.Single f) { throw null; }
+        public static bool IsSubnormal(System.Single f) { throw null; }
         public static bool operator ==(System.Single left, System.Single right) { throw null; }
         public static bool operator >(System.Single left, System.Single right) { throw null; }
         public static bool operator >=(System.Single left, System.Single right) { throw null; }
@@ -3530,9 +3647,14 @@ namespace System
         public static System.String Concat(System.String str0, System.String str1, System.String str2, System.String str3) { throw null; }
         public static System.String Concat(params string[] values) { throw null; }
         public static System.String Concat<T>(System.Collections.Generic.IEnumerable<T> values) { throw null; }
+        public bool Contains(char value) { throw null; }
+        public bool Contains(char value, System.StringComparison comparisonType) { throw null; }
         public bool Contains(System.String value) { throw null; }
+        public bool Contains(System.String value, System.StringComparison comparisonType) { throw null; }
         public static System.String Copy(System.String str) { throw null; }
         public void CopyTo(int sourceIndex, char[] destination, int destinationIndex, int count) { }
+        public static System.String Create<TState>(int length, TState state, System.Buffers.SpanAction<char, TState> action) { throw null; }
+        public bool EndsWith(char value) { throw null; }
         public bool EndsWith(System.String value) { throw null; }
         public bool EndsWith(System.String value, bool ignoreCase, System.Globalization.CultureInfo culture) { throw null; }
         public bool EndsWith(System.String value, System.StringComparison comparisonType) { throw null; }
@@ -3551,10 +3673,12 @@ namespace System
         public static System.String Format(System.String format, params object[] args) { throw null; }
         public System.CharEnumerator GetEnumerator() { throw null; }
         public override int GetHashCode() { throw null; }
+        public int GetHashCode(System.StringComparison comparisonType) { throw null; }
         public System.TypeCode GetTypeCode() { throw null; }
         public int IndexOf(char value) { throw null; }
         public int IndexOf(char value, int startIndex) { throw null; }
         public int IndexOf(char value, int startIndex, int count) { throw null; }
+        public int IndexOf(char value, System.StringComparison comparisonType) { throw null; }
         public int IndexOf(System.String value) { throw null; }
         public int IndexOf(System.String value, int startIndex) { throw null; }
         public int IndexOf(System.String value, int startIndex, int count) { throw null; }
@@ -3571,10 +3695,14 @@ namespace System
         public bool IsNormalized(System.Text.NormalizationForm normalizationForm) { throw null; }
         public static bool IsNullOrEmpty(System.String value) { throw null; }
         public static bool IsNullOrWhiteSpace(System.String value) { throw null; }
+        public static System.String Join(char separator, params object[] values) { throw null; }
+        public static System.String Join(char separator, params string[] value) { throw null; }
+        public static System.String Join(char separator, string[] value, int startIndex, int count) { throw null; }
         public static System.String Join(System.String separator, System.Collections.Generic.IEnumerable<string> values) { throw null; }
         public static System.String Join(System.String separator, params object[] values) { throw null; }
         public static System.String Join(System.String separator, params string[] value) { throw null; }
         public static System.String Join(System.String separator, string[] value, int startIndex, int count) { throw null; }
+        public static System.String Join<T>(char separator, System.Collections.Generic.IEnumerable<T> values) { throw null; }
         public static System.String Join<T>(System.String separator, System.Collections.Generic.IEnumerable<T> values) { throw null; }
         public int LastIndexOf(char value) { throw null; }
         public int LastIndexOf(char value, int startIndex) { throw null; }
@@ -3601,12 +3729,19 @@ namespace System
         public System.String Remove(int startIndex, int count) { throw null; }
         public System.String Replace(char oldChar, char newChar) { throw null; }
         public System.String Replace(System.String oldValue, System.String newValue) { throw null; }
+        public System.String Replace(System.String oldValue, System.String newValue, bool ignoreCase, System.Globalization.CultureInfo culture) { throw null; }
+        public System.String Replace(System.String oldValue, System.String newValue, System.StringComparison comparisonType) { throw null; }
+        public string[] Split(char separator, int count, System.StringSplitOptions options = (System.StringSplitOptions)(0)) { throw null; }
+        public string[] Split(char separator, System.StringSplitOptions options = (System.StringSplitOptions)(0)) { throw null; }
         public string[] Split(params char[] separator) { throw null; }
         public string[] Split(char[] separator, int count) { throw null; }
         public string[] Split(char[] separator, int count, System.StringSplitOptions options) { throw null; }
         public string[] Split(char[] separator, System.StringSplitOptions options) { throw null; }
+        public string[] Split(System.String separator, int count, System.StringSplitOptions options = (System.StringSplitOptions)(0)) { throw null; }
+        public string[] Split(System.String separator, System.StringSplitOptions options = (System.StringSplitOptions)(0)) { throw null; }
         public string[] Split(string[] separator, int count, System.StringSplitOptions options) { throw null; }
         public string[] Split(string[] separator, System.StringSplitOptions options) { throw null; }
+        public bool StartsWith(char value) { throw null; }
         public bool StartsWith(System.String value) { throw null; }
         public bool StartsWith(System.String value, bool ignoreCase, System.Globalization.CultureInfo culture) { throw null; }
         public bool StartsWith(System.String value, System.StringComparison comparisonType) { throw null; }
@@ -3640,8 +3775,13 @@ namespace System
         public System.String ToUpper(System.Globalization.CultureInfo culture) { throw null; }
         public System.String ToUpperInvariant() { throw null; }
         public System.String Trim() { throw null; }
+        public System.String Trim(char trimChar) { throw null; }
         public System.String Trim(params char[] trimChars) { throw null; }
+        public System.String TrimEnd() { throw null; }
+        public System.String TrimEnd(char trimChar) { throw null; }
         public System.String TrimEnd(params char[] trimChars) { throw null; }
+        public System.String TrimStart() { throw null; }
+        public System.String TrimStart(char trimChar) { throw null; }
         public System.String TrimStart(params char[] trimChars) { throw null; }
     }
     public abstract partial class StringComparer : System.Collections.Generic.IComparer<string>, System.Collections.Generic.IEqualityComparer<string>, System.Collections.IComparer, System.Collections.IEqualityComparer
@@ -3656,10 +3796,14 @@ namespace System
         public int Compare(object x, object y) { throw null; }
         public abstract int Compare(string x, string y);
         public static System.StringComparer Create(System.Globalization.CultureInfo culture, bool ignoreCase) { throw null; }
+        public static System.StringComparer Create(System.Globalization.CultureInfo culture, System.Globalization.CompareOptions options) { throw null; }
         public new bool Equals(object x, object y) { throw null; }
         public abstract bool Equals(string x, string y);
+        public static System.StringComparer FromComparison(System.StringComparison comparisonType) { throw null; }
         public int GetHashCode(object obj) { throw null; }
         public abstract int GetHashCode(string obj);
+        bool System.Collections.IEqualityComparer.Equals(object x, object y) { throw null; }
+        int System.Collections.IEqualityComparer.GetHashCode(object obj) { throw null; }
     }
     public enum StringComparison
     {
@@ -3733,6 +3877,8 @@ namespace System
         public static int Compare(System.TimeSpan t1, System.TimeSpan t2) { throw null; }
         public int CompareTo(object value) { throw null; }
         public int CompareTo(System.TimeSpan value) { throw null; }
+        public System.TimeSpan Divide(double divisor) { throw null; }
+        public double Divide(System.TimeSpan ts) { throw null; }
         public System.TimeSpan Duration() { throw null; }
         public override bool Equals(object value) { throw null; }
         public bool Equals(System.TimeSpan obj) { throw null; }
@@ -3744,14 +3890,19 @@ namespace System
         public static System.TimeSpan FromSeconds(double value) { throw null; }
         public static System.TimeSpan FromTicks(long value) { throw null; }
         public override int GetHashCode() { throw null; }
+        public System.TimeSpan Multiply(double factor) { throw null; }
         public System.TimeSpan Negate() { throw null; }
         public static System.TimeSpan operator +(System.TimeSpan t1, System.TimeSpan t2) { throw null; }
+        public static System.TimeSpan operator /(System.TimeSpan timeSpan, double divisor) { throw null; }
+        public static double operator /(System.TimeSpan t1, System.TimeSpan t2) { throw null; }
         public static bool operator ==(System.TimeSpan t1, System.TimeSpan t2) { throw null; }
         public static bool operator >(System.TimeSpan t1, System.TimeSpan t2) { throw null; }
         public static bool operator >=(System.TimeSpan t1, System.TimeSpan t2) { throw null; }
         public static bool operator !=(System.TimeSpan t1, System.TimeSpan t2) { throw null; }
         public static bool operator <(System.TimeSpan t1, System.TimeSpan t2) { throw null; }
         public static bool operator <=(System.TimeSpan t1, System.TimeSpan t2) { throw null; }
+        public static System.TimeSpan operator *(double factor, System.TimeSpan timeSpan) { throw null; }
+        public static System.TimeSpan operator *(System.TimeSpan timeSpan, double factor) { throw null; }
         public static System.TimeSpan operator -(System.TimeSpan t1, System.TimeSpan t2) { throw null; }
         public static System.TimeSpan operator -(System.TimeSpan t) { throw null; }
         public static System.TimeSpan operator +(System.TimeSpan t) { throw null; }
@@ -4532,7 +4683,7 @@ namespace System
     }
     [System.CLSCompliantAttribute(false)]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct UIntPtr : System.Runtime.Serialization.ISerializable
+    public partial struct UIntPtr : System.IEquatable<System.UIntPtr>, System.Runtime.Serialization.ISerializable
     {
         public static readonly System.UIntPtr Zero;
         public UIntPtr(uint value) { throw null;}
@@ -4556,6 +4707,7 @@ namespace System
         public static bool operator !=(System.UIntPtr value1, System.UIntPtr value2) { throw null; }
         public static System.UIntPtr operator -(System.UIntPtr pointer, int offset) { throw null; }
         public static System.UIntPtr Subtract(System.UIntPtr pointer, int offset) { throw null; }
+        bool System.IEquatable<System.UIntPtr>.Equals(System.UIntPtr other) { throw null; }
         void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         [System.CLSCompliantAttribute(false)]
         public unsafe void* ToPointer() { throw null; }
