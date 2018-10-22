@@ -24,6 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Microsoft.Win32.SafeHandles.cs" />
+    <Compile Include="System.Buffers.cs" />
     <Compile Include="System.CodeDom.Compiler.cs" />
     <Compile Include="System.Collections.Concurrent.cs" />
     <Compile Include="System.Collections.cs" />

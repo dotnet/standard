@@ -2751,6 +2751,112 @@ namespace System
         public MemberAccessException(string message) { }
         public MemberAccessException(string message, System.Exception inner) { }
     }
+    public readonly partial struct Memory<T>
+    {
+        public Memory(T[] array) { throw null; }
+        public Memory(T[] array, int start, int length) { throw null; }
+        public static System.Memory<T> Empty { get { throw null; } }
+        public bool IsEmpty { get { throw null; } }
+        public int Length { get { throw null; } }
+        public System.Span<T> Span { get { throw null; } }
+        public void CopyTo(System.Memory<T> destination) { }
+        public bool Equals(System.Memory<T> other) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        public override bool Equals(object obj) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        public override int GetHashCode() { throw null; }
+        public static implicit operator System.Memory<T>(System.ArraySegment<T> segment) { throw null; }
+        public static implicit operator System.ReadOnlyMemory<T>(System.Memory<T> memory) { throw null; }
+        public static implicit operator System.Memory<T>(T[] array) { throw null; }
+        public System.Buffers.MemoryHandle Pin() { throw null; }
+        public System.Memory<T> Slice(int start) { throw null; }
+        public System.Memory<T> Slice(int start, int length) { throw null; }
+        public T[] ToArray() { throw null; }
+        public override string ToString() { throw null; }
+        public bool TryCopyTo(System.Memory<T> destination) { throw null; }
+    }
+    public static partial class MemoryExtensions
+    {
+        public static System.ReadOnlyMemory<char> AsMemory(this string text) { throw null; }
+        public static System.ReadOnlyMemory<char> AsMemory(this string text, int start) { throw null; }
+        public static System.ReadOnlyMemory<char> AsMemory(this string text, int start, int length) { throw null; }
+        public static System.Memory<T> AsMemory<T>(this System.ArraySegment<T> segment) { throw null; }
+        public static System.Memory<T> AsMemory<T>(this System.ArraySegment<T> segment, int start) { throw null; }
+        public static System.Memory<T> AsMemory<T>(this System.ArraySegment<T> segment, int start, int length) { throw null; }
+        public static System.Memory<T> AsMemory<T>(this T[] array) { throw null; }
+        public static System.Memory<T> AsMemory<T>(this T[] array, int start) { throw null; }
+        public static System.Memory<T> AsMemory<T>(this T[] array, int start, int length) { throw null; }
+        public static System.ReadOnlySpan<char> AsSpan(this string text) { throw null; }
+        public static System.ReadOnlySpan<char> AsSpan(this string text, int start) { throw null; }
+        public static System.ReadOnlySpan<char> AsSpan(this string text, int start, int length) { throw null; }
+        public static System.Span<T> AsSpan<T>(this System.ArraySegment<T> segment) { throw null; }
+        public static System.Span<T> AsSpan<T>(this System.ArraySegment<T> segment, int start) { throw null; }
+        public static System.Span<T> AsSpan<T>(this System.ArraySegment<T> segment, int start, int length) { throw null; }
+        public static System.Span<T> AsSpan<T>(this T[] array) { throw null; }
+        public static System.Span<T> AsSpan<T>(this T[] array, int start) { throw null; }
+        public static System.Span<T> AsSpan<T>(this T[] array, int start, int length) { throw null; }
+        public static int BinarySearch<T>(this System.ReadOnlySpan<T> span, System.IComparable<T> comparable) { throw null; }
+        public static int BinarySearch<T>(this System.Span<T> span, System.IComparable<T> comparable) { throw null; }
+        public static int BinarySearch<T, TComparer>(this System.ReadOnlySpan<T> span, T value, TComparer comparer) where TComparer : System.Collections.Generic.IComparer<T> { throw null; }
+        public static int BinarySearch<T, TComparable>(this System.ReadOnlySpan<T> span, TComparable comparable) where TComparable : System.IComparable<T> { throw null; }
+        public static int BinarySearch<T, TComparer>(this System.Span<T> span, T value, TComparer comparer) where TComparer : System.Collections.Generic.IComparer<T> { throw null; }
+        public static int BinarySearch<T, TComparable>(this System.Span<T> span, TComparable comparable) where TComparable : System.IComparable<T> { throw null; }
+        public static int CompareTo(this System.ReadOnlySpan<char> span, System.ReadOnlySpan<char> other, System.StringComparison comparisonType) { throw null; }
+        public static bool Contains(this System.ReadOnlySpan<char> span, System.ReadOnlySpan<char> value, System.StringComparison comparisonType) { throw null; }
+        public static void CopyTo<T>(this T[] source, System.Memory<T> destination) { }
+        public static void CopyTo<T>(this T[] source, System.Span<T> destination) { }
+        public static bool EndsWith(this System.ReadOnlySpan<char> span, System.ReadOnlySpan<char> value, System.StringComparison comparisonType) { throw null; }
+        public static bool EndsWith<T>(this System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> value) where T : System.IEquatable<T> { throw null; }
+        public static bool EndsWith<T>(this System.Span<T> span, System.ReadOnlySpan<T> value) where T : System.IEquatable<T> { throw null; }
+        public static bool Equals(this System.ReadOnlySpan<char> span, System.ReadOnlySpan<char> other, System.StringComparison comparisonType) { throw null; }
+        public static int IndexOf(this System.ReadOnlySpan<char> span, System.ReadOnlySpan<char> value, System.StringComparison comparisonType) { throw null; }
+        public static int IndexOfAny<T>(this System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> values) where T : System.IEquatable<T> { throw null; }
+        public static int IndexOfAny<T>(this System.ReadOnlySpan<T> span, T value0, T value1) where T : System.IEquatable<T> { throw null; }
+        public static int IndexOfAny<T>(this System.ReadOnlySpan<T> span, T value0, T value1, T value2) where T : System.IEquatable<T> { throw null; }
+        public static int IndexOfAny<T>(this System.Span<T> span, System.ReadOnlySpan<T> values) where T : System.IEquatable<T> { throw null; }
+        public static int IndexOfAny<T>(this System.Span<T> span, T value0, T value1) where T : System.IEquatable<T> { throw null; }
+        public static int IndexOfAny<T>(this System.Span<T> span, T value0, T value1, T value2) where T : System.IEquatable<T> { throw null; }
+        public static int IndexOf<T>(this System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> value) where T : System.IEquatable<T> { throw null; }
+        public static int IndexOf<T>(this System.ReadOnlySpan<T> span, T value) where T : System.IEquatable<T> { throw null; }
+        public static int IndexOf<T>(this System.Span<T> span, System.ReadOnlySpan<T> value) where T : System.IEquatable<T> { throw null; }
+        public static int IndexOf<T>(this System.Span<T> span, T value) where T : System.IEquatable<T> { throw null; }
+        public static bool IsWhiteSpace(this System.ReadOnlySpan<char> span) { throw null; }
+        public static int LastIndexOfAny<T>(this System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> values) where T : System.IEquatable<T> { throw null; }
+        public static int LastIndexOfAny<T>(this System.ReadOnlySpan<T> span, T value0, T value1) where T : System.IEquatable<T> { throw null; }
+        public static int LastIndexOfAny<T>(this System.ReadOnlySpan<T> span, T value0, T value1, T value2) where T : System.IEquatable<T> { throw null; }
+        public static int LastIndexOfAny<T>(this System.Span<T> span, System.ReadOnlySpan<T> values) where T : System.IEquatable<T> { throw null; }
+        public static int LastIndexOfAny<T>(this System.Span<T> span, T value0, T value1) where T : System.IEquatable<T> { throw null; }
+        public static int LastIndexOfAny<T>(this System.Span<T> span, T value0, T value1, T value2) where T : System.IEquatable<T> { throw null; }
+        public static int LastIndexOf<T>(this System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> value) where T : System.IEquatable<T> { throw null; }
+        public static int LastIndexOf<T>(this System.ReadOnlySpan<T> span, T value) where T : System.IEquatable<T> { throw null; }
+        public static int LastIndexOf<T>(this System.Span<T> span, System.ReadOnlySpan<T> value) where T : System.IEquatable<T> { throw null; }
+        public static int LastIndexOf<T>(this System.Span<T> span, T value) where T : System.IEquatable<T> { throw null; }
+        public static bool Overlaps<T>(this System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> other) { throw null; }
+        public static bool Overlaps<T>(this System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> other, out int elementOffset) { elementOffset = default(int); throw null; }
+        public static bool Overlaps<T>(this System.Span<T> span, System.ReadOnlySpan<T> other) { throw null; }
+        public static bool Overlaps<T>(this System.Span<T> span, System.ReadOnlySpan<T> other, out int elementOffset) { elementOffset = default(int); throw null; }
+        public static void Reverse<T>(this System.Span<T> span) { }
+        public static int SequenceCompareTo<T>(this System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> other) where T : System.IComparable<T> { throw null; }
+        public static int SequenceCompareTo<T>(this System.Span<T> span, System.ReadOnlySpan<T> other) where T : System.IComparable<T> { throw null; }
+        public static bool SequenceEqual<T>(this System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> other) where T : System.IEquatable<T> { throw null; }
+        public static bool SequenceEqual<T>(this System.Span<T> span, System.ReadOnlySpan<T> other) where T : System.IEquatable<T> { throw null; }
+        public static bool StartsWith(this System.ReadOnlySpan<char> span, System.ReadOnlySpan<char> value, System.StringComparison comparisonType) { throw null; }
+        public static bool StartsWith<T>(this System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> value) where T : System.IEquatable<T> { throw null; }
+        public static bool StartsWith<T>(this System.Span<T> span, System.ReadOnlySpan<T> value) where T : System.IEquatable<T> { throw null; }
+        public static int ToLower(this System.ReadOnlySpan<char> source, System.Span<char> destination, System.Globalization.CultureInfo culture) { throw null; }
+        public static int ToLowerInvariant(this System.ReadOnlySpan<char> source, System.Span<char> destination) { throw null; }
+        public static int ToUpper(this System.ReadOnlySpan<char> source, System.Span<char> destination, System.Globalization.CultureInfo culture) { throw null; }
+        public static int ToUpperInvariant(this System.ReadOnlySpan<char> source, System.Span<char> destination) { throw null; }
+        public static System.ReadOnlySpan<char> Trim(this System.ReadOnlySpan<char> span) { throw null; }
+        public static System.ReadOnlySpan<char> Trim(this System.ReadOnlySpan<char> span, char trimChar) { throw null; }
+        public static System.ReadOnlySpan<char> Trim(this System.ReadOnlySpan<char> span, System.ReadOnlySpan<char> trimChars) { throw null; }
+        public static System.ReadOnlySpan<char> TrimEnd(this System.ReadOnlySpan<char> span) { throw null; }
+        public static System.ReadOnlySpan<char> TrimEnd(this System.ReadOnlySpan<char> span, char trimChar) { throw null; }
+        public static System.ReadOnlySpan<char> TrimEnd(this System.ReadOnlySpan<char> span, System.ReadOnlySpan<char> trimChars) { throw null; }
+        public static System.ReadOnlySpan<char> TrimStart(this System.ReadOnlySpan<char> span) { throw null; }
+        public static System.ReadOnlySpan<char> TrimStart(this System.ReadOnlySpan<char> span, char trimChar) { throw null; }
+        public static System.ReadOnlySpan<char> TrimStart(this System.ReadOnlySpan<char> span, System.ReadOnlySpan<char> trimChars) { throw null; }
+    }
     public partial class MethodAccessException : System.MemberAccessException
     {
         public MethodAccessException() { }
@@ -3030,6 +3136,64 @@ namespace System
         public RankException(string message) { }
         public RankException(string message, System.Exception innerException) { }
     }
+    public readonly partial struct ReadOnlyMemory<T>
+    {
+        public ReadOnlyMemory(T[] array) { throw null; }
+        public ReadOnlyMemory(T[] array, int start, int length) { throw null; }
+        public static System.ReadOnlyMemory<T> Empty { get { throw null; } }
+        public bool IsEmpty { get { throw null; } }
+        public int Length { get { throw null; } }
+        public System.ReadOnlySpan<T> Span { get { throw null; } }
+        public void CopyTo(System.Memory<T> destination) { }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        public override bool Equals(object obj) { throw null; }
+        public bool Equals(System.ReadOnlyMemory<T> other) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        public override int GetHashCode() { throw null; }
+        public static implicit operator System.ReadOnlyMemory<T>(System.ArraySegment<T> segment) { throw null; }
+        public static implicit operator System.ReadOnlyMemory<T>(T[] array) { throw null; }
+        public System.Buffers.MemoryHandle Pin() { throw null; }
+        public System.ReadOnlyMemory<T> Slice(int start) { throw null; }
+        public System.ReadOnlyMemory<T> Slice(int start, int length) { throw null; }
+        public T[] ToArray() { throw null; }
+        public override string ToString() { throw null; }
+        public bool TryCopyTo(System.Memory<T> destination) { throw null; }
+    }
+    public readonly ref partial struct ReadOnlySpan<T>
+    {
+        [System.CLSCompliantAttribute(false)]
+        public unsafe ReadOnlySpan(void* pointer, int length) { throw null; }
+        public ReadOnlySpan(T[] array) { throw null; }
+        public ReadOnlySpan(T[] array, int start, int length) { throw null; }
+        public static System.ReadOnlySpan<T> Empty { get { throw null; } }
+        public bool IsEmpty { get { throw null; } }
+        public ref readonly T this[int index] { get { throw null; } }
+        public int Length { get { throw null; } }
+        public void CopyTo(System.Span<T> destination) { }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("Equals() on ReadOnlySpan will always throw an exception. Use == instead.")]
+        public override bool Equals(object obj) { throw null; }
+        public System.ReadOnlySpan<T>.Enumerator GetEnumerator() { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("GetHashCode() on ReadOnlySpan will always throw an exception.")]
+        public override int GetHashCode() { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        public ref readonly T GetPinnableReference() { throw null; }
+        public static bool operator ==(System.ReadOnlySpan<T> left, System.ReadOnlySpan<T> right) { throw null; }
+        public static implicit operator System.ReadOnlySpan<T>(System.ArraySegment<T> segment) { throw null; }
+        public static implicit operator System.ReadOnlySpan<T>(T[] array) { throw null; }
+        public static bool operator !=(System.ReadOnlySpan<T> left, System.ReadOnlySpan<T> right) { throw null; }
+        public System.ReadOnlySpan<T> Slice(int start) { throw null; }
+        public System.ReadOnlySpan<T> Slice(int start, int length) { throw null; }
+        public T[] ToArray() { throw null; }
+        public override string ToString() { throw null; }
+        public bool TryCopyTo(System.Span<T> destination) { throw null; }
+        public ref partial struct Enumerator
+        {
+            public ref readonly T Current { get { throw null; } }
+            public bool MoveNext() { throw null; }
+        }
+    }
     public partial class ResolveEventArgs : System.EventArgs
     {
         public ResolveEventArgs(string name) { }
@@ -3179,6 +3343,44 @@ namespace System
         public string ToString(string format, System.IFormatProvider provider) { throw null; }
         public static bool TryParse(string s, System.Globalization.NumberStyles style, System.IFormatProvider provider, out System.Single result) { result = default(float); throw null; }
         public static bool TryParse(string s, out System.Single result) { result = default(float); throw null; }
+    }
+    public readonly ref partial struct Span<T>
+    {
+        [System.CLSCompliantAttribute(false)]
+        public unsafe Span(void* pointer, int length) { throw null; }
+        public Span(T[] array) { throw null; }
+        public Span(T[] array, int start, int length) { throw null; }
+        public static System.Span<T> Empty { get { throw null; } }
+        public bool IsEmpty { get { throw null; } }
+        public ref T this[int index] { get { throw null; } }
+        public int Length { get { throw null; } }
+        public void Clear() { }
+        public void CopyTo(System.Span<T> destination) { }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("Equals() on Span will always throw an exception. Use == instead.")]
+        public override bool Equals(object obj) { throw null; }
+        public void Fill(T value) { }
+        public System.Span<T>.Enumerator GetEnumerator() { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ObsoleteAttribute("GetHashCode() on Span will always throw an exception.")]
+        public override int GetHashCode() { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        public ref T GetPinnableReference() { throw null; }
+        public static bool operator ==(System.Span<T> left, System.Span<T> right) { throw null; }
+        public static implicit operator System.Span<T>(System.ArraySegment<T> segment) { throw null; }
+        public static implicit operator System.ReadOnlySpan<T>(System.Span<T> span) { throw null; }
+        public static implicit operator System.Span<T>(T[] array) { throw null; }
+        public static bool operator !=(System.Span<T> left, System.Span<T> right) { throw null; }
+        public System.Span<T> Slice(int start) { throw null; }
+        public System.Span<T> Slice(int start, int length) { throw null; }
+        public T[] ToArray() { throw null; }
+        public override string ToString() { throw null; }
+        public bool TryCopyTo(System.Span<T> destination) { throw null; }
+        public ref partial struct Enumerator
+        {
+            public ref T Current { get { throw null; } }
+            public bool MoveNext() { throw null; }
+        }
     }
     public sealed partial class StackOverflowException : System.SystemException
     {

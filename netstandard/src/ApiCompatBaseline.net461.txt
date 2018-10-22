@@ -4,7 +4,12 @@ MembersMustExist : Member 'System.AppContext.TargetFrameworkName.get()' does not
 TypeCannotChangeClassification : Type 'System.ArraySegment<T>' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 TypeCannotChangeClassification : Type 'System.ConsoleKeyInfo' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 TypeCannotChangeClassification : Type 'System.DateTime' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypesMustExist : Type 'System.Memory<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.MemoryExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.ReadOnlyMemory<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.ReadOnlySpan<T>' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.RuntimeArgumentHandle' is a 'struct' in the implementation but is a 'ref struct' in the contract.
+TypesMustExist : Type 'System.Span<T>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.StringNormalizationExtensions' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.TimeZoneInfo.TransitionTime' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 CannotRemoveBaseTypeOrInterface : Type 'System.Tuple<T1>' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
@@ -38,6 +43,8 @@ CannotRemoveBaseTypeOrInterface : Type 'System.ValueTuple<T1, T2, T3, T4, T5>' d
 CannotRemoveBaseTypeOrInterface : Type 'System.ValueTuple<T1, T2, T3, T4, T5, T6>' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.ValueTuple<T1, T2, T3, T4, T5, T6, T7>' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest>' does not implement interface 'System.Runtime.CompilerServices.ITuple' in the implementation but it does in the contract.
+TypesMustExist : Type 'System.Buffers.IPinnable' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Buffers.MemoryHandle' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.BitArray.LeftShift(System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.BitArray.RightShift(System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.DictionaryEntry.Deconstruct(System.Object, System.Object)' does not exist in the implementation but it does exist in the contract.
@@ -254,6 +261,7 @@ MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.PtrToStringUTF
 MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.PtrToStringUTF8(System.IntPtr, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.StringToCoTaskMemUTF8(System.String)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.ZeroFreeCoTaskMemUTF8(System.IntPtr)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.MemoryMarshal' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.Runtime.InteropServices.OSPlatform' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Runtime.InteropServices.UnmanagedType System.Runtime.InteropServices.UnmanagedType.LPUTF8Str' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.Serialization.DataContractSerializerExtensions' does not exist in the implementation but it does exist in the contract.
@@ -331,4 +339,4 @@ MembersMustExist : Member 'System.Xml.Linq.XNode.WriteToAsync(System.Xml.XmlWrit
 MembersMustExist : Member 'System.Xml.Linq.XProcessingInstruction.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Linq.XText.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 332
+Total Issues: 340

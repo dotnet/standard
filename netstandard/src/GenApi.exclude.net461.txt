@@ -37,10 +37,17 @@ T:System.Reflection.MethodInfoExtensions
 T:System.Reflection.ModuleExtensions
 T:System.Reflection.PropertyInfoExtensions
 T:System.Reflection.TypeExtensions
+T:System.Buffers.IPinnable
+T:System.Buffers.MemoryManager`1
 T:System.Threading.Tasks.Sources.IValueTaskSource
 T:System.Threading.Tasks.Sources.IValueTaskSource`1
 T:System.Threading.Tasks.Sources.ValueTaskSourceOnCompletedFlags
 T:System.Threading.Tasks.Sources.ValueTaskSourceStatus
+T:System.Buffers.MemoryHandle
+T:System.Memory`1
+T:System.MemoryExtensions
+T:System.ReadOnlyMemory`1
+T:System.ReadOnlySpan`1
 T:System.Runtime.CompilerServices.AsyncMethodBuilderAttribute
 T:System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder
 T:System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder`1
@@ -48,5 +55,7 @@ T:System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable
 T:System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable`1
 T:System.Runtime.CompilerServices.ValueTaskAwaiter
 T:System.Runtime.CompilerServices.ValueTaskAwaiter`1
+T:System.Runtime.InteropServices.MemoryMarshal
+T:System.Span`1
 T:System.Threading.Tasks.ValueTask
 T:System.Threading.Tasks.ValueTask`1

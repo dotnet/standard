@@ -2,7 +2,12 @@ Compat issues with assembly netstandard:
 TypeCannotChangeClassification : Type 'System.ArraySegment<T>' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 TypeCannotChangeClassification : Type 'System.ConsoleKeyInfo' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 TypeCannotChangeClassification : Type 'System.DateTime' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypesMustExist : Type 'System.Memory<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.MemoryExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.ReadOnlyMemory<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.ReadOnlySpan<T>' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.RuntimeArgumentHandle' is a 'struct' in the implementation but is a 'ref struct' in the contract.
+TypesMustExist : Type 'System.Span<T>' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.TimeZoneInfo.TransitionTime' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Type.GetMethod(System.String, System.Int32, System.Reflection.BindingFlags, System.Reflection.Binder, System.Reflection.CallingConventions, System.Type[], System.Reflection.ParameterModifier[])' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Type.GetMethod(System.String, System.Int32, System.Reflection.BindingFlags, System.Reflection.Binder, System.Type[], System.Reflection.ParameterModifier[])' does not exist in the implementation but it does exist in the contract.
@@ -17,6 +22,8 @@ MembersMustExist : Member 'System.Type.IsTypeDefinition.get()' does not exist in
 MembersMustExist : Member 'System.Type.IsVariableBoundArray.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Type.MakeGenericMethodParameter(System.Int32)' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.TypedReference' is a 'struct' in the implementation but is a 'ref struct' in the contract.
+TypesMustExist : Type 'System.Buffers.IPinnable' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Buffers.MemoryHandle..ctor(System.Void*, System.Runtime.InteropServices.GCHandle, System.Buffers.IPinnable)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.BitArray.LeftShift(System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.BitArray.RightShift(System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.Generic.Dictionary<TKey, TValue>.TrimExcess()' does not exist in the implementation but it does exist in the contract.
@@ -144,6 +151,7 @@ TypesMustExist : Type 'System.Runtime.CompilerServices.ValueTaskAwaiter' does no
 TypeCannotChangeClassification : Type 'System.Runtime.CompilerServices.YieldAwaitable' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 TypeCannotChangeClassification : Type 'System.Runtime.CompilerServices.YieldAwaitable.YieldAwaiter' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Runtime.InteropServices.Marshal.StringToCoTaskMemUTF8(System.String)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.MemoryMarshal' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.Runtime.Serialization.StreamingContext' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 TypeCannotChangeClassification : Type 'System.Security.Cryptography.HashAlgorithmName' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Text.Encoding.GetByteCount(System.String, System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
@@ -200,4 +208,4 @@ MembersMustExist : Member 'System.Xml.Linq.XProcessingInstruction.WriteToAsync(S
 MembersMustExist : Member 'System.Xml.Linq.XText.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.Serialization.SchemaImporter' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xml.Serialization.XmlSchemaImporter' does not inherit from base type 'System.Xml.Serialization.SchemaImporter' in the implementation but it does in the contract.
-Total Issues: 201
+Total Issues: 209
