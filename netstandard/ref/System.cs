@@ -4892,7 +4892,6 @@ namespace System
         public override object ConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, System.Type destinationType) { throw null; }
         public override bool IsValid(System.ComponentModel.ITypeDescriptorContext context, object value) { throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Size=1)]
     public partial struct ValueTuple : System.Collections.IStructuralComparable, System.Collections.IStructuralEquatable, System.IComparable, System.IComparable<System.ValueTuple>, System.IEquatable<System.ValueTuple>, System.Runtime.CompilerServices.ITuple
     {
         object System.Runtime.CompilerServices.ITuple.this[int index] { get { throw null; } }
@@ -5113,7 +5112,6 @@ namespace System
         public static bool TryParse(System.ReadOnlySpan<char> input, out System.Version result) { result = default(System.Version); throw null; }
         public static bool TryParse(string input, out System.Version result) { result = default(System.Version); throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential, Size=1)]
     public partial struct Void
     {
     }
