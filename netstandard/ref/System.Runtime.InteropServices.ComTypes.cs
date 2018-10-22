@@ -17,7 +17,6 @@ namespace System.Runtime.InteropServices.ComTypes
         ADVFCACHE_ONSAVE = 32,
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct BIND_OPTS
     {
         public int cbStruct;
@@ -51,7 +50,6 @@ namespace System.Runtime.InteropServices.ComTypes
         CC_SYSCALL = 6,
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct CONNECTDATA
     {
         public int dwCookie;
@@ -74,7 +72,6 @@ namespace System.Runtime.InteropServices.ComTypes
         DESCKIND_VARDESC = 2,
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct DISPPARAMS
     {
         public int cArgs;
@@ -92,7 +89,6 @@ namespace System.Runtime.InteropServices.ComTypes
         DVASPECT_THUMBNAIL = 2,
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct ELEMDESC
     {
         public System.Runtime.InteropServices.ComTypes.ELEMDESC.DESCUNION desc;
@@ -107,7 +103,6 @@ namespace System.Runtime.InteropServices.ComTypes
         }
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct EXCEPINFO
     {
         public string bstrDescription;
@@ -121,14 +116,12 @@ namespace System.Runtime.InteropServices.ComTypes
         public short wReserved;
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct FILETIME
     {
         public int dwLowDateTime;
         public int dwHighDateTime;
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct FORMATETC
     {
         public short cfFormat;
@@ -138,7 +131,6 @@ namespace System.Runtime.InteropServices.ComTypes
         public System.Runtime.InteropServices.ComTypes.TYMED tymed;
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct FUNCDESC
     {
         public System.Runtime.InteropServices.ComTypes.CALLCONV callconv;
@@ -236,7 +228,6 @@ namespace System.Runtime.InteropServices.ComTypes
         void SetData(ref System.Runtime.InteropServices.ComTypes.FORMATETC formatIn, ref System.Runtime.InteropServices.ComTypes.STGMEDIUM medium, bool release);
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct IDLDESC
     {
         public System.IntPtr dwReserved;
@@ -511,7 +502,6 @@ namespace System.Runtime.InteropServices.ComTypes
         LIBFLAG_FRESTRICTED = (short)1,
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct PARAMDESC
     {
         public System.IntPtr lpVarValue;
@@ -531,7 +521,6 @@ namespace System.Runtime.InteropServices.ComTypes
         PARAMFLAG_NONE = (short)0,
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct STATDATA
     {
         public System.Runtime.InteropServices.ComTypes.ADVF advf;
@@ -540,7 +529,6 @@ namespace System.Runtime.InteropServices.ComTypes
         public System.Runtime.InteropServices.ComTypes.FORMATETC formatetc;
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct STATSTG
     {
         public string pwcsName;
@@ -556,7 +544,6 @@ namespace System.Runtime.InteropServices.ComTypes
         public int reserved;
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct STGMEDIUM
     {
         public object pUnkForRelease;
@@ -585,7 +572,6 @@ namespace System.Runtime.InteropServices.ComTypes
         TYMED_NULL = 0,
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct TYPEATTR
     {
         public short cbAlignment;
@@ -609,7 +595,6 @@ namespace System.Runtime.InteropServices.ComTypes
         public System.Runtime.InteropServices.ComTypes.TYPEFLAGS wTypeFlags;
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct TYPEDESC
     {
         public System.IntPtr lpValue;
@@ -649,7 +634,6 @@ namespace System.Runtime.InteropServices.ComTypes
         TKIND_UNION = 7,
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct TYPELIBATTR
     {
         public System.Guid guid;
@@ -660,7 +644,6 @@ namespace System.Runtime.InteropServices.ComTypes
         public short wMinorVerNum;
     }
     [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct VARDESC
     {
         public System.Runtime.InteropServices.ComTypes.VARDESC.DESCUNION desc;

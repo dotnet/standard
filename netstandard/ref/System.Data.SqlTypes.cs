@@ -15,7 +15,6 @@ namespace System.Data.SqlTypes
         public SqlAlreadyFilledException(string message, System.Exception e) { }
     }
     [System.Xml.Serialization.XmlSchemaProviderAttribute("GetXsdType")]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlBinary : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
         public static readonly System.Data.SqlTypes.SqlBinary Null;
@@ -54,7 +53,6 @@ namespace System.Data.SqlTypes
         public override string ToString() { throw null; }
     }
     [System.Xml.Serialization.XmlSchemaProviderAttribute("GetXsdType")]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlBoolean : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
         public static readonly System.Data.SqlTypes.SqlBoolean False;
@@ -124,7 +122,6 @@ namespace System.Data.SqlTypes
         public static System.Data.SqlTypes.SqlBoolean Xor(System.Data.SqlTypes.SqlBoolean x, System.Data.SqlTypes.SqlBoolean y) { throw null; }
     }
     [System.Xml.Serialization.XmlSchemaProviderAttribute("GetXsdType")]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlByte : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
         public static readonly System.Data.SqlTypes.SqlByte MaxValue;
@@ -264,7 +261,6 @@ namespace System.Data.SqlTypes
         None = 0,
     }
     [System.Xml.Serialization.XmlSchemaProviderAttribute("GetXsdType")]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlDateTime : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
         public static readonly System.Data.SqlTypes.SqlDateTime MaxValue;
@@ -315,7 +311,6 @@ namespace System.Data.SqlTypes
         public override string ToString() { throw null; }
     }
     [System.Xml.Serialization.XmlSchemaProviderAttribute("GetXsdType")]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlDecimal : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
         public static readonly byte MaxPrecision;
@@ -401,7 +396,6 @@ namespace System.Data.SqlTypes
         public static System.Data.SqlTypes.SqlDecimal Truncate(System.Data.SqlTypes.SqlDecimal n, int position) { throw null; }
     }
     [System.Xml.Serialization.XmlSchemaProviderAttribute("GetXsdType")]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlDouble : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
         public static readonly System.Data.SqlTypes.SqlDouble MaxValue;
@@ -464,7 +458,6 @@ namespace System.Data.SqlTypes
         public override string ToString() { throw null; }
     }
     [System.Xml.Serialization.XmlSchemaProviderAttribute("GetXsdType")]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlGuid : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
         public static readonly System.Data.SqlTypes.SqlGuid Null;
@@ -505,7 +498,6 @@ namespace System.Data.SqlTypes
         public override string ToString() { throw null; }
     }
     [System.Xml.Serialization.XmlSchemaProviderAttribute("GetXsdType")]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlInt16 : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
         public static readonly System.Data.SqlTypes.SqlInt16 MaxValue;
@@ -579,7 +571,6 @@ namespace System.Data.SqlTypes
         public static System.Data.SqlTypes.SqlInt16 Xor(System.Data.SqlTypes.SqlInt16 x, System.Data.SqlTypes.SqlInt16 y) { throw null; }
     }
     [System.Xml.Serialization.XmlSchemaProviderAttribute("GetXsdType")]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlInt32 : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
         public static readonly System.Data.SqlTypes.SqlInt32 MaxValue;
@@ -653,7 +644,6 @@ namespace System.Data.SqlTypes
         public static System.Data.SqlTypes.SqlInt32 Xor(System.Data.SqlTypes.SqlInt32 x, System.Data.SqlTypes.SqlInt32 y) { throw null; }
     }
     [System.Xml.Serialization.XmlSchemaProviderAttribute("GetXsdType")]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlInt64 : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
         public static readonly System.Data.SqlTypes.SqlInt64 MaxValue;
@@ -727,7 +717,6 @@ namespace System.Data.SqlTypes
         public static System.Data.SqlTypes.SqlInt64 Xor(System.Data.SqlTypes.SqlInt64 x, System.Data.SqlTypes.SqlInt64 y) { throw null; }
     }
     [System.Xml.Serialization.XmlSchemaProviderAttribute("GetXsdType")]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlMoney : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
         public static readonly System.Data.SqlTypes.SqlMoney MaxValue;
@@ -811,7 +800,6 @@ namespace System.Data.SqlTypes
         public SqlNullValueException(string message, System.Exception e) { }
     }
     [System.Xml.Serialization.XmlSchemaProviderAttribute("GetXsdType")]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlSingle : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
         public static readonly System.Data.SqlTypes.SqlSingle MaxValue;
@@ -875,7 +863,6 @@ namespace System.Data.SqlTypes
         public override string ToString() { throw null; }
     }
     [System.Xml.Serialization.XmlSchemaProviderAttribute("GetXsdType")]
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SqlString : System.Data.SqlTypes.INullable, System.IComparable, System.Xml.Serialization.IXmlSerializable
     {
         public static readonly int BinarySort;
