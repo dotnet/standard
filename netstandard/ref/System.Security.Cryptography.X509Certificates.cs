@@ -141,6 +141,7 @@ namespace System.Security.Cryptography.X509Certificates
         void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public override string ToString() { throw null; }
         public virtual string ToString(bool fVerbose) { throw null; }
+        public virtual bool TryGetCertHash(System.Security.Cryptography.HashAlgorithmName hashAlgorithm, System.Span<byte> destination, out int bytesWritten) { bytesWritten = default(int); throw null; }
     }
     public partial class X509Certificate2 : System.Security.Cryptography.X509Certificates.X509Certificate
     {
