@@ -588,13 +588,34 @@ TypesMustExist : Type 'System.Runtime.Serialization.DataContractSerializerExtens
 TypesMustExist : Type 'System.Runtime.Serialization.ISerializationSurrogateProvider' does not exist in the implementation but it does exist in the contract.
 TypeCannotChangeClassification : Type 'System.Runtime.Serialization.StreamingContext' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 TypesMustExist : Type 'System.Security.SecureStringMarshal' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Authentication.HashAlgorithmType System.Security.Authentication.HashAlgorithmType.Sha256' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Authentication.HashAlgorithmType System.Security.Authentication.HashAlgorithmType.Sha384' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Authentication.HashAlgorithmType System.Security.Authentication.HashAlgorithmType.Sha512' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Security.Cryptography.CryptographicOperations' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.CryptoStream..ctor(System.IO.Stream, System.Security.Cryptography.ICryptoTransform, System.Security.Cryptography.CryptoStreamMode, System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.DSA.Create(System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.DSA.Create(System.Security.Cryptography.DSAParameters)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.DSA.HashData(System.Byte[], System.Int32, System.Int32, System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.DSA.HashData(System.IO.Stream, System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.DSA.SignData(System.Byte[], System.Int32, System.Int32, System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.DSA.SignData(System.Byte[], System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.DSA.SignData(System.IO.Stream, System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.DSA.TryCreateSignature(System.ReadOnlySpan<System.Byte>, System.Span<System.Byte>, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.DSA.TryHashData(System.ReadOnlySpan<System.Byte>, System.Span<System.Byte>, System.Security.Cryptography.HashAlgorithmName, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.DSA.TrySignData(System.ReadOnlySpan<System.Byte>, System.Span<System.Byte>, System.Security.Cryptography.HashAlgorithmName, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.DSA.VerifyData(System.Byte[], System.Byte[], System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.DSA.VerifyData(System.Byte[], System.Int32, System.Int32, System.Byte[], System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.DSA.VerifyData(System.IO.Stream, System.Byte[], System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.DSA.VerifyData(System.ReadOnlySpan<System.Byte>, System.ReadOnlySpan<System.Byte>, System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.DSA.VerifySignature(System.ReadOnlySpan<System.Byte>, System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.DSACryptoServiceProvider.HashData(System.Byte[], System.Int32, System.Int32, System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.DSACryptoServiceProvider.HashData(System.IO.Stream, System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Security.Cryptography.ECCurve' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.ECDiffieHellman' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellmanPublicKey..ctor()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellmanPublicKey.ExportExplicitParameters()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellmanPublicKey.ExportParameters()' does not exist in the implementation but it does exist in the contract.
+CannotMakeMemberAbstract : Member 'System.Security.Cryptography.ECDiffieHellmanPublicKey.ToXmlString()' is abstract in the implementation but is not abstract in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.ECDsa.Create(System.Security.Cryptography.ECCurve)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.ECDsa.Create(System.Security.Cryptography.ECParameters)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.ECDsa.ExportExplicitParameters(System.Boolean)' does not exist in the implementation but it does exist in the contract.
@@ -628,6 +649,12 @@ TypesMustExist : Type 'System.Security.Cryptography.IncrementalHash' does not ex
 MembersMustExist : Member 'System.Security.Cryptography.RandomNumberGenerator.Fill(System.Span<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.RandomNumberGenerator.GetBytes(System.Span<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.RandomNumberGenerator.GetNonZeroBytes(System.Span<System.Byte>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.Rfc2898DeriveBytes..ctor(System.Byte[], System.Byte[], System.Int32, System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.Rfc2898DeriveBytes..ctor(System.String, System.Byte[], System.Int32, System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.Rfc2898DeriveBytes..ctor(System.String, System.Int32, System.Int32, System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.Rfc2898DeriveBytes.HashAlgorithm.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.RSA.Create(System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.RSA.Create(System.Security.Cryptography.RSAParameters)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.RSA.TryDecrypt(System.ReadOnlySpan<System.Byte>, System.Span<System.Byte>, System.Security.Cryptography.RSAEncryptionPadding, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.RSA.TryEncrypt(System.ReadOnlySpan<System.Byte>, System.Span<System.Byte>, System.Security.Cryptography.RSAEncryptionPadding, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.RSA.TryHashData(System.ReadOnlySpan<System.Byte>, System.Span<System.Byte>, System.Security.Cryptography.HashAlgorithmName, System.Int32)' does not exist in the implementation but it does exist in the contract.
@@ -643,7 +670,19 @@ MembersMustExist : Member 'System.Security.Cryptography.SHA384Managed.HashCore(S
 MembersMustExist : Member 'System.Security.Cryptography.SHA384Managed.TryHashFinal(System.Span<System.Byte>, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.SHA512Managed.HashCore(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.SHA512Managed.TryHashFinal(System.Span<System.Byte>, System.Int32)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.X509Certificates.CertificateRequest' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.X509Certificates.DSACertificateExtensions' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.X509Certificates.ECDsaCertificateExtensions.CopyWithPrivateKey(System.Security.Cryptography.X509Certificates.X509Certificate2, System.Security.Cryptography.ECDsa)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.X509Certificates.RSACertificateExtensions.CopyWithPrivateKey(System.Security.Cryptography.X509Certificates.X509Certificate2, System.Security.Cryptography.RSA)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.X509Certificates.SubjectAlternativeNameBuilder' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.X509Certificates.X509Certificate.GetCertHash(System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.X509Certificates.X509Certificate.GetCertHashString(System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.X509Certificates.X509Certificate.TryGetCertHash(System.Security.Cryptography.HashAlgorithmName, System.Span<System.Byte>, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.X509Certificates.X509KeyStorageFlags System.Security.Cryptography.X509Certificates.X509KeyStorageFlags.EphemeralKeySet' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Security.Cryptography.X509Certificates.X509SignatureGenerator' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.X509Certificates.X509Store..ctor(System.Security.Cryptography.X509Certificates.StoreName, System.Security.Cryptography.X509Certificates.StoreLocation, System.Security.Cryptography.X509Certificates.OpenFlags)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.X509Certificates.X509Store..ctor(System.String, System.Security.Cryptography.X509Certificates.StoreLocation, System.Security.Cryptography.X509Certificates.OpenFlags)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.X509Certificates.X509Store.IsOpen.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.Decoder.Convert(System.ReadOnlySpan<System.Byte>, System.Span<System.Char>, System.Boolean, System.Int32, System.Int32, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.Decoder.GetCharCount(System.ReadOnlySpan<System.Byte>, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Text.Decoder.GetChars(System.ReadOnlySpan<System.Byte>, System.Span<System.Char>, System.Boolean)' does not exist in the implementation but it does exist in the contract.
@@ -720,4 +759,4 @@ MembersMustExist : Member 'System.Xml.Linq.XNode.WriteToAsync(System.Xml.XmlWrit
 MembersMustExist : Member 'System.Xml.Linq.XProcessingInstruction.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Xml.Linq.XText.WriteToAsync(System.Xml.XmlWriter, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 721
+Total Issues: 760
