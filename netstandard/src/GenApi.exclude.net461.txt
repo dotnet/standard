@@ -49,6 +49,7 @@ T:System.Buffers.SpanAction`2
 T:System.Buffers.Text.Base64
 T:System.Buffers.Text.Utf8Formatter
 T:System.Buffers.Text.Utf8Parser
+T:System.Net.Http.ReadOnlyMemoryContent
 T:System.Threading.Tasks.Sources.IValueTaskSource
 T:System.Threading.Tasks.Sources.IValueTaskSource`1
 T:System.Threading.Tasks.Sources.ValueTaskSourceOnCompletedFlags
@@ -59,6 +60,7 @@ T:System.Buffers.OperationStatus
 T:System.Buffers.StandardFormat
 T:System.Memory`1
 T:System.MemoryExtensions
+T:System.Net.WebSockets.ValueWebSocketReceiveResult
 T:System.ReadOnlyMemory`1
 T:System.ReadOnlySpan`1
 T:System.Runtime.CompilerServices.AsyncMethodBuilderAttribute
