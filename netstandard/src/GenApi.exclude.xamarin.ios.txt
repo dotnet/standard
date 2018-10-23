@@ -34,6 +34,12 @@ T:System.MathF
 T:System.Memory`1
 T:System.MemoryExtensions
 T:System.Net.Http.ReadOnlyMemoryContent
+T:System.Net.Http.SocketsHttpHandler
+T:System.Net.Security.ServerCertificateSelectionCallback
+T:System.Net.Security.SslApplicationProtocol
+T:System.Net.Security.SslClientAuthenticationOptions
+T:System.Net.Security.SslServerAuthenticationOptions
+T:System.Net.Sockets.UnixDomainSocketEndPoint
 T:System.ReadOnlyMemory`1
 T:System.ReadOnlySpan`1
 T:System.Reflection.AssemblyExtensions

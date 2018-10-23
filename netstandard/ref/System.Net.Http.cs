@@ -27,13 +27,13 @@ namespace System.Net.Http
     }
     public partial class FormUrlEncodedContent : System.Net.Http.ByteArrayContent
     {
-        public FormUrlEncodedContent(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>> nameValueCollection) : base (default(byte[])) { }
+        public FormUrlEncodedContent(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>> nameValueCollection) : base(default(byte[])) { }
     }
     public partial class HttpClient : System.Net.Http.HttpMessageInvoker
     {
-        public HttpClient() : base (default(System.Net.Http.HttpMessageHandler)) { }
-        public HttpClient(System.Net.Http.HttpMessageHandler handler) : base (default(System.Net.Http.HttpMessageHandler)) { }
-        public HttpClient(System.Net.Http.HttpMessageHandler handler, bool disposeHandler) : base (default(System.Net.Http.HttpMessageHandler)) { }
+        public HttpClient() : base(default(System.Net.Http.HttpMessageHandler)) { }
+        public HttpClient(System.Net.Http.HttpMessageHandler handler) : base(default(System.Net.Http.HttpMessageHandler)) { }
+        public HttpClient(System.Net.Http.HttpMessageHandler handler, bool disposeHandler) : base(default(System.Net.Http.HttpMessageHandler)) { }
         public System.Uri BaseAddress { get { throw null; } set { } }
         public System.Net.Http.Headers.HttpRequestHeaders DefaultRequestHeaders { get { throw null; } }
         public long MaxResponseContentBufferSize { get { throw null; } set { } }
@@ -58,6 +58,10 @@ namespace System.Net.Http
         public System.Threading.Tasks.Task<System.IO.Stream> GetStreamAsync(System.Uri requestUri) { throw null; }
         public System.Threading.Tasks.Task<string> GetStringAsync(string requestUri) { throw null; }
         public System.Threading.Tasks.Task<string> GetStringAsync(System.Uri requestUri) { throw null; }
+        public System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> PatchAsync(string requestUri, System.Net.Http.HttpContent content) { throw null; }
+        public System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> PatchAsync(string requestUri, System.Net.Http.HttpContent content, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> PatchAsync(System.Uri requestUri, System.Net.Http.HttpContent content) { throw null; }
+        public System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> PatchAsync(System.Uri requestUri, System.Net.Http.HttpContent content, System.Threading.CancellationToken cancellationToken) { throw null; }
         public System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> PostAsync(string requestUri, System.Net.Http.HttpContent content) { throw null; }
         public System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> PostAsync(string requestUri, System.Net.Http.HttpContent content, System.Threading.CancellationToken cancellationToken) { throw null; }
         public System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> PostAsync(System.Uri requestUri, System.Net.Http.HttpContent content) { throw null; }
@@ -83,6 +87,7 @@ namespace System.Net.Http
         public System.Security.Cryptography.X509Certificates.X509CertificateCollection ClientCertificates { get; }
         public System.Net.CookieContainer CookieContainer { get { throw null; } set { } }
         public System.Net.ICredentials Credentials { get { throw null; } set { } }
+        public static System.Func<System.Net.Http.HttpRequestMessage, System.Security.Cryptography.X509Certificates.X509Certificate2, System.Security.Cryptography.X509Certificates.X509Chain, System.Net.Security.SslPolicyErrors, bool> DangerousAcceptAnyServerCertificateValidator { get { throw null; } }
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public System.Net.ICredentials DefaultProxyCredentials { get { throw null; } set { } }
         public int MaxAutomaticRedirections { get { throw null; } set { } }
@@ -153,6 +158,7 @@ namespace System.Net.Http
         public static System.Net.Http.HttpMethod Head { get { throw null; } }
         public string Method { get { throw null; } }
         public static System.Net.Http.HttpMethod Options { get { throw null; } }
+        public static System.Net.Http.HttpMethod Patch { get { throw null; } }
         public static System.Net.Http.HttpMethod Post { get { throw null; } }
         public static System.Net.Http.HttpMethod Put { get { throw null; } }
         public static System.Net.Http.HttpMethod Trace { get { throw null; } }
@@ -245,8 +251,8 @@ namespace System.Net.Http
     }
     public partial class StringContent : System.Net.Http.ByteArrayContent
     {
-        public StringContent(string content) : base (default(byte[])) { }
-        public StringContent(string content, System.Text.Encoding encoding) : base (default(byte[])) { }
-        public StringContent(string content, System.Text.Encoding encoding, string mediaType) : base (default(byte[])) { }
+        public StringContent(string content) : base(default(byte[])) { }
+        public StringContent(string content, System.Text.Encoding encoding) : base(default(byte[])) { }
+        public StringContent(string content, System.Text.Encoding encoding, string mediaType) : base(default(byte[])) { }
     }
 }

@@ -38,9 +38,15 @@ T:System.MathF
 T:System.Memory`1
 T:System.MemoryExtensions
 T:System.Net.Http.ReadOnlyMemoryContent
+T:System.Net.Http.SocketsHttpHandler
+T:System.Net.Security.ServerCertificateSelectionCallback
+T:System.Net.Security.SslApplicationProtocol
+T:System.Net.Security.SslClientAuthenticationOptions
+T:System.Net.Security.SslServerAuthenticationOptions
 T:System.Net.Sockets.SocketReceiveFromResult
 T:System.Net.Sockets.SocketReceiveMessageFromResult
 T:System.Net.Sockets.SocketTaskExtensions
+T:System.Net.Sockets.UnixDomainSocketEndPoint
 T:System.Net.WebSockets.ValueWebSocketReceiveResult
 T:System.Numerics.Vector
 T:System.Numerics.Vector`1

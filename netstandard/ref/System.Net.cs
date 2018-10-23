@@ -176,7 +176,7 @@ namespace System.Net
     public delegate void DownloadDataCompletedEventHandler(object sender, System.Net.DownloadDataCompletedEventArgs e);
     public partial class DownloadProgressChangedEventArgs : System.ComponentModel.ProgressChangedEventArgs
     {
-        internal DownloadProgressChangedEventArgs() : base (default(int), default(object)) { }
+        internal DownloadProgressChangedEventArgs() : base(default(int), default(object)) { }
         public long BytesReceived { get { throw null; } }
         public long TotalBytesToReceive { get { throw null; } }
     }
@@ -310,6 +310,7 @@ namespace System.Net
         internal FtpWebResponse() { }
         public string BannerMessage { get { throw null; } }
         public override long ContentLength { get { throw null; } }
+        public override string ContentType { get { throw null; } }
         public string ExitMessage { get { throw null; } }
         public override System.Net.WebHeaderCollection Headers { get { throw null; } }
         public System.DateTime LastModified { get { throw null; } }
@@ -548,40 +549,55 @@ namespace System.Net
     public enum HttpStatusCode
     {
         Accepted = 202,
+        AlreadyReported = 208,
         Ambiguous = 300,
         BadGateway = 502,
         BadRequest = 400,
         Conflict = 409,
         Continue = 100,
         Created = 201,
+        EarlyHints = 103,
         ExpectationFailed = 417,
+        FailedDependency = 424,
         Forbidden = 403,
         Found = 302,
         GatewayTimeout = 504,
         Gone = 410,
         HttpVersionNotSupported = 505,
+        IMUsed = 226,
+        InsufficientStorage = 507,
         InternalServerError = 500,
         LengthRequired = 411,
+        Locked = 423,
+        LoopDetected = 508,
         MethodNotAllowed = 405,
+        MisdirectedRequest = 421,
         Moved = 301,
         MovedPermanently = 301,
         MultipleChoices = 300,
+        MultiStatus = 207,
+        NetworkAuthenticationRequired = 511,
         NoContent = 204,
         NonAuthoritativeInformation = 203,
         NotAcceptable = 406,
+        NotExtended = 510,
         NotFound = 404,
         NotImplemented = 501,
         NotModified = 304,
         OK = 200,
         PartialContent = 206,
         PaymentRequired = 402,
+        PermanentRedirect = 308,
         PreconditionFailed = 412,
+        PreconditionRequired = 428,
+        Processing = 102,
         ProxyAuthenticationRequired = 407,
         Redirect = 302,
         RedirectKeepVerb = 307,
         RedirectMethod = 303,
         RequestedRangeNotSatisfiable = 416,
         RequestEntityTooLarge = 413,
+        RequestHeaderFieldsTooLarge = 431,
         RequestTimeout = 408,
         RequestUriTooLong = 414,
         ResetContent = 205,
@@ -589,16 +605,22 @@ namespace System.Net
         ServiceUnavailable = 503,
         SwitchingProtocols = 101,
         TemporaryRedirect = 307,
+        TooManyRequests = 429,
         Unauthorized = 401,
+        UnavailableForLegalReasons = 451,
+        UnprocessableEntity = 422,
         UnsupportedMediaType = 415,
         Unused = 306,
         UpgradeRequired = 426,
         UseProxy = 305,
+        VariantAlsoNegotiates = 506,
     }
     public static partial class HttpVersion
     {
+        public static readonly System.Version Unknown;
         public static readonly System.Version Version10;
         public static readonly System.Version Version11;
+        public static readonly System.Version Version20;
     }
     public partial class HttpWebRequest : System.Net.WebRequest, System.Runtime.Serialization.ISerializable
     {
@@ -663,14 +685,17 @@ namespace System.Net
         public override System.IO.Stream EndGetRequestStream(System.IAsyncResult asyncResult) { throw null; }
         public System.IO.Stream EndGetRequestStream(System.IAsyncResult asyncResult, out System.Net.TransportContext context) { context = default(System.Net.TransportContext); throw null; }
         public override System.Net.WebResponse EndGetResponse(System.IAsyncResult asyncResult) { throw null; }
+        [System.ObsoleteAttribute("Serialization is obsoleted for this type.  http://go.microsoft.com/fwlink/?linkid=14202")]
         protected override void GetObjectData(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
         public override System.IO.Stream GetRequestStream() { throw null; }
         public System.IO.Stream GetRequestStream(out System.Net.TransportContext context) { context = default(System.Net.TransportContext); throw null; }
         public override System.Net.WebResponse GetResponse() { throw null; }
+        [System.ObsoleteAttribute("Serialization is obsoleted for this type.  http://go.microsoft.com/fwlink/?linkid=14202")]
         void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
     }
     public partial class HttpWebResponse : System.Net.WebResponse, System.Runtime.Serialization.ISerializable
     {
+        public HttpWebResponse() { }
         [System.ObsoleteAttribute("Serialization is obsoleted for this type.  http://go.microsoft.com/fwlink/?linkid=14202")]
         protected HttpWebResponse(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
         public string CharacterSet { get { throw null; } }
@@ -690,9 +715,11 @@ namespace System.Net
         public override bool SupportsHeaders { get { throw null; } }
         public override void Close() { }
         protected override void Dispose(bool disposing) { }
+        [System.ObsoleteAttribute("Serialization is obsoleted for this type.  http://go.microsoft.com/fwlink/?linkid=14202")]
         protected override void GetObjectData(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
         public string GetResponseHeader(string headerName) { throw null; }
         public override System.IO.Stream GetResponseStream() { throw null; }
+        [System.ObsoleteAttribute("Serialization is obsoleted for this type.  http://go.microsoft.com/fwlink/?linkid=14202")]
         void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
     }
     public partial interface IAuthenticationModule
@@ -798,12 +825,15 @@ namespace System.Net
     public partial class NetworkCredential : System.Net.ICredentials, System.Net.ICredentialsByHost
     {
         public NetworkCredential() { }
+        [System.CLSCompliantAttribute(false)]
         public NetworkCredential(string userName, System.Security.SecureString password) { }
+        [System.CLSCompliantAttribute(false)]
         public NetworkCredential(string userName, System.Security.SecureString password, string domain) { }
         public NetworkCredential(string userName, string password) { }
         public NetworkCredential(string userName, string password, string domain) { }
         public string Domain { get { throw null; } set { } }
         public string Password { get { throw null; } set { } }
+        [System.CLSCompliantAttribute(false)]
         public System.Security.SecureString SecurePassword { get { throw null; } set { } }
         public string UserName { get { throw null; } set { } }
         public System.Net.NetworkCredential GetCredential(string host, int port, string authenticationType) { throw null; }
@@ -832,7 +862,9 @@ namespace System.Net
     [System.FlagsAttribute]
     public enum SecurityProtocolType
     {
+        [System.ObsoleteAttribute("This value has been deprecated.  It is no longer supported. http://go.microsoft.com/fwlink/?linkid=14202")]
         Ssl3 = 48,
+        SystemDefault = 0,
         Tls = 192,
         Tls11 = 768,
         Tls12 = 3072,
@@ -910,7 +942,7 @@ namespace System.Net
     public delegate void UploadFileCompletedEventHandler(object sender, System.Net.UploadFileCompletedEventArgs e);
     public partial class UploadProgressChangedEventArgs : System.ComponentModel.ProgressChangedEventArgs
     {
-        internal UploadProgressChangedEventArgs() : base (default(int), default(object)) { }
+        internal UploadProgressChangedEventArgs() : base(default(int), default(object)) { }
         public long BytesReceived { get { throw null; } }
         public long BytesSent { get { throw null; } }
         public long TotalBytesToReceive { get { throw null; } }
@@ -1085,7 +1117,7 @@ namespace System.Net
         TrustFailure = 9,
         UnknownError = 16,
     }
-    public partial class WebHeaderCollection : System.Collections.Specialized.NameValueCollection, System.Runtime.Serialization.ISerializable
+    public partial class WebHeaderCollection : System.Collections.Specialized.NameValueCollection, System.Collections.IEnumerable, System.Runtime.Serialization.ISerializable
     {
         public WebHeaderCollection() { }
         protected WebHeaderCollection(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
@@ -1093,6 +1125,7 @@ namespace System.Net
         public override int Count { get { throw null; } }
         public string this[System.Net.HttpRequestHeader header] { get { throw null; } set { } }
         public string this[System.Net.HttpResponseHeader header] { get { throw null; } set { } }
+        public new string this[string name] { get { throw null; } set { } }
         public override System.Collections.Specialized.NameObjectCollectionBase.KeysCollection Keys { get { throw null; } }
         public void Add(System.Net.HttpRequestHeader header, string value) { }
         public void Add(System.Net.HttpResponseHeader header, string value) { }
