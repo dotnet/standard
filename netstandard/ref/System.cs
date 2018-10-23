@@ -3489,6 +3489,19 @@ namespace System
         [System.CLSCompliantAttribute(false)]
         public static bool TryParse(string s, out System.SByte result) { result = default(sbyte); throw null; }
     }
+    public readonly partial struct SequencePosition : System.IEquatable<System.SequencePosition>
+    {
+        public SequencePosition(object @object, int integer) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        public override bool Equals(object obj) { throw null; }
+        public bool Equals(System.SequencePosition other) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        public override int GetHashCode() { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        public int GetInteger() { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        public object GetObject() { throw null; }
+    }
     [System.AttributeUsageAttribute((System.AttributeTargets)(4124), Inherited=false)]
     public sealed partial class SerializableAttribute : System.Attribute
     {
