@@ -7,6 +7,13 @@
     <IsReferenceAssembly>true</IsReferenceAssembly>
   </PropertyGroup>
 
+  <!-- Disable code paths that require project.assets.json files to be present or to be computed. -->
+  <PropertyGroup>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <ComputeNETCoreBuildOutputFiles>false</ComputeNETCoreBuildOutputFiles>
+    <GenerateRuntimeConfigurationFiles>false</GenerateRuntimeConfigurationFiles>
+  </PropertyGroup>
+
   <PropertyGroup>
     <PackageForNetFx>true</PackageForNetFx>
     <!-- Some assemblies that ship with implementatiosn in NetFx should not ship as a netfx shim -->
@@ -22,5 +29,5 @@
     </PackageDestination>
   </ItemGroup>
 
-  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory).., dir.props))\dir.props" />
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory).., Directory.Build.props))\Directory.Build.props" />
 </Project>

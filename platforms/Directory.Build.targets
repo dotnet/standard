@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <OutDir>$(BaseOutputPath)ref/$(TargetGroup)/</OutDir>
     <GenerateProjectSpecificOutputFolder>false</GenerateProjectSpecificOutputFolder>
   </PropertyGroup>
 
   <PropertyGroup>
     <AssemblyOriginatorKeyFile Condition="'$(AssemblyKey)' == 'XamarinProducts'">$(MSBuildThisFileDirectory)xamarin-products.snk</AssemblyOriginatorKeyFile>
+    <!-- Save value of TargetPath so we can reset it after it gets overridden by Microsoft.Common.CurrentVersion.targets -->
+    <TargetPathValue>$(TargetPath)</TargetPathValue>
   </PropertyGroup>
 
-  <Import Condition="Exists('..\dir.targets')" Project="..\dir.targets" />
+  <Import Condition="Exists('..\Directory.Build.targets')" Project="..\Directory.Build.targets" />
+
+  <PropertyGroup>
+    <OutDir>$(BaseOutputPath)ref/$(TargetGroup)/</OutDir>
+    <TargetPath>$(TargetPathValue)</TargetPath>
+  </PropertyGroup>
 
   <!-- We don't need full signing for these so not writing the required signing file -->
   <Target Name="WriteSigningRequired" />

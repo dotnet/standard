@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.props))\Directory.Build.props" />
+
+   <PropertyGroup>
+    <BuildRestore Condition="'$(BuildRestore)'==''">true</BuildRestore>
+    <BuildManaged Condition="'$(BuildManaged)'==''">true</BuildManaged>
+    <BuildTests Condition="'$(BuildTests)'==''">true</BuildTests>
+    <BuildPackages Condition="'$(BuildPackages)'==''">true</BuildPackages>
+    <SignPackages Condition="'$(SignPackages)'==''">false</SignPackages>
+
+    <BuildDependsOn Condition="'$(BuildRestore)'=='true' and '$(DotNetBuildFromSource)'!='true'">$(BuildDependsOn);Restore</BuildDependsOn>
+    <BuildDependsOn Condition="'$(BuildManaged)'=='true'">$(BuildDependsOn);BuildManaged</BuildDependsOn>
+    <BuildDependsOn Condition="'$(BuildTests)'=='true' and '$(DotNetBuildFromSource)'!='true'">$(BuildDependsOn);Test</BuildDependsOn>
+    <BuildDependsOn Condition="'$(BuildPackages)'=='true'">$(BuildDependsOn);Pack</BuildDependsOn>
+    <BuildDependsOn Condition="'$(SignPackages)'=='true'">$(BuildDependsOn);SignPackages</BuildDependsOn>
+  </PropertyGroup>
+
+  <Import Project="$(ToolsDir)\VersionTools.targets" Condition="Exists('$(ToolsDir)\VersionTools.targets')" />
+
+   <Target Name="Restore">
+    <ItemGroup>
+      <_RestoreProjects Include="external/**/*.depproj" />
+    </ItemGroup>
+
+    <MSBuild Projects="@(_RestoreProjects)" />
+  </Target>
+
+  <Target Name="BuildManaged">
+    <ItemGroup>
+      <_BuildMangedProjects Include="src.builds" />
+    </ItemGroup>
+
+    <MSBuild Projects="@(_BuildMangedProjects)" />
+  </Target>
+
+  <Target Name="Test">
+    <ItemGroup>
+      <_TestProjects Include="apicompat/apicompat.proj" />
+    </ItemGroup>
+
+    <MSBuild Projects="@(_TestProjects)" />
+  </Target>
+
+  <Target Name="Pack">
+    <ItemGroup>
+      <_PackProjects Include="packages.builds" Condition="'$(BuildPackages)'=='true'" />
+    </ItemGroup>
+
+    <MSBuild Projects="@(_PackProjects)" />
+  </Target>
+
+  <Target Name="Build" DependsOnTargets="$(BuildDependsOn)" />
+  <Target Name="Clean">
+    <RemoveDir Directories="$(BinDir)" />
+  </Target>
+
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
+
+</Project>
+

@@ -4,7 +4,7 @@
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <TargetGroup>net461</TargetGroup>
   </PropertyGroup>
-  <Import Condition="Exists('..\dir.props')" Project="..\dir.props" />
+  <Import Condition="Exists('..\Directory.Build.props')" Project="..\Directory.Build.props" />
   <PropertyGroup>
     <!-- default to ECMA key -->
     <AssemblyKey>ECMA</AssemblyKey>

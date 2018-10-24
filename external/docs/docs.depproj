@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
-  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.props))\dir.props" />
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.props))\Directory.Build.props" />
 
   <PropertyGroup>
     <NuGetRuntimeIdentifier>none</NuGetRuntimeIdentifier>
     <OutputPath>$(XmlDocDir)</OutputPath>
     <RestoreOutputPath>$(IntermediateOutputPath)</RestoreOutputPath>
     <ContainsPackageReferences>true</ContainsPackageReferences>
+    <TargetFrameworkIdentifier>.NETStandard</TargetFrameworkIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
@@ -51,5 +52,5 @@
     <Error Condition="'%(DocFile.Culture)' == 'unknown'" Text="Unknown language folder '%(LCID)' for doc files '@(DocFile)'" />
   </Target>
 
-  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
 </Project>
