@@ -120,7 +120,6 @@
       "displayName": "packages/symbol packages -> Azure Feed",
       "timeoutInMinutes": 0,
       "condition": "and(succeeded(), eq(variables['PB_PublishToAzureFeed'], 'True'))",
-      "refName": "PowerShell_1",
       "task": {
         "id": "e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
         "versionSpec": "1.*",
@@ -141,7 +140,6 @@
       "alwaysRun": false,
       "displayName": "Update dotnet/versions",
       "timeoutInMinutes": 0,
-      "refName": "PowerShell_1",
       "task": {
         "id": "e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
         "versionSpec": "1.*",
