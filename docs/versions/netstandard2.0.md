@@ -13,8 +13,8 @@
 * Mono 5.4
 * Xamarin.iOS 10.14
 * Xamarin.Mac 3.8
-* Xamarin.Android 7.5
-* Universal Windows Platform vNext
+* Xamarin.Android 8.0
+* Universal Windows Platform 10.0.16299
 
 ## What's new?
 
