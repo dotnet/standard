@@ -616,7 +616,6 @@ namespace System.Diagnostics
         public virtual int GetNativeOffset() { throw null; }
         public override string ToString() { throw null; }
     }
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public static partial class StackFrameExtensions
     {
         public static System.IntPtr GetNativeImageBase(this System.Diagnostics.StackFrame stackFrame) { throw null; }

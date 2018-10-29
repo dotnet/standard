@@ -19,7 +19,6 @@ namespace System.Xml.XPath
     {
         System.Xml.XPath.XPathNavigator CreateNavigator();
     }
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public static partial class XDocumentExtensions
     {
         public static System.Xml.XPath.IXPathNavigable ToXPathNavigable(this System.Xml.Linq.XNode node) { throw null; }

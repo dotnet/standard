@@ -139,10 +139,8 @@ namespace System.Text.RegularExpressions
         public Regex(string pattern, System.Text.RegularExpressions.RegexOptions options, System.TimeSpan matchTimeout) { }
         public static int CacheSize { get { throw null; } set { } }
         [System.CLSCompliantAttribute(false)]
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         protected System.Collections.IDictionary CapNames { get { throw null; } set { } }
         [System.CLSCompliantAttribute(false)]
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         protected System.Collections.IDictionary Caps { get { throw null; } set { } }
         public System.TimeSpan MatchTimeout { get { throw null; } }
         public System.Text.RegularExpressions.RegexOptions Options { get { throw null; } }

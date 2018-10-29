@@ -373,7 +373,6 @@ namespace System.Security.Cryptography
         public override void SetHashAlgorithm(string strName) { }
         public override void SetKey(System.Security.Cryptography.AsymmetricAlgorithm key) { }
     }
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct ECCurve
     {
