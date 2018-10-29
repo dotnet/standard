@@ -3,7 +3,7 @@
 [Overview](../versions.md) | [Previous](netstandard2.0.md)
 
 * [APIs](netstandard2.1_ref.md)
-* [Diff with 1.6](netstandard2.1_diff.md)
+* [Diff with 2.0](netstandard2.1_diff.md)
 * [Reference Documentation](https://docs.microsoft.com/dotnet/api/?view=netstandard-2.1)
 
 ## Platform Support
