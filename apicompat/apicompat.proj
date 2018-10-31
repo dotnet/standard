@@ -204,6 +204,7 @@
       <ApiCompatArgs>$(ApiCompatArgs) "$(ApiCompatContracts)"</ApiCompatArgs>
       <ApiCompatArgs>$(ApiCompatArgs) -contractDepends:"$(ApiCompatContracts)"</ApiCompatArgs>
       <ApiCompatArgs>$(ApiCompatArgs) -implDirs:"$(NetstandardRefPath),$(NetstandardShimsPath),$(NetfxShimsPath)"</ApiCompatArgs>
+      <ApiCompatArgs>$(ApiCompatArgs) -excludeAttributes:"$(ProjectDir)platforms\attributeExcludeList.txt"</ApiCompatArgs>
       <!--<ApiCompatArgs>$(ApiCompatArgs) -groupByAssembly:false</ApiCompatArgs>-->
       <!--<ApiCompatArgs>$(ApiCompatArgs) -baseline:"$(ApiCompatBaselineFile)"</ApiCompatArgs>-->
       <ApiCompatBaselineAll>&gt; $(ApiCompatBaselineFile)</ApiCompatBaselineAll>

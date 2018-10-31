@@ -1,19 +1,19 @@
-ApiCompat Error: 0 : Failed to find or load matching assembly 'Microsoft.CSharp'.
-ApiCompat Error: 0 : Failed to find or load matching assembly 'Microsoft.VisualBasic'.
-ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ComponentModel.Annotations'.
-ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ComponentModel.DataAnnotations'.
-ApiCompat Error: 0 : Failed to find or load matching assembly 'System.Reflection.Context'.
-ApiCompat Error: 0 : Failed to find or load matching assembly 'System.Runtime.InteropServices.WindowsRuntime'.
-ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel'.
-ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Duplex'.
-ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Http'.
-ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.NetTcp'.
-ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Primitives'.
-ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Security'.
-ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.Security.AccessControl, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the implementation assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
-ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=Microsoft.Win32.Registry, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the implementation assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
-ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.Security.Principal.Windows, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the implementation assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
-ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.CodeDom, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51)' referenced by the implementation assembly 'Assembly(Name=System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
+Microsoft.DotNet.ApiCompat Error: 0 : Failed to find or load matching assembly 'Microsoft.CSharp'.
+Microsoft.DotNet.ApiCompat Error: 0 : Failed to find or load matching assembly 'Microsoft.VisualBasic'.
+Microsoft.DotNet.ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ComponentModel.Annotations'.
+Microsoft.DotNet.ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ComponentModel.DataAnnotations'.
+Microsoft.DotNet.ApiCompat Error: 0 : Failed to find or load matching assembly 'System.Reflection.Context'.
+Microsoft.DotNet.ApiCompat Error: 0 : Failed to find or load matching assembly 'System.Runtime.InteropServices.WindowsRuntime'.
+Microsoft.DotNet.ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel'.
+Microsoft.DotNet.ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Duplex'.
+Microsoft.DotNet.ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Http'.
+Microsoft.DotNet.ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.NetTcp'.
+Microsoft.DotNet.ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Primitives'.
+Microsoft.DotNet.ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel.Security'.
+Microsoft.DotNet.ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.Security.AccessControl, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the implementation assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
+Microsoft.DotNet.ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=Microsoft.Win32.Registry, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the implementation assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
+Microsoft.DotNet.ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.Security.Principal.Windows, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the implementation assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
+Microsoft.DotNet.ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.CodeDom, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51)' referenced by the implementation assembly 'Assembly(Name=System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
 Compat issues with assembly Microsoft.CSharp:
 TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.Binder' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo' does not exist in the implementation but it does exist in the contract.
@@ -39,6 +39,19 @@ TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.StandardModuleAttr
 TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.StaticLocalInitFlag' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.Utils' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly mscorlib:
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.MissingManifestResourceException' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.NeutralResourcesLanguageAttribute' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.ResourceManager' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.SatelliteContractVersionAttribute' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.CriticalHandle' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceMode' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceResult' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.ICustomQueryInterface' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.SafeHandle' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.ComTypes.IStream' in the contract but not the implementation.
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable<T>' does not exist in the implementation but it does exist in the contract.
@@ -100,8 +113,26 @@ TypesMustExist : Type 'System.ComponentModel.DataAnnotations.ValidationResult' d
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.Validator' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.Core:
+CannotRemoveAttribute : Attribute 'System.Security.SecuritySafeCriticalAttribute' exists on 'System.Runtime.InteropServices.ComAwareEventInfo' in the contract but not the implementation.
 Compat issues with assembly System.Reflection.Context:
 TypesMustExist : Type 'System.Reflection.Context.CustomReflectionContext' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.Resources.ResourceManager:
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.MissingManifestResourceException' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.NeutralResourcesLanguageAttribute' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.ResourceManager' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.SatelliteContractVersionAttribute' in the contract but not the implementation.
+Compat issues with assembly System.Runtime.InteropServices:
+CannotRemoveAttribute : Attribute 'System.Security.SecuritySafeCriticalAttribute' exists on 'System.Runtime.InteropServices.ComAwareEventInfo' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.CriticalHandle' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceMode' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceResult' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.ICustomQueryInterface' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.SafeHandle' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.ComTypes.IStream' in the contract but not the implementation.
 Compat issues with assembly System.Runtime.InteropServices.WindowsRuntime:
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken' does not exist in the implementation but it does exist in the contract.
@@ -486,6 +517,18 @@ TypesMustExist : Type 'System.ServiceModel.Security.Tokens.SecureConversationSec
 TypesMustExist : Type 'System.ServiceModel.Security.Tokens.SecurityTokenParameters' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.Security.Tokens.SupportingTokenParameters' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.Threading.Timer:
+CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Threading.Timer' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Threading.TimerCallback' in the contract but not the implementation.
+Compat issues with assembly System.Xml:
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Xml.Schema.XmlSchema' in the contract but not the implementation.
+CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
+CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
+Compat issues with assembly System.Xml.ReaderWriter:
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Xml.Schema.XmlSchema' in the contract but not the implementation.
 Compat issues with assembly System.Xml.Serialization:
 TypesMustExist : Type 'System.ServiceModel.XmlSerializerFormatAttribute' does not exist in the implementation but it does exist in the contract.
-Total Issues: 460
+Compat issues with assembly System.Xml.XmlSerializer:
+CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
+CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
+Total Issues: 496

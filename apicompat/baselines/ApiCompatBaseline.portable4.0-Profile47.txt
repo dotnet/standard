@@ -1,21 +1,21 @@
-ApiCompat Error: 0 : Failed to find or load matching assembly 'Microsoft.CSharp'.
-ApiCompat Warning: 0 : Found 'mscorlib' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
-ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ComponentModel.DataAnnotations'.
-ApiCompat Warning: 0 : Found 'System.Core' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
-ApiCompat Warning: 0 : Found 'System' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
-ApiCompat Warning: 0 : Found 'System.Net' with PublicKeyToken 'b03f5f7f11d50a3a' instead of '7cec85d7bea7798e'.
-ApiCompat Warning: 0 : Found 'System.Numerics' with PublicKeyToken 'b77a5c561934e089' instead of '31bf3856ad364e35'.
-ApiCompat Warning: 0 : Found 'System.Runtime.Serialization' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
-ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel'.
-ApiCompat Warning: 0 : Found 'System.ServiceModel.Web' with PublicKeyToken '31bf3856ad364e35' instead of '7cec85d7bea7798e'.
-ApiCompat Warning: 0 : Found 'System.Windows' with PublicKeyToken 'b03f5f7f11d50a3a' instead of '7cec85d7bea7798e'.
-ApiCompat Warning: 0 : Found 'System.Xml' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
-ApiCompat Warning: 0 : Found 'System.Xml.Linq' with PublicKeyToken 'b77a5c561934e089' instead of '31bf3856ad364e35'.
-ApiCompat Warning: 0 : Found 'System.Xml.Serialization' with PublicKeyToken 'b77a5c561934e089' instead of '31bf3856ad364e35'.
-ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.Security.AccessControl, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the implementation assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
-ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.Security.Principal.Windows, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the implementation assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
-ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=Microsoft.Win32.Registry, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the implementation assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
-ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.CodeDom, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51)' referenced by the implementation assembly 'Assembly(Name=System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
+Microsoft.DotNet.ApiCompat Error: 0 : Failed to find or load matching assembly 'Microsoft.CSharp'.
+Microsoft.DotNet.ApiCompat Warning: 0 : Found 'mscorlib' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
+Microsoft.DotNet.ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ComponentModel.DataAnnotations'.
+Microsoft.DotNet.ApiCompat Warning: 0 : Found 'System.Core' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
+Microsoft.DotNet.ApiCompat Warning: 0 : Found 'System' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
+Microsoft.DotNet.ApiCompat Warning: 0 : Found 'System.Net' with PublicKeyToken 'b03f5f7f11d50a3a' instead of '7cec85d7bea7798e'.
+Microsoft.DotNet.ApiCompat Warning: 0 : Found 'System.Numerics' with PublicKeyToken 'b77a5c561934e089' instead of '31bf3856ad364e35'.
+Microsoft.DotNet.ApiCompat Warning: 0 : Found 'System.Runtime.Serialization' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
+Microsoft.DotNet.ApiCompat Error: 0 : Failed to find or load matching assembly 'System.ServiceModel'.
+Microsoft.DotNet.ApiCompat Warning: 0 : Found 'System.ServiceModel.Web' with PublicKeyToken '31bf3856ad364e35' instead of '7cec85d7bea7798e'.
+Microsoft.DotNet.ApiCompat Warning: 0 : Found 'System.Windows' with PublicKeyToken 'b03f5f7f11d50a3a' instead of '7cec85d7bea7798e'.
+Microsoft.DotNet.ApiCompat Warning: 0 : Found 'System.Xml' with PublicKeyToken 'b77a5c561934e089' instead of '7cec85d7bea7798e'.
+Microsoft.DotNet.ApiCompat Warning: 0 : Found 'System.Xml.Linq' with PublicKeyToken 'b77a5c561934e089' instead of '31bf3856ad364e35'.
+Microsoft.DotNet.ApiCompat Warning: 0 : Found 'System.Xml.Serialization' with PublicKeyToken 'b77a5c561934e089' instead of '31bf3856ad364e35'.
+Microsoft.DotNet.ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.Security.AccessControl, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the implementation assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
+Microsoft.DotNet.ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.Security.Principal.Windows, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the implementation assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
+Microsoft.DotNet.ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=Microsoft.Win32.Registry, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a)' referenced by the implementation assembly 'Assembly(Name=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
+Microsoft.DotNet.ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.CodeDom, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51)' referenced by the implementation assembly 'Assembly(Name=System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)'.
 Compat issues with assembly Microsoft.CSharp:
 TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.Binder' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo' does not exist in the implementation but it does exist in the contract.
@@ -25,6 +25,7 @@ TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.RuntimeBinderException' do
 TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly mscorlib:
 TypesMustExist : Type 'System.Diagnostics.Contracts.Internal.ContractHelper' does not exist in the implementation but it does exist in the contract.
+CannotRemoveAttribute : Attribute 'System.CLSCompliantAttribute' exists on 'System.Runtime.CompilerServices.DecimalConstantAttribute' in the contract but not the implementation.
 Compat issues with assembly System.ComponentModel.DataAnnotations:
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.AssociationAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.ConcurrencyCheckAttribute' does not exist in the implementation but it does exist in the contract.
@@ -180,6 +181,12 @@ TypesMustExist : Type 'System.ServiceModel.Dispatcher.IDispatchMessageFormatter'
 TypesMustExist : Type 'System.ServiceModel.Security.MessageSecurityException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.Security.SecurityAccessDeniedException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.Security.UserNamePasswordClientCredential' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.Xml:
+CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlIncludeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Struct, AllowMultiple=true)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Method | AttributeTargets.Struct, AllowMultiple=true)]' in the implementation.
+CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 Compat issues with assembly System.Xml.Serialization:
 TypesMustExist : Type 'System.ServiceModel.XmlSerializerFormatAttribute' does not exist in the implementation but it does exist in the contract.
-Total Issues: 161
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Xml.Serialization.XmlMapping' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Xml.Serialization.XmlMappingAccess' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Xml.Serialization.XmlTypeMapping' in the contract but not the implementation.
+Total Issues: 167
