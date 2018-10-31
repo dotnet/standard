@@ -398,7 +398,6 @@ namespace System.Reflection
         public CustomAttributeFormatException(string message) { }
         public CustomAttributeFormatException(string message, System.Exception inner) { }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct CustomAttributeNamedArgument
     {
         public CustomAttributeNamedArgument(System.Reflection.MemberInfo memberInfo, object value) { throw null;}
@@ -413,7 +412,6 @@ namespace System.Reflection
         public static bool operator !=(System.Reflection.CustomAttributeNamedArgument left, System.Reflection.CustomAttributeNamedArgument right) { throw null; }
         public override string ToString() { throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct CustomAttributeTypedArgument
     {
         public CustomAttributeTypedArgument(object value) { throw null;}
@@ -579,7 +577,6 @@ namespace System.Reflection
         I386 = 332,
         IA64 = 512,
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct InterfaceMapping
     {
         public System.Reflection.MethodInfo[] InterfaceMethods;
@@ -905,7 +902,6 @@ namespace System.Reflection
         public virtual bool IsDefined(System.Type attributeType, bool inherit) { throw null; }
         public override string ToString() { throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public readonly partial struct ParameterModifier
     {
         public ParameterModifier(int parameterCount) { throw null;}

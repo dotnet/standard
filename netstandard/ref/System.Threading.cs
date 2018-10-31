@@ -22,7 +22,6 @@ namespace System.Threading
         STA = 0,
         Unknown = 2,
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct AsyncFlowControl : System.IDisposable
     {
         public void Dispose() { }
@@ -39,7 +38,6 @@ namespace System.Threading
         public AsyncLocal(System.Action<System.Threading.AsyncLocalValueChangedArgs<T>> valueChangedHandler) { }
         public T Value { get { throw null; } set { } }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct AsyncLocalValueChangedArgs<T>
     {
         public T CurrentValue { get { throw null; } }
@@ -78,7 +76,6 @@ namespace System.Threading
         public BarrierPostPhaseException(string message) { }
         public BarrierPostPhaseException(string message, System.Exception innerException) { }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public readonly partial struct CancellationToken
     {
         public CancellationToken(bool canceled) { throw null;}
@@ -97,7 +94,6 @@ namespace System.Threading
         public System.Threading.CancellationTokenRegistration Register(System.Action<object> callback, object state, bool useSynchronizationContext) { throw null; }
         public void ThrowIfCancellationRequested() { }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public readonly partial struct CancellationTokenRegistration : System.IDisposable, System.IEquatable<System.Threading.CancellationTokenRegistration>
     {
         public System.Threading.CancellationToken Token { get { throw null; } }
@@ -248,7 +244,6 @@ namespace System.Threading
         None = 0,
         PublicationOnly = 1,
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct LockCookie
     {
         public override bool Equals(object obj) { throw null; }
@@ -327,7 +322,6 @@ namespace System.Threading
 //ACLS        public static bool TryOpenExisting(string name, System.Security.AccessControl.MutexRights rights, out System.Threading.Mutex result) { result = default(System.Threading.Mutex); throw null; }
         public static bool TryOpenExisting(string name, out System.Threading.Mutex result) { result = default(System.Threading.Mutex); throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct NativeOverlapped
     {
         public System.IntPtr EventHandle;
@@ -470,7 +464,6 @@ namespace System.Threading
         public System.Threading.Tasks.Task<bool> WaitAsync(System.TimeSpan timeout, System.Threading.CancellationToken cancellationToken) { throw null; }
     }
     public delegate void SendOrPostCallback(object state);
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SpinLock
     {
         public SpinLock(bool enableThreadOwnerTracking) { throw null;}
@@ -484,7 +477,6 @@ namespace System.Threading
         public void TryEnter(int millisecondsTimeout, ref bool lockTaken) { }
         public void TryEnter(System.TimeSpan timeout, ref bool lockTaken) { }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SpinWait
     {
         public int Count { get { throw null; } }

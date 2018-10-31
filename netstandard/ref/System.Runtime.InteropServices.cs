@@ -16,7 +16,6 @@ namespace System.Runtime.InteropServices
         X64 = 1,
         X86 = 0,
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct ArrayWithOffset
     {
         public ArrayWithOffset(object array, int offset) { throw null;}
@@ -322,7 +321,6 @@ namespace System.Runtime.InteropServices
         public FieldOffsetAttribute(int offset) { }
         public int Value { get { throw null; } }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct GCHandle
     {
         public bool IsAllocated { get { throw null; } }
@@ -364,7 +362,6 @@ namespace System.Runtime.InteropServices
         public void Add() { }
         public void Remove() { }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct HandleRef
     {
         public HandleRef(object wrapper, System.IntPtr handle) { throw null;}
@@ -739,7 +736,6 @@ namespace System.Runtime.InteropServices
     {
         public OptionalAttribute() { }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public readonly partial struct OSPlatform : System.IEquatable<System.Runtime.InteropServices.OSPlatform>
     {
         public static System.Runtime.InteropServices.OSPlatform Linux { get { throw null; } }
@@ -854,6 +850,12 @@ namespace System.Runtime.InteropServices
         public SEHException(string message) { }
         public SEHException(string message, System.Exception inner) { }
         public virtual bool CanResume() { throw null; }
+    }
+    public static partial class SequenceMarshal
+    {
+        public static bool TryGetArray<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.ArraySegment<T> segment) { segment = default(System.ArraySegment<T>); throw null; }
+        public static bool TryGetReadOnlyMemory<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.ReadOnlyMemory<T> memory) { memory = default(System.ReadOnlyMemory<T>); throw null; }
+        public static bool TryGetReadOnlySequenceSegment<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.Buffers.ReadOnlySequenceSegment<T> startSegment, out int startIndex, out System.Buffers.ReadOnlySequenceSegment<T> endSegment, out int endIndex) { startSegment = default(System.Buffers.ReadOnlySequenceSegment<T>); startIndex = default(int); endSegment = default(System.Buffers.ReadOnlySequenceSegment<T>); endIndex = default(int); throw null; }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited=false)]
     public sealed partial class StructLayoutAttribute : System.Attribute

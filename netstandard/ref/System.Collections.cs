@@ -174,7 +174,6 @@ namespace System.Collections
         void System.Collections.IDictionary.Remove(object key) { }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct DictionaryEntry
     {
         public DictionaryEntry(object key, object value) { throw null;}

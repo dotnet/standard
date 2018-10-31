@@ -75,7 +75,6 @@ namespace System.Net.Sockets
         TranslateHandle = (long)3355443213,
         UnicastInterface = (long)2550136838,
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct IPPacketInformation
     {
         public System.Net.IPAddress Address { get { throw null; } }
@@ -487,7 +486,6 @@ namespace System.Net.Sockets
         Peek = 2,
         Truncated = 256,
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SocketInformation
     {
         public System.Net.Sockets.SocketInformationOptions Options { get { throw null; } set { } }
@@ -716,7 +714,6 @@ namespace System.Net.Sockets
         public System.Threading.Tasks.Task<int> SendAsync(byte[] datagram, int bytes, System.Net.IPEndPoint endPoint) { throw null; }
         public System.Threading.Tasks.Task<int> SendAsync(byte[] datagram, int bytes, string hostname, int port) { throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct UdpReceiveResult : System.IEquatable<System.Net.Sockets.UdpReceiveResult>
     {
         public UdpReceiveResult(byte[] buffer, System.Net.IPEndPoint remoteEndPoint) { throw null; }

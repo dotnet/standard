@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" InitialTargets="CheckForBuildTools" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <!--
+    For non-SDK projects that import this file and then import Microsoft.Common.targets,
+    tell Microsoft.Common.targets not to import Directory.Build.targets again
+    -->
+    <ImportDirectoryBuildTargets>false</ImportDirectoryBuildTargets>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!--
+    Hack workaround to skip the GenerateCompiledExpressionsTempFile target in
+    Microsoft.WorkflowBuildExtensions.targets target that always runs in VS
+    -->
+    <GenerateCompiledExpressionsTempFilePathForEditing></GenerateCompiledExpressionsTempFilePathForEditing>
+  </PropertyGroup>
+  
+  <!--
+  Hack workaround for not restoring each project. Instead, we turn off all the targets
+  that require a `project.assets.json`, since ours will be empty anyway.
+  -->
+  <Target Name="_ClearResolvePackageAssets"
+          BeforeTargets="AssignProjectConfiguration">
+     <PropertyGroup>
+      <ResolvePackageDependenciesForBuildDependsOn></ResolvePackageDependenciesForBuildDependsOn>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="CheckForBuildTools">
+    <Error Condition="!Exists('$(ToolsDir)') and '$(OverrideToolsDir)'=='true'"
+           Text="The tools directory [$(ToolsDir)] does not exist. Please run sync in your enlistment to ensure the tools are installed before attempting to build an individual project." />
+    <Error Condition="!Exists('$(ToolsDir)') and '$(OverrideToolsDir)'!='true'"
+           Text="The tools directory [$(ToolsDir)] does not exist. Please run init-tools.cmd in your enlistment to ensure the tools are installed before attempting to build an individual project." />
+  </Target>
+
+  <Import Project="$(ToolsDir)/Build.Common.targets" Condition="Exists('$(ToolsDir)/Build.Common.targets')" />
+</Project>

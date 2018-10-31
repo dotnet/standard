@@ -4,7 +4,6 @@
 
 namespace System.Collections.Specialized
 {
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct BitVector32
     {
         public BitVector32(System.Collections.Specialized.BitVector32 value) { throw null;}
@@ -20,7 +19,6 @@ namespace System.Collections.Specialized
         public override int GetHashCode() { throw null; }
         public override string ToString() { throw null; }
         public static string ToString(System.Collections.Specialized.BitVector32 value) { throw null; }
-        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
         public readonly partial struct Section
         {
             public short Mask { get { throw null; } }

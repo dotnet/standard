@@ -197,7 +197,6 @@ namespace System.Transactions
         public TransactionManagerCommunicationException(string message) { }
         public TransactionManagerCommunicationException(string message, System.Exception innerException) { }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct TransactionOptions
     {
         public System.Transactions.IsolationLevel IsolationLevel { get { throw null; } set { } }

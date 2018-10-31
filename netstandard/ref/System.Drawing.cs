@@ -4,7 +4,6 @@
 
 namespace System.Drawing
 {
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public readonly partial struct Color : System.IEquatable<System.Drawing.Color>
     {
         public static readonly System.Drawing.Color Empty;
@@ -363,7 +362,6 @@ namespace System.Drawing
         Yellow = 166,
         YellowGreen = 167,
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct Point : System.IEquatable<System.Drawing.Point>
     {
         public static readonly System.Drawing.Point Empty;
@@ -404,7 +402,6 @@ namespace System.Drawing
         public override System.ComponentModel.PropertyDescriptorCollection GetProperties(System.ComponentModel.ITypeDescriptorContext context, object value, System.Attribute[] attributes) { throw null; }
         public override bool GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext context) { throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct PointF : System.IEquatable<System.Drawing.PointF>
     {
         public static readonly System.Drawing.PointF Empty;
@@ -428,7 +425,6 @@ namespace System.Drawing
         public static System.Drawing.PointF Subtract(System.Drawing.PointF pt, System.Drawing.SizeF sz) { throw null; }
         public override string ToString() { throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct Rectangle : System.IEquatable<System.Drawing.Rectangle>
     {
         public static readonly System.Drawing.Rectangle Empty;
@@ -487,7 +483,6 @@ namespace System.Drawing
         public override System.ComponentModel.PropertyDescriptorCollection GetProperties(System.ComponentModel.ITypeDescriptorContext context, object value, System.Attribute[] attributes) { throw null; }
         public override bool GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext context) { throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct RectangleF : System.IEquatable<System.Drawing.RectangleF>
     {
         public static readonly System.Drawing.RectangleF Empty;
@@ -532,7 +527,6 @@ namespace System.Drawing
         public override string ToString() { throw null; }
         public static System.Drawing.RectangleF Union(System.Drawing.RectangleF a, System.Drawing.RectangleF b) { throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct Size : System.IEquatable<System.Drawing.Size>
     {
         public static readonly System.Drawing.Size Empty;
@@ -576,7 +570,6 @@ namespace System.Drawing
         public override System.ComponentModel.PropertyDescriptorCollection GetProperties(System.ComponentModel.ITypeDescriptorContext context, object value, System.Attribute[] attributes) { throw null; }
         public override bool GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext context) { throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SizeF : System.IEquatable<System.Drawing.SizeF>
     {
         public static readonly System.Drawing.SizeF Empty;

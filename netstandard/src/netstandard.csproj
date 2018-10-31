@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetGroup Condition="'$(TargetGroup)'==''">net461</TargetGroup>
   </PropertyGroup>
-  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.props))\dir.props" />
   <PropertyGroup>
     <AssemblyName>netstandard</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <ContractProject>..\ref\netstandard.csproj</ContractProject>
     <ResolveMatchingContract>true</ResolveMatchingContract>
     <RunApiCompatForSrc>true</RunApiCompatForSrc>
@@ -15,6 +14,14 @@
     <ApiCompatBaseline>$(MSBuildProjectDirectory)\ApiCompatBaseline.$(TargetGroup).txt</ApiCompatBaseline>
     <NoWarn>$(NoWarn);618</NoWarn>
   </PropertyGroup>
+
+  <!-- Disable code paths that require project.assets.json files to be present or to be computed. -->
+  <PropertyGroup>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <ComputeNETCoreBuildOutputFiles>false</ComputeNETCoreBuildOutputFiles>
+    <GenerateRuntimeConfigurationFiles>false</GenerateRuntimeConfigurationFiles>
+  </PropertyGroup>
+
   <ItemGroup>
     <!-- Mark netstandard as a framework assembly -->
     <AssemblyMetadata Include=".NETFrameworkAssembly">
@@ -29,7 +36,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\**\*.csproj" />
   </ItemGroup>
-  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
 
   <PropertyGroup>
     <CompileDependsOn>

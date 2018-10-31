@@ -361,7 +361,6 @@ namespace System.Runtime.Serialization
         public virtual void BindToName(System.Type serializedType, out string assemblyName, out string typeName) { assemblyName = default(string); typeName = default(string); }
         public abstract System.Type BindToType(string assemblyName, string typeName);
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SerializationEntry
     {
         public string Name { get { throw null; } }
@@ -447,7 +446,6 @@ namespace System.Runtime.Serialization
         public void RaiseOnSerializedEvent() { }
         public void RegisterObject(object obj) { }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public readonly partial struct StreamingContext
     {
         public StreamingContext(System.Runtime.Serialization.StreamingContextStates state) { throw null;}

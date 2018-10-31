@@ -6,6 +6,8 @@ T:System.Buffers.IMemoryOwner`1
 T:System.Buffers.IPinnable
 T:System.Buffers.MemoryManager`1
 T:System.Buffers.MemoryPool`1
+T:System.Buffers.ReadOnlySequence`1
+T:System.Buffers.ReadOnlySequenceSegment`1
 T:System.Buffers.ReadOnlySpanAction`2
 T:System.Buffers.SpanAction`2
 T:System.Buffers.StandardFormat
@@ -49,12 +51,14 @@ T:System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder
 T:System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable
 T:System.Runtime.CompilerServices.ValueTaskAwaiter
 T:System.Runtime.InteropServices.MemoryMarshal
+T:System.Runtime.InteropServices.SequenceMarshal
 T:System.Security.Cryptography.CryptographicOperations
 T:System.Security.Cryptography.ECDiffieHellman
 T:System.Security.Cryptography.X509Certificates.CertificateRequest
 T:System.Security.Cryptography.X509Certificates.DSACertificateExtensions
 T:System.Security.Cryptography.X509Certificates.SubjectAlternativeNameBuilder
 T:System.Security.Cryptography.X509Certificates.X509SignatureGenerator
+T:System.SequencePosition
 T:System.Span`1
 T:System.Threading.Tasks.Sources.IValueTaskSource
 T:System.Threading.Tasks.Sources.IValueTaskSource`1

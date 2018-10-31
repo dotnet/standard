@@ -1,6 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
-  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.props))\dir.props" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -13,6 +11,14 @@
     <DefaultBuildAllTarget>Build</DefaultBuildAllTarget>
     <BuildAllProjects>true</BuildAllProjects>
   </PropertyGroup>
+
+  <!-- Disable code paths that require project.assets.json files to be present or to be computed. -->
+  <PropertyGroup>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <ComputeNETCoreBuildOutputFiles>false</ComputeNETCoreBuildOutputFiles>
+    <GenerateRuntimeConfigurationFiles>false</GenerateRuntimeConfigurationFiles>
+  </PropertyGroup>
+  
   <ItemGroup>
     <!-- Mark netstandard as a framework assembly -->
     <AssemblyMetadata Include=".NETFrameworkAssembly">
@@ -107,5 +113,4 @@
     <Compile Include="System.Xml.XPath.cs" />
     <Compile Include="System.Xml.Xsl.cs" />
   </ItemGroup>
-  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>

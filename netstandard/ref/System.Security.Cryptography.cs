@@ -345,7 +345,6 @@ namespace System.Security.Cryptography
         public bool VerifyHash(byte[] rgbHash, string str, byte[] rgbSignature) { throw null; }
         public override bool VerifySignature(byte[] rgbHash, byte[] rgbSignature) { throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct DSAParameters
     {
         public int Counter;
@@ -373,7 +372,6 @@ namespace System.Security.Cryptography
         public override void SetHashAlgorithm(string strName) { }
         public override void SetKey(System.Security.Cryptography.AsymmetricAlgorithm key) { }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct ECCurve
     {
         public byte[] A;
@@ -490,7 +488,6 @@ namespace System.Security.Cryptography
         public abstract bool VerifyHash(byte[] hash, byte[] signature);
         public virtual bool VerifyHash(System.ReadOnlySpan<byte> hash, System.ReadOnlySpan<byte> signature) { throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct ECParameters
     {
         public System.Security.Cryptography.ECCurve Curve;
@@ -498,7 +495,6 @@ namespace System.Security.Cryptography
         public System.Security.Cryptography.ECPoint Q;
         public void Validate() { }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct ECPoint
     {
         public byte[] X;
@@ -553,7 +549,6 @@ namespace System.Security.Cryptography
         public bool TryComputeHash(System.ReadOnlySpan<byte> source, System.Span<byte> destination, out int bytesWritten) { bytesWritten = default(int); throw null; }
         protected virtual bool TryHashFinal(System.Span<byte> destination, out int bytesWritten) { bytesWritten = default(int); throw null; }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public readonly partial struct HashAlgorithmName : System.IEquatable<System.Security.Cryptography.HashAlgorithmName>
     {
         public HashAlgorithmName(string name) { throw null;}
@@ -1002,7 +997,6 @@ namespace System.Security.Cryptography
         public override byte[] CreateKeyExchange(byte[] rgbData, System.Type symAlgType) { throw null; }
         public override void SetKey(System.Security.Cryptography.AsymmetricAlgorithm key) { }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct RSAParameters
     {
         public byte[] D;

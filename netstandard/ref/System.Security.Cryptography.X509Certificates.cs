@@ -356,7 +356,6 @@ namespace System.Security.Cryptography.X509Certificates
         public System.DateTime VerificationTime { get { throw null; } set { } }
         public void Reset() { }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct X509ChainStatus
     {
         public System.Security.Cryptography.X509Certificates.X509ChainStatusFlags Status { get { throw null; } set { } }
