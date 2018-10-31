@@ -121,7 +121,6 @@ namespace System.Diagnostics.SymbolStore
         NativeSectionOffset = 10,
         NativeStackRegister = 8,
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public readonly partial struct SymbolToken
     {
         public SymbolToken(int val) { throw null;}

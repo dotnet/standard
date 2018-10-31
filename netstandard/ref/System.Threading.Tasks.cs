@@ -52,7 +52,6 @@ namespace System.Threading.Tasks
         public static void Invoke(params System.Action[] actions) { }
         public static void Invoke(System.Threading.Tasks.ParallelOptions parallelOptions, params System.Action[] actions) { }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct ParallelLoopResult
     {
         public bool IsCompleted { get { throw null; } }

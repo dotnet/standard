@@ -400,7 +400,6 @@ namespace System.Reflection.Emit
         public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct OpCode
     {
         public System.Reflection.Emit.FlowControl FlowControl { get { throw null; } }

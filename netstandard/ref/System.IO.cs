@@ -1078,7 +1078,6 @@ namespace System.IO
         public override System.Threading.Tasks.Task WriteAsync(byte[] buffer, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
         public override void WriteByte(byte value) { }
     }
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct WaitForChangedResult
     {
         public System.IO.WatcherChangeTypes ChangeType { get { throw null; } set { } }
