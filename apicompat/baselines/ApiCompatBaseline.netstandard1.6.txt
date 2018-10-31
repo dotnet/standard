@@ -1,47 +1,17 @@
 Microsoft.DotNet.ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e)' referenced by the implementation assembly 'Microsoft.Cci.DummyModule'.
-Compat issues with assembly System.Diagnostics.Process:
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'Microsoft.Win32.SafeHandles.SafeProcessHandle' in the contract but not the implementation.
-Compat issues with assembly System.IO.FileSystem:
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'Microsoft.Win32.SafeHandles.SafeFileHandle' in the contract but not the implementation.
 Compat issues with assembly System.Resources.ResourceManager:
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.MissingManifestResourceException' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.NeutralResourcesLanguageAttribute' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.ResourceManager' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.SatelliteContractVersionAttribute' in the contract but not the implementation.
-Compat issues with assembly System.Runtime.CompilerServices.VisualC:
-CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Runtime.CompilerServices.CallConvCdecl' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Runtime.CompilerServices.CallConvFastcall' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Runtime.CompilerServices.CallConvStdcall' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Runtime.CompilerServices.CallConvThiscall' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Runtime.CompilerServices.IsCopyConstructed' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Runtime.CompilerServices.NativeCppClassAttribute' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Runtime.CompilerServices.RequiredAttributeAttribute' in the contract but not the implementation.
-Compat issues with assembly System.Runtime.Handles:
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'Microsoft.Win32.SafeHandles.SafeWaitHandle' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.CriticalHandle' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.SafeHandle' in the contract but not the implementation.
 Compat issues with assembly System.Runtime.InteropServices:
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.CriticalHandle' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceMode' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceResult' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.ICustomQueryInterface' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.SafeHandle' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.ComTypes.IStream' in the contract but not the implementation.
-Compat issues with assembly System.Threading.Overlapped:
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Threading.IOCompletionCallback' in the contract but not the implementation.
-Compat issues with assembly System.Threading.Thread:
-CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Threading.ParameterizedThreadStart' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Threading.Thread' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Threading.ThreadStart' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Threading.ThreadState' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Threading.ThreadStateException' in the contract but not the implementation.
-Compat issues with assembly System.Threading.Timer:
-CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Threading.Timer' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Threading.TimerCallback' in the contract but not the implementation.
 Compat issues with assembly System.Xml.ReaderWriter:
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Xml.Schema.XmlSchema' in the contract but not the implementation.
 Compat issues with assembly System.Xml.XmlSerializer:
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
-Total Issues: 34
+Total Issues: 11

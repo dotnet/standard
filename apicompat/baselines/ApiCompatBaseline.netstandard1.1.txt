@@ -4,11 +4,6 @@ CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribut
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.NeutralResourcesLanguageAttribute' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.ResourceManager' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.SatelliteContractVersionAttribute' in the contract but not the implementation.
-Compat issues with assembly System.Runtime.InteropServices:
-CannotRemoveAttribute : Attribute 'System.Security.SecuritySafeCriticalAttribute' exists on 'System.Runtime.InteropServices.ComAwareEventInfo' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.CriticalHandle' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.SafeHandle' in the contract but not the implementation.
 Compat issues with assembly System.Xml.ReaderWriter:
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Xml.Schema.XmlSchema' in the contract but not the implementation.
-Total Issues: 9
+Total Issues: 5

@@ -43,14 +43,11 @@ CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribut
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.NeutralResourcesLanguageAttribute' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.ResourceManager' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.SatelliteContractVersionAttribute' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.CriticalHandle' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceMode' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceResult' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.ICustomQueryInterface' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.SafeHandle' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.ComTypes.IStream' in the contract but not the implementation.
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken' does not exist in the implementation but it does exist in the contract.
@@ -113,8 +110,6 @@ TypesMustExist : Type 'System.ComponentModel.DataAnnotations.ValidationResult' d
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.Validator' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption' does not exist in the implementation but it does exist in the contract.
-Compat issues with assembly System.Core:
-CannotRemoveAttribute : Attribute 'System.Security.SecuritySafeCriticalAttribute' exists on 'System.Runtime.InteropServices.ComAwareEventInfo' in the contract but not the implementation.
 Compat issues with assembly System.Reflection.Context:
 TypesMustExist : Type 'System.Reflection.Context.CustomReflectionContext' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly System.Resources.ResourceManager:
@@ -123,15 +118,11 @@ CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribut
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.ResourceManager' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.SatelliteContractVersionAttribute' in the contract but not the implementation.
 Compat issues with assembly System.Runtime.InteropServices:
-CannotRemoveAttribute : Attribute 'System.Security.SecuritySafeCriticalAttribute' exists on 'System.Runtime.InteropServices.ComAwareEventInfo' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.CriticalHandle' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceMode' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceResult' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.ICustomQueryInterface' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Security.SecurityCriticalAttribute' exists on 'System.Runtime.InteropServices.SafeHandle' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.ComTypes.IStream' in the contract but not the implementation.
 Compat issues with assembly System.Runtime.InteropServices.WindowsRuntime:
 TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute' does not exist in the implementation but it does exist in the contract.
@@ -517,9 +508,6 @@ TypesMustExist : Type 'System.ServiceModel.Security.Tokens.SecureConversationSec
 TypesMustExist : Type 'System.ServiceModel.Security.Tokens.SecurityTokenParameters' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.Security.Tokens.SupportingTokenParameters' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters' does not exist in the implementation but it does exist in the contract.
-Compat issues with assembly System.Threading.Timer:
-CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Threading.Timer' in the contract but not the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.InteropServices.ComVisibleAttribute' exists on 'System.Threading.TimerCallback' in the contract but not the implementation.
 Compat issues with assembly System.Xml:
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Xml.Schema.XmlSchema' in the contract but not the implementation.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
@@ -531,4 +519,4 @@ TypesMustExist : Type 'System.ServiceModel.XmlSerializerFormatAttribute' does no
 Compat issues with assembly System.Xml.XmlSerializer:
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
-Total Issues: 496
+Total Issues: 486
