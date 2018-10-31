@@ -15,6 +15,9 @@ namespace System.Buffers
     }
     public static partial class BuffersExtensions
     {
+        public static void CopyTo<T>(this in System.Buffers.ReadOnlySequence<T> source, System.Span<T> destination) { }
+        public static System.Nullable<System.SequencePosition> PositionOf<T>(this in System.Buffers.ReadOnlySequence<T> source, T value) where T : System.IEquatable<T> { throw null; }
+        public static T[] ToArray<T>(this in System.Buffers.ReadOnlySequence<T> sequence) { throw null; }
         public static void Write<T>(this System.Buffers.IBufferWriter<T> writer, System.ReadOnlySpan<T> value) { }
     }
     public partial interface IBufferWriter<T>
@@ -68,6 +71,47 @@ namespace System.Buffers
         Done = 0,
         InvalidData = 3,
         NeedMoreData = 2,
+    }
+    public readonly partial struct ReadOnlySequence<T>
+    {
+        public static readonly System.Buffers.ReadOnlySequence<T> Empty;
+        public ReadOnlySequence(System.Buffers.ReadOnlySequenceSegment<T> startSegment, int startIndex, System.Buffers.ReadOnlySequenceSegment<T> endSegment, int endIndex) { throw null; }
+        public ReadOnlySequence(System.ReadOnlyMemory<T> memory) { throw null; }
+        public ReadOnlySequence(T[] array) { throw null; }
+        public ReadOnlySequence(T[] array, int start, int length) { throw null; }
+        public System.SequencePosition End { get { throw null; } }
+        public System.ReadOnlyMemory<T> First { get { throw null; } }
+        public bool IsEmpty { get { throw null; } }
+        public bool IsSingleSegment { get { throw null; } }
+        public long Length { get { throw null; } }
+        public System.SequencePosition Start { get { throw null; } }
+        public System.Buffers.ReadOnlySequence<T>.Enumerator GetEnumerator() { throw null; }
+        public System.SequencePosition GetPosition(long offset) { throw null; }
+        public System.SequencePosition GetPosition(long offset, System.SequencePosition origin) { throw null; }
+        public System.Buffers.ReadOnlySequence<T> Slice(int start, int length) { throw null; }
+        public System.Buffers.ReadOnlySequence<T> Slice(int start, System.SequencePosition end) { throw null; }
+        public System.Buffers.ReadOnlySequence<T> Slice(long start) { throw null; }
+        public System.Buffers.ReadOnlySequence<T> Slice(long start, long length) { throw null; }
+        public System.Buffers.ReadOnlySequence<T> Slice(long start, System.SequencePosition end) { throw null; }
+        public System.Buffers.ReadOnlySequence<T> Slice(System.SequencePosition start) { throw null; }
+        public System.Buffers.ReadOnlySequence<T> Slice(System.SequencePosition start, int length) { throw null; }
+        public System.Buffers.ReadOnlySequence<T> Slice(System.SequencePosition start, long length) { throw null; }
+        public System.Buffers.ReadOnlySequence<T> Slice(System.SequencePosition start, System.SequencePosition end) { throw null; }
+        public override string ToString() { throw null; }
+        public bool TryGet(ref System.SequencePosition position, out System.ReadOnlyMemory<T> memory, bool advance = true) { memory = default(System.ReadOnlyMemory<T>); throw null; }
+        public partial struct Enumerator
+        {
+            public Enumerator(in System.Buffers.ReadOnlySequence<T> sequence) { throw null; }
+            public System.ReadOnlyMemory<T> Current { get { throw null; } }
+            public bool MoveNext() { throw null; }
+        }
+    }
+    public abstract partial class ReadOnlySequenceSegment<T>
+    {
+        protected ReadOnlySequenceSegment() { }
+        public System.ReadOnlyMemory<T> Memory { get { throw null; } protected set { } }
+        public System.Buffers.ReadOnlySequenceSegment<T> Next { get { throw null; } protected set { } }
+        public long RunningIndex { get { throw null; } protected set { } }
     }
     public delegate void ReadOnlySpanAction<T, in TArg>(System.ReadOnlySpan<T> span, TArg arg);
     public delegate void SpanAction<T, in TArg>(System.Span<T> span, TArg arg);
