@@ -82,7 +82,6 @@ namespace System.Runtime.Serialization
         public override void WriteStartObject(System.Xml.XmlDictionaryWriter writer, object graph) { }
         public override void WriteStartObject(System.Xml.XmlWriter writer, object graph) { }
     }
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public static partial class DataContractSerializerExtensions
     {
         public static System.Runtime.Serialization.ISerializationSurrogateProvider GetSerializationSurrogateProvider(this System.Runtime.Serialization.DataContractSerializer serializer) { throw null; }
@@ -282,7 +281,6 @@ namespace System.Runtime.Serialization
         void GetObjectData(object obj, System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context);
         object SetObjectData(object obj, System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context, System.Runtime.Serialization.ISurrogateSelector selector);
     }
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public partial interface ISerializationSurrogateProvider
     {
         object GetDeserializedObject(object obj, System.Type targetType);

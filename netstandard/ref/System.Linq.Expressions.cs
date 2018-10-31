@@ -449,7 +449,6 @@ namespace System.Linq.Expressions
         internal Expression() { }
         protected internal override System.Linq.Expressions.Expression Accept(System.Linq.Expressions.ExpressionVisitor visitor) { throw null; }
         public new TDelegate Compile() { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public new TDelegate Compile(bool preferInterpretation) { throw null; }
         public new TDelegate Compile(System.Runtime.CompilerServices.DebugInfoGenerator debugInfoGenerator) { throw null; }
         public System.Linq.Expressions.Expression<TDelegate> Update(System.Linq.Expressions.Expression body, System.Collections.Generic.IEnumerable<System.Linq.Expressions.ParameterExpression> parameters) { throw null; }
@@ -667,7 +666,6 @@ namespace System.Linq.Expressions
         public bool TailCall { get { throw null; } }
         public sealed override System.Type Type { get { throw null; } }
         public System.Delegate Compile() { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public Delegate Compile(bool preferInterpretation) { throw null; }
         public System.Delegate Compile(System.Runtime.CompilerServices.DebugInfoGenerator debugInfoGenerator) { throw null; }
 //REFEMIT        public void CompileToMethod(System.Reflection.Emit.MethodBuilder method) { }

@@ -358,7 +358,6 @@ namespace System.Threading
         public unsafe System.Threading.NativeOverlapped* UnsafePack(System.Threading.IOCompletionCallback iocb, object userData) { throw null; }
     }
     public delegate void ParameterizedThreadStart(object obj);
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public sealed partial class PreAllocatedOverlapped : System.IDisposable
     {
         [System.CLSCompliantAttribute(false)]
@@ -671,7 +670,6 @@ namespace System.Threading
         [System.CLSCompliantAttribute(false)]
         public static System.Threading.RegisteredWaitHandle UnsafeRegisterWaitForSingleObject(System.Threading.WaitHandle waitObject, System.Threading.WaitOrTimerCallback callBack, object state, uint millisecondsTimeOutInterval, bool executeOnlyOnce) { throw null; }
     }
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public sealed partial class ThreadPoolBoundHandle : System.IDisposable
     {
         internal ThreadPoolBoundHandle() { }
