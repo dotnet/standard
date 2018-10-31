@@ -140,6 +140,7 @@
   <PropertyGroup>
     <ImportNetSdkFromRepoToolset>false</ImportNetSdkFromRepoToolset>
   </PropertyGroup>
+
    <Import Project="Sdk.props" Sdk="Microsoft.DotNet.Arcade.Sdk" />
 
   <!-- Set up Default symbol and optimization for Configuration -->
@@ -148,7 +149,7 @@
       <PropertyGroup>
         <DebugSymbols Condition="'$(DebugSymbols)' == ''">true</DebugSymbols>
         <Optimize Condition="'$(Optimize)' == ''">false</Optimize>
-        <DebugType Condition="'$(DebugType)' == ''">full</DebugType>
+        <DebugType>full</DebugType>
         <DefineConstants>$(DefineConstants),DEBUG,TRACE</DefineConstants>
       </PropertyGroup>
     </When>
@@ -156,7 +157,7 @@
       <PropertyGroup>
         <DebugSymbols Condition="'$(DebugSymbols)' == ''">true</DebugSymbols>
         <Optimize Condition="'$(Optimize)' == ''">true</Optimize>
-        <DebugType Condition="'$(DebugType)' == ''">pdbonly</DebugType>
+        <DebugType>pdbonly</DebugType>
         <DefineConstants>$(DefineConstants),TRACE</DefineConstants>
       </PropertyGroup>
     </When>
