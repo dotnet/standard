@@ -62,7 +62,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-      <_GenAPICmd>$(ToolHostCmd) "$(ToolsDir)GenAPI.exe"</_GenAPICmd>
+      <_GenAPICmd>$(_GenAPICommand)</_GenAPICmd>
       <_GenAPICmd>$(_GenAPICmd) -assembly:"$(_ReferenceAssembly)"</_GenAPICmd>
       <_GenAPICmd>$(_GenAPICmd) -writer:TypeForwards</_GenAPICmd>
       <_GenAPICmd>$(_GenAPICmd) -out:"$(_TypeForwardsOutputPath)"</_GenAPICmd>

@@ -209,14 +209,13 @@
       <ApiCompatBaselineAll>&gt; $(ApiCompatBaselineFile)</ApiCompatBaselineAll>
       <ApiCompatExitCode>0</ApiCompatExitCode>
 
-      <ApiCompatCmd>$(ToolHostCmd) "$(ToolsDir)ApiCompat.exe"</ApiCompatCmd>
     </PropertyGroup>
 
     <MakeDir Directories="$(IntermediateOutputPath)%(ApiCompatProfile.TargetGroup)" />
     <WriteLinesToFile File="$(ApiCompatResponseFile)" Lines="$(ApiCompatArgs)" Overwrite="true" />
 
     <Exec Condition="Exists('$(ApiCompatContracts)')"
-          Command="$(ApiCompatCmd) @&quot;$(ApiCompatResponseFile)&quot; $(ApiCompatBaselineAll)"
+          Command="$(_ApiCompatCommand) @&quot;$(ApiCompatResponseFile)&quot; $(ApiCompatBaselineAll)"
           CustomErrorRegularExpression="^[a-zA-Z]+ :"
           StandardOutputImportance="Low"
           IgnoreExitCode="true"

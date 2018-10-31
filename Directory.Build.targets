@@ -9,6 +9,16 @@
     <ImportDirectoryBuildTargets>false</ImportDirectoryBuildTargets>
   </PropertyGroup>
 
+  <!-- temporarily remap AssemblyKey to StrongNameKeyId -->
+  <PropertyGroup>
+    <StrongNameKeyId Condition="'$(AssemblyKey)' == 'MSFT'">Microsoft</StrongNameKeyId>
+    <StrongNameKeyId Condition="'$(AssemblyKey)' == 'ECMA'">ECMA</StrongNameKeyId>
+    <StrongNameKeyId Condition="'$(AssemblyKey)' == 'Open'">Open</StrongNameKeyId>
+    <StrongNameKeyId Condition="'$(AssemblyKey)' == 'SilverlightPlatform'">SilverlightPlatform</StrongNameKeyId>
+    <StrongNameKeyId Condition="'$(AssemblyKey)' == 'SilverlightExtension'">MicrosoftShared</StrongNameKeyId>
+  </PropertyGroup>
+   <Import Project="Sdk.targets" Sdk="Microsoft.DotNet.Arcade.Sdk" Condition="'$(UsingMicrosoftNETSdk)' == 'true'" />
+
   <PropertyGroup>
     <!--
     Hack workaround to skip the GenerateCompiledExpressionsTempFile target in
@@ -36,4 +46,6 @@
   </Target>
 
   <Import Project="$(ToolsDir)/Build.Common.targets" Condition="Exists('$(ToolsDir)/Build.Common.targets')" />
+
+  <Import Project="$(ToolSetCommonDirectory)Tools.proj.nuget.g.targets" Condition="Exists('$(ToolSetCommonDirectory)Tools.proj.nuget.g.targets')" />
 </Project>

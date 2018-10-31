@@ -7,6 +7,8 @@
     tell Microsoft.Common.props not to import Directory.Build.props again
     -->
     <ImportDirectoryBuildProps>false</ImportDirectoryBuildProps>
+
+    <ToolSetCommonDirectory>$(MSBuildThisFileDirectory)artifacts\toolset\Common\</ToolSetCommonDirectory>
   </PropertyGroup>
 
   <Import Condition="Exists('..\Directory.Build.props')" Project="..\Directory.Build.props" />
@@ -40,6 +42,16 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
 
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <Import Project="$(ToolSetCommonDirectory)Tools.proj.nuget.g.props" Condition="Exists('$(ToolSetCommonDirectory)Tools.proj.nuget.g.props')" />
+
+  <!-- Choose .targets files that come from Arcade rather than from buildtools -->
+  <!-- TODO: Remove when buildtools dependency removed. -->
+  <PropertyGroup>
+    <ExcludePartialFacadesImport>true</ExcludePartialFacadesImport>
+    <ExcludeApiCompatImport>true</ExcludeApiCompatImport>
+    <ExcludeSigningImport>true</ExcludeSigningImport>
   </PropertyGroup>
 
   <!-- Import Build tools common props file where repo-independent properties are found -->
@@ -125,6 +137,11 @@
     <TargetGroup Condition="'$(TargetGroup)'=='' and $(Configuration.Contains('uap101'))">uap101</TargetGroup>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <ImportNetSdkFromRepoToolset>false</ImportNetSdkFromRepoToolset>
+  </PropertyGroup>
+   <Import Project="Sdk.props" Sdk="Microsoft.DotNet.Arcade.Sdk" />
+
   <!-- Set up Default symbol and optimization for Configuration -->
   <Choose>
     <When Condition="'$(ConfigurationGroup)'=='Debug'">
@@ -169,12 +186,12 @@
     <OSPlatformConfig>$(OSGroup).$(Platform).$(ConfigurationGroup)</OSPlatformConfig>
     <TargetOutputRelPath Condition="'$(TargetGroup)'!=''">$(TargetGroup)/</TargetOutputRelPath>
 
-    <BaseOutputPath Condition="'$(BaseOutputPath)'==''">$(BinDir)</BaseOutputPath>
+    <BaseOutputPath>$(BinDir)</BaseOutputPath>
     <OutputPathSubfolder Condition="'$(IsCompatAssembly)'=='true'">/Compat</OutputPathSubfolder>
-    <OutputPath Condition="'$(OutputPath)'==''">$(BaseOutputPath)$(OSPlatformConfig)/$(MSBuildProjectName)/$(TargetOutputRelPath)$(OutputPathSubfolder)</OutputPath>
+    <OutputPath>$(BaseOutputPath)$(OSPlatformConfig)/$(MSBuildProjectName)/$(TargetOutputRelPath)$(OutputPathSubfolder)</OutputPath>
 
-    <IntermediateOutputRootPath Condition="'$(IntermediateOutputRootPath)' == ''">$(BaseIntermediateOutputPath)$(OSPlatformConfig)/</IntermediateOutputRootPath>
-    <IntermediateOutputPath Condition="'$(IntermediateOutputPath)' == ''">$(IntermediateOutputRootPath)$(MSBuildProjectName)/$(TargetOutputRelPath)</IntermediateOutputPath>
+    <IntermediateOutputRootPath>$(BaseIntermediateOutputPath)$(OSPlatformConfig)/</IntermediateOutputRootPath>
+    <IntermediateOutputPath>$(IntermediateOutputRootPath)$(MSBuildProjectName)/$(TargetOutputRelPath)</IntermediateOutputPath>
 
     <TestPath Condition="'$(TestPath)'==''">$(TestWorkingDir)$(OSPlatformConfig)/$(MSBuildProjectName)/</TestPath>
 
