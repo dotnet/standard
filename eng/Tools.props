@@ -33,7 +33,7 @@
 
     <Exec
         Condition="!Exists('$(BuildToolsSemaphore)')"
-        Command="$(InitToolsCmdLine) &gt; $(RepoRoot)init-tools.log" />
+        Command="$(InitToolsCmdLine)" />
 
     <Touch Files="$(BuildToolsSemaphore)" AlwaysCreate="true" />
     <OnError ExecuteTargets="DumpInitToolsLog" />
