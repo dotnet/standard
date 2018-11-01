@@ -7,8 +7,14 @@
 
        These ref versions are pulled from https://github.com/dotnet/versions.
   -->
+
   <PropertyGroup>
-    <BuildToolsCurrentRef>044092b54a7e4df96d059e2c6b83463714547bf8</BuildToolsCurrentRef>
+    <!-- Opt-out repo features -->
+    <UsingToolXliff>false</UsingToolXliff>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <BuildToolsCurrentRef>1ccc8cf922acbb3645020c882f1ec849fc1eb9aa</BuildToolsCurrentRef>
   </PropertyGroup>
 
   <!-- Package versions used as toolsets --> 
@@ -17,7 +23,7 @@
     <FeedTasksPackageVersion>3.0.0-preview1-03224-03</FeedTasksPackageVersion> 
 
     <BuildToolsPackage>microsoft.dotnet.buildtools</BuildToolsPackage>
-    <BuildToolsPackageVersion>3.0.0-preview1-03224-03</BuildToolsPackageVersion>
+    <BuildToolsPackageVersion>3.0.0-preview1-03402-01</BuildToolsPackageVersion>
   </PropertyGroup> 
 
   <!-- Package dependency verification/auto-upgrade configuration. -->
@@ -43,9 +49,9 @@
       <PackageId>$(FeedTasksPackage)</PackageId>
     </XmlUpdateStep>
     <UpdateStep Include="BuildTools">
-      <UpdaterType>File</UpdaterType>
-      <Path>$(MSBuildThisFileDirectory)BuildToolsVersion.txt</Path>
-      <PackageId>Microsoft.DotNet.BuildTools</PackageId>
+      <Path>$(MSBuildThisFileFullPath)</Path>
+      <ElementName>BuildToolsPackageVersion</ElementName>
+      <PackageId>$(BuildToolsPackage)</PackageId>
     </UpdateStep>
   </ItemGroup>
 </Project>
