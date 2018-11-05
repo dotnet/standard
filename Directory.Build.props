@@ -52,6 +52,7 @@
     <ExcludePartialFacadesImport>true</ExcludePartialFacadesImport>
     <ExcludeApiCompatImport>true</ExcludeApiCompatImport>
     <ExcludeSigningImport>true</ExcludeSigningImport>
+    <ExcludeVersioningImport>true</ExcludeVersioningImport>
   </PropertyGroup>
 
   <!-- Import Build tools common props file where repo-independent properties are found -->
@@ -167,6 +168,10 @@
       </PropertyGroup>
     </Otherwise>
   </Choose>
+
+  <PropertyGroup>
+    <VersionFileForPackages Condition="'$(VersionFileForPackages)' == ''">$(ArtifactsObjDir)version.txt</VersionFileForPackages>
+  </PropertyGroup>
 
   <!-- Disable some standard properties for building our projects -->
   <PropertyGroup>

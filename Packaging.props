@@ -29,5 +29,11 @@
           Include="$(PackageThirdPartyNoticesFile)" >
         <SkipPackageFileCheck>true</SkipPackageFileCheck>
     </File>
+
+    <!-- Add version file to packages -->
+    <File Condition="Exists('$(VersionFileForPackages)')"
+          Include="$(VersionFileForPackages)">
+        <SkipPackageFileCheck>true</SkipPackageFileCheck>
+    </File>
   </ItemGroup>
 </Project>

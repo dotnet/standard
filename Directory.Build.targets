@@ -17,7 +17,8 @@
     <StrongNameKeyId Condition="'$(AssemblyKey)' == 'SilverlightPlatform'">SilverlightPlatform</StrongNameKeyId>
     <StrongNameKeyId Condition="'$(AssemblyKey)' == 'SilverlightExtension'">MicrosoftShared</StrongNameKeyId>
   </PropertyGroup>
-   <Import Project="Sdk.targets" Sdk="Microsoft.DotNet.Arcade.Sdk" Condition="'$(UsingMicrosoftNETSdk)' == 'true'" />
+
+  <Import Project="Sdk.targets" Sdk="Microsoft.DotNet.Arcade.Sdk" />
 
   <PropertyGroup>
     <!--
@@ -47,5 +48,13 @@
 
   <Import Project="$(ToolsDir)/Build.Common.targets" Condition="Exists('$(ToolsDir)/Build.Common.targets')" />
 
+  <Import Project="eng\versioning.targets" />
+
   <Import Project="$(ToolSetCommonDirectory)Tools.proj.nuget.g.targets" Condition="Exists('$(ToolSetCommonDirectory)Tools.proj.nuget.g.targets')" />
+
+  <!-- Define this now until we can clean-up targets that depend on it in the packaging targets -->
+  <Target Name="CreateVersionFileDuringBuild" />
+
+  <!-- Define this target to override the workaround in arcade as we don't need it for our pkgprojs -->
+  <Target Name="InitializeStandardNuspecProperties" />
 </Project>
