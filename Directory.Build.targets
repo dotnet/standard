@@ -20,6 +20,14 @@
 
   <Import Project="Sdk.targets" Sdk="Microsoft.DotNet.Arcade.Sdk" />
 
+  <!-- In order for packages to continue going into the bin directory, these need to be set after we import Sdk.targets.
+       Once we output everything to 'artifacts', we can move these back to Directory.Build.props -->
+  <PropertyGroup>
+    <PackagesBasePath>$(BinDir)$(OSPlatformConfig)</PackagesBasePath>
+    <PackageOutputPath>$(PackageOutputRoot)$(ConfigurationGroup)/</PackageOutputPath>
+    <SymbolPackageOutputPath>$(PackageOutputPath)symbols/</SymbolPackageOutputPath>
+  </PropertyGroup>
+
   <PropertyGroup>
     <!--
     Hack workaround to skip the GenerateCompiledExpressionsTempFile target in

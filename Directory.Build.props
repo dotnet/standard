@@ -53,6 +53,8 @@
     <ExcludeApiCompatImport>true</ExcludeApiCompatImport>
     <ExcludeSigningImport>true</ExcludeSigningImport>
     <ExcludeVersioningImport>true</ExcludeVersioningImport>
+    <ExcludePackagingImport>true</ExcludePackagingImport>
+    <ExcludePackageLibsImport>true</ExcludePackageLibsImport>
   </PropertyGroup>
 
   <!-- Import Build tools common props file where repo-independent properties are found -->
@@ -201,9 +203,6 @@
 
     <TestPath Condition="'$(TestPath)'==''">$(TestWorkingDir)$(OSPlatformConfig)/$(MSBuildProjectName)/</TestPath>
 
-    <PackagesBasePath Condition="'$(PackagesBasePath)'==''">$(BinDir)$(OSPlatformConfig)</PackagesBasePath>
-    <PackageOutputPath Condition="'$(PackageOutputPath)'==''">$(PackageOutputRoot)$(ConfigurationGroup)/</PackageOutputPath>
-    <SymbolPackageOutputPath Condition="'$(SymbolPackageOutputPath)'==''">$(PackageOutputPath)symbols/</SymbolPackageOutputPath>
   </PropertyGroup>
 
   <!-- Target Framework Moniker values to be used in our projects -->

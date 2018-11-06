@@ -6,13 +6,17 @@
       <Uri>https://github.com/dotnet/arcade</Uri>
       <Sha>d6456030b7a70d464f523355fe68918c99c7c57d</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.ApiCompat" Version="1.0.0-beta.18523.13">
+    <Dependency Name="Microsoft.DotNet.ApiCompat" Version="1.0.0-beta.18555.4">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>beb04fa9474ba68d0ce0cb309d7a3cf7572a5f9d</Sha>
+      <Sha>7e178f9f6c01d445f5561366e0b6e969dd5b85fe</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.GenAPI" Version="1.0.0-beta.18523.13">
+    <Dependency Name="Microsoft.DotNet.GenAPI" Version="1.0.0-beta.18555.4">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>beb04fa9474ba68d0ce0cb309d7a3cf7572a5f9d</Sha>
+      <Sha>7e178f9f6c01d445f5561366e0b6e969dd5b85fe</Sha>
+    </Dependency>
+    <Dependency Name="Microsoft.DotNet.Build.Tasks.Packaging" Version="1.0.0-beta.18555.4">
+      <Uri>https://github.com/dotnet/arcade</Uri>
+      <Sha>7e178f9f6c01d445f5561366e0b6e969dd5b85fe</Sha>
     </Dependency>
   </ToolsetDependencies>
 </Dependencies>

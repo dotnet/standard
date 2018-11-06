@@ -14,6 +14,7 @@
     <PackageReference Include="$(FeedTasksPackage)" Version="$(FeedTasksPackageVersion)" />
     <PackageReference Include="Microsoft.DotNet.ApiCompat" Version="$(MicrosoftDotNetApiCompatPackageVersion)" />
     <PackageReference Include="Microsoft.DotNet.GenAPI" Version="$(MicrosoftDotNetGenApiPackageVersion)" />
+    <PackageReference Include="Microsoft.DotNet.Build.Tasks.Packaging" Version="$(MicrosoftDotNetBuildTasksPackagingPackageVersion)" />
   </ItemGroup>
 
   <Target Name="InitTools" AfterTargets="Restore">
@@ -34,7 +35,7 @@
 
     <Exec
         Condition="!Exists('$(BuildToolsSemaphore)')"
-        Command="$(InitToolsCmdLine)" />
+        Command="$(InitToolsCmdLine) &gt; $(RepoRoot)init-tools.log" />
 
     <Touch Files="$(BuildToolsSemaphore)" AlwaysCreate="true" />
     <OnError ExecuteTargets="DumpInitToolsLog" />

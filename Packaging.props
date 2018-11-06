@@ -15,6 +15,9 @@
     <XmlDocPackageVersion>2.0.0-preview3-26209-0</XmlDocPackageVersion>
     <XmlDocFileRoot>$(PackagesDir)$(XmlDocPackage.ToLowerInvariant())/$(XmlDocPackageVersion)/xmldocs/netstandard</XmlDocFileRoot>
     <XmlDocDir>$(BinDir)docs</XmlDocDir>
+
+    <!-- We can remove this (& the runtime.json file) once the Arcade packaging package contains runtime.json -->
+    <RuntimeIdGraphDefinitionFile>$(ProjectDir)runtime.json</RuntimeIdGraphDefinitionFile>
   </PropertyGroup>
 
   <Import Condition="Exists('pkg/baseline/baseline.props')" Project="pkg/baseline/baseline.props" />
