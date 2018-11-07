@@ -171,10 +171,6 @@
     </Otherwise>
   </Choose>
 
-  <PropertyGroup>
-    <VersionFileForPackages Condition="'$(VersionFileForPackages)' == ''">$(ArtifactsObjDir)version.txt</VersionFileForPackages>
-  </PropertyGroup>
-
   <!-- Disable some standard properties for building our projects -->
   <PropertyGroup>
     <NoStdLib>true</NoStdLib>

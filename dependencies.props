@@ -9,11 +9,6 @@
   -->
 
   <PropertyGroup>
-    <!-- Opt-out repo features -->
-    <UsingToolXliff>false</UsingToolXliff>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <BuildToolsCurrentRef>1ccc8cf922acbb3645020c882f1ec849fc1eb9aa</BuildToolsCurrentRef>
   </PropertyGroup>
 

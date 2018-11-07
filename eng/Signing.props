@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Condition="Exists('..\Directory.Build.props')" Project="..\Directory.Build.props" />
   <ItemGroup>
-  	<StrongNameSignInfo Include="StrongName" PublicKeyToken="b77a5c561934e089" CertificateName="Microsoft400" />
-    <StrongNameSignInfo Include="StrongName" PublicKeyToken="b03f5f7f11d50a3a" CertificateName="Microsoft400" />
-
     <ItemsToSign Include="$(PackageOutputPath)**\*.nupkg" />
   </ItemGroup>
 </Project>
