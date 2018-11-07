@@ -5,9 +5,15 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile Condition="'$(AssemblyKey)' == 'XamarinProducts'">$(MSBuildThisFileDirectory)xamarin-products.snk</AssemblyOriginatorKeyFile>
     <!-- Save value of TargetPath so we can reset it after it gets overridden by Microsoft.Common.CurrentVersion.targets -->
     <TargetPathValue>$(TargetPath)</TargetPathValue>
+  </PropertyGroup>
+
+    <!-- Set signing properties for Xamarin Products. PublicKey and PublicKeyToken are not needed, but we set them to 'dummy' to avoid an error check later -->
+  <PropertyGroup Condition="'$(StrongNameKeyId)' == 'XamarinProducts'">
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)xamarin-products.snk</AssemblyOriginatorKeyFile>
+    <PublicKey>dummy</PublicKey>
+    <PublicKeyToken>dummy</PublicKeyToken>
   </PropertyGroup>
 
   <Import Condition="Exists('..\Directory.Build.targets')" Project="..\Directory.Build.targets" />
