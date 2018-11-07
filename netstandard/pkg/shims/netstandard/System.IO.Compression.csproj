@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>System.IO.Compression</AssemblyName>
     <AssemblyVersion>4.1.3.0</AssemblyVersion>
-    <AssemblyKey>ECMA</AssemblyKey>
+    <StrongNameKeyId>ECMA</StrongNameKeyId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.IO.Compression.Forwards.cs" />

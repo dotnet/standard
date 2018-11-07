@@ -9,15 +9,6 @@
     <ImportDirectoryBuildTargets>false</ImportDirectoryBuildTargets>
   </PropertyGroup>
 
-  <!-- temporarily remap AssemblyKey to StrongNameKeyId -->
-  <PropertyGroup>
-    <StrongNameKeyId Condition="'$(AssemblyKey)' == 'MSFT'">Microsoft</StrongNameKeyId>
-    <StrongNameKeyId Condition="'$(AssemblyKey)' == 'ECMA'">ECMA</StrongNameKeyId>
-    <StrongNameKeyId Condition="'$(AssemblyKey)' == 'Open'">Open</StrongNameKeyId>
-    <StrongNameKeyId Condition="'$(AssemblyKey)' == 'SilverlightPlatform'">SilverlightPlatform</StrongNameKeyId>
-    <StrongNameKeyId Condition="'$(AssemblyKey)' == 'SilverlightExtension'">MicrosoftShared</StrongNameKeyId>
-  </PropertyGroup>
-
   <Import Project="Sdk.targets" Sdk="Microsoft.DotNet.Arcade.Sdk" />
 
   <!-- In order for packages to continue going into the bin directory, these need to be set after we import Sdk.targets.

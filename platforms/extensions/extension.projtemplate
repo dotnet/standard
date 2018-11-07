@@ -4,7 +4,7 @@
   <PropertyGroup>
     <AssemblyName>[NAME]</AssemblyName>
     <AssemblyVersion>[VERSION]</AssemblyVersion>
-    <AssemblyKey>[KEY]</AssemblyKey>
+    <StrongNameKeyId>[KEY]</StrongNameKeyId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="[NAME].cs" />

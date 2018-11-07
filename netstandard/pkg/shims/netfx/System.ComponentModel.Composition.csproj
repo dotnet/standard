@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>System.ComponentModel.Composition</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
-    <AssemblyKey>ECMA</AssemblyKey>
+    <StrongNameKeyId>ECMA</StrongNameKeyId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.ComponentModel.Composition.Forwards.cs" />

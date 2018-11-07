@@ -78,7 +78,7 @@
     <Platform>AnyCPU</Platform>
     <OutputType>Library</OutputType>
     <RunApiCompat>true</RunApiCompat>
-    <AssemblyKey>Open</AssemblyKey>
+    <StrongNameKeyId>Open</StrongNameKeyId>
     <LangVersion>latest</LangVersion> <!-- default to allowing all language features -->
   </PropertyGroup>
 
