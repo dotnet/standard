@@ -13,10 +13,10 @@ def branch = GithubBranchName
         def newJob = job(newJobName) {
             steps {
                 if (osName == 'Windows_NT') {
-                    batchFile("build.cmd -c")
+                    batchFile("build.cmd -c -ci")
                 }
                 else {
-                    shell("sudo HOME=\$WORKSPACE/tempHome ./build.sh -c")
+                    shell("sudo HOME=\$WORKSPACE/tempHome ./build.sh -c --ci")
                 }
             }
         }
