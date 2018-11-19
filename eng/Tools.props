@@ -34,7 +34,7 @@
       <DotNetCmd>$(DotNetRoot)dotnet</DotNetCmd>
       <DotNetCmd Condition="'$(OS)' == 'Windows_NT'">$(DotNetCmd).exe</DotNetCmd>
 
-      <InitToolsCmdLine>$(BuildToolsPackageDir)init-tools.$(CmdExt) $(RepoRoot) $(DotNETCmd) $(ToolsDir) $(PackagesDir)</InitToolsCmdLine>
+      <InitToolsCmdLine>$(BuildToolsPackageDir)init-tools.$(CmdExt) $(RepoRoot) $(DotNetCmd) $(ToolsDir) $(PackagesDir)</InitToolsCmdLine>
     </PropertyGroup>
 
     <Exec
