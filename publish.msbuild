@@ -3,11 +3,6 @@
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.props))\Directory.Build.props" />
   <Import Project="Directory.Build.targets" />
 
-  <PropertyGroup>
-    <ToolsNugetPropsFile>$(MSBuildThisFileDirectory)artifacts\toolset\Common\Tools.proj.nuget.g.props</ToolsNugetPropsFile>
-  </PropertyGroup>
-
-  <Import Project="$(ToolsNugetPropsFile)" Condition="Exists('$(ToolsNugetPropsFile)')" />
   <Import Project="$(NuGetPackageRoot)/$(FeedTasksPackage)/$(FeedTasksPackageVersion)/build/$(FeedTasksPackage).targets" />
 
   <PropertyGroup>

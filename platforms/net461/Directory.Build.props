@@ -7,6 +7,6 @@
   <Import Condition="Exists('..\Directory.Build.props')" Project="..\Directory.Build.props" />
   <PropertyGroup>
     <!-- default to ECMA key -->
-    <AssemblyKey>ECMA</AssemblyKey>
+    <StrongNameKeyId>ECMA</StrongNameKeyId>
   </PropertyGroup>
 </Project>

@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <AssemblyKey>SilverlightExtension</AssemblyKey>
+    <StrongNameKeyId>MicrosoftShared</StrongNameKeyId>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <OutputType>Library</OutputType>
     <!-- disable obsolete warnings/errors -->

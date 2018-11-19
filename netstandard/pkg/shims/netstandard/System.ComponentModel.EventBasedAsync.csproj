@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>System.ComponentModel.EventBasedAsync</AssemblyName>
     <AssemblyVersion>4.0.11.0</AssemblyVersion>
-    <AssemblyKey>MSFT</AssemblyKey>
+    <StrongNameKeyId>Microsoft</StrongNameKeyId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.ComponentModel.EventBasedAsync.Forwards.cs" />

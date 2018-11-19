@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>System.ComponentModel</AssemblyName>
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
-    <AssemblyKey>MSFT</AssemblyKey>
+    <StrongNameKeyId>Microsoft</StrongNameKeyId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.ComponentModel.Forwards.cs" />

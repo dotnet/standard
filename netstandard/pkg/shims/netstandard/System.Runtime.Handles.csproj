@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>System.Runtime.Handles</AssemblyName>
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
-    <AssemblyKey>MSFT</AssemblyKey>
+    <StrongNameKeyId>Microsoft</StrongNameKeyId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.Runtime.Handles.Forwards.cs" />

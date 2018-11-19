@@ -4,7 +4,7 @@
     <OutputType>Library</OutputType>
     <!-- disable obsolete warnings/errors -->
     <NoWarn>$(NoWarn);0618;0619;0809</NoWarn>
-    <AssemblyKey>Open</AssemblyKey>
+    <StrongNameKeyId>Open</StrongNameKeyId>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="mscorlib.csproj" />

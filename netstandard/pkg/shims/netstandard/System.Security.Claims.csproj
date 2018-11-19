@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>System.Security.Claims</AssemblyName>
     <AssemblyVersion>4.0.3.0</AssemblyVersion>
-    <AssemblyKey>MSFT</AssemblyKey>
+    <StrongNameKeyId>Microsoft</StrongNameKeyId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.Security.Claims.Forwards.cs" />

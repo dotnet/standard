@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>System.ValueTuple</AssemblyName>
     <AssemblyVersion>4.0.2.0</AssemblyVersion>
-    <AssemblyKey>Open</AssemblyKey>
+    <StrongNameKeyId>Open</StrongNameKeyId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.ValueTuple.Forwards.cs" />

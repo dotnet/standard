@@ -2,16 +2,6 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <!--
-    These shims need to have a higher file version then the last ones we shipped to ensure they win
-    the conflict resolution so setting major/minor to match what was shipped before. The patch version
-    is computed based on a date seed so it should always be higher then what we shipped previously.
-  -->
-  <PropertyGroup>
-    <MajorVersion>4</MajorVersion>
-    <MinorVersion>6</MinorVersion>
-  </PropertyGroup>
-
-  <!--
     We want to use these shims at runtime as well in some cases so we need to not
     have the ReferenceAssemblyAttribute or the AssemblyFlags 0x70 bit set otherwise
     the runtime will block loading them.

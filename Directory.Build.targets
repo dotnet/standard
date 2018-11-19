@@ -9,6 +9,16 @@
     <ImportDirectoryBuildTargets>false</ImportDirectoryBuildTargets>
   </PropertyGroup>
 
+  <Import Project="Sdk.targets" Sdk="Microsoft.DotNet.Arcade.Sdk" />
+
+  <!-- In order for packages to continue going into the bin directory, these need to be set after we import Sdk.targets.
+       Once we output everything to 'artifacts', we can move these back to Directory.Build.props -->
+  <PropertyGroup>
+    <PackagesBasePath>$(BinDir)$(OSPlatformConfig)</PackagesBasePath>
+    <PackageOutputPath>$(PackageOutputRoot)$(ConfigurationGroup)/</PackageOutputPath>
+    <SymbolPackageOutputPath>$(PackageOutputPath)symbols/</SymbolPackageOutputPath>
+  </PropertyGroup>
+
   <PropertyGroup>
     <!--
     Hack workaround to skip the GenerateCompiledExpressionsTempFile target in
@@ -36,4 +46,14 @@
   </Target>
 
   <Import Project="$(ToolsDir)/Build.Common.targets" Condition="Exists('$(ToolsDir)/Build.Common.targets')" />
+
+  <Import Project="eng\versioning.targets" />
+
+  <Import Project="$(ToolSetCommonDirectory)Tools.proj.nuget.g.targets" Condition="Exists('$(ToolSetCommonDirectory)Tools.proj.nuget.g.targets')" />
+
+  <!-- Define this now until we can clean-up targets that depend on it in the packaging targets -->
+  <Target Name="CreateVersionFileDuringBuild" />
+
+  <!-- Define this target to override the workaround in arcade as we don't need it for our pkgprojs -->
+  <Target Name="InitializeStandardNuspecProperties" />
 </Project>

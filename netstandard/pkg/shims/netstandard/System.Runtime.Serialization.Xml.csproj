@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>System.Runtime.Serialization.Xml</AssemblyName>
     <AssemblyVersion>4.1.3.0</AssemblyVersion>
-    <AssemblyKey>MSFT</AssemblyKey>
+    <StrongNameKeyId>Microsoft</StrongNameKeyId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.Runtime.Serialization.Xml.Forwards.cs" />

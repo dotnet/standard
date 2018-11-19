@@ -7,7 +7,6 @@
     <PackageThirdPartyNoticesFile>$(ProjectDir)THIRD-PARTY-NOTICES.TXT</PackageThirdPartyNoticesFile>
     <ReleaseNotes>https://aka.ms/netstandard-release-notes</ReleaseNotes>
     <ProjectUrl>https://dot.net</ProjectUrl>
-    <PackagingTaskDir>$(BuildToolsTaskDir)</PackagingTaskDir>
     <!-- defined in buildtools packaging.targets, but we need this before targets are imported -->
     <PackagePlatform Condition="'$(PackagePlatform)' == ''">$(Platform)</PackagePlatform>
     <PackagePlatform Condition="'$(PackagePlatform)' == 'amd64'">x64</PackagePlatform>
@@ -27,6 +26,12 @@
     </File>
     <File Condition="Exists('$(PackageThirdPartyNoticesFile)')"
           Include="$(PackageThirdPartyNoticesFile)" >
+        <SkipPackageFileCheck>true</SkipPackageFileCheck>
+    </File>
+
+    <!-- Add version file to packages -->
+    <File Condition="Exists('$(VersionFileForPackages)')"
+          Include="$(VersionFileForPackages)">
         <SkipPackageFileCheck>true</SkipPackageFileCheck>
     </File>
   </ItemGroup>

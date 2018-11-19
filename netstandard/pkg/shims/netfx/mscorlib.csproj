@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>mscorlib</AssemblyName>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
-    <AssemblyKey>ECMA</AssemblyKey>
+    <StrongNameKeyId>ECMA</StrongNameKeyId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="mscorlib.Forwards.cs" />

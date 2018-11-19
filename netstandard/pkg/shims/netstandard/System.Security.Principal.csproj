@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>System.Security.Principal</AssemblyName>
     <AssemblyVersion>4.0.1.0</AssemblyVersion>
-    <AssemblyKey>MSFT</AssemblyKey>
+    <StrongNameKeyId>Microsoft</StrongNameKeyId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.Security.Principal.Forwards.cs" />

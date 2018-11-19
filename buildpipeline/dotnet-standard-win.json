@@ -58,7 +58,7 @@
       },
       "inputs": {
         "filename": "build.cmd",
-        "arguments": "-Sign /p:OfficialBuildId=$(OfficialBuildId) /p:SignType=$(SignType) /p:DotNetSignType=$(SignType) /p:MicroBuild_SigningEnabled=true /p:OverridePackageSource=$(PB_RestoreSource)",
+        "arguments": "-ci -Sign /p:OfficialBuildId=$(OfficialBuildId) /p:SignType=$(SignType) /p:DotNetSignType=$(SignType) /p:MicroBuild_SigningEnabled=true /p:OverridePackageSource=$(PB_RestoreSource)",
         "modifyEnvironment": "false",
         "workingFolder": "",
         "failOnStandardError": "false"
