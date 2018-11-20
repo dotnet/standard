@@ -2,6 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Condition="Exists('..\Directory.Build.props')" Project="..\Directory.Build.props" />
   <ItemGroup>
-    <ItemsToSign Include="$(PackageOutputPath)**\*.nupkg" />
+  	<!-- TODO - change this location once Packages get outputted to the artifacts dir -->
+    <ItemsToSign Include="$(PackageOutputRoot)$(ConfigurationGroup)/**/*.nupkg" />
   </ItemGroup>
 </Project>
