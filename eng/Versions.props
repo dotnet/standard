@@ -12,10 +12,9 @@
     <PreReleaseVersionLabel>prerelease</PreReleaseVersionLabel>
     <!-- Opt-out repo features -->
     <UsingToolXliff>false</UsingToolXliff>
-     <!-- Always use shipping version insted of dummy version -->
+    <!-- Always use shipping version insted of dummy version -->
     <DotNetUseShippingVersions>true</DotNetUseShippingVersions>
   </PropertyGroup>
-
   <!--
     DARC doesn't currently update properties that end in PackageVersion yet but that is the convention
     we want to use for our properties so for now we will define both and set the PackageVersion properties
@@ -27,10 +26,9 @@
     <MicrosoftDotNetGenApiVersion>1.0.0-beta.18568.1</MicrosoftDotNetGenApiVersion>
     <MicrosoftDotNetBuildTasksPackagingVersion>1.0.0-beta.18568.1</MicrosoftDotNetBuildTasksPackagingVersion>
   </PropertyGroup>
-
   <PropertyGroup>
-    <MicrosoftDotNetApiCompatPackageVersion>$(MicrosoftDotNetApiCompatVersion)</MicrosoftDotNetApiCompatPackageVersion>
-    <MicrosoftDotNetGenApiPackageVersion>$(MicrosoftDotNetGenApiVersion)</MicrosoftDotNetGenApiPackageVersion>
-    <MicrosoftDotNetBuildTasksPackagingPackageVersion>$(MicrosoftDotNetBuildTasksPackagingVersion)</MicrosoftDotNetBuildTasksPackagingPackageVersion>
+    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.18569.4</MicrosoftDotNetApiCompatPackageVersion>
+    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.18569.4</MicrosoftDotNetGenAPIPackageVersion>
+    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.18569.4</MicrosoftDotNetBuildTasksPackagingPackageVersion>
   </PropertyGroup>
 </Project>
