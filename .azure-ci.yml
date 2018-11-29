@@ -1,0 +1,114 @@
+variables:
+  - name: _TeamName
+    value: DotNetCore
+
+jobs:
+- template: /eng/common/templates/jobs/jobs.yml
+  parameters:
+    enableMicrobuild: true
+    enablePublishBuildArtifacts: true
+    enablePublishTestResults: false
+    # TODO - set 'enablePublishBuildAssets: true' once we're publishing output to the 'artifacts' dir
+    enablePublishBuildAssets: false
+    enableTelemetry: true
+    helixRepo: dotnet/standard
+    jobs:
+    - job: Windows_NT
+      pool: 
+        # For public or PR jobs, use the hosted pool.  For internal jobs use the internal pool.
+        # Will eventually change this to two BYOC pools.
+        ${{ if or(eq(variables['System.TeamProject'], 'public'), in(variables['Build.Reason'], 'PullRequest')) }}:
+          name: dotnet-external-temp
+        ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
+          name: dotnet-internal-temp
+      variables:
+      - name: _BuildConfig 
+        value: Release
+      # Enable signing for internal, non-PR builds
+      - ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
+        - name: _SignType
+          value: Real
+        - name: _PublishType
+          value: blob
+        - name: _DotNetPublishToBlobFeed
+          value: true
+        - name: _PublishBlobFeedUrl
+          value: https://dotnetfeed.blob.core.windows.net/dotnet-core/index.json
+        - name: _restoreSource 
+          value: https://dotnetfeed.blob.core.windows.net/dotnet-core/index.json
+        - name: _SignArgs
+          value: /p:SignType=$(_SignType) /p:DotNetSignType=$(_SignType) /p:MicroBuild_SigningEnabled=true /p:OverridePackageSource=$(_restoreSource) /p:TeamName=$(_TeamName)
+        - name: _PublishArgs
+          value: /p:DotNetPublishBlobFeedKey=$(dotnetfeed-storage-access-key-1)
+            /p:DotNetPublishBlobFeedUrl=$(_PublishBlobFeedUrl)
+            /p:DotNetPublishToBlobFeed=$(_DotNetPublishToBlobFeed)
+            /p:DotNetSymbolServerTokenMsdl=$(microsoft-symbol-server-pat)
+            /p:DotNetSymbolServerTokenSymWeb=$(symweb-symbol-server-pat)
+        - name: _OfficialBuildIdArgs
+          value: /p:OfficialBuildId=$(BUILD.BUILDNUMBER)
+      # else
+      - ${{ if or(eq(variables['System.TeamProject'], 'public'), in(variables['Build.Reason'], 'PullRequest')) }}:
+        - name: _SignType
+          value: Test
+        - name: _PublishType
+          value: none
+        - name: _PublishArgs
+          value: ''
+        - name: _OfficialBuildIdArgs
+          value: ''
+        - name: _SignArgs
+          value: /p:SignType=$(_SignType)
+      steps:
+      - checkout: self
+        clean: true
+      # Grab KeyVault if this is an internal build
+      - ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
+        - task: AzureKeyVault@1
+          inputs:
+            azureSubscription: 'DotNet-Engineering-Services_KeyVault'
+            KeyVaultName: EngKeyVault
+            SecretsFilter: 'dotnetfeed-storage-access-key-1,microsoft-symbol-server-pat,symweb-symbol-server-pat'
+      - script: eng\common\cibuild.cmd
+          -configuration $(_BuildConfig) 
+          -prepareMachine
+          -warnaserror:0
+          $(_PublishArgs)
+          $(_SignArgs)
+          $(_OfficialBuildIdArgs)
+        displayName: Windows Build / Publish
+
+    # Linux leg (only runs in CI)
+    - ${{ if eq(variables['System.TeamProject'], 'public') }}:
+      - job: Linux
+        pool: 
+          name: Hosted Ubuntu 1604
+        variables:
+        - name: _BuildConfig 
+          value: Release
+        - name: _SignType
+          value: Test
+        steps:
+        - checkout: self
+          clean: true
+        - script: eng/common/cibuild.sh
+            --configuration $(_BuildConfig)
+            --prepareMachine
+          displayName: Linux Build
+
+    # OSX leg (only runs in CI)
+    - ${{ if eq(variables['System.TeamProject'], 'public') }}:
+      - job: OSX
+        pool: 
+          name: Hosted macOS
+        variables:
+        - name: _BuildConfig 
+          value: Release
+        - name: _SignType
+          value: Test
+        steps:
+        - checkout: self
+          clean: true
+        - script: eng/common/cibuild.sh
+            --configuration $(_BuildConfig)
+            --prepareMachine
+          displayName: OSX Build
