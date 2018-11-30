@@ -26,38 +26,23 @@ jobs:
         value: Release
       # Enable signing for internal, non-PR builds
       - ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
-        - name: _SignType
-          value: Real
-        - name: _PublishType
-          value: blob
-        - name: _DotNetPublishToBlobFeed
-          value: true
-        - name: _PublishBlobFeedUrl
-          value: https://dotnetfeed.blob.core.windows.net/dotnet-core/index.json
-        - name: _restoreSource 
-          value: https://dotnetfeed.blob.core.windows.net/dotnet-core/index.json
-        - name: _SignArgs
-          value: /p:SignType=$(_SignType) /p:DotNetSignType=$(_SignType) /p:MicroBuild_SigningEnabled=true /p:OverridePackageSource=$(_restoreSource) /p:TeamName=$(_TeamName)
-        - name: _PublishArgs
-          value: /p:DotNetPublishBlobFeedKey=$(dotnetfeed-storage-access-key-1)
-            /p:DotNetPublishBlobFeedUrl=$(_PublishBlobFeedUrl)
-            /p:DotNetPublishToBlobFeed=$(_DotNetPublishToBlobFeed)
+        - name: _BuildArgs
+          value: /p:SignType=Real
+            /p:DotNetSignType=Real
+            /p:MicroBuild_SigningEnabled=true 
+            /p:OverridePackageSource=https://dotnetfeed.blob.core.windows.net/dotnet-core/index.json
+            /p:TeamName=$(_TeamName)
+            /p:DotNetPublishBlobFeedKey=$(dotnetfeed-storage-access-key-1)
+            /p:DotNetPublishBlobFeedUrl=https://dotnetfeed.blob.core.windows.net/dotnet-core/index.json
+            /p:DotNetPublishToBlobFeed=true
             /p:DotNetSymbolServerTokenMsdl=$(microsoft-symbol-server-pat)
             /p:DotNetSymbolServerTokenSymWeb=$(symweb-symbol-server-pat)
+            /p:OfficialBuildId=$(BUILD.BUILDNUMBER)
         - name: _OfficialBuildIdArgs
-          value: /p:OfficialBuildId=$(BUILD.BUILDNUMBER)
       # else
       - ${{ if or(eq(variables['System.TeamProject'], 'public'), in(variables['Build.Reason'], 'PullRequest')) }}:
-        - name: _SignType
-          value: Test
-        - name: _PublishType
-          value: none
-        - name: _PublishArgs
-          value: ''
-        - name: _OfficialBuildIdArgs
-          value: ''
-        - name: _SignArgs
-          value: /p:SignType=$(_SignType)
+        - name: _BuildArgs
+          value: /p:SignType=Test
       steps:
       - checkout: self
         clean: true
@@ -72,9 +57,7 @@ jobs:
           -configuration $(_BuildConfig) 
           -prepareMachine
           -warnaserror:0
-          $(_PublishArgs)
-          $(_SignArgs)
-          $(_OfficialBuildIdArgs)
+          $(_BuildArgs)
         displayName: Windows Build / Publish
 
     # Linux leg (only runs in CI)
