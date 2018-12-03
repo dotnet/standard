@@ -34,3 +34,5 @@ Currently defined versions of the .NET Standard can be located in the
 
 For more information, check out the [FAQ](docs/faq.md). It should answer any questions 
 you have not covered by the versions documentation.
+
+This is a dummy commit, do not merge
