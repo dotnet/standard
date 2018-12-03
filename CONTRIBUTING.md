@@ -5,3 +5,5 @@ here. For now, simply refer to the [contributing guide] in the CoreFX
 repository.
 
 [contributing guide]: https://github.com/dotnet/corefx/blob/master/Documentation/project-docs/contributing.md
+
+This is a dummy commit to trigger the CI
