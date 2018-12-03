@@ -24,6 +24,8 @@ jobs:
       variables:
       - name: _BuildConfig 
         value: Release
+      - group: DotNet-Blob-Feed
+      - group: DotNet-Symbol-Server-Pats
       # Enable signing for internal, non-PR builds
       - ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
         - name: _BuildArgs
@@ -46,13 +48,6 @@ jobs:
       steps:
       - checkout: self
         clean: true
-      # Grab KeyVault if this is an internal build
-      - ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
-        - task: AzureKeyVault@1
-          inputs:
-            azureSubscription: 'DotNet-Engineering-Services_KeyVault'
-            KeyVaultName: EngKeyVault
-            SecretsFilter: 'dotnetfeed-storage-access-key-1,microsoft-symbol-server-pat,symweb-symbol-server-pat'
       - script: eng\common\cibuild.cmd
           -configuration $(_BuildConfig) 
           -prepareMachine
