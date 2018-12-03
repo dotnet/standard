@@ -1,0 +1,98 @@
+# CI and PR triggers
+trigger:
+- master
+pr:
+- master
+
+variables:
+  - name: _TeamName
+    value: DotNetCore
+
+jobs:
+- template: /eng/common/templates/jobs/jobs.yml
+  parameters:
+    enableMicrobuild: true
+    enablePublishBuildArtifacts: true
+    enablePublishTestResults: false
+    # TODO - set 'enablePublishBuildAssets: true' once we're publishing output to the 'artifacts' dir
+    enablePublishBuildAssets: false
+    enableTelemetry: true
+    helixRepo: dotnet/standard
+    jobs:
+    - job: Windows_NT
+      pool: 
+        # For public or PR jobs, use the hosted pool.  For internal jobs use the internal pool.
+        # Will eventually change this to two BYOC pools.
+        ${{ if or(eq(variables['System.TeamProject'], 'public'), in(variables['Build.Reason'], 'PullRequest')) }}:
+          name: dotnet-external-temp
+        ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
+          name: dotnet-internal-temp
+      variables:
+      - name: _BuildConfig 
+        value: Release
+      - group: DotNet-Blob-Feed
+      - group: DotNet-Symbol-Server-Pats
+      # Enable signing for internal, non-PR builds
+      - ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
+        - name: _BuildArgs
+          value: /p:SignType=Real
+            /p:DotNetSignType=Real
+            /p:MicroBuild_SigningEnabled=true 
+            /p:OverridePackageSource=https://dotnetfeed.blob.core.windows.net/dotnet-core/index.json
+            /p:TeamName=$(_TeamName)
+            /p:DotNetPublishBlobFeedKey=$(dotnetfeed-storage-access-key-1)
+            /p:DotNetPublishBlobFeedUrl=https://dotnetfeed.blob.core.windows.net/dotnet-core/index.json
+            /p:DotNetPublishToBlobFeed=true
+            /p:DotNetSymbolServerTokenMsdl=$(microsoft-symbol-server-pat)
+            /p:DotNetSymbolServerTokenSymWeb=$(symweb-symbol-server-pat)
+            /p:OfficialBuildId=$(BUILD.BUILDNUMBER)
+        - name: _OfficialBuildIdArgs
+      # else
+      - ${{ if or(eq(variables['System.TeamProject'], 'public'), in(variables['Build.Reason'], 'PullRequest')) }}:
+        - name: _BuildArgs
+          value: /p:SignType=Test
+      steps:
+      - checkout: self
+        clean: true
+      - script: eng\common\cibuild.cmd
+          -configuration $(_BuildConfig) 
+          -prepareMachine
+          -warnaserror:0
+          $(_BuildArgs)
+        displayName: Windows Build / Publish
+
+    # Linux leg (only runs in CI)
+    - ${{ if eq(variables['System.TeamProject'], 'public') }}:
+      - job: Linux
+        pool: 
+          name: Hosted Ubuntu 1604
+        variables:
+        - name: _BuildConfig 
+          value: Release
+        - name: _SignType
+          value: Test
+        steps:
+        - checkout: self
+          clean: true
+        - script: eng/common/cibuild.sh
+            --configuration $(_BuildConfig)
+            --prepareMachine
+          displayName: Linux Build
+
+    # OSX leg (only runs in CI)
+    - ${{ if eq(variables['System.TeamProject'], 'public') }}:
+      - job: OSX
+        pool: 
+          name: Hosted macOS
+        variables:
+        - name: _BuildConfig 
+          value: Release
+        - name: _SignType
+          value: Test
+        steps:
+        - checkout: self
+          clean: true
+        - script: eng/common/cibuild.sh
+            --configuration $(_BuildConfig)
+            --prepareMachine
+          displayName: OSX Build
