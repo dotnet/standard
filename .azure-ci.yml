@@ -34,6 +34,8 @@ jobs:
       - ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
         - group: DotNet-Blob-Feed
         - group: DotNet-Symbol-Server-Pats
+        - name: _SignType
+          value: Real
         - name: _BuildArgs
           value: /p:SignType=Real
             /p:DotNetSignType=Real
@@ -51,6 +53,8 @@ jobs:
       - ${{ if or(eq(variables['System.TeamProject'], 'public'), in(variables['Build.Reason'], 'PullRequest')) }}:
         - name: _BuildArgs
           value: /p:SignType=Test
+        - name: _SignType
+          value: Test
       steps:
       - checkout: self
         clean: true
