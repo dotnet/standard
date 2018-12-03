@@ -7,6 +7,8 @@ pr:
 variables:
   - name: _TeamName
     value: DotNetCore
+  - name: _BuildConfig 
+    value: Release
 
 jobs:
 - template: /eng/common/templates/jobs/jobs.yml
@@ -28,12 +30,10 @@ jobs:
         ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
           name: dotnet-internal-temp
       variables:
-      - name: _BuildConfig 
-        value: Release
-      - group: DotNet-Blob-Feed
-      - group: DotNet-Symbol-Server-Pats
       # Enable signing for internal, non-PR builds
       - ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
+        - group: DotNet-Blob-Feed
+        - group: DotNet-Symbol-Server-Pats
         - name: _BuildArgs
           value: /p:SignType=Real
             /p:DotNetSignType=Real
@@ -67,8 +67,6 @@ jobs:
         pool: 
           name: Hosted Ubuntu 1604
         variables:
-        - name: _BuildConfig 
-          value: Release
         - name: _SignType
           value: Test
         steps:
@@ -85,8 +83,6 @@ jobs:
         pool: 
           name: Hosted macOS
         variables:
-        - name: _BuildConfig 
-          value: Release
         - name: _SignType
           value: Test
         steps:
