@@ -1,3 +1,9 @@
+# CI and PR triggers
+trigger:
+- master
+pr:
+- master
+
 variables:
   - name: _TeamName
     value: DotNetCore
