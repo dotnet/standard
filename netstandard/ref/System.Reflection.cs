@@ -400,8 +400,8 @@ namespace System.Reflection
     }
     public partial struct CustomAttributeNamedArgument
     {
-        public CustomAttributeNamedArgument(System.Reflection.MemberInfo memberInfo, object value) { throw null;}
-        public CustomAttributeNamedArgument(System.Reflection.MemberInfo memberInfo, System.Reflection.CustomAttributeTypedArgument typedArgument) { throw null;}
+        public CustomAttributeNamedArgument(System.Reflection.MemberInfo memberInfo, object value) { throw null; }
+        public CustomAttributeNamedArgument(System.Reflection.MemberInfo memberInfo, System.Reflection.CustomAttributeTypedArgument typedArgument) { throw null; }
         public bool IsField { get { throw null; } }
         public System.Reflection.MemberInfo MemberInfo { get { throw null; } }
         public string MemberName { get { throw null; } }
@@ -414,8 +414,8 @@ namespace System.Reflection
     }
     public partial struct CustomAttributeTypedArgument
     {
-        public CustomAttributeTypedArgument(object value) { throw null;}
-        public CustomAttributeTypedArgument(System.Type argumentType, object value) { throw null;}
+        public CustomAttributeTypedArgument(object value) { throw null; }
+        public CustomAttributeTypedArgument(System.Type argumentType, object value) { throw null; }
         public System.Type ArgumentType { get { throw null; } }
         public object Value { get { throw null; } }
         public override bool Equals(object obj) { throw null; }
@@ -904,7 +904,7 @@ namespace System.Reflection
     }
     public readonly partial struct ParameterModifier
     {
-        public ParameterModifier(int parameterCount) { throw null;}
+        public ParameterModifier(int parameterCount) { throw null; }
         public bool this[int index] { get { throw null; } set { } }
     }
     [System.CLSCompliantAttribute(false)]
