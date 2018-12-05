@@ -817,6 +817,13 @@ namespace System.Reflection
         public virtual System.Reflection.MethodInfo[] GetMethods(System.Reflection.BindingFlags bindingFlags) { throw null; }
         public virtual void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public virtual void GetPEKind(out System.Reflection.PortableExecutableKinds peKind, out System.Reflection.ImageFileMachine machine) { peKind = default(System.Reflection.PortableExecutableKinds); machine = default(System.Reflection.ImageFileMachine); }
+//      We've excluded GetSignerCertificate() for the following reasons:
+//          * It pulls in crypto, which isn't in corlib in .NET Core
+//          * It's unclear how this API would work if the module has multiple certs
+//          * It seems like a fringe scenario. If there are use cases for extracting Authenticode signatures from modules,
+//            it should probably be part of System.Reflection.Metadata and return raw blobs. The consumer can feed it to
+//            crypto cert AIs (e.g. as a byte array), which would avaoid the layering issue.
+//      public virtual System.Security.Cryptography.X509Certificates.X509Certificate GetSignerCertificate() { throw null; }
         public virtual System.Type GetType(string className) { throw null; }
         public virtual System.Type GetType(string className, bool ignoreCase) { throw null; }
         public virtual System.Type GetType(string className, bool throwOnError, bool ignoreCase) { throw null; }
