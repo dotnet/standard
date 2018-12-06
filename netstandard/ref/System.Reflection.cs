@@ -400,8 +400,8 @@ namespace System.Reflection
     }
     public partial struct CustomAttributeNamedArgument
     {
-        public CustomAttributeNamedArgument(System.Reflection.MemberInfo memberInfo, object value) { throw null;}
-        public CustomAttributeNamedArgument(System.Reflection.MemberInfo memberInfo, System.Reflection.CustomAttributeTypedArgument typedArgument) { throw null;}
+        public CustomAttributeNamedArgument(System.Reflection.MemberInfo memberInfo, object value) { throw null; }
+        public CustomAttributeNamedArgument(System.Reflection.MemberInfo memberInfo, System.Reflection.CustomAttributeTypedArgument typedArgument) { throw null; }
         public bool IsField { get { throw null; } }
         public System.Reflection.MemberInfo MemberInfo { get { throw null; } }
         public string MemberName { get { throw null; } }
@@ -414,8 +414,8 @@ namespace System.Reflection
     }
     public partial struct CustomAttributeTypedArgument
     {
-        public CustomAttributeTypedArgument(object value) { throw null;}
-        public CustomAttributeTypedArgument(System.Type argumentType, object value) { throw null;}
+        public CustomAttributeTypedArgument(object value) { throw null; }
+        public CustomAttributeTypedArgument(System.Type argumentType, object value) { throw null; }
         public System.Type ArgumentType { get { throw null; } }
         public object Value { get { throw null; } }
         public override bool Equals(object obj) { throw null; }
@@ -817,6 +817,13 @@ namespace System.Reflection
         public virtual System.Reflection.MethodInfo[] GetMethods(System.Reflection.BindingFlags bindingFlags) { throw null; }
         public virtual void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public virtual void GetPEKind(out System.Reflection.PortableExecutableKinds peKind, out System.Reflection.ImageFileMachine machine) { peKind = default(System.Reflection.PortableExecutableKinds); machine = default(System.Reflection.ImageFileMachine); }
+//      We've excluded GetSignerCertificate() for the following reasons:
+//          * It pulls in crypto, which isn't in corlib in .NET Core
+//          * It's unclear how this API would work if the module has multiple certs
+//          * It seems like a fringe scenario. If there are use cases for extracting Authenticode signatures from modules,
+//            it should probably be part of System.Reflection.Metadata and return raw blobs. The consumer can feed it to
+//            crypto cert AIs (e.g. as a byte array), which would avaoid the layering issue.
+//      public virtual System.Security.Cryptography.X509Certificates.X509Certificate GetSignerCertificate() { throw null; }
         public virtual System.Type GetType(string className) { throw null; }
         public virtual System.Type GetType(string className, bool ignoreCase) { throw null; }
         public virtual System.Type GetType(string className, bool throwOnError, bool ignoreCase) { throw null; }
@@ -904,7 +911,7 @@ namespace System.Reflection
     }
     public readonly partial struct ParameterModifier
     {
-        public ParameterModifier(int parameterCount) { throw null;}
+        public ParameterModifier(int parameterCount) { throw null; }
         public bool this[int index] { get { throw null; } set { } }
     }
     [System.CLSCompliantAttribute(false)]

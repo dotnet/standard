@@ -13,12 +13,19 @@ namespace System.Reflection.Emit
         public static System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access) { throw null; }
         public static System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, System.Collections.Generic.IEnumerable<System.Reflection.Emit.CustomAttributeBuilder> assemblyAttributes) { throw null; }
         public System.Reflection.Emit.ModuleBuilder DefineDynamicModule(string name) { throw null; }
+//      Excluded because persistence of Ref Emit is only supported in .NET Framework
+//      public System.Reflection.Emit.ModuleBuilder DefineDynamicModule(string name, bool emitSymbolInfo) { throw null; }
+//      public System.Reflection.Emit.ModuleBuilder DefineDynamicModule(string name, string fileName) { throw null; }
+//      public System.Reflection.Emit.ModuleBuilder DefineDynamicModule(string name, string fileName, bool emitSymbolInfo) { throw null; }
         public override bool Equals(object obj) { throw null; }
         public System.Reflection.Emit.ModuleBuilder GetDynamicModule(string name) { throw null; }
         public override int GetHashCode() { throw null; }
         public override System.Reflection.ManifestResourceInfo GetManifestResourceInfo(string resourceName) { throw null; }
         public override string[] GetManifestResourceNames() { throw null; }
         public override System.IO.Stream GetManifestResourceStream(string name) { throw null; }
+//      Excluded because persistence of Ref Emit is only supported in .NET Framework
+//      public void Save(string assemblyFileName) { }
+//      public void Save(string assemblyFileName, System.Reflection.PortableExecutableKinds portableExecutableKind, System.Reflection.ImageFileMachine imageFileMachine) { }
         public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
     }
@@ -27,6 +34,9 @@ namespace System.Reflection.Emit
     {
         Run = 1,
         RunAndCollect = 9,
+//      Excluded because persistence of Ref Emit is only supported in .NET Framework
+//      RunAndSave = 3,
+//      Save = 2,
     }
     public sealed partial class ConstructorBuilder : System.Reflection.ConstructorInfo
     {
@@ -39,6 +49,9 @@ namespace System.Reflection.Emit
         public override System.Reflection.Module Module { get { throw null; } }
         public override string Name { get { throw null; } }
         public override System.Type ReflectedType { get { throw null; } }
+//      [System.ObsoleteAttribute("This property has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202")]
+//      public System.Type ReturnType { get { throw null; } }
+//CAS   public void AddDeclarativeSecurity(System.Security.Permissions.SecurityAction action, System.Security.PermissionSet pset) { }
         public System.Reflection.Emit.ParameterBuilder DefineParameter(int iSequence, System.Reflection.ParameterAttributes attributes, string strParamName) { throw null; }
         public override object[] GetCustomAttributes(bool inherit) { throw null; }
         public override object[] GetCustomAttributes(System.Type attributeType, bool inherit) { throw null; }
@@ -52,6 +65,8 @@ namespace System.Reflection.Emit
         public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
         public void SetImplementationFlags(System.Reflection.MethodImplAttributes attributes) { }
+//      Excluded because we don't support generating with debug information.
+//      public void SetSymCustomAttribute(string name, byte[] data) { }
         public override string ToString() { throw null; }
     }
     public partial class CustomAttributeBuilder
@@ -182,6 +197,8 @@ namespace System.Reflection.Emit
         public void SetConstant(object defaultValue) { }
         public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
+//      [System.ObsoleteAttribute("An alternate API is available: Emit the MarshalAs custom attribute instead. http://go.microsoft.com/fwlink/?linkid=14202")]
+//      public void SetMarshal(System.Reflection.Emit.UnmanagedMarshal unmanagedMarshal) { }
         public void SetOffset(int iOffset) { }
         public override void SetValue(object obj, object val, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Globalization.CultureInfo culture) { }
     }
@@ -331,6 +348,9 @@ namespace System.Reflection.Emit
         public override bool IsPinned { get { throw null; } }
         public override int LocalIndex { get { throw null; } }
         public override System.Type LocalType { get { throw null; } }
+//      Excluded because we don't support generating with debug information.
+//      public void SetLocalSymInfo(string name) { }
+//      public void SetLocalSymInfo(string name, int startOffset, int endOffset) { }
     }
     public sealed partial class MethodBuilder : System.Reflection.MethodInfo
     {
@@ -350,6 +370,7 @@ namespace System.Reflection.Emit
         public override System.Reflection.ParameterInfo ReturnParameter { get { throw null; } }
         public override System.Type ReturnType { get { throw null; } }
         public override System.Reflection.ICustomAttributeProvider ReturnTypeCustomAttributes { get { throw null; } }
+//CAS   public void AddDeclarativeSecurity(System.Security.Permissions.SecurityAction action, System.Security.PermissionSet pset) { }
         public System.Reflection.Emit.GenericTypeParameterBuilder[] DefineGenericParameters(params string[] names) { throw null; }
         public System.Reflection.Emit.ParameterBuilder DefineParameter(int position, System.Reflection.ParameterAttributes attributes, string strParamName) { throw null; }
         public override bool Equals(object obj) { throw null; }
@@ -369,9 +390,13 @@ namespace System.Reflection.Emit
         public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
         public void SetImplementationFlags(System.Reflection.MethodImplAttributes attributes) { }
+//      [System.ObsoleteAttribute("An alternate API is available: Emit the MarshalAs custom attribute instead. http://go.microsoft.com/fwlink/?linkid=14202")]
+//      public void SetMarshal(System.Reflection.Emit.UnmanagedMarshal unmanagedMarshal) { }
         public void SetParameters(params System.Type[] parameterTypes) { }
         public void SetReturnType(System.Type returnType) { }
         public void SetSignature(System.Type returnType, System.Type[] returnTypeRequiredCustomModifiers, System.Type[] returnTypeOptionalCustomModifiers, System.Type[] parameterTypes, System.Type[][] parameterTypeRequiredCustomModifiers, System.Type[][] parameterTypeOptionalCustomModifiers) { }
+//      Excluded because we don't support generating with debug information.
+//      public void SetSymCustomAttribute(string name, byte[] data) { }
         public override string ToString() { throw null; }
     }
     public partial class ModuleBuilder : System.Reflection.Module
@@ -381,6 +406,8 @@ namespace System.Reflection.Emit
         public override string FullyQualifiedName { get { throw null; } }
         public override string Name { get { throw null; } }
         public void CreateGlobalFunctions() { }
+//      Excluded because we don't support generating with debug information.
+//      public System.Diagnostics.SymbolStore.ISymbolDocumentWriter DefineDocument(string url, System.Guid language, System.Guid languageVendor, System.Guid documentType) { throw null; }
         public System.Reflection.Emit.EnumBuilder DefineEnum(string name, System.Reflection.TypeAttributes visibility, System.Type underlyingType) { throw null; }
         public System.Reflection.Emit.MethodBuilder DefineGlobalMethod(string name, System.Reflection.MethodAttributes attributes, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] parameterTypes) { throw null; }
         public System.Reflection.Emit.MethodBuilder DefineGlobalMethod(string name, System.Reflection.MethodAttributes attributes, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] requiredReturnTypeCustomModifiers, System.Type[] optionalReturnTypeCustomModifiers, System.Type[] parameterTypes, System.Type[][] requiredParameterTypeCustomModifiers, System.Type[][] optionalParameterTypeCustomModifiers) { throw null; }
@@ -399,6 +426,8 @@ namespace System.Reflection.Emit
         public override int GetHashCode() { throw null; }
         public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
+//      Excluded because we don't support generating with debug information.
+//      public void SetSymCustomAttribute(string name, byte[] data) { }
     }
     public partial struct OpCode
     {
@@ -704,6 +733,8 @@ namespace System.Reflection.Emit
         public virtual void SetConstant(object defaultValue) { }
         public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
+//      [System.ObsoleteAttribute("An alternate API is available: Emit the MarshalAs custom attribute instead. http://go.microsoft.com/fwlink/?linkid=14202")]
+//      public virtual void SetMarshal(System.Reflection.Emit.UnmanagedMarshal unmanagedMarshal) { }
     }
     public sealed partial class PropertyBuilder : System.Reflection.PropertyInfo
     {
@@ -820,6 +851,7 @@ namespace System.Reflection.Emit
         public int Size { get { throw null; } }
         public override System.RuntimeTypeHandle TypeHandle { get { throw null; } }
         public override System.Type UnderlyingSystemType { get { throw null; } }
+//CAS   public void AddDeclarativeSecurity(System.Security.Permissions.SecurityAction action, System.Security.PermissionSet pset) { }
         public void AddInterfaceImplementation(System.Type interfaceType) { }
         public System.Type CreateType() { throw null; }
         public System.Reflection.TypeInfo CreateTypeInfo() { throw null; }
@@ -898,4 +930,18 @@ namespace System.Reflection.Emit
         public void SetParent(System.Type parent) { }
         public override string ToString() { throw null; }
     }
+//  [System.ObsoleteAttribute("An alternate API is available: Emit the MarshalAs custom attribute instead. http://go.microsoft.com/fwlink/?linkid=14202")]
+//  public sealed partial class UnmanagedMarshal
+//  {
+//      internal UnmanagedMarshal() { }
+//      public System.Runtime.InteropServices.UnmanagedType BaseType { get { throw null; } }
+//      public int ElementCount { get { throw null; } }
+//      public System.Runtime.InteropServices.UnmanagedType GetUnmanagedType { get { throw null; } }
+//      public System.Guid IIDGuid { get { throw null; } }
+//      public static System.Reflection.Emit.UnmanagedMarshal DefineByValArray(int elemCount) { throw null; }
+//      public static System.Reflection.Emit.UnmanagedMarshal DefineByValTStr(int elemCount) { throw null; }
+//      public static System.Reflection.Emit.UnmanagedMarshal DefineLPArray(System.Runtime.InteropServices.UnmanagedType elemType) { throw null; }
+//      public static System.Reflection.Emit.UnmanagedMarshal DefineSafeArray(System.Runtime.InteropServices.UnmanagedType elemType) { throw null; }
+//      public static System.Reflection.Emit.UnmanagedMarshal DefineUnmanagedMarshal(System.Runtime.InteropServices.UnmanagedType unmanagedType) { throw null; }
+//  }
 }
