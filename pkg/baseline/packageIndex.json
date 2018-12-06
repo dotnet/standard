@@ -115,10 +115,6 @@
       "BaselineVersion": "1.1.0",
       "InboxOn": {}
     },
-    "Microsoft.Packaging.Tools.Trimming": {
-      "BaselineVersion": "1.0.0",
-      "InboxOn": {}
-    },
     "Microsoft.Phone": {
       "InboxOn": {
         "wp8": "8.0.0.0"
