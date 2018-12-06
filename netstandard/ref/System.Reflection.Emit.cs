@@ -455,7 +455,8 @@ namespace System.Reflection.Emit
         public override System.Reflection.ICustomAttributeProvider ReturnTypeCustomAttributes { get { throw null; } }
         public string Signature { get { throw null; } }
 //CAS   public void AddDeclarativeSecurity(System.Security.Permissions.SecurityAction action, System.Security.PermissionSet pset) { }
-        public void CreateMethodBody(byte[] il, int count) { }
+//      Excluded because this is a poorly designed API and it is virtually unused. The replacement is SetMethodBody.
+//      public void CreateMethodBody(byte[] il, int count) { }
         public System.Reflection.Emit.GenericTypeParameterBuilder[] DefineGenericParameters(params string[] names) { throw null; }
         public System.Reflection.Emit.ParameterBuilder DefineParameter(int position, System.Reflection.ParameterAttributes attributes, string strParamName) { throw null; }
         public override bool Equals(object obj) { throw null; }
