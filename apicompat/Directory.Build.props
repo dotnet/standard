@@ -2,6 +2,6 @@
   <Import Project="..\Directory.Build.props" />
   <PropertyGroup>
     <ContainsPackageReferences>true</ContainsPackageReferences>
-    <RestoredRefRootPath>$(ObjDir)CompatShims/ref/</RestoredRefRootPath>
+    <RestoredRefRootPath>$(ArtifactsObjDir)CompatShims/ref/</RestoredRefRootPath>
   </PropertyGroup>
 </Project>

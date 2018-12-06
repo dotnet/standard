@@ -3,7 +3,7 @@
   <Import Condition="Exists('..\Directory.Build.props')" Project="..\Directory.Build.props" />
 
   <PropertyGroup>
-  	<OutDir>$(BaseOutputPath)ref/$(TargetGroup)/</OutDir>
+  	<OutDir>$(ArtifactsBinDir)ref/$(TargetGroup)/</OutDir>
     <IsReferenceAssembly>true</IsReferenceAssembly>
     <LangVersion>7.2</LangVersion>
     <TargetFramework>net461</TargetFramework>

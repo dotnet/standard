@@ -50,7 +50,7 @@
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
 
   <PropertyGroup>
-    <OutDir>$(BaseOutputPath)shims/$(ShimRelOutputPath)</OutDir>
+    <OutDir>$(ArtifactsBinDir)shims/$(ShimRelOutputPath)</OutDir>
   </PropertyGroup>
 
 </Project>

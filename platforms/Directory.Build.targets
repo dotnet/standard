@@ -19,7 +19,7 @@
   <Import Condition="Exists('..\Directory.Build.targets')" Project="..\Directory.Build.targets" />
 
   <PropertyGroup>
-    <OutDir>$(BaseOutputPath)ref/$(TargetGroup)/</OutDir>
+    <OutDir>$(ArtifactsBinDir)ref/$(TargetGroup)/</OutDir>
     <TargetPath>$(TargetPathValue)</TargetPath>
   </PropertyGroup>
 
