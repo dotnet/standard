@@ -191,8 +191,7 @@
     <OSPlatformConfig>$(OSGroup).$(Platform).$(ConfigurationGroup)</OSPlatformConfig>
     <TargetOutputRelPath Condition="'$(TargetGroup)'!=''">$(TargetGroup)/</TargetOutputRelPath>
 
-    <OutputPathSubfolder Condition="'$(IsCompatAssembly)'=='true'">/Compat</OutputPathSubfolder>
-    <OutputPath>$(OutputPath)$(TargetOutputRelPath)$(OutputPathSubfolder)</OutputPath>
+    <OutputPath>$(OutputPath)$(TargetOutputRelPath)</OutputPath>
 
     <IntermediateOutputPath>$(IntermediateOutputPath)$(TargetOutputRelPath)</IntermediateOutputPath>
 
