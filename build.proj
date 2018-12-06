@@ -24,7 +24,6 @@
     </ItemGroup>
 
     <MSBuild Projects="@(_RestoreProjects)" />
-    <MSBuild Projects="Microsoft.Packaging.Tools.Trimming/tasks/Microsoft.Packaging.Tools.Trimming.Tasks.csproj" Targets="Restore" />
   </Target>
 
   <Target Name="BuildManaged">
