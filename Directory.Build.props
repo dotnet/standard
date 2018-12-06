@@ -19,10 +19,8 @@
     <SourceDir>$(ProjectDir)src\</SourceDir>
 
     <!-- Output directories -->
-    <BinDir Condition="'$(BinDir)'==''">$(ProjectDir)bin/</BinDir>
-    <ObjDir Condition="'$(ObjDir)'==''">$(BinDir)obj/</ObjDir>
-    <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'==''">$(ObjDir)</BaseIntermediateOutputPath>
-    <RootIntermediateOutputPath Condition="'$(RootIntermediateOutputPath)'==''">$(BaseIntermediateOutputPath)</RootIntermediateOutputPath>
+    <BinDir>$(ProjectDir)artifacts\bin\</BinDir>
+    <RootIntermediateOutputPath>$(ProjectDir)artifacts\obj\</RootIntermediateOutputPath>
 
     <PackageOutputRoot Condition="'$(PackageOutputRoot)'=='' and '$(NonShippingPackage)' == 'true'">$(BinDir)packages_noship/</PackageOutputRoot>
     <PackageOutputRoot Condition="'$(PackageOutputRoot)'==''">$(BinDir)packages/</PackageOutputRoot>
@@ -177,6 +175,9 @@
     <NoExplicitReferenceToStdLib>true</NoExplicitReferenceToStdLib>
     <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+
+    <!-- Suppress preview message as we are usually using preview SDK versions. -->
+    <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
   </PropertyGroup>
 
   <!-- Set up handling of build warnings -->
@@ -190,12 +191,10 @@
     <OSPlatformConfig>$(OSGroup).$(Platform).$(ConfigurationGroup)</OSPlatformConfig>
     <TargetOutputRelPath Condition="'$(TargetGroup)'!=''">$(TargetGroup)/</TargetOutputRelPath>
 
-    <BaseOutputPath>$(BinDir)</BaseOutputPath>
     <OutputPathSubfolder Condition="'$(IsCompatAssembly)'=='true'">/Compat</OutputPathSubfolder>
-    <OutputPath>$(BaseOutputPath)$(OSPlatformConfig)/$(MSBuildProjectName)/$(TargetOutputRelPath)$(OutputPathSubfolder)</OutputPath>
+    <OutputPath>$(OutputPath)$(TargetOutputRelPath)$(OutputPathSubfolder)</OutputPath>
 
-    <IntermediateOutputRootPath>$(BaseIntermediateOutputPath)$(OSPlatformConfig)/</IntermediateOutputRootPath>
-    <IntermediateOutputPath>$(IntermediateOutputRootPath)$(MSBuildProjectName)/$(TargetOutputRelPath)</IntermediateOutputPath>
+    <IntermediateOutputPath>$(IntermediateOutputPath)$(TargetOutputRelPath)</IntermediateOutputPath>
 
     <TestPath Condition="'$(TestPath)'==''">$(TestWorkingDir)$(OSPlatformConfig)/$(MSBuildProjectName)/</TestPath>
 
