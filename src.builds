@@ -7,8 +7,6 @@
     <Project Include="netstandard/src/*.builds" />
     <Project Include="platforms/dir.proj"
              Condition="'$(DotNetBuildFromSource)' != 'true'" />
-    <Project Include="Microsoft.Packaging.Tools.Trimming/tasks/*.builds"
-             Condition="'$(DotNetBuildFromSource)' != 'true'" />
   </ItemGroup>
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.traversal.targets))\dir.traversal.targets" />

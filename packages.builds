@@ -4,8 +4,6 @@
 
   <ItemGroup>
     <Project Include="netstandard\pkg\NETStandard.Library.pkgproj" />
-    <Project Include="Microsoft.Packaging.Tools.Trimming/pkg/Microsoft.Packaging.Tools.Trimming.pkgproj"
-             Condition="'$(DotNetBuildFromSource)' != 'true'" />
   </ItemGroup>
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.traversal.targets))\dir.traversal.targets" />
