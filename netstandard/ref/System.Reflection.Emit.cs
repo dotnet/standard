@@ -19,12 +19,13 @@ namespace System.Reflection.Emit
 //      public System.Reflection.Emit.ModuleBuilder DefineDynamicModule(string name, bool emitSymbolInfo) { throw null; }
 //      public System.Reflection.Emit.ModuleBuilder DefineDynamicModule(string name, string fileName) { throw null; }
 //      public System.Reflection.Emit.ModuleBuilder DefineDynamicModule(string name, string fileName, bool emitSymbolInfo) { throw null; }
-        public System.Resources.IResourceWriter DefineResource(string name, string description, string fileName) { throw null; }
-        public System.Resources.IResourceWriter DefineResource(string name, string description, string fileName, System.Reflection.ResourceAttributes attribute) { throw null; }
-        public void DefineUnmanagedResource(byte[] resource) { }
-        public void DefineUnmanagedResource(string resourceFileName) { }
-        public void DefineVersionInfoResource() { }
-        public void DefineVersionInfoResource(string product, string productVersion, string company, string copyright, string trademark) { }
+//      Excluded because they are only meaningful to assemblies that are written to disk, which we only support in .NET Framework.
+//      public System.Resources.IResourceWriter DefineResource(string name, string description, string fileName) { throw null; }
+//      public System.Resources.IResourceWriter DefineResource(string name, string description, string fileName, System.Reflection.ResourceAttributes attribute) { throw null; }
+//      public void DefineUnmanagedResource(byte[] resource) { }
+//      public void DefineUnmanagedResource(string resourceFileName) { }
+//      public void DefineVersionInfoResource() { }
+//      public void DefineVersionInfoResource(string product, string productVersion, string company, string copyright, string trademark) { }
         public override bool Equals(object obj) { throw null; }
         public System.Reflection.Emit.ModuleBuilder GetDynamicModule(string name) { throw null; }
         public override int GetHashCode() { throw null; }
@@ -37,12 +38,14 @@ namespace System.Reflection.Emit
         public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
         public void SetEntryPoint(System.Reflection.MethodInfo entryMethod) { }
-        public void SetEntryPoint(System.Reflection.MethodInfo entryMethod, System.Reflection.Emit.PEFileKinds fileKind) { }
+//      Excluded because fileKind is only meaningful to assemblies that are written to disk, which we only support in .NET Framework.
+//      public void SetEntryPoint(System.Reflection.MethodInfo entryMethod, System.Reflection.Emit.PEFileKinds fileKind) { }
     }
     [System.FlagsAttribute]
     public enum AssemblyBuilderAccess
     {
-        ReflectionOnly = 6,
+//      Excluded because ReflectionOnlyLoad is only supported in .NET Framework.
+//      ReflectionOnly = 6,
         Run = 1,
         RunAndCollect = 9,
 //      Excluded because persistence of Ref Emit is only supported in .NET Framework
@@ -483,13 +486,14 @@ namespace System.Reflection.Emit
 //      public void SetSymCustomAttribute(string name, byte[] data) { }
         public override string ToString() { throw null; }
     }
-    public sealed partial class MethodRental
-    {
-        internal MethodRental() { }
-        public const int JitImmediate = 1;
-        public const int JitOnDemand = 0;
-        public static void SwapMethodBody(System.Type cls, int methodtoken, System.IntPtr rgIL, int methodSize, int flags) { }
-    }
+//  Excluded because it's a broken API from .NET Framework v1. Not supported anywhere else.
+//  public sealed partial class MethodRental
+//  {
+//      internal MethodRental() { }
+//      public const int JitImmediate = 1;
+//      public const int JitOnDemand = 0;
+//      public static void SwapMethodBody(System.Type cls, int methodtoken, System.IntPtr rgIL, int methodSize, int flags) { }
+//  }
     public partial struct MethodToken
     {
         public static readonly System.Reflection.Emit.MethodToken Empty;
@@ -517,8 +521,9 @@ namespace System.Reflection.Emit
         public void DefineManifestResource(string name, System.IO.Stream stream, System.Reflection.ResourceAttributes attribute) { }
         public System.Reflection.Emit.MethodBuilder DefinePInvokeMethod(string name, string dllName, System.Reflection.MethodAttributes attributes, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] parameterTypes, System.Runtime.InteropServices.CallingConvention nativeCallConv, System.Runtime.InteropServices.CharSet nativeCharSet) { throw null; }
         public System.Reflection.Emit.MethodBuilder DefinePInvokeMethod(string name, string dllName, string entryName, System.Reflection.MethodAttributes attributes, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] parameterTypes, System.Runtime.InteropServices.CallingConvention nativeCallConv, System.Runtime.InteropServices.CharSet nativeCharSet) { throw null; }
-        public System.Resources.IResourceWriter DefineResource(string name, string description) { throw null; }
-        public System.Resources.IResourceWriter DefineResource(string name, string description, System.Reflection.ResourceAttributes attribute) { throw null; }
+//      Excluded because they are only meaningful to assemblies that are written to disk, which we only support in .NET Framework.
+//      public System.Resources.IResourceWriter DefineResource(string name, string description) { throw null; }
+//      public System.Resources.IResourceWriter DefineResource(string name, string description, System.Reflection.ResourceAttributes attribute) { throw null; }
         public System.Reflection.Emit.TypeBuilder DefineType(string name) { throw null; }
         public System.Reflection.Emit.TypeBuilder DefineType(string name, System.Reflection.TypeAttributes attr) { throw null; }
         public System.Reflection.Emit.TypeBuilder DefineType(string name, System.Reflection.TypeAttributes attr, System.Type parent) { throw null; }
@@ -527,8 +532,9 @@ namespace System.Reflection.Emit
         public System.Reflection.Emit.TypeBuilder DefineType(string name, System.Reflection.TypeAttributes attr, System.Type parent, System.Reflection.Emit.PackingSize packingSize, int typesize) { throw null; }
         public System.Reflection.Emit.TypeBuilder DefineType(string name, System.Reflection.TypeAttributes attr, System.Type parent, System.Type[] interfaces) { throw null; }
         public System.Reflection.Emit.FieldBuilder DefineUninitializedData(string name, int size, System.Reflection.FieldAttributes attributes) { throw null; }
-        public void DefineUnmanagedResource(byte[] resource) { }
-        public void DefineUnmanagedResource(string resourceFileName) { }
+//      Excluded because they are only meaningful to assemblies that are written to disk, which we only support in .NET Framework.
+//      public void DefineUnmanagedResource(byte[] resource) { }
+//      public void DefineUnmanagedResource(string resourceFileName) { }
         public override bool Equals(object obj) { throw null; }
         public System.Reflection.MethodInfo GetArrayMethod(System.Type arrayClass, string methodName, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] parameterTypes) { throw null; }
         public System.Reflection.Emit.MethodToken GetArrayMethodToken(System.Type arrayClass, string methodName, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] parameterTypes) { throw null; }
@@ -541,7 +547,8 @@ namespace System.Reflection.Emit
         public System.Reflection.Emit.SignatureToken GetSignatureToken(byte[] sigBytes, int sigLength) { throw null; }
         public System.Reflection.Emit.SignatureToken GetSignatureToken(System.Reflection.Emit.SignatureHelper sigHelper) { throw null; }
         public System.Reflection.Emit.StringToken GetStringConstant(string str) { throw null; }
-        public System.Diagnostics.SymbolStore.ISymbolWriter GetSymWriter() { throw null; }
+//      Excluded because we don't support generating with debug information.
+//      public System.Diagnostics.SymbolStore.ISymbolWriter GetSymWriter() { throw null; }
         public System.Reflection.Emit.TypeToken GetTypeToken(string name) { throw null; }
         public System.Reflection.Emit.TypeToken GetTypeToken(System.Type type) { throw null; }
         public bool IsTransient() { throw null; }
