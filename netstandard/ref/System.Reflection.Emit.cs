@@ -10,8 +10,9 @@ namespace System.Reflection.Emit
         public override string FullName { get { throw null; } }
         public override bool IsDynamic { get { throw null; } }
         public override System.Reflection.Module ManifestModule { get { throw null; } }
-        public void AddResourceFile(string name, string fileName) { }
-        public void AddResourceFile(string name, string fileName, System.Reflection.ResourceAttributes attribute) { }
+//      Excluded because they are only meaningful to assemblies that are written to disk, which we only support in .NET Framework.
+//      public void AddResourceFile(string name, string fileName) { }
+//      public void AddResourceFile(string name, string fileName, System.Reflection.ResourceAttributes attribute) { }
         public static System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access) { throw null; }
         public static System.Reflection.Emit.AssemblyBuilder DefineDynamicAssembly(System.Reflection.AssemblyName name, System.Reflection.Emit.AssemblyBuilderAccess access, System.Collections.Generic.IEnumerable<System.Reflection.Emit.CustomAttributeBuilder> assemblyAttributes) { throw null; }
         public System.Reflection.Emit.ModuleBuilder DefineDynamicModule(string name) { throw null; }
@@ -518,7 +519,8 @@ namespace System.Reflection.Emit
         public System.Reflection.Emit.MethodBuilder DefineGlobalMethod(string name, System.Reflection.MethodAttributes attributes, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] requiredReturnTypeCustomModifiers, System.Type[] optionalReturnTypeCustomModifiers, System.Type[] parameterTypes, System.Type[][] requiredParameterTypeCustomModifiers, System.Type[][] optionalParameterTypeCustomModifiers) { throw null; }
         public System.Reflection.Emit.MethodBuilder DefineGlobalMethod(string name, System.Reflection.MethodAttributes attributes, System.Type returnType, System.Type[] parameterTypes) { throw null; }
         public System.Reflection.Emit.FieldBuilder DefineInitializedData(string name, byte[] data, System.Reflection.FieldAttributes attributes) { throw null; }
-        public void DefineManifestResource(string name, System.IO.Stream stream, System.Reflection.ResourceAttributes attribute) { }
+//      Excluded because they are only meaningful to assemblies that are written to disk, which we only support in .NET Framework.
+//      public void DefineManifestResource(string name, System.IO.Stream stream, System.Reflection.ResourceAttributes attribute) { }
         public System.Reflection.Emit.MethodBuilder DefinePInvokeMethod(string name, string dllName, System.Reflection.MethodAttributes attributes, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] parameterTypes, System.Runtime.InteropServices.CallingConvention nativeCallConv, System.Runtime.InteropServices.CharSet nativeCharSet) { throw null; }
         public System.Reflection.Emit.MethodBuilder DefinePInvokeMethod(string name, string dllName, string entryName, System.Reflection.MethodAttributes attributes, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] parameterTypes, System.Runtime.InteropServices.CallingConvention nativeCallConv, System.Runtime.InteropServices.CharSet nativeCharSet) { throw null; }
 //      Excluded because they are only meaningful to assemblies that are written to disk, which we only support in .NET Framework.
@@ -876,12 +878,13 @@ namespace System.Reflection.Emit
         public static bool operator ==(System.Reflection.Emit.ParameterToken a, System.Reflection.Emit.ParameterToken b) { throw null; }
         public static bool operator !=(System.Reflection.Emit.ParameterToken a, System.Reflection.Emit.ParameterToken b) { throw null; }
     }
-    public enum PEFileKinds
-    {
-        ConsoleApplication = 2,
-        Dll = 1,
-        WindowApplication = 3,
-    }
+//  Excluded because PEFileKinds is only meaningful to assemblies that are written to disk, which we only support in .NET Framework.
+//  public enum PEFileKinds
+//  {
+//      ConsoleApplication = 2,
+//      Dll = 1,
+//      WindowApplication = 3,
+//  }
     public sealed partial class PropertyBuilder : System.Reflection.PropertyInfo
     {
         internal PropertyBuilder() { }
