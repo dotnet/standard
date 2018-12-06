@@ -52,7 +52,9 @@
 
   <Target Name="Build" DependsOnTargets="$(BuildDependsOn)" />
   <Target Name="Clean">
-    <RemoveDir Directories="$(ArtifactsDir)" />
+    <RemoveDir Directories="$(ArtifactsObjDir)" />
+    <RemoveDir Directories="$(ArtifactsBinDir)" />
+    <RemoveDir Directories="$(ArtifactsPackagesDir)" />
   </Target>
 
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
