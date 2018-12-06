@@ -226,7 +226,7 @@ namespace System.Reflection.Emit
         public void SetRaiseMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
         public void SetRemoveOnMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
     }
-    public partial struct EventToken
+    public readonly partial struct EventToken : System.IEquatable<EventToken>
     {
         public static readonly System.Reflection.Emit.EventToken Empty;
         public int Token { get { throw null; } }
@@ -274,7 +274,7 @@ namespace System.Reflection.Emit
         public void SetOffset(int iOffset) { }
         public override void SetValue(object obj, object val, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Globalization.CultureInfo culture) { }
     }
-    public partial struct FieldToken
+    public readonly partial struct FieldToken : System.IEquatable<FieldToken>
     {
         public static readonly System.Reflection.Emit.FieldToken Empty;
         public int Token { get { throw null; } }
@@ -494,7 +494,7 @@ namespace System.Reflection.Emit
 //      public const int JitOnDemand = 0;
 //      public static void SwapMethodBody(System.Type cls, int methodtoken, System.IntPtr rgIL, int methodSize, int flags) { }
 //  }
-    public partial struct MethodToken
+    public readonly partial struct MethodToken : System.IEquatable<MethodToken>
     {
         public static readonly System.Reflection.Emit.MethodToken Empty;
         public int Token { get { throw null; } }
@@ -866,7 +866,7 @@ namespace System.Reflection.Emit
 //      [System.ObsoleteAttribute("An alternate API is available: Emit the MarshalAs custom attribute instead. https://go.microsoft.com/fwlink/?linkid=14202")]
 //      public virtual void SetMarshal(System.Reflection.Emit.UnmanagedMarshal unmanagedMarshal) { }
     }
-    public partial struct ParameterToken
+    public readonly partial struct ParameterToken : System.IEquatable<ParameterToken>
     {
         public static readonly System.Reflection.Emit.ParameterToken Empty;
         public int Token { get { throw null; } }
@@ -912,7 +912,7 @@ namespace System.Reflection.Emit
         public override void SetValue(object obj, object value, object[] index) { }
         public override void SetValue(object obj, object value, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] index, System.Globalization.CultureInfo culture) { }
     }
-    public partial struct PropertyToken
+    public readonly partial struct PropertyToken : System.IEquatable<PropertyToken>
     {
         public static readonly System.Reflection.Emit.PropertyToken Empty;
         public int Token { get { throw null; } }
@@ -946,7 +946,7 @@ namespace System.Reflection.Emit
         public byte[] GetSignature() { throw null; }
         public override string ToString() { throw null; }
     }
-    public partial struct SignatureToken
+    public readonly partial struct SignatureToken : System.IEquatable<SignatureToken>
     {
         public static readonly System.Reflection.Emit.SignatureToken Empty;
         public int Token { get { throw null; } }
@@ -988,7 +988,7 @@ namespace System.Reflection.Emit
         Varpop = 26,
         Varpush = 27,
     }
-    public partial struct StringToken
+    public readonly partial struct StringToken : System.IEquatable<StringToken>
     {
         public int Token { get { throw null; } }
         public override bool Equals(object obj) { throw null; }
@@ -1112,7 +1112,7 @@ namespace System.Reflection.Emit
         public void SetParent(System.Type parent) { }
         public override string ToString() { throw null; }
     }
-    public partial struct TypeToken
+    public readonly partial struct TypeToken : System.IEquatable<TypeToken>
     {
         public static readonly System.Reflection.Emit.TypeToken Empty;
         public int Token { get { throw null; } }
