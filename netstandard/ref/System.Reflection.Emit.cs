@@ -237,7 +237,7 @@ namespace System.Reflection.Emit
         public static bool operator ==(System.Reflection.Emit.EventToken a, System.Reflection.Emit.EventToken b) { throw null; }
         public static bool operator !=(System.Reflection.Emit.EventToken a, System.Reflection.Emit.EventToken b) { throw null; }
     }
-    public partial struct ExceptionHandler : System.IEquatable<System.Reflection.Emit.ExceptionHandler>
+    public readonly partial struct ExceptionHandler : System.IEquatable<System.Reflection.Emit.ExceptionHandler>
     {
         public ExceptionHandler(int tryOffset, int tryLength, int filterOffset, int handlerOffset, int handlerLength, System.Reflection.ExceptionHandlingClauseOptions kind, int exceptionTypeToken) { throw null; }
         public int ExceptionTypeToken { get { throw null; } }
@@ -417,7 +417,7 @@ namespace System.Reflection.Emit
         public virtual void ThrowException(System.Type excType) { }
         public virtual void UsingNamespace(string usingNamespace) { }
     }
-    public partial struct Label
+    public readonly partial struct Label : System.IEquatable<Label>
     {
         public override bool Equals(object obj) { throw null; }
         public bool Equals(System.Reflection.Emit.Label obj) { throw null; }
@@ -561,7 +561,7 @@ namespace System.Reflection.Emit
 //      public void SetSymCustomAttribute(string name, byte[] data) { }
         public void SetUserEntryPoint(System.Reflection.MethodInfo entryPoint) { }
     }
-    public partial struct OpCode
+    public readonly partial struct OpCode : System.IEquatable<OpCode>
     {
         public System.Reflection.Emit.FlowControl FlowControl { get { throw null; } }
         public string Name { get { throw null; } }
