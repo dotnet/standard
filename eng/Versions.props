@@ -27,8 +27,8 @@
     <MicrosoftDotNetBuildTasksPackagingVersion>1.0.0-beta.18568.1</MicrosoftDotNetBuildTasksPackagingVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.18606.9</MicrosoftDotNetApiCompatPackageVersion>
-    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.18606.9</MicrosoftDotNetGenAPIPackageVersion>
-    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.18606.9</MicrosoftDotNetBuildTasksPackagingPackageVersion>
+    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.18607.6</MicrosoftDotNetApiCompatPackageVersion>
+    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.18607.6</MicrosoftDotNetGenAPIPackageVersion>
+    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.18607.6</MicrosoftDotNetBuildTasksPackagingPackageVersion>
   </PropertyGroup>
 </Project>
