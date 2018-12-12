@@ -15,6 +15,13 @@
     <!-- Always use shipping version insted of dummy version -->
     <DotNetUseShippingVersions>true</DotNetUseShippingVersions>
   </PropertyGroup>
+
+  <!-- Xml doc package info, which we don't need to be updated by DARC -->
+  <PropertyGroup>
+    <XmlDocPackage>Microsoft.Private.Intellisense</XmlDocPackage>
+    <XmlDocPackageVersion>2.0.0-preview3-26209-0</XmlDocPackageVersion>
+  </PropertyGroup>
+
   <!--
     DARC doesn't currently update properties that end in PackageVersion yet but that is the convention
     we want to use for our properties so for now we will define both and set the PackageVersion properties

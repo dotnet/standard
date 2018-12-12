@@ -50,6 +50,7 @@
     </ItemGroup>
 
     <Error Condition="'%(DocFile.Culture)' == 'unknown'" Text="Unknown language folder '%(LCID)' for doc files '@(DocFile)'" />
+    <!-- add error for empty DocFile Itemgroup -->
   </Target>
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />

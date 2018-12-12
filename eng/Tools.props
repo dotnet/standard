@@ -2,51 +2,66 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <RestoreSources Condition="'$(DotNetBuildOffline)' != 'true'">
-      https://dotnet.myget.org/F/dotnet-buildtools/api/v3/index.json;
+      https://dotnet.myget.org/F/dotnet-core/api/v3/index.json;
       https://dotnet.myget.org/F/sourcelink/api/v3/index.json;
       $(RestoreSources)
     </RestoreSources>
     <MSBuildTreatWarningsAsErrors>false</MSBuildTreatWarningsAsErrors>
   </PropertyGroup>
-  <Import Project="$(MSBuildThisFileDirectory)..\dependencies.props" />
   <ItemGroup>
-    <PackageReference Include="$(BuildToolsPackage)" Version="$(BuildToolsPackageVersion)" />
     <PackageReference Include="Microsoft.DotNet.ApiCompat" Version="$(MicrosoftDotNetApiCompatPackageVersion)" />
     <PackageReference Include="Microsoft.DotNet.GenAPI" Version="$(MicrosoftDotNetGenApiPackageVersion)" />
     <PackageReference Include="Microsoft.DotNet.Build.Tasks.Packaging" Version="$(MicrosoftDotNetBuildTasksPackagingPackageVersion)" />
+    <PackageReference Include="$(XmlDocPackage)" Version="$(XmlDocPackageVersion)" />
 
     <!-- Include the SourceLink packages -->
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkVersion)" PrivateAssets="all" IsImplicitlyDefined="true" />
     <PackageReference Include="Microsoft.SourceLink.Vsts.Git" Version="$(MicrosoftSourceLinkVersion)" PrivateAssets="all" IsImplicitlyDefined="true" />
   </ItemGroup>
 
-  <Target Name="InitTools" AfterTargets="Restore">
+  <PropertyGroup>
+    <PackagesDir>$(NuGetPackageRoot)/</PackagesDir>
+    <XmlDocFileRoot>$(PackagesDir)$(XmlDocPackage.ToLowerInvariant())/$(XmlDocPackageVersion)/xmldocs/netstandard</XmlDocFileRoot>
+    <XmlDocDir>$(ArtifactsBinDir)docs</XmlDocDir>
+  </PropertyGroup>
 
-    <PropertyGroup>
-      <ToolsDir>$(RepoRoot)Tools</ToolsDir>
-      <BuildToolsSemaphore>$(ToolsDir)/$(BuildToolsPackageVersion).init-tools.completed</BuildToolsSemaphore>
-      <PackagesDir>$(NuGetPackageRoot)/</PackagesDir>
-      <BuildToolsPackageDir>$(PackagesDir)$(BuildToolsPackage)/$(BuildToolsPackageVersion)/lib/</BuildToolsPackageDir>
-      <CmdExt>cmd</CmdExt>
-      <CmdExt Condition="'$(OS)' != 'Windows_NT'">sh</CmdExt>
-      <DotNetRoot Condition="'$(DotNetRoot)' == ''">$(RepoRoot).dotnet\</DotNetRoot>
-      <DotNetCmd>$(DotNetRoot)dotnet</DotNetCmd>
-      <DotNetCmd Condition="'$(OS)' == 'Windows_NT'">$(DotNetCmd).exe</DotNetCmd>
+  <!-- the intellisense package doesn't use nuget conventions so we need to select manually -->
+  <Target Name="GetDocFiles" AfterTargets="Restore">
+    <ItemGroup>
+      <DocFile Include="$(XmlDocFileRoot)/**/*.xml"/>
+      <DocFile>
+        <!-- trim off slash since it differs by platform and we need to do a string compare -->
+        <LCID>$([System.String]::new('%(RecursiveDir)').TrimEnd('\').TrimEnd('/'))</LCID>
+        <!-- set metadata expected by depProj -->
+        <NuGetPackageId>$(XmlDocPackage)</NuGetPackageId>
+        <NuGetPackageVersion>$(XmlDocPackageVersion)</NuGetPackageVersion>
+      </DocFile>
+      <DocFile>
+        <!-- map LCID to culture name that VS expects -->
+        <Culture>unknown</Culture>
+        <Culture Condition="'%(LCID)' == '1028'">zh-hant/</Culture>
+        <Culture Condition="'%(LCID)' == '1031'">de/</Culture>
+        <!-- english is placed in the root -->
+        <Culture Condition="'%(LCID)' == '1033'"></Culture>
+        <Culture Condition="'%(LCID)' == '1036'">fr/</Culture>
+        <Culture Condition="'%(LCID)' == '1040'">it/</Culture>
+        <Culture Condition="'%(LCID)' == '1041'">ja/</Culture>
+        <Culture Condition="'%(LCID)' == '1042'">ko/</Culture>
+        <Culture Condition="'%(LCID)' == '1049'">ru/</Culture>
+        <Culture Condition="'%(LCID)' == '2052'">zh-hans/</Culture>
+        <Culture Condition="'%(LCID)' == '3082'">es/</Culture>
+      </DocFile>
+      <DocFile>
+        <SubFolder>%(Culture)/</SubFolder>
+      </DocFile>
+    </ItemGroup>
 
-      <InitToolsCmdLine>$(BuildToolsPackageDir)init-tools.$(CmdExt) $(RepoRoot) $(DotNetCmd) $(ToolsDir) $(PackagesDir)</InitToolsCmdLine>
-    </PropertyGroup>
+    <Error Condition="'@(DocFile)' == ''" Text="Unable to find locate doc file for netstandard" />
+    <Error Condition="'%(DocFile.Culture)' == 'unknown'" Text="Unknown language folder '%(LCID)' for doc files '@(DocFile)'" />
 
-    <Exec
-        Condition="!Exists('$(BuildToolsSemaphore)')"
-        Command="$(InitToolsCmdLine) &gt; $(RepoRoot)init-tools.log" />
-
-    <Touch Files="$(BuildToolsSemaphore)" AlwaysCreate="true" />
-    <OnError ExecuteTargets="DumpInitToolsLog" />
-  </Target>
-
-  <Target Name="DumpInitToolsLog">
-    <Message Text="Init-tools failed dumping log file $(RepoRoot)init-tools.log" />
-    <Message Condition="Exists('$(RepoRoot)init-tools.log')" Text="$([System.IO.File]::ReadAllText('$(RepoRoot)init-tools.log'))" />
+    <Copy 
+      SourceFiles="@(DocFile)"
+      DestinationFolder="$(XmlDocDir)/%(Culture)" />
   </Target>
 
 </Project>
