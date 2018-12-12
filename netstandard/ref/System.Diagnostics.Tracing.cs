@@ -179,7 +179,7 @@ namespace System.Diagnostics.Tracing
         protected virtual void OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs command) { }
         public static void SendCommand(System.Diagnostics.Tracing.EventSource eventSource, System.Diagnostics.Tracing.EventCommand command, System.Collections.Generic.IDictionary<string, string> commandArguments) { }
         public static void SetCurrentThreadActivityId(System.Guid activityId) { }
-        public static void SetCurrentThreadActivityId(System.Guid activityId, out System.Guid oldActivityThatWillContinue) { oldActivityThatWillContinue = default(System.Guid); }
+        public static void SetCurrentThreadActivityId(System.Guid activityId, out System.Guid oldActivityThatWillContinue) { throw null; }
         public override string ToString() { throw null; }
         public void Write(string eventName) { }
         public void Write(string eventName, System.Diagnostics.Tracing.EventSourceOptions options) { }

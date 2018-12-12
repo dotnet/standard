@@ -53,7 +53,7 @@ namespace System.Buffers
         public abstract System.Span<T> GetSpan();
         public abstract System.Buffers.MemoryHandle Pin(int elementIndex = 0);
         void System.IDisposable.Dispose() { }
-        protected internal virtual bool TryGetArray(out System.ArraySegment<T> segment) { segment = default(System.ArraySegment<T>); throw null; }
+        protected internal virtual bool TryGetArray(out System.ArraySegment<T> segment) { throw null; }
         public abstract void Unpin();
     }
     public abstract partial class MemoryPool<T> : System.IDisposable
@@ -98,7 +98,7 @@ namespace System.Buffers
         public System.Buffers.ReadOnlySequence<T> Slice(System.SequencePosition start, long length) { throw null; }
         public System.Buffers.ReadOnlySequence<T> Slice(System.SequencePosition start, System.SequencePosition end) { throw null; }
         public override string ToString() { throw null; }
-        public bool TryGet(ref System.SequencePosition position, out System.ReadOnlyMemory<T> memory, bool advance = true) { memory = default(System.ReadOnlyMemory<T>); throw null; }
+        public bool TryGet(ref System.SequencePosition position, out System.ReadOnlyMemory<T> memory, bool advance = true) { throw null; }
         public partial struct Enumerator
         {
             public Enumerator(in System.Buffers.ReadOnlySequence<T> sequence) { throw null; }

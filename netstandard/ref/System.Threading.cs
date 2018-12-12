@@ -163,16 +163,16 @@ namespace System.Threading
     {
         public EventWaitHandle(bool initialState, System.Threading.EventResetMode mode) { }
         public EventWaitHandle(bool initialState, System.Threading.EventResetMode mode, string name) { }
-        public EventWaitHandle(bool initialState, System.Threading.EventResetMode mode, string name, out bool createdNew) { createdNew = default(bool); }
-//ACLS        public EventWaitHandle(bool initialState, System.Threading.EventResetMode mode, string name, out bool createdNew, System.Security.AccessControl.EventWaitHandleSecurity eventSecurity) { createdNew = default(bool); }
+        public EventWaitHandle(bool initialState, System.Threading.EventResetMode mode, string name, out bool createdNew) { throw null; }
+//ACLS        public EventWaitHandle(bool initialState, System.Threading.EventResetMode mode, string name, out bool createdNew, System.Security.AccessControl.EventWaitHandleSecurity eventSecurity) { throw null; }
 //ACLS        public System.Security.AccessControl.EventWaitHandleSecurity GetAccessControl() { throw null; }
         public static System.Threading.EventWaitHandle OpenExisting(string name) { throw null; }
 //ACLS        public static System.Threading.EventWaitHandle OpenExisting(string name, System.Security.AccessControl.EventWaitHandleRights rights) { throw null; }
         public bool Reset() { throw null; }
         public bool Set() { throw null; }
 //ACLS        public void SetAccessControl(System.Security.AccessControl.EventWaitHandleSecurity eventSecurity) { }
-//ACLS        public static bool TryOpenExisting(string name, System.Security.AccessControl.EventWaitHandleRights rights, out System.Threading.EventWaitHandle result) { result = default(System.Threading.EventWaitHandle); throw null; }
-        public static bool TryOpenExisting(string name, out System.Threading.EventWaitHandle result) { result = default(System.Threading.EventWaitHandle); throw null; }
+//ACLS        public static bool TryOpenExisting(string name, System.Security.AccessControl.EventWaitHandleRights rights, out System.Threading.EventWaitHandle result) { throw null; }
+        public static bool TryOpenExisting(string name, out System.Threading.EventWaitHandle result) { throw null; }
     }
     public sealed partial class ExecutionContext : System.IDisposable, System.Runtime.Serialization.ISerializable
     {
@@ -312,15 +312,15 @@ namespace System.Threading
         public Mutex() { }
         public Mutex(bool initiallyOwned) { }
         public Mutex(bool initiallyOwned, string name) { }
-        public Mutex(bool initiallyOwned, string name, out bool createdNew) { createdNew = default(bool); }
-//ACLS        public Mutex(bool initiallyOwned, string name, out bool createdNew, System.Security.AccessControl.MutexSecurity mutexSecurity) { createdNew = default(bool); }
+        public Mutex(bool initiallyOwned, string name, out bool createdNew) { throw null; }
+//ACLS        public Mutex(bool initiallyOwned, string name, out bool createdNew, System.Security.AccessControl.MutexSecurity mutexSecurity) { throw null; }
 //ACLS        public System.Security.AccessControl.MutexSecurity GetAccessControl() { throw null; }
         public static System.Threading.Mutex OpenExisting(string name) { throw null; }
 //ACLS        public static System.Threading.Mutex OpenExisting(string name, System.Security.AccessControl.MutexRights rights) { throw null; }
         public void ReleaseMutex() { }
 //ACLS        public void SetAccessControl(System.Security.AccessControl.MutexSecurity mutexSecurity) { }
-//ACLS        public static bool TryOpenExisting(string name, System.Security.AccessControl.MutexRights rights, out System.Threading.Mutex result) { result = default(System.Threading.Mutex); throw null; }
-        public static bool TryOpenExisting(string name, out System.Threading.Mutex result) { result = default(System.Threading.Mutex); throw null; }
+//ACLS        public static bool TryOpenExisting(string name, System.Security.AccessControl.MutexRights rights, out System.Threading.Mutex result) { throw null; }
+        public static bool TryOpenExisting(string name, out System.Threading.Mutex result) { throw null; }
     }
     public partial struct NativeOverlapped
     {
@@ -421,8 +421,8 @@ namespace System.Threading
     {
         public Semaphore(int initialCount, int maximumCount) { }
         public Semaphore(int initialCount, int maximumCount, string name) { }
-        public Semaphore(int initialCount, int maximumCount, string name, out bool createdNew) { createdNew = default(bool); }
-//ACLS        public Semaphore(int initialCount, int maximumCount, string name, out bool createdNew, System.Security.AccessControl.SemaphoreSecurity semaphoreSecurity) { createdNew = default(bool); }
+        public Semaphore(int initialCount, int maximumCount, string name, out bool createdNew) { throw null; }
+//ACLS        public Semaphore(int initialCount, int maximumCount, string name, out bool createdNew, System.Security.AccessControl.SemaphoreSecurity semaphoreSecurity) { throw null; }
 //ACLS        public System.Security.AccessControl.SemaphoreSecurity GetAccessControl() { throw null; }
         public static System.Threading.Semaphore OpenExisting(string name) { throw null; }
 //ACLS        public static System.Threading.Semaphore OpenExisting(string name, System.Security.AccessControl.SemaphoreRights rights) { throw null; }
@@ -430,8 +430,8 @@ namespace System.Threading
         public int Release() { throw null; }
         public int Release(int releaseCount) { throw null; }
 //ACLS        public void SetAccessControl(System.Security.AccessControl.SemaphoreSecurity semaphoreSecurity) { }
-//ACLS        public static bool TryOpenExisting(string name, System.Security.AccessControl.SemaphoreRights rights, out System.Threading.Semaphore result) { result = default(System.Threading.Semaphore); throw null; }
-        public static bool TryOpenExisting(string name, out System.Threading.Semaphore result) { result = default(System.Threading.Semaphore); throw null; }
+//ACLS        public static bool TryOpenExisting(string name, System.Security.AccessControl.SemaphoreRights rights, out System.Threading.Semaphore result) { throw null; }
+        public static bool TryOpenExisting(string name, out System.Threading.Semaphore result) { throw null; }
     }
     public partial class SemaphoreFullException : System.SystemException
     {
@@ -648,9 +648,9 @@ namespace System.Threading
         [System.ObsoleteAttribute("ThreadPool.BindHandle(IntPtr) has been deprecated.  Please use ThreadPool.BindHandle(SafeHandle) instead.", false)]
         public static bool BindHandle(System.IntPtr osHandle) { throw null; }
         public static bool BindHandle(System.Runtime.InteropServices.SafeHandle osHandle) { throw null; }
-        public static void GetAvailableThreads(out int workerThreads, out int completionPortThreads) { workerThreads = default(int); completionPortThreads = default(int); }
-        public static void GetMaxThreads(out int workerThreads, out int completionPortThreads) { workerThreads = default(int); completionPortThreads = default(int); }
-        public static void GetMinThreads(out int workerThreads, out int completionPortThreads) { workerThreads = default(int); completionPortThreads = default(int); }
+        public static void GetAvailableThreads(out int workerThreads, out int completionPortThreads) { throw null; }
+        public static void GetMaxThreads(out int workerThreads, out int completionPortThreads) { throw null; }
+        public static void GetMinThreads(out int workerThreads, out int completionPortThreads) { throw null; }
         public static bool QueueUserWorkItem(System.Threading.WaitCallback callBack) { throw null; }
         public static bool QueueUserWorkItem(System.Threading.WaitCallback callBack, object state) { throw null; }
         public static bool QueueUserWorkItem<TState>(System.Action<TState> callBack, TState state, bool preferLocal) { throw null; }

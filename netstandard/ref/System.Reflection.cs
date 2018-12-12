@@ -816,7 +816,7 @@ namespace System.Reflection
         public System.Reflection.MethodInfo[] GetMethods() { throw null; }
         public virtual System.Reflection.MethodInfo[] GetMethods(System.Reflection.BindingFlags bindingFlags) { throw null; }
         public virtual void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public virtual void GetPEKind(out System.Reflection.PortableExecutableKinds peKind, out System.Reflection.ImageFileMachine machine) { peKind = default(System.Reflection.PortableExecutableKinds); machine = default(System.Reflection.ImageFileMachine); }
+        public virtual void GetPEKind(out System.Reflection.PortableExecutableKinds peKind, out System.Reflection.ImageFileMachine machine) { throw null; }
 //      We've excluded GetSignerCertificate() for the following reasons:
 //          * It pulls in crypto, which isn't in corlib in .NET Core
 //          * It's unclear how this API would work if the module has multiple certs

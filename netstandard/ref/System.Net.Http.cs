@@ -10,7 +10,7 @@ namespace System.Net.Http
         public ByteArrayContent(byte[] content, int offset, int count) { }
         protected override System.Threading.Tasks.Task<System.IO.Stream> CreateContentReadStreamAsync() { throw null; }
         protected override System.Threading.Tasks.Task SerializeToStreamAsync(System.IO.Stream stream, System.Net.TransportContext context) { throw null; }
-        protected internal override bool TryComputeLength(out long length) { length = default(long); throw null; }
+        protected internal override bool TryComputeLength(out long length) { throw null; }
     }
     public enum ClientCertificateOption
     {
@@ -216,7 +216,7 @@ namespace System.Net.Http
         public System.Collections.Generic.IEnumerator<System.Net.Http.HttpContent> GetEnumerator() { throw null; }
         protected override System.Threading.Tasks.Task SerializeToStreamAsync(System.IO.Stream stream, System.Net.TransportContext context) { throw null; }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
-        protected internal override bool TryComputeLength(out long length) { length = default(long); throw null; }
+        protected internal override bool TryComputeLength(out long length) { throw null; }
     }
     public partial class MultipartFormDataContent : System.Net.Http.MultipartContent
     {
@@ -230,7 +230,7 @@ namespace System.Net.Http
     {
         public ReadOnlyMemoryContent(System.ReadOnlyMemory<byte> content) { }
         protected override System.Threading.Tasks.Task SerializeToStreamAsync(System.IO.Stream stream, System.Net.TransportContext context) { throw null; }
-        protected internal override bool TryComputeLength(out long length) { length = default(long); throw null; }
+        protected internal override bool TryComputeLength(out long length) { throw null; }
     }
     public partial class StreamContent : System.Net.Http.HttpContent
     {
@@ -239,7 +239,7 @@ namespace System.Net.Http
         protected override System.Threading.Tasks.Task<System.IO.Stream> CreateContentReadStreamAsync() { throw null; }
         protected override void Dispose(bool disposing) { }
         protected override System.Threading.Tasks.Task SerializeToStreamAsync(System.IO.Stream stream, System.Net.TransportContext context) { throw null; }
-        protected internal override bool TryComputeLength(out long length) { length = default(long); throw null; }
+        protected internal override bool TryComputeLength(out long length) { throw null; }
     }
     public partial class StringContent : System.Net.Http.ByteArrayContent
     {

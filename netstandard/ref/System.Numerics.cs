@@ -35,7 +35,7 @@ namespace System.Numerics
         [System.CLSCompliantAttribute(false)]
         public int CompareTo(ulong other) { throw null; }
         public static System.Numerics.BigInteger Divide(System.Numerics.BigInteger dividend, System.Numerics.BigInteger divisor) { throw null; }
-        public static System.Numerics.BigInteger DivRem(System.Numerics.BigInteger dividend, System.Numerics.BigInteger divisor, out System.Numerics.BigInteger remainder) { remainder = default(System.Numerics.BigInteger); throw null; }
+        public static System.Numerics.BigInteger DivRem(System.Numerics.BigInteger dividend, System.Numerics.BigInteger divisor, out System.Numerics.BigInteger remainder) { throw null; }
         public bool Equals(long other) { throw null; }
         public bool Equals(System.Numerics.BigInteger other) { throw null; }
         public override bool Equals(object obj) { throw null; }
@@ -153,12 +153,12 @@ namespace System.Numerics
         public string ToString(System.IFormatProvider provider) { throw null; }
         public string ToString(string format) { throw null; }
         public string ToString(string format, System.IFormatProvider provider) { throw null; }
-        public bool TryFormat(System.Span<char> destination, out int charsWritten, System.ReadOnlySpan<char> format = default(System.ReadOnlySpan<char>), System.IFormatProvider provider = null) { charsWritten = default(int); throw null; }
-        public static bool TryParse(System.ReadOnlySpan<char> value, System.Globalization.NumberStyles style, System.IFormatProvider provider, out System.Numerics.BigInteger result) { result = default(System.Numerics.BigInteger); throw null; }
-        public static bool TryParse(System.ReadOnlySpan<char> value, out System.Numerics.BigInteger result) { result = default(System.Numerics.BigInteger); throw null; }
-        public static bool TryParse(string value, System.Globalization.NumberStyles style, System.IFormatProvider provider, out System.Numerics.BigInteger result) { result = default(System.Numerics.BigInteger); throw null; }
-        public static bool TryParse(string value, out System.Numerics.BigInteger result) { result = default(System.Numerics.BigInteger); throw null; }
-        public bool TryWriteBytes(System.Span<byte> destination, out int bytesWritten, bool isUnsigned = false, bool isBigEndian = false) { bytesWritten = default(int); throw null; }
+        public bool TryFormat(System.Span<char> destination, out int charsWritten, System.ReadOnlySpan<char> format = default(System.ReadOnlySpan<char>), System.IFormatProvider provider = null) { throw null; }
+        public static bool TryParse(System.ReadOnlySpan<char> value, System.Globalization.NumberStyles style, System.IFormatProvider provider, out System.Numerics.BigInteger result) { throw null; }
+        public static bool TryParse(System.ReadOnlySpan<char> value, out System.Numerics.BigInteger result) { throw null; }
+        public static bool TryParse(string value, System.Globalization.NumberStyles style, System.IFormatProvider provider, out System.Numerics.BigInteger result) { throw null; }
+        public static bool TryParse(string value, out System.Numerics.BigInteger result) { throw null; }
+        public bool TryWriteBytes(System.Span<byte> destination, out int bytesWritten, bool isUnsigned = false, bool isBigEndian = false) { throw null; }
     }
     public partial struct Complex : System.IEquatable<System.Numerics.Complex>, System.IFormattable
     {
@@ -255,7 +255,7 @@ namespace System.Numerics
         public override bool Equals(object obj) { throw null; }
         public float GetDeterminant() { throw null; }
         public override int GetHashCode() { throw null; }
-        public static bool Invert(System.Numerics.Matrix3x2 matrix, out System.Numerics.Matrix3x2 result) { result = default(System.Numerics.Matrix3x2); throw null; }
+        public static bool Invert(System.Numerics.Matrix3x2 matrix, out System.Numerics.Matrix3x2 result) { throw null; }
         public static System.Numerics.Matrix3x2 Lerp(System.Numerics.Matrix3x2 matrix1, System.Numerics.Matrix3x2 matrix2, float amount) { throw null; }
         public static System.Numerics.Matrix3x2 Multiply(System.Numerics.Matrix3x2 value1, System.Numerics.Matrix3x2 value2) { throw null; }
         public static System.Numerics.Matrix3x2 Multiply(System.Numerics.Matrix3x2 value1, float value2) { throw null; }
@@ -322,12 +322,12 @@ namespace System.Numerics
         public static System.Numerics.Matrix4x4 CreateTranslation(System.Numerics.Vector3 position) { throw null; }
         public static System.Numerics.Matrix4x4 CreateTranslation(float xPosition, float yPosition, float zPosition) { throw null; }
         public static System.Numerics.Matrix4x4 CreateWorld(System.Numerics.Vector3 position, System.Numerics.Vector3 forward, System.Numerics.Vector3 up) { throw null; }
-        public static bool Decompose(System.Numerics.Matrix4x4 matrix, out System.Numerics.Vector3 scale, out System.Numerics.Quaternion rotation, out System.Numerics.Vector3 translation) { scale = default(System.Numerics.Vector3); rotation = default(System.Numerics.Quaternion); translation = default(System.Numerics.Vector3); throw null; }
+        public static bool Decompose(System.Numerics.Matrix4x4 matrix, out System.Numerics.Vector3 scale, out System.Numerics.Quaternion rotation, out System.Numerics.Vector3 translation) { throw null; }
         public bool Equals(System.Numerics.Matrix4x4 other) { throw null; }
         public override bool Equals(object obj) { throw null; }
         public float GetDeterminant() { throw null; }
         public override int GetHashCode() { throw null; }
-        public static bool Invert(System.Numerics.Matrix4x4 matrix, out System.Numerics.Matrix4x4 result) { result = default(System.Numerics.Matrix4x4); throw null; }
+        public static bool Invert(System.Numerics.Matrix4x4 matrix, out System.Numerics.Matrix4x4 result) { throw null; }
         public static System.Numerics.Matrix4x4 Lerp(System.Numerics.Matrix4x4 matrix1, System.Numerics.Matrix4x4 matrix2, float amount) { throw null; }
         public static System.Numerics.Matrix4x4 Multiply(System.Numerics.Matrix4x4 value1, System.Numerics.Matrix4x4 value2) { throw null; }
         public static System.Numerics.Matrix4x4 Multiply(System.Numerics.Matrix4x4 value1, float value2) { throw null; }
@@ -501,16 +501,16 @@ namespace System.Numerics
         public static System.Numerics.Vector<T> SquareRoot<T>(System.Numerics.Vector<T> value) where T : struct { throw null; }
         public static System.Numerics.Vector<T> Subtract<T>(System.Numerics.Vector<T> left, System.Numerics.Vector<T> right) where T : struct { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static void Widen(System.Numerics.Vector<System.Byte> source, out System.Numerics.Vector<System.UInt16> dest1, out System.Numerics.Vector<System.UInt16> dest2) { dest1 = default(System.Numerics.Vector<ushort>); dest2 = default(System.Numerics.Vector<ushort>); }
-        public static void Widen(System.Numerics.Vector<System.Int16> source, out System.Numerics.Vector<System.Int32> dest1, out System.Numerics.Vector<System.Int32> dest2) { dest1 = default(System.Numerics.Vector<int>); dest2 = default(System.Numerics.Vector<int>); }
-        public static void Widen(System.Numerics.Vector<System.Int32> source, out System.Numerics.Vector<System.Int64> dest1, out System.Numerics.Vector<System.Int64> dest2) { dest1 = default(System.Numerics.Vector<long>); dest2 = default(System.Numerics.Vector<long>); }
+        public static void Widen(System.Numerics.Vector<System.Byte> source, out System.Numerics.Vector<System.UInt16> dest1, out System.Numerics.Vector<System.UInt16> dest2) { throw null; }
+        public static void Widen(System.Numerics.Vector<System.Int16> source, out System.Numerics.Vector<System.Int32> dest1, out System.Numerics.Vector<System.Int32> dest2) { throw null; }
+        public static void Widen(System.Numerics.Vector<System.Int32> source, out System.Numerics.Vector<System.Int64> dest1, out System.Numerics.Vector<System.Int64> dest2) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static void Widen(System.Numerics.Vector<System.SByte> source, out System.Numerics.Vector<System.Int16> dest1, out System.Numerics.Vector<System.Int16> dest2) { dest1 = default(System.Numerics.Vector<short>); dest2 = default(System.Numerics.Vector<short>); }
-        public static void Widen(System.Numerics.Vector<System.Single> source, out System.Numerics.Vector<System.Double> dest1, out System.Numerics.Vector<System.Double> dest2) { dest1 = default(System.Numerics.Vector<double>); dest2 = default(System.Numerics.Vector<double>); }
+        public static void Widen(System.Numerics.Vector<System.SByte> source, out System.Numerics.Vector<System.Int16> dest1, out System.Numerics.Vector<System.Int16> dest2) { throw null; }
+        public static void Widen(System.Numerics.Vector<System.Single> source, out System.Numerics.Vector<System.Double> dest1, out System.Numerics.Vector<System.Double> dest2) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static void Widen(System.Numerics.Vector<System.UInt16> source, out System.Numerics.Vector<System.UInt32> dest1, out System.Numerics.Vector<System.UInt32> dest2) { dest1 = default(System.Numerics.Vector<uint>); dest2 = default(System.Numerics.Vector<uint>); }
+        public static void Widen(System.Numerics.Vector<System.UInt16> source, out System.Numerics.Vector<System.UInt32> dest1, out System.Numerics.Vector<System.UInt32> dest2) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static void Widen(System.Numerics.Vector<System.UInt32> source, out System.Numerics.Vector<System.UInt64> dest1, out System.Numerics.Vector<System.UInt64> dest2) { dest1 = default(System.Numerics.Vector<ulong>); dest2 = default(System.Numerics.Vector<ulong>); }
+        public static void Widen(System.Numerics.Vector<System.UInt32> source, out System.Numerics.Vector<System.UInt64> dest1, out System.Numerics.Vector<System.UInt64> dest2) { throw null; }
         public static System.Numerics.Vector<T> Xor<T>(System.Numerics.Vector<T> left, System.Numerics.Vector<T> right) where T : struct { throw null; }
     }
     public partial struct Vector<T> : System.IEquatable<System.Numerics.Vector<T>>, System.IFormattable where T : struct

@@ -559,7 +559,7 @@ namespace System.Runtime.InteropServices
 //INTEROP        public static string GetTypeLibName(System.Runtime.InteropServices.ComTypes.ITypeLib typelib) { throw null; }
 //INTEROP        [System.ObsoleteAttribute("Use System.Runtime.InteropServices.Marshal.GetTypeLibName(ITypeLib pTLB) instead. https://go.microsoft.com/fwlink/?linkid=14202&ID=0000011.", false)]
 //INTEROP        public static string GetTypeLibName(System.Runtime.InteropServices.UCOMITypeLib pTLB) { throw null; }
-//INTEROP        public static void GetTypeLibVersionForAssembly(System.Reflection.Assembly inputAssembly, out int majorVersion, out int minorVersion) { majorVersion = default(int); minorVersion = default(int); }
+//INTEROP        public static void GetTypeLibVersionForAssembly(System.Reflection.Assembly inputAssembly, out int majorVersion, out int minorVersion) { throw null; }
         public static object GetUniqueObjectForIUnknown(System.IntPtr unknown) { throw null; }
 //INTEROP        [System.ObsoleteAttribute("The GetUnmanagedThunkForManagedMethodPtr method has been deprecated and will be removed in a future release.", false)]
 //INTEROP        public static System.IntPtr GetUnmanagedThunkForManagedMethodPtr(System.IntPtr pfnMethodToWrap, System.IntPtr pbSignature, int cbSignature) { throw null; }
@@ -586,7 +586,7 @@ namespace System.Runtime.InteropServices
         public static object PtrToStructure(System.IntPtr ptr, System.Type structureType) { throw null; }
         public static T PtrToStructure<T>(System.IntPtr ptr) { throw null; }
         public static void PtrToStructure<T>(System.IntPtr ptr, T structure) { }
-        public static int QueryInterface(System.IntPtr pUnk, ref System.Guid iid, out System.IntPtr ppv) { ppv = default(System.IntPtr); throw null; }
+        public static int QueryInterface(System.IntPtr pUnk, ref System.Guid iid, out System.IntPtr ppv) { throw null; }
         public static byte ReadByte(System.IntPtr ptr) { throw null; }
         public static byte ReadByte(System.IntPtr ptr, int ofs) { throw null; }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
@@ -662,7 +662,7 @@ namespace System.Runtime.InteropServices
         public static void WriteInt16(System.IntPtr ptr, int ofs, short val) { }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("WriteInt16(Object, Int32, Char) may be unavailable in future releases.")]
-        public static void WriteInt16(object ptr, int ofs, char val) { ptr = default(object); }
+        public static void WriteInt16(object ptr, int ofs, char val) { throw null; }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("WriteInt16(Object, Int32, Int16) may be unavailable in future releases.")]
         public static void WriteInt16(object ptr, int ofs, short val) { throw null; }
@@ -680,7 +680,7 @@ namespace System.Runtime.InteropServices
         public static void WriteIntPtr(System.IntPtr ptr, System.IntPtr val) { }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("WriteIntPtr(Object, Int32, IntPtr) may be unavailable in future releases.")]
-        public static void WriteIntPtr(object ptr, int ofs, System.IntPtr val) { ptr = default(object); }
+        public static void WriteIntPtr(object ptr, int ofs, System.IntPtr val) { throw null; }
         public static void ZeroFreeBSTR(System.IntPtr s) { }
         public static void ZeroFreeCoTaskMemAnsi(System.IntPtr s) { }
         public static void ZeroFreeCoTaskMemUnicode(System.IntPtr s) { }
@@ -725,9 +725,9 @@ namespace System.Runtime.InteropServices
         public static ref T GetReference<T>(System.Span<T> span) { throw null; }
         public static T Read<T>(System.ReadOnlySpan<byte> source) where T : struct { throw null; }
         public static System.Collections.Generic.IEnumerable<T> ToEnumerable<T>(System.ReadOnlyMemory<T> memory) { throw null; }
-        public static bool TryGetArray<T>(System.ReadOnlyMemory<T> memory, out System.ArraySegment<T> segment) { segment = default(System.ArraySegment<T>); throw null; }
-        public static bool TryGetString(System.ReadOnlyMemory<char> memory, out string text, out int start, out int length) { text = default(string); start = default(int); length = default(int); throw null; }
-        public static bool TryRead<T>(System.ReadOnlySpan<byte> source, out T value) where T : struct { value = default(T); throw null; }
+        public static bool TryGetArray<T>(System.ReadOnlyMemory<T> memory, out System.ArraySegment<T> segment) { throw null; }
+        public static bool TryGetString(System.ReadOnlyMemory<char> memory, out string text, out int start, out int length) { throw null; }
+        public static bool TryRead<T>(System.ReadOnlySpan<byte> source, out T value) where T : struct { throw null; }
         public static bool TryWrite<T>(System.Span<byte> destination, ref T value) where T : struct { throw null; }
         public static void Write<T>(System.Span<byte> destination, ref T value) where T : struct { }
     }
@@ -853,9 +853,9 @@ namespace System.Runtime.InteropServices
     }
     public static partial class SequenceMarshal
     {
-        public static bool TryGetArray<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.ArraySegment<T> segment) { segment = default(System.ArraySegment<T>); throw null; }
-        public static bool TryGetReadOnlyMemory<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.ReadOnlyMemory<T> memory) { memory = default(System.ReadOnlyMemory<T>); throw null; }
-        public static bool TryGetReadOnlySequenceSegment<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.Buffers.ReadOnlySequenceSegment<T> startSegment, out int startIndex, out System.Buffers.ReadOnlySequenceSegment<T> endSegment, out int endIndex) { startSegment = default(System.Buffers.ReadOnlySequenceSegment<T>); startIndex = default(int); endSegment = default(System.Buffers.ReadOnlySequenceSegment<T>); endIndex = default(int); throw null; }
+        public static bool TryGetArray<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.ArraySegment<T> segment) { throw null; }
+        public static bool TryGetReadOnlyMemory<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.ReadOnlyMemory<T> memory) { throw null; }
+        public static bool TryGetReadOnlySequenceSegment<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.Buffers.ReadOnlySequenceSegment<T> startSegment, out int startIndex, out System.Buffers.ReadOnlySequenceSegment<T> endSegment, out int endIndex) { throw null; }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited=false)]
     public sealed partial class StructLayoutAttribute : System.Attribute

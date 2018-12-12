@@ -112,18 +112,18 @@ namespace System.Dynamic
         protected DynamicObject() { }
         public virtual System.Collections.Generic.IEnumerable<string> GetDynamicMemberNames() { throw null; }
         public virtual System.Dynamic.DynamicMetaObject GetMetaObject(System.Linq.Expressions.Expression parameter) { throw null; }
-        public virtual bool TryBinaryOperation(System.Dynamic.BinaryOperationBinder binder, object arg, out object result) { result = default(object); throw null; }
-        public virtual bool TryConvert(System.Dynamic.ConvertBinder binder, out object result) { result = default(object); throw null; }
-        public virtual bool TryCreateInstance(System.Dynamic.CreateInstanceBinder binder, object[] args, out object result) { result = default(object); throw null; }
+        public virtual bool TryBinaryOperation(System.Dynamic.BinaryOperationBinder binder, object arg, out object result) { throw null; }
+        public virtual bool TryConvert(System.Dynamic.ConvertBinder binder, out object result) { throw null; }
+        public virtual bool TryCreateInstance(System.Dynamic.CreateInstanceBinder binder, object[] args, out object result) { throw null; }
         public virtual bool TryDeleteIndex(System.Dynamic.DeleteIndexBinder binder, object[] indexes) { throw null; }
         public virtual bool TryDeleteMember(System.Dynamic.DeleteMemberBinder binder) { throw null; }
-        public virtual bool TryGetIndex(System.Dynamic.GetIndexBinder binder, object[] indexes, out object result) { result = default(object); throw null; }
-        public virtual bool TryGetMember(System.Dynamic.GetMemberBinder binder, out object result) { result = default(object); throw null; }
-        public virtual bool TryInvoke(System.Dynamic.InvokeBinder binder, object[] args, out object result) { result = default(object); throw null; }
-        public virtual bool TryInvokeMember(System.Dynamic.InvokeMemberBinder binder, object[] args, out object result) { result = default(object); throw null; }
+        public virtual bool TryGetIndex(System.Dynamic.GetIndexBinder binder, object[] indexes, out object result) { throw null; }
+        public virtual bool TryGetMember(System.Dynamic.GetMemberBinder binder, out object result) { throw null; }
+        public virtual bool TryInvoke(System.Dynamic.InvokeBinder binder, object[] args, out object result) { throw null; }
+        public virtual bool TryInvokeMember(System.Dynamic.InvokeMemberBinder binder, object[] args, out object result) { throw null; }
         public virtual bool TrySetIndex(System.Dynamic.SetIndexBinder binder, object[] indexes, object value) { throw null; }
         public virtual bool TrySetMember(System.Dynamic.SetMemberBinder binder, object value) { throw null; }
-        public virtual bool TryUnaryOperation(System.Dynamic.UnaryOperationBinder binder, out object result) { result = default(object); throw null; }
+        public virtual bool TryUnaryOperation(System.Dynamic.UnaryOperationBinder binder, out object result) { throw null; }
     }
     public sealed partial class ExpandoObject : System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string, object>>, System.Collections.Generic.IDictionary<string, object>, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, object>>, System.Collections.IEnumerable, System.ComponentModel.INotifyPropertyChanged, System.Dynamic.IDynamicMetaObjectProvider
     {
@@ -142,7 +142,7 @@ namespace System.Dynamic
         void System.Collections.Generic.IDictionary<System.String,System.Object>.Add(string key, object value) { }
         bool System.Collections.Generic.IDictionary<System.String,System.Object>.ContainsKey(string key) { throw null; }
         bool System.Collections.Generic.IDictionary<System.String,System.Object>.Remove(string key) { throw null; }
-        bool System.Collections.Generic.IDictionary<System.String,System.Object>.TryGetValue(string key, out object value) { value = default(object); throw null; }
+        bool System.Collections.Generic.IDictionary<System.String,System.Object>.TryGetValue(string key, out object value) { throw null; }
         System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<string, object>> System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<System.String,System.Object>>.GetEnumerator() { throw null; }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
         System.Dynamic.DynamicMetaObject System.Dynamic.IDynamicMetaObjectProvider.GetMetaObject(System.Linq.Expressions.Expression parameter) { throw null; }

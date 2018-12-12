@@ -36,24 +36,24 @@ namespace System.Buffers.Binary
         public static uint ReverseEndianness(uint value) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static ulong ReverseEndianness(ulong value) { throw null; }
-        public static bool TryReadInt16BigEndian(System.ReadOnlySpan<byte> source, out short value) { value = default(short); throw null; }
-        public static bool TryReadInt16LittleEndian(System.ReadOnlySpan<byte> source, out short value) { value = default(short); throw null; }
-        public static bool TryReadInt32BigEndian(System.ReadOnlySpan<byte> source, out int value) { value = default(int); throw null; }
-        public static bool TryReadInt32LittleEndian(System.ReadOnlySpan<byte> source, out int value) { value = default(int); throw null; }
-        public static bool TryReadInt64BigEndian(System.ReadOnlySpan<byte> source, out long value) { value = default(long); throw null; }
-        public static bool TryReadInt64LittleEndian(System.ReadOnlySpan<byte> source, out long value) { value = default(long); throw null; }
+        public static bool TryReadInt16BigEndian(System.ReadOnlySpan<byte> source, out short value) { throw null; }
+        public static bool TryReadInt16LittleEndian(System.ReadOnlySpan<byte> source, out short value) { throw null; }
+        public static bool TryReadInt32BigEndian(System.ReadOnlySpan<byte> source, out int value) { throw null; }
+        public static bool TryReadInt32LittleEndian(System.ReadOnlySpan<byte> source, out int value) { throw null; }
+        public static bool TryReadInt64BigEndian(System.ReadOnlySpan<byte> source, out long value) { throw null; }
+        public static bool TryReadInt64LittleEndian(System.ReadOnlySpan<byte> source, out long value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static bool TryReadUInt16BigEndian(System.ReadOnlySpan<byte> source, out ushort value) { value = default(ushort); throw null; }
+        public static bool TryReadUInt16BigEndian(System.ReadOnlySpan<byte> source, out ushort value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static bool TryReadUInt16LittleEndian(System.ReadOnlySpan<byte> source, out ushort value) { value = default(ushort); throw null; }
+        public static bool TryReadUInt16LittleEndian(System.ReadOnlySpan<byte> source, out ushort value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static bool TryReadUInt32BigEndian(System.ReadOnlySpan<byte> source, out uint value) { value = default(uint); throw null; }
+        public static bool TryReadUInt32BigEndian(System.ReadOnlySpan<byte> source, out uint value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static bool TryReadUInt32LittleEndian(System.ReadOnlySpan<byte> source, out uint value) { value = default(uint); throw null; }
+        public static bool TryReadUInt32LittleEndian(System.ReadOnlySpan<byte> source, out uint value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static bool TryReadUInt64BigEndian(System.ReadOnlySpan<byte> source, out ulong value) { value = default(ulong); throw null; }
+        public static bool TryReadUInt64BigEndian(System.ReadOnlySpan<byte> source, out ulong value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static bool TryReadUInt64LittleEndian(System.ReadOnlySpan<byte> source, out ulong value) { value = default(ulong); throw null; }
+        public static bool TryReadUInt64LittleEndian(System.ReadOnlySpan<byte> source, out ulong value) { throw null; }
         public static bool TryWriteInt16BigEndian(System.Span<byte> destination, short value) { throw null; }
         public static bool TryWriteInt16LittleEndian(System.Span<byte> destination, short value) { throw null; }
         public static bool TryWriteInt32BigEndian(System.Span<byte> destination, int value) { throw null; }

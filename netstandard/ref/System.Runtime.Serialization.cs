@@ -151,7 +151,7 @@ namespace System.Runtime.Serialization
         public abstract System.Runtime.Serialization.StreamingContext Context { get; set; }
         public abstract System.Runtime.Serialization.ISurrogateSelector SurrogateSelector { get; set; }
         public abstract object Deserialize(System.IO.Stream serializationStream);
-        protected virtual object GetNext(out long objID) { objID = default(long); throw null; }
+        protected virtual object GetNext(out long objID) { throw null; }
         protected virtual long Schedule(object obj) { throw null; }
         public abstract void Serialize(System.IO.Stream serializationStream, object graph);
         protected abstract void WriteArray(object obj, string name, System.Type memberType);
@@ -304,8 +304,8 @@ namespace System.Runtime.Serialization
     public partial class ObjectIDGenerator
     {
         public ObjectIDGenerator() { }
-        public virtual long GetId(object obj, out bool firstTime) { firstTime = default(bool); throw null; }
-        public virtual long HasId(object obj, out bool firstTime) { firstTime = default(bool); throw null; }
+        public virtual long GetId(object obj, out bool firstTime) { throw null; }
+        public virtual long HasId(object obj, out bool firstTime) { throw null; }
     }
     public partial class ObjectManager
     {
@@ -358,7 +358,7 @@ namespace System.Runtime.Serialization
     public abstract partial class SerializationBinder
     {
         protected SerializationBinder() { }
-        public virtual void BindToName(System.Type serializedType, out string assemblyName, out string typeName) { assemblyName = default(string); typeName = default(string); }
+        public virtual void BindToName(System.Type serializedType, out string assemblyName, out string typeName) { throw null; }
         public abstract System.Type BindToType(string assemblyName, string typeName);
     }
     public partial struct SerializationEntry
@@ -474,7 +474,7 @@ namespace System.Runtime.Serialization
         public virtual void AddSurrogate(System.Type type, System.Runtime.Serialization.StreamingContext context, System.Runtime.Serialization.ISerializationSurrogate surrogate) { }
         public virtual void ChainSelector(System.Runtime.Serialization.ISurrogateSelector selector) { }
         public virtual System.Runtime.Serialization.ISurrogateSelector GetNextSelector() { throw null; }
-        public virtual System.Runtime.Serialization.ISerializationSurrogate GetSurrogate(System.Type type, System.Runtime.Serialization.StreamingContext context, out System.Runtime.Serialization.ISurrogateSelector selector) { selector = default(System.Runtime.Serialization.ISurrogateSelector); throw null; }
+        public virtual System.Runtime.Serialization.ISerializationSurrogate GetSurrogate(System.Type type, System.Runtime.Serialization.StreamingContext context, out System.Runtime.Serialization.ISurrogateSelector selector) { throw null; }
         public virtual void RemoveSurrogate(System.Type type, System.Runtime.Serialization.StreamingContext context) { }
     }
     public abstract partial class XmlObjectSerializer
@@ -505,8 +505,8 @@ namespace System.Runtime.Serialization
     }
     public static partial class XPathQueryGenerator
     {
-        public static string CreateFromDataContractSerializer(System.Type type, System.Reflection.MemberInfo[] pathToMember, System.Text.StringBuilder rootElementXpath, out System.Xml.XmlNamespaceManager namespaces) { namespaces = default(System.Xml.XmlNamespaceManager); throw null; }
-        public static string CreateFromDataContractSerializer(System.Type type, System.Reflection.MemberInfo[] pathToMember, out System.Xml.XmlNamespaceManager namespaces) { namespaces = default(System.Xml.XmlNamespaceManager); throw null; }
+        public static string CreateFromDataContractSerializer(System.Type type, System.Reflection.MemberInfo[] pathToMember, System.Text.StringBuilder rootElementXpath, out System.Xml.XmlNamespaceManager namespaces) { throw null; }
+        public static string CreateFromDataContractSerializer(System.Type type, System.Reflection.MemberInfo[] pathToMember, out System.Xml.XmlNamespaceManager namespaces) { throw null; }
     }
     public partial class XsdDataContractExporter
     {

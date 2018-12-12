@@ -167,7 +167,7 @@ namespace System.Runtime.CompilerServices
         public bool Remove(TKey key) { throw null; }
         System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<TKey, TValue>> System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<TKey, TValue>>.GetEnumerator() { throw null; }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
-        public bool TryGetValue(TKey key, out TValue value) { value = default(TValue); throw null; }
+        public bool TryGetValue(TKey key, out TValue value) { throw null; }
         public delegate TValue CreateValueCallback(TKey key);
     }
     public readonly partial struct ConfiguredTaskAwaitable

@@ -180,7 +180,7 @@ namespace System.Collections
         public object Key { get { throw null; } set { } }
         public object Value { get { throw null; } set { } }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
-        public void Deconstruct(out object key, out object value) { key = default(object); value = default(object); }
+        public void Deconstruct(out object key, out object value) { throw null; }
     }
     public partial class Hashtable : System.Collections.ICollection, System.Collections.IDictionary, System.Collections.IEnumerable, System.ICloneable, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable
     {

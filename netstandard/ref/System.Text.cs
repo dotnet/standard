@@ -34,9 +34,9 @@ namespace System.Text
         public System.Text.DecoderFallback Fallback { get { throw null; } set { } }
         public System.Text.DecoderFallbackBuffer FallbackBuffer { get { throw null; } }
         [System.CLSCompliantAttribute(false)]
-        public unsafe virtual void Convert(byte* bytes, int byteCount, char* chars, int charCount, bool flush, out int bytesUsed, out int charsUsed, out bool completed) { bytesUsed = default(int); charsUsed = default(int); completed = default(bool); }
-        public virtual void Convert(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex, int charCount, bool flush, out int bytesUsed, out int charsUsed, out bool completed) { bytesUsed = default(int); charsUsed = default(int); completed = default(bool); }
-        public virtual void Convert(System.ReadOnlySpan<byte> bytes, System.Span<char> chars, bool flush, out int bytesUsed, out int charsUsed, out bool completed) { bytesUsed = default(int); charsUsed = default(int); completed = default(bool); }
+        public unsafe virtual void Convert(byte* bytes, int byteCount, char* chars, int charCount, bool flush, out int bytesUsed, out int charsUsed, out bool completed) { throw null; }
+        public virtual void Convert(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex, int charCount, bool flush, out int bytesUsed, out int charsUsed, out bool completed) { throw null; }
+        public virtual void Convert(System.ReadOnlySpan<byte> bytes, System.Span<char> chars, bool flush, out int bytesUsed, out int charsUsed, out bool completed) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public unsafe virtual int GetCharCount(byte* bytes, int count, bool flush) { throw null; }
         public abstract int GetCharCount(byte[] bytes, int index, int count);
@@ -116,9 +116,9 @@ namespace System.Text
         public System.Text.EncoderFallback Fallback { get { throw null; } set { } }
         public System.Text.EncoderFallbackBuffer FallbackBuffer { get { throw null; } }
         [System.CLSCompliantAttribute(false)]
-        public unsafe virtual void Convert(char* chars, int charCount, byte* bytes, int byteCount, bool flush, out int charsUsed, out int bytesUsed, out bool completed) { charsUsed = default(int); bytesUsed = default(int); completed = default(bool); }
-        public virtual void Convert(char[] chars, int charIndex, int charCount, byte[] bytes, int byteIndex, int byteCount, bool flush, out int charsUsed, out int bytesUsed, out bool completed) { charsUsed = default(int); bytesUsed = default(int); completed = default(bool); }
-        public virtual void Convert(System.ReadOnlySpan<char> chars, System.Span<byte> bytes, bool flush, out int charsUsed, out int bytesUsed, out bool completed) { charsUsed = default(int); bytesUsed = default(int); completed = default(bool); }
+        public unsafe virtual void Convert(char* chars, int charCount, byte* bytes, int byteCount, bool flush, out int charsUsed, out int bytesUsed, out bool completed) { throw null; }
+        public virtual void Convert(char[] chars, int charIndex, int charCount, byte[] bytes, int byteIndex, int byteCount, bool flush, out int charsUsed, out int bytesUsed, out bool completed) { throw null; }
+        public virtual void Convert(System.ReadOnlySpan<char> chars, System.Span<byte> bytes, bool flush, out int charsUsed, out int bytesUsed, out bool completed) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public unsafe virtual int GetByteCount(char* chars, int count, bool flush) { throw null; }
         public abstract int GetByteCount(char[] chars, int index, int count, bool flush);
