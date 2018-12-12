@@ -24,6 +24,7 @@ namespace System.Threading
     }
     public partial struct AsyncFlowControl : System.IDisposable
     {
+        private object _dummy;
         public void Dispose() { }
         public override bool Equals(object obj) { throw null; }
         public bool Equals(System.Threading.AsyncFlowControl obj) { throw null; }
@@ -40,6 +41,8 @@ namespace System.Threading
     }
     public partial struct AsyncLocalValueChangedArgs<T>
     {
+        private readonly T _dummy;
+        private readonly int _dummyPrimitive;
         public T CurrentValue { get { throw null; } }
         public T PreviousValue { get { throw null; } }
         public bool ThreadContextChanged { get { throw null; } }
@@ -78,6 +81,7 @@ namespace System.Threading
     }
     public readonly partial struct CancellationToken
     {
+        private readonly object _dummy;
         public CancellationToken(bool canceled) { throw null; }
         public bool CanBeCanceled { get { throw null; } }
         public bool IsCancellationRequested { get { throw null; } }
@@ -96,6 +100,8 @@ namespace System.Threading
     }
     public readonly partial struct CancellationTokenRegistration : System.IDisposable, System.IEquatable<System.Threading.CancellationTokenRegistration>
     {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public System.Threading.CancellationToken Token { get { throw null; } }
         public void Dispose() { }
         public override bool Equals(object obj) { throw null; }
@@ -246,6 +252,7 @@ namespace System.Threading
     }
     public partial struct LockCookie
     {
+        private int _dummyPrimitive;
         public override bool Equals(object obj) { throw null; }
         public bool Equals(System.Threading.LockCookie obj) { throw null; }
         public override int GetHashCode() { throw null; }
@@ -466,6 +473,7 @@ namespace System.Threading
     public delegate void SendOrPostCallback(object state);
     public partial struct SpinLock
     {
+        private int _dummyPrimitive;
         public SpinLock(bool enableThreadOwnerTracking) { throw null; }
         public bool IsHeld { get { throw null; } }
         public bool IsHeldByCurrentThread { get { throw null; } }
@@ -479,6 +487,7 @@ namespace System.Threading
     }
     public partial struct SpinWait
     {
+        private int _dummyPrimitive;
         public int Count { get { throw null; } }
         public bool NextSpinWillYield { get { throw null; } }
         public void Reset() { }

@@ -419,6 +419,7 @@ namespace System.Reflection.Emit
     }
     public readonly partial struct Label : System.IEquatable<Label>
     {
+        private readonly int _dummyPrimitive;
         public override bool Equals(object obj) { throw null; }
         public bool Equals(System.Reflection.Emit.Label obj) { throw null; }
         public override int GetHashCode() { throw null; }
@@ -562,6 +563,7 @@ namespace System.Reflection.Emit
     }
     public readonly partial struct OpCode : System.IEquatable<OpCode>
     {
+        private readonly object _dummy;
         public System.Reflection.Emit.FlowControl FlowControl { get { throw null; } }
         public string Name { get { throw null; } }
         public System.Reflection.Emit.OpCodeType OpCodeType { get { throw null; } }

@@ -176,6 +176,7 @@ namespace System.Collections
     }
     public partial struct DictionaryEntry
     {
+        private object _dummy;
         public DictionaryEntry(object key, object value) { throw null; }
         public object Key { get { throw null; } set { } }
         public object Value { get { throw null; } set { } }

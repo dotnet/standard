@@ -6,6 +6,7 @@ namespace System.Collections.Specialized
 {
     public partial struct BitVector32
     {
+        private int _dummyPrimitive;
         public BitVector32(System.Collections.Specialized.BitVector32 value) { throw null; }
         public BitVector32(int data) { throw null; }
         public int Data { get { throw null; } }
@@ -21,6 +22,7 @@ namespace System.Collections.Specialized
         public static string ToString(System.Collections.Specialized.BitVector32 value) { throw null; }
         public readonly partial struct Section
         {
+            private readonly int _dummyPrimitive;
             public short Mask { get { throw null; } }
             public short Offset { get { throw null; } }
             public bool Equals(System.Collections.Specialized.BitVector32.Section obj) { throw null; }

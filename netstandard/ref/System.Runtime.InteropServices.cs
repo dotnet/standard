@@ -18,6 +18,7 @@ namespace System.Runtime.InteropServices
     }
     public partial struct ArrayWithOffset
     {
+        private object _dummy;
         public ArrayWithOffset(object array, int offset) { throw null; }
         public override bool Equals(object obj) { throw null; }
         public bool Equals(System.Runtime.InteropServices.ArrayWithOffset obj) { throw null; }
@@ -323,6 +324,7 @@ namespace System.Runtime.InteropServices
     }
     public partial struct GCHandle
     {
+        private int _dummyPrimitive;
         public bool IsAllocated { get { throw null; } }
         public object Target { get { throw null; } set { } }
         public System.IntPtr AddrOfPinnedObject() { throw null; }
@@ -364,6 +366,8 @@ namespace System.Runtime.InteropServices
     }
     public partial struct HandleRef
     {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public HandleRef(object wrapper, System.IntPtr handle) { throw null; }
         public System.IntPtr Handle { get { throw null; } }
         public object Wrapper { get { throw null; } }
@@ -738,6 +742,7 @@ namespace System.Runtime.InteropServices
     }
     public readonly partial struct OSPlatform : System.IEquatable<System.Runtime.InteropServices.OSPlatform>
     {
+        private readonly object _dummy;
         public static System.Runtime.InteropServices.OSPlatform Linux { get { throw null; } }
         public static System.Runtime.InteropServices.OSPlatform OSX { get { throw null; } }
         public static System.Runtime.InteropServices.OSPlatform Windows { get { throw null; } }

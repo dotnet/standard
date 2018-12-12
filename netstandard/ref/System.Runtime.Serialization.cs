@@ -363,6 +363,7 @@ namespace System.Runtime.Serialization
     }
     public partial struct SerializationEntry
     {
+        private readonly object _dummy;
         public string Name { get { throw null; } }
         public System.Type ObjectType { get { throw null; } }
         public object Value { get { throw null; } }
@@ -448,6 +449,8 @@ namespace System.Runtime.Serialization
     }
     public readonly partial struct StreamingContext
     {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public StreamingContext(System.Runtime.Serialization.StreamingContextStates state) { throw null; }
         public StreamingContext(System.Runtime.Serialization.StreamingContextStates state, object additional) { throw null; }
         public object Context { get { throw null; } }

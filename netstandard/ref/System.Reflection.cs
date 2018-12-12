@@ -400,6 +400,7 @@ namespace System.Reflection
     }
     public partial struct CustomAttributeNamedArgument
     {
+        private object _dummy;
         public CustomAttributeNamedArgument(System.Reflection.MemberInfo memberInfo, object value) { throw null; }
         public CustomAttributeNamedArgument(System.Reflection.MemberInfo memberInfo, System.Reflection.CustomAttributeTypedArgument typedArgument) { throw null; }
         public bool IsField { get { throw null; } }
@@ -414,6 +415,7 @@ namespace System.Reflection
     }
     public partial struct CustomAttributeTypedArgument
     {
+        private object _dummy;
         public CustomAttributeTypedArgument(object value) { throw null; }
         public CustomAttributeTypedArgument(System.Type argumentType, object value) { throw null; }
         public System.Type ArgumentType { get { throw null; } }
@@ -911,6 +913,7 @@ namespace System.Reflection
     }
     public readonly partial struct ParameterModifier
     {
+        private readonly object _dummy;
         public ParameterModifier(int parameterCount) { throw null; }
         public bool this[int index] { get { throw null; } set { } }
     }

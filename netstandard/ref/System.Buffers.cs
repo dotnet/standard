@@ -37,6 +37,8 @@ namespace System.Buffers
     }
     public partial struct MemoryHandle : System.IDisposable
     {
+        private object _dummy;
+        private int _dummyPrimitive;
         [System.CLSCompliantAttribute(false)]
         public unsafe MemoryHandle(void* pointer, System.Runtime.InteropServices.GCHandle handle = default(System.Runtime.InteropServices.GCHandle), System.Buffers.IPinnable pinnable = null) { throw null; }
         [System.CLSCompliantAttribute(false)]
@@ -74,6 +76,8 @@ namespace System.Buffers
     }
     public readonly partial struct ReadOnlySequence<T>
     {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public static readonly System.Buffers.ReadOnlySequence<T> Empty;
         public ReadOnlySequence(System.Buffers.ReadOnlySequenceSegment<T> startSegment, int startIndex, System.Buffers.ReadOnlySequenceSegment<T> endSegment, int endIndex) { throw null; }
         public ReadOnlySequence(System.ReadOnlyMemory<T> memory) { throw null; }
@@ -101,6 +105,8 @@ namespace System.Buffers
         public bool TryGet(ref System.SequencePosition position, out System.ReadOnlyMemory<T> memory, bool advance = true) { throw null; }
         public partial struct Enumerator
         {
+            private object _dummy;
+            private int _dummyPrimitive;
             public Enumerator(in System.Buffers.ReadOnlySequence<T> sequence) { throw null; }
             public System.ReadOnlyMemory<T> Current { get { throw null; } }
             public bool MoveNext() { throw null; }
@@ -117,6 +123,7 @@ namespace System.Buffers
     public delegate void SpanAction<T, in TArg>(System.Span<T> span, TArg arg);
     public readonly partial struct StandardFormat : System.IEquatable<System.Buffers.StandardFormat>
     {
+        private readonly int _dummyPrimitive;
         public const byte MaxPrecision = (byte)99;
         public const byte NoPrecision = (byte)255;
         public StandardFormat(char symbol, byte precision = (byte)255) { throw null; }
