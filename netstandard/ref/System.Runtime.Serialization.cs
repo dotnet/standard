@@ -448,8 +448,8 @@ namespace System.Runtime.Serialization
     }
     public readonly partial struct StreamingContext
     {
-        public StreamingContext(System.Runtime.Serialization.StreamingContextStates state) { throw null;}
-        public StreamingContext(System.Runtime.Serialization.StreamingContextStates state, object additional) { throw null;}
+        public StreamingContext(System.Runtime.Serialization.StreamingContextStates state) { throw null; }
+        public StreamingContext(System.Runtime.Serialization.StreamingContextStates state, object additional) { throw null; }
         public object Context { get { throw null; } }
         public System.Runtime.Serialization.StreamingContextStates State { get { throw null; } }
         public override bool Equals(object obj) { throw null; }

@@ -18,7 +18,7 @@ namespace System.Runtime.InteropServices
     }
     public partial struct ArrayWithOffset
     {
-        public ArrayWithOffset(object array, int offset) { throw null;}
+        public ArrayWithOffset(object array, int offset) { throw null; }
         public override bool Equals(object obj) { throw null; }
         public bool Equals(System.Runtime.InteropServices.ArrayWithOffset obj) { throw null; }
         public object GetArray() { throw null; }
@@ -27,7 +27,7 @@ namespace System.Runtime.InteropServices
         public static bool operator ==(System.Runtime.InteropServices.ArrayWithOffset a, System.Runtime.InteropServices.ArrayWithOffset b) { throw null; }
         public static bool operator !=(System.Runtime.InteropServices.ArrayWithOffset a, System.Runtime.InteropServices.ArrayWithOffset b) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1029), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1029), Inherited=false)]
     public sealed partial class AutomationProxyAttribute : System.Attribute
     {
         public AutomationProxyAttribute(bool val) { }
@@ -364,7 +364,7 @@ namespace System.Runtime.InteropServices
     }
     public partial struct HandleRef
     {
-        public HandleRef(object wrapper, System.IntPtr handle) { throw null;}
+        public HandleRef(object wrapper, System.IntPtr handle) { throw null; }
         public System.IntPtr Handle { get { throw null; } }
         public object Wrapper { get { throw null; } }
         public static explicit operator System.IntPtr (System.Runtime.InteropServices.HandleRef value) { throw null; }
@@ -393,7 +393,7 @@ namespace System.Runtime.InteropServices
     {
         System.Runtime.InteropServices.CustomQueryInterfaceResult GetInterface(ref System.Guid iid, out System.IntPtr ppv);
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
     public sealed partial class ImportedFromTypeLibAttribute : System.Attribute
     {
         public ImportedFromTypeLibAttribute(string tlbFile) { }
@@ -875,7 +875,7 @@ namespace System.Runtime.InteropServices
         public string Identifier { get { throw null; } }
         public string Scope { get { throw null; } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
     public sealed partial class TypeLibFuncAttribute : System.Attribute
     {
         public TypeLibFuncAttribute(short flags) { }
@@ -899,13 +899,13 @@ namespace System.Runtime.InteropServices
         FUiDefault = 512,
         FUsesGetLastError = 128,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited=false)]
     public sealed partial class TypeLibImportClassAttribute : System.Attribute
     {
         public TypeLibImportClassAttribute(System.Type importClass) { }
         public string Value { get { throw null; } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1052), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1052), Inherited=false)]
     public sealed partial class TypeLibTypeAttribute : System.Attribute
     {
         public TypeLibTypeAttribute(short flags) { }
@@ -930,7 +930,7 @@ namespace System.Runtime.InteropServices
         FRestricted = 512,
         FReverseBind = 8192,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(256), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(256), Inherited=false)]
     public sealed partial class TypeLibVarAttribute : System.Attribute
     {
         public TypeLibVarAttribute(short flags) { }
@@ -954,7 +954,7 @@ namespace System.Runtime.InteropServices
         FSource = 2,
         FUiDefault = 512,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
     public sealed partial class TypeLibVersionAttribute : System.Attribute
     {
         public TypeLibVersionAttribute(int major, int minor) { }

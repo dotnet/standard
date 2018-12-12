@@ -7,17 +7,17 @@ namespace System.Numerics
     public readonly partial struct BigInteger : System.IComparable, System.IComparable<System.Numerics.BigInteger>, System.IEquatable<System.Numerics.BigInteger>, System.IFormattable
     {
         [System.CLSCompliantAttribute(false)]
-        public BigInteger(byte[] value) { throw null;}
-        public BigInteger(decimal value) { throw null;}
-        public BigInteger(double value) { throw null;}
-        public BigInteger(int value) { throw null;}
-        public BigInteger(long value) { throw null;}
+        public BigInteger(byte[] value) { throw null; }
+        public BigInteger(decimal value) { throw null; }
+        public BigInteger(double value) { throw null; }
+        public BigInteger(int value) { throw null; }
+        public BigInteger(long value) { throw null; }
         public BigInteger(System.ReadOnlySpan<byte> value, bool isUnsigned = false, bool isBigEndian = false) { throw null; }
-        public BigInteger(float value) { throw null;}
+        public BigInteger(float value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public BigInteger(uint value) { throw null;}
+        public BigInteger(uint value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public BigInteger(ulong value) { throw null;}
+        public BigInteger(ulong value) { throw null; }
         public bool IsEven { get { throw null; } }
         public bool IsOne { get { throw null; } }
         public bool IsPowerOfTwo { get { throw null; } }
@@ -165,7 +165,7 @@ namespace System.Numerics
         public static readonly System.Numerics.Complex ImaginaryOne;
         public static readonly System.Numerics.Complex One;
         public static readonly System.Numerics.Complex Zero;
-        public Complex(double real, double imaginary) { throw null;}
+        public Complex(double real, double imaginary) { throw null; }
         public double Imaginary { get { throw null; } }
         public double Magnitude { get { throw null; } }
         public double Phase { get { throw null; } }
@@ -534,20 +534,20 @@ namespace System.Numerics
         public static System.Numerics.Vector<T> operator /(System.Numerics.Vector<T> left, System.Numerics.Vector<T> right) { throw null; }
         public static bool operator ==(System.Numerics.Vector<T> left, System.Numerics.Vector<T> right) { throw null; }
         public static System.Numerics.Vector<T> operator ^(System.Numerics.Vector<T> left, System.Numerics.Vector<T> right) { throw null; }
-        public static explicit operator System.Numerics.Vector<System.Byte>(System.Numerics.Vector<T> value) { throw null; }
-        public static explicit operator System.Numerics.Vector<System.Double>(System.Numerics.Vector<T> value) { throw null; }
-        public static explicit operator System.Numerics.Vector<System.Int16>(System.Numerics.Vector<T> value) { throw null; }
-        public static explicit operator System.Numerics.Vector<System.Int32>(System.Numerics.Vector<T> value) { throw null; }
-        public static explicit operator System.Numerics.Vector<System.Int64>(System.Numerics.Vector<T> value) { throw null; }
+        public static explicit operator System.Numerics.Vector<System.Byte> (System.Numerics.Vector<T> value) { throw null; }
+        public static explicit operator System.Numerics.Vector<System.Double> (System.Numerics.Vector<T> value) { throw null; }
+        public static explicit operator System.Numerics.Vector<System.Int16> (System.Numerics.Vector<T> value) { throw null; }
+        public static explicit operator System.Numerics.Vector<System.Int32> (System.Numerics.Vector<T> value) { throw null; }
+        public static explicit operator System.Numerics.Vector<System.Int64> (System.Numerics.Vector<T> value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Numerics.Vector<System.SByte>(System.Numerics.Vector<T> value) { throw null; }
-        public static explicit operator System.Numerics.Vector<System.Single>(System.Numerics.Vector<T> value) { throw null; }
+        public static explicit operator System.Numerics.Vector<System.SByte> (System.Numerics.Vector<T> value) { throw null; }
+        public static explicit operator System.Numerics.Vector<System.Single> (System.Numerics.Vector<T> value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Numerics.Vector<System.UInt16>(System.Numerics.Vector<T> value) { throw null; }
+        public static explicit operator System.Numerics.Vector<System.UInt16> (System.Numerics.Vector<T> value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Numerics.Vector<System.UInt32>(System.Numerics.Vector<T> value) { throw null; }
+        public static explicit operator System.Numerics.Vector<System.UInt32> (System.Numerics.Vector<T> value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Numerics.Vector<System.UInt64>(System.Numerics.Vector<T> value) { throw null; }
+        public static explicit operator System.Numerics.Vector<System.UInt64> (System.Numerics.Vector<T> value) { throw null; }
         public static bool operator !=(System.Numerics.Vector<T> left, System.Numerics.Vector<T> right) { throw null; }
         public static System.Numerics.Vector<T> operator *(System.Numerics.Vector<T> left, System.Numerics.Vector<T> right) { throw null; }
         public static System.Numerics.Vector<T> operator *(System.Numerics.Vector<T> value, T factor) { throw null; }

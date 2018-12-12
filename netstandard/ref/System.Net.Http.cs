@@ -27,13 +27,13 @@ namespace System.Net.Http
     }
     public partial class FormUrlEncodedContent : System.Net.Http.ByteArrayContent
     {
-        public FormUrlEncodedContent(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>> nameValueCollection) : base(default(byte[])) { }
+        public FormUrlEncodedContent(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>> nameValueCollection) : base (default(byte[])) { }
     }
     public partial class HttpClient : System.Net.Http.HttpMessageInvoker
     {
-        public HttpClient() : base(default(System.Net.Http.HttpMessageHandler)) { }
-        public HttpClient(System.Net.Http.HttpMessageHandler handler) : base(default(System.Net.Http.HttpMessageHandler)) { }
-        public HttpClient(System.Net.Http.HttpMessageHandler handler, bool disposeHandler) : base(default(System.Net.Http.HttpMessageHandler)) { }
+        public HttpClient() : base (default(System.Net.Http.HttpMessageHandler)) { }
+        public HttpClient(System.Net.Http.HttpMessageHandler handler) : base (default(System.Net.Http.HttpMessageHandler)) { }
+        public HttpClient(System.Net.Http.HttpMessageHandler handler, bool disposeHandler) : base (default(System.Net.Http.HttpMessageHandler)) { }
         public System.Uri BaseAddress { get { throw null; } set { } }
         public System.Net.Http.Headers.HttpRequestHeaders DefaultRequestHeaders { get { throw null; } }
         public long MaxResponseContentBufferSize { get { throw null; } set { } }
@@ -243,8 +243,8 @@ namespace System.Net.Http
     }
     public partial class StringContent : System.Net.Http.ByteArrayContent
     {
-        public StringContent(string content) : base(default(byte[])) { }
-        public StringContent(string content, System.Text.Encoding encoding) : base(default(byte[])) { }
-        public StringContent(string content, System.Text.Encoding encoding, string mediaType) : base(default(byte[])) { }
+        public StringContent(string content) : base (default(byte[])) { }
+        public StringContent(string content, System.Text.Encoding encoding) : base (default(byte[])) { }
+        public StringContent(string content, System.Text.Encoding encoding, string mediaType) : base (default(byte[])) { }
     }
 }

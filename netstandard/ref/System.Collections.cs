@@ -176,7 +176,7 @@ namespace System.Collections
     }
     public partial struct DictionaryEntry
     {
-        public DictionaryEntry(object key, object value) { throw null;}
+        public DictionaryEntry(object key, object value) { throw null; }
         public object Key { get { throw null; } set { } }
         public object Value { get { throw null; } set { } }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]

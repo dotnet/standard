@@ -51,7 +51,7 @@ namespace System.Xml.Schema
         public override string ToString() { throw null; }
         public override object ValueAs(System.Type type, System.Xml.IXmlNamespaceResolver nsResolver) { throw null; }
     }
-    [System.Xml.Serialization.XmlRootAttribute("schema", Namespace = "http://www.w3.org/2001/XMLSchema")]
+    [System.Xml.Serialization.XmlRootAttribute("schema", Namespace="http://www.w3.org/2001/XMLSchema")]
     public partial class XmlSchema : System.Xml.Schema.XmlSchemaObject
     {
         public const string InstanceNamespace = "http://www.w3.org/2001/XMLSchema-instance";
@@ -77,7 +77,7 @@ namespace System.Xml.Schema
         public System.Xml.Schema.XmlSchemaDerivationMethod FinalDefault { get { throw null; } set { } }
         [System.Xml.Serialization.XmlIgnoreAttribute]
         public System.Xml.Schema.XmlSchemaObjectTable Groups { get { throw null; } }
-        [System.Xml.Serialization.XmlAttributeAttribute("id", DataType = "ID")]
+        [System.Xml.Serialization.XmlAttributeAttribute("id", DataType="ID")]
         public string Id { get { throw null; } set { } }
         [System.Xml.Serialization.XmlElementAttribute("import", typeof(System.Xml.Schema.XmlSchemaImport))]
         [System.Xml.Serialization.XmlElementAttribute("include", typeof(System.Xml.Schema.XmlSchemaInclude))]
@@ -98,11 +98,11 @@ namespace System.Xml.Schema
         public System.Xml.Schema.XmlSchemaObjectTable Notations { get { throw null; } }
         [System.Xml.Serialization.XmlIgnoreAttribute]
         public System.Xml.Schema.XmlSchemaObjectTable SchemaTypes { get { throw null; } }
-        [System.Xml.Serialization.XmlAttributeAttribute("targetNamespace", DataType = "anyURI")]
+        [System.Xml.Serialization.XmlAttributeAttribute("targetNamespace", DataType="anyURI")]
         public string TargetNamespace { get { throw null; } set { } }
         [System.Xml.Serialization.XmlAnyAttributeAttribute]
         public System.Xml.XmlAttribute[] UnhandledAttributes { get { throw null; } set { } }
-        [System.Xml.Serialization.XmlAttributeAttribute("version", DataType = "token")]
+        [System.Xml.Serialization.XmlAttributeAttribute("version", DataType="token")]
         public string Version { get { throw null; } set { } }
         [System.ObsoleteAttribute("Use System.Xml.Schema.XmlSchemaSet for schema compilation and validation. https://go.microsoft.com/fwlink/?linkid=14202")]
         public void Compile(System.Xml.Schema.ValidationEventHandler validationEventHandler) { }
@@ -129,7 +129,7 @@ namespace System.Xml.Schema
         public XmlSchemaAnnotated() { }
         [System.Xml.Serialization.XmlElementAttribute("annotation", typeof(System.Xml.Schema.XmlSchemaAnnotation))]
         public System.Xml.Schema.XmlSchemaAnnotation Annotation { get { throw null; } set { } }
-        [System.Xml.Serialization.XmlAttributeAttribute("id", DataType = "ID")]
+        [System.Xml.Serialization.XmlAttributeAttribute("id", DataType="ID")]
         public string Id { get { throw null; } set { } }
         [System.Xml.Serialization.XmlAnyAttributeAttribute]
         public System.Xml.XmlAttribute[] UnhandledAttributes { get { throw null; } set { } }
@@ -137,7 +137,7 @@ namespace System.Xml.Schema
     public partial class XmlSchemaAnnotation : System.Xml.Schema.XmlSchemaObject
     {
         public XmlSchemaAnnotation() { }
-        [System.Xml.Serialization.XmlAttributeAttribute("id", DataType = "ID")]
+        [System.Xml.Serialization.XmlAttributeAttribute("id", DataType="ID")]
         public string Id { get { throw null; } set { } }
         [System.Xml.Serialization.XmlElementAttribute("appinfo", typeof(System.Xml.Schema.XmlSchemaAppInfo))]
         [System.Xml.Serialization.XmlElementAttribute("documentation", typeof(System.Xml.Schema.XmlSchemaDocumentation))]
@@ -169,7 +169,7 @@ namespace System.Xml.Schema
         [System.Xml.Serialization.XmlAnyElementAttribute]
         [System.Xml.Serialization.XmlTextAttribute]
         public System.Xml.XmlNode[] Markup { get { throw null; } set { } }
-        [System.Xml.Serialization.XmlAttributeAttribute("source", DataType = "anyURI")]
+        [System.Xml.Serialization.XmlAttributeAttribute("source", DataType="anyURI")]
         public string Source { get { throw null; } set { } }
     }
     public partial class XmlSchemaAttribute : System.Xml.Schema.XmlSchemaAnnotated
@@ -424,7 +424,7 @@ namespace System.Xml.Schema
         [System.Xml.Serialization.XmlAnyElementAttribute]
         [System.Xml.Serialization.XmlTextAttribute]
         public System.Xml.XmlNode[] Markup { get { throw null; } set { } }
-        [System.Xml.Serialization.XmlAttributeAttribute("source", DataType = "anyURI")]
+        [System.Xml.Serialization.XmlAttributeAttribute("source", DataType="anyURI")]
         public string Source { get { throw null; } set { } }
     }
     public partial class XmlSchemaElement : System.Xml.Schema.XmlSchemaParticle
@@ -500,11 +500,11 @@ namespace System.Xml.Schema
     public abstract partial class XmlSchemaExternal : System.Xml.Schema.XmlSchemaObject
     {
         protected XmlSchemaExternal() { }
-        [System.Xml.Serialization.XmlAttributeAttribute("id", DataType = "ID")]
+        [System.Xml.Serialization.XmlAttributeAttribute("id", DataType="ID")]
         public string Id { get { throw null; } set { } }
         [System.Xml.Serialization.XmlIgnoreAttribute]
         public System.Xml.Schema.XmlSchema Schema { get { throw null; } set { } }
-        [System.Xml.Serialization.XmlAttributeAttribute("schemaLocation", DataType = "anyURI")]
+        [System.Xml.Serialization.XmlAttributeAttribute("schemaLocation", DataType="anyURI")]
         public string SchemaLocation { get { throw null; } set { } }
         [System.Xml.Serialization.XmlAnyAttributeAttribute]
         public System.Xml.XmlAttribute[] UnhandledAttributes { get { throw null; } set { } }
@@ -574,7 +574,7 @@ namespace System.Xml.Schema
         public XmlSchemaImport() { }
         [System.Xml.Serialization.XmlElementAttribute("annotation", typeof(System.Xml.Schema.XmlSchemaAnnotation))]
         public System.Xml.Schema.XmlSchemaAnnotation Annotation { get { throw null; } set { } }
-        [System.Xml.Serialization.XmlAttributeAttribute("namespace", DataType = "anyURI")]
+        [System.Xml.Serialization.XmlAttributeAttribute("namespace", DataType="anyURI")]
         public string Namespace { get { throw null; } set { } }
     }
     public partial class XmlSchemaInclude : System.Xml.Schema.XmlSchemaExternal

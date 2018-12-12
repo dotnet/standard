@@ -56,7 +56,7 @@ namespace System.Diagnostics.Tracing
         public void Dispose() { }
         public void WriteMetric(float value) { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited=false)]
     public partial class EventDataAttribute : System.Attribute
     {
         public EventDataAttribute() { }

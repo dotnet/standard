@@ -78,7 +78,7 @@ namespace System.Threading
     }
     public readonly partial struct CancellationToken
     {
-        public CancellationToken(bool canceled) { throw null;}
+        public CancellationToken(bool canceled) { throw null; }
         public bool CanBeCanceled { get { throw null; } }
         public bool IsCancellationRequested { get { throw null; } }
         public static System.Threading.CancellationToken None { get { throw null; } }
@@ -466,7 +466,7 @@ namespace System.Threading
     public delegate void SendOrPostCallback(object state);
     public partial struct SpinLock
     {
-        public SpinLock(bool enableThreadOwnerTracking) { throw null;}
+        public SpinLock(bool enableThreadOwnerTracking) { throw null; }
         public bool IsHeld { get { throw null; } }
         public bool IsHeldByCurrentThread { get { throw null; } }
         public bool IsThreadOwnerTrackingEnabled { get { throw null; } }

@@ -176,7 +176,7 @@ namespace System.Net
     public delegate void DownloadDataCompletedEventHandler(object sender, System.Net.DownloadDataCompletedEventArgs e);
     public partial class DownloadProgressChangedEventArgs : System.ComponentModel.ProgressChangedEventArgs
     {
-        internal DownloadProgressChangedEventArgs() : base(default(int), default(object)) { }
+        internal DownloadProgressChangedEventArgs() : base (default(int), default(object)) { }
         public long BytesReceived { get { throw null; } }
         public long TotalBytesToReceive { get { throw null; } }
     }
@@ -942,7 +942,7 @@ namespace System.Net
     public delegate void UploadFileCompletedEventHandler(object sender, System.Net.UploadFileCompletedEventArgs e);
     public partial class UploadProgressChangedEventArgs : System.ComponentModel.ProgressChangedEventArgs
     {
-        internal UploadProgressChangedEventArgs() : base(default(int), default(object)) { }
+        internal UploadProgressChangedEventArgs() : base (default(int), default(object)) { }
         public long BytesReceived { get { throw null; } }
         public long BytesSent { get { throw null; } }
         public long TotalBytesToReceive { get { throw null; } }

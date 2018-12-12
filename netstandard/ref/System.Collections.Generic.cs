@@ -279,7 +279,7 @@ namespace System.Collections.Generic
     }
     public readonly partial struct KeyValuePair<TKey, TValue>
     {
-        public KeyValuePair(TKey key, TValue value) { throw null;}
+        public KeyValuePair(TKey key, TValue value) { throw null; }
         public TKey Key { get { throw null; } }
         public TValue Value { get { throw null; } }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
