@@ -666,7 +666,7 @@ namespace System.Linq.Expressions
         public bool TailCall { get { throw null; } }
         public sealed override System.Type Type { get { throw null; } }
         public System.Delegate Compile() { throw null; }
-        public Delegate Compile(bool preferInterpretation) { throw null; }
+        public System.Delegate Compile(bool preferInterpretation) { throw null; }
         public System.Delegate Compile(System.Runtime.CompilerServices.DebugInfoGenerator debugInfoGenerator) { throw null; }
 //REFEMIT        public void CompileToMethod(System.Reflection.Emit.MethodBuilder method) { }
 //REFEMIT        public void CompileToMethod(System.Reflection.Emit.MethodBuilder method, System.Runtime.CompilerServices.DebugInfoGenerator debugInfoGenerator) { }
