@@ -39,7 +39,7 @@ namespace System.Threading
         public AsyncLocal(System.Action<System.Threading.AsyncLocalValueChangedArgs<T>> valueChangedHandler) { }
         public T Value { get { throw null; } set { } }
     }
-    public partial struct AsyncLocalValueChangedArgs<T>
+    public readonly partial struct AsyncLocalValueChangedArgs<T>
     {
         private readonly T _dummy;
         private readonly int _dummyPrimitive;
