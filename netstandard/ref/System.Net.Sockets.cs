@@ -77,6 +77,7 @@ namespace System.Net.Sockets
     }
     public partial struct IPPacketInformation
     {
+        private object _dummy;
         public System.Net.IPAddress Address { get { throw null; } }
         public int Interface { get { throw null; } }
         public override bool Equals(object comparand) { throw null; }
@@ -488,6 +489,7 @@ namespace System.Net.Sockets
     }
     public partial struct SocketInformation
     {
+        private object _dummy;
         public System.Net.Sockets.SocketInformationOptions Options { get { throw null; } set { } }
         public byte[] ProtocolInformation { get { throw null; } set { } }
     }
@@ -716,6 +718,7 @@ namespace System.Net.Sockets
     }
     public partial struct UdpReceiveResult : System.IEquatable<System.Net.Sockets.UdpReceiveResult>
     {
+        private object _dummy;
         public UdpReceiveResult(byte[] buffer, System.Net.IPEndPoint remoteEndPoint) { throw null; }
         public byte[] Buffer { get { throw null; } }
         public System.Net.IPEndPoint RemoteEndPoint { get { throw null; } }

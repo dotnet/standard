@@ -7,6 +7,8 @@
     <IsCoreAssembly>true</IsCoreAssembly>
     <!-- disable obsolete warnings/errors -->
     <NoWarn>$(NoWarn);0618;0619;0809</NoWarn>
+    <!-- disable unused field warnings/errors -->
+    <NoWarn>$(NoWarn);0169;0649</NoWarn>
 
     <DefaultBuildAllTarget>Build</DefaultBuildAllTarget>
     <BuildAllProjects>true</BuildAllProjects>

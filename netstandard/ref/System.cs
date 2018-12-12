@@ -419,6 +419,9 @@ namespace System
     }
     public readonly partial struct ArraySegment<T> : System.Collections.Generic.ICollection<T>, System.Collections.Generic.IEnumerable<T>, System.Collections.Generic.IList<T>, System.Collections.Generic.IReadOnlyCollection<T>, System.Collections.Generic.IReadOnlyList<T>, System.Collections.IEnumerable
     {
+        private readonly T[] _array;
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public ArraySegment(T[] array) { throw null; }
         public ArraySegment(T[] array, int offset, int count) { throw null; }
         public T[] Array { get { throw null; } }
@@ -453,6 +456,9 @@ namespace System
         public T[] ToArray() { throw null; }
         public partial struct Enumerator : System.Collections.Generic.IEnumerator<T>, System.Collections.IEnumerator, System.IDisposable
         {
+            private readonly T[] _array;
+            private object _dummy;
+            private int _dummyPrimitive;
             public T Current { get { throw null; } }
             object System.Collections.IEnumerator.Current { get { throw null; } }
             public void Dispose() { }
@@ -629,6 +635,7 @@ namespace System
     }
     public partial struct Boolean : System.IComparable, System.IComparable<bool>, System.IConvertible, System.IEquatable<bool>
     {
+        private readonly bool _dummyPrimitive;
         public static readonly string FalseString;
         public static readonly string TrueString;
         public int CompareTo(System.Boolean value) { throw null; }
@@ -673,6 +680,7 @@ namespace System
     }
     public partial struct Byte : System.IComparable, System.IComparable<byte>, System.IConvertible, System.IEquatable<byte>, System.IFormattable
     {
+        private readonly byte _dummyPrimitive;
         public const byte MaxValue = (byte)255;
         public const byte MinValue = (byte)0;
         public int CompareTo(System.Byte value) { throw null; }
@@ -720,6 +728,7 @@ namespace System
     }
     public partial struct Char : System.IComparable, System.IComparable<char>, System.IConvertible, System.IEquatable<char>
     {
+        private readonly char _dummyPrimitive;
         public const char MaxValue = '\uFFFF';
         public const char MinValue = '\0';
         public int CompareTo(System.Char value) { throw null; }
@@ -1077,6 +1086,7 @@ namespace System
     }
     public readonly partial struct ConsoleKeyInfo
     {
+        private readonly int _dummyPrimitive;
         public ConsoleKeyInfo(char keyChar, System.ConsoleKey key, bool shift, bool alt, bool control) { throw null; }
         public System.ConsoleKey Key { get { throw null; } }
         public char KeyChar { get { throw null; } }
@@ -1566,6 +1576,7 @@ namespace System
     }
     public readonly partial struct DateTime : System.IComparable, System.IComparable<System.DateTime>, System.IConvertible, System.IEquatable<System.DateTime>, System.IFormattable, System.Runtime.Serialization.ISerializable
     {
+        private readonly int _dummyPrimitive;
         public static readonly System.DateTime MaxValue;
         public static readonly System.DateTime MinValue;
         public static readonly System.DateTime UnixEpoch;
@@ -1693,6 +1704,7 @@ namespace System
     }
     public partial struct DateTimeOffset : System.IComparable, System.IComparable<System.DateTimeOffset>, System.IEquatable<System.DateTimeOffset>, System.IFormattable, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable
     {
+        private readonly int _dummyPrimitive;
         public static readonly System.DateTimeOffset MaxValue;
         public static readonly System.DateTimeOffset MinValue;
         public static readonly System.DateTimeOffset UnixEpoch;
@@ -1820,6 +1832,7 @@ namespace System
     }
     public partial struct Decimal : System.IComparable, System.IComparable<decimal>, System.IConvertible, System.IEquatable<decimal>, System.IFormattable, System.Runtime.Serialization.IDeserializationCallback
     {
+        private readonly int _dummyPrimitive;
         [System.Runtime.CompilerServices.DecimalConstantAttribute((byte)0, (byte)0, (uint)4294967295, (uint)4294967295, (uint)4294967295)]
         public static readonly decimal MaxValue;
         [System.Runtime.CompilerServices.DecimalConstantAttribute((byte)0, (byte)128, (uint)0, (uint)0, (uint)1)]
@@ -2003,6 +2016,7 @@ namespace System
     }
     public partial struct Double : System.IComparable, System.IComparable<double>, System.IConvertible, System.IEquatable<double>, System.IFormattable
     {
+        private readonly double _dummyPrimitive;
         public const double Epsilon = 4.94065645841247E-324;
         public const double MaxValue = 1.7976931348623157E+308;
         public const double MinValue = -1.7976931348623157E+308;
@@ -2391,6 +2405,7 @@ namespace System
     }
     public partial struct Guid : System.IComparable, System.IComparable<System.Guid>, System.IEquatable<System.Guid>, System.IFormattable
     {
+        private int _dummyPrimitive;
         public static readonly System.Guid Empty;
         public Guid(byte[] b) { throw null; }
         public Guid(int a, short b, short c, byte d, byte e, byte f, byte g, byte h, byte i, byte j, byte k) { throw null; }
@@ -2424,6 +2439,7 @@ namespace System
     }
     public partial struct HashCode
     {
+        private int _dummyPrimitive;
         public void Add<T>(T value) { }
         public void Add<T>(T value, System.Collections.Generic.IEqualityComparer<T> comparer) { }
         public static int Combine<T1>(T1 value1) { throw null; }
@@ -2526,6 +2542,7 @@ namespace System
     }
     public partial struct Int16 : System.IComparable, System.IComparable<short>, System.IConvertible, System.IEquatable<short>, System.IFormattable
     {
+        private readonly short _dummyPrimitive;
         public const short MaxValue = (short)32767;
         public const short MinValue = (short)-32768;
         public int CompareTo(System.Int16 value) { throw null; }
@@ -2566,6 +2583,7 @@ namespace System
     }
     public partial struct Int32 : System.IComparable, System.IComparable<int>, System.IConvertible, System.IEquatable<int>, System.IFormattable
     {
+        private readonly int _dummyPrimitive;
         public const int MaxValue = 2147483647;
         public const int MinValue = -2147483648;
         public System.Int32 CompareTo(System.Int32 value) { throw null; }
@@ -2606,6 +2624,7 @@ namespace System
     }
     public partial struct Int64 : System.IComparable, System.IComparable<long>, System.IConvertible, System.IEquatable<long>, System.IFormattable
     {
+        private readonly long _dummyPrimitive;
         public const long MaxValue = (long)9223372036854775807;
         public const long MinValue = (long)-9223372036854775808;
         public int CompareTo(System.Int64 value) { throw null; }
@@ -2646,6 +2665,7 @@ namespace System
     }
     public partial struct IntPtr : System.IEquatable<System.IntPtr>, System.Runtime.Serialization.ISerializable
     {
+        private readonly int _dummyPrimitive;
         public static readonly System.IntPtr Zero;
         public IntPtr(int value) { throw null; }
         public IntPtr(long value) { throw null; }
@@ -2930,6 +2950,8 @@ namespace System
     }
     public readonly partial struct Memory<T>
     {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public Memory(T[] array) { throw null; }
         public Memory(T[] array, int start, int length) { throw null; }
         public static System.Memory<T> Empty { get { throw null; } }
@@ -3079,6 +3101,7 @@ namespace System
     }
     public partial struct ModuleHandle
     {
+        private object _dummy;
         public static readonly System.ModuleHandle EmptyHandle;
         public int MDStreamVersion { get { throw null; } }
         public bool Equals(System.ModuleHandle handle) { throw null; }
@@ -3172,6 +3195,8 @@ namespace System
     }
     public partial struct Nullable<T> where T : struct
     {
+        internal T value;
+        private int _dummyPrimitive;
         public Nullable(T value) { throw null; }
         public bool HasValue { get { throw null; } }
         public T Value { get { throw null; } }
@@ -3314,6 +3339,8 @@ namespace System
     }
     public readonly partial struct ReadOnlyMemory<T>
     {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public ReadOnlyMemory(T[] array) { throw null; }
         public ReadOnlyMemory(T[] array, int start, int length) { throw null; }
         public static System.ReadOnlyMemory<T> Empty { get { throw null; } }
@@ -3337,6 +3364,8 @@ namespace System
     }
     public readonly ref partial struct ReadOnlySpan<T>
     {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         [System.CLSCompliantAttribute(false)]
         public unsafe ReadOnlySpan(void* pointer, int length) { throw null; }
         public ReadOnlySpan(T[] array) { throw null; }
@@ -3366,6 +3395,8 @@ namespace System
         public bool TryCopyTo(System.Span<T> destination) { throw null; }
         public ref partial struct Enumerator
         {
+            private object _dummy;
+            private int _dummyPrimitive;
             public ref readonly T Current { get { throw null; } }
             public bool MoveNext() { throw null; }
         }
@@ -3380,9 +3411,11 @@ namespace System
     public delegate System.Reflection.Assembly ResolveEventHandler(object sender, System.ResolveEventArgs args);
     public ref partial struct RuntimeArgumentHandle
     {
+        private int _dummyPrimitive;
     }
     public partial struct RuntimeFieldHandle : System.Runtime.Serialization.ISerializable
     {
+        private object _dummy;
         public System.IntPtr Value { get { throw null; } }
         public override bool Equals(object obj) { throw null; }
         public bool Equals(System.RuntimeFieldHandle handle) { throw null; }
@@ -3393,6 +3426,7 @@ namespace System
     }
     public partial struct RuntimeMethodHandle : System.Runtime.Serialization.ISerializable
     {
+        private object _dummy;
         public System.IntPtr Value { get { throw null; } }
         public override bool Equals(object obj) { throw null; }
         public bool Equals(System.RuntimeMethodHandle handle) { throw null; }
@@ -3404,6 +3438,7 @@ namespace System
     }
     public partial struct RuntimeTypeHandle : System.Runtime.Serialization.ISerializable
     {
+        private object _dummy;
         public System.IntPtr Value { get { throw null; } }
         public override bool Equals(object obj) { throw null; }
         public bool Equals(System.RuntimeTypeHandle handle) { throw null; }
@@ -3419,6 +3454,7 @@ namespace System
     [System.CLSCompliantAttribute(false)]
     public partial struct SByte : System.IComparable, System.IComparable<sbyte>, System.IConvertible, System.IEquatable<sbyte>, System.IFormattable
     {
+        private readonly sbyte _dummyPrimitive;
         public const sbyte MaxValue = (sbyte)127;
         public const sbyte MinValue = (sbyte)-128;
         public int CompareTo(object obj) { throw null; }
@@ -3468,6 +3504,8 @@ namespace System
     }
     public readonly partial struct SequencePosition : System.IEquatable<System.SequencePosition>
     {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public SequencePosition(object @object, int integer) { throw null; }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         public override bool Equals(object obj) { throw null; }
@@ -3486,6 +3524,7 @@ namespace System
     }
     public partial struct Single : System.IComparable, System.IComparable<float>, System.IConvertible, System.IEquatable<float>, System.IFormattable
     {
+        private readonly float _dummyPrimitive;
         public const float Epsilon = 1.401298E-45f;
         public const float MaxValue = 3.40282347E+38f;
         public const float MinValue = -3.40282347E+38f;
@@ -3544,6 +3583,8 @@ namespace System
     }
     public readonly ref partial struct Span<T>
     {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         [System.CLSCompliantAttribute(false)]
         public unsafe Span(void* pointer, int length) { throw null; }
         public Span(T[] array) { throw null; }
@@ -3576,6 +3617,8 @@ namespace System
         public bool TryCopyTo(System.Span<T> destination) { throw null; }
         public ref partial struct Enumerator
         {
+            private object _dummy;
+            private int _dummyPrimitive;
             public ref T Current { get { throw null; } }
             public bool MoveNext() { throw null; }
         }
@@ -3838,6 +3881,7 @@ namespace System
     }
     public partial struct TimeSpan : System.IComparable, System.IComparable<System.TimeSpan>, System.IEquatable<System.TimeSpan>, System.IFormattable
     {
+        private readonly int _dummyPrimitive;
         public static readonly System.TimeSpan MaxValue;
         public static readonly System.TimeSpan MinValue;
         public const long TicksPerDay = (long)864000000000;
@@ -3996,6 +4040,7 @@ namespace System
         }
         public readonly partial struct TransitionTime : System.IEquatable<System.TimeZoneInfo.TransitionTime>, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable
         {
+            private readonly int _dummyPrimitive;
             public int Day { get { throw null; } }
             public System.DayOfWeek DayOfWeek { get { throw null; } }
             public bool IsFixedDateRule { get { throw null; } }
@@ -4481,6 +4526,7 @@ namespace System
     [System.CLSCompliantAttribute(false)]    
     public ref partial struct TypedReference
     {
+        private int _dummyPrimitive;
         public override bool Equals(object o) { throw null; }
         public override int GetHashCode() { throw null; }
         public static System.Type GetTargetType(System.TypedReference value) { throw null; }
@@ -4517,6 +4563,7 @@ namespace System
     [System.CLSCompliantAttribute(false)]
     public partial struct UInt16 : System.IComparable, System.IComparable<ushort>, System.IConvertible, System.IEquatable<ushort>, System.IFormattable
     {
+        private readonly ushort _dummyPrimitive;
         public const ushort MaxValue = (ushort)65535;
         public const ushort MinValue = (ushort)0;
         public int CompareTo(object value) { throw null; }
@@ -4567,6 +4614,7 @@ namespace System
     [System.CLSCompliantAttribute(false)]
     public partial struct UInt32 : System.IComparable, System.IComparable<uint>, System.IConvertible, System.IEquatable<uint>, System.IFormattable
     {
+        private readonly uint _dummyPrimitive;
         public const uint MaxValue = (uint)4294967295;
         public const uint MinValue = (uint)0;
         public int CompareTo(object value) { throw null; }
@@ -4617,6 +4665,7 @@ namespace System
     [System.CLSCompliantAttribute(false)]
     public partial struct UInt64 : System.IComparable, System.IComparable<ulong>, System.IConvertible, System.IEquatable<ulong>, System.IFormattable
     {
+        private readonly ulong _dummyPrimitive;
         public const ulong MaxValue = (ulong)18446744073709551615;
         public const ulong MinValue = (ulong)0;
         public int CompareTo(object value) { throw null; }
@@ -4667,6 +4716,7 @@ namespace System
     [System.CLSCompliantAttribute(false)]
     public partial struct UIntPtr : System.IEquatable<System.UIntPtr>, System.Runtime.Serialization.ISerializable
     {
+        private readonly int _dummyPrimitive;
         public static readonly System.UIntPtr Zero;
         public UIntPtr(uint value) { throw null; }
         public UIntPtr(ulong value) { throw null; }

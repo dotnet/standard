@@ -374,6 +374,7 @@ namespace System.Security.Cryptography
     }
     public partial struct ECCurve
     {
+        private object _dummy;
         public byte[] A;
         public byte[] B;
         public byte[] Cofactor;
@@ -551,6 +552,7 @@ namespace System.Security.Cryptography
     }
     public readonly partial struct HashAlgorithmName : System.IEquatable<System.Security.Cryptography.HashAlgorithmName>
     {
+        private readonly object _dummy;
         public HashAlgorithmName(string name) { throw null; }
         public static System.Security.Cryptography.HashAlgorithmName MD5 { get { throw null; } }
         public string Name { get { throw null; } }

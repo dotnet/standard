@@ -212,6 +212,7 @@ namespace System.Diagnostics.Tracing
         protected unsafe void WriteEventWithRelatedActivityIdCore(int eventId, System.Guid* relatedActivityId, int eventDataCount, System.Diagnostics.Tracing.EventSource.EventData* data) { }
         protected internal partial struct EventData
         {
+            private int _dummyPrimitive;
             public System.IntPtr DataPointer { get { throw null; } set { } }
             public int Size { get { throw null; } set { } }
         }
@@ -238,6 +239,7 @@ namespace System.Diagnostics.Tracing
     }
     public partial struct EventSourceOptions
     {
+        private int _dummyPrimitive;
         public System.Diagnostics.Tracing.EventActivityOptions ActivityOptions { get { throw null; } set { } }
         public System.Diagnostics.Tracing.EventKeywords Keywords { get { throw null; } set { } }
         public System.Diagnostics.Tracing.EventLevel Level { get { throw null; } set { } }

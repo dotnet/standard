@@ -54,6 +54,7 @@ namespace System.Threading.Tasks
     }
     public partial struct ParallelLoopResult
     {
+        private int _dummyPrimitive;
         public bool IsCompleted { get { throw null; } }
         public System.Nullable<long> LowestBreakIteration { get { throw null; } }
     }
@@ -438,6 +439,8 @@ namespace System.Threading.Tasks
     [System.Runtime.CompilerServices.AsyncMethodBuilderAttribute(typeof(System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder))]
     public readonly partial struct ValueTask : System.IEquatable<System.Threading.Tasks.ValueTask>
     {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public ValueTask(System.Threading.Tasks.Sources.IValueTaskSource source, short token) { throw null; }
         public ValueTask(System.Threading.Tasks.Task task) { throw null; }
         public bool IsCanceled { get { throw null; } }
@@ -457,6 +460,9 @@ namespace System.Threading.Tasks
     [System.Runtime.CompilerServices.AsyncMethodBuilderAttribute(typeof(System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder<>))]
     public readonly partial struct ValueTask<TResult> : System.IEquatable<System.Threading.Tasks.ValueTask<TResult>>
     {
+        private readonly TResult _result;
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public ValueTask(System.Threading.Tasks.Sources.IValueTaskSource<TResult> source, short token) { throw null; }
         public ValueTask(System.Threading.Tasks.Task<TResult> task) { throw null; }
         public ValueTask(TResult result) { throw null; }

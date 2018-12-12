@@ -6,6 +6,7 @@ namespace System.Numerics
 {
     public readonly partial struct BigInteger : System.IComparable, System.IComparable<System.Numerics.BigInteger>, System.IEquatable<System.Numerics.BigInteger>, System.IFormattable
     {
+        private readonly object _dummy;
         [System.CLSCompliantAttribute(false)]
         public BigInteger(byte[] value) { throw null; }
         public BigInteger(decimal value) { throw null; }
@@ -162,6 +163,7 @@ namespace System.Numerics
     }
     public partial struct Complex : System.IEquatable<System.Numerics.Complex>, System.IFormattable
     {
+        private int _dummyPrimitive;
         public static readonly System.Numerics.Complex ImaginaryOne;
         public static readonly System.Numerics.Complex One;
         public static readonly System.Numerics.Complex Zero;
@@ -515,6 +517,7 @@ namespace System.Numerics
     }
     public partial struct Vector<T> : System.IEquatable<System.Numerics.Vector<T>>, System.IFormattable where T : struct
     {
+        private int _dummyPrimitive;
         public Vector(System.Span<T> values) { throw null; }
         public Vector(T value) { throw null; }
         public Vector(T[] values) { throw null; }

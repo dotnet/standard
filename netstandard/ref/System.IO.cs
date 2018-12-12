@@ -1080,6 +1080,7 @@ namespace System.IO
     }
     public partial struct WaitForChangedResult
     {
+        private object _dummy;
         public System.IO.WatcherChangeTypes ChangeType { get { throw null; } set { } }
         public string Name { get { throw null; } set { } }
         public string OldName { get { throw null; } set { } }
