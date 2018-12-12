@@ -2744,7 +2744,7 @@ namespace System
         public Lazy(System.Func<T> valueFactory, TMetadata metadata) { }
         public Lazy(System.Func<T> valueFactory, TMetadata metadata, bool isThreadSafe) { }
         public Lazy(System.Func<T> valueFactory, TMetadata metadata, System.Threading.LazyThreadSafetyMode mode) { }
-        public TMetadata Metadata { throw null; }
+        public TMetadata Metadata { get { throw null; } }
     }
     public partial class LdapStyleUriParser : System.UriParser
     {
