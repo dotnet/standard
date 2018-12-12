@@ -655,32 +655,32 @@ namespace System.Runtime.InteropServices
         public static void WriteByte(System.IntPtr ptr, int ofs, byte val) { }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("WriteByte(Object, Int32, Byte) may be unavailable in future releases.")]
-        public static void WriteByte(object ptr, int ofs, byte val) { throw null; }
+        public static void WriteByte(object ptr, int ofs, byte val) { }
         public static void WriteInt16(System.IntPtr ptr, char val) { }
         public static void WriteInt16(System.IntPtr ptr, short val) { }
         public static void WriteInt16(System.IntPtr ptr, int ofs, char val) { }
         public static void WriteInt16(System.IntPtr ptr, int ofs, short val) { }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("WriteInt16(Object, Int32, Char) may be unavailable in future releases.")]
-        public static void WriteInt16(object ptr, int ofs, char val) { throw null; }
+        public static void WriteInt16(object ptr, int ofs, char val) { }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("WriteInt16(Object, Int32, Int16) may be unavailable in future releases.")]
-        public static void WriteInt16(object ptr, int ofs, short val) { throw null; }
+        public static void WriteInt16(object ptr, int ofs, short val) { }
         public static void WriteInt32(System.IntPtr ptr, int val) { }
         public static void WriteInt32(System.IntPtr ptr, int ofs, int val) { }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("WriteInt32(Object, Int32, Int32) may be unavailable in future releases.")]
-        public static void WriteInt32(object ptr, int ofs, int val) { throw null; }
+        public static void WriteInt32(object ptr, int ofs, int val) { }
         public static void WriteInt64(System.IntPtr ptr, int ofs, long val) { }
         public static void WriteInt64(System.IntPtr ptr, long val) { }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("WriteInt64(Object, Int32, Int64) may be unavailable in future releases.")]
-        public static void WriteInt64(object ptr, int ofs, long val) { throw null; }
+        public static void WriteInt64(object ptr, int ofs, long val) { }
         public static void WriteIntPtr(System.IntPtr ptr, int ofs, System.IntPtr val) { }
         public static void WriteIntPtr(System.IntPtr ptr, System.IntPtr val) { }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("WriteIntPtr(Object, Int32, IntPtr) may be unavailable in future releases.")]
-        public static void WriteIntPtr(object ptr, int ofs, System.IntPtr val) { throw null; }
+        public static void WriteIntPtr(object ptr, int ofs, System.IntPtr val) { }
         public static void ZeroFreeBSTR(System.IntPtr s) { }
         public static void ZeroFreeCoTaskMemAnsi(System.IntPtr s) { }
         public static void ZeroFreeCoTaskMemUnicode(System.IntPtr s) { }
