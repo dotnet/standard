@@ -176,7 +176,7 @@ namespace System.Net
     public delegate void DownloadDataCompletedEventHandler(object sender, System.Net.DownloadDataCompletedEventArgs e);
     public partial class DownloadProgressChangedEventArgs : System.ComponentModel.ProgressChangedEventArgs
     {
-        internal DownloadProgressChangedEventArgs() : base(default(int), default(object)) { }
+        internal DownloadProgressChangedEventArgs() : base (default(int), default(object)) { }
         public long BytesReceived { get { throw null; } }
         public long TotalBytesToReceive { get { throw null; } }
     }
@@ -683,12 +683,12 @@ namespace System.Net
         public override System.IAsyncResult BeginGetRequestStream(System.AsyncCallback callback, object state) { throw null; }
         public override System.IAsyncResult BeginGetResponse(System.AsyncCallback callback, object state) { throw null; }
         public override System.IO.Stream EndGetRequestStream(System.IAsyncResult asyncResult) { throw null; }
-        public System.IO.Stream EndGetRequestStream(System.IAsyncResult asyncResult, out System.Net.TransportContext context) { context = default(System.Net.TransportContext); throw null; }
+        public System.IO.Stream EndGetRequestStream(System.IAsyncResult asyncResult, out System.Net.TransportContext context) { throw null; }
         public override System.Net.WebResponse EndGetResponse(System.IAsyncResult asyncResult) { throw null; }
         [System.ObsoleteAttribute("Serialization is obsoleted for this type.  https://go.microsoft.com/fwlink/?linkid=14202")]
         protected override void GetObjectData(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
         public override System.IO.Stream GetRequestStream() { throw null; }
-        public System.IO.Stream GetRequestStream(out System.Net.TransportContext context) { context = default(System.Net.TransportContext); throw null; }
+        public System.IO.Stream GetRequestStream(out System.Net.TransportContext context) { throw null; }
         public override System.Net.WebResponse GetResponse() { throw null; }
         [System.ObsoleteAttribute("Serialization is obsoleted for this type.  https://go.microsoft.com/fwlink/?linkid=14202")]
         void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
@@ -779,10 +779,10 @@ namespace System.Net
         public static System.Net.IPAddress Parse(System.ReadOnlySpan<char> ipString) { throw null; }
         public static System.Net.IPAddress Parse(string ipString) { throw null; }
         public override string ToString() { throw null; }
-        public bool TryFormat(System.Span<char> destination, out int charsWritten) { charsWritten = default(int); throw null; }
-        public static bool TryParse(System.ReadOnlySpan<char> ipString, out System.Net.IPAddress address) { address = default(System.Net.IPAddress); throw null; }
-        public static bool TryParse(string ipString, out System.Net.IPAddress address) { address = default(System.Net.IPAddress); throw null; }
-        public bool TryWriteBytes(System.Span<byte> destination, out int bytesWritten) { bytesWritten = default(int); throw null; }
+        public bool TryFormat(System.Span<char> destination, out int charsWritten) { throw null; }
+        public static bool TryParse(System.ReadOnlySpan<char> ipString, out System.Net.IPAddress address) { throw null; }
+        public static bool TryParse(string ipString, out System.Net.IPAddress address) { throw null; }
+        public bool TryWriteBytes(System.Span<byte> destination, out int bytesWritten) { throw null; }
     }
     public partial class IPEndPoint : System.Net.EndPoint
     {
@@ -942,7 +942,7 @@ namespace System.Net
     public delegate void UploadFileCompletedEventHandler(object sender, System.Net.UploadFileCompletedEventArgs e);
     public partial class UploadProgressChangedEventArgs : System.ComponentModel.ProgressChangedEventArgs
     {
-        internal UploadProgressChangedEventArgs() : base(default(int), default(object)) { }
+        internal UploadProgressChangedEventArgs() : base (default(int), default(object)) { }
         public long BytesReceived { get { throw null; } }
         public long BytesSent { get { throw null; } }
         public long TotalBytesToReceive { get { throw null; } }

@@ -7,12 +7,12 @@ namespace System.Diagnostics
     [System.Diagnostics.SwitchLevelAttribute(typeof(bool))]
     public partial class BooleanSwitch : System.Diagnostics.Switch
     {
-        public BooleanSwitch(string displayName, string description) : base(default(string), default(string)) { }
-        public BooleanSwitch(string displayName, string description, string defaultSwitchValue) : base(default(string), default(string)) { }
+        public BooleanSwitch(string displayName, string description) : base (default(string), default(string)) { }
+        public BooleanSwitch(string displayName, string description, string defaultSwitchValue) : base (default(string), default(string)) { }
         public bool Enabled { get { throw null; } set { } }
         protected override void OnValueChanged() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(68), AllowMultiple = true)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(68), AllowMultiple=true)]
     public sealed partial class ConditionalAttribute : System.Attribute
     {
         public ConditionalAttribute(string conditionString) { }
@@ -99,7 +99,7 @@ namespace System.Diagnostics
         [System.Diagnostics.ConditionalAttribute("DEBUG")]
         public static void WriteLineIf(bool condition, string message, string category) { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(3), AllowMultiple = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(3), AllowMultiple=false)]
     public sealed partial class DebuggableAttribute : System.Attribute
     {
         public DebuggableAttribute(bool isJITTrackingEnabled, bool isJITOptimizerDisabled) { }
@@ -127,7 +127,7 @@ namespace System.Diagnostics
         public static void Log(int level, string category, string message) { }
         public static void NotifyOfCrossThreadDependency() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(384), AllowMultiple = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(384), AllowMultiple=false)]
     public sealed partial class DebuggerBrowsableAttribute : System.Attribute
     {
         public DebuggerBrowsableAttribute(System.Diagnostics.DebuggerBrowsableState state) { }
@@ -139,7 +139,7 @@ namespace System.Diagnostics
         Never = 0,
         RootHidden = 3,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4509), AllowMultiple = true)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(4509), AllowMultiple=true)]
     public sealed partial class DebuggerDisplayAttribute : System.Attribute
     {
         public DebuggerDisplayAttribute(string value) { }
@@ -149,12 +149,12 @@ namespace System.Diagnostics
         public string Type { get { throw null; } set { } }
         public string Value { get { throw null; } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(224), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(224), Inherited=false)]
     public sealed partial class DebuggerHiddenAttribute : System.Attribute
     {
         public DebuggerHiddenAttribute() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(236), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(236), Inherited=false)]
     public sealed partial class DebuggerNonUserCodeAttribute : System.Attribute
     {
         public DebuggerNonUserCodeAttribute() { }
@@ -164,12 +164,12 @@ namespace System.Diagnostics
     {
         public DebuggerStepperBoundaryAttribute() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(108), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(108), Inherited=false)]
     public sealed partial class DebuggerStepThroughAttribute : System.Attribute
     {
         public DebuggerStepThroughAttribute() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(13), AllowMultiple = true)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(13), AllowMultiple=true)]
     public sealed partial class DebuggerTypeProxyAttribute : System.Attribute
     {
         public DebuggerTypeProxyAttribute(string typeName) { }
@@ -593,8 +593,8 @@ namespace System.Diagnostics
     }
     public partial class SourceSwitch : System.Diagnostics.Switch
     {
-        public SourceSwitch(string name) : base(default(string), default(string)) { }
-        public SourceSwitch(string displayName, string defaultSwitchValue) : base(default(string), default(string)) { }
+        public SourceSwitch(string name) : base (default(string), default(string)) { }
+        public SourceSwitch(string displayName, string defaultSwitchValue) : base (default(string), default(string)) { }
         public System.Diagnostics.SourceLevels Level { get { throw null; } set { } }
         protected override void OnValueChanged() { }
         public bool ShouldTrace(System.Diagnostics.TraceEventType eventType) { throw null; }
@@ -961,8 +961,8 @@ namespace System.Diagnostics
     [System.Diagnostics.SwitchLevelAttribute(typeof(System.Diagnostics.TraceLevel))]
     public partial class TraceSwitch : System.Diagnostics.Switch
     {
-        public TraceSwitch(string displayName, string description) : base(default(string), default(string)) { }
-        public TraceSwitch(string displayName, string description, string defaultSwitchValue) : base(default(string), default(string)) { }
+        public TraceSwitch(string displayName, string description) : base (default(string), default(string)) { }
+        public TraceSwitch(string displayName, string description, string defaultSwitchValue) : base (default(string), default(string)) { }
         public System.Diagnostics.TraceLevel Level { get { throw null; } set { } }
         public bool TraceError { get { throw null; } }
         public bool TraceInfo { get { throw null; } }

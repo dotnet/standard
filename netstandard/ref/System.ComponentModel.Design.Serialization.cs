@@ -113,7 +113,7 @@ namespace System.ComponentModel.Design.Serialization
     public readonly partial struct MemberRelationship
     {
         public static readonly System.ComponentModel.Design.Serialization.MemberRelationship Empty;
-        public MemberRelationship(object owner, System.ComponentModel.MemberDescriptor member) { throw null;}
+        public MemberRelationship(object owner, System.ComponentModel.MemberDescriptor member) { throw null; }
         public bool IsEmpty { get { throw null; } }
         public System.ComponentModel.MemberDescriptor Member { get { throw null; } }
         public object Owner { get { throw null; } }

@@ -45,7 +45,7 @@ namespace System.Diagnostics.Contracts
         public static void Requires<TException>(bool condition) where TException : System.Exception { }
         public static void Requires<TException>(bool condition, string userMessage) where TException : System.Exception { }
         public static T Result<T>() { throw null; }
-        public static T ValueAtReturn<T>(out T value) { value = default(T); throw null; }
+        public static T ValueAtReturn<T>(out T value) { throw null; }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(64), AllowMultiple=false)]
     [System.Diagnostics.ConditionalAttribute("CONTRACTS_FULL")]

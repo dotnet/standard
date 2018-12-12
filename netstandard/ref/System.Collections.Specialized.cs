@@ -6,8 +6,8 @@ namespace System.Collections.Specialized
 {
     public partial struct BitVector32
     {
-        public BitVector32(System.Collections.Specialized.BitVector32 value) { throw null;}
-        public BitVector32(int data) { throw null;}
+        public BitVector32(System.Collections.Specialized.BitVector32 value) { throw null; }
+        public BitVector32(int data) { throw null; }
         public int Data { get { throw null; } }
         public int this[System.Collections.Specialized.BitVector32.Section section] { get { throw null; } set { } }
         public bool this[int bit] { get { throw null; } set { } }
