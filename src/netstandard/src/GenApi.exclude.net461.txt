@@ -108,3 +108,10 @@ T:System.Xml.XPath.XDocumentExtensions
 T:System.Runtime.CompilerServices.SwitchExpressionException
 T:System.Index
 T:System.Range
+T:System.Collections.Generic.IAsyncEnumerable`1
+T:System.Collections.Generic.IAsyncEnumerator`1
+T:System.Runtime.CompilerServices.AsyncIteratorMethodBuilder
+T:System.Runtime.CompilerServices.AsyncIteratorStateMachineAttribute
+T:System.Runtime.CompilerServices.ConfiguredAsyncDisposable
+T:System.Runtime.CompilerServices.ConfiguredCancelableAsyncEnumerable`1
+T:System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore`1

@@ -280,11 +280,14 @@ TypesMustExist : Type 'System.Buffers.Binary.BinaryPrimitives' does not exist in
 TypesMustExist : Type 'System.Buffers.Text.Base64' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Buffers.Text.Utf8Formatter' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Buffers.Text.Utf8Parser' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.CodeDom.Compiler.IndentedTextWriter' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Collections.BitArray.LeftShift(System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.BitArray.RightShift(System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.Generic.Dictionary<TKey, TValue>.TrimExcess()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.Generic.Dictionary<TKey, TValue>.TrimExcess(System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.Generic.HashSet<T>.EnsureCapacity(System.Int32)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Collections.Generic.IAsyncEnumerable<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Collections.Generic.IAsyncEnumerator<T>' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Collections.ObjectModel.KeyedCollection<TKey, TItem>.TryGetValue(TKey, TItem)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Collections.Specialized.BitVector32.Section' in the contract but not the implementation.
 TypeCannotChangeClassification : Type 'System.Collections.Specialized.BitVector32.Section' is marked as readonly in the contract so it must also be marked readonly in the implementation.
@@ -347,9 +350,11 @@ CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribut
 TypesMustExist : Type 'System.Globalization.ISOWeek' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.BinaryReader.Read(System.Span<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.BinaryReader.Read(System.Span<System.Char>)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.BinaryWriter' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.IO.BinaryWriter.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.BinaryWriter.Write(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.BinaryWriter.Write(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.BufferedStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.IO.BufferedStream.BufferSize.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.BufferedStream.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.BufferedStream.UnderlyingStream.get()' does not exist in the implementation but it does exist in the contract.
@@ -380,12 +385,14 @@ MembersMustExist : Member 'System.IO.File.WriteAllLinesAsync(System.String, Syst
 MembersMustExist : Member 'System.IO.File.WriteAllLinesAsync(System.String, System.Collections.Generic.IEnumerable<System.String>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.File.WriteAllTextAsync(System.String, System.String, System.Text.Encoding, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.File.WriteAllTextAsync(System.String, System.String, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.FileStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 CannotMakeMemberNonVirtual : Member 'System.IO.FileStream.Name' is non-virtual in the implementation but is virtual in the contract.
 MembersMustExist : Member 'System.IO.FileStream.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 CannotMakeMemberNonVirtual : Member 'System.IO.FileStream.Name.get()' is non-virtual in the implementation but is virtual in the contract.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.DefaultEventAttribute' exists on 'System.IO.FileSystemWatcher' in the contract but not the implementation.
 TypesMustExist : Type 'System.IO.MatchCasing' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.MatchType' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.MemoryStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.IO.MemoryStream.Read(System.Span<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.MemoryStream.ReadAsync(System.Memory<System.Byte>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.MemoryStream.Write(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
@@ -405,6 +412,7 @@ MembersMustExist : Member 'System.IO.Path.Join(System.ReadOnlySpan<System.Char>,
 MembersMustExist : Member 'System.IO.Path.Join(System.ReadOnlySpan<System.Char>, System.ReadOnlySpan<System.Char>, System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Path.TryJoin(System.ReadOnlySpan<System.Char>, System.ReadOnlySpan<System.Char>, System.ReadOnlySpan<System.Char>, System.Span<System.Char>, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Path.TryJoin(System.ReadOnlySpan<System.Char>, System.ReadOnlySpan<System.Char>, System.Span<System.Char>, System.Int32)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.Stream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.IO.Stream.CopyToAsync(System.IO.Stream, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Stream.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.Stream.Read(System.Span<System.Byte>)' does not exist in the implementation but it does exist in the contract.
@@ -415,6 +423,7 @@ MembersMustExist : Member 'System.IO.StreamReader.Read(System.Span<System.Char>)
 MembersMustExist : Member 'System.IO.StreamReader.ReadAsync(System.Memory<System.Char>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.StreamReader.ReadBlock(System.Span<System.Char>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.StreamReader.ReadBlockAsync(System.Memory<System.Char>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.StreamWriter' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.IO.StreamWriter.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.StreamWriter.Write(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.StreamWriter.WriteAsync(System.ReadOnlyMemory<System.Char>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
@@ -424,6 +433,7 @@ MembersMustExist : Member 'System.IO.StringReader.Read(System.Span<System.Char>)
 MembersMustExist : Member 'System.IO.StringReader.ReadAsync(System.Memory<System.Char>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.StringReader.ReadBlock(System.Span<System.Char>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.StringReader.ReadBlockAsync(System.Memory<System.Char>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.StringWriter' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.IO.StringWriter.Write(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.StringWriter.WriteAsync(System.ReadOnlyMemory<System.Char>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.StringWriter.WriteLine(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
@@ -432,25 +442,36 @@ MembersMustExist : Member 'System.IO.TextReader.Read(System.Span<System.Char>)' 
 MembersMustExist : Member 'System.IO.TextReader.ReadAsync(System.Memory<System.Char>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.TextReader.ReadBlock(System.Span<System.Char>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.TextReader.ReadBlockAsync(System.Memory<System.Char>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.TextWriter' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.IO.TextWriter.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.TextWriter.Write(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.TextWriter.WriteAsync(System.ReadOnlyMemory<System.Char>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.TextWriter.WriteLine(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.TextWriter.WriteLineAsync(System.ReadOnlyMemory<System.Char>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.UnmanagedMemoryStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.IO.UnmanagedMemoryStream.Read(System.Span<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.IO.UnmanagedMemoryStream.Write(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Compression.BrotliDecoder' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Compression.BrotliEncoder' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Compression.BrotliStream' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.Compression.DeflateStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.IO.Compression.DeflateStream.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.Compression.GZipStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.IO.Compression.GZipStream.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Enumeration.FileSystemEntry' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Enumeration.FileSystemEnumerable<TResult>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Enumeration.FileSystemEnumerator<TResult>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IO.Enumeration.FileSystemName' does not exist in the implementation but it does exist in the contract.
 CannotAddAbstractMembers : Member 'System.IO.IsolatedStorage.IsolatedStorage.GetPermission(System.Security.PermissionSet)' is abstract in the implementation but is missing in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.IsolatedStorage.IsolatedStorageFileStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.IO.IsolatedStorage.IsolatedStorageFileStream.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.MemoryMappedFiles.MemoryMappedViewStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.Pipes.AnonymousPipeClientStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.Pipes.AnonymousPipeServerStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.Pipes.NamedPipeClientStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.Pipes.NamedPipeServerStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.IO.Pipes.PipeOptions System.IO.Pipes.PipeOptions.CurrentUserOnly' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.IO.Pipes.PipeStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Net.GlobalProxySelection' changed from '[ObsoleteAttribute("This class has been deprecated. Please use WebRequest.DefaultWebProxy instead to access and set the global default proxy. Use 'null' instead of GetEmptyWebProxy. https://go.microsoft.com/fwlink/?linkid=14202")]' in the contract to '[ObsoleteAttribute("This class has been deprecated. Please use WebRequest.DefaultWebProxy instead to access and set the global default proxy. Use 'null' instead of GetEmptyWebProxy. http://go.microsoft.com/fwlink/?linkid=14202")]' in the implementation.
 MembersMustExist : Member 'System.Net.HttpStatusCode System.Net.HttpStatusCode.AlreadyReported' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.HttpStatusCode System.Net.HttpStatusCode.EarlyHints' does not exist in the implementation but it does exist in the contract.
@@ -489,12 +510,15 @@ MembersMustExist : Member 'System.Net.Http.HttpMethod.Patch.get()' does not exis
 TypesMustExist : Type 'System.Net.Http.ReadOnlyMemoryContent' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String System.Net.Mime.MediaTypeNames.Application.Json' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String System.Net.Mime.MediaTypeNames.Application.Xml' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Net.Security.AuthenticatedStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Net.Security.AuthenticatedStream.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Net.Security.NegotiateStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Net.Security.NegotiateStream.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.Security.ServerCertificateSelectionCallback' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.Security.SslApplicationProtocol' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.Security.SslClientAuthenticationOptions' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.Security.SslServerAuthenticationOptions' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Net.Security.SslStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Net.Security.SslStream.AuthenticateAsClient(System.String, System.Security.Cryptography.X509Certificates.X509CertificateCollection, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Security.SslStream.AuthenticateAsClientAsync(System.Net.Security.SslClientAuthenticationOptions, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Security.SslStream.AuthenticateAsClientAsync(System.String, System.Security.Cryptography.X509Certificates.X509CertificateCollection, System.Boolean)' does not exist in the implementation but it does exist in the contract.
@@ -505,6 +529,7 @@ MembersMustExist : Member 'System.Net.Security.SslStream.BeginAuthenticateAsClie
 MembersMustExist : Member 'System.Net.Security.SslStream.BeginAuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate, System.Boolean, System.Boolean, System.AsyncCallback, System.Object)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Security.SslStream.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Security.SslStream.NegotiatedApplicationProtocol.get()' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Net.Sockets.NetworkStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Net.Sockets.Socket.Receive(System.Span<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Sockets.Socket.Receive(System.Span<System.Byte>, System.Net.Sockets.SocketFlags)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Sockets.Socket.Receive(System.Span<System.Byte>, System.Net.Sockets.SocketFlags, System.Net.Sockets.SocketError)' does not exist in the implementation but it does exist in the contract.
@@ -643,10 +668,14 @@ MembersMustExist : Member 'System.Reflection.Emit.TypeBuilder.IsTypeDefinition.g
 MembersMustExist : Member 'System.Reflection.Emit.TypeBuilder.IsVariableBoundArray.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.TypeBuilder.TypeToken.get()' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Reflection.Emit.TypeToken' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncIteratorMethodBuilder' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncIteratorStateMachineAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Runtime.CompilerServices.ConditionalWeakTable<TKey, TValue>' does not implement interface 'System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<TKey, TValue>>' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.ConditionalWeakTable<TKey, TValue>.AddOrUpdate(TKey, TValue)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.ConditionalWeakTable<TKey, TValue>.Clear()' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.CompilerServices.ConfiguredAsyncDisposable' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.CompilerServices.ConfiguredCancelableAsyncEnumerable<T>' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Runtime.CompilerServices.ConfiguredTaskAwaitable' in the contract but not the implementation.
 TypeCannotChangeClassification : Type 'System.Runtime.CompilerServices.ConfiguredTaskAwaitable' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Runtime.CompilerServices.ConfiguredTaskAwaitable.ConfiguredTaskAwaiter' in the contract but not the implementation.
@@ -798,6 +827,7 @@ MembersMustExist : Member 'System.Security.Authentication.HashAlgorithmType Syst
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Security.Cryptography.AesCryptoServiceProvider' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Security.Cryptography.AesManaged' in the contract but not the implementation.
 TypesMustExist : Type 'System.Security.Cryptography.CryptographicOperations' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Security.Cryptography.CryptoStream' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.CryptoStream..ctor(System.IO.Stream, System.Security.Cryptography.ICryptoTransform, System.Security.Cryptography.CryptoStreamMode, System.Boolean)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.CryptoStream.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Security.Cryptography.DES' in the contract but not the implementation.
@@ -923,6 +953,7 @@ TypeCannotChangeClassification : Type 'System.Threading.AsyncLocalValueChangedAr
 CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Threading.CancellationToken' in the contract but not the implementation.
 TypeCannotChangeClassification : Type 'System.Threading.CancellationToken' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Threading.CancellationTokenRegistration' in the contract but not the implementation.
+CannotRemoveBaseTypeOrInterface : Type 'System.Threading.CancellationTokenRegistration' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 TypeCannotChangeClassification : Type 'System.Threading.CancellationTokenRegistration' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Threading.CancellationTokenRegistration.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.CancellationTokenRegistration.Token.get()' does not exist in the implementation but it does exist in the contract.
@@ -930,13 +961,18 @@ MembersMustExist : Member 'System.Threading.Interlocked.MemoryBarrierProcessWide
 MembersMustExist : Member 'System.Threading.LazyInitializer.EnsureInitialized<T>(T, System.Object, System.Func<T>)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.Thread.GetCurrentProcessorId()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.ThreadPool.QueueUserWorkItem<TState>(System.Action<TState>, TState, System.Boolean)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Threading.Timer' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Threading.Timer.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.Tasks.TaskCanceledException..ctor(System.String, System.Exception, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Threading.Tasks.TaskExtensions.ConfigureAwait(System.IAsyncDisposable, System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Threading.Tasks.TaskExtensions.ConfigureAwait<T>(System.Collections.Generic.IAsyncEnumerable<T>, System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Threading.Tasks.TaskExtensions.WithCancellation<T>(System.Collections.Generic.IAsyncEnumerable<T>, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Threading.Tasks.ValueTask' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.Tasks.ValueTask<TResult>..ctor(System.Threading.Tasks.Sources.IValueTaskSource<TResult>, System.Int16)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Threading.Tasks.ValueTask<TResult>.Preserve()' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Threading.Tasks.Sources.IValueTaskSource' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Threading.Tasks.Sources.IValueTaskSource<TResult>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore<TResult>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Threading.Tasks.Sources.ValueTaskSourceOnCompletedFlags' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Threading.Tasks.Sources.ValueTaskSourceStatus' does not exist in the implementation but it does exist in the contract.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Xml.XmlValidatingReader' changed from '[ObsoleteAttribute("Use XmlReader created by XmlReader.Create() method using appropriate XmlReaderSettings instead. https://go.microsoft.com/fwlink/?linkid=14202")]' in the contract to '[ObsoleteAttribute("Use XmlReader created by XmlReader.Create() method using appropriate XmlReaderSettings instead. http://go.microsoft.com/fwlink/?linkid=14202")]' in the implementation.
@@ -968,4 +1004,4 @@ CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xm
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlChoiceIdentifierAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xml.Serialization.XmlSchemaImporter' does not inherit from base type 'System.Xml.Serialization.SchemaImporter' in the implementation but it does in the contract.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlSerializerAssemblyAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct)]' in the implementation.
-Total Issues: 969
+Total Issues: 1005
