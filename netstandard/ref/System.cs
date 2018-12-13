@@ -4523,7 +4523,7 @@ namespace System
         UInt32 = 10,
         UInt64 = 12,
     }
-    [System.CLSCompliantAttribute(false)]    
+    [System.CLSCompliantAttribute(false)]
     public ref partial struct TypedReference
     {
         private int _dummyPrimitive;
