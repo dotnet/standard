@@ -16,8 +16,7 @@ jobs:
     enableMicrobuild: true
     enablePublishBuildArtifacts: true
     enablePublishTestResults: false
-    # TODO - set 'enablePublishBuildAssets: true' once we're publishing output to the 'artifacts' dir
-    enablePublishBuildAssets: false
+    enablePublishBuildAssets: true
     enableTelemetry: true
     helixRepo: dotnet/standard
     jobs:
@@ -36,6 +35,8 @@ jobs:
         - group: DotNet-Symbol-Server-Pats
         - name: _SignType
           value: Real
+        - name: _DotNetPublishToBlobFeed
+          value: true
         - name: _BuildArgs
           value: /p:SignType=$(_SignType)
             /p:DotNetSignType=$(_SignType)
