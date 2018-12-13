@@ -59,5 +59,8 @@
 
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
 
+  <!-- Define an empty Execute target for Arcade's build.proj to find -->
+  <Target Name="Execute" />
+
 </Project>
 
