@@ -170,7 +170,7 @@ namespace System.Net
     }
     public partial class DownloadDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal DownloadDataCompletedEventArgs() : base(null, false, null) { }
+        internal DownloadDataCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public byte[] Result { get { throw null; } }
     }
     public delegate void DownloadDataCompletedEventHandler(object sender, System.Net.DownloadDataCompletedEventArgs e);
@@ -183,7 +183,7 @@ namespace System.Net
     public delegate void DownloadProgressChangedEventHandler(object sender, System.Net.DownloadProgressChangedEventArgs e);
     public partial class DownloadStringCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal DownloadStringCompletedEventArgs() : base(null, false, null) { }
+        internal DownloadStringCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public string Result { get { throw null; } }
     }
     public delegate void DownloadStringCompletedEventHandler(object sender, System.Net.DownloadStringCompletedEventArgs e);
@@ -841,13 +841,13 @@ namespace System.Net
     }
     public partial class OpenReadCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal OpenReadCompletedEventArgs() : base(null, false, null) { }
+        internal OpenReadCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public System.IO.Stream Result { get { throw null; } }
     }
     public delegate void OpenReadCompletedEventHandler(object sender, System.Net.OpenReadCompletedEventArgs e);
     public partial class OpenWriteCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal OpenWriteCompletedEventArgs() : base(null, false, null) { }
+        internal OpenWriteCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public System.IO.Stream Result { get { throw null; } }
     }
     public delegate void OpenWriteCompletedEventHandler(object sender, System.Net.OpenWriteCompletedEventArgs e);
@@ -930,13 +930,13 @@ namespace System.Net
     }
     public partial class UploadDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal UploadDataCompletedEventArgs() : base(null, false, null) { }
+        internal UploadDataCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public byte[] Result { get { throw null; } }
     }
     public delegate void UploadDataCompletedEventHandler(object sender, System.Net.UploadDataCompletedEventArgs e);
     public partial class UploadFileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal UploadFileCompletedEventArgs() : base(null, false, null) { }
+        internal UploadFileCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public byte[] Result { get { throw null; } }
     }
     public delegate void UploadFileCompletedEventHandler(object sender, System.Net.UploadFileCompletedEventArgs e);
@@ -951,13 +951,13 @@ namespace System.Net
     public delegate void UploadProgressChangedEventHandler(object sender, System.Net.UploadProgressChangedEventArgs e);
     public partial class UploadStringCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal UploadStringCompletedEventArgs() : base(null, false, null) { }
+        internal UploadStringCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public string Result { get { throw null; } }
     }
     public delegate void UploadStringCompletedEventHandler(object sender, System.Net.UploadStringCompletedEventArgs e);
     public partial class UploadValuesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
-        internal UploadValuesCompletedEventArgs() : base(null, false, null) { }
+        internal UploadValuesCompletedEventArgs() : base (default(System.Exception), default(bool), default(object)) { }
         public byte[] Result { get { throw null; } }
     }
     public delegate void UploadValuesCompletedEventHandler(object sender, System.Net.UploadValuesCompletedEventArgs e);

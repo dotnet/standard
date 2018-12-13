@@ -94,14 +94,14 @@ namespace System.IO.IsolatedStorage
     }
     public partial class IsolatedStorageFileStream : System.IO.FileStream
     {
-        public IsolatedStorageFileStream(string path, System.IO.FileMode mode) : base (default(string), default(System.IO.FileMode)) { }
-        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access) : base (default(string), default(System.IO.FileMode)) { }
-        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share) : base (default(string), default(System.IO.FileMode)) { }
-        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, int bufferSize) : base (default(string), default(System.IO.FileMode)) { }
-        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, int bufferSize, System.IO.IsolatedStorage.IsolatedStorageFile isf) : base (default(string), default(System.IO.FileMode)) { }
-        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.IO.IsolatedStorage.IsolatedStorageFile isf) : base (default(string), default(System.IO.FileMode)) { }
-        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.IsolatedStorage.IsolatedStorageFile isf) : base (default(string), default(System.IO.FileMode)) { }
-        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.IsolatedStorage.IsolatedStorageFile isf) : base (default(string), default(System.IO.FileMode)) { }
+        public IsolatedStorageFileStream(string path, System.IO.FileMode mode) : base (default(Microsoft.Win32.SafeHandles.SafeFileHandle), default(System.IO.FileAccess)) { }
+        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access) : base (default(Microsoft.Win32.SafeHandles.SafeFileHandle), default(System.IO.FileAccess)) { }
+        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share) : base (default(Microsoft.Win32.SafeHandles.SafeFileHandle), default(System.IO.FileAccess)) { }
+        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, int bufferSize) : base (default(Microsoft.Win32.SafeHandles.SafeFileHandle), default(System.IO.FileAccess)) { }
+        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, int bufferSize, System.IO.IsolatedStorage.IsolatedStorageFile isf) : base (default(Microsoft.Win32.SafeHandles.SafeFileHandle), default(System.IO.FileAccess)) { }
+        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.IO.IsolatedStorage.IsolatedStorageFile isf) : base (default(Microsoft.Win32.SafeHandles.SafeFileHandle), default(System.IO.FileAccess)) { }
+        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.IsolatedStorage.IsolatedStorageFile isf) : base (default(Microsoft.Win32.SafeHandles.SafeFileHandle), default(System.IO.FileAccess)) { }
+        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.IsolatedStorage.IsolatedStorageFile isf) : base (default(Microsoft.Win32.SafeHandles.SafeFileHandle), default(System.IO.FileAccess)) { }
         public override bool CanRead { get { throw null; } }
         public override bool CanSeek { get { throw null; } }
         public override bool CanWrite { get { throw null; } }
