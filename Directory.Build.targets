@@ -17,6 +17,9 @@
     Microsoft.WorkflowBuildExtensions.targets target that always runs in VS
     -->
     <GenerateCompiledExpressionsTempFilePathForEditing></GenerateCompiledExpressionsTempFilePathForEditing>
+
+    <!-- Pass RuntimeMetadataVersion to the compiler for all Core Assemblies -->
+    <RuntimeMetadataVersion Condition="'$(IsCoreAssembly)' == 'true'">v4.0.30319</RuntimeMetadataVersion>
   </PropertyGroup>
   
   <!--
