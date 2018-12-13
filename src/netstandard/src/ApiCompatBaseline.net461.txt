@@ -113,6 +113,7 @@ MembersMustExist : Member 'System.Guid.TryParseExact(System.ReadOnlySpan<System.
 MembersMustExist : Member 'System.Guid.TryWriteBytes(System.Span<System.Byte>)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.HashCode' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.IAsyncDisposable' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Index' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Int16' in the contract but not the implementation.
 TypeCannotChangeClassification : Type 'System.Int16' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Int16.Parse(System.ReadOnlySpan<System.Char>, System.Globalization.NumberStyles, System.IFormatProvider)' does not exist in the implementation but it does exist in the contract.
@@ -154,6 +155,7 @@ TypesMustExist : Type 'System.MathF' does not exist in the implementation but it
 TypesMustExist : Type 'System.Memory<T>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.MemoryExtensions' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Random.NextBytes(System.Span<System.Byte>)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Range' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ReadOnlyMemory<T>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ReadOnlySpan<T>' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsByRefLikeAttribute' exists on 'System.RuntimeArgumentHandle' in the contract but not the implementation.
@@ -177,6 +179,8 @@ MembersMustExist : Member 'System.Single.TryParse(System.ReadOnlySpan<System.Cha
 MembersMustExist : Member 'System.Single.TryParse(System.ReadOnlySpan<System.Char>, System.Single)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Span<T>' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String..ctor(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Chars.get(System.Index)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Chars.get(System.Range)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.Contains(System.Char)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.Contains(System.Char, System.StringComparison)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.Contains(System.String, System.StringComparison)' does not exist in the implementation but it does exist in the contract.
@@ -196,6 +200,8 @@ MembersMustExist : Member 'System.String.Split(System.Char, System.StringSplitOp
 MembersMustExist : Member 'System.String.Split(System.String, System.Int32, System.StringSplitOptions)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.Split(System.String, System.StringSplitOptions)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.StartsWith(System.Char)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Substring(System.Index)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.String.Substring(System.Range)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.Trim(System.Char)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.TrimEnd()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.TrimEnd(System.Char)' does not exist in the implementation but it does exist in the contract.
@@ -724,6 +730,7 @@ TypesMustExist : Type 'System.Runtime.CompilerServices.IsByRefLikeAttribute' doe
 TypesMustExist : Type 'System.Runtime.CompilerServices.IsReadOnlyAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.ITuple' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.RuntimeFeature' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeHelpers.GetSubArray<T>(T[], System.Range)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeHelpers.GetUninitializedObject(System.Type)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeHelpers.IsReferenceOrContainsReferences<T>()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeHelpers.TryEnsureSufficientExecutionStack()' does not exist in the implementation but it does exist in the contract.
@@ -1065,4 +1072,4 @@ CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Xml.Sche
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the implementation.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the implementation.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 1066
+Total Issues: 1073
