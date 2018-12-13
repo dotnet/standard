@@ -761,6 +761,7 @@ MembersMustExist : Member 'System.Reflection.Emit.TypeBuilder.IsVariableBoundArr
 CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Reflection.Emit.TypeToken' in the contract but not the implementation.
 CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.Emit.TypeToken' does not implement interface 'System.IEquatable<System.Reflection.Emit.TypeToken>' in the implementation but it does in the contract.
 TypeCannotChangeClassification : Type 'System.Reflection.Emit.TypeToken' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypesMustExist : Type 'System.Runtime.AmbiguousImplementationException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncIteratorMethodBuilder' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncIteratorStateMachineAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncMethodBuilderAttribute' does not exist in the implementation but it does exist in the contract.
@@ -1184,4 +1185,4 @@ CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Xml.Sche
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the implementation.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the implementation.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 1185
+Total Issues: 1186

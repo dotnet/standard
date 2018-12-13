@@ -661,6 +661,7 @@ MembersMustExist : Member 'System.Reflection.Emit.TypeBuilder.IsVariableBoundArr
 CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Reflection.Emit.TypeToken' in the contract but not the implementation.
 CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.Emit.TypeToken' does not implement interface 'System.IEquatable<System.Reflection.Emit.TypeToken>' in the implementation but it does in the contract.
 TypeCannotChangeClassification : Type 'System.Reflection.Emit.TypeToken' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypesMustExist : Type 'System.Runtime.AmbiguousImplementationException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncIteratorMethodBuilder' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncIteratorStateMachineAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder' does not exist in the implementation but it does exist in the contract.
@@ -681,6 +682,7 @@ TypesMustExist : Type 'System.Runtime.CompilerServices.ConfiguredValueTaskAwaita
 TypesMustExist : Type 'System.Runtime.CompilerServices.EnumeratorCancellationAttribute' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.CompilerServices.IsByRefLikeAttribute' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.CompilerServices.IsReadOnlyAttribute' in the contract but not the implementation.
+MembersMustExist : Member 'System.String System.Runtime.CompilerServices.RuntimeFeature.DefaultImplementationsOfInterfaces' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeCompiled.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeSupported.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeHelpers.GetSubArray<T>(T[], System.Range)' does not exist in the implementation but it does exist in the contract.
@@ -1026,4 +1028,4 @@ CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xm
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlChoiceIdentifierAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xml.Serialization.XmlSchemaImporter' does not inherit from base type 'System.Xml.Serialization.SchemaImporter' in the implementation but it does in the contract.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlSerializerAssemblyAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct)]' in the implementation.
-Total Issues: 1027
+Total Issues: 1029
