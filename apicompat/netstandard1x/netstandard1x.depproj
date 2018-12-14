@@ -1,12 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
-  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.props))\Directory.Build.props" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <NuGetDeploySourceItem>Reference</NuGetDeploySourceItem>
-    <NuGetTargetMoniker Condition="'$(NuGetTargetMoniker)'==''">.NETStandard,Version=v1.6</NuGetTargetMoniker>
     <TargetFramework Condition="'$(TargetFramework)'==''">netstandard1.6</TargetFramework>
-    <NuGetTargetMonikerShort>$(TargetFramework)</NuGetTargetMonikerShort>
-    <OutputFolder>$(NuGetTargetMonikerShort)</OutputFolder>
+    <OutputFolder>$(TargetFramework)</OutputFolder>
     <OutputPath>$(RestoredRefRootPath)$(OutputFolder)</OutputPath>
     <RestoreOutputPath>$(IntermediateOutputPath)$(TargetFramework)</RestoreOutputPath>
   </PropertyGroup>
@@ -302,5 +299,4 @@
       <Version>4.3.0</Version>
     </PackageReference>
   </ItemGroup>
-  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
 </Project>

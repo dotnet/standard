@@ -20,6 +20,8 @@
 
     <!-- Pass RuntimeMetadataVersion to the compiler for all Core Assemblies -->
     <RuntimeMetadataVersion Condition="'$(IsCoreAssembly)' == 'true'">v4.0.30319</RuntimeMetadataVersion>
+
+    <CLSCompliant Condition="'$(CLSCompliant)'==''">true</CLSCompliant>
   </PropertyGroup>
   
   <!--
@@ -34,6 +36,8 @@
   </Target>
 
   <Import Project="eng\versioning.targets" />
+
+  <Import Project="$(MSBuildThisFileDirectory)eng/depProj.targets" Condition="'$(MSBuildProjectExtension)' == '.depproj'" />
 
   <Import Project="$(ToolSetCommonDirectory)Tools.proj.nuget.g.targets" Condition="Exists('$(ToolSetCommonDirectory)Tools.proj.nuget.g.targets')" />
 
