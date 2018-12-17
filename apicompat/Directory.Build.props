@@ -3,8 +3,5 @@
   <PropertyGroup>
     <ContainsPackageReferences>true</ContainsPackageReferences>
     <RestoredRefRootPath>$(ArtifactsObjDir)CompatShims/ref/</RestoredRefRootPath>
-
-    <!-- Set a value for FrameworkPathOverride to avoid invoking GetReferenceAssemblyPaths -->
-    <FrameworkPathOverride>$(DotNetRoot)</FrameworkPathOverride>
   </PropertyGroup>
 </Project>

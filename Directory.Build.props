@@ -197,6 +197,11 @@
 
   </PropertyGroup>
 
+  <!-- Set a value for FrameworkPathOverride to avoid invoking GetReferenceAssemblyPaths -->
+  <PropertyGroup>
+    <FrameworkPathOverride>$(DotNetRoot)</FrameworkPathOverride>
+  </PropertyGroup>
+
   <!-- Target Framework Moniker values to be used in our projects -->
   <PropertyGroup>
     <UapRs3Tfm>uap10.0.15138</UapRs3Tfm>
