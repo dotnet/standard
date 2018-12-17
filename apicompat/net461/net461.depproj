@@ -5,6 +5,7 @@
     <TargetFramework>net461</TargetFramework>
     <OutputPath>$(RestoredRefRootPath)net461</OutputPath>
     <RestoreOutputPath>$(IntermediateOutputPath)</RestoreOutputPath>
+    <ProjectAssetsFile>$(RestoreOutputPath)/project.assets.json</ProjectAssetsFile>
   </PropertyGroup>
   <ItemGroup>
     <FileToInclude Include="mscorlib" />

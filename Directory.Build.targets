@@ -29,10 +29,23 @@
   that require a `project.assets.json`, since ours will be empty anyway.
   -->
   <Target Name="_ClearResolvePackageAssets"
-          BeforeTargets="AssignProjectConfiguration">
+          BeforeTargets="AssignProjectConfiguration"
+          Condition="'$(MSBuildProjectExtension)' != '.depproj'">
      <PropertyGroup>
       <ResolvePackageDependenciesForBuildDependsOn></ResolvePackageDependenciesForBuildDependsOn>
     </PropertyGroup>
+  </Target>
+
+  <!--
+  Hack workaround for .depproj's built with TargetFramework=net46
+  This causes us to unnecessarily attempt to restore framework assemblies from the project directory
+  This target clears out those assemblies from the list of assets to resolve -->
+  <Target Name="_ClearResolvedFrameworkAssemblies"
+          AfterTargets="ResolvePackageAssets"
+          Condition="'$(MSBuildProjectExtension)' == '.depproj'">
+    <ItemGroup>
+      <ResolvedFrameworkAssemblies Remove="@(ResolvedFrameworkAssemblies)" />
+    </ItemGroup>
   </Target>
 
   <Import Project="eng\versioning.targets" />

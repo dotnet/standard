@@ -6,6 +6,7 @@
     <OutputFolder>$(TargetFramework)</OutputFolder>
     <OutputPath>$(RestoredRefRootPath)$(OutputFolder)</OutputPath>
     <RestoreOutputPath>$(IntermediateOutputPath)$(TargetFramework)</RestoreOutputPath>
+    <ProjectAssetsFile>$(RestoreOutputPath)/project.assets.json</ProjectAssetsFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NETStandard.Library">
