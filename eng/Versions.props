@@ -22,20 +22,9 @@
     <XmlDocPackageVersion>2.0.0-preview3-26209-0</XmlDocPackageVersion>
   </PropertyGroup>
 
-  <!--
-    DARC doesn't currently update properties that end in PackageVersion yet but that is the convention
-    we want to use for our properties so for now we will define both and set the PackageVersion properties
-    to the set that DARC updates automatically.
-    see issue https://github.com/dotnet/arcade/issues/1114
-  -->
   <PropertyGroup>
-    <MicrosoftDotNetApiCompatVersion>1.0.0-beta.18568.1</MicrosoftDotNetApiCompatVersion>
-    <MicrosoftDotNetGenApiVersion>1.0.0-beta.18568.1</MicrosoftDotNetGenApiVersion>
-    <MicrosoftDotNetBuildTasksPackagingVersion>1.0.0-beta.18568.1</MicrosoftDotNetBuildTasksPackagingVersion>
-  </PropertyGroup>
-  <PropertyGroup>
-    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.18605.14</MicrosoftDotNetApiCompatPackageVersion>
-    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.18605.14</MicrosoftDotNetGenAPIPackageVersion>
-    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.18605.14</MicrosoftDotNetBuildTasksPackagingPackageVersion>
+    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.18616.5</MicrosoftDotNetApiCompatPackageVersion>
+    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.18616.5</MicrosoftDotNetGenAPIPackageVersion>
+    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.18616.5</MicrosoftDotNetBuildTasksPackagingPackageVersion>
   </PropertyGroup>
 </Project>
