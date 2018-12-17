@@ -2462,6 +2462,10 @@ namespace System
     {
         public HttpStyleUriParser() { }
     }
+    public partial interface IAsyncDisposable
+    {
+        System.Threading.Tasks.ValueTask DisposeAsync();
+    }
     public partial interface IAsyncResult
     {
         object AsyncState { get; }

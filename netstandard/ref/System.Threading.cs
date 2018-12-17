@@ -104,6 +104,7 @@ namespace System.Threading
         private readonly int _dummyPrimitive;
         public System.Threading.CancellationToken Token { get { throw null; } }
         public void Dispose() { }
+        public System.Threading.Tasks.ValueTask DisposeAsync() { throw null; }
         public override bool Equals(object obj) { throw null; }
         public bool Equals(System.Threading.CancellationTokenRegistration other) { throw null; }
         public override int GetHashCode() { throw null; }
@@ -748,6 +749,7 @@ namespace System.Threading
         public bool Change(uint dueTime, uint period) { throw null; }
         public void Dispose() { }
         public bool Dispose(System.Threading.WaitHandle notifyObject) { throw null; }
+        public System.Threading.Tasks.ValueTask DisposeAsync() { throw null; }
     }
     public delegate void TimerCallback(object state);
     public static partial class Volatile
