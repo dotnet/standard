@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(IsReferenceAssembly)'=='true'">
-    <OutputPath>$(ReferenceAssemblyOutputPath)$(MSBuildProjectName)/$(Configuration)</OutputPath>
-    <IntermediateOutputPath>$(ArtifactsObjDir)ref/$(MSBuildProjectName)/$(Configuration)</IntermediateOutputPath>
+    <OutputPath>$(ReferenceAssemblyOutputPath)$(MSBuildProjectName)/$(Configuration)/</OutputPath>
+    <IntermediateOutputPath>$(ArtifactsObjDir)ref/$(MSBuildProjectName)/$(Configuration)/</IntermediateOutputPath>
 
   </PropertyGroup>
 </Project>

@@ -4,7 +4,7 @@
 
   <PropertyGroup>
     <RestoredRefPath>$(IntermediateOutputPath)CompatShims/ref/</RestoredRefPath>
-    <NetstandardRefPath>$(ArtifactsBinDir)netstandard/$(ConfigurationGroup)/</NetstandardRefPath>
+    <NetstandardRefPath>$(ArtifactsBinDir)ref/netstandard/$(ConfigurationGroup)/</NetstandardRefPath>
     <NetstandardShimsPath>$(ArtifactsBinDir)shims/netstandard</NetstandardShimsPath>
     <NetfxShimsPath>$(ArtifactsBinDir)shims/netfx</NetfxShimsPath>
   </PropertyGroup>
