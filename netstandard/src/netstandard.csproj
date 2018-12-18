@@ -23,6 +23,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ref\netstandard.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <!-- Mark netstandard as a framework assembly -->
     <AssemblyMetadata Include=".NETFrameworkAssembly">
       <Value></Value>

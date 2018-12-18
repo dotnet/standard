@@ -184,6 +184,8 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
+  <Import Project="$(MSBuildThisFileDirectory)eng\ReferenceAssemblies.props" />
+
   <!-- Set up the default output and intermediate paths -->
   <PropertyGroup>
     <OSPlatformConfig>$(OSGroup).$(Platform).$(ConfigurationGroup)</OSPlatformConfig>
