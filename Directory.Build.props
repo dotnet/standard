@@ -58,7 +58,8 @@
 
   <!-- Enable the analyzers for this repo -->
   <PropertyGroup>
-    <EnableAnalyzers Condition="'$(EnableAnalyzers)' == '' AND '$(MSBuildProjectExtension)' == '.csproj'">true</EnableAnalyzers>
+    <IsSourceProject Condition="$([System.Text.RegularExpressions.Regex]::IsMatch($(MSBuildProjectDirectory), 'src%24'))">true</IsSourceProject>
+    <EnableAnalyzers Condition="'$(EnableAnalyzers)'=='' AND '$(IsSourceProject)' == 'true'">true</EnableAnalyzers>
   </PropertyGroup>
 
   <!-- Import packaging props -->

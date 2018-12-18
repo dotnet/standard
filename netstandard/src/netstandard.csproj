@@ -43,7 +43,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\**\*.csproj" />
   </ItemGroup>
-  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
 
   <PropertyGroup>
     <CompileDependsOn>

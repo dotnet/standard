@@ -7,6 +7,7 @@
       $(RestoreSources)
     </RestoreSources>
     <MSBuildTreatWarningsAsErrors>false</MSBuildTreatWarningsAsErrors>
+    <Language>C#</Language>
 
     <!-- Need to keep in sync with CodeAnalysis.targets file. -->
     <AnalyzerPropsFile>$(ArtifactsToolsetDir)Common\Tools.Analyzers.props</AnalyzerPropsFile>
