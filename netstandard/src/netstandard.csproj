@@ -43,44 +43,4 @@
   <ItemGroup>
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\**\*.csproj" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <CompileDependsOn>
-      GenerateTypeForwards;
-      $(CompileDependsOn);
-    </CompileDependsOn>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <_TypeForwardsOutputPath>$(IntermediateOutputPath)netstandard.forwards.cs</_TypeForwardsOutputPath>
-    <_ExcludeAPIList>$(MSBuildThisProjectDirectory)GenApi.exclude.$(TargetGroup).txt</_ExcludeAPIList>
-  </PropertyGroup>
-
-  <Target Name="GenerateTypeForwards"
-          Inputs="@(ResolvedMatchingContract);$(_ExcludeAPIList)"
-          Outputs="$(_TypeForwardsOutputPath)"
-          DependsOnTargets="ResolveMatchingContract"
-    >
-    <PropertyGroup>
-      <_ReferenceAssembly>@(ResolvedMatchingContract)</_ReferenceAssembly>
-      <_TypeForwardsOutputPath>$(IntermediateOutputPath)netstandard.forwards.cs</_TypeForwardsOutputPath>
-      <_ExcludeAPIList>$(MSBuildThisProjectDirectory)GenApi.exclude.$(TargetGroup).txt</_ExcludeAPIList>
-    </PropertyGroup>
-
-    <PropertyGroup>
-      <_GenAPICmd>$(_GenAPICommand)</_GenAPICmd>
-      <_GenAPICmd>$(_GenAPICmd) -assembly:"$(_ReferenceAssembly)"</_GenAPICmd>
-      <_GenAPICmd>$(_GenAPICmd) -writer:TypeForwards</_GenAPICmd>
-      <_GenAPICmd>$(_GenAPICmd) -out:"$(_TypeForwardsOutputPath)"</_GenAPICmd>
-      <_GenAPICmd Condition="Exists('$(_ExcludeAPIList)')">$(_GenAPICmd) -excludeApiList:$(_ExcludeAPIList)</_GenAPICmd>
-    </PropertyGroup>
-
-    <Exec Command="$(_GenAPICmd)" />
-
-    <ItemGroup>
-      <Compile Include="$(_TypeForwardsOutputPath)" />
-      <FileWrites Include="$(_TypeForwardsOutputPath)" />
-    </ItemGroup>
-
-  </Target>
 </Project>
