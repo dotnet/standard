@@ -24,7 +24,8 @@
 
   <PropertyGroup>
     <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.18616.5</MicrosoftDotNetApiCompatPackageVersion>
-    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.18616.5</MicrosoftDotNetGenAPIPackageVersion>
     <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.18616.5</MicrosoftDotNetBuildTasksPackagingPackageVersion>
+    <MicrosoftDotNetCodeAnalysisPackageVersion>1.0.0-beta.18613.4</MicrosoftDotNetCodeAnalysisPackageVersion>
+    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.18616.5</MicrosoftDotNetGenAPIPackageVersion>
   </PropertyGroup>
 </Project>

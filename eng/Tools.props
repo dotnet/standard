@@ -7,6 +7,9 @@
       $(RestoreSources)
     </RestoreSources>
     <MSBuildTreatWarningsAsErrors>false</MSBuildTreatWarningsAsErrors>
+
+    <!-- Need to keep in sync with CodeAnalysis.targets file. -->
+    <AnalyzerPropsFile>$(ArtifactsToolsetDir)Common\Tools.Analyzers.props</AnalyzerPropsFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.DotNet.ApiCompat" Version="$(MicrosoftDotNetApiCompatPackageVersion)" />
@@ -17,6 +20,15 @@
     <!-- Include the SourceLink packages -->
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkVersion)" PrivateAssets="all" IsImplicitlyDefined="true" />
     <PackageReference Include="Microsoft.SourceLink.Vsts.Git" Version="$(MicrosoftSourceLinkVersion)" PrivateAssets="all" IsImplicitlyDefined="true" />
+
+    <!-- Reference analyzers -->
+    <PackageReference Include="Desktop.Analyzers" Version="1.1.0" />
+    <PackageReference Include="Microsoft.DotNet.CodeAnalysis" Version="$(MicrosoftDotNetCodeAnalysisPackageVersion)" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="2.9.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="1.1.0" />
+    <PackageReference Include="System.Runtime.Analyzers" Version="1.1.0" />
+    <PackageReference Include="System.Runtime.InteropServices.Analyzers" Version="1.1.0" />
+    <PackageReference Include="System.Security.Cryptography.Hashing.Algorithms.Analyzers" Version="1.1.0" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -62,6 +74,17 @@
     <Copy 
       SourceFiles="@(DocFile)"
       DestinationFolder="$(XmlDocDir)/%(Culture)" />
+  </Target>
+
+  <UsingTask TaskName="Microsoft.DotNet.Arcade.Sdk.SaveItems" AssemblyFile="$(ArcadeSdkBuildTasksAssembly)" />
+
+  <Target Name="GenerateAnalyzersPropsFile"
+          AfterTargets="Restore"
+          DependsOnTargets="ResolveLockFileAnalyzers">
+    <SaveItems Condition="'@(Analyzer)' != ''"
+               ItemName="ResolvedAnalyzer"
+               Items="@(Analyzer)"
+               File="$(AnalyzerPropsFile)" />
   </Target>
 
 </Project>

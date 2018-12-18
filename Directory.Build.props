@@ -56,6 +56,11 @@
     <LanguageTargets Condition="'$(LanguageTargets)' == '' AND '$(MSBuildProjectExtension)' != '.csproj' AND '$(MSBuildProjectExtension)' != '.vbproj' AND '$(MSBuildProjectExtension)' != '.fsproj'">$(MSBuildToolsPath)\Microsoft.Common.targets</LanguageTargets>
   </PropertyGroup>
 
+  <!-- Enable the analyzers for this repo -->
+  <PropertyGroup>
+    <EnableAnalyzers Condition="'$(EnableAnalyzers)' == '' AND '$(MSBuildProjectExtension)' == '.csproj'">true</EnableAnalyzers>
+  </PropertyGroup>
+
   <!-- Import packaging props -->
   <Import Project="$(MSBuildThisFileDirectory)Packaging.props"/>
 

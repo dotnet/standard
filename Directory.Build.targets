@@ -50,6 +50,8 @@
 
   <Import Project="eng\versioning.targets" />
 
+  <Import Project="$(RepositoryEngineeringDir)CodeAnalysis.targets" />
+
   <Import Project="$(MSBuildThisFileDirectory)eng/depProj.targets" Condition="'$(MSBuildProjectExtension)' == '.depproj'" />
 
   <Import Project="$(ToolSetCommonDirectory)Tools.proj.nuget.g.targets" Condition="Exists('$(ToolSetCommonDirectory)Tools.proj.nuget.g.targets')" />
