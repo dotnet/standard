@@ -276,6 +276,7 @@ namespace System.Xml.Serialization
     }
     public partial struct XmlDeserializationEvents
     {
+        private object _dummy;
         public System.Xml.Serialization.XmlAttributeEventHandler OnUnknownAttribute { get { throw null; } set { } }
         public System.Xml.Serialization.XmlElementEventHandler OnUnknownElement { get { throw null; } set { } }
         public System.Xml.Serialization.XmlNodeEventHandler OnUnknownNode { get { throw null; } set { } }
@@ -545,13 +546,13 @@ namespace System.Xml.Serialization
         protected bool ReadNull() { throw null; }
         protected System.Xml.XmlQualifiedName ReadNullableQualifiedName() { throw null; }
         protected string ReadNullableString() { throw null; }
-        protected bool ReadReference(out string fixupReference) { fixupReference = default(string); throw null; }
+        protected bool ReadReference(out string fixupReference) { throw null; }
         protected object ReadReferencedElement() { throw null; }
         protected object ReadReferencedElement(string name, string ns) { throw null; }
         protected void ReadReferencedElements() { }
-        protected object ReadReferencingElement(string name, string ns, bool elementCanBeType, out string fixupReference) { fixupReference = default(string); throw null; }
-        protected object ReadReferencingElement(string name, string ns, out string fixupReference) { fixupReference = default(string); throw null; }
-        protected object ReadReferencingElement(out string fixupReference) { fixupReference = default(string); throw null; }
+        protected object ReadReferencingElement(string name, string ns, bool elementCanBeType, out string fixupReference) { throw null; }
+        protected object ReadReferencingElement(string name, string ns, out string fixupReference) { throw null; }
+        protected object ReadReferencingElement(out string fixupReference) { throw null; }
         protected System.Xml.Serialization.IXmlSerializable ReadSerializable(System.Xml.Serialization.IXmlSerializable serializable) { throw null; }
         protected System.Xml.Serialization.IXmlSerializable ReadSerializable(System.Xml.Serialization.IXmlSerializable serializable, bool wrappedAny) { throw null; }
         protected string ReadString(string value) { throw null; }
@@ -708,7 +709,7 @@ namespace System.Xml.Serialization
         public XmlSerializer(System.Type type, System.Xml.Serialization.XmlAttributeOverrides overrides) { }
         public XmlSerializer(System.Type type, System.Xml.Serialization.XmlAttributeOverrides overrides, System.Type[] extraTypes, System.Xml.Serialization.XmlRootAttribute root, string defaultNamespace) { }
         public XmlSerializer(System.Type type, System.Xml.Serialization.XmlAttributeOverrides overrides, System.Type[] extraTypes, System.Xml.Serialization.XmlRootAttribute root, string defaultNamespace, string location) { }
-//CAS        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. Please use a XmlSerializer constructor overload which does not take an Evidence parameter. See http://go2.microsoft.com/fwlink/?LinkId=131738 for more information.")]
+//CAS        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. Please use a XmlSerializer constructor overload which does not take an Evidence parameter. See https://go2.microsoft.com/fwlink/?LinkId=131738 for more information.")]
 //CAS        public XmlSerializer(System.Type type, System.Xml.Serialization.XmlAttributeOverrides overrides, System.Type[] extraTypes, System.Xml.Serialization.XmlRootAttribute root, string defaultNamespace, string location, System.Security.Policy.Evidence evidence) { }
         public XmlSerializer(System.Type type, System.Xml.Serialization.XmlRootAttribute root) { }
         public XmlSerializer(System.Xml.Serialization.XmlTypeMapping xmlTypeMapping) { }
@@ -727,7 +728,7 @@ namespace System.Xml.Serialization
         public object Deserialize(System.Xml.XmlReader xmlReader, string encodingStyle, System.Xml.Serialization.XmlDeserializationEvents events) { throw null; }
         public object Deserialize(System.Xml.XmlReader xmlReader, System.Xml.Serialization.XmlDeserializationEvents events) { throw null; }
         public static System.Xml.Serialization.XmlSerializer[] FromMappings(System.Xml.Serialization.XmlMapping[] mappings) { throw null; }
-//CAS        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. Please use an overload of FromMappings which does not take an Evidence parameter. See http://go2.microsoft.com/fwlink/?LinkId=131738 for more information.")]
+//CAS        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. Please use an overload of FromMappings which does not take an Evidence parameter. See https://go2.microsoft.com/fwlink/?LinkId=131738 for more information.")]
 //CAS        public static System.Xml.Serialization.XmlSerializer[] FromMappings(System.Xml.Serialization.XmlMapping[] mappings, System.Security.Policy.Evidence evidence) { throw null; }
         public static System.Xml.Serialization.XmlSerializer[] FromMappings(System.Xml.Serialization.XmlMapping[] mappings, System.Type type) { throw null; }
         public static System.Xml.Serialization.XmlSerializer[] FromTypes(System.Type[] types) { throw null; }
@@ -763,7 +764,7 @@ namespace System.Xml.Serialization
         public System.Xml.Serialization.XmlSerializer CreateSerializer(System.Type type, System.Xml.Serialization.XmlAttributeOverrides overrides) { throw null; }
         public System.Xml.Serialization.XmlSerializer CreateSerializer(System.Type type, System.Xml.Serialization.XmlAttributeOverrides overrides, System.Type[] extraTypes, System.Xml.Serialization.XmlRootAttribute root, string defaultNamespace) { throw null; }
         public System.Xml.Serialization.XmlSerializer CreateSerializer(System.Type type, System.Xml.Serialization.XmlAttributeOverrides overrides, System.Type[] extraTypes, System.Xml.Serialization.XmlRootAttribute root, string defaultNamespace, string location) { throw null; }
-//CAS        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateSerializer which does not take an Evidence parameter. See http://go2.microsoft.com/fwlink/?LinkId=131738 for more information.")]
+//CAS        [System.ObsoleteAttribute("This method is obsolete and will be removed in a future release of the .NET Framework. Please use an overload of CreateSerializer which does not take an Evidence parameter. See https://go2.microsoft.com/fwlink/?LinkId=131738 for more information.")]
 //CAS        public System.Xml.Serialization.XmlSerializer CreateSerializer(System.Type type, System.Xml.Serialization.XmlAttributeOverrides overrides, System.Type[] extraTypes, System.Xml.Serialization.XmlRootAttribute root, string defaultNamespace, string location, System.Security.Policy.Evidence evidence) { throw null; }
         public System.Xml.Serialization.XmlSerializer CreateSerializer(System.Type type, System.Xml.Serialization.XmlRootAttribute root) { throw null; }
         public System.Xml.Serialization.XmlSerializer CreateSerializer(System.Xml.Serialization.XmlTypeMapping xmlTypeMapping) { throw null; }

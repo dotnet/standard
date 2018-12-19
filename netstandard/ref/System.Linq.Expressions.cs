@@ -432,8 +432,8 @@ namespace System.Linq.Expressions
         public static System.Linq.Expressions.TryExpression TryCatchFinally(System.Linq.Expressions.Expression body, System.Linq.Expressions.Expression @finally, params System.Linq.Expressions.CatchBlock[] handlers) { throw null; }
         public static System.Linq.Expressions.TryExpression TryFault(System.Linq.Expressions.Expression body, System.Linq.Expressions.Expression fault) { throw null; }
         public static System.Linq.Expressions.TryExpression TryFinally(System.Linq.Expressions.Expression body, System.Linq.Expressions.Expression @finally) { throw null; }
-        public static bool TryGetActionType(System.Type[] typeArgs, out System.Type actionType) { actionType = default(System.Type); throw null; }
-        public static bool TryGetFuncType(System.Type[] typeArgs, out System.Type funcType) { funcType = default(System.Type); throw null; }
+        public static bool TryGetActionType(System.Type[] typeArgs, out System.Type actionType) { throw null; }
+        public static bool TryGetFuncType(System.Type[] typeArgs, out System.Type funcType) { throw null; }
         public static System.Linq.Expressions.UnaryExpression TypeAs(System.Linq.Expressions.Expression expression, System.Type type) { throw null; }
         public static System.Linq.Expressions.TypeBinaryExpression TypeEqual(System.Linq.Expressions.Expression expression, System.Type type) { throw null; }
         public static System.Linq.Expressions.TypeBinaryExpression TypeIs(System.Linq.Expressions.Expression expression, System.Type type) { throw null; }
@@ -666,7 +666,7 @@ namespace System.Linq.Expressions
         public bool TailCall { get { throw null; } }
         public sealed override System.Type Type { get { throw null; } }
         public System.Delegate Compile() { throw null; }
-        public Delegate Compile(bool preferInterpretation) { throw null; }
+        public System.Delegate Compile(bool preferInterpretation) { throw null; }
         public System.Delegate Compile(System.Runtime.CompilerServices.DebugInfoGenerator debugInfoGenerator) { throw null; }
 //REFEMIT        public void CompileToMethod(System.Reflection.Emit.MethodBuilder method) { }
 //REFEMIT        public void CompileToMethod(System.Reflection.Emit.MethodBuilder method, System.Runtime.CompilerServices.DebugInfoGenerator debugInfoGenerator) { }

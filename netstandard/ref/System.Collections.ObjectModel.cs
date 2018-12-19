@@ -54,7 +54,7 @@ namespace System.Collections.ObjectModel
         public bool Remove(TKey key) { throw null; }
         protected override void RemoveItem(int index) { }
         protected override void SetItem(int index, TItem item) { }
-        public bool TryGetValue(TKey key, out TItem item) { item = default(TItem); throw null; }
+        public bool TryGetValue(TKey key, out TItem item) { throw null; }
     }
     public partial class ObservableCollection<T> : System.Collections.ObjectModel.Collection<T>, System.Collections.Specialized.INotifyCollectionChanged, System.ComponentModel.INotifyPropertyChanged
     {
@@ -144,7 +144,7 @@ namespace System.Collections.ObjectModel
         System.Collections.IDictionaryEnumerator System.Collections.IDictionary.GetEnumerator() { throw null; }
         void System.Collections.IDictionary.Remove(object key) { }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
-        public bool TryGetValue(TKey key, out TValue value) { value = default(TValue); throw null; }
+        public bool TryGetValue(TKey key, out TValue value) { throw null; }
         public sealed partial class KeyCollection : System.Collections.Generic.ICollection<TKey>, System.Collections.Generic.IEnumerable<TKey>, System.Collections.Generic.IReadOnlyCollection<TKey>, System.Collections.ICollection, System.Collections.IEnumerable
         {
             internal KeyCollection() { }

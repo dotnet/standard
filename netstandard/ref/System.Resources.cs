@@ -75,7 +75,7 @@ namespace System.Resources
         public void Close() { }
         public void Dispose() { }
         public System.Collections.IDictionaryEnumerator GetEnumerator() { throw null; }
-        public void GetResourceData(string resourceName, out string resourceType, out byte[] resourceData) { resourceType = default(string); resourceData = default(byte[]); }
+        public void GetResourceData(string resourceName, out string resourceType, out byte[] resourceData) { throw null; }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
     }
     public partial class ResourceSet : System.Collections.IEnumerable, System.IDisposable

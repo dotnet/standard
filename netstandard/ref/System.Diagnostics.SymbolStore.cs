@@ -6,7 +6,7 @@ namespace System.Diagnostics.SymbolStore
 {
     public partial interface ISymbolBinder
     {
-        [System.ObsoleteAttribute("The recommended alternative is ISymbolBinder1.GetReader. ISymbolBinder1.GetReader takes the importer interface pointer as an IntPtr instead of an Int32, and thus works on both 32-bit and 64-bit architectures. http://go.microsoft.com/fwlink/?linkid=14202=14202")]
+        [System.ObsoleteAttribute("The recommended alternative is ISymbolBinder1.GetReader. ISymbolBinder1.GetReader takes the importer interface pointer as an IntPtr instead of an Int32, and thus works on both 32-bit and 64-bit architectures. https://go.microsoft.com/fwlink/?linkid=14202=14202")]
         System.Diagnostics.SymbolStore.ISymbolReader GetReader(int importer, string filename, string searchPath);
     }
     public partial interface ISymbolBinder1
@@ -123,7 +123,8 @@ namespace System.Diagnostics.SymbolStore
     }
     public readonly partial struct SymbolToken
     {
-        public SymbolToken(int val) { throw null;}
+        private readonly object _dummy;
+        public SymbolToken(int val) { throw null; }
         public bool Equals(System.Diagnostics.SymbolStore.SymbolToken obj) { throw null; }
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }

@@ -24,6 +24,7 @@ namespace System.Threading
     }
     public partial struct AsyncFlowControl : System.IDisposable
     {
+        private object _dummy;
         public void Dispose() { }
         public override bool Equals(object obj) { throw null; }
         public bool Equals(System.Threading.AsyncFlowControl obj) { throw null; }
@@ -38,8 +39,10 @@ namespace System.Threading
         public AsyncLocal(System.Action<System.Threading.AsyncLocalValueChangedArgs<T>> valueChangedHandler) { }
         public T Value { get { throw null; } set { } }
     }
-    public partial struct AsyncLocalValueChangedArgs<T>
+    public readonly partial struct AsyncLocalValueChangedArgs<T>
     {
+        private readonly T _dummy;
+        private readonly int _dummyPrimitive;
         public T CurrentValue { get { throw null; } }
         public T PreviousValue { get { throw null; } }
         public bool ThreadContextChanged { get { throw null; } }
@@ -78,7 +81,8 @@ namespace System.Threading
     }
     public readonly partial struct CancellationToken
     {
-        public CancellationToken(bool canceled) { throw null;}
+        private readonly object _dummy;
+        public CancellationToken(bool canceled) { throw null; }
         public bool CanBeCanceled { get { throw null; } }
         public bool IsCancellationRequested { get { throw null; } }
         public static System.Threading.CancellationToken None { get { throw null; } }
@@ -96,8 +100,11 @@ namespace System.Threading
     }
     public readonly partial struct CancellationTokenRegistration : System.IDisposable, System.IEquatable<System.Threading.CancellationTokenRegistration>
     {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public System.Threading.CancellationToken Token { get { throw null; } }
         public void Dispose() { }
+        public System.Threading.Tasks.ValueTask DisposeAsync() { throw null; }
         public override bool Equals(object obj) { throw null; }
         public bool Equals(System.Threading.CancellationTokenRegistration other) { throw null; }
         public override int GetHashCode() { throw null; }
@@ -163,16 +170,16 @@ namespace System.Threading
     {
         public EventWaitHandle(bool initialState, System.Threading.EventResetMode mode) { }
         public EventWaitHandle(bool initialState, System.Threading.EventResetMode mode, string name) { }
-        public EventWaitHandle(bool initialState, System.Threading.EventResetMode mode, string name, out bool createdNew) { createdNew = default(bool); }
-//ACLS        public EventWaitHandle(bool initialState, System.Threading.EventResetMode mode, string name, out bool createdNew, System.Security.AccessControl.EventWaitHandleSecurity eventSecurity) { createdNew = default(bool); }
+        public EventWaitHandle(bool initialState, System.Threading.EventResetMode mode, string name, out bool createdNew) { throw null; }
+//ACLS        public EventWaitHandle(bool initialState, System.Threading.EventResetMode mode, string name, out bool createdNew, System.Security.AccessControl.EventWaitHandleSecurity eventSecurity) { throw null; }
 //ACLS        public System.Security.AccessControl.EventWaitHandleSecurity GetAccessControl() { throw null; }
         public static System.Threading.EventWaitHandle OpenExisting(string name) { throw null; }
 //ACLS        public static System.Threading.EventWaitHandle OpenExisting(string name, System.Security.AccessControl.EventWaitHandleRights rights) { throw null; }
         public bool Reset() { throw null; }
         public bool Set() { throw null; }
 //ACLS        public void SetAccessControl(System.Security.AccessControl.EventWaitHandleSecurity eventSecurity) { }
-//ACLS        public static bool TryOpenExisting(string name, System.Security.AccessControl.EventWaitHandleRights rights, out System.Threading.EventWaitHandle result) { result = default(System.Threading.EventWaitHandle); throw null; }
-        public static bool TryOpenExisting(string name, out System.Threading.EventWaitHandle result) { result = default(System.Threading.EventWaitHandle); throw null; }
+//ACLS        public static bool TryOpenExisting(string name, System.Security.AccessControl.EventWaitHandleRights rights, out System.Threading.EventWaitHandle result) { throw null; }
+        public static bool TryOpenExisting(string name, out System.Threading.EventWaitHandle result) { throw null; }
     }
     public sealed partial class ExecutionContext : System.IDisposable, System.Runtime.Serialization.ISerializable
     {
@@ -246,6 +253,7 @@ namespace System.Threading
     }
     public partial struct LockCookie
     {
+        private int _dummyPrimitive;
         public override bool Equals(object obj) { throw null; }
         public bool Equals(System.Threading.LockCookie obj) { throw null; }
         public override int GetHashCode() { throw null; }
@@ -312,15 +320,15 @@ namespace System.Threading
         public Mutex() { }
         public Mutex(bool initiallyOwned) { }
         public Mutex(bool initiallyOwned, string name) { }
-        public Mutex(bool initiallyOwned, string name, out bool createdNew) { createdNew = default(bool); }
-//ACLS        public Mutex(bool initiallyOwned, string name, out bool createdNew, System.Security.AccessControl.MutexSecurity mutexSecurity) { createdNew = default(bool); }
+        public Mutex(bool initiallyOwned, string name, out bool createdNew) { throw null; }
+//ACLS        public Mutex(bool initiallyOwned, string name, out bool createdNew, System.Security.AccessControl.MutexSecurity mutexSecurity) { throw null; }
 //ACLS        public System.Security.AccessControl.MutexSecurity GetAccessControl() { throw null; }
         public static System.Threading.Mutex OpenExisting(string name) { throw null; }
 //ACLS        public static System.Threading.Mutex OpenExisting(string name, System.Security.AccessControl.MutexRights rights) { throw null; }
         public void ReleaseMutex() { }
 //ACLS        public void SetAccessControl(System.Security.AccessControl.MutexSecurity mutexSecurity) { }
-//ACLS        public static bool TryOpenExisting(string name, System.Security.AccessControl.MutexRights rights, out System.Threading.Mutex result) { result = default(System.Threading.Mutex); throw null; }
-        public static bool TryOpenExisting(string name, out System.Threading.Mutex result) { result = default(System.Threading.Mutex); throw null; }
+//ACLS        public static bool TryOpenExisting(string name, System.Security.AccessControl.MutexRights rights, out System.Threading.Mutex result) { throw null; }
+        public static bool TryOpenExisting(string name, out System.Threading.Mutex result) { throw null; }
     }
     public partial struct NativeOverlapped
     {
@@ -333,11 +341,11 @@ namespace System.Threading
     public partial class Overlapped
     {
         public Overlapped() { }
-        [System.ObsoleteAttribute("This constructor is not 64-bit compatible.  Use the constructor that takes an IntPtr for the event handle.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This constructor is not 64-bit compatible.  Use the constructor that takes an IntPtr for the event handle.  https://go.microsoft.com/fwlink/?linkid=14202")]
         public Overlapped(int offsetLo, int offsetHi, int hEvent, System.IAsyncResult ar) { }
         public Overlapped(int offsetLo, int offsetHi, System.IntPtr hEvent, System.IAsyncResult ar) { }
         public System.IAsyncResult AsyncResult { get { throw null; } set { } }
-        [System.ObsoleteAttribute("This property is not 64-bit compatible.  Use EventHandleIntPtr instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This property is not 64-bit compatible.  Use EventHandleIntPtr instead.  https://go.microsoft.com/fwlink/?linkid=14202")]
         public int EventHandle { get { throw null; } set { } }
         public System.IntPtr EventHandleIntPtr { get { throw null; } set { } }
         public int OffsetHigh { get { throw null; } set { } }
@@ -345,14 +353,14 @@ namespace System.Threading
         [System.CLSCompliantAttribute(false)]
         public unsafe static void Free(System.Threading.NativeOverlapped* nativeOverlappedPtr) { }
         [System.CLSCompliantAttribute(false)]
-        [System.ObsoleteAttribute("This method is not safe.  Use Pack (iocb, userData) instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This method is not safe.  Use Pack (iocb, userData) instead.  https://go.microsoft.com/fwlink/?linkid=14202")]
         public unsafe System.Threading.NativeOverlapped* Pack(System.Threading.IOCompletionCallback iocb) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public unsafe System.Threading.NativeOverlapped* Pack(System.Threading.IOCompletionCallback iocb, object userData) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public unsafe static System.Threading.Overlapped Unpack(System.Threading.NativeOverlapped* nativeOverlappedPtr) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        [System.ObsoleteAttribute("This method is not safe.  Use UnsafePack (iocb, userData) instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This method is not safe.  Use UnsafePack (iocb, userData) instead.  https://go.microsoft.com/fwlink/?linkid=14202")]
         public unsafe System.Threading.NativeOverlapped* UnsafePack(System.Threading.IOCompletionCallback iocb) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public unsafe System.Threading.NativeOverlapped* UnsafePack(System.Threading.IOCompletionCallback iocb, object userData) { throw null; }
@@ -421,8 +429,8 @@ namespace System.Threading
     {
         public Semaphore(int initialCount, int maximumCount) { }
         public Semaphore(int initialCount, int maximumCount, string name) { }
-        public Semaphore(int initialCount, int maximumCount, string name, out bool createdNew) { createdNew = default(bool); }
-//ACLS        public Semaphore(int initialCount, int maximumCount, string name, out bool createdNew, System.Security.AccessControl.SemaphoreSecurity semaphoreSecurity) { createdNew = default(bool); }
+        public Semaphore(int initialCount, int maximumCount, string name, out bool createdNew) { throw null; }
+//ACLS        public Semaphore(int initialCount, int maximumCount, string name, out bool createdNew, System.Security.AccessControl.SemaphoreSecurity semaphoreSecurity) { throw null; }
 //ACLS        public System.Security.AccessControl.SemaphoreSecurity GetAccessControl() { throw null; }
         public static System.Threading.Semaphore OpenExisting(string name) { throw null; }
 //ACLS        public static System.Threading.Semaphore OpenExisting(string name, System.Security.AccessControl.SemaphoreRights rights) { throw null; }
@@ -430,8 +438,8 @@ namespace System.Threading
         public int Release() { throw null; }
         public int Release(int releaseCount) { throw null; }
 //ACLS        public void SetAccessControl(System.Security.AccessControl.SemaphoreSecurity semaphoreSecurity) { }
-//ACLS        public static bool TryOpenExisting(string name, System.Security.AccessControl.SemaphoreRights rights, out System.Threading.Semaphore result) { result = default(System.Threading.Semaphore); throw null; }
-        public static bool TryOpenExisting(string name, out System.Threading.Semaphore result) { result = default(System.Threading.Semaphore); throw null; }
+//ACLS        public static bool TryOpenExisting(string name, System.Security.AccessControl.SemaphoreRights rights, out System.Threading.Semaphore result) { throw null; }
+        public static bool TryOpenExisting(string name, out System.Threading.Semaphore result) { throw null; }
     }
     public partial class SemaphoreFullException : System.SystemException
     {
@@ -466,7 +474,8 @@ namespace System.Threading
     public delegate void SendOrPostCallback(object state);
     public partial struct SpinLock
     {
-        public SpinLock(bool enableThreadOwnerTracking) { throw null;}
+        private int _dummyPrimitive;
+        public SpinLock(bool enableThreadOwnerTracking) { throw null; }
         public bool IsHeld { get { throw null; } }
         public bool IsHeldByCurrentThread { get { throw null; } }
         public bool IsThreadOwnerTrackingEnabled { get { throw null; } }
@@ -479,6 +488,7 @@ namespace System.Threading
     }
     public partial struct SpinWait
     {
+        private int _dummyPrimitive;
         public int Count { get { throw null; } }
         public bool NextSpinWillYield { get { throw null; } }
         public void Reset() { }
@@ -559,7 +569,7 @@ namespace System.Threading
         public bool Join(System.TimeSpan timeout) { throw null; }
         public static void MemoryBarrier() { }
         public static void ResetAbort() { }
-        [System.ObsoleteAttribute("Thread.Resume has been deprecated.  Please use other classes in System.Threading, such as Monitor, Mutex, Event, and Semaphore, to synchronize Threads or protect resources.  http://go.microsoft.com/fwlink/?linkid=14202", false)]
+        [System.ObsoleteAttribute("Thread.Resume has been deprecated.  Please use other classes in System.Threading, such as Monitor, Mutex, Event, and Semaphore, to synchronize Threads or protect resources.  https://go.microsoft.com/fwlink/?linkid=14202", false)]
         public void Resume() { }
         public void SetApartmentState(System.Threading.ApartmentState state) { }
         [System.ObsoleteAttribute("Thread.SetCompressedStack is no longer supported. Please use the System.Threading.CompressedStack class")]
@@ -570,7 +580,7 @@ namespace System.Threading
         public static void SpinWait(int iterations) { }
         public void Start() { }
         public void Start(object parameter) { }
-        [System.ObsoleteAttribute("Thread.Suspend has been deprecated.  Please use other classes in System.Threading, such as Monitor, Mutex, Event, and Semaphore, to synchronize Threads or protect resources.  http://go.microsoft.com/fwlink/?linkid=14202", false)]
+        [System.ObsoleteAttribute("Thread.Suspend has been deprecated.  Please use other classes in System.Threading, such as Monitor, Mutex, Event, and Semaphore, to synchronize Threads or protect resources.  https://go.microsoft.com/fwlink/?linkid=14202", false)]
         public void Suspend() { }
         public bool TrySetApartmentState(System.Threading.ApartmentState state) { throw null; }
         public static byte VolatileRead(ref byte address) { throw null; }
@@ -648,9 +658,9 @@ namespace System.Threading
         [System.ObsoleteAttribute("ThreadPool.BindHandle(IntPtr) has been deprecated.  Please use ThreadPool.BindHandle(SafeHandle) instead.", false)]
         public static bool BindHandle(System.IntPtr osHandle) { throw null; }
         public static bool BindHandle(System.Runtime.InteropServices.SafeHandle osHandle) { throw null; }
-        public static void GetAvailableThreads(out int workerThreads, out int completionPortThreads) { workerThreads = default(int); completionPortThreads = default(int); }
-        public static void GetMaxThreads(out int workerThreads, out int completionPortThreads) { workerThreads = default(int); completionPortThreads = default(int); }
-        public static void GetMinThreads(out int workerThreads, out int completionPortThreads) { workerThreads = default(int); completionPortThreads = default(int); }
+        public static void GetAvailableThreads(out int workerThreads, out int completionPortThreads) { throw null; }
+        public static void GetMaxThreads(out int workerThreads, out int completionPortThreads) { throw null; }
+        public static void GetMinThreads(out int workerThreads, out int completionPortThreads) { throw null; }
         public static bool QueueUserWorkItem(System.Threading.WaitCallback callBack) { throw null; }
         public static bool QueueUserWorkItem(System.Threading.WaitCallback callBack, object state) { throw null; }
         public static bool QueueUserWorkItem<TState>(System.Action<TState> callBack, TState state, bool preferLocal) { throw null; }
@@ -739,6 +749,7 @@ namespace System.Threading
         public bool Change(uint dueTime, uint period) { throw null; }
         public void Dispose() { }
         public bool Dispose(System.Threading.WaitHandle notifyObject) { throw null; }
+        public System.Threading.Tasks.ValueTask DisposeAsync() { throw null; }
     }
     public delegate void TimerCallback(object state);
     public static partial class Volatile

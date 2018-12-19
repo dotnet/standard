@@ -18,7 +18,8 @@ namespace System.Runtime.InteropServices
     }
     public partial struct ArrayWithOffset
     {
-        public ArrayWithOffset(object array, int offset) { throw null;}
+        private object _dummy;
+        public ArrayWithOffset(object array, int offset) { throw null; }
         public override bool Equals(object obj) { throw null; }
         public bool Equals(System.Runtime.InteropServices.ArrayWithOffset obj) { throw null; }
         public object GetArray() { throw null; }
@@ -27,7 +28,7 @@ namespace System.Runtime.InteropServices
         public static bool operator ==(System.Runtime.InteropServices.ArrayWithOffset a, System.Runtime.InteropServices.ArrayWithOffset b) { throw null; }
         public static bool operator !=(System.Runtime.InteropServices.ArrayWithOffset a, System.Runtime.InteropServices.ArrayWithOffset b) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1029), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1029), Inherited=false)]
     public sealed partial class AutomationProxyAttribute : System.Attribute
     {
         public AutomationProxyAttribute(bool val) { }
@@ -323,6 +324,7 @@ namespace System.Runtime.InteropServices
     }
     public partial struct GCHandle
     {
+        private int _dummyPrimitive;
         public bool IsAllocated { get { throw null; } }
         public object Target { get { throw null; } set { } }
         public System.IntPtr AddrOfPinnedObject() { throw null; }
@@ -362,9 +364,11 @@ namespace System.Runtime.InteropServices
         public void Add() { }
         public void Remove() { }
     }
-    public partial struct HandleRef
+    public readonly partial struct HandleRef
     {
-        public HandleRef(object wrapper, System.IntPtr handle) { throw null;}
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
+        public HandleRef(object wrapper, System.IntPtr handle) { throw null; }
         public System.IntPtr Handle { get { throw null; } }
         public object Wrapper { get { throw null; } }
         public static explicit operator System.IntPtr (System.Runtime.InteropServices.HandleRef value) { throw null; }
@@ -393,7 +397,7 @@ namespace System.Runtime.InteropServices
     {
         System.Runtime.InteropServices.CustomQueryInterfaceResult GetInterface(ref System.Guid iid, out System.IntPtr ppv);
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
     public sealed partial class ImportedFromTypeLibAttribute : System.Attribute
     {
         public ImportedFromTypeLibAttribute(string tlbFile) { }
@@ -547,19 +551,19 @@ namespace System.Runtime.InteropServices
 //INTEROP        public static System.Type GetTypeForITypeInfo(System.IntPtr piTypeInfo) { throw null; }
         public static System.Type GetTypeFromCLSID(System.Guid clsid) { throw null; }
         public static string GetTypeInfoName(System.Runtime.InteropServices.ComTypes.ITypeInfo typeInfo) { throw null; }
-//INTEROP        [System.ObsoleteAttribute("Use System.Runtime.InteropServices.Marshal.GetTypeInfoName(ITypeInfo pTLB) instead. http://go.microsoft.com/fwlink/?linkid=14202&ID=0000011.", false)]
+//INTEROP        [System.ObsoleteAttribute("Use System.Runtime.InteropServices.Marshal.GetTypeInfoName(ITypeInfo pTLB) instead. https://go.microsoft.com/fwlink/?linkid=14202&ID=0000011.", false)]
 //INTEROP        public static string GetTypeInfoName(System.Runtime.InteropServices.UCOMITypeInfo pTI) { throw null; }
 //INTEROP        public static System.Guid GetTypeLibGuid(System.Runtime.InteropServices.ComTypes.ITypeLib typelib) { throw null; }
-//INTEROP        [System.ObsoleteAttribute("Use System.Runtime.InteropServices.Marshal.GetTypeLibGuid(ITypeLib pTLB) instead. http://go.microsoft.com/fwlink/?linkid=14202&ID=0000011.", false)]
+//INTEROP        [System.ObsoleteAttribute("Use System.Runtime.InteropServices.Marshal.GetTypeLibGuid(ITypeLib pTLB) instead. https://go.microsoft.com/fwlink/?linkid=14202&ID=0000011.", false)]
 //INTEROP        public static System.Guid GetTypeLibGuid(System.Runtime.InteropServices.UCOMITypeLib pTLB) { throw null; }
 //INTEROP        public static System.Guid GetTypeLibGuidForAssembly(System.Reflection.Assembly asm) { throw null; }
 //INTEROP        public static int GetTypeLibLcid(System.Runtime.InteropServices.ComTypes.ITypeLib typelib) { throw null; }
-//INTEROP        [System.ObsoleteAttribute("Use System.Runtime.InteropServices.Marshal.GetTypeLibLcid(ITypeLib pTLB) instead. http://go.microsoft.com/fwlink/?linkid=14202&ID=0000011.", false)]
+//INTEROP        [System.ObsoleteAttribute("Use System.Runtime.InteropServices.Marshal.GetTypeLibLcid(ITypeLib pTLB) instead. https://go.microsoft.com/fwlink/?linkid=14202&ID=0000011.", false)]
 //INTEROP        public static int GetTypeLibLcid(System.Runtime.InteropServices.UCOMITypeLib pTLB) { throw null; }
 //INTEROP        public static string GetTypeLibName(System.Runtime.InteropServices.ComTypes.ITypeLib typelib) { throw null; }
-//INTEROP        [System.ObsoleteAttribute("Use System.Runtime.InteropServices.Marshal.GetTypeLibName(ITypeLib pTLB) instead. http://go.microsoft.com/fwlink/?linkid=14202&ID=0000011.", false)]
+//INTEROP        [System.ObsoleteAttribute("Use System.Runtime.InteropServices.Marshal.GetTypeLibName(ITypeLib pTLB) instead. https://go.microsoft.com/fwlink/?linkid=14202&ID=0000011.", false)]
 //INTEROP        public static string GetTypeLibName(System.Runtime.InteropServices.UCOMITypeLib pTLB) { throw null; }
-//INTEROP        public static void GetTypeLibVersionForAssembly(System.Reflection.Assembly inputAssembly, out int majorVersion, out int minorVersion) { majorVersion = default(int); minorVersion = default(int); }
+//INTEROP        public static void GetTypeLibVersionForAssembly(System.Reflection.Assembly inputAssembly, out int majorVersion, out int minorVersion) { throw null; }
         public static object GetUniqueObjectForIUnknown(System.IntPtr unknown) { throw null; }
 //INTEROP        [System.ObsoleteAttribute("The GetUnmanagedThunkForManagedMethodPtr method has been deprecated and will be removed in a future release.", false)]
 //INTEROP        public static System.IntPtr GetUnmanagedThunkForManagedMethodPtr(System.IntPtr pfnMethodToWrap, System.IntPtr pbSignature, int cbSignature) { throw null; }
@@ -586,7 +590,7 @@ namespace System.Runtime.InteropServices
         public static object PtrToStructure(System.IntPtr ptr, System.Type structureType) { throw null; }
         public static T PtrToStructure<T>(System.IntPtr ptr) { throw null; }
         public static void PtrToStructure<T>(System.IntPtr ptr, T structure) { }
-        public static int QueryInterface(System.IntPtr pUnk, ref System.Guid iid, out System.IntPtr ppv) { ppv = default(System.IntPtr); throw null; }
+        public static int QueryInterface(System.IntPtr pUnk, ref System.Guid iid, out System.IntPtr ppv) { throw null; }
         public static byte ReadByte(System.IntPtr ptr) { throw null; }
         public static byte ReadByte(System.IntPtr ptr, int ofs) { throw null; }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
@@ -655,32 +659,32 @@ namespace System.Runtime.InteropServices
         public static void WriteByte(System.IntPtr ptr, int ofs, byte val) { }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("WriteByte(Object, Int32, Byte) may be unavailable in future releases.")]
-        public static void WriteByte(object ptr, int ofs, byte val) { throw null; }
+        public static void WriteByte(object ptr, int ofs, byte val) { }
         public static void WriteInt16(System.IntPtr ptr, char val) { }
         public static void WriteInt16(System.IntPtr ptr, short val) { }
         public static void WriteInt16(System.IntPtr ptr, int ofs, char val) { }
         public static void WriteInt16(System.IntPtr ptr, int ofs, short val) { }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("WriteInt16(Object, Int32, Char) may be unavailable in future releases.")]
-        public static void WriteInt16(object ptr, int ofs, char val) { ptr = default(object); }
+        public static void WriteInt16(object ptr, int ofs, char val) { }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("WriteInt16(Object, Int32, Int16) may be unavailable in future releases.")]
-        public static void WriteInt16(object ptr, int ofs, short val) { throw null; }
+        public static void WriteInt16(object ptr, int ofs, short val) { }
         public static void WriteInt32(System.IntPtr ptr, int val) { }
         public static void WriteInt32(System.IntPtr ptr, int ofs, int val) { }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("WriteInt32(Object, Int32, Int32) may be unavailable in future releases.")]
-        public static void WriteInt32(object ptr, int ofs, int val) { throw null; }
+        public static void WriteInt32(object ptr, int ofs, int val) { }
         public static void WriteInt64(System.IntPtr ptr, int ofs, long val) { }
         public static void WriteInt64(System.IntPtr ptr, long val) { }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("WriteInt64(Object, Int32, Int64) may be unavailable in future releases.")]
-        public static void WriteInt64(object ptr, int ofs, long val) { throw null; }
+        public static void WriteInt64(object ptr, int ofs, long val) { }
         public static void WriteIntPtr(System.IntPtr ptr, int ofs, System.IntPtr val) { }
         public static void WriteIntPtr(System.IntPtr ptr, System.IntPtr val) { }
         [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
         [System.ObsoleteAttribute("WriteIntPtr(Object, Int32, IntPtr) may be unavailable in future releases.")]
-        public static void WriteIntPtr(object ptr, int ofs, System.IntPtr val) { ptr = default(object); }
+        public static void WriteIntPtr(object ptr, int ofs, System.IntPtr val) { }
         public static void ZeroFreeBSTR(System.IntPtr s) { }
         public static void ZeroFreeCoTaskMemAnsi(System.IntPtr s) { }
         public static void ZeroFreeCoTaskMemUnicode(System.IntPtr s) { }
@@ -725,9 +729,9 @@ namespace System.Runtime.InteropServices
         public static ref T GetReference<T>(System.Span<T> span) { throw null; }
         public static T Read<T>(System.ReadOnlySpan<byte> source) where T : struct { throw null; }
         public static System.Collections.Generic.IEnumerable<T> ToEnumerable<T>(System.ReadOnlyMemory<T> memory) { throw null; }
-        public static bool TryGetArray<T>(System.ReadOnlyMemory<T> memory, out System.ArraySegment<T> segment) { segment = default(System.ArraySegment<T>); throw null; }
-        public static bool TryGetString(System.ReadOnlyMemory<char> memory, out string text, out int start, out int length) { text = default(string); start = default(int); length = default(int); throw null; }
-        public static bool TryRead<T>(System.ReadOnlySpan<byte> source, out T value) where T : struct { value = default(T); throw null; }
+        public static bool TryGetArray<T>(System.ReadOnlyMemory<T> memory, out System.ArraySegment<T> segment) { throw null; }
+        public static bool TryGetString(System.ReadOnlyMemory<char> memory, out string text, out int start, out int length) { throw null; }
+        public static bool TryRead<T>(System.ReadOnlySpan<byte> source, out T value) where T : struct { throw null; }
         public static bool TryWrite<T>(System.Span<byte> destination, ref T value) where T : struct { throw null; }
         public static void Write<T>(System.Span<byte> destination, ref T value) where T : struct { }
     }
@@ -738,6 +742,7 @@ namespace System.Runtime.InteropServices
     }
     public readonly partial struct OSPlatform : System.IEquatable<System.Runtime.InteropServices.OSPlatform>
     {
+        private readonly object _dummy;
         public static System.Runtime.InteropServices.OSPlatform Linux { get { throw null; } }
         public static System.Runtime.InteropServices.OSPlatform OSX { get { throw null; } }
         public static System.Runtime.InteropServices.OSPlatform Windows { get { throw null; } }
@@ -853,9 +858,9 @@ namespace System.Runtime.InteropServices
     }
     public static partial class SequenceMarshal
     {
-        public static bool TryGetArray<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.ArraySegment<T> segment) { segment = default(System.ArraySegment<T>); throw null; }
-        public static bool TryGetReadOnlyMemory<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.ReadOnlyMemory<T> memory) { memory = default(System.ReadOnlyMemory<T>); throw null; }
-        public static bool TryGetReadOnlySequenceSegment<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.Buffers.ReadOnlySequenceSegment<T> startSegment, out int startIndex, out System.Buffers.ReadOnlySequenceSegment<T> endSegment, out int endIndex) { startSegment = default(System.Buffers.ReadOnlySequenceSegment<T>); startIndex = default(int); endSegment = default(System.Buffers.ReadOnlySequenceSegment<T>); endIndex = default(int); throw null; }
+        public static bool TryGetArray<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.ArraySegment<T> segment) { throw null; }
+        public static bool TryGetReadOnlyMemory<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.ReadOnlyMemory<T> memory) { throw null; }
+        public static bool TryGetReadOnlySequenceSegment<T>(System.Buffers.ReadOnlySequence<T> sequence, out System.Buffers.ReadOnlySequenceSegment<T> startSegment, out int startIndex, out System.Buffers.ReadOnlySequenceSegment<T> endSegment, out int endIndex) { throw null; }
     }
     [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited=false)]
     public sealed partial class StructLayoutAttribute : System.Attribute
@@ -875,7 +880,7 @@ namespace System.Runtime.InteropServices
         public string Identifier { get { throw null; } }
         public string Scope { get { throw null; } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=false)]
     public sealed partial class TypeLibFuncAttribute : System.Attribute
     {
         public TypeLibFuncAttribute(short flags) { }
@@ -899,13 +904,13 @@ namespace System.Runtime.InteropServices
         FUiDefault = 512,
         FUsesGetLastError = 128,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), Inherited=false)]
     public sealed partial class TypeLibImportClassAttribute : System.Attribute
     {
         public TypeLibImportClassAttribute(System.Type importClass) { }
         public string Value { get { throw null; } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1052), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1052), Inherited=false)]
     public sealed partial class TypeLibTypeAttribute : System.Attribute
     {
         public TypeLibTypeAttribute(short flags) { }
@@ -930,7 +935,7 @@ namespace System.Runtime.InteropServices
         FRestricted = 512,
         FReverseBind = 8192,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(256), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(256), Inherited=false)]
     public sealed partial class TypeLibVarAttribute : System.Attribute
     {
         public TypeLibVarAttribute(short flags) { }
@@ -954,7 +959,7 @@ namespace System.Runtime.InteropServices
         FSource = 2,
         FUiDefault = 512,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
     public sealed partial class TypeLibVersionAttribute : System.Attribute
     {
         public TypeLibVersionAttribute(int major, int minor) { }

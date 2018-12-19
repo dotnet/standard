@@ -10,7 +10,7 @@ namespace System.Net.Http
         public ByteArrayContent(byte[] content, int offset, int count) { }
         protected override System.Threading.Tasks.Task<System.IO.Stream> CreateContentReadStreamAsync() { throw null; }
         protected override System.Threading.Tasks.Task SerializeToStreamAsync(System.IO.Stream stream, System.Net.TransportContext context) { throw null; }
-        protected internal override bool TryComputeLength(out long length) { length = default(long); throw null; }
+        protected internal override bool TryComputeLength(out long length) { throw null; }
     }
     public enum ClientCertificateOption
     {
@@ -27,13 +27,13 @@ namespace System.Net.Http
     }
     public partial class FormUrlEncodedContent : System.Net.Http.ByteArrayContent
     {
-        public FormUrlEncodedContent(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>> nameValueCollection) : base(default(byte[])) { }
+        public FormUrlEncodedContent(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>> nameValueCollection) : base (default(byte[])) { }
     }
     public partial class HttpClient : System.Net.Http.HttpMessageInvoker
     {
-        public HttpClient() : base(default(System.Net.Http.HttpMessageHandler)) { }
-        public HttpClient(System.Net.Http.HttpMessageHandler handler) : base(default(System.Net.Http.HttpMessageHandler)) { }
-        public HttpClient(System.Net.Http.HttpMessageHandler handler, bool disposeHandler) : base(default(System.Net.Http.HttpMessageHandler)) { }
+        public HttpClient() : base (default(System.Net.Http.HttpMessageHandler)) { }
+        public HttpClient(System.Net.Http.HttpMessageHandler handler) : base (default(System.Net.Http.HttpMessageHandler)) { }
+        public HttpClient(System.Net.Http.HttpMessageHandler handler, bool disposeHandler) : base (default(System.Net.Http.HttpMessageHandler)) { }
         public System.Uri BaseAddress { get { throw null; } set { } }
         public System.Net.Http.Headers.HttpRequestHeaders DefaultRequestHeaders { get { throw null; } }
         public long MaxResponseContentBufferSize { get { throw null; } set { } }
@@ -82,7 +82,7 @@ namespace System.Net.Http
         public System.Net.DecompressionMethods AutomaticDecompression { get { throw null; } set { } }
         public bool CheckCertificateRevocationList { get { throw null; } set { } }
         public System.Net.Http.ClientCertificateOption ClientCertificateOptions { get { throw null; } set { } }
-        public System.Security.Cryptography.X509Certificates.X509CertificateCollection ClientCertificates { get; }
+        public System.Security.Cryptography.X509Certificates.X509CertificateCollection ClientCertificates { get { throw null; } }
         public System.Net.CookieContainer CookieContainer { get { throw null; } set { } }
         public System.Net.ICredentials Credentials { get { throw null; } set { } }
         public static System.Func<System.Net.Http.HttpRequestMessage, System.Security.Cryptography.X509Certificates.X509Certificate2, System.Security.Cryptography.X509Certificates.X509Chain, System.Net.Security.SslPolicyErrors, bool> DangerousAcceptAnyServerCertificateValidator { get { throw null; } }
@@ -216,7 +216,7 @@ namespace System.Net.Http
         public System.Collections.Generic.IEnumerator<System.Net.Http.HttpContent> GetEnumerator() { throw null; }
         protected override System.Threading.Tasks.Task SerializeToStreamAsync(System.IO.Stream stream, System.Net.TransportContext context) { throw null; }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
-        protected internal override bool TryComputeLength(out long length) { length = default(long); throw null; }
+        protected internal override bool TryComputeLength(out long length) { throw null; }
     }
     public partial class MultipartFormDataContent : System.Net.Http.MultipartContent
     {
@@ -230,7 +230,7 @@ namespace System.Net.Http
     {
         public ReadOnlyMemoryContent(System.ReadOnlyMemory<byte> content) { }
         protected override System.Threading.Tasks.Task SerializeToStreamAsync(System.IO.Stream stream, System.Net.TransportContext context) { throw null; }
-        protected internal override bool TryComputeLength(out long length) { length = default(long); throw null; }
+        protected internal override bool TryComputeLength(out long length) { throw null; }
     }
     public partial class StreamContent : System.Net.Http.HttpContent
     {
@@ -239,12 +239,12 @@ namespace System.Net.Http
         protected override System.Threading.Tasks.Task<System.IO.Stream> CreateContentReadStreamAsync() { throw null; }
         protected override void Dispose(bool disposing) { }
         protected override System.Threading.Tasks.Task SerializeToStreamAsync(System.IO.Stream stream, System.Net.TransportContext context) { throw null; }
-        protected internal override bool TryComputeLength(out long length) { length = default(long); throw null; }
+        protected internal override bool TryComputeLength(out long length) { throw null; }
     }
     public partial class StringContent : System.Net.Http.ByteArrayContent
     {
-        public StringContent(string content) : base(default(byte[])) { }
-        public StringContent(string content, System.Text.Encoding encoding) : base(default(byte[])) { }
-        public StringContent(string content, System.Text.Encoding encoding, string mediaType) : base(default(byte[])) { }
+        public StringContent(string content) : base (default(byte[])) { }
+        public StringContent(string content, System.Text.Encoding encoding) : base (default(byte[])) { }
+        public StringContent(string content, System.Text.Encoding encoding, string mediaType) : base (default(byte[])) { }
     }
 }

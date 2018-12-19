@@ -94,18 +94,18 @@ namespace System.IO.IsolatedStorage
     }
     public partial class IsolatedStorageFileStream : System.IO.FileStream
     {
-        public IsolatedStorageFileStream(string path, System.IO.FileMode mode) : base (default(string), default(System.IO.FileMode)) { }
-        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access) : base (default(string), default(System.IO.FileMode)) { }
-        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share) : base (default(string), default(System.IO.FileMode)) { }
-        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, int bufferSize) : base (default(string), default(System.IO.FileMode)) { }
-        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, int bufferSize, System.IO.IsolatedStorage.IsolatedStorageFile isf) : base (default(string), default(System.IO.FileMode)) { }
-        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.IO.IsolatedStorage.IsolatedStorageFile isf) : base (default(string), default(System.IO.FileMode)) { }
-        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.IsolatedStorage.IsolatedStorageFile isf) : base (default(string), default(System.IO.FileMode)) { }
-        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.IsolatedStorage.IsolatedStorageFile isf) : base (default(string), default(System.IO.FileMode)) { }
+        public IsolatedStorageFileStream(string path, System.IO.FileMode mode) : base (default(Microsoft.Win32.SafeHandles.SafeFileHandle), default(System.IO.FileAccess)) { }
+        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access) : base (default(Microsoft.Win32.SafeHandles.SafeFileHandle), default(System.IO.FileAccess)) { }
+        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share) : base (default(Microsoft.Win32.SafeHandles.SafeFileHandle), default(System.IO.FileAccess)) { }
+        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, int bufferSize) : base (default(Microsoft.Win32.SafeHandles.SafeFileHandle), default(System.IO.FileAccess)) { }
+        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, int bufferSize, System.IO.IsolatedStorage.IsolatedStorageFile isf) : base (default(Microsoft.Win32.SafeHandles.SafeFileHandle), default(System.IO.FileAccess)) { }
+        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.IO.IsolatedStorage.IsolatedStorageFile isf) : base (default(Microsoft.Win32.SafeHandles.SafeFileHandle), default(System.IO.FileAccess)) { }
+        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.IsolatedStorage.IsolatedStorageFile isf) : base (default(Microsoft.Win32.SafeHandles.SafeFileHandle), default(System.IO.FileAccess)) { }
+        public IsolatedStorageFileStream(string path, System.IO.FileMode mode, System.IO.IsolatedStorage.IsolatedStorageFile isf) : base (default(Microsoft.Win32.SafeHandles.SafeFileHandle), default(System.IO.FileAccess)) { }
         public override bool CanRead { get { throw null; } }
         public override bool CanSeek { get { throw null; } }
         public override bool CanWrite { get { throw null; } }
-        [System.ObsoleteAttribute("This property has been deprecated.  Please use IsolatedStorageFileStream's SafeFileHandle property instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This property has been deprecated.  Please use IsolatedStorageFileStream's SafeFileHandle property instead.  https://go.microsoft.com/fwlink/?linkid=14202")]
         public override System.IntPtr Handle { get { throw null; } }
         public override bool IsAsync { get { throw null; } }
         public override long Length { get { throw null; } }
@@ -114,6 +114,7 @@ namespace System.IO.IsolatedStorage
         public override System.IAsyncResult BeginRead(byte[] buffer, int offset, int numBytes, System.AsyncCallback userCallback, object stateObject) { throw null; }
         public override System.IAsyncResult BeginWrite(byte[] buffer, int offset, int numBytes, System.AsyncCallback userCallback, object stateObject) { throw null; }
         protected override void Dispose(bool disposing) { }
+        public override System.Threading.Tasks.ValueTask DisposeAsync() { throw null; }
         public override int EndRead(System.IAsyncResult asyncResult) { throw null; }
         public override void EndWrite(System.IAsyncResult asyncResult) { }
         public override void Flush() { }

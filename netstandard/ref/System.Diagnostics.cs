@@ -7,12 +7,12 @@ namespace System.Diagnostics
     [System.Diagnostics.SwitchLevelAttribute(typeof(bool))]
     public partial class BooleanSwitch : System.Diagnostics.Switch
     {
-        public BooleanSwitch(string displayName, string description) : base(default(string), default(string)) { }
-        public BooleanSwitch(string displayName, string description, string defaultSwitchValue) : base(default(string), default(string)) { }
+        public BooleanSwitch(string displayName, string description) : base (default(string), default(string)) { }
+        public BooleanSwitch(string displayName, string description, string defaultSwitchValue) : base (default(string), default(string)) { }
         public bool Enabled { get { throw null; } set { } }
         protected override void OnValueChanged() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(68), AllowMultiple = true)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(68), AllowMultiple=true)]
     public sealed partial class ConditionalAttribute : System.Attribute
     {
         public ConditionalAttribute(string conditionString) { }
@@ -99,7 +99,7 @@ namespace System.Diagnostics
         [System.Diagnostics.ConditionalAttribute("DEBUG")]
         public static void WriteLineIf(bool condition, string message, string category) { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(3), AllowMultiple = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(3), AllowMultiple=false)]
     public sealed partial class DebuggableAttribute : System.Attribute
     {
         public DebuggableAttribute(bool isJITTrackingEnabled, bool isJITOptimizerDisabled) { }
@@ -127,7 +127,7 @@ namespace System.Diagnostics
         public static void Log(int level, string category, string message) { }
         public static void NotifyOfCrossThreadDependency() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(384), AllowMultiple = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(384), AllowMultiple=false)]
     public sealed partial class DebuggerBrowsableAttribute : System.Attribute
     {
         public DebuggerBrowsableAttribute(System.Diagnostics.DebuggerBrowsableState state) { }
@@ -139,7 +139,7 @@ namespace System.Diagnostics
         Never = 0,
         RootHidden = 3,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4509), AllowMultiple = true)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(4509), AllowMultiple=true)]
     public sealed partial class DebuggerDisplayAttribute : System.Attribute
     {
         public DebuggerDisplayAttribute(string value) { }
@@ -149,12 +149,12 @@ namespace System.Diagnostics
         public string Type { get { throw null; } set { } }
         public string Value { get { throw null; } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(224), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(224), Inherited=false)]
     public sealed partial class DebuggerHiddenAttribute : System.Attribute
     {
         public DebuggerHiddenAttribute() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(236), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(236), Inherited=false)]
     public sealed partial class DebuggerNonUserCodeAttribute : System.Attribute
     {
         public DebuggerNonUserCodeAttribute() { }
@@ -164,12 +164,12 @@ namespace System.Diagnostics
     {
         public DebuggerStepperBoundaryAttribute() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(108), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(108), Inherited=false)]
     public sealed partial class DebuggerStepThroughAttribute : System.Attribute
     {
         public DebuggerStepThroughAttribute() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(13), AllowMultiple = true)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(13), AllowMultiple=true)]
     public sealed partial class DebuggerTypeProxyAttribute : System.Attribute
     {
         public DebuggerTypeProxyAttribute(string typeName) { }
@@ -307,32 +307,32 @@ namespace System.Diagnostics
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public System.Diagnostics.ProcessModuleCollection Modules { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.NonpagedSystemMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.NonpagedSystemMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")]
         public int NonpagedSystemMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public long NonpagedSystemMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PagedMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PagedMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")]
         public int PagedMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public long PagedMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PagedSystemMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PagedSystemMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")]
         public int PagedSystemMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public long PagedSystemMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PeakPagedMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PeakPagedMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")]
         public int PeakPagedMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public long PeakPagedMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PeakVirtualMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PeakVirtualMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")]
         public int PeakVirtualMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public long PeakVirtualMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PeakWorkingSet64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PeakWorkingSet64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")]
         public int PeakWorkingSet { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public long PeakWorkingSet64 { get { throw null; } }
@@ -341,7 +341,7 @@ namespace System.Diagnostics
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public System.Diagnostics.ProcessPriorityClass PriorityClass { get { throw null; } set { } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PrivateMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.PrivateMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")]
         public int PrivateMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public long PrivateMemorySize64 { get { throw null; } }
@@ -383,12 +383,12 @@ namespace System.Diagnostics
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public System.TimeSpan UserProcessorTime { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.VirtualMemorySize64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.VirtualMemorySize64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")]
         public int VirtualMemorySize { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public long VirtualMemorySize64 { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
-        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.WorkingSet64 instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        [System.ObsoleteAttribute("This property has been deprecated.  Please use System.Diagnostics.Process.WorkingSet64 instead.  https://go.microsoft.com/fwlink/?linkid=14202")]
         public int WorkingSet { get { throw null; } }
         [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
         public long WorkingSet64 { get { throw null; } }
@@ -593,8 +593,8 @@ namespace System.Diagnostics
     }
     public partial class SourceSwitch : System.Diagnostics.Switch
     {
-        public SourceSwitch(string name) : base(default(string), default(string)) { }
-        public SourceSwitch(string displayName, string defaultSwitchValue) : base(default(string), default(string)) { }
+        public SourceSwitch(string name) : base (default(string), default(string)) { }
+        public SourceSwitch(string displayName, string defaultSwitchValue) : base (default(string), default(string)) { }
         public System.Diagnostics.SourceLevels Level { get { throw null; } set { } }
         protected override void OnValueChanged() { }
         public bool ShouldTrace(System.Diagnostics.TraceEventType eventType) { throw null; }
@@ -961,8 +961,8 @@ namespace System.Diagnostics
     [System.Diagnostics.SwitchLevelAttribute(typeof(System.Diagnostics.TraceLevel))]
     public partial class TraceSwitch : System.Diagnostics.Switch
     {
-        public TraceSwitch(string displayName, string description) : base(default(string), default(string)) { }
-        public TraceSwitch(string displayName, string description, string defaultSwitchValue) : base(default(string), default(string)) { }
+        public TraceSwitch(string displayName, string description) : base (default(string), default(string)) { }
+        public TraceSwitch(string displayName, string description, string defaultSwitchValue) : base (default(string), default(string)) { }
         public System.Diagnostics.TraceLevel Level { get { throw null; } set { } }
         public bool TraceError { get { throw null; } }
         public bool TraceInfo { get { throw null; } }

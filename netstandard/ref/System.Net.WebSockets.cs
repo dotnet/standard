@@ -53,6 +53,7 @@ namespace System.Net.WebSockets
     }
     public readonly partial struct ValueWebSocketReceiveResult
     {
+        private readonly int _dummyPrimitive;
         public ValueWebSocketReceiveResult(int count, System.Net.WebSockets.WebSocketMessageType messageType, bool endOfMessage) { throw null; }
         public int Count { get { throw null; } }
         public bool EndOfMessage { get { throw null; } }

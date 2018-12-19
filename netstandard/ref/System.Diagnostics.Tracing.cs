@@ -56,7 +56,7 @@ namespace System.Diagnostics.Tracing
         public void Dispose() { }
         public void WriteMetric(float value) { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited = false)]
+    [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited=false)]
     public partial class EventDataAttribute : System.Attribute
     {
         public EventDataAttribute() { }
@@ -179,7 +179,7 @@ namespace System.Diagnostics.Tracing
         protected virtual void OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs command) { }
         public static void SendCommand(System.Diagnostics.Tracing.EventSource eventSource, System.Diagnostics.Tracing.EventCommand command, System.Collections.Generic.IDictionary<string, string> commandArguments) { }
         public static void SetCurrentThreadActivityId(System.Guid activityId) { }
-        public static void SetCurrentThreadActivityId(System.Guid activityId, out System.Guid oldActivityThatWillContinue) { oldActivityThatWillContinue = default(System.Guid); }
+        public static void SetCurrentThreadActivityId(System.Guid activityId, out System.Guid oldActivityThatWillContinue) { throw null; }
         public override string ToString() { throw null; }
         public void Write(string eventName) { }
         public void Write(string eventName, System.Diagnostics.Tracing.EventSourceOptions options) { }
@@ -212,6 +212,7 @@ namespace System.Diagnostics.Tracing
         protected unsafe void WriteEventWithRelatedActivityIdCore(int eventId, System.Guid* relatedActivityId, int eventDataCount, System.Diagnostics.Tracing.EventSource.EventData* data) { }
         protected internal partial struct EventData
         {
+            private int _dummyPrimitive;
             public System.IntPtr DataPointer { get { throw null; } set { } }
             public int Size { get { throw null; } set { } }
         }
@@ -238,6 +239,7 @@ namespace System.Diagnostics.Tracing
     }
     public partial struct EventSourceOptions
     {
+        private int _dummyPrimitive;
         public System.Diagnostics.Tracing.EventActivityOptions ActivityOptions { get { throw null; } set { } }
         public System.Diagnostics.Tracing.EventKeywords Keywords { get { throw null; } set { } }
         public System.Diagnostics.Tracing.EventLevel Level { get { throw null; } set { } }

@@ -37,6 +37,8 @@ namespace System.Buffers
     }
     public partial struct MemoryHandle : System.IDisposable
     {
+        private object _dummy;
+        private int _dummyPrimitive;
         [System.CLSCompliantAttribute(false)]
         public unsafe MemoryHandle(void* pointer, System.Runtime.InteropServices.GCHandle handle = default(System.Runtime.InteropServices.GCHandle), System.Buffers.IPinnable pinnable = null) { throw null; }
         [System.CLSCompliantAttribute(false)]
@@ -53,7 +55,7 @@ namespace System.Buffers
         public abstract System.Span<T> GetSpan();
         public abstract System.Buffers.MemoryHandle Pin(int elementIndex = 0);
         void System.IDisposable.Dispose() { }
-        protected internal virtual bool TryGetArray(out System.ArraySegment<T> segment) { segment = default(System.ArraySegment<T>); throw null; }
+        protected internal virtual bool TryGetArray(out System.ArraySegment<T> segment) { throw null; }
         public abstract void Unpin();
     }
     public abstract partial class MemoryPool<T> : System.IDisposable
@@ -74,6 +76,8 @@ namespace System.Buffers
     }
     public readonly partial struct ReadOnlySequence<T>
     {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public static readonly System.Buffers.ReadOnlySequence<T> Empty;
         public ReadOnlySequence(System.Buffers.ReadOnlySequenceSegment<T> startSegment, int startIndex, System.Buffers.ReadOnlySequenceSegment<T> endSegment, int endIndex) { throw null; }
         public ReadOnlySequence(System.ReadOnlyMemory<T> memory) { throw null; }
@@ -98,9 +102,11 @@ namespace System.Buffers
         public System.Buffers.ReadOnlySequence<T> Slice(System.SequencePosition start, long length) { throw null; }
         public System.Buffers.ReadOnlySequence<T> Slice(System.SequencePosition start, System.SequencePosition end) { throw null; }
         public override string ToString() { throw null; }
-        public bool TryGet(ref System.SequencePosition position, out System.ReadOnlyMemory<T> memory, bool advance = true) { memory = default(System.ReadOnlyMemory<T>); throw null; }
+        public bool TryGet(ref System.SequencePosition position, out System.ReadOnlyMemory<T> memory, bool advance = true) { throw null; }
         public partial struct Enumerator
         {
+            private object _dummy;
+            private int _dummyPrimitive;
             public Enumerator(in System.Buffers.ReadOnlySequence<T> sequence) { throw null; }
             public System.ReadOnlyMemory<T> Current { get { throw null; } }
             public bool MoveNext() { throw null; }
@@ -117,6 +123,7 @@ namespace System.Buffers
     public delegate void SpanAction<T, in TArg>(System.Span<T> span, TArg arg);
     public readonly partial struct StandardFormat : System.IEquatable<System.Buffers.StandardFormat>
     {
+        private readonly int _dummyPrimitive;
         public const byte MaxPrecision = (byte)99;
         public const byte NoPrecision = (byte)255;
         public StandardFormat(char symbol, byte precision = (byte)255) { throw null; }
@@ -128,7 +135,7 @@ namespace System.Buffers
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
         public static bool operator ==(System.Buffers.StandardFormat left, System.Buffers.StandardFormat right) { throw null; }
-        public static implicit operator System.Buffers.StandardFormat(char symbol) { throw null; }
+        public static implicit operator System.Buffers.StandardFormat (char symbol) { throw null; }
         public static bool operator !=(System.Buffers.StandardFormat left, System.Buffers.StandardFormat right) { throw null; }
         public static System.Buffers.StandardFormat Parse(System.ReadOnlySpan<char> format) { throw null; }
         public static System.Buffers.StandardFormat Parse(string format) { throw null; }
