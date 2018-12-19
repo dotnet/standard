@@ -558,12 +558,12 @@ namespace System.Net.Sockets
         UpdateConnectContext = 28688,
         UseLoopback = 64,
     }
-    public struct SocketReceiveFromResult
+    public partial struct SocketReceiveFromResult
     {
         public int ReceivedBytes;
         public System.Net.EndPoint RemoteEndPoint;
     }
-    public struct SocketReceiveMessageFromResult
+    public partial struct SocketReceiveMessageFromResult
     {
         public int ReceivedBytes;
         public System.Net.EndPoint RemoteEndPoint;
