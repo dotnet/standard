@@ -26,7 +26,7 @@
 
     <!-- Input Directories -->
     <PackagesDir>$(DotNetRestorePackagesPath)</PackagesDir>
-    <PackagesDir Condition="'$(PackagesDir)'=='' AND '$(NuGetPackageRoot)' != ''">$([MSBuild]::EnsureTrailingSlash('$(NuGetPackageRoot)'))</PackagesDir>
+    <PackagesDir Condition="'$(PackagesDir)'=='' and '$(NuGetPackageRoot)' != ''">$([MSBuild]::EnsureTrailingSlash('$(NuGetPackageRoot)'))</PackagesDir>
     <PackagesDir Condition="'$(PackagesDir)'==''">$(ProjectDir).packages/</PackagesDir>
 
     <!-- Respect environment variable for the .NET install directory if set; otherwise, use the current default location -->
@@ -53,13 +53,13 @@
   <!-- workaround https://github.com/dotnet/sdk/issues/2288
        remove once we have a new CLI -->
   <PropertyGroup>
-    <LanguageTargets Condition="'$(LanguageTargets)' == '' AND '$(MSBuildProjectExtension)' != '.csproj' AND '$(MSBuildProjectExtension)' != '.vbproj' AND '$(MSBuildProjectExtension)' != '.fsproj'">$(MSBuildToolsPath)\Microsoft.Common.targets</LanguageTargets>
+    <LanguageTargets Condition="'$(LanguageTargets)' == '' and '$(MSBuildProjectExtension)' != '.csproj' and '$(MSBuildProjectExtension)' != '.vbproj' and '$(MSBuildProjectExtension)' != '.fsproj'">$(MSBuildToolsPath)\Microsoft.Common.targets</LanguageTargets>
   </PropertyGroup>
 
   <!-- Enable the analyzers for this repo -->
   <PropertyGroup>
     <IsSourceProject Condition="$([System.Text.RegularExpressions.Regex]::IsMatch($(MSBuildProjectDirectory), 'src%24'))">true</IsSourceProject>
-    <EnableAnalyzers Condition="'$(EnableAnalyzers)'=='' AND '$(IsSourceProject)' == 'true'">true</EnableAnalyzers>
+    <EnableAnalyzers Condition="'$(EnableAnalyzers)'=='' and '$(IsSourceProject)' == 'true'">true</EnableAnalyzers>
   </PropertyGroup>
 
   <!-- Import packaging props -->

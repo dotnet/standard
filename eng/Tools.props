@@ -74,7 +74,8 @@
 
     <Copy 
       SourceFiles="@(DocFile)"
-      DestinationFolder="$(XmlDocDir)/%(Culture)" />
+      DestinationFolder="$(XmlDocDir)/%(Culture)"
+      SkipUnchangedFiles="true" />
   </Target>
 
   <UsingTask TaskName="Microsoft.DotNet.Arcade.Sdk.SaveItems" AssemblyFile="$(ArcadeSdkBuildTasksAssembly)" />

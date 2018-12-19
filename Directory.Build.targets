@@ -37,7 +37,7 @@
   </Target>
 
   <!--
-  Hack workaround for .depproj's built with TargetFramework=net46
+  Hack workaround for .depproj's built with TargetFramework=net47
   This causes us to unnecessarily attempt to restore framework assemblies from the project directory
   This target clears out those assemblies from the list of assets to resolve -->
   <Target Name="_ClearResolvedFrameworkAssemblies"
@@ -52,7 +52,7 @@
 
   <Import Project="$(RepositoryEngineeringDir)CodeAnalysis.targets" />
 
-  <Import Project="$(MSBuildThisFileDirectory)eng/depProj.targets" Condition="'$(MSBuildProjectExtension)' == '.depproj'" />
+  <Import Project="$(RepositoryEngineeringDir)depProj.targets" Condition="'$(MSBuildProjectExtension)' == '.depproj'" />
 
   <Import Project="$(ToolSetCommonDirectory)Tools.proj.nuget.g.targets" Condition="Exists('$(ToolSetCommonDirectory)Tools.proj.nuget.g.targets')" />
 

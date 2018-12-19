@@ -16,7 +16,7 @@
     <BuildDependsOn Condition="'$(SignPackages)'=='true'">$(BuildDependsOn);SignPackages</BuildDependsOn>
   </PropertyGroup>
 
-   <Target Name="Restore"/>
+  <Target Name="Restore"/>
 
   <Target Name="BuildManaged">
     <ItemGroup>
