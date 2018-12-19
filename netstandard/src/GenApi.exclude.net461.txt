@@ -25,6 +25,7 @@ T:System.Diagnostics.StackFrameExtensions
 T:System.Diagnostics.Tracing.EventCounter
 T:System.Diagnostics.Tracing.EventSourceCreatedEventArgs
 T:System.Globalization.GlobalizationExtensions
+T:System.Globalization.ISOWeek
 T:System.HashCode
 T:System.IO.Compression.BrotliDecoder
 T:System.IO.Compression.BrotliEncoder
