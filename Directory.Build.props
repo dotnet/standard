@@ -11,7 +11,6 @@
     <ToolSetCommonDirectory>$(MSBuildThisFileDirectory)artifacts\toolset\Common\</ToolSetCommonDirectory>
   </PropertyGroup>
 
-  <Import Condition="Exists('..\Directory.Build.props')" Project="..\Directory.Build.props" />
   <!-- Common repo directories -->
   <PropertyGroup>
     <ProjectDir>$(MSBuildThisFileDirectory)</ProjectDir>
@@ -19,7 +18,6 @@
 
     <!-- Output directories -->
     <BinDir>$(ProjectDir)artifacts\bin\</BinDir>
-    <RootIntermediateOutputPath>$(ProjectDir)artifacts\obj\</RootIntermediateOutputPath>
 
     <PackageOutputRoot Condition="'$(PackageOutputRoot)'=='' and '$(NonShippingPackage)' == 'true'">$(BinDir)packages_noship/</PackageOutputRoot>
     <PackageOutputRoot Condition="'$(PackageOutputRoot)'==''">$(BinDir)packages/</PackageOutputRoot>
@@ -190,7 +188,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
-  <Import Project="$(MSBuildThisFileDirectory)eng\ReferenceAssemblies.props" />
+  <Import Project="$(RepositoryEngineeringDir)ReferenceAssemblies.props" />
 
   <!-- Set up the default output and intermediate paths -->
   <PropertyGroup>

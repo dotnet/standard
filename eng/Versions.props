@@ -15,17 +15,15 @@
     <!-- Always use shipping version insted of dummy version -->
     <DotNetUseShippingVersions>true</DotNetUseShippingVersions>
   </PropertyGroup>
-
   <!-- Xml doc package info, which we don't need to be updated by DARC -->
   <PropertyGroup>
     <XmlDocPackage>Microsoft.Private.Intellisense</XmlDocPackage>
     <XmlDocPackageVersion>2.0.0-preview3-26209-0</XmlDocPackageVersion>
   </PropertyGroup>
-
   <PropertyGroup>
-    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.18616.5</MicrosoftDotNetApiCompatPackageVersion>
-    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.18616.5</MicrosoftDotNetBuildTasksPackagingPackageVersion>
-    <MicrosoftDotNetCodeAnalysisPackageVersion>1.0.0-beta.18613.4</MicrosoftDotNetCodeAnalysisPackageVersion>
-    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.18616.5</MicrosoftDotNetGenAPIPackageVersion>
+    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.18619.2</MicrosoftDotNetApiCompatPackageVersion>
+    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.18619.2</MicrosoftDotNetBuildTasksPackagingPackageVersion>
+    <MicrosoftDotNetCodeAnalysisPackageVersion>1.0.0-beta.18619.2</MicrosoftDotNetCodeAnalysisPackageVersion>
+    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.18619.2</MicrosoftDotNetGenAPIPackageVersion>
   </PropertyGroup>
 </Project>

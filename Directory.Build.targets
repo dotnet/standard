@@ -48,16 +48,13 @@
     </ItemGroup>
   </Target>
 
-  <Import Project="eng\versioning.targets" />
+  <Import Project="$(RepositoryEngineeringDir)versioning.targets" />
 
   <Import Project="$(RepositoryEngineeringDir)CodeAnalysis.targets" />
 
   <Import Project="$(RepositoryEngineeringDir)depProj.targets" Condition="'$(MSBuildProjectExtension)' == '.depproj'" />
 
   <Import Project="$(ToolSetCommonDirectory)Tools.proj.nuget.g.targets" Condition="Exists('$(ToolSetCommonDirectory)Tools.proj.nuget.g.targets')" />
-
-  <!-- Define this now until we can clean-up targets that depend on it in the packaging targets -->
-  <Target Name="CreateVersionFileDuringBuild" />
 
   <!-- Define this target to override the workaround in arcade as we don't need it for our pkgprojs -->
   <Target Name="InitializeStandardNuspecProperties" />

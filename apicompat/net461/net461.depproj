@@ -3,7 +3,7 @@
   <PropertyGroup>
     <NuGetDeploySourceItem>Reference</NuGetDeploySourceItem>
     <TargetFramework>net461</TargetFramework>
-    <OutputPath>$(RestoredRefRootPath)net461</OutputPath>
+    <OutputPath>$(RestoredRefRootPath)$(TargetFramework)</OutputPath>
     <RestoreOutputPath>$(IntermediateOutputPath)</RestoreOutputPath>
     <ProjectAssetsFile>$(RestoreOutputPath)/project.assets.json</ProjectAssetsFile>
   </PropertyGroup>
