@@ -361,7 +361,7 @@ namespace System.Runtime.Serialization
         public virtual void BindToName(System.Type serializedType, out string assemblyName, out string typeName) { throw null; }
         public abstract System.Type BindToType(string assemblyName, string typeName);
     }
-    public partial struct SerializationEntry
+    public readonly partial struct SerializationEntry
     {
         private readonly object _dummy;
         public string Name { get { throw null; } }

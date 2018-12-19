@@ -364,7 +364,7 @@ namespace System.Runtime.InteropServices
         public void Add() { }
         public void Remove() { }
     }
-    public partial struct HandleRef
+    public readonly partial struct HandleRef
     {
         private readonly object _dummy;
         private readonly int _dummyPrimitive;
