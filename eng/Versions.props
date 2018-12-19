@@ -15,20 +15,15 @@
     <!-- Always use shipping version insted of dummy version -->
     <DotNetUseShippingVersions>true</DotNetUseShippingVersions>
   </PropertyGroup>
-  <!--
-    DARC doesn't currently update properties that end in PackageVersion yet but that is the convention
-    we want to use for our properties so for now we will define both and set the PackageVersion properties
-    to the set that DARC updates automatically.
-    see issue https://github.com/dotnet/arcade/issues/1114
-  -->
+  <!-- Xml doc package info, which we don't need to be updated by DARC -->
   <PropertyGroup>
-    <MicrosoftDotNetApiCompatVersion>1.0.0-beta.18568.1</MicrosoftDotNetApiCompatVersion>
-    <MicrosoftDotNetGenApiVersion>1.0.0-beta.18568.1</MicrosoftDotNetGenApiVersion>
-    <MicrosoftDotNetBuildTasksPackagingVersion>1.0.0-beta.18568.1</MicrosoftDotNetBuildTasksPackagingVersion>
+    <XmlDocPackage>Microsoft.Private.Intellisense</XmlDocPackage>
+    <XmlDocPackageVersion>2.0.0-preview3-26209-0</XmlDocPackageVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.18616.5</MicrosoftDotNetApiCompatPackageVersion>
-    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.18616.5</MicrosoftDotNetGenAPIPackageVersion>
-    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.18616.5</MicrosoftDotNetBuildTasksPackagingPackageVersion>
+    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.18619.2</MicrosoftDotNetApiCompatPackageVersion>
+    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.18619.2</MicrosoftDotNetBuildTasksPackagingPackageVersion>
+    <MicrosoftDotNetCodeAnalysisPackageVersion>1.0.0-beta.18619.2</MicrosoftDotNetCodeAnalysisPackageVersion>
+    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.18619.2</MicrosoftDotNetGenAPIPackageVersion>
   </PropertyGroup>
 </Project>

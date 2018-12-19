@@ -16,15 +16,7 @@
     <BuildDependsOn Condition="'$(SignPackages)'=='true'">$(BuildDependsOn);SignPackages</BuildDependsOn>
   </PropertyGroup>
 
-  <Import Project="$(ToolsDir)\VersionTools.targets" Condition="Exists('$(ToolsDir)\VersionTools.targets')" />
-
-   <Target Name="Restore">
-    <ItemGroup>
-      <_RestoreProjects Include="external/**/*.depproj" />
-    </ItemGroup>
-
-    <MSBuild Projects="@(_RestoreProjects)" />
-  </Target>
+  <Target Name="Restore"/>
 
   <Target Name="BuildManaged">
     <ItemGroup>

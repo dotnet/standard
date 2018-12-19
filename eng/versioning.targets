@@ -45,6 +45,13 @@
           Inputs="$(MSBuildProjectFile)"
           Outputs="$(AssemblyInfoFile)">
 
+    <ItemGroup Condition="'$(IsReferenceAssembly)'=='true'">
+      <!-- All reference assemblies should have the 0x70 flag which prevents them from loading 
+           and the ReferenceAssemblyAttribute. -->
+      <AssemblyInfoLines Include="[assembly:System.Runtime.CompilerServices.ReferenceAssembly]" />
+      <AssemblyInfoLines Include="[assembly:System.Reflection.AssemblyFlags((System.Reflection.AssemblyNameFlags)0x70)]" />
+    </ItemGroup>
+
     <ItemGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
       <AssemblyInfoLines Condition="'$(CLSCompliant)'=='true'" Include="[assembly:System.CLSCompliant(true)]" />
 

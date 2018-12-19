@@ -21,7 +21,9 @@ T:System.Drawing.PointConverter
 T:System.Drawing.RectangleConverter
 T:System.Drawing.SizeConverter
 T:System.Drawing.SizeFConverter
+T:System.Globalization.ISOWeek
 T:System.HashCode
+T:System.IAsyncDisposable
 T:System.IO.Compression.BrotliDecoder
 T:System.IO.Compression.BrotliEncoder
 T:System.IO.Compression.BrotliStream
@@ -46,7 +48,16 @@ T:System.ReadOnlyMemory`1
 T:System.ReadOnlySpan`1
 T:System.Reflection.AssemblyExtensions
 T:System.Reflection.DispatchProxy
+T:System.Reflection.Emit.DynamicILInfo
 T:System.Reflection.Emit.DynamicMethod
+T:System.Reflection.Emit.EventToken
+T:System.Reflection.Emit.FieldToken
+T:System.Reflection.Emit.MethodToken
+T:System.Reflection.Emit.ParameterToken
+T:System.Reflection.Emit.PropertyToken
+T:System.Reflection.Emit.SignatureToken
+T:System.Reflection.Emit.StringToken
+T:System.Reflection.Emit.TypeToken
 T:System.Reflection.EventInfoExtensions
 T:System.Reflection.MemberInfoExtensions
 T:System.Reflection.MethodInfoExtensions

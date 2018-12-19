@@ -11,8 +11,6 @@
     <ToolSetCommonDirectory>$(MSBuildThisFileDirectory)artifacts\toolset\Common\</ToolSetCommonDirectory>
   </PropertyGroup>
 
-  <Import Condition="Exists('..\Directory.Build.props')" Project="..\Directory.Build.props" />
-  <Import Project="$(MSBuildThisFileDirectory)dependencies.props" />
   <!-- Common repo directories -->
   <PropertyGroup>
     <ProjectDir>$(MSBuildThisFileDirectory)</ProjectDir>
@@ -20,15 +18,14 @@
 
     <!-- Output directories -->
     <BinDir>$(ProjectDir)artifacts\bin\</BinDir>
-    <RootIntermediateOutputPath>$(ProjectDir)artifacts\obj\</RootIntermediateOutputPath>
 
     <PackageOutputRoot Condition="'$(PackageOutputRoot)'=='' and '$(NonShippingPackage)' == 'true'">$(BinDir)packages_noship/</PackageOutputRoot>
     <PackageOutputRoot Condition="'$(PackageOutputRoot)'==''">$(BinDir)packages/</PackageOutputRoot>
 
     <!-- Input Directories -->
     <PackagesDir>$(DotNetRestorePackagesPath)</PackagesDir>
-    <PackagesDir Condition="'$(PackagesDir)'==''">$(ProjectDir)packages/</PackagesDir>
-    <ToolsDir Condition="'$(ToolsDir)'==''">$(ProjectDir)Tools/</ToolsDir>
+    <PackagesDir Condition="'$(PackagesDir)'=='' and '$(NuGetPackageRoot)' != ''">$([MSBuild]::EnsureTrailingSlash('$(NuGetPackageRoot)'))</PackagesDir>
+    <PackagesDir Condition="'$(PackagesDir)'==''">$(ProjectDir).packages/</PackagesDir>
 
     <!-- Respect environment variable for the .NET install directory if set; otherwise, use the current default location -->
     <DotNetRoot Condition="'$(DotNetRoot)' == ''">$(DOTNET_INSTALL_DIR)</DotNetRoot>
@@ -42,21 +39,26 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
-  <Import Project="$(ToolSetCommonDirectory)Tools.proj.nuget.g.props" Condition="Exists('$(ToolSetCommonDirectory)Tools.proj.nuget.g.props')" />
-
-  <!-- Choose .targets files that come from Arcade rather than from buildtools -->
-  <!-- TODO: Remove when buildtools dependency removed. -->
+  <!-- Need to set ProjectAssetsFile to something so it doesn't get set to the Tools.proj assets file when we import the generated props -->
   <PropertyGroup>
-    <ExcludePartialFacadesImport>true</ExcludePartialFacadesImport>
-    <ExcludeApiCompatImport>true</ExcludeApiCompatImport>
-    <ExcludeSigningImport>true</ExcludeSigningImport>
-    <ExcludeVersioningImport>true</ExcludeVersioningImport>
-    <ExcludePackagingImport>true</ExcludePackagingImport>
-    <ExcludePackageLibsImport>true</ExcludePackageLibsImport>
+    <ProjectAssetsFile Condition="'$(ProjectAssetsFile)' == ''">unused</ProjectAssetsFile>
+  </PropertyGroup>
+  <Import Project="$(ToolSetCommonDirectory)Tools.proj.nuget.g.props" Condition="Exists('$(ToolSetCommonDirectory)Tools.proj.nuget.g.props')" />
+  <PropertyGroup>
+    <ProjectAssetsFile Condition="'$(ProjectAssetsFile)' == 'unused'"></ProjectAssetsFile>
   </PropertyGroup>
 
-  <!-- Import Build tools common props file where repo-independent properties are found -->
-  <Import Project="$(ToolsDir)Build.Common.props" Condition="Exists('$(ToolsDir)Build.Common.props')" />
+  <!-- workaround https://github.com/dotnet/sdk/issues/2288
+       remove once we have a new CLI -->
+  <PropertyGroup>
+    <LanguageTargets Condition="'$(LanguageTargets)' == '' and '$(MSBuildProjectExtension)' != '.csproj' and '$(MSBuildProjectExtension)' != '.vbproj' and '$(MSBuildProjectExtension)' != '.fsproj'">$(MSBuildToolsPath)\Microsoft.Common.targets</LanguageTargets>
+  </PropertyGroup>
+
+  <!-- Enable the analyzers for this repo -->
+  <PropertyGroup>
+    <IsSourceProject Condition="$([System.Text.RegularExpressions.Regex]::IsMatch($(MSBuildProjectDirectory), 'src%24'))">true</IsSourceProject>
+    <EnableAnalyzers Condition="'$(EnableAnalyzers)'=='' and '$(IsSourceProject)' == 'true'">true</EnableAnalyzers>
+  </PropertyGroup>
 
   <!-- Import packaging props -->
   <Import Project="$(MSBuildThisFileDirectory)Packaging.props"/>
@@ -186,6 +188,8 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
+  <Import Project="$(RepositoryEngineeringDir)ReferenceAssemblies.props" />
+
   <!-- Set up the default output and intermediate paths -->
   <PropertyGroup>
     <OSPlatformConfig>$(OSGroup).$(Platform).$(ConfigurationGroup)</OSPlatformConfig>
@@ -197,6 +201,11 @@
 
     <TestPath Condition="'$(TestPath)'==''">$(TestWorkingDir)$(OSPlatformConfig)/$(MSBuildProjectName)/</TestPath>
 
+  </PropertyGroup>
+
+  <!-- Set a value for FrameworkPathOverride to avoid invoking GetReferenceAssemblyPaths -->
+  <PropertyGroup>
+    <FrameworkPathOverride>$(DotNetRoot)</FrameworkPathOverride>
   </PropertyGroup>
 
   <!-- Target Framework Moniker values to be used in our projects -->
