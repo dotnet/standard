@@ -5,28 +5,31 @@
     <SerializeProjects>true</SerializeProjects>
   </PropertyGroup>
   <ItemGroup>
-    <Project Include="netstandard1x.depproj">
+    <Project Include="netstandard.depproj">
       <AdditionalProperties>%(AdditionalProperties);TargetFramework=netstandard1.0</AdditionalProperties>
     </Project>
-    <Project Include="netstandard1x.depproj">
+    <Project Include="netstandard.depproj">
       <AdditionalProperties>%(AdditionalProperties);TargetFramework=netstandard1.1</AdditionalProperties>
     </Project>
-    <Project Include="netstandard1x.depproj">
+    <Project Include="netstandard.depproj">
       <AdditionalProperties>%(AdditionalProperties);TargetFramework=netstandard1.2</AdditionalProperties>
     </Project>
-    <Project Include="netstandard1x.depproj">
+    <Project Include="netstandard.depproj">
       <AdditionalProperties>%(AdditionalProperties);TargetFramework=netstandard1.3</AdditionalProperties>
     </Project>
-    <Project Include="netstandard1x.depproj">
+    <Project Include="netstandard.depproj">
       <AdditionalProperties>%(AdditionalProperties);TargetFramework=netstandard1.4</AdditionalProperties>
     </Project>
-    <Project Include="netstandard1x.depproj">
+    <Project Include="netstandard.depproj">
       <AdditionalProperties>%(AdditionalProperties);TargetFramework=netstandard1.5</AdditionalProperties>
     </Project>
-    <Project Include="netstandard1x.depproj">
+    <Project Include="netstandard.depproj">
       <AdditionalProperties>%(AdditionalProperties);TargetFramework=netstandard1.6</AdditionalProperties>
     </Project>
-    <Project Include="netstandard1x.depproj">
+    <Project Include="netstandard.depproj">
+      <AdditionalProperties>%(AdditionalProperties);TargetFramework=netstandard2.0</AdditionalProperties>
+    </Project>
+    <Project Include="netstandard.depproj">
       <AdditionalProperties>%(AdditionalProperties);TargetFramework=net47</AdditionalProperties>
     </Project>
   </ItemGroup>
