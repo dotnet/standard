@@ -237,7 +237,7 @@
     <Project Include="../netstandard/pkg/shims/netfx/dir.builds" />
     <Project Include="../netstandard/pkg/shims/netstandard/dir.builds" />
     <Project Include="net461/net461.depproj" />
-    <Project Include="netstandard1x/netstandard.builds" />
+    <Project Include="netstandard/netstandard.builds" />
   </ItemGroup>
 
   <PropertyGroup>
