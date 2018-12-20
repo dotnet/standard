@@ -13,7 +13,7 @@
 
   <!-- Override CleanAllProjects from dir.traversal.targets and just remove the full BinDir -->
   <Target Name="CleanAllProjects">
-    <RemoveDir Directories="$(BinDir)" />
+    <RemoveDir Directories="$(ArtifactsBinDir)" />
   </Target>
 </Project>
 

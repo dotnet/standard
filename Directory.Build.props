@@ -14,13 +14,6 @@
   <!-- Common repo directories -->
   <PropertyGroup>
     <ProjectDir>$(MSBuildThisFileDirectory)</ProjectDir>
-    <SourceDir>$(ProjectDir)src\</SourceDir>
-
-    <!-- Output directories -->
-    <BinDir>$(ProjectDir)artifacts\bin\</BinDir>
-
-    <PackageOutputRoot Condition="'$(PackageOutputRoot)'=='' and '$(NonShippingPackage)' == 'true'">$(BinDir)packages_noship/</PackageOutputRoot>
-    <PackageOutputRoot Condition="'$(PackageOutputRoot)'==''">$(BinDir)packages/</PackageOutputRoot>
 
     <!-- Input Directories -->
     <PackagesDir>$(DotNetRestorePackagesPath)</PackagesDir>
@@ -192,15 +185,9 @@
 
   <!-- Set up the default output and intermediate paths -->
   <PropertyGroup>
-    <OSPlatformConfig>$(OSGroup).$(Platform).$(ConfigurationGroup)</OSPlatformConfig>
     <TargetOutputRelPath Condition="'$(TargetGroup)'!=''">$(TargetGroup)/</TargetOutputRelPath>
-
     <OutputPath>$(OutputPath)$(TargetOutputRelPath)</OutputPath>
-
     <IntermediateOutputPath>$(IntermediateOutputPath)$(TargetOutputRelPath)</IntermediateOutputPath>
-
-    <TestPath Condition="'$(TestPath)'==''">$(TestWorkingDir)$(OSPlatformConfig)/$(MSBuildProjectName)/</TestPath>
-
   </PropertyGroup>
 
   <!-- Set a value for FrameworkPathOverride to avoid invoking GetReferenceAssemblyPaths -->

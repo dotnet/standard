@@ -1,4 +1,2 @@
 @echo off
-powershell -ExecutionPolicy ByPass -NoProfile %~dp0eng\Build.ps1 %*
-echo Build.cmd ErrorLevel=%ERRORLEVEL%
-exit /b %ERRORLEVEL%
+powershell -ExecutionPolicy ByPass -NoProfile -command "& """%~dp0eng\common\Build.ps1""" -restore -build %*"
