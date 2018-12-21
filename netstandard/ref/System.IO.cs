@@ -559,7 +559,7 @@ namespace System.IO
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DefaultValueAttribute(8192)]
         public int InternalBufferSize { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute((System.IO.NotifyFilters)(19))]
+        [System.ComponentModel.DefaultValueAttribute(System.IO.NotifyFilters.DirectoryName | System.IO.NotifyFilters.FileName | System.IO.NotifyFilters.LastWrite)]
         public System.IO.NotifyFilters NotifyFilter { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute("")]
         [System.ComponentModel.SettingsBindableAttribute(true)]

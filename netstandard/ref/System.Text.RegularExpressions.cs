@@ -221,7 +221,7 @@ namespace System.Text.RegularExpressions
         RightToLeft = 64,
         Singleline = 16,
     }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public abstract partial class RegexRunner
     {
         protected internal int[] runcrawl;
@@ -263,7 +263,7 @@ namespace System.Text.RegularExpressions
         protected void TransferCapture(int capnum, int uncapnum, int start, int end) { }
         protected void Uncapture() { }
     }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public abstract partial class RegexRunnerFactory
     {
         protected RegexRunnerFactory() { }

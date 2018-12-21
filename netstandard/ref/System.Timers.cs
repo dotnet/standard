@@ -44,7 +44,7 @@ namespace System.Timers
         public void Start() { }
         public void Stop() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public partial class TimersDescriptionAttribute : System.ComponentModel.DescriptionAttribute
     {
         public TimersDescriptionAttribute(string description) { }

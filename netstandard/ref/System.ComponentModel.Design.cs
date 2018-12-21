@@ -184,7 +184,7 @@ namespace System.ComponentModel.Design
         ToolWindowSelection = 3,
         Window = 1,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767), AllowMultiple=false, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All, AllowMultiple=false, Inherited=false)]
     public sealed partial class HelpKeywordAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.Design.HelpKeywordAttribute Default;
