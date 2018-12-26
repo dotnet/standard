@@ -57,22 +57,22 @@ namespace System.Xml.Schema
         public const string InstanceNamespace = "http://www.w3.org/2001/XMLSchema-instance";
         public const string Namespace = "http://www.w3.org/2001/XMLSchema";
         public XmlSchema() { }
-        [System.ComponentModel.DefaultValueAttribute((System.Xml.Schema.XmlSchemaForm)(0))]
+        [System.ComponentModel.DefaultValueAttribute(System.Xml.Schema.XmlSchemaForm.None)]
         [System.Xml.Serialization.XmlAttributeAttribute("attributeFormDefault")]
         public System.Xml.Schema.XmlSchemaForm AttributeFormDefault { get { throw null; } set { } }
         [System.Xml.Serialization.XmlIgnoreAttribute]
         public System.Xml.Schema.XmlSchemaObjectTable AttributeGroups { get { throw null; } }
         [System.Xml.Serialization.XmlIgnoreAttribute]
         public System.Xml.Schema.XmlSchemaObjectTable Attributes { get { throw null; } }
-        [System.ComponentModel.DefaultValueAttribute((System.Xml.Schema.XmlSchemaDerivationMethod)(256))]
+        [System.ComponentModel.DefaultValueAttribute(System.Xml.Schema.XmlSchemaDerivationMethod.None)]
         [System.Xml.Serialization.XmlAttributeAttribute("blockDefault")]
         public System.Xml.Schema.XmlSchemaDerivationMethod BlockDefault { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute((System.Xml.Schema.XmlSchemaForm)(0))]
+        [System.ComponentModel.DefaultValueAttribute(System.Xml.Schema.XmlSchemaForm.None)]
         [System.Xml.Serialization.XmlAttributeAttribute("elementFormDefault")]
         public System.Xml.Schema.XmlSchemaForm ElementFormDefault { get { throw null; } set { } }
         [System.Xml.Serialization.XmlIgnoreAttribute]
         public System.Xml.Schema.XmlSchemaObjectTable Elements { get { throw null; } }
-        [System.ComponentModel.DefaultValueAttribute((System.Xml.Schema.XmlSchemaDerivationMethod)(256))]
+        [System.ComponentModel.DefaultValueAttribute(System.Xml.Schema.XmlSchemaDerivationMethod.None)]
         [System.Xml.Serialization.XmlAttributeAttribute("finalDefault")]
         public System.Xml.Schema.XmlSchemaDerivationMethod FinalDefault { get { throw null; } set { } }
         [System.Xml.Serialization.XmlIgnoreAttribute]
@@ -150,7 +150,7 @@ namespace System.Xml.Schema
         public XmlSchemaAny() { }
         [System.Xml.Serialization.XmlAttributeAttribute("namespace")]
         public string Namespace { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute((System.Xml.Schema.XmlSchemaContentProcessing)(0))]
+        [System.ComponentModel.DefaultValueAttribute(System.Xml.Schema.XmlSchemaContentProcessing.None)]
         [System.Xml.Serialization.XmlAttributeAttribute("processContents")]
         public System.Xml.Schema.XmlSchemaContentProcessing ProcessContents { get { throw null; } set { } }
     }
@@ -159,7 +159,7 @@ namespace System.Xml.Schema
         public XmlSchemaAnyAttribute() { }
         [System.Xml.Serialization.XmlAttributeAttribute("namespace")]
         public string Namespace { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute((System.Xml.Schema.XmlSchemaContentProcessing)(0))]
+        [System.ComponentModel.DefaultValueAttribute(System.Xml.Schema.XmlSchemaContentProcessing.None)]
         [System.Xml.Serialization.XmlAttributeAttribute("processContents")]
         public System.Xml.Schema.XmlSchemaContentProcessing ProcessContents { get { throw null; } set { } }
     }
@@ -186,7 +186,7 @@ namespace System.Xml.Schema
         [System.ComponentModel.DefaultValueAttribute(null)]
         [System.Xml.Serialization.XmlAttributeAttribute("fixed")]
         public string FixedValue { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute((System.Xml.Schema.XmlSchemaForm)(0))]
+        [System.ComponentModel.DefaultValueAttribute(System.Xml.Schema.XmlSchemaForm.None)]
         [System.Xml.Serialization.XmlAttributeAttribute("form")]
         public System.Xml.Schema.XmlSchemaForm Form { get { throw null; } set { } }
         [System.Xml.Serialization.XmlAttributeAttribute("name")]
@@ -199,7 +199,7 @@ namespace System.Xml.Schema
         public System.Xml.Schema.XmlSchemaSimpleType SchemaType { get { throw null; } set { } }
         [System.Xml.Serialization.XmlAttributeAttribute("type")]
         public System.Xml.XmlQualifiedName SchemaTypeName { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute((System.Xml.Schema.XmlSchemaUse)(0))]
+        [System.ComponentModel.DefaultValueAttribute(System.Xml.Schema.XmlSchemaUse.None)]
         [System.Xml.Serialization.XmlAttributeAttribute("use")]
         public System.Xml.Schema.XmlSchemaUse Use { get { throw null; } set { } }
     }
@@ -326,7 +326,7 @@ namespace System.Xml.Schema
         public System.Xml.Schema.XmlSchemaObjectTable AttributeUses { get { throw null; } }
         [System.Xml.Serialization.XmlIgnoreAttribute]
         public System.Xml.Schema.XmlSchemaAnyAttribute AttributeWildcard { get { throw null; } }
-        [System.ComponentModel.DefaultValueAttribute((System.Xml.Schema.XmlSchemaDerivationMethod)(256))]
+        [System.ComponentModel.DefaultValueAttribute(System.Xml.Schema.XmlSchemaDerivationMethod.None)]
         [System.Xml.Serialization.XmlAttributeAttribute("block")]
         public System.Xml.Schema.XmlSchemaDerivationMethod Block { get { throw null; } set { } }
         [System.Xml.Serialization.XmlIgnoreAttribute]
@@ -430,7 +430,7 @@ namespace System.Xml.Schema
     public partial class XmlSchemaElement : System.Xml.Schema.XmlSchemaParticle
     {
         public XmlSchemaElement() { }
-        [System.ComponentModel.DefaultValueAttribute((System.Xml.Schema.XmlSchemaDerivationMethod)(256))]
+        [System.ComponentModel.DefaultValueAttribute(System.Xml.Schema.XmlSchemaDerivationMethod.None)]
         [System.Xml.Serialization.XmlAttributeAttribute("block")]
         public System.Xml.Schema.XmlSchemaDerivationMethod Block { get { throw null; } set { } }
         [System.Xml.Serialization.XmlIgnoreAttribute]
@@ -447,7 +447,7 @@ namespace System.Xml.Schema
         [System.ObsoleteAttribute("This property has been deprecated. Please use ElementSchemaType property that returns a strongly typed element type. https://go.microsoft.com/fwlink/?linkid=14202")]
         [System.Xml.Serialization.XmlIgnoreAttribute]
         public object ElementType { get { throw null; } }
-        [System.ComponentModel.DefaultValueAttribute((System.Xml.Schema.XmlSchemaDerivationMethod)(256))]
+        [System.ComponentModel.DefaultValueAttribute(System.Xml.Schema.XmlSchemaDerivationMethod.None)]
         [System.Xml.Serialization.XmlAttributeAttribute("final")]
         public System.Xml.Schema.XmlSchemaDerivationMethod Final { get { throw null; } set { } }
         [System.Xml.Serialization.XmlIgnoreAttribute]
@@ -455,7 +455,7 @@ namespace System.Xml.Schema
         [System.ComponentModel.DefaultValueAttribute(null)]
         [System.Xml.Serialization.XmlAttributeAttribute("fixed")]
         public string FixedValue { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute((System.Xml.Schema.XmlSchemaForm)(0))]
+        [System.ComponentModel.DefaultValueAttribute(System.Xml.Schema.XmlSchemaForm.None)]
         [System.Xml.Serialization.XmlAttributeAttribute("form")]
         public System.Xml.Schema.XmlSchemaForm Form { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute(false)]
@@ -902,7 +902,7 @@ namespace System.Xml.Schema
         public System.Xml.Schema.XmlSchemaDatatype Datatype { get { throw null; } }
         [System.Xml.Serialization.XmlIgnoreAttribute]
         public System.Xml.Schema.XmlSchemaDerivationMethod DerivedBy { get { throw null; } }
-        [System.ComponentModel.DefaultValueAttribute((System.Xml.Schema.XmlSchemaDerivationMethod)(256))]
+        [System.ComponentModel.DefaultValueAttribute(System.Xml.Schema.XmlSchemaDerivationMethod.None)]
         [System.Xml.Serialization.XmlAttributeAttribute("final")]
         public System.Xml.Schema.XmlSchemaDerivationMethod Final { get { throw null; } set { } }
         [System.Xml.Serialization.XmlIgnoreAttribute]

@@ -11,7 +11,7 @@ namespace System.ComponentModel
         public object NewObject { get { throw null; } set { } }
     }
     public delegate void AddingNewEventHandler(object sender, System.ComponentModel.AddingNewEventArgs e);
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class AmbientValueAttribute : System.Attribute
     {
         public AmbientValueAttribute(bool value) { }
@@ -56,7 +56,7 @@ namespace System.ComponentModel
     }
     public static partial class AsyncOperationManager
     {
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.Threading.SynchronizationContext SynchronizationContext { get { throw null; } set { } }
         public static System.ComponentModel.AsyncOperation CreateOperation(object userSuppliedState) { throw null; }
     }
@@ -82,7 +82,7 @@ namespace System.ComponentModel
         public bool Matches(System.Attribute[] attributes) { throw null; }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(128))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Property)]
     public partial class AttributeProviderAttribute : System.Attribute
     {
         public AttributeProviderAttribute(string typeName) { }
@@ -123,7 +123,7 @@ namespace System.ComponentModel
         public override object ConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value) { throw null; }
         public override object ConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, System.Type destinationType) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class BindableAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.BindableAttribute Default;
@@ -207,7 +207,7 @@ namespace System.ComponentModel
         public override bool GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext context) { throw null; }
         public override bool GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext context) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class BrowsableAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.BrowsableAttribute Default;
@@ -230,7 +230,7 @@ namespace System.ComponentModel
         public bool Cancel { get { throw null; } set { } }
     }
     public delegate void CancelEventHandler(object sender, System.ComponentModel.CancelEventArgs e);
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public partial class CategoryAttribute : System.Attribute
     {
         public CategoryAttribute() { }
@@ -282,7 +282,7 @@ namespace System.ComponentModel
         public override System.ComponentModel.PropertyDescriptorCollection GetProperties(System.ComponentModel.ITypeDescriptorContext context, object value, System.Attribute[] attributes) { throw null; }
         public override bool GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext context) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public sealed partial class ComplexBindingPropertiesAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.ComplexBindingPropertiesAttribute Default;
@@ -300,17 +300,17 @@ namespace System.ComponentModel
         public Component() { }
         protected virtual bool CanRaiseEvents { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.ComponentModel.IContainer Container { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         protected bool DesignMode { get { throw null; } }
         protected System.ComponentModel.EventHandlerList Events { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public virtual System.ComponentModel.ISite Site { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public event System.EventHandler Disposed { add { } remove { } }
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
@@ -398,7 +398,7 @@ namespace System.ComponentModel
         public DataErrorsChangedEventArgs(string propertyName) { }
         public virtual string PropertyName { get { throw null; } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public sealed partial class DataObjectAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DataObjectAttribute DataObject;
@@ -411,7 +411,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(128))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Property)]
     public sealed partial class DataObjectFieldAttribute : System.Attribute
     {
         public DataObjectFieldAttribute(bool primaryKey) { }
@@ -425,7 +425,7 @@ namespace System.ComponentModel
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Method)]
     public sealed partial class DataObjectMethodAttribute : System.Attribute
     {
         public DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType methodType) { }
@@ -466,7 +466,7 @@ namespace System.ComponentModel
         public override bool CanConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Type destinationType) { throw null; }
         public override object ConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, System.Type destinationType) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public sealed partial class DefaultBindingPropertyAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DefaultBindingPropertyAttribute Default;
@@ -476,7 +476,7 @@ namespace System.ComponentModel
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public sealed partial class DefaultEventAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DefaultEventAttribute Default;
@@ -485,7 +485,7 @@ namespace System.ComponentModel
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public sealed partial class DefaultPropertyAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DefaultPropertyAttribute Default;
@@ -494,7 +494,7 @@ namespace System.ComponentModel
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public partial class DefaultValueAttribute : System.Attribute
     {
         public DefaultValueAttribute(bool value) { }
@@ -521,7 +521,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         protected void SetValue(object value) { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public partial class DescriptionAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DescriptionAttribute Default;
@@ -533,7 +533,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), AllowMultiple=true, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Interface, AllowMultiple=true, Inherited=true)]
     public sealed partial class DesignerAttribute : System.Attribute
     {
         public DesignerAttribute(string designerTypeName) { }
@@ -547,7 +547,7 @@ namespace System.ComponentModel
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), AllowMultiple=false, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, AllowMultiple=false, Inherited=true)]
     public sealed partial class DesignerCategoryAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DesignerCategoryAttribute Component;
@@ -568,7 +568,7 @@ namespace System.ComponentModel
         Hidden = 0,
         Visible = 1,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(960))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Event | System.AttributeTargets.Field | System.AttributeTargets.Method | System.AttributeTargets.Property)]
     public sealed partial class DesignerSerializationVisibilityAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DesignerSerializationVisibilityAttribute Content;
@@ -581,7 +581,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class DesignOnlyAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DesignOnlyAttribute Default;
@@ -593,7 +593,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1028))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Interface)]
     public sealed partial class DesignTimeVisibleAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DesignTimeVisibleAttribute Default;
@@ -606,7 +606,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(708))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Event | System.AttributeTargets.Method | System.AttributeTargets.Property)]
     public partial class DisplayNameAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DisplayNameAttribute Default;
@@ -629,7 +629,7 @@ namespace System.ComponentModel
         public object Result { get { throw null; } set { } }
     }
     public delegate void DoWorkEventHandler(object sender, System.ComponentModel.DoWorkEventArgs e);
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767), AllowMultiple=true, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All, AllowMultiple=true, Inherited=true)]
     public sealed partial class EditorAttribute : System.Attribute
     {
         public EditorAttribute() { }
@@ -642,7 +642,7 @@ namespace System.ComponentModel
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(6140))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Constructor | System.AttributeTargets.Delegate | System.AttributeTargets.Enum | System.AttributeTargets.Event | System.AttributeTargets.Field | System.AttributeTargets.Interface | System.AttributeTargets.Method | System.AttributeTargets.Property | System.AttributeTargets.Struct)]
     public sealed partial class EditorBrowsableAttribute : System.Attribute
     {
         public EditorBrowsableAttribute() { }
@@ -737,7 +737,7 @@ namespace System.ComponentModel
         public override System.ComponentModel.PropertyDescriptorCollection GetProperties(System.ComponentModel.ITypeDescriptorContext context, object value, System.Attribute[] attributes) { throw null; }
         public override bool GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext context) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class ExtenderProvidedPropertyAttribute : System.Attribute
     {
         public ExtenderProvidedPropertyAttribute() { }
@@ -870,7 +870,7 @@ namespace System.ComponentModel
         bool ContainsListCollection { get; }
         System.Collections.IList GetList();
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class ImmutableObjectAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.ImmutableObjectAttribute Default;
@@ -890,7 +890,7 @@ namespace System.ComponentModel
     {
         string FullName { get; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(896))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Event | System.AttributeTargets.Field | System.AttributeTargets.Property)]
     public sealed partial class InheritanceAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.InheritanceAttribute Default;
@@ -911,7 +911,7 @@ namespace System.ComponentModel
         InheritedReadOnly = 2,
         NotInherited = 3,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public sealed partial class InitializationEventAttribute : System.Attribute
     {
         public InitializationEventAttribute(string eventName) { }
@@ -931,7 +931,7 @@ namespace System.ComponentModel
     {
         event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public partial class InstallerTypeAttribute : System.Attribute
     {
         public InstallerTypeAttribute(string typeName) { }
@@ -1062,7 +1062,7 @@ namespace System.ComponentModel
         protected LicenseProvider() { }
         public abstract System.ComponentModel.License GetLicense(System.ComponentModel.LicenseContext context, System.Type type, object instance, bool allowExceptions);
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), AllowMultiple=false, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, AllowMultiple=false, Inherited=false)]
     public sealed partial class LicenseProviderAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.LicenseProviderAttribute Default;
@@ -1086,7 +1086,7 @@ namespace System.ComponentModel
         public override System.ComponentModel.License GetLicense(System.ComponentModel.LicenseContext context, System.Type type, object instance, bool allowExceptions) { throw null; }
         protected virtual bool IsKeyValid(string key, System.Type type) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class ListBindableAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.ListBindableAttribute Default;
@@ -1154,7 +1154,7 @@ namespace System.ComponentModel
         Ascending = 0,
         Descending = 1,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class LocalizableAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.LocalizableAttribute Default;
@@ -1166,7 +1166,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public sealed partial class LookupBindingPropertiesAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.LookupBindingPropertiesAttribute Default;
@@ -1184,14 +1184,14 @@ namespace System.ComponentModel
     {
         public MarshalByValueComponent() { }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public virtual System.ComponentModel.IContainer Container { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public virtual bool DesignMode { get { throw null; } }
         protected System.ComponentModel.EventHandlerList Events { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public virtual System.ComponentModel.ISite Site { get { throw null; } set { } }
         public event System.EventHandler Disposed { add { } remove { } }
         public void Dispose() { }
@@ -1327,7 +1327,7 @@ namespace System.ComponentModel
         protected static object GetInvokee(System.Type componentClass, object component) { throw null; }
         protected static System.ComponentModel.ISite GetSite(object component) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class MergablePropertyAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.MergablePropertyAttribute Default;
@@ -1355,7 +1355,7 @@ namespace System.ComponentModel
         protected override void Dispose(bool disposing) { }
         protected override object GetService(System.Type service) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(128))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Property)]
     public sealed partial class NotifyParentPropertyAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.NotifyParentPropertyAttribute Default;
@@ -1386,7 +1386,7 @@ namespace System.ComponentModel
         public override bool GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext context) { throw null; }
         public override bool IsValid(System.ComponentModel.ITypeDescriptorContext context, object value) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class ParenthesizePropertyNameAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.ParenthesizePropertyNameAttribute Default;
@@ -1397,7 +1397,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class PasswordPropertyTextAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.PasswordPropertyTextAttribute Default;
@@ -1511,7 +1511,7 @@ namespace System.ComponentModel
         void System.Collections.IList.Remove(object value) { }
         void System.Collections.IList.RemoveAt(int index) { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public partial class PropertyTabAttribute : System.Attribute
     {
         public PropertyTabAttribute() { }
@@ -1535,7 +1535,7 @@ namespace System.ComponentModel
         Global = 1,
         Static = 0,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), AllowMultiple=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, AllowMultiple=true)]
     public sealed partial class ProvidePropertyAttribute : System.Attribute
     {
         public ProvidePropertyAttribute(string propertyName, string receiverTypeName) { }
@@ -1546,7 +1546,7 @@ namespace System.ComponentModel
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class ReadOnlyAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.ReadOnlyAttribute Default;
@@ -1558,7 +1558,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(128))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Property)]
     [System.ObsoleteAttribute("Use System.ComponentModel.SettingsBindableAttribute instead to work with the new settings model.")]
     public partial class RecommendedAsConfigurableAttribute : System.Attribute
     {
@@ -1596,7 +1596,7 @@ namespace System.ComponentModel
         None = 0,
         Repaint = 2,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class RefreshPropertiesAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.RefreshPropertiesAttribute All;
@@ -1608,7 +1608,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public partial class RunInstallerAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.RunInstallerAttribute Default;
@@ -1625,7 +1625,7 @@ namespace System.ComponentModel
         public RunWorkerCompletedEventArgs(object result, System.Exception error, bool cancelled) : base (default(System.Exception), default(bool), default(object)) { }
         public object Result { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public new object UserState { get { throw null; } }
     }
     public delegate void RunWorkerCompletedEventHandler(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e);
@@ -1633,7 +1633,7 @@ namespace System.ComponentModel
     {
         public SByteConverter() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(128))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Property)]
     public sealed partial class SettingsBindableAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.SettingsBindableAttribute No;
@@ -1667,7 +1667,7 @@ namespace System.ComponentModel
         public override object ConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value) { throw null; }
         public override object ConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, System.Type destinationType) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public partial class ToolboxItemAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.ToolboxItemAttribute Default;
@@ -1681,7 +1681,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), AllowMultiple=true, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, AllowMultiple=true, Inherited=true)]
     public sealed partial class ToolboxItemFilterAttribute : System.Attribute
     {
         public ToolboxItemFilterAttribute(string filterString) { }
@@ -1767,7 +1767,7 @@ namespace System.ComponentModel
             System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
         }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class TypeConverterAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.TypeConverterAttribute Default;
@@ -1796,7 +1796,7 @@ namespace System.ComponentModel
         public virtual System.ComponentModel.ICustomTypeDescriptor GetTypeDescriptor(System.Type objectType, object instance) { throw null; }
         public virtual bool IsSupportedType(System.Type type) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, Inherited=true)]
     public sealed partial class TypeDescriptionProviderAttribute : System.Attribute
     {
         public TypeDescriptionProviderAttribute(string typeName) { }
@@ -1808,26 +1808,26 @@ namespace System.ComponentModel
         internal TypeDescriptor() { }
         [System.ObsoleteAttribute("This property has been deprecated.  Use a type description provider to supply type information for COM types instead.  https://go.microsoft.com/fwlink/?linkid=14202")]
         public static System.ComponentModel.IComNativeDescriptorHandler ComNativeDescriptorHandler { get { throw null; } set { } }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.Type ComObjectType { get { throw null; } }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.Type InterfaceType { get { throw null; } }
         public static event System.ComponentModel.RefreshEventHandler Refreshed { add { } remove { } }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.TypeDescriptionProvider AddAttributes(object instance, params System.Attribute[] attributes) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.TypeDescriptionProvider AddAttributes(System.Type type, params System.Attribute[] attributes) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void AddEditorTable(System.Type editorBaseType, System.Collections.Hashtable table) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void AddProvider(System.ComponentModel.TypeDescriptionProvider provider, object instance) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void AddProvider(System.ComponentModel.TypeDescriptionProvider provider, System.Type type) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void AddProviderTransparent(System.ComponentModel.TypeDescriptionProvider provider, object instance) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void AddProviderTransparent(System.ComponentModel.TypeDescriptionProvider provider, System.Type type) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void CreateAssociation(object primary, object secondary) { }
         public static System.ComponentModel.Design.IDesigner CreateDesigner(System.ComponentModel.IComponent component, System.Type designerBaseType) { throw null; }
         public static System.ComponentModel.EventDescriptor CreateEvent(System.Type componentType, System.ComponentModel.EventDescriptor oldEventDescriptor, params System.Attribute[] attributes) { throw null; }
@@ -1835,40 +1835,40 @@ namespace System.ComponentModel
         public static object CreateInstance(System.IServiceProvider provider, System.Type objectType, System.Type[] argTypes, object[] args) { throw null; }
         public static System.ComponentModel.PropertyDescriptor CreateProperty(System.Type componentType, System.ComponentModel.PropertyDescriptor oldPropertyDescriptor, params System.Attribute[] attributes) { throw null; }
         public static System.ComponentModel.PropertyDescriptor CreateProperty(System.Type componentType, string name, System.Type type, params System.Attribute[] attributes) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static object GetAssociation(System.Type type, object primary) { throw null; }
         public static System.ComponentModel.AttributeCollection GetAttributes(object component) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.AttributeCollection GetAttributes(object component, bool noCustomTypeDesc) { throw null; }
         public static System.ComponentModel.AttributeCollection GetAttributes(System.Type componentType) { throw null; }
         public static string GetClassName(object component) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static string GetClassName(object component, bool noCustomTypeDesc) { throw null; }
         public static string GetClassName(System.Type componentType) { throw null; }
         public static string GetComponentName(object component) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static string GetComponentName(object component, bool noCustomTypeDesc) { throw null; }
         public static System.ComponentModel.TypeConverter GetConverter(object component) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.TypeConverter GetConverter(object component, bool noCustomTypeDesc) { throw null; }
         public static System.ComponentModel.TypeConverter GetConverter(System.Type type) { throw null; }
         public static System.ComponentModel.EventDescriptor GetDefaultEvent(object component) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.EventDescriptor GetDefaultEvent(object component, bool noCustomTypeDesc) { throw null; }
         public static System.ComponentModel.EventDescriptor GetDefaultEvent(System.Type componentType) { throw null; }
         public static System.ComponentModel.PropertyDescriptor GetDefaultProperty(object component) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.PropertyDescriptor GetDefaultProperty(object component, bool noCustomTypeDesc) { throw null; }
         public static System.ComponentModel.PropertyDescriptor GetDefaultProperty(System.Type componentType) { throw null; }
         public static object GetEditor(object component, System.Type editorBaseType) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static object GetEditor(object component, System.Type editorBaseType, bool noCustomTypeDesc) { throw null; }
         public static object GetEditor(System.Type type, System.Type editorBaseType) { throw null; }
         public static System.ComponentModel.EventDescriptorCollection GetEvents(object component) { throw null; }
         public static System.ComponentModel.EventDescriptorCollection GetEvents(object component, System.Attribute[] attributes) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.EventDescriptorCollection GetEvents(object component, System.Attribute[] attributes, bool noCustomTypeDesc) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.EventDescriptorCollection GetEvents(object component, bool noCustomTypeDesc) { throw null; }
         public static System.ComponentModel.EventDescriptorCollection GetEvents(System.Type componentType) { throw null; }
         public static System.ComponentModel.EventDescriptorCollection GetEvents(System.Type componentType, System.Attribute[] attributes) { throw null; }
@@ -1876,33 +1876,33 @@ namespace System.ComponentModel
         public static System.ComponentModel.PropertyDescriptorCollection GetProperties(object component) { throw null; }
         public static System.ComponentModel.PropertyDescriptorCollection GetProperties(object component, System.Attribute[] attributes) { throw null; }
         public static System.ComponentModel.PropertyDescriptorCollection GetProperties(object component, System.Attribute[] attributes, bool noCustomTypeDesc) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.PropertyDescriptorCollection GetProperties(object component, bool noCustomTypeDesc) { throw null; }
         public static System.ComponentModel.PropertyDescriptorCollection GetProperties(System.Type componentType) { throw null; }
         public static System.ComponentModel.PropertyDescriptorCollection GetProperties(System.Type componentType, System.Attribute[] attributes) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.TypeDescriptionProvider GetProvider(object instance) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.TypeDescriptionProvider GetProvider(System.Type type) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.Type GetReflectionType(object instance) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.Type GetReflectionType(System.Type type) { throw null; }
         public static void Refresh(object component) { }
         public static void Refresh(System.Reflection.Assembly assembly) { }
         public static void Refresh(System.Reflection.Module module) { }
         public static void Refresh(System.Type type) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void RemoveAssociation(object primary, object secondary) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void RemoveAssociations(object primary) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void RemoveProvider(System.ComponentModel.TypeDescriptionProvider provider, object instance) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void RemoveProvider(System.ComponentModel.TypeDescriptionProvider provider, System.Type type) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void RemoveProviderTransparent(System.ComponentModel.TypeDescriptionProvider provider, object instance) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void RemoveProviderTransparent(System.ComponentModel.TypeDescriptionProvider provider, System.Type type) { }
         public static void SortDescriptorArray(System.Collections.IList infos) { }
     }

@@ -4,7 +4,7 @@
 
 namespace System.Runtime
 {
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1), Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Assembly, Inherited=false)]
     public sealed partial class AssemblyTargetedPatchBandAttribute : System.Attribute
     {
         public AssemblyTargetedPatchBandAttribute(string targetedPatchBand) { }
@@ -34,7 +34,7 @@ namespace System.Runtime
         public MemoryFailPoint(int sizeInMegabytes) { }
         public void Dispose() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(96), AllowMultiple=false, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Constructor | System.AttributeTargets.Method, AllowMultiple=false, Inherited=false)]
     public sealed partial class TargetedPatchingOptOutAttribute : System.Attribute
     {
         public TargetedPatchingOptOutAttribute(string reason) { }

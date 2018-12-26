@@ -17,7 +17,7 @@ namespace System.Runtime.ExceptionServices
         public FirstChanceExceptionEventArgs(System.Exception exception) { }
         public System.Exception Exception { get { throw null; } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), AllowMultiple=false, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Method, AllowMultiple=false, Inherited=false)]
     public sealed partial class HandleProcessCorruptedStateExceptionsAttribute : System.Attribute
     {
         public HandleProcessCorruptedStateExceptionsAttribute() { }

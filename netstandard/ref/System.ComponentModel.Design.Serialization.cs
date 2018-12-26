@@ -29,7 +29,7 @@ namespace System.ComponentModel.Design.Serialization
         public object Pop() { throw null; }
         public void Push(object context) { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, Inherited=false)]
     public sealed partial class DefaultSerializationProviderAttribute : System.Attribute
     {
         public DefaultSerializationProviderAttribute(string providerTypeName) { }
@@ -44,7 +44,7 @@ namespace System.ComponentModel.Design.Serialization
         public abstract void Dispose();
         public virtual void Flush() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), AllowMultiple=true, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Interface, AllowMultiple=true, Inherited=true)]
     public sealed partial class DesignerSerializerAttribute : System.Attribute
     {
         public DesignerSerializerAttribute(string serializerTypeName, string baseSerializerTypeName) { }
@@ -139,7 +139,7 @@ namespace System.ComponentModel.Design.Serialization
         public object Value { get { throw null; } set { } }
     }
     public delegate void ResolveNameEventHandler(object sender, System.ComponentModel.Design.Serialization.ResolveNameEventArgs e);
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), AllowMultiple=true, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Interface, AllowMultiple=true, Inherited=true)]
     [System.ObsoleteAttribute("This attribute has been deprecated. Use DesignerSerializerAttribute instead.  For example, to specify a root designer for CodeDom, use DesignerSerializerAttribute(...,typeof(TypeCodeDomSerializer)).  https://go.microsoft.com/fwlink/?linkid=14202")]
     public sealed partial class RootDesignerSerializerAttribute : System.Attribute
     {

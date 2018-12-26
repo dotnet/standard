@@ -1153,11 +1153,11 @@ namespace System.Xml
         public virtual string ReadElementContentAsString() { throw null; }
         public virtual string ReadElementContentAsString(string localName, string namespaceURI) { throw null; }
         public virtual System.Threading.Tasks.Task<string> ReadElementContentAsStringAsync() { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public virtual string ReadElementString() { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public virtual string ReadElementString(string name) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public virtual string ReadElementString(string localname, string ns) { throw null; }
         public virtual void ReadEndElement() { }
         public virtual string ReadInnerXml() { throw null; }
@@ -1167,7 +1167,7 @@ namespace System.Xml
         public virtual void ReadStartElement() { }
         public virtual void ReadStartElement(string name) { }
         public virtual void ReadStartElement(string localname, string ns) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public virtual string ReadString() { throw null; }
         public virtual System.Xml.XmlReader ReadSubtree() { throw null; }
         public virtual bool ReadToDescendant(string name) { throw null; }
@@ -1261,7 +1261,7 @@ namespace System.Xml
         public override void WriteContentTo(System.Xml.XmlWriter w) { }
         public override void WriteTo(System.Xml.XmlWriter w) { }
     }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public partial class XmlTextReader : System.Xml.XmlReader, System.Xml.IXmlLineInfo, System.Xml.IXmlNamespaceResolver
     {
         protected XmlTextReader() { }
@@ -1341,7 +1341,7 @@ namespace System.Xml
         string System.Xml.IXmlNamespaceResolver.LookupNamespace(string prefix) { throw null; }
         string System.Xml.IXmlNamespaceResolver.LookupPrefix(string namespaceName) { throw null; }
     }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public partial class XmlTextWriter : System.Xml.XmlWriter
     {
         public XmlTextWriter(System.IO.Stream w, System.Text.Encoding encoding) { }
