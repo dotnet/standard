@@ -195,8 +195,8 @@
   <!-- Run ApiCompat -->
   <Target Name="RunApiCompat"
           Inputs="$(IntermediateOutputPath)%(ApiCompatProfile.TargetGroup)/apicompat.rsp"
-          Outputs="$(MSBuildThisFileDirectory)baselines/ApiCompatBaseline.%(ApiCompatProfile.TargetGroup).txt"
-    >
+          Outputs="$(MSBuildThisFileDirectory)baselines/ApiCompatBaseline.%(ApiCompatProfile.TargetGroup).txt">
+
     <PropertyGroup>
       <ApiCompatContracts>%(ApiCompatProfile.Identity)</ApiCompatContracts>
       <ApiCompatResponseFile>$(IntermediateOutputPath)%(ApiCompatProfile.TargetGroup)/apicompat.rsp</ApiCompatResponseFile>
@@ -205,14 +205,11 @@
 
     <PropertyGroup>
       <ApiCompatArgs>$(ApiCompatArgs) "$(ApiCompatContracts)"</ApiCompatArgs>
-      <ApiCompatArgs>$(ApiCompatArgs) -contractDepends:"$(ApiCompatContracts)"</ApiCompatArgs>
-      <ApiCompatArgs>$(ApiCompatArgs) -implDirs:"$(NetstandardRefPath),$(NetstandardShimsPath),$(NetfxShimsPath)"</ApiCompatArgs>
-      <ApiCompatArgs>$(ApiCompatArgs) -excludeAttributes:"$(ProjectDir)platforms\attributeExcludeList.txt"</ApiCompatArgs>
-      <!--<ApiCompatArgs>$(ApiCompatArgs) -groupByAssembly:false</ApiCompatArgs>-->
-      <!--<ApiCompatArgs>$(ApiCompatArgs) -baseline:"$(ApiCompatBaselineFile)"</ApiCompatArgs>-->
-      <ApiCompatBaselineAll>&gt; $(ApiCompatBaselineFile)</ApiCompatBaselineAll>
+      <ApiCompatArgs>$(ApiCompatArgs) --contract-depends "$(ApiCompatContracts)"</ApiCompatArgs>
+      <ApiCompatArgs>$(ApiCompatArgs) --impl-dirs "$(NetstandardRefPath),$(NetstandardShimsPath),$(NetfxShimsPath)"</ApiCompatArgs>
+      <ApiCompatArgs>$(ApiCompatArgs) --exclude-attributes "$(ProjectDir)platforms\attributeExcludeList.txt"</ApiCompatArgs>
+      <ApiCompatBaselineAll>&gt; "$(ApiCompatBaselineFile)"</ApiCompatBaselineAll>
       <ApiCompatExitCode>0</ApiCompatExitCode>
-
     </PropertyGroup>
 
     <MakeDir Directories="$(IntermediateOutputPath)%(ApiCompatProfile.TargetGroup)" />
@@ -222,8 +219,7 @@
           Command="$(_ApiCompatCommand) @&quot;$(ApiCompatResponseFile)&quot; $(ApiCompatBaselineAll)"
           CustomErrorRegularExpression="^[a-zA-Z]+ :"
           StandardOutputImportance="Low"
-          IgnoreExitCode="true"
-    >
+          IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="ApiCompatExitCode" />
     </Exec>
 
