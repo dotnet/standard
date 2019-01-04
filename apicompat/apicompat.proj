@@ -206,8 +206,8 @@
     <PropertyGroup>
       <ApiCompatArgs>$(ApiCompatArgs) "$(ApiCompatContracts)"</ApiCompatArgs>
       <ApiCompatArgs>$(ApiCompatArgs) --contract-depends "$(ApiCompatContracts)"</ApiCompatArgs>
-      <ApiCompatArgs>$(ApiCompatArgs) --impl-dirs "$(NetstandardRefPath),$(NetstandardShimsPath),$(NetfxShimsPath)"</ApiCompatArgs>
       <ApiCompatArgs>$(ApiCompatArgs) --exclude-attributes "$(ProjectDir)platforms\attributeExcludeList.txt"</ApiCompatArgs>
+      <ApiCompatArgs>$(ApiCompatArgs) --impl-dirs "$(NetstandardRefPath),$(NetstandardShimsPath),$(NetfxShimsPath)"</ApiCompatArgs>
       <ApiCompatBaselineAll>&gt; "$(ApiCompatBaselineFile)"</ApiCompatBaselineAll>
       <ApiCompatExitCode>0</ApiCompatExitCode>
     </PropertyGroup>
