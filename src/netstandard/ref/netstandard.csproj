@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <IsCoreAssembly>true</IsCoreAssembly>
     <!-- disable obsolete warnings/errors -->
     <NoWarn>$(NoWarn);0618;0619;0809</NoWarn>

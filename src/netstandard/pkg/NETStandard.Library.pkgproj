@@ -10,7 +10,7 @@
     <SkipValidatePackage>true</SkipValidatePackage>
     <TargetsFileName>NETStandard.Library.targets</TargetsFileName>
     <VersionTargetsTemplate>targets\netstandard\$(TargetsFileName)</VersionTargetsTemplate>
-    <NETStandardVersion>netstandard2.0</NETStandardVersion>
+    <NETStandardVersion>netstandard2.1</NETStandardVersion>
     <VersionTargetsSource>$(IntermediateOutputPath)$(NETStandardVersion)\$(TargetsFileName)</VersionTargetsSource>
   </PropertyGroup>
 
