@@ -3,4 +3,4 @@
 
 # The API surface is owned by the .NET Standard review board.
 # https://github.com/dotnet/standard/blob/master/docs/governance/README.md
-/netstandard/ref/**    @dotnet/nsboard-foundation @dotnet/nsboard-platform @dotnet/nsboard-tooling @dotnet/nsboard-unity @dotnet/nsboard-xamarin
+/src/netstandard/ref/**    @dotnet/nsboard-foundation @dotnet/nsboard-platform @dotnet/nsboard-tooling @dotnet/nsboard-unity @dotnet/nsboard-xamarin
