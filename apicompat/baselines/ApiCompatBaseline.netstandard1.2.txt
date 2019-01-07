@@ -1,4 +1,3 @@
-Microsoft.DotNet.ApiCompat Error: 0 : Unable to resolve assembly 'Assembly(Name=System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e)' referenced by the implementation assembly 'Microsoft.Cci.DummyModule'.
 Compat issues with assembly System.Resources.ResourceManager:
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.MissingManifestResourceException' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.NeutralResourcesLanguageAttribute' in the contract but not the implementation.
