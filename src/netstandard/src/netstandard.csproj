@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>netstandard</AssemblyName>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
     <TargetFrameworks>net461;xamarin.ios;xamarin.watchos;xamarin.tvos;xamarin.mac;monoandroid</TargetFrameworks>
     <!-- custom target framework settings to satisfy SDK and msbuild. -->
     <TargetFrameworkIdentifier Condition="'$(TargetFramework)' != 'net461'">$(TargetFramework)</TargetFrameworkIdentifier>
