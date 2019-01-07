@@ -16,6 +16,7 @@
     <ProjectDir>$(MSBuildThisFileDirectory)</ProjectDir>
 
     <!-- Input Directories -->
+    <SourceDir>$(ProjectDir)src/</SourceDir>
     <PackagesDir>$(DotNetRestorePackagesPath)</PackagesDir>
     <PackagesDir Condition="'$(PackagesDir)'=='' and '$(NuGetPackageRoot)' != ''">$([MSBuild]::EnsureTrailingSlash('$(NuGetPackageRoot)'))</PackagesDir>
     <PackagesDir Condition="'$(PackagesDir)'==''">$(ProjectDir).packages/</PackagesDir>

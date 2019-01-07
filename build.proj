@@ -20,7 +20,7 @@
 
   <Target Name="BuildManaged">
     <ItemGroup>
-      <_BuildMangedProjects Include="src.builds" />
+      <_BuildMangedProjects Include="$(SourceDir)src.builds" />
     </ItemGroup>
 
     <MSBuild Projects="@(_BuildMangedProjects)" />
@@ -28,7 +28,7 @@
 
   <Target Name="Test">
     <ItemGroup>
-      <_TestProjects Include="apicompat/apicompat.proj" />
+      <_TestProjects Include="$(SourceDir)apicompat/apicompat.proj" />
     </ItemGroup>
 
     <MSBuild Projects="@(_TestProjects)" />
@@ -36,7 +36,7 @@
 
   <Target Name="Pack">
     <ItemGroup>
-      <_PackProjects Include="packages.builds" Condition="'$(BuildPackages)'=='true'" />
+      <_PackProjects Include="$(SourceDir)packages.builds" Condition="'$(BuildPackages)'=='true'" />
     </ItemGroup>
 
     <MSBuild Projects="@(_PackProjects)" />
