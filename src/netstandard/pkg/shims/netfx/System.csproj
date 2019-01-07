@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>System</AssemblyName>
+    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <StrongNameKeyId>ECMA</StrongNameKeyId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="System.Forwards.cs" />
+    <ProjectReference Include="..\..\..\ref\netstandard.csproj" />
+    <ProjectReference Include="..\..\..\..\platforms\extensions\System.CodeDom.csproj" />
+  </ItemGroup>
+	<Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
+</Project>

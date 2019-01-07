@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetGroup Condition="'$(TargetGroup)'==''">net461</TargetGroup>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>netstandard</AssemblyName>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ContractProject>..\ref\netstandard.csproj</ContractProject>
+    <ResolveMatchingContract>true</ResolveMatchingContract>
+    <RunApiCompatForSrc>true</RunApiCompatForSrc>
+    <RunMatchingRefApiCompat>false</RunMatchingRefApiCompat>
+    <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
+    <ApiCompatBaseline>$(MSBuildProjectDirectory)\ApiCompatBaseline.$(TargetGroup).txt</ApiCompatBaseline>
+    <NoWarn>$(NoWarn);618</NoWarn>
+  </PropertyGroup>
+
+  <!-- Disable code paths that require project.assets.json files to be present or to be computed. -->
+  <PropertyGroup>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <ComputeNETCoreBuildOutputFiles>false</ComputeNETCoreBuildOutputFiles>
+    <GenerateRuntimeConfigurationFiles>false</GenerateRuntimeConfigurationFiles>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(ContractProject)">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <OutputItemType>ResolvedMatchingContract</OutputItemType>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Mark netstandard as a framework assembly -->
+    <AssemblyMetadata Include=".NETFrameworkAssembly">
+      <Value></Value>
+    </AssemblyMetadata>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetGroup)' == 'net461'">
+    <PackageDestination Include="build/$(TargetGroup)/ref">
+      <TargetFramework>$(TargetGroup)</TargetFramework>
+    </PackageDestination>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\platforms\$(TargetGroup)\**\*.csproj" />
+  </ItemGroup>
+</Project>

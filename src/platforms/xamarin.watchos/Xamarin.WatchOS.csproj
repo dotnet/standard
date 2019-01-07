@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+    <StrongNameKeyId>XamarinProducts</StrongNameKeyId>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputType>Library</OutputType>
+    <!-- disable obsolete warnings/errors -->
+    <NoWarn>$(NoWarn);0618;0619;0809</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="mscorlib.csproj" />
+    <ProjectReference Include="System.csproj" />
+    <Compile Include="Xamarin.WatchOS.cs" />
+  </ItemGroup>
+</Project>

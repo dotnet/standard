@@ -1,0 +1,104 @@
+Compat issues with assembly Microsoft.CSharp:
+TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.Binder' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.RuntimeBinderException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly Microsoft.VisualBasic:
+TypesMustExist : Type 'Microsoft.VisualBasic.CallType' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.Constants' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.HideModuleNameAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.Strings' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.Conversions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.DesignerGeneratedAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.IncompleteInitialization' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.NewLateBinding' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.ObjectFlowControl' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.Operators' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.OptionCompareAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.OptionTextAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.ProjectData' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.StandardModuleAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.StaticLocalInitFlag' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Microsoft.VisualBasic.CompilerServices.Utils' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly mscorlib:
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.MissingManifestResourceException' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.NeutralResourcesLanguageAttribute' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.ResourceManager' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.SatelliteContractVersionAttribute' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceMode' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceResult' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.ICustomQueryInterface' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.ComTypes.IStream' in the contract but not the implementation.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.IActivationFactory' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.Resources.ResourceManager:
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.MissingManifestResourceException' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.NeutralResourcesLanguageAttribute' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.ResourceManager' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.SatelliteContractVersionAttribute' in the contract but not the implementation.
+Compat issues with assembly System.Runtime.InteropServices:
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceMode' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceResult' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.ICustomQueryInterface' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.ComTypes.IStream' in the contract but not the implementation.
+Compat issues with assembly System.Runtime.InteropServices.WindowsRuntime:
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.DefaultInterfaceAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.IActivationFactory' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.InterfaceImplementedInVersionAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.ReturnValueNameAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WriteOnlyArrayAttribute' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.Runtime.WindowsRuntime:
+TypesMustExist : Type 'System.WindowsRuntimeSystemExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.WindowsRuntimeStorageExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.IO.WindowsRuntimeStreamExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.AsyncInfo' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBuffer' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeBufferExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.Foundation.Point' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.Foundation.Rect' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.Foundation.Size' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Color' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.Runtime.WindowsRuntime.UI.Xaml:
+TypesMustExist : Type 'Windows.UI.Xaml.CornerRadius' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Duration' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.DurationType' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.GridLength' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.GridUnitType' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.LayoutCycleException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Thickness' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Automation.ElementNotAvailableException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Automation.ElementNotEnabledException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Controls.Primitives.GeneratorPosition' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Markup.XamlParseException' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Media.Matrix' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Media.Animation.KeyTime' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Media.Animation.RepeatBehavior' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Media.Animation.RepeatBehaviorType' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'Windows.UI.Xaml.Media.Media3D.Matrix3D' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.Xml:
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Xml.Schema.XmlSchema' in the contract but not the implementation.
+CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
+CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
+Compat issues with assembly System.Xml.ReaderWriter:
+CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Xml.Schema.XmlSchema' in the contract but not the implementation.
+Compat issues with assembly System.Xml.XmlSerializer:
+CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
+CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
+Total Issues: 92

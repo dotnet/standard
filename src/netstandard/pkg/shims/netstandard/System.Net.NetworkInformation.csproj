@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>System.Net.NetworkInformation</AssemblyName>
+    <AssemblyVersion>4.1.2.0</AssemblyVersion>
+    <StrongNameKeyId>Microsoft</StrongNameKeyId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="System.Net.NetworkInformation.Forwards.cs" />
+    <Compile Include="System.Net.NetworkInformation.manual.cs" />
+    <ProjectReference Include="..\..\..\ref\netstandard.csproj" />
+  </ItemGroup>
+	<Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
+</Project>

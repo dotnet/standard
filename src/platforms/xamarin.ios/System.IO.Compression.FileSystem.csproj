@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <StrongNameKeyId>ECMA</StrongNameKeyId>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputType>Library</OutputType>
+    <!-- disable obsolete warnings/errors -->
+    <NoWarn>$(NoWarn);0618;0619;0809</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="mscorlib.csproj" />
+    <ProjectReference Include="System.csproj" />
+    <ProjectReference Include="System.IO.Compression.csproj" />
+    <Compile Include="System.IO.Compression.FileSystem.cs" />
+  </ItemGroup>
+</Project>

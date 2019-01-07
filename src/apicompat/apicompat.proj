@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.props))\Directory.Build.props" />
+
+  <PropertyGroup>
+    <RestoredRefPath>$(IntermediateOutputPath)CompatShims/ref/</RestoredRefPath>
+    <NetstandardRefPath>$(ArtifactsBinDir)ref/netstandard/$(ConfigurationGroup)/</NetstandardRefPath>
+    <NetstandardShimsPath>$(ArtifactsBinDir)shims/netstandard</NetstandardShimsPath>
+    <NetfxShimsPath>$(ArtifactsBinDir)shims/netfx</NetfxShimsPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ApiCompatProfileRootPath>$(RestoredRefRootPath)</ApiCompatProfileRootPath>
+    <ApiCompatBaseline>ApiCompatBaseline.compatshims.txt</ApiCompatBaseline>
+    <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
+    <PortableProfileRootPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETPortable\</PortableProfileRootPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)netstandard1.0">
+      <TargetGroup>netstandard1.0</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)netstandard1.1">
+      <TargetGroup>netstandard1.1</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)netstandard1.2">
+      <TargetGroup>netstandard1.2</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)netstandard1.3">
+      <TargetGroup>netstandard1.3</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)netstandard1.4">
+      <TargetGroup>netstandard1.4</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)netstandard1.5">
+      <TargetGroup>netstandard1.5</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)netstandard1.6">
+      <TargetGroup>netstandard1.6</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(ApiCompatProfileRootPath)netstandard2.0">
+      <TargetGroup>netstandard2.0</TargetGroup>
+    </ApiCompatProfile>
+
+    <!-- Portable v4 Profiles -->
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile1">
+      <TargetGroup>portable4.0-Profile1</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile102">
+      <TargetGroup>portable4.0-Profile102</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile104">
+      <TargetGroup>portable4.0-Profile104</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile131">
+      <TargetGroup>portable4.0-Profile131</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile136">
+      <TargetGroup>portable4.0-Profile136</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile14">
+      <TargetGroup>portable4.0-Profile14</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile143">
+      <TargetGroup>portable4.0-Profile143</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile147">
+      <TargetGroup>portable4.0-Profile147</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile154">
+      <TargetGroup>portable4.0-Profile154</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile158">
+      <TargetGroup>portable4.0-Profile158</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile18">
+      <TargetGroup>portable4.0-Profile18</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile19">
+      <TargetGroup>portable4.0-Profile19</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile2">
+      <TargetGroup>portable4.0-Profile2</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile225">
+      <TargetGroup>portable4.0-Profile225</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile23">
+      <TargetGroup>portable4.0-Profile23</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile24">
+      <TargetGroup>portable4.0-Profile24</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile240">
+      <TargetGroup>portable4.0-Profile240</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile255">
+      <TargetGroup>portable4.0-Profile255</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile3">
+      <TargetGroup>portable4.0-Profile3</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile328">
+      <TargetGroup>portable4.0-Profile328</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile336">
+      <TargetGroup>portable4.0-Profile336</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile344">
+      <TargetGroup>portable4.0-Profile344</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile36">
+      <TargetGroup>portable4.0-Profile36</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile37">
+      <TargetGroup>portable4.0-Profile37</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile4">
+      <TargetGroup>portable4.0-Profile4</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile41">
+      <TargetGroup>portable4.0-Profile41</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile42">
+      <TargetGroup>portable4.0-Profile42</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile46">
+      <TargetGroup>portable4.0-Profile46</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile47">
+      <TargetGroup>portable4.0-Profile47</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile5">
+      <TargetGroup>portable4.0-Profile5</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile6">
+      <TargetGroup>portable4.0-Profile6</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile88">
+      <TargetGroup>portable4.0-Profile88</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile92">
+      <TargetGroup>portable4.0-Profile92</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile95">
+      <TargetGroup>portable4.0-Profile95</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.0\Profile\Profile96">
+      <TargetGroup>portable4.0-Profile96</TargetGroup>
+    </ApiCompatProfile>
+
+    <!-- Portable v4.5 Profiles -->
+
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5\Profile\Profile111">
+      <TargetGroup>portable4.5-Profile111</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5\Profile\Profile259">
+      <TargetGroup>portable4.5-Profile259</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5\Profile\Profile49">
+      <TargetGroup>portable4.5-Profile49</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5\Profile\Profile7">
+      <TargetGroup>portable4.5-Profile7</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5\Profile\Profile75">
+      <TargetGroup>portable4.5-Profile75</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.5\Profile\Profile78">
+      <TargetGroup>portable4.5-Profile78</TargetGroup>
+    </ApiCompatProfile>
+
+    <!-- Portable v4.6 Profiles -->
+
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile151">
+      <TargetGroup>portable4.6-Profile151</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile157">
+      <TargetGroup>portable4.6-Profile157</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile31">
+      <TargetGroup>portable4.6-Profile31</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile32">
+      <TargetGroup>portable4.6-Profile32</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile44">
+      <TargetGroup>portable4.6-Profile44</TargetGroup>
+    </ApiCompatProfile>
+    <ApiCompatProfile Include="$(PortableProfileRootPath)v4.6\Profile\Profile84">
+      <TargetGroup>portable4.6-Profile84</TargetGroup>
+    </ApiCompatProfile>
+  </ItemGroup>
+
+  <!-- Run ApiCompat -->
+  <Target Name="RunApiCompat"
+          Inputs="$(IntermediateOutputPath)%(ApiCompatProfile.TargetGroup)/apicompat.rsp"
+          Outputs="$(MSBuildThisFileDirectory)baselines/ApiCompatBaseline.%(ApiCompatProfile.TargetGroup).txt">
+
+    <PropertyGroup>
+      <ApiCompatContracts>%(ApiCompatProfile.Identity)</ApiCompatContracts>
+      <ApiCompatResponseFile>$(IntermediateOutputPath)%(ApiCompatProfile.TargetGroup)/apicompat.rsp</ApiCompatResponseFile>
+      <ApiCompatBaselineFile>$(MSBuildThisFileDirectory)baselines/ApiCompatBaseline.%(ApiCompatProfile.TargetGroup).txt</ApiCompatBaselineFile>
+    </PropertyGroup>
+
+    <PropertyGroup>
+      <ApiCompatArgs>$(ApiCompatArgs) "$(ApiCompatContracts)"</ApiCompatArgs>
+      <ApiCompatArgs>$(ApiCompatArgs) --contract-depends "$(ApiCompatContracts)"</ApiCompatArgs>
+      <ApiCompatArgs>$(ApiCompatArgs) --exclude-attributes "$(ProjectDir)platforms\attributeExcludeList.txt"</ApiCompatArgs>
+      <ApiCompatArgs>$(ApiCompatArgs) --impl-dirs "$(NetstandardRefPath),$(NetstandardShimsPath),$(NetfxShimsPath)"</ApiCompatArgs>
+      <ApiCompatBaselineAll>&gt; "$(ApiCompatBaselineFile)"</ApiCompatBaselineAll>
+      <ApiCompatExitCode>0</ApiCompatExitCode>
+    </PropertyGroup>
+
+    <MakeDir Directories="$(IntermediateOutputPath)%(ApiCompatProfile.TargetGroup)" />
+    <WriteLinesToFile File="$(ApiCompatResponseFile)" Lines="$(ApiCompatArgs)" Overwrite="true" />
+
+    <Exec Condition="Exists('$(ApiCompatContracts)')"
+          Command="$(_ApiCompatCommand) @&quot;$(ApiCompatResponseFile)&quot; $(ApiCompatBaselineAll)"
+          CustomErrorRegularExpression="^[a-zA-Z]+ :"
+          StandardOutputImportance="Low"
+          IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="ApiCompatExitCode" />
+    </Exec>
+
+  </Target>
+
+  <Target Name="RunApiCompatOnAll" DependsOnTargets="RunApiCompat" />
+
+  <Target Name="CleanOutputs">
+    <RemoveDir Directories="$(RestoredRefRootPath);$(IntermediateOutputPath)" />
+  </Target>
+
+  <ItemGroup>
+    <Project Include="../netstandard/ref/netstandard.csproj" />
+    <Project Include="../netstandard/pkg/shims/netfx/dir.builds" />
+    <Project Include="../netstandard/pkg/shims/netstandard/dir.builds" />
+    <Project Include="net461/net461.depproj" />
+    <Project Include="netstandard/netstandard.builds" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TraversalBuildDependsOn>
+      $(TraversalBuildDependsOn);
+      RunApiCompatOnAll;
+    </TraversalBuildDependsOn>
+
+    <TraversalCleanDependsOn>
+      $(TraversalCleanDependsOn);
+      CleanOutputs;
+    </TraversalCleanDependsOn>
+  </PropertyGroup>
+
+  <Import Project="..\dir.traversal.targets" />
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
+</Project>

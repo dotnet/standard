@@ -1,0 +1,19 @@
+mscorlib
+System
+System.ComponentModel.Composition
+System.Core
+System.Data
+System.Drawing
+#System.IO.Compression - Contract
+System.IO.Compression.FileSystem
+#System.Net.Http - Contract
+System.Net
+System.Numerics
+System.Runtime.Serialization
+System.ServiceModel.Web
+System.Transactions
+System.Web
+System.Windows
+System.Xml
+System.Xml.Linq
+System.Xml.Serialization

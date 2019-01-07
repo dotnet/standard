@@ -1,0 +1,7 @@
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.IO.Compression.CompressionLevel))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.IO.Compression.CompressionMode))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.IO.Compression.DeflateStream))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.IO.Compression.GZipStream))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.IO.Compression.ZipArchive))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.IO.Compression.ZipArchiveEntry))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.IO.Compression.ZipArchiveMode))]

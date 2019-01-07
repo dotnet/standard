@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>System.Security.Principal.Windows</AssemblyName>
+    <AssemblyVersion>4.1.0.0</AssemblyVersion>
+    <StrongNameKeyId>Microsoft</StrongNameKeyId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="System.Security.Principal.Windows.cs" />
+    <ProjectReference Include="..\..\netstandard\ref\netstandard.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputType>Library</OutputType>
+    <IsCoreAssembly>true</IsCoreAssembly>
+    <!-- disable obsolete warnings/errors -->
+    <NoWarn>$(NoWarn);0618;0619;0809</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="mscorlib.cs" />
+  </ItemGroup>
+</Project>

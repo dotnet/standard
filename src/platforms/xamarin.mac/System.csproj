@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <StrongNameKeyId>SilverlightPlatform</StrongNameKeyId>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputType>Library</OutputType>
+    <!-- disable obsolete warnings/errors -->
+    <NoWarn>$(NoWarn);0618;0619;0809</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="mscorlib.csproj" />
+    <Compile Include="System.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Microsoft.Win32.Registry</AssemblyName>
+    <AssemblyVersion>4.1.0.0</AssemblyVersion>
+    <StrongNameKeyId>Microsoft</StrongNameKeyId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Microsoft.Win32.Registry.cs" />
+    <ProjectReference Include="..\..\netstandard\ref\netstandard.csproj" />
+    <ProjectReference Include=".\System.Security.AccessControl.csproj" />
+    <ProjectReference Include=".\System.Security.Principal.Windows.csproj" />
+  </ItemGroup>
+</Project>

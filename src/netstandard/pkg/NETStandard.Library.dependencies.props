@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <NETStandard10Dependency Include="$(PlatformPackageId)" />
+    <NETStandard10Dependency Include="System.Collections" />
+    <NETStandard10Dependency Include="System.Diagnostics.Debug" />
+    <NETStandard10Dependency Include="System.Diagnostics.Tools" />
+    <NETStandard10Dependency Include="System.Globalization" />
+    <NETStandard10Dependency Include="System.IO" />
+    <NETStandard10Dependency Include="System.Linq" />
+    <NETStandard10Dependency Include="System.Linq.Expressions" />
+    <NETStandard10Dependency Include="System.Net.Primitives" />
+    <NETStandard10Dependency Include="System.ObjectModel" />
+    <NETStandard10Dependency Include="System.Reflection" />
+    <NETStandard10Dependency Include="System.Reflection.Extensions" />
+    <NETStandard10Dependency Include="System.Reflection.Primitives" />
+    <NETStandard10Dependency Include="System.Resources.ResourceManager" />
+    <NETStandard10Dependency Include="System.Runtime" />
+    <NETStandard10Dependency Include="System.Runtime.Extensions" />
+    <NETStandard10Dependency Include="System.Text.Encoding" />
+    <NETStandard10Dependency Include="System.Text.Encoding.Extensions" />
+    <NETStandard10Dependency Include="System.Text.RegularExpressions" />
+    <NETStandard10Dependency Include="System.Threading" />
+    <NETStandard10Dependency Include="System.Threading.Tasks" />
+    <NETStandard10Dependency Include="System.Xml.ReaderWriter" />
+    <NETStandard10Dependency Include="System.Xml.XDocument" />
+
+    <NETStandard11Dependency Include="@(NETStandard10Dependency)" />
+    <NETStandard11Dependency Include="System.Collections.Concurrent" />
+    <NETStandard11Dependency Include="System.Diagnostics.Tracing" />
+    <NETStandard11Dependency Include="System.IO.Compression" />
+    <NETStandard11Dependency Include="System.Net.Http" />
+    <NETStandard11Dependency Include="System.Runtime.InteropServices" />
+    <NETStandard11Dependency Include="System.Runtime.InteropServices.RuntimeInformation" />
+    <NETStandard11Dependency Include="System.Runtime.Numerics" />
+
+    <NETStandard12Dependency Include="@(NETStandard11Dependency)" />
+    <NETStandard12Dependency Include="System.Threading.Timer" />
+
+    <NETStandard13Dependency Include="@(NETStandard12Dependency)" />
+    <NETStandard13Dependency Include="Microsoft.Win32.Primitives" />
+    <NETStandard13Dependency Include="System.AppContext" />
+    <NETStandard13Dependency Include="System.Console" />
+    <NETStandard13Dependency Include="System.Globalization.Calendars" />
+    <NETStandard13Dependency Include="System.IO.Compression">
+      <Version>4.1.0</Version>
+    </NETStandard13Dependency>
+    <NETStandard13Dependency Include="System.IO.Compression.ZipFile" />
+    <NETStandard13Dependency Include="System.IO.FileSystem" />
+    <NETStandard13Dependency Include="System.IO.FileSystem.Primitives" />
+    <NETStandard13Dependency Include="System.Net.Http">
+      <Version>4.1.0</Version>
+    </NETStandard13Dependency>
+    <NETStandard13Dependency Include="System.Net.Sockets" />
+    <NETStandard13Dependency Include="System.Runtime.Handles" />
+    <NETStandard13Dependency Include="System.Security.Cryptography.Algorithms" />
+    <NETStandard13Dependency Include="System.Security.Cryptography.Encoding" />
+    <NETStandard13Dependency Include="System.Security.Cryptography.Primitives" />
+    <NETStandard13Dependency Include="System.Security.Cryptography.X509Certificates" />
+    <NETStandard13Dependency Include="System.Xml.ReaderWriter">
+      <Version>4.1.0</Version>
+    </NETStandard13Dependency>
+
+    <NETStandard14Dependency Include="@(NETStandard13Dependency)" />
+    <NETStandard14Dependency Include="System.Security.Cryptography.Algorithms">
+      <Version>4.1.0</Version>
+    </NETStandard14Dependency>
+    <NETStandard14Dependency Include="System.Security.Cryptography.X509Certificates">
+      <Version>4.1.0</Version>
+    </NETStandard14Dependency>
+    
+    <NETStandard15Dependency Include="@(NETStandard14Dependency)" />
+    <NETStandard15Dependency Include="System.Diagnostics.Tracing">
+      <Version>4.1.0</Version>
+    </NETStandard15Dependency>
+    <NETStandard15Dependency Include="System.IO">
+      <Version>4.1.0</Version>
+    </NETStandard15Dependency>
+    <NETStandard15Dependency Include="System.Reflection">
+      <Version>4.1.0</Version>
+    </NETStandard15Dependency>
+    <NETStandard15Dependency Include="System.Runtime">
+      <Version>4.1.0</Version>
+    </NETStandard15Dependency>
+    <NETStandard15Dependency Include="System.Runtime.Extensions">
+      <Version>4.1.0</Version>
+    </NETStandard15Dependency>
+    <NETStandard15Dependency Include="System.Runtime.InteropServices">
+      <Version>4.1.0</Version>
+    </NETStandard15Dependency>
+
+    <NETStandard16Dependency Include="@(NETStandard15Dependency)" />
+    <NETStandard16Dependency Include="System.AppContext">
+      <Version>4.1.0</Version>
+    </NETStandard16Dependency>
+    <NETStandard16Dependency Include="System.Linq">
+      <Version>4.1.0</Version>
+    </NETStandard16Dependency>
+    <NETStandard16Dependency Include="System.Linq.Expressions">
+      <Version>4.1.0</Version>
+    </NETStandard16Dependency>
+    <NETStandard16Dependency Include="System.Security.Cryptography.Algorithms">
+      <Version>4.2.0</Version>
+    </NETStandard16Dependency>
+    <NETStandard16Dependency Include="System.Text.RegularExpressions">
+      <Version>4.1.0</Version>
+    </NETStandard16Dependency>
+
+    <_dependency Include="@(NETStandard10Dependency)">
+      <TargetFramework>netstandard1.0</TargetFramework>
+    </_dependency>
+    <_dependency Include="@(NETStandard11Dependency)">
+      <TargetFramework>netstandard1.1</TargetFramework>
+    </_dependency>
+    <_dependency Include="@(NETStandard12Dependency)">
+      <TargetFramework>netstandard1.2</TargetFramework>
+    </_dependency>
+    <_dependency Include="@(NETStandard13Dependency)">
+      <TargetFramework>netstandard1.3</TargetFramework>
+    </_dependency>
+    <_dependency Include="@(NETStandard14Dependency)">
+      <TargetFramework>netstandard1.4</TargetFramework>
+    </_dependency>
+    <_dependency Include="@(NETStandard15Dependency)">
+      <TargetFramework>netstandard1.5</TargetFramework>
+    </_dependency>
+    <_dependency Include="@(NETStandard16Dependency)">
+      <TargetFramework>netstandard1.6</TargetFramework>
+    </_dependency>
+
+    <!-- ensure all dependencies are present for UAP10, even though netcore45 / netcore40 may have trimmed sets -->
+    <_dependency Include="@(NETStandard14Dependency)">
+      <TargetFramework>uap10.0</TargetFramework>
+    </_dependency>
+
+    <!-- ensure we bring in the Platform package for NS2.0 (for the RID graph)
+         but none of the other packages -->
+    <_dependency Include="$(PlatformPackageId)">
+      <TargetFramework>netstandard2.0</TargetFramework>
+    </_dependency>
+
+    <!-- these frameworks support ns2.0 natively and shouldn't import previous dependencies (similar to netstandar2.0) -->
+    <_dependency Include="$(PlatformPackageId)">
+      <TargetFramework>netcoreapp2.0</TargetFramework>
+    </_dependency>
+    <_dependency Include="$(PlatformPackageId)">
+      <TargetFramework>$(UapRs3Tfm)</TargetFramework>
+    </_dependency>
+    <_dependency Include="$(PlatformPackageId)">
+      <TargetFramework>net461</TargetFramework>
+    </_dependency>
+
+    <!-- use FilePackageDepenency instead of Dependency so that these dependencies will be baseline and trimmed -->
+    <FilePackageDependency Include="@(_dependency)">
+      <IsReferenceAsset>true</IsReferenceAsset>
+    </FilePackageDependency>
+
+  </ItemGroup>
+</Project>

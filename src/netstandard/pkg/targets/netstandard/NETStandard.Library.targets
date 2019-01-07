@@ -1,0 +1,35 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <NETStandardLibraryPackageVersion>#VERSION#</NETStandardLibraryPackageVersion>
+  </PropertyGroup>
+
+  <!-- Only add references if we're actually targeting .NETStandard.
+       If the project is targeting some other TFM that is compatible with NETStandard we expect
+       that framework to provide all references for NETStandard, mscorlib, System.* in their own
+       targeting pack / SDK.
+       Choose/When is required to avoid an issue where the old desktop project system in VS 
+       will evaluate this item ignoring the condition in order to populate the references. -->
+  <Choose>
+    <When Condition="'$(TargetFrameworkIdentifier)' == '.NETStandard'">
+      <ItemGroup>
+        <Reference Include="$(MSBuildThisFileDirectory)ref\netstandard.dll">
+          <!-- Private = false to make these reference only -->
+          <Private>false</Private>
+          <!-- hide these from Assemblies view in Solution Explorer, they will be shown under packages -->
+          <Visible>false</Visible>
+          <NuGetPackageId>NETStandard.Library</NuGetPackageId>
+          <NuGetPackageVersion>$(NETStandardLibraryPackageVersion)</NuGetPackageVersion>    
+        </Reference>
+        <Reference Include="#NETSTANDARDFACADES#">
+          <Facade>true</Facade>
+          <!-- Private = false to make these reference only -->
+          <Private>false</Private>
+          <!-- hide these from Assemblies view in Solution Explorer, they will be shown under packages -->
+          <Visible>false</Visible>
+          <NuGetPackageId>NETStandard.Library</NuGetPackageId>
+          <NuGetPackageVersion>$(NETStandardLibraryPackageVersion)</NuGetPackageVersion>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+</Project>

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputType>Library</OutputType>
+    <!-- disable obsolete warnings/errors -->
+    <NoWarn>$(NoWarn);0618;0619;0809</NoWarn>
+    <StrongNameKeyId>Open</StrongNameKeyId>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="mscorlib.csproj" />
+    <ProjectReference Include="System.csproj" />
+    <Compile Include="System.ValueTuple.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>mscorlib</AssemblyName>
+    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <StrongNameKeyId>ECMA</StrongNameKeyId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="mscorlib.Forwards.cs" />
+    <ProjectReference Include="..\..\..\ref\netstandard.csproj" />
+    <ProjectReference Include="..\..\..\..\platforms\extensions\Microsoft.Win32.Registry.csproj" />
+    <ProjectReference Include="..\..\..\..\platforms\extensions\System.Security.AccessControl.csproj" />
+    <ProjectReference Include="..\..\..\..\platforms\extensions\System.Security.Principal.Windows.csproj" />
+  </ItemGroup>
+	<Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
+</Project>
