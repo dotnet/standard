@@ -2,7 +2,7 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ShimRelOutputPath>netfx</ShimRelOutputPath>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <!-- Treat this as a reference assembly because it needs to packaged in the ref folder -->
     <IsReferenceAssembly>true</IsReferenceAssembly>
   </PropertyGroup>

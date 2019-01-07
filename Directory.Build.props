@@ -31,6 +31,11 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
 
+  <!-- Set maximum version for NetStandard to 2.1, since we're now producing 2.1 out of this repo -->
+  <PropertyGroup>
+    <NETStandardMaximumVersion>2.1</NETStandardMaximumVersion>
+  </PropertyGroup>
+
   <!-- Need to set ProjectAssetsFile to something so it doesn't get set to the Tools.proj assets file when we import the generated props -->
   <PropertyGroup>
     <ProjectAssetsFile Condition="'$(ProjectAssetsFile)' == ''">unused</ProjectAssetsFile>
