@@ -28,6 +28,7 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+.binlog
 
 # Cross building rootfs
 cross/rootfs/

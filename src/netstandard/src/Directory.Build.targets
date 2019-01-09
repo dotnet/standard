@@ -11,7 +11,7 @@
 
   <PropertyGroup>
     <_TypeForwardsOutputPath>$(IntermediateOutputPath)netstandard.forwards.cs</_TypeForwardsOutputPath>
-    <_ExcludeAPIList>$(MSBuildThisProjectDirectory)GenApi.exclude.$(TargetGroup).txt</_ExcludeAPIList>
+    <_ExcludeAPIList>$(MSBuildThisProjectDirectory)GenApi.exclude.$(TargetFramework).txt</_ExcludeAPIList>
   </PropertyGroup>
 
   <Target Name="GenerateTypeForwards"
@@ -21,7 +21,7 @@
     <PropertyGroup>
       <_ReferenceAssembly>@(ResolvedMatchingContract)</_ReferenceAssembly>
       <_TypeForwardsOutputPath>$(IntermediateOutputPath)netstandard.forwards.cs</_TypeForwardsOutputPath>
-      <_ExcludeAPIList>$(MSBuildThisProjectDirectory)GenApi.exclude.$(TargetGroup).txt</_ExcludeAPIList>
+      <_ExcludeAPIList>$(MSBuildThisProjectDirectory)GenApi.exclude.$(TargetFramework).txt</_ExcludeAPIList>
 
       <_GenAPICmd>$(_GenAPICommand) "$(_ReferenceAssembly)" --writer TypeForwards --out "$(_TypeForwardsOutputPath)"</_GenAPICmd>
       <_GenAPICmd Condition="Exists('$(_ExcludeAPIList)')">$(_GenAPICmd) --exclude-api-list "$(_ExcludeAPIList)"</_GenAPICmd>

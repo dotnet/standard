@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build">
   <Import Condition="Exists('..\Directory.Build.props')" Project="..\Directory.Build.props" />
 
   <PropertyGroup>
-  	<OutDir>$(ArtifactsBinDir)ref/$(TargetGroup)/</OutDir>
+  	<OutDir>$(ArtifactsBinDir)ref/$(TargetFramework)/</OutDir>
     <IsReferenceAssembly>true</IsReferenceAssembly>
     <LangVersion>7.2</LangVersion>
-    <TargetFramework>net461</TargetFramework>
+
+    <!-- custom target framework settings to satisfy SDK and msbuild. -->
+    <TargetFrameworkVersion Condition="'$(TargetFramework)' != 'net461'">0.0</TargetFrameworkVersion>
+    <TargetFrameworkIdentifier Condition="'$(TargetFramework)' != 'net461'">$(TargetFramework)</TargetFrameworkIdentifier>
+    <DisableStandardFrameworkResolution>true</DisableStandardFrameworkResolution>
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>

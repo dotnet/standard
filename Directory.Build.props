@@ -29,8 +29,6 @@
     <ToolHostCmd Condition="'$(ToolHostCmd)'==''">"$(DotNetRoot)dotnet"</ToolHostCmd>
 
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <!-- Need to set ProjectAssetsFile to something so it doesn't get set to the Tools.proj assets file when we import the generated props -->
@@ -120,13 +118,6 @@
   </PropertyGroup>
 
   <Import Project="$(RepositoryEngineeringDir)ReferenceAssemblies.props" />
-
-  <!-- Set up the default output and intermediate paths -->
-  <PropertyGroup>
-    <TargetOutputRelPath Condition="'$(TargetGroup)'!=''">$(TargetGroup)/</TargetOutputRelPath>
-    <OutputPath>$(OutputPath)$(TargetOutputRelPath)</OutputPath>
-    <IntermediateOutputPath>$(IntermediateOutputPath)$(TargetOutputRelPath)</IntermediateOutputPath>
-  </PropertyGroup>
 
   <!-- Set a value for FrameworkPathOverride to avoid invoking GetReferenceAssemblyPaths -->
   <PropertyGroup>

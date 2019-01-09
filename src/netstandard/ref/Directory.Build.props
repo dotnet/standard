@@ -4,6 +4,7 @@
     <!-- We need to move to 1.1 as part of our versioning change when we switch to arcade to avoid downgrading versions -->
     <MajorVersion>1</MajorVersion>
     <MinorVersion>1</MinorVersion>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <Import Project="..\..\Directory.Build.props" />
 </Project>

@@ -4,7 +4,7 @@
     <ItemGroup>
       <!-- list each append as a seperate item to force re-evaluation of AdditionalProperties metadata -->
       <Project>
-        <AdditionalProperties Condition="'%(Project.TargetGroup)'!=''">TargetGroup=%(Project.TargetGroup);%(Project.AdditionalProperties)</AdditionalProperties>
+        <AdditionalProperties Condition="'%(Project.TargetFramework)'!=''">TargetFramework=%(Project.TargetFramework);%(Project.AdditionalProperties)</AdditionalProperties>
       </Project>
     </ItemGroup>
   </Target>
