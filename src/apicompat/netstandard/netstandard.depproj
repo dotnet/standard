@@ -4,7 +4,6 @@
     <NuGetDeploySourceItem>Reference</NuGetDeploySourceItem>
     <TargetFramework Condition="'$(TargetFramework)'==''">netstandard2.0</TargetFramework>
     <OutputFolder>$(TargetFramework)</OutputFolder>
-    <OutputPath>$(RestoredRefRootPath)</OutputPath>
     <RestoreOutputPath>$(IntermediateOutputPath)$(TargetFramework)</RestoreOutputPath>
     <ProjectAssetsFile>$(RestoreOutputPath)/project.assets.json</ProjectAssetsFile>
   </PropertyGroup>
