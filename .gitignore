@@ -15,12 +15,11 @@ syntax: glob
 
 # Build results
 artifacts/
+.idea/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
-x64/
-x86/
 build/
 bld/
 [Bb]in/
@@ -28,17 +27,19 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
-.binlog
+msbuild.binlog
+.deps/
+.dirstamp
+.libs/
+*.lo
+*.o
 
 # Cross building rootfs
 cross/rootfs/
+cross/android-rootfs/
 
-# Visual Studio 2015
+# Visual Studio
 .vs/
-
-# Visual Studio 2015 Pre-CTP6
-*.sln.ide
-*.ide/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
