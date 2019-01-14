@@ -1,17 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetGroup Condition="'$(TargetGroup)'==''">net461</TargetGroup>
-  </PropertyGroup>
-  <PropertyGroup>
     <AssemblyName>netstandard</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net461;xamarin.ios;xamarin.watchos;xamarin.tvos;xamarin.mac;monoandroid</TargetFrameworks>
+    <!-- custom target framework settings to satisfy SDK and msbuild. -->
+    <TargetFrameworkIdentifier Condition="'$(TargetFramework)' != 'net461'">$(TargetFramework)</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion Condition="'$(TargetFramework)' != 'net461'">0.0</TargetFrameworkVersion>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DisableStandardFrameworkResolution>true</DisableStandardFrameworkResolution>
     <ContractProject>..\ref\netstandard.csproj</ContractProject>
     <ResolveMatchingContract>true</ResolveMatchingContract>
     <RunApiCompatForSrc>true</RunApiCompatForSrc>
     <RunMatchingRefApiCompat>false</RunMatchingRefApiCompat>
     <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
-    <ApiCompatBaseline>$(MSBuildProjectDirectory)\ApiCompatBaseline.$(TargetGroup).txt</ApiCompatBaseline>
+    <ApiCompatBaseline>$(MSBuildProjectDirectory)\ApiCompatBaseline.$(TargetFramework).txt</ApiCompatBaseline>
     <NoWarn>$(NoWarn);618</NoWarn>
   </PropertyGroup>
 
@@ -35,12 +37,12 @@
       <Value></Value>
     </AssemblyMetadata>
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetGroup)' == 'net461'">
-    <PackageDestination Include="build/$(TargetGroup)/ref">
-      <TargetFramework>$(TargetGroup)</TargetFramework>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <PackageDestination Include="build/$(TargetFramework)/ref">
+      <TargetFramework>$(TargetFramework)</TargetFramework>
     </PackageDestination>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\platforms\$(TargetGroup)\**\*.csproj" />
+    <ProjectReference Include="..\..\platforms\$(TargetFramework)\**\*.csproj" />
   </ItemGroup>
 </Project>

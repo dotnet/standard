@@ -806,12 +806,20 @@ MembersMustExist : Member 'System.Security.Cryptography.RSA.VerifyData(System.Re
 MembersMustExist : Member 'System.Security.Cryptography.RSA.VerifyHash(System.ReadOnlySpan<System.Byte>, System.ReadOnlySpan<System.Byte>, System.Security.Cryptography.HashAlgorithmName, System.Security.Cryptography.RSASignaturePadding)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Security.Cryptography.SHA1CryptoServiceProvider' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Security.Cryptography.SHA1Managed' in the contract but not the implementation.
+MembersMustExist : Member 'System.Security.Cryptography.SHA1Managed.HashCore(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.SHA1Managed.TryHashFinal(System.Span<System.Byte>, System.Int32)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Security.Cryptography.SHA256CryptoServiceProvider' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Security.Cryptography.SHA256Managed' in the contract but not the implementation.
+MembersMustExist : Member 'System.Security.Cryptography.SHA256Managed.HashCore(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.SHA256Managed.TryHashFinal(System.Span<System.Byte>, System.Int32)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Security.Cryptography.SHA384CryptoServiceProvider' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Security.Cryptography.SHA384Managed' in the contract but not the implementation.
+MembersMustExist : Member 'System.Security.Cryptography.SHA384Managed.HashCore(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.SHA384Managed.TryHashFinal(System.Span<System.Byte>, System.Int32)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Security.Cryptography.SHA512CryptoServiceProvider' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Security.Cryptography.SHA512Managed' in the contract but not the implementation.
+MembersMustExist : Member 'System.Security.Cryptography.SHA512Managed.HashCore(System.ReadOnlySpan<System.Byte>)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.SHA512Managed.TryHashFinal(System.Span<System.Byte>, System.Int32)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Security.Cryptography.TripleDESCryptoServiceProvider' in the contract but not the implementation.
 TypesMustExist : Type 'System.Security.Cryptography.X509Certificates.CertificateRequest' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Security.Cryptography.X509Certificates.DSACertificateExtensions' does not exist in the implementation but it does exist in the contract.
@@ -907,4 +915,4 @@ CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xm
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlChoiceIdentifierAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xml.Serialization.XmlSchemaImporter' does not inherit from base type 'System.Xml.Serialization.SchemaImporter' in the implementation but it does in the contract.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlSerializerAssemblyAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct)]' in the implementation.
-Total Issues: 908
+Total Issues: 916
