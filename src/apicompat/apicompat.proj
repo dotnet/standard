@@ -3,7 +3,6 @@
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.props))\Directory.Build.props" />
 
   <PropertyGroup>
-    <RestoredRefPath>$(IntermediateOutputPath)CompatShims/ref/</RestoredRefPath>
     <NetstandardRefPath>$(ArtifactsBinDir)ref/netstandard/$(Configuration)/</NetstandardRefPath>
     <NetstandardShimsPath>$(ArtifactsBinDir)shims/netstandard</NetstandardShimsPath>
     <NetfxShimsPath>$(ArtifactsBinDir)shims/netfx</NetfxShimsPath>

@@ -5,7 +5,6 @@
   <ItemGroup>
     <Project Include="netstandard/ref/*.csproj" />
     <Project Include="netstandard/src/*.csproj" />
-    <Project Include="platforms/dir.proj" Condition="'$(DotNetBuildFromSource)' != 'true'" />
   </ItemGroup>
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.traversal.targets))\dir.traversal.targets" />

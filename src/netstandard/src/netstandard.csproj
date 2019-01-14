@@ -3,13 +3,11 @@
     <AssemblyName>netstandard</AssemblyName>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <TargetFrameworks>net461;xamarin.ios;xamarin.watchos;xamarin.tvos;xamarin.mac;monoandroid</TargetFrameworks>
-
     <!-- custom target framework settings to satisfy SDK and msbuild. -->
     <TargetFrameworkIdentifier Condition="'$(TargetFramework)' != 'net461'">$(TargetFramework)</TargetFrameworkIdentifier>
     <TargetFrameworkVersion Condition="'$(TargetFramework)' != 'net461'">0.0</TargetFrameworkVersion>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DisableStandardFrameworkResolution>true</DisableStandardFrameworkResolution>
-
     <ContractProject>..\ref\netstandard.csproj</ContractProject>
     <ResolveMatchingContract>true</ResolveMatchingContract>
     <RunApiCompatForSrc>true</RunApiCompatForSrc>

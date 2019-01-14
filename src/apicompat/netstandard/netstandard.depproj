@@ -2,9 +2,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <NuGetDeploySourceItem>Reference</NuGetDeploySourceItem>
-    <TargetFramework Condition="'$(TargetFramework)'==''">netstandard1.6</TargetFramework>
+    <TargetFramework Condition="'$(TargetFramework)'==''">netstandard2.0</TargetFramework>
     <OutputFolder>$(TargetFramework)</OutputFolder>
-    <OutputPath>$(RestoredRefRootPath)$(OutputFolder)</OutputPath>
+    <OutputPath>$(RestoredRefRootPath)</OutputPath>
     <RestoreOutputPath>$(IntermediateOutputPath)$(TargetFramework)</RestoreOutputPath>
     <ProjectAssetsFile>$(RestoreOutputPath)/project.assets.json</ProjectAssetsFile>
   </PropertyGroup>
