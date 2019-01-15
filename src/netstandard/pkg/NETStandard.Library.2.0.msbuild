@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <BaseIntermediateOutputPath>$(SourceDir)</BaseIntermediateOutputPath>
+    <ExcludeRestorePackageImports>true</ExcludeRestorePackageImports>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="$(NetStandardLibraryPackage)" Version="$(NetStandardLibraryPackageVersion)" />
+  </ItemGroup>
+</Project>

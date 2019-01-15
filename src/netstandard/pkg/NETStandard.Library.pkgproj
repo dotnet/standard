@@ -25,6 +25,10 @@
       <Facade>true</Facade>
     </ProjectReference>
 
+    <NetStandard20Files Include="$(PackagesDir)$(NetStandardLibraryPackage)/$(NetStandardLibraryPackageVersion)/build/netstandard2.0/**">
+      <TargetPath>build/netstandard2.0/%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+    </NetStandard20Files>
+
     <File Include="$(VersionTargetsSource)">
       <TargetPath>build/$(NETStandardVersion)/$(Id).targets</TargetPath>
     </File>
@@ -33,10 +37,12 @@
       <TargetPath>lib/netstandard1.0</TargetPath>
     </File>
 
-    <File Include="$(PackagesDir)$(NetStandardLibraryPackage)/$(NetStandardLibraryPackageVersion)/build/netstandard2.0/**">
-      <TargetPath>build/netstandard2.0/%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
-    </File>
+    <File Include="@(NetStandard20Files)" />
   </ItemGroup>
+
+  <Target Name="EnsureRestoredNetStandardAssets" BeforeTargets="GenerateNuSpec">
+    <Error Condition="'@(NetStandard20Files)' == ''" Text="Could not find package assets for netstandard2.0" />
+  </Target>
 
   <Target Name="StampTargets" BeforeTargets="GenerateNuSpec">
     <PropertyGroup>

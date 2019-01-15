@@ -16,6 +16,12 @@
     <ProjectAssetsFile Condition="'$(ProjectAssetsFile)' == ''">unused</ProjectAssetsFile>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <!-- Only import nuget.g.props files that we explicitly choose to import -->
+    <ImportProjectExtensionProps>false</ImportProjectExtensionProps>
+    <ImportProjectExtensionTargets>false</ImportProjectExtensionTargets>
+  </PropertyGroup>
+
   <Import Project="$(ToolSetCommonDirectory)Tools.proj.nuget.g.props" Condition="Exists('$(ToolSetCommonDirectory)Tools.proj.nuget.g.props')" />
 
   <PropertyGroup>
