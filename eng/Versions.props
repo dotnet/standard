@@ -25,5 +25,8 @@
     <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.19061.6</MicrosoftDotNetBuildTasksPackagingPackageVersion>
     <MicrosoftDotNetCodeAnalysisPackageVersion>1.0.0-beta.19061.6</MicrosoftDotNetCodeAnalysisPackageVersion>
     <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.19061.6</MicrosoftDotNetGenAPIPackageVersion>
+    
+    <!-- This is the LKG version of NetStandard.Library from myget.org, before we bumped the TFM to netstandard2.1. Please don't edit this version -->
+    <NetStandardLibraryPackageVersion>2.1.0-preview1-27119-01</NetStandardLibraryPackageVersion>
   </PropertyGroup>
 </Project>

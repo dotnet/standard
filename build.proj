@@ -16,7 +16,14 @@
     <BuildDependsOn Condition="'$(SignPackages)'=='true'">$(BuildDependsOn);SignPackages</BuildDependsOn>
   </PropertyGroup>
 
-  <Target Name="Restore"/>
+  <Target Name="Restore">
+    <ItemGroup>
+      <_RestoreProjects Include="$(SourceDir)netstandard/pkg/NETStandard2.0.proj" />
+    </ItemGroup>
+
+    <MSBuild Projects="@(_RestoreProjects)"
+             Targets="Restore"/>
+  </Target>
 
   <Target Name="BuildManaged">
     <ItemGroup>

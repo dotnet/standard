@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="NETStandard.Library" Version="$(NetStandardLibraryPackageVersion)" />
+  </ItemGroup>
+</Project>
