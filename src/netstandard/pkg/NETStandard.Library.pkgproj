@@ -32,6 +32,10 @@
     <File Include="$(PlaceHolderFile)">
       <TargetPath>lib/netstandard1.0</TargetPath>
     </File>
+
+    <File Include="$(PackagesDir)$(NetStandardLibraryPackageVersion)/build/netstandard2.0/**">
+      <TargetPath>build/netstandard2.0</TargetPath>
+    </File>
   </ItemGroup>
 
   <Target Name="StampTargets" BeforeTargets="GenerateNuSpec">
