@@ -22,7 +22,7 @@
       <Uri>https://github.com/dotnet/arcade</Uri>
       <Sha>52d4b539dd1ab771015bdf33ed4221afcaaabf3d</Sha>
     </Dependency>
-    <PinnedDependency Name="NETStandard.Library" Version="2.1.0-preview1-27119-01">
+    <PinnedDependency Name="NETStandard.Library" Version="2.0.3">
       <Uri>https://github.com/dotnet/standard</Uri>
     </PinnedDependency>
   </ToolsetDependencies>

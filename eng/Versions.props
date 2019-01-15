@@ -24,14 +24,14 @@
   <PropertyGroup>
     <NetStandardLibraryPackage>netstandard.library</NetStandardLibraryPackage>
   </PropertyGroup>
-  
+
   <PropertyGroup>
     <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.19061.6</MicrosoftDotNetApiCompatPackageVersion>
     <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.19061.6</MicrosoftDotNetBuildTasksPackagingPackageVersion>
     <MicrosoftDotNetCodeAnalysisPackageVersion>1.0.0-beta.19061.6</MicrosoftDotNetCodeAnalysisPackageVersion>
     <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.19061.6</MicrosoftDotNetGenAPIPackageVersion>
 
-    <!-- This is the LKG version of NetStandard.Library from myget.org, before we bumped the TFM to netstandard2.1. Please don't edit this version -->
-    <NetStandardLibraryPackageVersion>2.1.0-preview1-27119-01</NetStandardLibraryPackageVersion>
+    <!-- This is the LKG stable version of NetStandard.Library from myget.org. Please don't edit this version -->
+    <NetStandardLibraryPackageVersion>2.0.3</NetStandardLibraryPackageVersion>
   </PropertyGroup>
 </Project>
