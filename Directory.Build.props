@@ -11,6 +11,17 @@
     <ToolSetCommonDirectory>$(MSBuildThisFileDirectory)artifacts\toolset\Common\</ToolSetCommonDirectory>
   </PropertyGroup>
 
+  <!-- Need to set ProjectAssetsFile to something so it doesn't get set to the Tools.proj assets file when we import the generated props -->
+  <PropertyGroup>
+    <ProjectAssetsFile Condition="'$(ProjectAssetsFile)' == ''">unused</ProjectAssetsFile>
+  </PropertyGroup>
+
+  <Import Project="$(ToolSetCommonDirectory)Tools.proj.nuget.g.props" Condition="Exists('$(ToolSetCommonDirectory)Tools.proj.nuget.g.props')" />
+
+  <PropertyGroup>
+    <ProjectAssetsFile Condition="'$(ProjectAssetsFile)' == 'unused'"></ProjectAssetsFile>
+  </PropertyGroup>
+
   <!-- Common repo directories -->
   <PropertyGroup>
     <ProjectDir>$(MSBuildThisFileDirectory)</ProjectDir>
@@ -34,15 +45,6 @@
   <!-- Set maximum version for NetStandard to 2.1, since we're now producing 2.1 out of this repo -->
   <PropertyGroup>
     <NETStandardMaximumVersion>2.1</NETStandardMaximumVersion>
-  </PropertyGroup>
-
-  <!-- Need to set ProjectAssetsFile to something so it doesn't get set to the Tools.proj assets file when we import the generated props -->
-  <PropertyGroup>
-    <ProjectAssetsFile Condition="'$(ProjectAssetsFile)' == ''">unused</ProjectAssetsFile>
-  </PropertyGroup>
-  <Import Project="$(ToolSetCommonDirectory)Tools.proj.nuget.g.props" Condition="Exists('$(ToolSetCommonDirectory)Tools.proj.nuget.g.props')" />
-  <PropertyGroup>
-    <ProjectAssetsFile Condition="'$(ProjectAssetsFile)' == 'unused'"></ProjectAssetsFile>
   </PropertyGroup>
 
   <!-- workaround https://github.com/dotnet/sdk/issues/2288

@@ -33,8 +33,8 @@
       <TargetPath>lib/netstandard1.0</TargetPath>
     </File>
 
-    <File Include="$(PackagesDir)$(NetStandardLibraryPackageVersion)/build/netstandard2.0/**">
-      <TargetPath>build/netstandard2.0</TargetPath>
+    <File Include="$(PackagesDir)$(NetStandardLibraryPackage)/$(NetStandardLibraryPackageVersion)/build/netstandard2.0/**">
+      <TargetPath>build/netstandard2.0/%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
     </File>
   </ItemGroup>
 
