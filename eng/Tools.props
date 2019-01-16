@@ -22,6 +22,8 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkVersion)" PrivateAssets="all" IsImplicitlyDefined="true" />
     <PackageReference Include="Microsoft.SourceLink.Vsts.Git" Version="$(MicrosoftSourceLinkVersion)" PrivateAssets="all" IsImplicitlyDefined="true" />
 
+    <PackageReference Include="$(NetStandardLibraryPackage)" Version="$(NetStandardLibraryPackageVersion)" ExcludeAssets="All" />
+
     <!-- Reference analyzers -->
     <PackageReference Include="Desktop.Analyzers" Version="1.1.0" />
     <PackageReference Include="Microsoft.DotNet.CodeAnalysis" Version="$(MicrosoftDotNetCodeAnalysisPackageVersion)" />
