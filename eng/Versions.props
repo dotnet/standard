@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <NetStandardLibraryPackage>NETStandard.Library</NetStandardLibraryPackage>
+    <NetStandardLibraryPackage>netstandard.library</NetStandardLibraryPackage>
   </PropertyGroup>
 
   <PropertyGroup>
