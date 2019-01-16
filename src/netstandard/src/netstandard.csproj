@@ -1,11 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>netstandard</AssemblyName>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
     <TargetFrameworks>net461;xamarin.ios;xamarin.watchos;xamarin.tvos;xamarin.mac;monoandroid</TargetFrameworks>
     <!-- custom target framework settings to satisfy SDK and msbuild. -->
     <TargetFrameworkIdentifier Condition="'$(TargetFramework)' != 'net461'">$(TargetFramework)</TargetFrameworkIdentifier>
     <TargetFrameworkVersion Condition="'$(TargetFramework)' != 'net461'">0.0</TargetFrameworkVersion>
+    <!-- Use fallback until we have a compatibility mapping for netstandard2.1. -->
+    <AssetTargetFallback>netstandard2.1</AssetTargetFallback>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DisableStandardFrameworkResolution>true</DisableStandardFrameworkResolution>
     <ContractProject>..\ref\netstandard.csproj</ContractProject>
