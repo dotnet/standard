@@ -11,6 +11,8 @@
 
     <!-- Need to keep in sync with CodeAnalysis.targets file. -->
     <AnalyzerPropsFile>$(ArtifactsToolsetDir)Common\Tools.Analyzers.props</AnalyzerPropsFile>
+    <!-- Don't use implicit fallback folder for packages -->
+    <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.DotNet.ApiCompat" Version="$(MicrosoftDotNetApiCompatPackageVersion)" />
