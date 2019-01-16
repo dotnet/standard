@@ -3,6 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <EnableDefaultItems>false</EnableDefaultItems>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
     <ExcludeRestorePackageImports>true</ExcludeRestorePackageImports>
   </PropertyGroup>
   <ItemGroup>
