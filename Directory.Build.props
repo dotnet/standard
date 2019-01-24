@@ -77,7 +77,6 @@
     <Platform>AnyCPU</Platform>
     <OutputType>Library</OutputType>
     <RunApiCompat>true</RunApiCompat>
-    <StrongNameKeyId>Open</StrongNameKeyId>
     <LangVersion>latest</LangVersion> <!-- default to allowing all language features -->
   </PropertyGroup>
 
@@ -86,6 +85,10 @@
   </PropertyGroup>
 
    <Import Project="Sdk.props" Sdk="Microsoft.DotNet.Arcade.Sdk" />
+
+  <PropertyGroup>
+    <StrongNameKeyId>Open</StrongNameKeyId>
+  </PropertyGroup>
 
   <!-- Set up Default symbol and optimization for Configuration -->
   <Choose>
