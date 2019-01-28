@@ -41,8 +41,6 @@ you have not covered by the versions documentation.
 |:------:|
 |[![Build Status](https://dev.azure.com/dnceng/public/_apis/build/status/dotnet/standard/standard-CI?branchname=master&jobname=Windows_NT)](https://dev.azure.com/dnceng/internal/_build?definitionId=246)|
 |Linux|
-|:------:|
 |[![Build Status](https://dev.azure.com/dnceng/public/_apis/build/status/dotnet/standard/standard-CI?branchname=master&jobname=Linux)](https://dev.azure.com/dnceng/internal/_build?definitionId=246)|
 |OSX|
-|:------:|
 |[![Build Status](https://dev.azure.com/dnceng/public/_apis/build/status/dotnet/standard/standard-CI?branchname=master&jobname=OSX)](https://dev.azure.com/dnceng/internal/_build?definitionId=246)|
