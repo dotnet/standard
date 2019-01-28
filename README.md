@@ -34,3 +34,9 @@ Currently defined versions of the .NET Standard can be located in the
 
 For more information, check out the [FAQ](docs/faq.md). It should answer any questions 
 you have not covered by the versions documentation.
+
+## Build status
+
+|Windows x64|
+|:------:|
+|[![Build Status](https://dev.azure.com/dnceng/internal/_apis/build/status/246)](https://dev.azure.com/dnceng/internal/_build?definitionId=246)|
