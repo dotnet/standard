@@ -84,7 +84,12 @@
     <ImportNetSdkFromRepoToolset>false</ImportNetSdkFromRepoToolset>
   </PropertyGroup>
 
-   <Import Project="Sdk.props" Sdk="Microsoft.DotNet.Arcade.Sdk" />
+  <Import Project="Sdk.props" Sdk="Microsoft.DotNet.Arcade.Sdk" />
+
+  <!-- Redefine this here so that it can be picked up by GetFilesToPackage -->
+  <PropertyGroup>
+    <XmlDocFileRoot>$(PackagesDir)$(XmlDocPackage.ToLowerInvariant())/$(XmlDocPackageVersion)/xmldocs/netstandard</XmlDocFileRoot>
+  </PropertyGroup>
 
   <PropertyGroup>
     <StrongNameKeyId>Open</StrongNameKeyId>
