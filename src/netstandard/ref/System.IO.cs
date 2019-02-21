@@ -42,7 +42,7 @@ namespace System.IO
         [System.CLSCompliantAttribute(false)]
         public virtual ulong ReadUInt64() { throw null; }
     }
-    public partial class BinaryWriter : System.IDisposable
+    public partial class BinaryWriter : System.IAsyncDisposable, System.IDisposable
     {
         public static readonly System.IO.BinaryWriter Null;
         protected System.IO.Stream OutStream;
@@ -743,7 +743,7 @@ namespace System.IO
         Current = 1,
         End = 2,
     }
-    public abstract partial class Stream : System.MarshalByRefObject, System.IDisposable
+    public abstract partial class Stream : System.MarshalByRefObject, System.IAsyncDisposable, System.IDisposable
     {
         public static readonly System.IO.Stream Null;
         protected Stream() { }
@@ -930,7 +930,7 @@ namespace System.IO
         public virtual System.Threading.Tasks.Task<string> ReadToEndAsync() { throw null; }
         public static System.IO.TextReader Synchronized(System.IO.TextReader reader) { throw null; }
     }
-    public abstract partial class TextWriter : System.MarshalByRefObject, System.IDisposable
+    public abstract partial class TextWriter : System.MarshalByRefObject, System.IAsyncDisposable, System.IDisposable
     {
         protected char[] CoreNewLine;
         public static readonly System.IO.TextWriter Null;
