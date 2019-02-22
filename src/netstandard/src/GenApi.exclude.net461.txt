@@ -106,3 +106,5 @@ T:System.Threading.Tasks.ValueTask`1
 T:System.Threading.ThreadPoolBoundHandle
 T:System.Xml.XPath.XDocumentExtensions
 T:System.Runtime.CompilerServices.SwitchExpressionException
+T:System.Index
+T:System.Range

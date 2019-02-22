@@ -75,3 +75,5 @@ T:System.Threading.Tasks.Sources.ValueTaskSourceStatus
 T:System.Threading.Tasks.ValueTask
 T:System.Xml.Serialization.SchemaImporter
 T:System.Runtime.CompilerServices.SwitchExpressionException
+T:System.Index
+T:System.Range
