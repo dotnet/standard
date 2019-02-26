@@ -25,10 +25,7 @@ most target .NET Standard 1.1.
 |Xamarin.Mac                           |    3.0  |    3.0  |  3.0    |    3.0  |    3.0  |   3.0        | **3.0**      | **3.8**      |              |
 |Xamarin.Android                       |    7.0  |    7.0  |  7.0    |    7.0  |    7.0  |   7.0        | **7.0**      | **8.0**      |              |
 |Unity                                 | 2018.1  |  2018.1 |  2018.1 |  2018.1 |  2018.1 |       2018.1 | 2018.1       |**2018.1**    |              |
-|Universal Windows Platform            |   10.0  |   10.0  | 10.0    |   10.0  | **10.0**|  10.0.16299  |  10.0.16299  |**10.0.16299**|              |
-|Windows                               |    8.0  |  **8.0**|**8.1**  |         |         |              |              |              |              |
-|Windows Phone                         |    8.1  |    8.1  |**8.1**  |         |         |              |              |              |              |
-|Windows Phone Silverlight             |  **8.0**|         |         |         |         |              |              |              |              |
+|Universal Windows Platform            |    8.0  |  **8.0**|**8.1**  |   10.0  | **10.0**|  10.0.16299  |  10.0.16299  |**10.0.16299**|              |
 
 [1.0]: versions/netstandard1.0.md
 [1.1]: versions/netstandard1.1.md
