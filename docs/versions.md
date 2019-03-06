@@ -16,16 +16,16 @@ is that you can target, based on which .NET platforms you intend to run on. For
 instance, if you want to run on .NET Framework 4.5 and .NET Core 1.0, you can at
 most target .NET Standard 1.1.
 
-|<div align="right">.NET Standard</div>|   [1.0] |   [1.1] |   [1.2] |   [1.3] |   [1.4] |               [1.5] |               [1.6] |                 [2.0] |        [2.1] |
-|:-------------------------------------|--------:|--------:|--------:|--------:|--------:|--------------------:|--------------------:|----------------------:|-------------:|
-|.NET Core                             |    1.0  |    1.0  |  1.0    |    1.0  |    1.0  |   1.0               | **1.0**             | **2.0**               |              |
-|.NET Framework                        |    4.5  |  **4.5**|**4.5.1**|  **4.6**|    4.6.1|   4.6.1<sup>1</sup> |   4.6.1<sup>1</sup> | **4.6.1<sup>1</sup>** |              |
-|Mono                                  |    4.6  |    4.6  |  4.6    |    4.6  |    4.6  |   4.6               | **4.6**             | **5.4**               |              |
-|Xamarin.iOS                           |   10.0  |   10.0  | 10.0    |   10.0  |   10.0  |  10.0               |**10.0**             |**10.14**              |              |
-|Xamarin.Mac                           |    3.0  |    3.0  |  3.0    |    3.0  |    3.0  |   3.0               | **3.0**             | **3.8**               |              |
-|Xamarin.Android                       |    7.0  |    7.0  |  7.0    |    7.0  |    7.0  |   7.0               | **7.0**             | **8.0**               |              |
-|Unity                                 | 2018.1  |  2018.1 |  2018.1 |  2018.1 |  2018.1 |  2018.1             | 2018.1              |**2018.1**             |              |
-|Universal Windows Platform            |    8.0  |  **8.0**|**8.1**  |   10.0  | **10.0**|  10.0.16299         |  10.0.16299         |**10.0.16299**         |              |
+|<div align="right">.NET Standard</div>|   [1.0] |   [1.1] |   [1.2] |   [1.3] |   [1.4] |               [1.5] |               [1.6] |                 [2.0] |             [2.1] |
+|:-------------------------------------|--------:|--------:|--------:|--------:|--------:|--------------------:|--------------------:|----------------------:|------------------:|
+|.NET Core                             |    1.0  |    1.0  |  1.0    |    1.0  |    1.0  |   1.0               | **1.0**             | **2.0**               | **3.0**           |
+|.NET Framework                        |    4.5  |  **4.5**|**4.5.1**|  **4.6**|    4.6.1|   4.6.1<sup>1</sup> |   4.6.1<sup>1</sup> | **4.6.1<sup>1</sup>** | *N/A<sup>2</sup>* |
+|Mono                                  |    4.6  |    4.6  |  4.6    |    4.6  |    4.6  |   4.6               | **4.6**             | **5.4**               | **6.2**           |
+|Xamarin.iOS                           |   10.0  |   10.0  | 10.0    |   10.0  |   10.0  |  10.0               |**10.0**             |**10.14**              | **12.12**         |
+|Xamarin.Mac                           |    3.0  |    3.0  |  3.0    |    3.0  |    3.0  |   3.0               | **3.0**             | **3.8**               | **5.12**          |
+|Xamarin.Android                       |    7.0  |    7.0  |  7.0    |    7.0  |    7.0  |   7.0               | **7.0**             | **8.0**               | **9.3**           |
+|Unity                                 | 2018.1  |  2018.1 |  2018.1 |  2018.1 |  2018.1 |  2018.1             | 2018.1              |**2018.1**             | *TBD*             |
+|Universal Windows Platform            |    8.0  |  **8.0**|**8.1**  |   10.0  | **10.0**|  10.0.16299         |  10.0.16299         |**10.0.16299**         | *TBD*             |
 
 <sup>1 The versions listed here represent the rules that NuGet uses to determine
 whether a given .NET Standard library is applicable. While NuGet considers .NET
@@ -34,6 +34,9 @@ issues with consuming .NET Standard libraries that were built for those versions
 from .NET Framework 4.6.1 projects. For .NET Framework projects that need to use
 such libraries, we recommend that you upgrade the project to target .NET
 Framework 4.7.2 or higher.</sup>
+
+<sup>2 .NET Framework will not support .NET Standard 2.1 or any other later
+version. For more details, see this [blog post][ns21-post].</sup>
 
 [1.0]: versions/netstandard1.0.md
 [1.1]: versions/netstandard1.1.md
@@ -44,6 +47,7 @@ Framework 4.7.2 or higher.</sup>
 [1.6]: versions/netstandard1.6.md
 [2.0]: versions/netstandard2.0.md
 [2.1]: versions/netstandard2.1.md
+[ns21-post]: https://devblogs.microsoft.com/dotnet/announcing-net-standard-2-1/
 
 ## How do I know which .NET Standard version I should target?
 
