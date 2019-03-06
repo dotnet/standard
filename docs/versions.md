@@ -16,16 +16,24 @@ is that you can target, based on which .NET platforms you intend to run on. For
 instance, if you want to run on .NET Framework 4.5 and .NET Core 1.0, you can at
 most target .NET Standard 1.1.
 
-|<div align="right">.NET Standard</div>|   [1.0] |   [1.1] |   [1.2] |   [1.3] |   [1.4] |        [1.5] |        [1.6] |        [2.0] |        [2.1] |
-|:-------------------------------------|--------:|--------:|--------:|--------:|--------:|-------------:|-------------:|-------------:|-------------:|
-|.NET Core                             |    1.0  |    1.0  |  1.0    |    1.0  |    1.0  |   1.0        | **1.0**      | **2.0**      |              |
-|.NET Framework                        |    4.5  |  **4.5**|**4.5.1**|  **4.6**|    4.6.1|   4.6.1      |   4.6.1      | **4.6.1**    |              |
-|Mono                                  |    4.6  |    4.6  |  4.6    |    4.6  |    4.6  |   4.6        | **4.6**      | **5.4**      |              |
-|Xamarin.iOS                           |   10.0  |   10.0  | 10.0    |   10.0  |   10.0  |  10.0        |**10.0**      |**10.14**     |              |
-|Xamarin.Mac                           |    3.0  |    3.0  |  3.0    |    3.0  |    3.0  |   3.0        | **3.0**      | **3.8**      |              |
-|Xamarin.Android                       |    7.0  |    7.0  |  7.0    |    7.0  |    7.0  |   7.0        | **7.0**      | **8.0**      |              |
-|Unity                                 | 2018.1  |  2018.1 |  2018.1 |  2018.1 |  2018.1 |       2018.1 | 2018.1       |**2018.1**    |              |
-|Universal Windows Platform            |    8.0  |  **8.0**|**8.1**  |   10.0  | **10.0**|  10.0.16299  |  10.0.16299  |**10.0.16299**|              |
+|<div align="right">.NET Standard</div>|   [1.0] |   [1.1] |   [1.2] |   [1.3] |   [1.4] |               [1.5] |               [1.6] |                 [2.0] |        [2.1] |
+|:-------------------------------------|--------:|--------:|--------:|--------:|--------:|--------------------:|--------------------:|----------------------:|-------------:|
+|.NET Core                             |    1.0  |    1.0  |  1.0    |    1.0  |    1.0  |   1.0               | **1.0**             | **2.0**               |              |
+|.NET Framework                        |    4.5  |  **4.5**|**4.5.1**|  **4.6**|    4.6.1|   4.6.1<sup>1</sup> |   4.6.1<sup>1</sup> | **4.6.1<sup>1</sup>** |              |
+|Mono                                  |    4.6  |    4.6  |  4.6    |    4.6  |    4.6  |   4.6               | **4.6**             | **5.4**               |              |
+|Xamarin.iOS                           |   10.0  |   10.0  | 10.0    |   10.0  |   10.0  |  10.0               |**10.0**             |**10.14**              |              |
+|Xamarin.Mac                           |    3.0  |    3.0  |  3.0    |    3.0  |    3.0  |   3.0               | **3.0**             | **3.8**               |              |
+|Xamarin.Android                       |    7.0  |    7.0  |  7.0    |    7.0  |    7.0  |   7.0               | **7.0**             | **8.0**               |              |
+|Unity                                 | 2018.1  |  2018.1 |  2018.1 |  2018.1 |  2018.1 |  2018.1             | 2018.1              |**2018.1**             |              |
+|Universal Windows Platform            |    8.0  |  **8.0**|**8.1**  |   10.0  | **10.0**|  10.0.16299         |  10.0.16299         |**10.0.16299**         |              |
+
+<sup>1 The versions listed here represent the rules that NuGet uses to determine
+whether a given .NET Standard library is applicable. While NuGet considers .NET
+Framework 4.6.1 as supporting .NET Standard 1.5 through 2.0, there are several
+issues with consuming .NET Standard libraries that were built for those versions
+from .NET Framework 4.6.1 projects. For .NET Framework projects that need to use
+such libraries, we recommend that you upgrade the project to target .NET
+Framework 4.7.2 or higher.</sup>
 
 [1.0]: versions/netstandard1.0.md
 [1.1]: versions/netstandard1.1.md
