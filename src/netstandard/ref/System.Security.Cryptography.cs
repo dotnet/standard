@@ -808,6 +808,8 @@ namespace System.Security.Cryptography
         public abstract void GetBytes(byte[] data);
         public virtual void GetBytes(byte[] data, int offset, int count) { }
         public virtual void GetBytes(System.Span<byte> data) { }
+        public static int GetInt32(int toExclusive) { throw null; }
+        public static int GetInt32(int fromInclusive, int toExclusive) { throw null; }
         public virtual void GetNonZeroBytes(byte[] data) { }
         public virtual void GetNonZeroBytes(System.Span<byte> data) { }
     }
