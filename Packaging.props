@@ -1,9 +1,7 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LicenseUrl Condition="'$(PackageLicenseExpression)' == ''">https://github.com/dotnet/standard/blob/master/LICENSE.TXT</LicenseUrl>
     <PreReleaseLabel>preview3</PreReleaseLabel>
     <PackageDescriptionFile>$(ProjectDir)pkg/descriptions.json</PackageDescriptionFile>
-    <PackageLicenseFile Condition="'$(PackageLicenseExpression)' == ''">$(ProjectDir)LICENSE.TXT</PackageLicenseFile>
     <PackageThirdPartyNoticesFile>$(ProjectDir)THIRD-PARTY-NOTICES.TXT</PackageThirdPartyNoticesFile>
     <ReleaseNotes>https://aka.ms/netstandard-release-notes</ReleaseNotes>
     <ProjectUrl>https://dot.net</ProjectUrl>
