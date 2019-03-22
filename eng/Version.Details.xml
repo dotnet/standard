@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Dependencies>
-  <ProductDependencies></ProductDependencies>
+  <ProductDependencies>
+  </ProductDependencies>
   <ToolsetDependencies>
-    <Dependency Name="Microsoft.DotNet.Arcade.Sdk" Version="1.0.0-beta.19125.2">
+    <Dependency Name="Microsoft.DotNet.Arcade.Sdk" Version="1.0.0-beta.19171.2">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>a0ed7c38c714b1f60f50a4a408171e2c3bcf8f7f</Sha>
+      <Sha>5f884de91b56acd5d19bf792516b646e5fad19b5</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.ApiCompat" Version="1.0.0-beta.19125.2">
+    <Dependency Name="Microsoft.DotNet.ApiCompat" Version="1.0.0-beta.19171.2">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>a0ed7c38c714b1f60f50a4a408171e2c3bcf8f7f</Sha>
+      <Sha>5f884de91b56acd5d19bf792516b646e5fad19b5</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Build.Tasks.Packaging" Version="1.0.0-beta.19125.2">
+    <Dependency Name="Microsoft.DotNet.Build.Tasks.Packaging" Version="1.0.0-beta.19171.2">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>a0ed7c38c714b1f60f50a4a408171e2c3bcf8f7f</Sha>
+      <Sha>5f884de91b56acd5d19bf792516b646e5fad19b5</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.CodeAnalysis" Version="1.0.0-beta.19125.2">
+    <Dependency Name="Microsoft.DotNet.CodeAnalysis" Version="1.0.0-beta.19171.2">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>a0ed7c38c714b1f60f50a4a408171e2c3bcf8f7f</Sha>
+      <Sha>5f884de91b56acd5d19bf792516b646e5fad19b5</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.GenAPI" Version="1.0.0-beta.19125.2">
+    <Dependency Name="Microsoft.DotNet.GenAPI" Version="1.0.0-beta.19171.2">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>a0ed7c38c714b1f60f50a4a408171e2c3bcf8f7f</Sha>
+      <Sha>5f884de91b56acd5d19bf792516b646e5fad19b5</Sha>
     </Dependency>
     <PinnedDependency Name="NETStandard.Library" Version="2.0.3">
       <Uri>https://github.com/dotnet/standard</Uri>
