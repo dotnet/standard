@@ -24,7 +24,7 @@
     </ProjectReference>
   </ItemGroup>
 
-  <Target Name="ModifyTestItemGroup" AfterTargets="GetPackageFiles">
+  <Target Name="ModifyPackageFilePaths" AfterTargets="GetPackageFiles">
     <!-- Modify PackageFile TargetPaths-->
     <ItemGroup>
       <PackageFile Condition="'%(PackageFile.TargetPath)' != ''">
