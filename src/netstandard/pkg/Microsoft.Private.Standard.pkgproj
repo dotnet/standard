@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.props))\Directory.Build.props" />
+
+  <PropertyGroup>
+    <Version>2.1.0</Version>
+    <HarvestStablePackage>false</HarvestStablePackage>
+    <SkipPackageFileCheck>true</SkipPackageFileCheck>
+    <OmitDependencies>true</OmitDependencies>
+    <SkipValidatePackage>true</SkipValidatePackage>
+    <NETStandardVersion>netstandard2.1</NETStandardVersion>
+    <IsShipping>false</IsShipping>
+  </PropertyGroup>
+
+  <Import Project="NETStandard.Library.dependencies.props" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\ref\netstandard.csproj" />
+    <ProjectReference Include="shims\netstandard\dir.builds">
+      <Facade>true</Facade>
+    </ProjectReference>
+    <ProjectReference Include="shims\netfx\dir.builds">
+      <Facade>true</Facade>
+    </ProjectReference>
+  </ItemGroup>
+
+  <Target Name="ModifyTestItemGroup" AfterTargets="GetPackageFiles">
+    <!-- Modify PackageFile TargetPaths-->
+    <ItemGroup>
+      <PackageFile Condition="'%(PackageFile.TargetPath)' != ''">
+        <TargetPath >ref/$(NETStandardVersion)</TargetPath>
+      </PackageFile>
+    </ItemGroup>
+  </Target>
+
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
+
+  <PropertyGroup>
+    <OutDir>$(ArtifactsBinDir)shims/$(ShimRelOutputPath)</OutDir>
+  </PropertyGroup>
+
+</Project>
