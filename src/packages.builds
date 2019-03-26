@@ -4,6 +4,7 @@
 
   <ItemGroup>
     <Project Include="netstandard\pkg\NETStandard.Library.pkgproj" />
+    <Project Include="netstandard\pkg\Microsoft.Private.Standard.pkgproj" />
   </ItemGroup>
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.traversal.targets))\dir.traversal.targets" />

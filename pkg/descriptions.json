@@ -9,5 +9,11 @@
         "Description": "A set of standard .NET APIs that are prescribed to be used and supported together.",
         "CommonTypes": [
         ]
+    },
+    {
+        "Name": "Microsoft.Private.Standard",
+        "Description": "A transport package for moving .NET Standard assets between repos",
+        "CommonTypes": [
+        ]
     }
 ]
