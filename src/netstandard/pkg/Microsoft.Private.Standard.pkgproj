@@ -12,8 +12,6 @@
     <IsShipping>false</IsShipping>
   </PropertyGroup>
 
-  <Import Project="NETStandard.Library.dependencies.props" />
-
   <ItemGroup>
     <ProjectReference Include="..\ref\netstandard.csproj" />
     <ProjectReference Include="shims\netstandard\dir.builds">
@@ -34,9 +32,5 @@
   </Target>
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
-
-  <PropertyGroup>
-    <OutDir>$(ArtifactsBinDir)shims/$(ShimRelOutputPath)</OutDir>
-  </PropertyGroup>
 
 </Project>
