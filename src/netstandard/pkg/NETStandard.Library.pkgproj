@@ -41,7 +41,7 @@
   </ItemGroup>
 
   <Target Name="EnsureRestoredNetStandardAssets" BeforeTargets="GenerateNuSpec">
-    <Error Condition="'@(NetStandard20Files)' == ''" Text="Could not find package assets for netstandard2.0" />
+    <Error Condition="'@(NetStandard20Files)' == ''AND '$(DotNetBuildFromSource)' != 'true'" Text="Could not find package assets for netstandard2.0"  />
   </Target>
 
   <Target Name="StampTargets" BeforeTargets="GenerateNuSpec">

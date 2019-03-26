@@ -14,21 +14,30 @@
     <!-- Don't use implicit fallback folder for packages -->
     <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
   </PropertyGroup>
+
+  <!-- source-built packages -->
   <ItemGroup>
+    <!-- arcade -->
     <PackageReference Include="Microsoft.DotNet.ApiCompat" Version="$(MicrosoftDotNetApiCompatPackageVersion)" />
     <PackageReference Include="Microsoft.DotNet.GenAPI" Version="$(MicrosoftDotNetGenApiPackageVersion)" />
     <PackageReference Include="Microsoft.DotNet.Build.Tasks.Packaging" Version="$(MicrosoftDotNetBuildTasksPackagingPackageVersion)" />
+    <PackageReference Include="Microsoft.DotNet.CodeAnalysis" Version="$(MicrosoftDotNetCodeAnalysisPackageVersion)" />
+  </ItemGroup>
+
+  <!-- excluded from source build -->
+  <ItemGroup Condition="'$(DotNetBuildFromSource)' != 'true'">
+    <!-- XML docs -->
     <PackageReference Include="$(XmlDocPackage)" Version="$(XmlDocPackageVersion)" />
 
-    <!-- Include the SourceLink packages -->
+    <!-- SourceLink -->
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkVersion)" PrivateAssets="all" IsImplicitlyDefined="true" />
     <PackageReference Include="Microsoft.SourceLink.Vsts.Git" Version="$(MicrosoftSourceLinkVersion)" PrivateAssets="all" IsImplicitlyDefined="true" />
 
+    <!-- last NETStandard package for harvesting -->
     <PackageReference Include="$(NetStandardLibraryPackage)" Version="$(NetStandardLibraryPackageVersion)" ExcludeAssets="All" />
 
-    <!-- Reference analyzers -->
+    <!-- analyzers -->
     <PackageReference Include="Desktop.Analyzers" Version="1.1.0" />
-    <PackageReference Include="Microsoft.DotNet.CodeAnalysis" Version="$(MicrosoftDotNetCodeAnalysisPackageVersion)" />
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="2.9.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="1.1.0" />
     <PackageReference Include="System.Runtime.Analyzers" Version="1.1.0" />
@@ -43,7 +52,9 @@
   </PropertyGroup>
 
   <!-- the intellisense package doesn't use nuget conventions so we need to select manually -->
-  <Target Name="GetDocFiles" AfterTargets="Restore">
+  <Target Name="GetDocFiles"
+          Condition="'$(DotNetBuildFromSource)' != 'true'"
+          AfterTargets="Restore">
     <ItemGroup>
       <DocFile Include="$(XmlDocFileRoot)/**/*.xml"/>
       <DocFile>
