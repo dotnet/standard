@@ -9,6 +9,10 @@ variables:
     value: DotNetCore
   - name: _BuildConfig 
     value: Release
+  - name: _PublishUsingPipelines
+    value: true
+  - name: _DotNetArtifactsCategory
+    value: .NETCore
 
 jobs:
 - template: /eng/common/templates/jobs/jobs.yml
@@ -17,6 +21,7 @@ jobs:
     enablePublishBuildArtifacts: true
     enablePublishTestResults: false
     enablePublishBuildAssets: true
+    enablePublishUsingPipelines: $(_PublishUsingPipelines)
     enableTelemetry: true
     helixRepo: dotnet/standard
     jobs:
@@ -46,6 +51,8 @@ jobs:
             /p:DotNetPublishBlobFeedKey=$(dotnetfeed-storage-access-key-1)
             /p:DotNetPublishBlobFeedUrl=https://dotnetfeed.blob.core.windows.net/dotnet-core/index.json
             /p:DotNetPublishToBlobFeed=true
+            /p:DotNetPublishUsingPipelines=$(_PublishUsingPipelines)
+            /p:DotNetArtifactsCategory=$(_DotNetArtifactsCategory)
             /p:DotNetSymbolServerTokenMsdl=$(microsoft-symbol-server-pat)
             /p:DotNetSymbolServerTokenSymWeb=$(symweb-symbol-server-pat)
             /p:OfficialBuildId=$(BUILD.BUILDNUMBER)
