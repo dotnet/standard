@@ -1,8 +1,10 @@
 # CI and PR triggers
 trigger:
 - master
+- release/3.0
 pr:
 - master
+- release/3.0
 
 variables:
   - name: _TeamName
