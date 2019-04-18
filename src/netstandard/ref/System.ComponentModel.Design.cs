@@ -124,7 +124,6 @@ namespace System.ComponentModel.Design
         public void Cancel() { }
         public void Commit() { }
         protected virtual void Dispose(bool disposing) { }
-        ~DesignerTransaction() { }
         protected abstract void OnCancel();
         protected abstract void OnCommit();
         void System.IDisposable.Dispose() { }

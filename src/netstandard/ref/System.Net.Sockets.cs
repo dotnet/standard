@@ -138,7 +138,6 @@ namespace System.Net.Sockets
         protected override void Dispose(bool disposing) { }
         public override int EndRead(System.IAsyncResult asyncResult) { throw null; }
         public override void EndWrite(System.IAsyncResult asyncResult) { }
-        ~NetworkStream() { }
         public override void Flush() { }
         public override System.Threading.Tasks.Task FlushAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
         public override int Read(byte[] buffer, int offset, int size) { throw null; }
@@ -315,7 +314,6 @@ namespace System.Net.Sockets
         public int EndSend(System.IAsyncResult asyncResult, out System.Net.Sockets.SocketError errorCode) { throw null; }
         public void EndSendFile(System.IAsyncResult asyncResult) { }
         public int EndSendTo(System.IAsyncResult asyncResult) { throw null; }
-        ~Socket() { }
         public object GetSocketOption(System.Net.Sockets.SocketOptionLevel optionLevel, System.Net.Sockets.SocketOptionName optionName) { throw null; }
         public void GetSocketOption(System.Net.Sockets.SocketOptionLevel optionLevel, System.Net.Sockets.SocketOptionName optionName, byte[] optionValue) { }
         public byte[] GetSocketOption(System.Net.Sockets.SocketOptionLevel optionLevel, System.Net.Sockets.SocketOptionName optionName, int optionLength) { throw null; }
@@ -394,7 +392,6 @@ namespace System.Net.Sockets
         public object UserToken { get { throw null; } set { } }
         public event System.EventHandler<System.Net.Sockets.SocketAsyncEventArgs> Completed { add { } remove { } }
         public void Dispose() { }
-        ~SocketAsyncEventArgs() { }
         protected virtual void OnCompleted(System.Net.Sockets.SocketAsyncEventArgs e) { }
         public void SetBuffer(byte[] buffer, int offset, int count) { }
         public void SetBuffer(int offset, int count) { }
@@ -634,7 +631,6 @@ namespace System.Net.Sockets
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
         public void EndConnect(System.IAsyncResult asyncResult) { }
-        ~TcpClient() { }
         public System.Net.Sockets.NetworkStream GetStream() { throw null; }
     }
     public partial class TcpListener

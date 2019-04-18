@@ -215,7 +215,6 @@ namespace System.Runtime.InteropServices
         public void Close() { }
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
-        ~CriticalHandle() { }
         protected abstract bool ReleaseHandle();
         protected void SetHandle(System.IntPtr handle) { }
         public void SetHandleAsInvalid() { }
@@ -843,7 +842,6 @@ namespace System.Runtime.InteropServices
         public void DangerousRelease() { }
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
-        ~SafeHandle() { }
         protected abstract bool ReleaseHandle();
         protected void SetHandle(System.IntPtr handle) { }
         public void SetHandleAsInvalid() { }

@@ -497,7 +497,6 @@ namespace System.IO
         public override System.Threading.Tasks.ValueTask DisposeAsync() { throw null; }
         public override int EndRead(System.IAsyncResult asyncResult) { throw null; }
         public override void EndWrite(System.IAsyncResult asyncResult) { }
-        ~FileStream() { }
         public override void Flush() { }
         public virtual void Flush(bool flushToDisk) { }
         public override System.Threading.Tasks.Task FlushAsync(System.Threading.CancellationToken cancellationToken) { throw null; }

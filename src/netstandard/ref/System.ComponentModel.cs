@@ -314,7 +314,6 @@ namespace System.ComponentModel
         public event System.EventHandler Disposed { add { } remove { } }
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
-        ~Component() { }
         protected virtual object GetService(System.Type service) { throw null; }
         public override string ToString() { throw null; }
     }
@@ -353,7 +352,6 @@ namespace System.ComponentModel
         protected virtual System.ComponentModel.ISite CreateSite(System.ComponentModel.IComponent component, string name) { throw null; }
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
-        ~Container() { }
         protected virtual object GetService(System.Type service) { throw null; }
         public virtual void Remove(System.ComponentModel.IComponent component) { }
         protected void RemoveWithoutUnsiting(System.ComponentModel.IComponent component) { }
@@ -1196,7 +1194,6 @@ namespace System.ComponentModel
         public event System.EventHandler Disposed { add { } remove { } }
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
-        ~MarshalByValueComponent() { }
         public virtual object GetService(System.Type service) { throw null; }
         public override string ToString() { throw null; }
     }

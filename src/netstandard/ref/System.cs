@@ -5258,7 +5258,6 @@ namespace System
         public virtual bool IsAlive { get { throw null; } }
         public virtual object Target { get { throw null; } set { } }
         public virtual bool TrackResurrection { get { throw null; } }
-        ~WeakReference() { }
         public virtual void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
     }
     public sealed partial class WeakReference<T> : System.Runtime.Serialization.ISerializable where T : class

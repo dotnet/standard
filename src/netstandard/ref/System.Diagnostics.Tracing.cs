@@ -166,7 +166,6 @@ namespace System.Diagnostics.Tracing
         public event System.EventHandler<System.Diagnostics.Tracing.EventCommandEventArgs> EventCommandExecuted { add { } remove { } }
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
-        ~EventSource() { }
         public static string GenerateManifest(System.Type eventSourceType, string assemblyPathToIncludeInManifest) { throw null; }
         public static string GenerateManifest(System.Type eventSourceType, string assemblyPathToIncludeInManifest, System.Diagnostics.Tracing.EventManifestOptions flags) { throw null; }
         public static System.Guid GetGuid(System.Type eventSourceType) { throw null; }

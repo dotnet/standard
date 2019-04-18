@@ -650,7 +650,6 @@ namespace System.Threading
         public System.Collections.Generic.IList<T> Values { get { throw null; } }
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
-        ~ThreadLocal() { }
         public override string ToString() { throw null; }
     }
     public static partial class ThreadPool

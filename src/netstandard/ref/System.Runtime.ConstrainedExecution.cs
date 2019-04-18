@@ -20,7 +20,6 @@ namespace System.Runtime.ConstrainedExecution
     public abstract partial class CriticalFinalizerObject
     {
         protected CriticalFinalizerObject() { }
-        ~CriticalFinalizerObject() { }
     }
     [System.AttributeUsageAttribute(System.AttributeTargets.Constructor | System.AttributeTargets.Method, Inherited=false)]
     public sealed partial class PrePrepareMethodAttribute : System.Attribute
