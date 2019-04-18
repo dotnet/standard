@@ -46,13 +46,13 @@ namespace System.Data
     public abstract partial class Constraint
     {
         protected Constraint() { }
-        [System.CLSCompliantAttribute(false)]
-        protected virtual System.Data.DataSet _DataSet { get { throw null; } }
         [System.ComponentModel.DefaultValueAttribute("")]
         public virtual string ConstraintName { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
         public System.Data.PropertyCollection ExtendedProperties { get { throw null; } }
         public abstract System.Data.DataTable Table { get; }
+        [System.CLSCompliantAttribute(false)]
+        protected virtual System.Data.DataSet _DataSet { get { throw null; } }
         protected void CheckStateForProperty() { }
         protected internal void SetDataSet(System.Data.DataSet dataSet) { }
         public override string ToString() { throw null; }

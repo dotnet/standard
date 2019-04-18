@@ -8,13 +8,13 @@ namespace System.Runtime.InteropServices.ComTypes
     [System.FlagsAttribute]
     public enum ADVF
     {
+        ADVFCACHE_FORCEBUILTIN = 16,
+        ADVFCACHE_NOHANDLER = 8,
+        ADVFCACHE_ONSAVE = 32,
         ADVF_DATAONSTOP = 64,
         ADVF_NODATA = 1,
         ADVF_ONLYONCE = 4,
         ADVF_PRIMEFIRST = 2,
-        ADVFCACHE_FORCEBUILTIN = 16,
-        ADVFCACHE_NOHANDLER = 8,
-        ADVFCACHE_ONSAVE = 32,
     }
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public partial struct BIND_OPTS
@@ -118,8 +118,8 @@ namespace System.Runtime.InteropServices.ComTypes
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public partial struct FILETIME
     {
-        public int dwLowDateTime;
         public int dwHighDateTime;
+        public int dwLowDateTime;
     }
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public partial struct FORMATETC
@@ -374,17 +374,17 @@ namespace System.Runtime.InteropServices.ComTypes
     [InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
     public partial interface IStream
     {
+        void Clone(out System.Runtime.InteropServices.ComTypes.IStream ppstm);
+        void Commit(int grfCommitFlags);
+        void CopyTo(System.Runtime.InteropServices.ComTypes.IStream pstm, long cb, System.IntPtr pcbRead, System.IntPtr pcbWritten);
+        void LockRegion(long libOffset, long cb, int dwLockType);
         void Read([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1), Out] byte[] pv, int cb, System.IntPtr pcbRead);
-        void Write([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] byte[] pv, int cb, System.IntPtr pcbWritten);
+        void Revert();
         void Seek(long dlibMove, int dwOrigin, System.IntPtr plibNewPosition);
         void SetSize(long libNewSize);
-        void CopyTo(System.Runtime.InteropServices.ComTypes.IStream pstm, long cb, System.IntPtr pcbRead, System.IntPtr pcbWritten);
-        void Commit(int grfCommitFlags);
-        void Revert();
-        void LockRegion(long libOffset, long cb, int dwLockType);
-        void UnlockRegion(long libOffset, long cb, int dwLockType);
         void Stat(out System.Runtime.InteropServices.ComTypes.STATSTG pstatstg, int grfStatFlag);
-        void Clone(out System.Runtime.InteropServices.ComTypes.IStream ppstm);
+        void UnlockRegion(long libOffset, long cb, int dwLockType);
+        void Write([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] byte[] pv, int cb, System.IntPtr pcbWritten);
     }
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     [System.Runtime.InteropServices.InterfaceTypeAttribute(System.Runtime.InteropServices.ComInterfaceType.InterfaceIsIUnknown)]
@@ -531,17 +531,17 @@ namespace System.Runtime.InteropServices.ComTypes
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public partial struct STATSTG
     {
-        public string pwcsName;
-        public int type;
-        public long cbSize;
-        public System.Runtime.InteropServices.ComTypes.FILETIME mtime;
-        public System.Runtime.InteropServices.ComTypes.FILETIME ctime;
         public System.Runtime.InteropServices.ComTypes.FILETIME atime;
-        public int grfMode;
-        public int grfLocksSupported;
+        public long cbSize;
         public System.Guid clsid;
+        public System.Runtime.InteropServices.ComTypes.FILETIME ctime;
+        public int grfLocksSupported;
+        public int grfMode;
         public int grfStateBits;
+        public System.Runtime.InteropServices.ComTypes.FILETIME mtime;
+        public string pwcsName;
         public int reserved;
+        public int type;
     }
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public partial struct STGMEDIUM

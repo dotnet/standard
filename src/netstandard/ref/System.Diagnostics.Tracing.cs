@@ -183,10 +183,6 @@ namespace System.Diagnostics.Tracing
         public override string ToString() { throw null; }
         public void Write(string eventName) { }
         public void Write(string eventName, System.Diagnostics.Tracing.EventSourceOptions options) { }
-        public void Write<T>(string eventName, T data) { }
-        public void Write<T>(string eventName, System.Diagnostics.Tracing.EventSourceOptions options, T data) { }
-        public void Write<T>(string eventName, ref System.Diagnostics.Tracing.EventSourceOptions options, ref T data) { }
-        public void Write<T>(string eventName, ref System.Diagnostics.Tracing.EventSourceOptions options, ref System.Guid activityId, ref System.Guid relatedActivityId, ref T data) { }
         protected void WriteEvent(int eventId) { }
         protected void WriteEvent(int eventId, byte[] arg1) { }
         protected void WriteEvent(int eventId, int arg1) { }
@@ -210,6 +206,10 @@ namespace System.Diagnostics.Tracing
         protected void WriteEventWithRelatedActivityId(int eventId, System.Guid relatedActivityId, params object[] args) { }
         [System.CLSCompliantAttribute(false)]
         protected unsafe void WriteEventWithRelatedActivityIdCore(int eventId, System.Guid* relatedActivityId, int eventDataCount, System.Diagnostics.Tracing.EventSource.EventData* data) { }
+        public void Write<T>(string eventName, System.Diagnostics.Tracing.EventSourceOptions options, T data) { }
+        public void Write<T>(string eventName, ref System.Diagnostics.Tracing.EventSourceOptions options, ref System.Guid activityId, ref System.Guid relatedActivityId, ref T data) { }
+        public void Write<T>(string eventName, ref System.Diagnostics.Tracing.EventSourceOptions options, ref T data) { }
+        public void Write<T>(string eventName, T data) { }
         protected internal partial struct EventData
         {
             private int _dummyPrimitive;

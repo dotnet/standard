@@ -822,14 +822,14 @@ namespace System.Runtime.InteropServices
         [System.CLSCompliantAttribute(false)]
         public void Initialize<T>(uint numElements) where T : struct { }
         [System.CLSCompliantAttribute(false)]
-        public T Read<T>(ulong byteOffset) where T : struct { throw null; }
-        [System.CLSCompliantAttribute(false)]
         public void ReadArray<T>(ulong byteOffset, T[] array, int index, int count) where T : struct { }
+        [System.CLSCompliantAttribute(false)]
+        public T Read<T>(ulong byteOffset) where T : struct { throw null; }
         public void ReleasePointer() { }
         [System.CLSCompliantAttribute(false)]
-        public void Write<T>(ulong byteOffset, T value) where T : struct { }
-        [System.CLSCompliantAttribute(false)]
         public void WriteArray<T>(ulong byteOffset, T[] array, int index, int count) where T : struct { }
+        [System.CLSCompliantAttribute(false)]
+        public void Write<T>(ulong byteOffset, T value) where T : struct { }
     }
     public abstract partial class SafeHandle : System.Runtime.ConstrainedExecution.CriticalFinalizerObject, System.IDisposable
     {

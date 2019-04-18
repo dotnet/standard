@@ -242,12 +242,12 @@ namespace System.Security.Cryptography.X509Certificates
     {
         public X509Certificate2Collection() { }
         public X509Certificate2Collection(System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { }
-        public X509Certificate2Collection(System.Security.Cryptography.X509Certificates.X509Certificate2[] certificates) { }
         public X509Certificate2Collection(System.Security.Cryptography.X509Certificates.X509Certificate2Collection certificates) { }
+        public X509Certificate2Collection(System.Security.Cryptography.X509Certificates.X509Certificate2[] certificates) { }
         public new System.Security.Cryptography.X509Certificates.X509Certificate2 this[int index] { get { throw null; } set { } }
         public int Add(System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { throw null; }
-        public void AddRange(System.Security.Cryptography.X509Certificates.X509Certificate2[] certificates) { }
         public void AddRange(System.Security.Cryptography.X509Certificates.X509Certificate2Collection certificates) { }
+        public void AddRange(System.Security.Cryptography.X509Certificates.X509Certificate2[] certificates) { }
         public bool Contains(System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { throw null; }
         public byte[] Export(System.Security.Cryptography.X509Certificates.X509ContentType contentType) { throw null; }
         public byte[] Export(System.Security.Cryptography.X509Certificates.X509ContentType contentType, string password) { throw null; }
@@ -259,8 +259,8 @@ namespace System.Security.Cryptography.X509Certificates
         public void Import(string fileName, string password, System.Security.Cryptography.X509Certificates.X509KeyStorageFlags keyStorageFlags) { }
         public void Insert(int index, System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { }
         public void Remove(System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { }
-        public void RemoveRange(System.Security.Cryptography.X509Certificates.X509Certificate2[] certificates) { }
         public void RemoveRange(System.Security.Cryptography.X509Certificates.X509Certificate2Collection certificates) { }
+        public void RemoveRange(System.Security.Cryptography.X509Certificates.X509Certificate2[] certificates) { }
     }
     public sealed partial class X509Certificate2Enumerator : System.Collections.IEnumerator
     {
@@ -275,12 +275,12 @@ namespace System.Security.Cryptography.X509Certificates
     public partial class X509CertificateCollection : System.Collections.CollectionBase
     {
         public X509CertificateCollection() { }
-        public X509CertificateCollection(System.Security.Cryptography.X509Certificates.X509Certificate[] value) { }
         public X509CertificateCollection(System.Security.Cryptography.X509Certificates.X509CertificateCollection value) { }
+        public X509CertificateCollection(System.Security.Cryptography.X509Certificates.X509Certificate[] value) { }
         public System.Security.Cryptography.X509Certificates.X509Certificate this[int index] { get { throw null; } set { } }
         public int Add(System.Security.Cryptography.X509Certificates.X509Certificate value) { throw null; }
-        public void AddRange(System.Security.Cryptography.X509Certificates.X509Certificate[] value) { }
         public void AddRange(System.Security.Cryptography.X509Certificates.X509CertificateCollection value) { }
+        public void AddRange(System.Security.Cryptography.X509Certificates.X509Certificate[] value) { }
         public bool Contains(System.Security.Cryptography.X509Certificates.X509Certificate value) { throw null; }
         public void CopyTo(System.Security.Cryptography.X509Certificates.X509Certificate[] array, int index) { }
         public new System.Security.Cryptography.X509Certificates.X509CertificateCollection.X509CertificateEnumerator GetEnumerator() { throw null; }
