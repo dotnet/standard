@@ -315,10 +315,10 @@ namespace System
         public static int BinarySearch(System.Array array, int index, int length, object value, System.Collections.IComparer comparer) { throw null; }
         public static int BinarySearch(System.Array array, object value) { throw null; }
         public static int BinarySearch(System.Array array, object value, System.Collections.IComparer comparer) { throw null; }
-        public static int BinarySearch<T>(T[] array, T value) { throw null; }
-        public static int BinarySearch<T>(T[] array, T value, System.Collections.Generic.IComparer<T> comparer) { throw null; }
         public static int BinarySearch<T>(T[] array, int index, int length, T value) { throw null; }
         public static int BinarySearch<T>(T[] array, int index, int length, T value, System.Collections.Generic.IComparer<T> comparer) { throw null; }
+        public static int BinarySearch<T>(T[] array, T value) { throw null; }
+        public static int BinarySearch<T>(T[] array, T value, System.Collections.Generic.IComparer<T> comparer) { throw null; }
         public static void Clear(System.Array array, int index, int length) { }
         public object Clone() { throw null; }
         public static void ConstrainedCopy(System.Array sourceArray, int sourceIndex, System.Array destinationArray, int destinationIndex, int length) { }
@@ -339,15 +339,15 @@ namespace System
         public static bool Exists<T>(T[] array, System.Predicate<T> match) { throw null; }
         public static void Fill<T>(T[] array, T value) { }
         public static void Fill<T>(T[] array, T value, int startIndex, int count) { }
-        public static T Find<T>(T[] array, System.Predicate<T> match) { throw null; }
         public static T[] FindAll<T>(T[] array, System.Predicate<T> match) { throw null; }
         public static int FindIndex<T>(T[] array, int startIndex, int count, System.Predicate<T> match) { throw null; }
         public static int FindIndex<T>(T[] array, int startIndex, System.Predicate<T> match) { throw null; }
         public static int FindIndex<T>(T[] array, System.Predicate<T> match) { throw null; }
-        public static T FindLast<T>(T[] array, System.Predicate<T> match) { throw null; }
         public static int FindLastIndex<T>(T[] array, int startIndex, int count, System.Predicate<T> match) { throw null; }
         public static int FindLastIndex<T>(T[] array, int startIndex, System.Predicate<T> match) { throw null; }
         public static int FindLastIndex<T>(T[] array, System.Predicate<T> match) { throw null; }
+        public static T FindLast<T>(T[] array, System.Predicate<T> match) { throw null; }
+        public static T Find<T>(T[] array, System.Predicate<T> match) { throw null; }
         public static void ForEach<T>(T[] array, System.Action<T> action) { }
         public System.Collections.IEnumerator GetEnumerator() { throw null; }
         public int GetLength(int dimension) { throw null; }
@@ -2142,8 +2142,8 @@ namespace System
         public string ToString(string format, System.IFormatProvider provider) { throw null; }
         public static bool TryParse(System.Type enumType, string value, bool ignoreCase, out object result) { throw null; }
         public static bool TryParse(System.Type enumType, string value, out object result) { throw null; }
-        public static bool TryParse<TEnum>(string value, out TEnum result) where TEnum : struct { throw null; }
         public static bool TryParse<TEnum>(string value, bool ignoreCase, out TEnum result) where TEnum : struct { throw null; }
+        public static bool TryParse<TEnum>(string value, out TEnum result) where TEnum : struct { throw null; }
     }
     public static partial class Environment
     {
@@ -2779,12 +2779,12 @@ namespace System
     }
     public partial class Lazy<T, TMetadata> : System.Lazy<T>
     {
-        public Lazy(TMetadata metadata) { }
-        public Lazy(TMetadata metadata, bool isThreadSafe) { }
-        public Lazy(TMetadata metadata, System.Threading.LazyThreadSafetyMode mode) { }
         public Lazy(System.Func<T> valueFactory, TMetadata metadata) { }
         public Lazy(System.Func<T> valueFactory, TMetadata metadata, bool isThreadSafe) { }
         public Lazy(System.Func<T> valueFactory, TMetadata metadata, System.Threading.LazyThreadSafetyMode mode) { }
+        public Lazy(TMetadata metadata) { }
+        public Lazy(TMetadata metadata, bool isThreadSafe) { }
+        public Lazy(TMetadata metadata, System.Threading.LazyThreadSafetyMode mode) { }
         public TMetadata Metadata { get { throw null; } }
     }
     public partial class LdapStyleUriParser : System.UriParser

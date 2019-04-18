@@ -152,8 +152,8 @@ namespace System.ComponentModel.Design
         public DesignerVerbCollection(System.ComponentModel.Design.DesignerVerb[] value) { }
         public System.ComponentModel.Design.DesignerVerb this[int index] { get { throw null; } set { } }
         public int Add(System.ComponentModel.Design.DesignerVerb value) { throw null; }
-        public void AddRange(System.ComponentModel.Design.DesignerVerb[] value) { }
         public void AddRange(System.ComponentModel.Design.DesignerVerbCollection value) { }
+        public void AddRange(System.ComponentModel.Design.DesignerVerb[] value) { }
         public bool Contains(System.ComponentModel.Design.DesignerVerb value) { throw null; }
         public void CopyTo(System.ComponentModel.Design.DesignerVerb[] array, int index) { }
         public int IndexOf(System.ComponentModel.Design.DesignerVerb value) { throw null; }

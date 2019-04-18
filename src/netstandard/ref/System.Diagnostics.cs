@@ -901,8 +901,8 @@ namespace System.Diagnostics
         bool System.Collections.IList.IsReadOnly { get { throw null; } }
         object System.Collections.IList.this[int index] { get { throw null; } set { } }
         public int Add(System.Diagnostics.TraceListener listener) { throw null; }
-        public void AddRange(System.Diagnostics.TraceListener[] value) { }
         public void AddRange(System.Diagnostics.TraceListenerCollection value) { }
+        public void AddRange(System.Diagnostics.TraceListener[] value) { }
         public void Clear() { }
         public bool Contains(System.Diagnostics.TraceListener listener) { throw null; }
         public void CopyTo(System.Diagnostics.TraceListener[] listeners, int index) { }

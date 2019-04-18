@@ -565,9 +565,9 @@ namespace System.Net.Sockets
     }
     public partial struct SocketReceiveMessageFromResult
     {
+        public System.Net.Sockets.IPPacketInformation PacketInformation;
         public int ReceivedBytes;
         public System.Net.EndPoint RemoteEndPoint;
-        public System.Net.Sockets.IPPacketInformation PacketInformation;
         public System.Net.Sockets.SocketFlags SocketFlags;
     }
     public enum SocketShutdown

@@ -313,14 +313,14 @@ namespace System.Collections.Generic
         bool System.Collections.Generic.ICollection<T>.IsReadOnly { get { throw null; } }
         bool System.Collections.ICollection.IsSynchronized { get { throw null; } }
         object System.Collections.ICollection.SyncRoot { get { throw null; } }
-        public System.Collections.Generic.LinkedListNode<T> AddAfter(System.Collections.Generic.LinkedListNode<T> node, T value) { throw null; }
         public void AddAfter(System.Collections.Generic.LinkedListNode<T> node, System.Collections.Generic.LinkedListNode<T> newNode) { }
-        public System.Collections.Generic.LinkedListNode<T> AddBefore(System.Collections.Generic.LinkedListNode<T> node, T value) { throw null; }
+        public System.Collections.Generic.LinkedListNode<T> AddAfter(System.Collections.Generic.LinkedListNode<T> node, T value) { throw null; }
         public void AddBefore(System.Collections.Generic.LinkedListNode<T> node, System.Collections.Generic.LinkedListNode<T> newNode) { }
-        public System.Collections.Generic.LinkedListNode<T> AddFirst(T value) { throw null; }
+        public System.Collections.Generic.LinkedListNode<T> AddBefore(System.Collections.Generic.LinkedListNode<T> node, T value) { throw null; }
         public void AddFirst(System.Collections.Generic.LinkedListNode<T> node) { }
-        public System.Collections.Generic.LinkedListNode<T> AddLast(T value) { throw null; }
+        public System.Collections.Generic.LinkedListNode<T> AddFirst(T value) { throw null; }
         public void AddLast(System.Collections.Generic.LinkedListNode<T> node) { }
+        public System.Collections.Generic.LinkedListNode<T> AddLast(T value) { throw null; }
         public void Clear() { }
         public bool Contains(T value) { throw null; }
         public void CopyTo(T[] array, int index) { }
@@ -329,8 +329,8 @@ namespace System.Collections.Generic
         public System.Collections.Generic.LinkedList<T>.Enumerator GetEnumerator() { throw null; }
         public virtual void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
         public virtual void OnDeserialization(object sender) { }
-        public bool Remove(T value) { throw null; }
         public void Remove(System.Collections.Generic.LinkedListNode<T> node) { }
+        public bool Remove(T value) { throw null; }
         public void RemoveFirst() { }
         public void RemoveLast() { }
         void System.Collections.Generic.ICollection<T>.Add(T value) { }
@@ -374,15 +374,15 @@ namespace System.Collections.Generic
         public void Add(T item) { }
         public void AddRange(System.Collections.Generic.IEnumerable<T> collection) { }
         public System.Collections.ObjectModel.ReadOnlyCollection<T> AsReadOnly() { throw null; }
+        public int BinarySearch(int index, int count, T item, System.Collections.Generic.IComparer<T> comparer) { throw null; }
         public int BinarySearch(T item) { throw null; }
         public int BinarySearch(T item, System.Collections.Generic.IComparer<T> comparer) { throw null; }
-        public int BinarySearch(int index, int count, T item, System.Collections.Generic.IComparer<T> comparer) { throw null; }
         public void Clear() { }
         public bool Contains(T item) { throw null; }
         public System.Collections.Generic.List<TOutput> ConvertAll<TOutput>(System.Converter<T, TOutput> converter) { throw null; }
+        public void CopyTo(int index, T[] array, int arrayIndex, int count) { }
         public void CopyTo(T[] array) { }
         public void CopyTo(T[] array, int arrayIndex) { }
-        public void CopyTo(int index, T[] array, int arrayIndex, int count) { }
         public bool Exists(System.Predicate<T> match) { throw null; }
         public T Find(System.Predicate<T> match) { throw null; }
         public System.Collections.Generic.List<T> FindAll(System.Predicate<T> match) { throw null; }
