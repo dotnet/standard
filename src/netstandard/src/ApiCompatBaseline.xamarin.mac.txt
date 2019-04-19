@@ -171,8 +171,6 @@ MembersMustExist : Member 'System.Single.TryParse(System.ReadOnlySpan<System.Cha
 MembersMustExist : Member 'System.Single.TryParse(System.ReadOnlySpan<System.Char>, System.Single)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Span<T>' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String..ctor(System.ReadOnlySpan<System.Char>)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.String.Chars.get(System.Index)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.String.Chars.get(System.Range)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.Contains(System.Char)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.Contains(System.Char, System.StringComparison)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.Contains(System.String, System.StringComparison)' does not exist in the implementation but it does exist in the contract.
@@ -192,8 +190,6 @@ MembersMustExist : Member 'System.String.Split(System.Char, System.StringSplitOp
 MembersMustExist : Member 'System.String.Split(System.String, System.Int32, System.StringSplitOptions)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.Split(System.String, System.StringSplitOptions)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.StartsWith(System.Char)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.String.Substring(System.Index)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.String.Substring(System.Range)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.Trim(System.Char)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.TrimEnd()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String.TrimEnd(System.Char)' does not exist in the implementation but it does exist in the contract.
@@ -967,4 +963,4 @@ CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xm
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlChoiceIdentifierAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xml.Serialization.XmlSchemaImporter' does not inherit from base type 'System.Xml.Serialization.SchemaImporter' in the implementation but it does in the contract.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlSerializerAssemblyAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct)]' in the implementation.
-Total Issues: 968
+Total Issues: 964
