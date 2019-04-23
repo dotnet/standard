@@ -107,6 +107,7 @@ namespace System.ComponentModel
         public event System.ComponentModel.ProgressChangedEventHandler ProgressChanged { add { } remove { } }
         public event System.ComponentModel.RunWorkerCompletedEventHandler RunWorkerCompleted { add { } remove { } }
         public void CancelAsync() { }
+        protected override void Dispose(bool disposing) { }
         protected virtual void OnDoWork(System.ComponentModel.DoWorkEventArgs e) { }
         protected virtual void OnProgressChanged(System.ComponentModel.ProgressChangedEventArgs e) { }
         protected virtual void OnRunWorkerCompleted(System.ComponentModel.RunWorkerCompletedEventArgs e) { }
@@ -1951,5 +1952,6 @@ namespace System.ComponentModel
         public Win32Exception(string message, System.Exception innerException) { }
         public int NativeErrorCode { get { throw null; } }
         public override void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public override string ToString() { throw null; }
     }
 }

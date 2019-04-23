@@ -84,3 +84,4 @@ T:System.Runtime.CompilerServices.AsyncIteratorStateMachineAttribute
 T:System.Runtime.CompilerServices.ConfiguredAsyncDisposable
 T:System.Runtime.CompilerServices.ConfiguredCancelableAsyncEnumerable`1
 T:System.Threading.Tasks.Sources.ManualResetValueTaskSourceCore`1
+T:System.Runtime.CompilerServices.EnumeratorCancellationAttribute

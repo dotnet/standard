@@ -1,5 +1,9 @@
 syntax: glob
 
+### .NET Standard specific ###
+
+src/platforms/netcoreapp/
+
 ### VisualStudio ###
 
 # Tool Runtime Dir

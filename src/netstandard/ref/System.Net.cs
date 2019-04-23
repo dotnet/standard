@@ -216,7 +216,9 @@ namespace System.Net
         public override System.Net.WebResponse EndGetResponse(System.IAsyncResult asyncResult) { throw null; }
         protected override void GetObjectData(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
         public override System.IO.Stream GetRequestStream() { throw null; }
+        public override System.Threading.Tasks.Task<System.IO.Stream> GetRequestStreamAsync() { throw null; }
         public override System.Net.WebResponse GetResponse() { throw null; }
+        public override System.Threading.Tasks.Task<System.Net.WebResponse> GetResponseAsync() { throw null; }
         void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
     }
     public partial class FileWebResponse : System.Net.WebResponse, System.Runtime.Serialization.ISerializable
