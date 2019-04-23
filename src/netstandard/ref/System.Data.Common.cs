@@ -484,9 +484,9 @@ namespace System.Data.Common
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public abstract System.Collections.IEnumerator GetEnumerator();
         public abstract System.Type GetFieldType(int ordinal);
-        public virtual T GetFieldValue<T>(int ordinal) { throw null; }
         public System.Threading.Tasks.Task<T> GetFieldValueAsync<T>(int ordinal) { throw null; }
         public virtual System.Threading.Tasks.Task<T> GetFieldValueAsync<T>(int ordinal, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public virtual T GetFieldValue<T>(int ordinal) { throw null; }
         public abstract float GetFloat(int ordinal);
         public abstract System.Guid GetGuid(int ordinal);
         public abstract short GetInt16(int ordinal);
