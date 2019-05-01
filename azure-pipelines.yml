@@ -68,9 +68,10 @@ jobs:
       steps:
       - checkout: self
         clean: true
-      - script: eng\common\cibuild.cmd
+      - script: build.cmd
           -configuration $(_BuildConfig) 
           -prepareMachine
+          -ci
           -warnaserror:0
           $(_BuildArgs)
         displayName: Windows Build / Publish
@@ -86,9 +87,10 @@ jobs:
         steps:
         - checkout: self
           clean: true
-        - script: eng/common/cibuild.sh
+        - script: ./build.sh
             --configuration $(_BuildConfig)
             --prepareMachine
+            --ci
           displayName: Linux Build
 
     # OSX leg (only runs in CI)
@@ -102,7 +104,8 @@ jobs:
         steps:
         - checkout: self
           clean: true
-        - script: eng/common/cibuild.sh
+        - script: ./build.sh
             --configuration $(_BuildConfig)
             --prepareMachine
+            --ci
           displayName: OSX Build
