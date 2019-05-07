@@ -24,6 +24,12 @@
     </ItemGroup>
   </Target>
 
+  <!-- These projects have an unconventional ordering for the import of Directory.Build.Targets, so we have to manually
+       opt out of importing the below file, since it will be imported later by Microsoft.Common.CurrentVersion.targets -->
+  <PropertyGroup>
+    <_ArcadeBeforeCommonTargetsImported>true</_ArcadeBeforeCommonTargetsImported>
+  </PropertyGroup>
+
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory).., Directory.Build.targets))\Directory.Build.targets" />
 
   <PropertyGroup>
