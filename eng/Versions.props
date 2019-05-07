@@ -24,10 +24,10 @@
     <NetStandardLibraryPackage>netstandard.library</NetStandardLibraryPackage>
   </PropertyGroup>
   <PropertyGroup>
-    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.19256.4</MicrosoftDotNetApiCompatPackageVersion>
-    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.19256.4</MicrosoftDotNetBuildTasksPackagingPackageVersion>
-    <MicrosoftDotNetCodeAnalysisPackageVersion>1.0.0-beta.19256.4</MicrosoftDotNetCodeAnalysisPackageVersion>
-    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.19256.4</MicrosoftDotNetGenAPIPackageVersion>
+    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.19256.12</MicrosoftDotNetApiCompatPackageVersion>
+    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.19256.12</MicrosoftDotNetBuildTasksPackagingPackageVersion>
+    <MicrosoftDotNetCodeAnalysisPackageVersion>1.0.0-beta.19256.12</MicrosoftDotNetCodeAnalysisPackageVersion>
+    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.19256.12</MicrosoftDotNetGenAPIPackageVersion>
     <!-- This is the LKG stable version of NetStandard.Library from myget.org. Please don't edit this version -->
     <NetStandardLibraryPackageVersion>2.0.3</NetStandardLibraryPackageVersion>
   </PropertyGroup>
