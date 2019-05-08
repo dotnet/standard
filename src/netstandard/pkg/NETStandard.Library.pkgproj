@@ -3,7 +3,8 @@
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.props))\Directory.Build.props" />
 
   <PropertyGroup>
-    <Version>2.1.0</Version>
+    <MajorVersion>2</MajorVersion>
+    <MinorVersion>1</MinorVersion>
     <HarvestStablePackage>false</HarvestStablePackage>
     <SkipPackageFileCheck>true</SkipPackageFileCheck>
     <OmitDependencies>true</OmitDependencies>
