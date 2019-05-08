@@ -1,13 +1,25 @@
+Compat issues with assembly System.Memory:
+CannotRemoveAttribute : Attribute 'Microsoft.Cci.DummyTypeReference' exists on 'System.Memory<T>' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'Microsoft.Cci.DummyTypeReference' exists on 'System.ReadOnlyMemory<T>' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'Microsoft.Cci.DummyTypeReference' exists on 'System.ReadOnlySpan<T>' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'Microsoft.Cci.DummyTypeReference' exists on 'System.Span<T>' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'Microsoft.Cci.DummyTypeReference' exists on 'System.Buffers.ReadOnlySequence<T>' in the contract but not the implementation.
+MembersMustExist : Member 'System.Runtime.InteropServices.MemoryMarshal.TryGetMemoryManager<T, TManager>(System.ReadOnlyMemory<T>, TManager)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Runtime.InteropServices.MemoryMarshal.TryGetMemoryManager<T, TManager>(System.ReadOnlyMemory<T>, TManager, System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly System.Resources.ResourceManager:
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.MissingManifestResourceException' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.NeutralResourcesLanguageAttribute' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.ResourceManager' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.SatelliteContractVersionAttribute' in the contract but not the implementation.
+Compat issues with assembly System.Runtime.CompilerServices.Unsafe:
+TypesMustExist : Type 'System.Runtime.CompilerServices.Unsafe' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly System.Runtime.InteropServices:
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceMode' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceResult' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.ICustomQueryInterface' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.ComTypes.IStream' in the contract but not the implementation.
+Compat issues with assembly System.Threading.Tasks.Extensions:
+CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Runtime.CompilerServices.AsyncMethodBuilderAttribute' changed from '[AttributeUsageAttribute(5148, Inherited=false, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Delegate | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct, Inherited=false, AllowMultiple=false)]' in the implementation.
 Compat issues with assembly System.Xml.ReaderWriter:
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Xml.Schema.XmlSchema' in the contract but not the implementation.
-Total Issues: 9
+Total Issues: 18
