@@ -22,14 +22,12 @@ jobs:
     enableMicrobuild: true
     enablePublishBuildArtifacts: true
     enablePublishTestResults: false
+    enablePublishBuildAssets: true
     enablePublishUsingPipelines: $(_PublishUsingPipelines)
     enableTelemetry: true
     helixRepo: dotnet/standard
     jobs:
     - job: Windows_NT
-      ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
-        parameters:
-          enablePublishBuildAssets: true
       pool: 
         ${{ if or(eq(variables['System.TeamProject'], 'public'), in(variables['Build.Reason'], 'PullRequest')) }}:
           name: NetCorePublic-Int-Pool
