@@ -71,6 +71,7 @@ jobs:
       - script: build.cmd
           -configuration $(_BuildConfig) 
           -prepareMachine
+          -publish
           -ci
           -warnaserror:0
           $(_BuildArgs)
