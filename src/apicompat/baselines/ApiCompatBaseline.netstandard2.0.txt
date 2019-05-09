@@ -1,10 +1,8 @@
 Compat issues with assembly System.Memory:
 MembersMustExist : Member 'System.Runtime.InteropServices.MemoryMarshal.TryGetMemoryManager<T, TManager>(System.ReadOnlyMemory<T>, TManager)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.InteropServices.MemoryMarshal.TryGetMemoryManager<T, TManager>(System.ReadOnlyMemory<T>, TManager, System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
-Compat issues with assembly System.Runtime.CompilerServices.Unsafe:
-TypesMustExist : Type 'System.Runtime.CompilerServices.Unsafe' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly System.Threading.Tasks.Extensions:
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Runtime.CompilerServices.AsyncMethodBuilderAttribute' changed from '[AttributeUsageAttribute(5148, Inherited=false, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Delegate | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct, Inherited=false, AllowMultiple=false)]' in the implementation.
 CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.AsyncMethodBuilderAttribute' exists on 'System.Threading.Tasks.ValueTask' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.AsyncMethodBuilderAttribute' exists on 'System.Threading.Tasks.ValueTask<TResult>' in the contract but not the implementation.
-Total Issues: 6
+Total Issues: 5

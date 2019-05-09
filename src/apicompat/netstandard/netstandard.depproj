@@ -327,6 +327,10 @@
     <PackageReference Include="System.Reflection.Emit.Lightweight">
       <Version>$(SystemReflectionEmitLightweightPackageVersion)</Version>
     </PackageReference>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
+      <Version>4.5.2</Version>
+      <ExcludeAssets>all</ExcludeAssets>
+    </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions">
       <Version>4.5.2</Version>
     </PackageReference>
