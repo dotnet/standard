@@ -72,6 +72,7 @@ T:System.Threading.Tasks.Sources.IValueTaskSource
 T:System.Threading.Tasks.Sources.IValueTaskSource`1
 T:System.Threading.Tasks.Sources.ValueTaskSourceOnCompletedFlags
 T:System.Threading.Tasks.Sources.ValueTaskSourceStatus
+T:System.Threading.Tasks.TaskAsyncEnumerableExtensions
 T:System.Threading.Tasks.ValueTask
 T:System.Xml.Serialization.SchemaImporter
 T:System.Runtime.CompilerServices.SwitchExpressionException
