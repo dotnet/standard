@@ -14,7 +14,6 @@
     <ResolveMatchingContract>true</ResolveMatchingContract>
     <RunApiCompatForSrc>true</RunApiCompatForSrc>
     <RunMatchingRefApiCompat>false</RunMatchingRefApiCompat>
-    <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
     <ApiCompatBaseline>$(MSBuildProjectDirectory)\ApiCompatBaseline.$(TargetFramework).txt</ApiCompatBaseline>
     <NoWarn>$(NoWarn);618</NoWarn>
   </PropertyGroup>

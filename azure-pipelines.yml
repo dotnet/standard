@@ -58,6 +58,7 @@ jobs:
             /p:DotNetSymbolServerTokenMsdl=$(microsoft-symbol-server-pat)
             /p:DotNetSymbolServerTokenSymWeb=$(symweb-symbol-server-pat)
             /p:OfficialBuildId=$(BUILD.BUILDNUMBER)
+            /p:BaselineAllAPICompatError=false
         - name: _OfficialBuildIdArgs
       # else
       - ${{ if or(eq(variables['System.TeamProject'], 'public'), in(variables['Build.Reason'], 'PullRequest')) }}:
@@ -65,6 +66,7 @@ jobs:
           value: Test
         - name: _BuildArgs
           value: /p:SignType=$(_SignType)
+              /p:BaselineAllAPICompatError=false
       steps:
       - checkout: self
         clean: true
