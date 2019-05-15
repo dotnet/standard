@@ -4,10 +4,8 @@
     <NuGetDeploySourceItem>Reference</NuGetDeploySourceItem>
     <TargetFramework Condition="'$(TargetFramework)'==''">netstandard2.0</TargetFramework>
     <OutputPath>$(RestoredRefRootPath)</OutputPath>
-    <RestoreOutputPath>$(IntermediateOutputPath)$(TargetFramework)\</RestoreOutputPath>
+    <RestoreOutputPath>$(IntermediateOutputPath)$(TargetFramework)</RestoreOutputPath>
     <ProjectAssetsFile>$(RestoreOutputPath)/project.assets.json</ProjectAssetsFile>
-    <MSBuildProjectExtensionsPath>$(RestoreOutputPath)</MSBuildProjectExtensionsPath>
-    <_InitialMSBuildProjectExtensionsPath>$(MSBuildProjectExtensionsPath)</_InitialMSBuildProjectExtensionsPath>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0'">
     <PackageReference Include="NETStandard.Library">
@@ -303,8 +301,8 @@
   </ItemGroup>
   <!-- Dependencies used for creating shims for types that were exposed in OOB packages, but are now rolled in to netstandard2.1 -->
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="NETStandard.Library">
-      <Version>2.0.3</Version>
+    <PackageReference Include="$(NetStandardLibraryPackage)">
+      <Version>$(NetStandardLibraryPackageVersion)</Version>
     </PackageReference>
     <PackageReference Include="System.Buffers">
       <Version>4.5.0</Version>
@@ -335,4 +333,18 @@
       <Version>4.5.2</Version>
     </PackageReference>
   </ItemGroup>
+
+  <Target Name="ResolveNetStandardLibraryAssets"
+          Condition="'$(TargetFramework)' == 'netstandard2.0'"
+          BeforeTargets="ResolveAssemblyReferences" >
+
+    <ItemGroup>
+      <NetStandardLibraryAssets Include="$(PackagesDir)$(NetStandardLibraryPackage)/$(NetStandardLibraryPackageVersion)/build/netstandard2.0/ref/*.dll" />
+      <Reference Include="@(NetStandardLibraryAssets)">
+        <HintPath>%(NetStandardLibraryAssets.Identity)</HintPath>
+        <Private>false</Private>
+      </Reference>
+    </ItemGroup>
+  </Target>
+
 </Project>
