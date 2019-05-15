@@ -8,6 +8,11 @@ TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompi
 Compat issues with assembly mscorlib:
 TypesMustExist : Type 'System.Diagnostics.Contracts.Internal.ContractHelper' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.CLSCompliantAttribute' exists on 'System.Runtime.CompilerServices.DecimalConstantAttribute' in the contract but not the implementation.
+Compat issues with assembly System.Core:
+CannotSealType : Type 'System.Linq.EnumerableExecutor' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
+MembersMustExist : Member 'System.Linq.EnumerableExecutor..ctor()' does not exist in the implementation but it does exist in the contract.
+CannotSealType : Type 'System.Linq.EnumerableQuery' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
+MembersMustExist : Member 'System.Linq.EnumerableQuery..ctor()' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly System.Xml:
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlIncludeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Struct, AllowMultiple=true)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Method | AttributeTargets.Struct, AllowMultiple=true)]' in the implementation.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
@@ -16,4 +21,4 @@ TypesMustExist : Type 'System.ServiceModel.XmlSerializerFormatAttribute' does no
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Xml.Serialization.XmlMapping' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Xml.Serialization.XmlMappingAccess' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Xml.Serialization.XmlTypeMapping' in the contract but not the implementation.
-Total Issues: 14
+Total Issues: 18

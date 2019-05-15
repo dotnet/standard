@@ -12,6 +12,16 @@ CannotMakeMemberNonVirtual : Member 'System.ComponentModel.BaseNumberConverter.C
 CannotMakeMemberNonVirtual : Member 'System.ComponentModel.BaseNumberConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, System.Object, System.Type)' is non-virtual in the implementation but is virtual in the contract.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.ComponentModel.IComNativeDescriptorHandler' changed from '[ObsoleteAttribute("This interface has been deprecated. Add a TypeDescriptionProvider to handle type TypeDescriptor.ComObjectType instead.  http://go.microsoft.com/fwlink/?linkid=14202")]' in the contract to '[ObsoleteAttribute("This interface has been deprecated. Add a TypeDescriptionProvider to handle type TypeDescriptor.ComObjectType instead.  https://go.microsoft.com/fwlink/?linkid=14202")]' in the implementation.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.ComponentModel.Design.Serialization.RootDesignerSerializerAttribute' changed from '[ObsoleteAttribute("This attribute has been deprecated. Use DesignerSerializerAttribute instead.  For example, to specify a root designer for CodeDom, use DesignerSerializerAttribute(...,typeof(TypeCodeDomSerializer)).  http://go.microsoft.com/fwlink/?linkid=14202")]' in the contract to '[ObsoleteAttribute("This attribute has been deprecated. Use DesignerSerializerAttribute instead.  For example, to specify a root designer for CodeDom, use DesignerSerializerAttribute(...,typeof(TypeCodeDomSerializer)).  https://go.microsoft.com/fwlink/?linkid=14202")]' in the implementation.
+CannotSealType : Type 'System.Data.Constraint' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
+MembersMustExist : Member 'System.Data.Constraint..ctor()' does not exist in the implementation but it does exist in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Data.Constraint.ConstraintName' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Data.Constraint.Table' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Data.Constraint._DataSet' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Data.Constraint.ConstraintName.get()' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Data.Constraint.ConstraintName.set(System.String)' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Data.Constraint.Table.get()' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Data.Constraint.ToString()' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Data.Constraint._DataSet.get()' is non-virtual in the implementation but is virtual in the contract.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Data.DataSysDescriptionAttribute' changed from '[ObsoleteAttribute("DataSysDescriptionAttribute has been deprecated.  http://go.microsoft.com/fwlink/?linkid=14202", false)]' in the contract to '[ObsoleteAttribute("DataSysDescriptionAttribute has been deprecated.  https://go.microsoft.com/fwlink/?linkid=14202", false)]' in the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Data.Common.DbColumn' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Data.Common.DbDataReaderExtensions' in the contract but not the implementation.
@@ -19,6 +29,10 @@ CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribut
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Diagnostics.StackFrameExtensions' in the contract but not the implementation.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Constructor | AttributeTargets.Event | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Struct, Inherited=false, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Constructor | AttributeTargets.Event | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Struct, Inherited=false, AllowMultiple=false)]' in the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Diagnostics.Tracing.EventCounter' in the contract but not the implementation.
+CannotSealType : Type 'System.Linq.EnumerableExecutor' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
+MembersMustExist : Member 'System.Linq.EnumerableExecutor..ctor()' does not exist in the implementation but it does exist in the contract.
+CannotSealType : Type 'System.Linq.EnumerableQuery' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
+MembersMustExist : Member 'System.Linq.EnumerableQuery..ctor()' does not exist in the implementation but it does exist in the contract.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Net.GlobalProxySelection' changed from '[ObsoleteAttribute("This class has been deprecated. Please use WebRequest.DefaultWebProxy instead to access and set the global default proxy. Use 'null' instead of GetEmptyWebProxy. http://go.microsoft.com/fwlink/?linkid=14202")]' in the contract to '[ObsoleteAttribute("This class has been deprecated. Please use WebRequest.DefaultWebProxy instead to access and set the global default proxy. Use 'null' instead of GetEmptyWebProxy. https://go.microsoft.com/fwlink/?linkid=14202")]' in the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Net.Sockets.SocketReceiveFromResult' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Net.Sockets.SocketReceiveMessageFromResult' in the contract but not the implementation.
@@ -33,6 +47,24 @@ CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribut
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Threading.ThreadPoolBoundHandle' in the contract but not the implementation.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Xml.XmlValidatingReader' changed from '[ObsoleteAttribute("Use XmlReader created by XmlReader.Create() method using appropriate XmlReaderSettings instead. http://go.microsoft.com/fwlink/?linkid=14202")]' in the contract to '[ObsoleteAttribute("Use XmlReader created by XmlReader.Create() method using appropriate XmlReaderSettings instead. https://go.microsoft.com/fwlink/?linkid=14202")]' in the implementation.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Xml.Schema.XmlSchemaCollection' changed from '[ObsoleteAttribute("Use System.Xml.Schema.XmlSchemaSet for schema compilation and validation. http://go.microsoft.com/fwlink/?linkid=14202")]' in the contract to '[ObsoleteAttribute("Use System.Xml.Schema.XmlSchemaSet for schema compilation and validation. https://go.microsoft.com/fwlink/?linkid=14202")]' in the implementation.
+CannotSealType : Type 'System.Xml.Schema.XmlSchemaDatatype' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
+MembersMustExist : Member 'System.Xml.Schema.XmlSchemaDatatype..ctor()' does not exist in the implementation but it does exist in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.TokenizedType' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.TypeCode' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.ValueType' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.Variety' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.ChangeType(System.Object, System.Type)' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.ChangeType(System.Object, System.Type, System.Xml.IXmlNamespaceResolver)' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.IsDerivedFrom(System.Xml.Schema.XmlSchemaDatatype)' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.ParseValue(System.String, System.Xml.XmlNameTable, System.Xml.IXmlNamespaceResolver)' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.TokenizedType.get()' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.TypeCode.get()' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.ValueType.get()' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.Variety.get()' is non-virtual in the implementation but is virtual in the contract.
+CannotSealType : Type 'System.Xml.Schema.XmlSchemaGroupBase' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
+MembersMustExist : Member 'System.Xml.Schema.XmlSchemaGroupBase..ctor()' does not exist in the implementation but it does exist in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaGroupBase.Items' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaGroupBase.Items.get()' is non-virtual in the implementation but is virtual in the contract.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Xml.XPath.XDocumentExtensions' in the contract but not the implementation.
@@ -56,10 +88,24 @@ CannotMakeMemberNonVirtual : Member 'System.ComponentModel.BaseNumberConverter.C
 CannotMakeMemberNonVirtual : Member 'System.ComponentModel.BaseNumberConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, System.Object)' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.ComponentModel.BaseNumberConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, System.Object, System.Type)' is non-virtual in the implementation but is virtual in the contract.
 Compat issues with assembly System.Core:
+CannotSealType : Type 'System.Linq.EnumerableExecutor' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
+MembersMustExist : Member 'System.Linq.EnumerableExecutor..ctor()' does not exist in the implementation but it does exist in the contract.
+CannotSealType : Type 'System.Linq.EnumerableQuery' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
+MembersMustExist : Member 'System.Linq.EnumerableQuery..ctor()' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Security.Cryptography.ECCurve' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Security.Cryptography.ECParameters' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Security.Cryptography.ECPoint' in the contract but not the implementation.
 Compat issues with assembly System.Data:
+CannotSealType : Type 'System.Data.Constraint' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
+MembersMustExist : Member 'System.Data.Constraint..ctor()' does not exist in the implementation but it does exist in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Data.Constraint.ConstraintName' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Data.Constraint.Table' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Data.Constraint._DataSet' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Data.Constraint.ConstraintName.get()' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Data.Constraint.ConstraintName.set(System.String)' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Data.Constraint.Table.get()' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Data.Constraint.ToString()' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Data.Constraint._DataSet.get()' is non-virtual in the implementation but is virtual in the contract.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Data.DataSysDescriptionAttribute' changed from '[ObsoleteAttribute("DataSysDescriptionAttribute has been deprecated.  http://go.microsoft.com/fwlink/?linkid=14202", false)]' in the contract to '[ObsoleteAttribute("DataSysDescriptionAttribute has been deprecated.  https://go.microsoft.com/fwlink/?linkid=14202", false)]' in the implementation.
 Compat issues with assembly System.Data.Common:
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Data.Common.DbColumn' in the contract but not the implementation.
@@ -69,6 +115,11 @@ Compat issues with assembly System.Diagnostics.StackTrace:
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Diagnostics.StackFrameExtensions' in the contract but not the implementation.
 Compat issues with assembly System.Diagnostics.Tracing:
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Diagnostics.Tracing.EventCounter' in the contract but not the implementation.
+Compat issues with assembly System.Linq.Queryable:
+CannotSealType : Type 'System.Linq.EnumerableExecutor' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
+MembersMustExist : Member 'System.Linq.EnumerableExecutor..ctor()' does not exist in the implementation but it does exist in the contract.
+CannotSealType : Type 'System.Linq.EnumerableQuery' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
+MembersMustExist : Member 'System.Linq.EnumerableQuery..ctor()' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly System.Memory:
 MembersMustExist : Member 'System.Runtime.InteropServices.MemoryMarshal.TryGetMemoryManager<T, TManager>(System.ReadOnlyMemory<T>, TManager)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.InteropServices.MemoryMarshal.TryGetMemoryManager<T, TManager>(System.ReadOnlyMemory<T>, TManager, System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
@@ -91,6 +142,24 @@ CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribut
 Compat issues with assembly System.Xml:
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Xml.XmlValidatingReader' changed from '[ObsoleteAttribute("Use XmlReader created by XmlReader.Create() method using appropriate XmlReaderSettings instead. http://go.microsoft.com/fwlink/?linkid=14202")]' in the contract to '[ObsoleteAttribute("Use XmlReader created by XmlReader.Create() method using appropriate XmlReaderSettings instead. https://go.microsoft.com/fwlink/?linkid=14202")]' in the implementation.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Xml.Schema.XmlSchemaCollection' changed from '[ObsoleteAttribute("Use System.Xml.Schema.XmlSchemaSet for schema compilation and validation. http://go.microsoft.com/fwlink/?linkid=14202")]' in the contract to '[ObsoleteAttribute("Use System.Xml.Schema.XmlSchemaSet for schema compilation and validation. https://go.microsoft.com/fwlink/?linkid=14202")]' in the implementation.
+CannotSealType : Type 'System.Xml.Schema.XmlSchemaDatatype' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
+MembersMustExist : Member 'System.Xml.Schema.XmlSchemaDatatype..ctor()' does not exist in the implementation but it does exist in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.TokenizedType' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.TypeCode' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.ValueType' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.Variety' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.ChangeType(System.Object, System.Type)' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.ChangeType(System.Object, System.Type, System.Xml.IXmlNamespaceResolver)' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.IsDerivedFrom(System.Xml.Schema.XmlSchemaDatatype)' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.ParseValue(System.String, System.Xml.XmlNameTable, System.Xml.IXmlNamespaceResolver)' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.TokenizedType.get()' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.TypeCode.get()' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.ValueType.get()' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaDatatype.Variety.get()' is non-virtual in the implementation but is virtual in the contract.
+CannotSealType : Type 'System.Xml.Schema.XmlSchemaGroupBase' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
+MembersMustExist : Member 'System.Xml.Schema.XmlSchemaGroupBase..ctor()' does not exist in the implementation but it does exist in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaGroupBase.Items' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'System.Xml.Schema.XmlSchemaGroupBase.Items.get()' is non-virtual in the implementation but is virtual in the contract.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Xml.Xsl.XslTransform' in the contract but not the implementation.
@@ -102,4 +171,4 @@ CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xm
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 Compat issues with assembly System.Xml.XPath.XDocument:
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Xml.XPath.XDocumentExtensions' in the contract but not the implementation.
-Total Issues: 85
+Total Issues: 153
