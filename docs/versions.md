@@ -1,6 +1,6 @@
 # .NET Standard Versions
 
-*[Interactive Table](http://immo.landwerth.net/netstandard-versions/#)*
+*[Interactive Table](https://dotnet.microsoft.com/platform/dotnet-standard)*
 
 The table below lists all versions of .NET Standard:
 
