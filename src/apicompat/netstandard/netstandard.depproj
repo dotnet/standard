@@ -334,6 +334,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <!-- We can't set the right properties to import NetStandard.Library's .targets file, without resorting to ugly hacks.
+       Instead, we define this target which duplicates the functionality by adding NetStandard.Library's assets to <Reference> -->
   <Target Name="ResolveNetStandardLibraryAssets"
           Condition="'$(TargetFramework)' == 'netstandard2.0'"
           BeforeTargets="ResolveAssemblyReferences" >
@@ -343,6 +345,8 @@
       <Reference Include="@(NetStandardLibraryAssets)">
         <HintPath>%(NetStandardLibraryAssets.Identity)</HintPath>
         <Private>false</Private>
+        <NuGetPackageId>$(NetStandardLibraryPackage)</NuGetPackageId>
+        <NuGetPackageVersion>$(NetStandardLibraryPackageVersion)</NuGetPackageVersion>
       </Reference>
     </ItemGroup>
   </Target>
