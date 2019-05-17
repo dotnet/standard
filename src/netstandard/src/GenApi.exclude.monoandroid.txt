@@ -56,6 +56,8 @@ T:System.Runtime.InteropServices.MemoryMarshal
 T:System.Runtime.InteropServices.SequenceMarshal
 T:System.Security.Cryptography.CryptographicOperations
 T:System.Security.Cryptography.ECDiffieHellman
+T:System.Security.Cryptography.PbeEncryptionAlgorithm
+T:System.Security.Cryptography.PbeParameters
 T:System.Security.Cryptography.X509Certificates.CertificateRequest
 T:System.Security.Cryptography.X509Certificates.DSACertificateExtensions
 T:System.Security.Cryptography.X509Certificates.SubjectAlternativeNameBuilder
