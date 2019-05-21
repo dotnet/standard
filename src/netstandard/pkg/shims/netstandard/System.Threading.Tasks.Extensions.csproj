@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>System.Threading.Tasks.Extensions</AssemblyName>
     <AssemblyVersion>4.2.1.0</AssemblyVersion>
-    <StrongNameKeyId>Microsoft</StrongNameKeyId>
+    <StrongNameKeyId>Open</StrongNameKeyId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.Threading.Tasks.Extensions.Forwards.cs" />

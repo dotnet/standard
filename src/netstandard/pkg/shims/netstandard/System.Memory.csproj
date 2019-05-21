@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>System.Memory</AssemblyName>
     <AssemblyVersion>4.0.2.0</AssemblyVersion>
-    <StrongNameKeyId>Microsoft</StrongNameKeyId>
+    <StrongNameKeyId>Open</StrongNameKeyId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.Memory.Forwards.cs" />
