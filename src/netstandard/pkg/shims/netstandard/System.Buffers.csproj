@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>System.Buffers</AssemblyName>
     <AssemblyVersion>4.0.3.0</AssemblyVersion>
-    <StrongNameKeyId>Microsoft</StrongNameKeyId>
+    <StrongNameKeyId>Open</StrongNameKeyId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.Buffers.Forwards.cs" />
