@@ -23,17 +23,17 @@
       <Uri>https://github.com/dotnet/arcade</Uri>
       <Sha>e6712584bba6e2f0e35a3704793c459ff97c09af</Sha>
     </Dependency>
-    <Dependency Name="System.Reflection.Emit" Version="4.6.0-preview6.19270.1">
+    <Dependency Name="System.Reflection.Emit" Version="4.6.0-preview6.19271.1">
       <Uri>https://github.com/dotnet/corefx</Uri>
-      <Sha>e58b35cd0f8fe6caa194ca7e48388d8d59854fe0</Sha>
+      <Sha>51a1f16ee2aaded4ce1fca6847471b58f7ffa160</Sha>
     </Dependency>
-    <Dependency Name="System.Reflection.Emit.ILGeneration" Version="4.6.0-preview6.19270.1">
+    <Dependency Name="System.Reflection.Emit.ILGeneration" Version="4.6.0-preview6.19271.1">
       <Uri>https://github.com/dotnet/corefx</Uri>
-      <Sha>e58b35cd0f8fe6caa194ca7e48388d8d59854fe0</Sha>
+      <Sha>51a1f16ee2aaded4ce1fca6847471b58f7ffa160</Sha>
     </Dependency>
-    <Dependency Name="System.Reflection.Emit.Lightweight" Version="4.6.0-preview6.19270.1">
+    <Dependency Name="System.Reflection.Emit.Lightweight" Version="4.6.0-preview6.19271.1">
       <Uri>https://github.com/dotnet/corefx</Uri>
-      <Sha>e58b35cd0f8fe6caa194ca7e48388d8d59854fe0</Sha>
+      <Sha>51a1f16ee2aaded4ce1fca6847471b58f7ffa160</Sha>
     </Dependency>
     <PinnedDependency Name="NETStandard.Library" Version="2.0.3">
       <Uri>https://github.com/dotnet/standard</Uri>
