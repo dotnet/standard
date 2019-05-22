@@ -32,6 +32,11 @@ TypesMustExist : Type 'System.ComponentModel.DataAnnotations.ValidationContext' 
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.ValidationException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.ValidationResult' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.DataAnnotations.Validator' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.Core:
+CannotSealType : Type 'System.Linq.EnumerableExecutor' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
+MembersMustExist : Member 'System.Linq.EnumerableExecutor..ctor()' does not exist in the implementation but it does exist in the contract.
+CannotSealType : Type 'System.Linq.EnumerableQuery' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
+MembersMustExist : Member 'System.Linq.EnumerableQuery..ctor()' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly System.ServiceModel:
 TypesMustExist : Type 'System.ServiceModel.ActionNotSupportedException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ServiceModel.BasicHttpBinding' does not exist in the implementation but it does exist in the contract.
@@ -169,4 +174,4 @@ TypesMustExist : Type 'System.ServiceModel.XmlSerializerFormatAttribute' does no
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Xml.Serialization.XmlMapping' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Xml.Serialization.XmlMappingAccess' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Xml.Serialization.XmlTypeMapping' in the contract but not the implementation.
-Total Issues: 165
+Total Issues: 169

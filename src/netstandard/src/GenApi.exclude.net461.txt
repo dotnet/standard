@@ -87,6 +87,8 @@ T:System.Security.Cryptography.ECDiffieHellman
 T:System.Security.Cryptography.ECParameters
 T:System.Security.Cryptography.ECPoint
 T:System.Security.Cryptography.IncrementalHash
+T:System.Security.Cryptography.PbeEncryptionAlgorithm
+T:System.Security.Cryptography.PbeParameters
 T:System.Security.Cryptography.TripleDESCng
 T:System.Security.Cryptography.X509Certificates.CertificateRequest
 T:System.Security.Cryptography.X509Certificates.DSACertificateExtensions

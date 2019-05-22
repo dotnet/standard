@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>System.Numerics.Vectors</AssemblyName>
+    <AssemblyVersion>4.1.5.0</AssemblyVersion>
+    <StrongNameKeyId>Microsoft</StrongNameKeyId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="System.Numerics.Vectors.Forwards.cs" />
+    <ProjectReference Include="..\..\..\ref\netstandard.csproj" />
+  </ItemGroup>
+</Project>

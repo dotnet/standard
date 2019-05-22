@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>System.Buffers</AssemblyName>
+    <AssemblyVersion>4.0.3.0</AssemblyVersion>
+    <StrongNameKeyId>Open</StrongNameKeyId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="System.Buffers.Forwards.cs" />
+    <ProjectReference Include="..\..\..\ref\netstandard.csproj" />
+  </ItemGroup>
+</Project>
