@@ -18,8 +18,6 @@
   <!-- source-built packages -->
   <ItemGroup>
     <!-- arcade -->
-    <PackageReference Include="Microsoft.DotNet.ApiCompat" Version="$(MicrosoftDotNetApiCompatPackageVersion)" />
-    <PackageReference Include="Microsoft.DotNet.GenAPI" Version="$(MicrosoftDotNetGenApiPackageVersion)" />
     <PackageReference Include="Microsoft.DotNet.Build.Tasks.Packaging" Version="$(MicrosoftDotNetBuildTasksPackagingPackageVersion)" />
     <PackageReference Include="Microsoft.DotNet.CodeAnalysis" Version="$(MicrosoftDotNetCodeAnalysisPackageVersion)" />
     <PackageReference Include="Microsoft.DotNet.GenFacades" Version="$(MicrosoftDotNetGenFacadesPackageVersion)" />
@@ -27,6 +25,10 @@
 
   <!-- excluded from source build -->
   <ItemGroup Condition="'$(DotNetBuildFromSource)' != 'true'">
+    <!-- arcade -->
+    <PackageReference Include="Microsoft.DotNet.ApiCompat" Version="$(MicrosoftDotNetApiCompatPackageVersion)" />
+    <PackageReference Include="Microsoft.DotNet.GenAPI" Version="$(MicrosoftDotNetGenApiPackageVersion)" />
+
     <!-- XML docs -->
     <PackageReference Include="$(XmlDocPackage)" Version="$(XmlDocPackageVersion)" />
 
