@@ -722,7 +722,6 @@ CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.GetDeclaredNeste
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.GetDeclaredProperty(System.String)' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.ImplementedInterfaces.get()' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.IsAssignableFrom(System.Reflection.TypeInfo)' is non-virtual in the implementation but is virtual in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.DynamicMethod' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.EnumBuilder.IsByRefLike.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.EnumBuilder.IsSZArray.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.EnumBuilder.IsTypeDefinition.get()' does not exist in the implementation but it does exist in the contract.
@@ -972,7 +971,21 @@ MembersMustExist : Member 'System.Security.Cryptography.DSA.VerifySignature(Syst
 MembersMustExist : Member 'System.Security.Cryptography.DSACryptoServiceProvider.HashData(System.Byte[], System.Int32, System.Int32, System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.DSACryptoServiceProvider.HashData(System.IO.Stream, System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Security.Cryptography.ECCurve' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Security.Cryptography.ECDiffieHellman' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellman.Create(System.Security.Cryptography.ECCurve)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellman.Create(System.Security.Cryptography.ECParameters)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellman.DeriveKeyFromHash(System.Security.Cryptography.ECDiffieHellmanPublicKey, System.Security.Cryptography.HashAlgorithmName)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellman.DeriveKeyFromHash(System.Security.Cryptography.ECDiffieHellmanPublicKey, System.Security.Cryptography.HashAlgorithmName, System.Byte[], System.Byte[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellman.DeriveKeyFromHmac(System.Security.Cryptography.ECDiffieHellmanPublicKey, System.Security.Cryptography.HashAlgorithmName, System.Byte[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellman.DeriveKeyFromHmac(System.Security.Cryptography.ECDiffieHellmanPublicKey, System.Security.Cryptography.HashAlgorithmName, System.Byte[], System.Byte[], System.Byte[])' does not exist in the implementation but it does exist in the contract.
+CannotMakeMemberAbstract : Member 'System.Security.Cryptography.ECDiffieHellman.DeriveKeyMaterial(System.Security.Cryptography.ECDiffieHellmanPublicKey)' is abstract in the implementation but is not abstract in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellman.DeriveKeyTls(System.Security.Cryptography.ECDiffieHellmanPublicKey, System.Byte[], System.Byte[])' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellman.ExportECPrivateKey()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellman.ExportExplicitParameters(System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellman.ExportParameters(System.Boolean)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellman.GenerateKey(System.Security.Cryptography.ECCurve)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellman.ImportECPrivateKey(System.ReadOnlySpan<System.Byte>, System.Int32)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellman.ImportParameters(System.Security.Cryptography.ECParameters)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellman.TryExportECPrivateKey(System.Span<System.Byte>, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellmanPublicKey..ctor()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellmanPublicKey.ExportExplicitParameters()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Security.Cryptography.ECDiffieHellmanPublicKey.ExportParameters()' does not exist in the implementation but it does exist in the contract.
@@ -1177,4 +1190,4 @@ CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Xml.Sche
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the implementation.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the implementation.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 1178
+Total Issues: 1191
