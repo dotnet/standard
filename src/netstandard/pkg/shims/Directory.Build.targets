@@ -28,9 +28,8 @@
 
   <PropertyGroup>
     <OutDir>$(ArtifactsBinDir)shims/$(ShimRelOutputPath)</OutDir>
+    <TargetPath>$(OutDir)$(TargetFileName)</TargetPath>
     <GenerateProjectSpecificOutputFolder>false</GenerateProjectSpecificOutputFolder>
     <NoWarn>$(NoWarn);0618</NoWarn>
-    <!-- Leave TargetPath empty so it can be set by Microsoft.Common.CurrentVersion.targets -->
-    <TargetPath></TargetPath>
   </PropertyGroup>
 </Project>

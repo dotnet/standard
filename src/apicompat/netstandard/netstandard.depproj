@@ -7,7 +7,7 @@
     <RestoreOutputPath>$(IntermediateOutputPath)$(TargetFramework)</RestoreOutputPath>
     <ProjectAssetsFile>$(RestoreOutputPath)/project.assets.json</ProjectAssetsFile>
   </PropertyGroup>
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0'">
     <PackageReference Include="NETStandard.Library">
       <Version>1.6.1</Version>
     </PackageReference>
@@ -299,4 +299,56 @@
       <Version>4.3.0</Version>
     </PackageReference>
   </ItemGroup>
+  <!-- Dependencies used for creating shims for types that were exposed in OOB packages, but are now rolled in to netstandard2.1 -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="$(NetStandardLibraryPackage)">
+      <Version>$(NetStandardLibraryPackageVersion)</Version>
+    </PackageReference>
+    <PackageReference Include="System.Buffers">
+      <Version>4.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Memory">
+      <Version>4.5.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.Numerics.Vectors">
+      <Version>4.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.DispatchProxy">
+      <Version>4.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Emit">
+      <Version>$(SystemReflectionEmitPackageVersion)</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Emit.ILGeneration">
+      <Version>$(SystemReflectionEmitILGenerationPackageVersion)</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Emit.Lightweight">
+      <Version>$(SystemReflectionEmitLightweightPackageVersion)</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
+      <Version>4.5.2</Version>
+      <ExcludeAssets>all</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Threading.Tasks.Extensions">
+      <Version>4.5.2</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <!-- We can't set the right properties to import NetStandard.Library's .targets file, without resorting to ugly hacks.
+       Instead, we define this target which duplicates the functionality by adding NetStandard.Library's assets to <Reference> -->
+  <Target Name="ResolveNetStandardLibraryAssets"
+          Condition="'$(TargetFramework)' == 'netstandard2.0'"
+          BeforeTargets="ResolveAssemblyReferences" >
+
+    <ItemGroup>
+      <NetStandardLibraryAssets Include="$(PackagesDir)$(NetStandardLibraryPackage)/$(NetStandardLibraryPackageVersion)/build/netstandard2.0/ref/*.dll" />
+      <Reference Include="@(NetStandardLibraryAssets)">
+        <HintPath>%(NetStandardLibraryAssets.Identity)</HintPath>
+        <Private>false</Private>
+        <NuGetPackageId>$(NetStandardLibraryPackage)</NuGetPackageId>
+        <NuGetPackageVersion>$(NetStandardLibraryPackageVersion)</NuGetPackageVersion>
+      </Reference>
+    </ItemGroup>
+  </Target>
+
 </Project>

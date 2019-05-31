@@ -59,7 +59,7 @@
 
   <!-- Enable the analyzers for this repo -->
   <PropertyGroup>
-    <IsSourceProject Condition="$([System.Text.RegularExpressions.Regex]::IsMatch($(MSBuildProjectDirectory), 'src%24'))">true</IsSourceProject>
+    <IsSourceProject>$([System.Text.RegularExpressions.Regex]::IsMatch($(MSBuildProjectDirectory), 'src%24'))</IsSourceProject>
     <EnableAnalyzers Condition="'$(EnableAnalyzers)'=='' and '$(IsSourceProject)' == 'true'">true</EnableAnalyzers>
   </PropertyGroup>
 
@@ -70,7 +70,9 @@
     <!-- By default make all libraries to be AnyCPU but individual projects can override it if they need to -->
     <Platform>AnyCPU</Platform>
     <OutputType>Library</OutputType>
-    <RunApiCompat>true</RunApiCompat>
+    <RunApiCompat>$(IsSourceProject)</RunApiCompat>
+    <BaselineAllAPICompatError Condition="'$(BaselineAllAPICompatError)' == ''">true</BaselineAllAPICompatError>
+    <BaselineAllAPICompatError Condition="'$(ContinuousIntegrationBuild)' == 'true'">false</BaselineAllAPICompatError>
     <LangVersion>latest</LangVersion> <!-- default to allowing all language features -->
   </PropertyGroup>
   
@@ -109,6 +111,9 @@
     <NoExplicitReferenceToStdLib>true</NoExplicitReferenceToStdLib>
     <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+
+    <!-- Don't reference implicit framework packages, all projects in this repo must be explicit -->
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
 
     <!-- Suppress preview message as we are usually using preview SDK versions. -->
     <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>

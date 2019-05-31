@@ -30,10 +30,10 @@ jobs:
     - job: Windows_NT
       pool: 
         ${{ if or(eq(variables['System.TeamProject'], 'public'), in(variables['Build.Reason'], 'PullRequest')) }}:
-          name: NetCorePublic-Int-Pool
+          name: NetCorePublic-Pool
           queue: buildpool.windows.10.amd64.vs2017.open
         ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
-          name: NetCoreInternal-Int-Pool
+          name: NetCoreInternal-Pool
           queue: buildpool.windows.10.amd64.vs2017
       variables:
       # Enable signing for internal, non-PR builds
@@ -68,9 +68,12 @@ jobs:
       steps:
       - checkout: self
         clean: true
-      - script: eng\common\cibuild.cmd
+      - script: build.cmd
           -configuration $(_BuildConfig) 
           -prepareMachine
+          -sign
+          -publish
+          -ci
           -warnaserror:0
           $(_BuildArgs)
         displayName: Windows Build / Publish
@@ -86,9 +89,10 @@ jobs:
         steps:
         - checkout: self
           clean: true
-        - script: eng/common/cibuild.sh
+        - script: ./build.sh
             --configuration $(_BuildConfig)
             --prepareMachine
+            --ci
           displayName: Linux Build
 
     # OSX leg (only runs in CI)
@@ -102,7 +106,8 @@ jobs:
         steps:
         - checkout: self
           clean: true
-        - script: eng/common/cibuild.sh
+        - script: ./build.sh
             --configuration $(_BuildConfig)
             --prepareMachine
+            --ci
           displayName: OSX Build

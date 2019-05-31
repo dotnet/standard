@@ -11,10 +11,10 @@
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DisableStandardFrameworkResolution>true</DisableStandardFrameworkResolution>
     <ContractProject>..\ref\netstandard.csproj</ContractProject>
-    <ResolveMatchingContract>true</ResolveMatchingContract>
+    <IsPartialFacadeAssembly>true</IsPartialFacadeAssembly>
+    <GenFacadesIgnoreMissingTypes>true</GenFacadesIgnoreMissingTypes>
     <RunApiCompatForSrc>true</RunApiCompatForSrc>
     <RunMatchingRefApiCompat>false</RunMatchingRefApiCompat>
-    <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
     <ApiCompatBaseline>$(MSBuildProjectDirectory)\ApiCompatBaseline.$(TargetFramework).txt</ApiCompatBaseline>
     <NoWarn>$(NoWarn);618</NoWarn>
   </PropertyGroup>
@@ -25,6 +25,13 @@
     <ComputeNETCoreBuildOutputFiles>false</ComputeNETCoreBuildOutputFiles>
     <GenerateRuntimeConfigurationFiles>false</GenerateRuntimeConfigurationFiles>
   </PropertyGroup>
+  
+  <ItemGroup>
+      <!-- Omit System.Void since C# doesn't permit the use of the `System.Void`
+         typename and instead requires callers to use the `void` keyword. -->
+    <GenFacadesOmitType Include="System.Void" />
+    <Compile Include="System.Void.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="$(ContractProject)">
@@ -32,6 +39,9 @@
       <OutputItemType>ResolvedMatchingContract</OutputItemType>
     </ProjectReference>
   </ItemGroup>
+  
+  <!-- we don't require a target since we use ProjectReference -->
+  <Target Name="ResolveMatchingContract" />
 
   <ItemGroup>
     <!-- Mark netstandard as a framework assembly -->

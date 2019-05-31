@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ShimRelOutputPath>netstandard</ShimRelOutputPath>
+    <ShimRelOutputPath>netstandard/</ShimRelOutputPath>
     <TargetFramework>netstandard2.1</TargetFramework>
     <!-- Treat this as a reference assembly because it needs to packaged in the ref folder -->
     <IsReferenceAssembly>true</IsReferenceAssembly>

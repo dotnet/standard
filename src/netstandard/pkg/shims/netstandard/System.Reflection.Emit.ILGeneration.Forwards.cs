@@ -1,0 +1,6 @@
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Reflection.Emit.CustomAttributeBuilder))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Reflection.Emit.ILGenerator))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Reflection.Emit.Label))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Reflection.Emit.LocalBuilder))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Reflection.Emit.ParameterBuilder))]
+[assembly:System.Runtime.CompilerServices.TypeForwardedTo(typeof(System.Reflection.Emit.SignatureHelper))]
