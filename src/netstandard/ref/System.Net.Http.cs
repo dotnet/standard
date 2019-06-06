@@ -192,6 +192,7 @@ namespace System.Net.Http
         public string ReasonPhrase { get { throw null; } set { } }
         public System.Net.Http.HttpRequestMessage RequestMessage { get { throw null; } set { } }
         public System.Net.HttpStatusCode StatusCode { get { throw null; } set { } }
+        public System.Net.Http.Headers.HttpResponseHeaders TrailingHeaders { get { throw null; } }
         public System.Version Version { get { throw null; } set { } }
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
