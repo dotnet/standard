@@ -612,6 +612,7 @@ MembersMustExist : Member 'System.Net.Http.HttpClientHandler.ServerCertificateCu
 MembersMustExist : Member 'System.Net.Http.HttpClientHandler.SslProtocols.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Http.HttpClientHandler.SslProtocols.set(System.Security.Authentication.SslProtocols)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Net.Http.HttpMethod.Patch.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Net.Http.HttpResponseMessage.TrailingHeaders.get()' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Net.Http.ReadOnlyMemoryContent' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String System.Net.Mime.MediaTypeNames.Application.Json' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.String System.Net.Mime.MediaTypeNames.Application.Xml' does not exist in the implementation but it does exist in the contract.
@@ -1183,4 +1184,4 @@ CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Xml.Sche
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the implementation.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the implementation.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 1184
+Total Issues: 1185
