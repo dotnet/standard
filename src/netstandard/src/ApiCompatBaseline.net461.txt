@@ -354,6 +354,8 @@ MembersMustExist : Member 'System.Data.Common.DbProviderFactories.RegisterFactor
 MembersMustExist : Member 'System.Data.Common.DbProviderFactories.RegisterFactory(System.String, System.Type)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Data.Common.DbProviderFactories.TryGetFactory(System.String, System.Data.Common.DbProviderFactory)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Data.Common.DbProviderFactories.UnregisterFactory(System.String)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbProviderFactory.CanCreateCommandBuilder.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbProviderFactory.CanCreateDataAdapter.get()' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Data.Common.IDbColumnSchemaGenerator' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.ProcessStartInfo.ArgumentList.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.ProcessStartInfo.StandardInputEncoding.get()' does not exist in the implementation but it does exist in the contract.
@@ -1185,4 +1187,4 @@ CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Xml.Sche
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the implementation.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the implementation.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 1186
+Total Issues: 1188
