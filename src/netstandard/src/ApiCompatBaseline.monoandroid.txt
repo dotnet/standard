@@ -295,9 +295,30 @@ CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Componen
 CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.ComponentModel.Design.Serialization.MemberRelationship' in the contract but not the implementation.
 TypeCannotChangeClassification : Type 'System.ComponentModel.Design.Serialization.MemberRelationship' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.ComponentModel.Design.Serialization.RootDesignerSerializerAttribute' changed from '[ObsoleteAttribute("This attribute has been deprecated. Use DesignerSerializerAttribute instead.  For example, to specify a root designer for CodeDom, use DesignerSerializerAttribute(...,typeof(TypeCodeDomSerializer)).  https://go.microsoft.com/fwlink/?linkid=14202")]' in the contract to '[ObsoleteAttribute("This attribute has been deprecated. Use DesignerSerializerAttribute instead.  For example, to specify a root designer for CodeDom, use DesignerSerializerAttribute(...,typeof(TypeCodeDomSerializer)).  http://go.microsoft.com/fwlink/?linkid=14202")]' in the implementation.
+TypesMustExist : Type 'System.Data.DataReaderExtensions' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.ToolboxItemAttribute' exists on 'System.Data.DataSet' in the contract but not the implementation.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Data.DataSysDescriptionAttribute' changed from '[ObsoleteAttribute("DataSysDescriptionAttribute has been deprecated.  https://go.microsoft.com/fwlink/?linkid=14202", false)]' in the contract to '[ObsoleteAttribute("DataSysDescriptionAttribute has been deprecated.  http://go.microsoft.com/fwlink/?linkid=14202", false)]' in the implementation.
+CannotRemoveBaseTypeOrInterface : Type 'System.Data.DataTableReader' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Data.Common.DbCommand' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Data.Common.DbCommand.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbCommand.PrepareAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Data.Common.DbConnection' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.BeginDbTransactionAsync(System.Data.IsolationLevel, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.BeginTransactionAsync(System.Data.IsolationLevel, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.BeginTransactionAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.ChangeDatabaseAsync(System.String, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.CloseAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Data.Common.DbDataReader' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Data.Common.DbDataReader.CloseAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbDataReader.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Data.Common.DbProviderFactories' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbProviderFactory.CanCreateCommandBuilder.get()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbProviderFactory.CanCreateDataAdapter.get()' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Data.Common.DbTransaction' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Data.Common.DbTransaction.CommitAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbTransaction.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbTransaction.RollbackAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.ProcessStartInfo.ArgumentList.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.ProcessStartInfo.StandardInputEncoding.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.ProcessStartInfo.StandardInputEncoding.set(System.Text.Encoding)' does not exist in the implementation but it does exist in the contract.
@@ -618,14 +639,6 @@ CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.IsAssignableFrom
 MembersMustExist : Member 'System.Reflection.Emit.EnumBuilder.IsByRefLike.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.EnumBuilder.IsTypeDefinition.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.EnumBuilder.IsVariableBoundArray.get()' does not exist in the implementation but it does exist in the contract.
-CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Reflection.Emit.EventToken' in the contract but not the implementation.
-CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.Emit.EventToken' does not implement interface 'System.IEquatable<System.Reflection.Emit.EventToken>' in the implementation but it does in the contract.
-TypeCannotChangeClassification : Type 'System.Reflection.Emit.EventToken' is marked as readonly in the contract so it must also be marked readonly in the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Reflection.Emit.ExceptionHandler' in the contract but not the implementation.
-TypeCannotChangeClassification : Type 'System.Reflection.Emit.ExceptionHandler' is marked as readonly in the contract so it must also be marked readonly in the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Reflection.Emit.FieldToken' in the contract but not the implementation.
-CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.Emit.FieldToken' does not implement interface 'System.IEquatable<System.Reflection.Emit.FieldToken>' in the implementation but it does in the contract.
-TypeCannotChangeClassification : Type 'System.Reflection.Emit.FieldToken' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Reflection.Emit.GenericTypeParameterBuilder.IsByRefLike.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.GenericTypeParameterBuilder.IsTypeDefinition.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.GenericTypeParameterBuilder.IsVariableBoundArray.get()' does not exist in the implementation but it does exist in the contract.
@@ -633,30 +646,13 @@ CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAtt
 CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.Emit.Label' does not implement interface 'System.IEquatable<System.Reflection.Emit.Label>' in the implementation but it does in the contract.
 TypeCannotChangeClassification : Type 'System.Reflection.Emit.Label' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Reflection.Emit.MethodBuilder.IsConstructedGenericMethod.get()' does not exist in the implementation but it does exist in the contract.
-CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Reflection.Emit.MethodToken' in the contract but not the implementation.
-CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.Emit.MethodToken' does not implement interface 'System.IEquatable<System.Reflection.Emit.MethodToken>' in the implementation but it does in the contract.
-TypeCannotChangeClassification : Type 'System.Reflection.Emit.MethodToken' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Reflection.Emit.OpCode' in the contract but not the implementation.
 CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.Emit.OpCode' does not implement interface 'System.IEquatable<System.Reflection.Emit.OpCode>' in the implementation but it does in the contract.
 TypeCannotChangeClassification : Type 'System.Reflection.Emit.OpCode' is marked as readonly in the contract so it must also be marked readonly in the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Reflection.Emit.ParameterToken' in the contract but not the implementation.
-CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.Emit.ParameterToken' does not implement interface 'System.IEquatable<System.Reflection.Emit.ParameterToken>' in the implementation but it does in the contract.
-TypeCannotChangeClassification : Type 'System.Reflection.Emit.ParameterToken' is marked as readonly in the contract so it must also be marked readonly in the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Reflection.Emit.PropertyToken' in the contract but not the implementation.
-CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.Emit.PropertyToken' does not implement interface 'System.IEquatable<System.Reflection.Emit.PropertyToken>' in the implementation but it does in the contract.
-TypeCannotChangeClassification : Type 'System.Reflection.Emit.PropertyToken' is marked as readonly in the contract so it must also be marked readonly in the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Reflection.Emit.SignatureToken' in the contract but not the implementation.
-CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.Emit.SignatureToken' does not implement interface 'System.IEquatable<System.Reflection.Emit.SignatureToken>' in the implementation but it does in the contract.
-TypeCannotChangeClassification : Type 'System.Reflection.Emit.SignatureToken' is marked as readonly in the contract so it must also be marked readonly in the implementation.
-CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Reflection.Emit.StringToken' in the contract but not the implementation.
-CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.Emit.StringToken' does not implement interface 'System.IEquatable<System.Reflection.Emit.StringToken>' in the implementation but it does in the contract.
-TypeCannotChangeClassification : Type 'System.Reflection.Emit.StringToken' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 MembersMustExist : Member 'System.Reflection.Emit.TypeBuilder.IsByRefLike.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.TypeBuilder.IsTypeDefinition.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.TypeBuilder.IsVariableBoundArray.get()' does not exist in the implementation but it does exist in the contract.
-CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Reflection.Emit.TypeToken' in the contract but not the implementation.
-CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.Emit.TypeToken' does not implement interface 'System.IEquatable<System.Reflection.Emit.TypeToken>' in the implementation but it does in the contract.
-TypeCannotChangeClassification : Type 'System.Reflection.Emit.TypeToken' is marked as readonly in the contract so it must also be marked readonly in the implementation.
+TypesMustExist : Type 'System.Runtime.AmbiguousImplementationException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncIteratorMethodBuilder' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncIteratorStateMachineAttribute' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncValueTaskMethodBuilder' does not exist in the implementation but it does exist in the contract.
@@ -677,6 +673,7 @@ TypesMustExist : Type 'System.Runtime.CompilerServices.ConfiguredValueTaskAwaita
 TypesMustExist : Type 'System.Runtime.CompilerServices.EnumeratorCancellationAttribute' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.CompilerServices.IsByRefLikeAttribute' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.CompilerServices.IsReadOnlyAttribute' in the contract but not the implementation.
+MembersMustExist : Member 'System.String System.Runtime.CompilerServices.RuntimeFeature.DefaultImplementationsOfInterfaces' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeCompiled.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeSupported.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Runtime.CompilerServices.RuntimeHelpers.GetSubArray<T>(T[], System.Range)' does not exist in the implementation but it does exist in the contract.
@@ -1022,4 +1019,4 @@ CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xm
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlChoiceIdentifierAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xml.Serialization.XmlSchemaImporter' does not inherit from base type 'System.Xml.Serialization.SchemaImporter' in the implementation but it does in the contract.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlSerializerAssemblyAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct)]' in the implementation.
-Total Issues: 1023
+Total Issues: 1001
