@@ -346,7 +346,21 @@ CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAtt
 TypeCannotChangeClassification : Type 'System.ComponentModel.Design.Serialization.MemberRelationship' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.ComponentModel.Design.Serialization.RootDesignerSerializerAttribute' changed from '[ObsoleteAttribute("This attribute has been deprecated. Use DesignerSerializerAttribute instead.  For example, to specify a root designer for CodeDom, use DesignerSerializerAttribute(...,typeof(TypeCodeDomSerializer)).  https://go.microsoft.com/fwlink/?linkid=14202")]' in the contract to '[ObsoleteAttribute("This attribute has been deprecated. Use DesignerSerializerAttribute instead.  For example, to specify a root designer for CodeDom, use DesignerSerializerAttribute(...,typeof(TypeCodeDomSerializer)).  http://go.microsoft.com/fwlink/?linkid=14202")]' in the implementation.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Data.DataSysDescriptionAttribute' changed from '[ObsoleteAttribute("DataSysDescriptionAttribute has been deprecated.  https://go.microsoft.com/fwlink/?linkid=14202", false)]' in the contract to '[ObsoleteAttribute("DataSysDescriptionAttribute has been deprecated.  http://go.microsoft.com/fwlink/?linkid=14202", false)]' in the implementation.
+CannotRemoveBaseTypeOrInterface : Type 'System.Data.DataTableReader' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 TypesMustExist : Type 'System.Data.Common.DbColumn' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Data.Common.DbCommand' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Data.Common.DbCommand.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbCommand.PrepareAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Data.Common.DbConnection' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.BeginDbTransactionAsync(System.Data.IsolationLevel, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.BeginTransactionAsync(System.Data.IsolationLevel, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.BeginTransactionAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.ChangeDatabaseAsync(System.String, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.CloseAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Data.Common.DbDataReader' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Data.Common.DbDataReader.CloseAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbDataReader.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Data.Common.DbDataReaderExtensions' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Data.Common.DbProviderFactories.GetProviderInvariantNames()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Data.Common.DbProviderFactories.RegisterFactory(System.String, System.Data.Common.DbProviderFactory)' does not exist in the implementation but it does exist in the contract.
@@ -356,6 +370,10 @@ MembersMustExist : Member 'System.Data.Common.DbProviderFactories.TryGetFactory(
 MembersMustExist : Member 'System.Data.Common.DbProviderFactories.UnregisterFactory(System.String)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Data.Common.DbProviderFactory.CanCreateCommandBuilder.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Data.Common.DbProviderFactory.CanCreateDataAdapter.get()' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Data.Common.DbTransaction' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Data.Common.DbTransaction.CommitAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbTransaction.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbTransaction.RollbackAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Data.Common.IDbColumnSchemaGenerator' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.ProcessStartInfo.ArgumentList.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.ProcessStartInfo.StandardInputEncoding.get()' does not exist in the implementation but it does exist in the contract.
