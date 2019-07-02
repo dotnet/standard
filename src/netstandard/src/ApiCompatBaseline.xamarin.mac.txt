@@ -307,10 +307,10 @@ MembersMustExist : Member 'System.Data.Common.DbConnection.BeginDbTransactionAsy
 MembersMustExist : Member 'System.Data.Common.DbConnection.BeginTransactionAsync(System.Data.IsolationLevel, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Data.Common.DbConnection.BeginTransactionAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Data.Common.DbConnection.ChangeDatabaseAsync(System.String, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Data.Common.DbConnection.CloseAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.CloseAsync()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Data.Common.DbConnection.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Data.Common.DbDataReader' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
-MembersMustExist : Member 'System.Data.Common.DbDataReader.CloseAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbDataReader.CloseAsync()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Data.Common.DbDataReader.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Data.Common.DbProviderFactories' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Data.Common.DbProviderFactory.CanCreateCommandBuilder.get()' does not exist in the implementation but it does exist in the contract.
@@ -1023,4 +1023,4 @@ CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xm
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlChoiceIdentifierAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xml.Serialization.XmlSchemaImporter' does not inherit from base type 'System.Xml.Serialization.SchemaImporter' in the implementation but it does in the contract.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlSerializerAssemblyAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct)]' in the implementation.
-Total Issues: 1005
+Total Issues: 1024
