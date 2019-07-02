@@ -38,7 +38,6 @@ namespace System.Reflection.Emit
 //      public void Save(string assemblyFileName, System.Reflection.PortableExecutableKinds portableExecutableKind, System.Reflection.ImageFileMachine imageFileMachine) { }
         public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
-        public void SetEntryPoint(System.Reflection.MethodInfo entryMethod) { }
 //      Excluded because fileKind is only meaningful to assemblies that are written to disk, which we only support in .NET Framework.
 //      public void SetEntryPoint(System.Reflection.MethodInfo entryMethod, System.Reflection.Emit.PEFileKinds fileKind) { }
     }
@@ -66,7 +65,6 @@ namespace System.Reflection.Emit
         public override System.Type ReflectedType { get { throw null; } }
 //      [System.ObsoleteAttribute("This property has been deprecated. https://go.microsoft.com/fwlink/?linkid=14202")]
 //      public System.Type ReturnType { get { throw null; } }
-        public string Signature { get { throw null; } }
 //CAS   public void AddDeclarativeSecurity(System.Security.Permissions.SecurityAction action, System.Security.PermissionSet pset) { }
         public System.Reflection.Emit.ParameterBuilder DefineParameter(int iSequence, System.Reflection.ParameterAttributes attributes, string strParamName) { throw null; }
         public override object[] GetCustomAttributes(bool inherit) { throw null; }
@@ -74,16 +72,13 @@ namespace System.Reflection.Emit
         public System.Reflection.Emit.ILGenerator GetILGenerator() { throw null; }
         public System.Reflection.Emit.ILGenerator GetILGenerator(int streamSize) { throw null; }
         public override System.Reflection.MethodImplAttributes GetMethodImplementationFlags() { throw null; }
-        public System.Reflection.Module GetModule() { throw null; }
         public override System.Reflection.ParameterInfo[] GetParameters() { throw null; }
-        public System.Reflection.Emit.MethodToken GetToken() { throw null; }
         public override object Invoke(object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture) { throw null; }
         public override object Invoke(System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture) { throw null; }
         public override bool IsDefined(System.Type attributeType, bool inherit) { throw null; }
         public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
         public void SetImplementationFlags(System.Reflection.MethodImplAttributes attributes) { }
-        public void SetMethodBody(byte[] il, int maxStack, byte[] localSignature, System.Collections.Generic.IEnumerable<System.Reflection.Emit.ExceptionHandler> exceptionHandlers, System.Collections.Generic.IEnumerable<int> tokenFixups) { }
 //      Excluded because we don't support generating with debug information.
 //      public void SetSymCustomAttribute(string name, byte[] data) { }
         public override string ToString() { throw null; }
@@ -152,7 +147,7 @@ namespace System.Reflection.Emit
         public override bool IsDefined(System.Type attributeType, bool inherit) { throw null; }
         public override string ToString() { throw null; }
     }
-    public sealed partial class EnumBuilder : System.Reflection.TypeInfo
+    public sealed partial class EnumBuilder : System.Type
     {
         internal EnumBuilder() { }
         public override System.Reflection.Assembly Assembly { get { throw null; } }
@@ -171,10 +166,8 @@ namespace System.Reflection.Emit
         public override string Namespace { get { throw null; } }
         public override System.Type ReflectedType { get { throw null; } }
         public override System.RuntimeTypeHandle TypeHandle { get { throw null; } }
-        public System.Reflection.Emit.TypeToken TypeToken { get { throw null; } }
         public System.Reflection.Emit.FieldBuilder UnderlyingField { get { throw null; } }
         public override System.Type UnderlyingSystemType { get { throw null; } }
-        public System.Type CreateType() { throw null; }
         public System.Reflection.TypeInfo CreateTypeInfo() { throw null; }
         public System.Reflection.Emit.FieldBuilder DefineLiteral(string literalName, object literalValue) { throw null; }
         protected override System.Reflection.TypeAttributes GetAttributeFlagsImpl() { throw null; }
@@ -220,38 +213,11 @@ namespace System.Reflection.Emit
     {
         internal EventBuilder() { }
         public void AddOtherMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
-        public System.Reflection.Emit.EventToken GetEventToken() { throw null; }
         public void SetAddOnMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
         public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
         public void SetRaiseMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
         public void SetRemoveOnMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
-    }
-    public readonly partial struct EventToken : System.IEquatable<EventToken>
-    {
-        public static readonly System.Reflection.Emit.EventToken Empty;
-        public int Token { get { throw null; } }
-        public override bool Equals(object obj) { throw null; }
-        public bool Equals(System.Reflection.Emit.EventToken obj) { throw null; }
-        public override int GetHashCode() { throw null; }
-        public static bool operator ==(System.Reflection.Emit.EventToken a, System.Reflection.Emit.EventToken b) { throw null; }
-        public static bool operator !=(System.Reflection.Emit.EventToken a, System.Reflection.Emit.EventToken b) { throw null; }
-    }
-    public readonly partial struct ExceptionHandler : System.IEquatable<System.Reflection.Emit.ExceptionHandler>
-    {
-        public ExceptionHandler(int tryOffset, int tryLength, int filterOffset, int handlerOffset, int handlerLength, System.Reflection.ExceptionHandlingClauseOptions kind, int exceptionTypeToken) { throw null; }
-        public int ExceptionTypeToken { get { throw null; } }
-        public int FilterOffset { get { throw null; } }
-        public int HandlerLength { get { throw null; } }
-        public int HandlerOffset { get { throw null; } }
-        public System.Reflection.ExceptionHandlingClauseOptions Kind { get { throw null; } }
-        public int TryLength { get { throw null; } }
-        public int TryOffset { get { throw null; } }
-        public override bool Equals(object obj) { throw null; }
-        public bool Equals(System.Reflection.Emit.ExceptionHandler other) { throw null; }
-        public override int GetHashCode() { throw null; }
-        public static bool operator ==(System.Reflection.Emit.ExceptionHandler left, System.Reflection.Emit.ExceptionHandler right) { throw null; }
-        public static bool operator !=(System.Reflection.Emit.ExceptionHandler left, System.Reflection.Emit.ExceptionHandler right) { throw null; }
     }
     public sealed partial class FieldBuilder : System.Reflection.FieldInfo
     {
@@ -264,7 +230,6 @@ namespace System.Reflection.Emit
         public override System.Type ReflectedType { get { throw null; } }
         public override object[] GetCustomAttributes(bool inherit) { throw null; }
         public override object[] GetCustomAttributes(System.Type attributeType, bool inherit) { throw null; }
-        public System.Reflection.Emit.FieldToken GetToken() { throw null; }
         public override object GetValue(object obj) { throw null; }
         public override bool IsDefined(System.Type attributeType, bool inherit) { throw null; }
         public void SetConstant(object defaultValue) { }
@@ -274,16 +239,6 @@ namespace System.Reflection.Emit
 //      public void SetMarshal(System.Reflection.Emit.UnmanagedMarshal unmanagedMarshal) { }
         public void SetOffset(int iOffset) { }
         public override void SetValue(object obj, object val, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Globalization.CultureInfo culture) { }
-    }
-    public readonly partial struct FieldToken : System.IEquatable<FieldToken>
-    {
-        public static readonly System.Reflection.Emit.FieldToken Empty;
-        public int Token { get { throw null; } }
-        public override bool Equals(object obj) { throw null; }
-        public bool Equals(System.Reflection.Emit.FieldToken obj) { throw null; }
-        public override int GetHashCode() { throw null; }
-        public static bool operator ==(System.Reflection.Emit.FieldToken a, System.Reflection.Emit.FieldToken b) { throw null; }
-        public static bool operator !=(System.Reflection.Emit.FieldToken a, System.Reflection.Emit.FieldToken b) { throw null; }
     }
     public enum FlowControl
     {
@@ -298,7 +253,7 @@ namespace System.Reflection.Emit
         Return = 7,
         Throw = 8,
     }
-    public sealed partial class GenericTypeParameterBuilder : System.Reflection.TypeInfo
+    public sealed partial class GenericTypeParameterBuilder : System.Type
     {
         internal GenericTypeParameterBuilder() { }
         public override System.Reflection.Assembly Assembly { get { throw null; } }
@@ -454,9 +409,7 @@ namespace System.Reflection.Emit
         public override System.Reflection.ParameterInfo ReturnParameter { get { throw null; } }
         public override System.Type ReturnType { get { throw null; } }
         public override System.Reflection.ICustomAttributeProvider ReturnTypeCustomAttributes { get { throw null; } }
-        public string Signature { get { throw null; } }
 //CAS   public void AddDeclarativeSecurity(System.Security.Permissions.SecurityAction action, System.Security.PermissionSet pset) { }
-        public void CreateMethodBody(byte[] il, int count) { }
         public System.Reflection.Emit.GenericTypeParameterBuilder[] DefineGenericParameters(params string[] names) { throw null; }
         public System.Reflection.Emit.ParameterBuilder DefineParameter(int position, System.Reflection.ParameterAttributes attributes, string strParamName) { throw null; }
         public override bool Equals(object obj) { throw null; }
@@ -469,9 +422,7 @@ namespace System.Reflection.Emit
         public System.Reflection.Emit.ILGenerator GetILGenerator() { throw null; }
         public System.Reflection.Emit.ILGenerator GetILGenerator(int size) { throw null; }
         public override System.Reflection.MethodImplAttributes GetMethodImplementationFlags() { throw null; }
-        public System.Reflection.Module GetModule() { throw null; }
         public override System.Reflection.ParameterInfo[] GetParameters() { throw null; }
-        public System.Reflection.Emit.MethodToken GetToken() { throw null; }
         public override object Invoke(object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] parameters, System.Globalization.CultureInfo culture) { throw null; }
         public override bool IsDefined(System.Type attributeType, bool inherit) { throw null; }
         public override System.Reflection.MethodInfo MakeGenericMethod(params System.Type[] typeArguments) { throw null; }
@@ -480,7 +431,6 @@ namespace System.Reflection.Emit
         public void SetImplementationFlags(System.Reflection.MethodImplAttributes attributes) { }
 //      [System.ObsoleteAttribute("An alternate API is available: Emit the MarshalAs custom attribute instead. https://go.microsoft.com/fwlink/?linkid=14202")]
 //      public void SetMarshal(System.Reflection.Emit.UnmanagedMarshal unmanagedMarshal) { }
-        public void SetMethodBody(byte[] il, int maxStack, byte[] localSignature, System.Collections.Generic.IEnumerable<System.Reflection.Emit.ExceptionHandler> exceptionHandlers, System.Collections.Generic.IEnumerable<int> tokenFixups) { }
         public void SetParameters(params System.Type[] parameterTypes) { }
         public void SetReturnType(System.Type returnType) { }
         public void SetSignature(System.Type returnType, System.Type[] returnTypeRequiredCustomModifiers, System.Type[] returnTypeOptionalCustomModifiers, System.Type[] parameterTypes, System.Type[][] parameterTypeRequiredCustomModifiers, System.Type[][] parameterTypeOptionalCustomModifiers) { }
@@ -496,16 +446,6 @@ namespace System.Reflection.Emit
 //      public const int JitOnDemand = 0;
 //      public static void SwapMethodBody(System.Type cls, int methodtoken, System.IntPtr rgIL, int methodSize, int flags) { }
 //  }
-    public readonly partial struct MethodToken : System.IEquatable<MethodToken>
-    {
-        public static readonly System.Reflection.Emit.MethodToken Empty;
-        public int Token { get { throw null; } }
-        public override bool Equals(object obj) { throw null; }
-        public bool Equals(System.Reflection.Emit.MethodToken obj) { throw null; }
-        public override int GetHashCode() { throw null; }
-        public static bool operator ==(System.Reflection.Emit.MethodToken a, System.Reflection.Emit.MethodToken b) { throw null; }
-        public static bool operator !=(System.Reflection.Emit.MethodToken a, System.Reflection.Emit.MethodToken b) { throw null; }
-    }
     public partial class ModuleBuilder : System.Reflection.Module
     {
         internal ModuleBuilder() { }
@@ -540,26 +480,13 @@ namespace System.Reflection.Emit
 //      public void DefineUnmanagedResource(string resourceFileName) { }
         public override bool Equals(object obj) { throw null; }
         public System.Reflection.MethodInfo GetArrayMethod(System.Type arrayClass, string methodName, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] parameterTypes) { throw null; }
-        public System.Reflection.Emit.MethodToken GetArrayMethodToken(System.Type arrayClass, string methodName, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] parameterTypes) { throw null; }
-        public System.Reflection.Emit.MethodToken GetConstructorToken(System.Reflection.ConstructorInfo con) { throw null; }
-        public System.Reflection.Emit.MethodToken GetConstructorToken(System.Reflection.ConstructorInfo constructor, System.Collections.Generic.IEnumerable<System.Type> optionalParameterTypes) { throw null; }
-        public System.Reflection.Emit.FieldToken GetFieldToken(System.Reflection.FieldInfo field) { throw null; }
         public override int GetHashCode() { throw null; }
-        public System.Reflection.Emit.MethodToken GetMethodToken(System.Reflection.MethodInfo method) { throw null; }
-        public System.Reflection.Emit.MethodToken GetMethodToken(System.Reflection.MethodInfo method, System.Collections.Generic.IEnumerable<System.Type> optionalParameterTypes) { throw null; }
-        public System.Reflection.Emit.SignatureToken GetSignatureToken(byte[] sigBytes, int sigLength) { throw null; }
-        public System.Reflection.Emit.SignatureToken GetSignatureToken(System.Reflection.Emit.SignatureHelper sigHelper) { throw null; }
-        public System.Reflection.Emit.StringToken GetStringConstant(string str) { throw null; }
 //      Excluded because we don't support generating with debug information.
 //      public System.Diagnostics.SymbolStore.ISymbolWriter GetSymWriter() { throw null; }
-        public System.Reflection.Emit.TypeToken GetTypeToken(string name) { throw null; }
-        public System.Reflection.Emit.TypeToken GetTypeToken(System.Type type) { throw null; }
-        public bool IsTransient() { throw null; }
         public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
 //      Excluded because we don't support generating with debug information.
 //      public void SetSymCustomAttribute(string name, byte[] data) { }
-        public void SetUserEntryPoint(System.Reflection.MethodInfo entryPoint) { }
     }
     public readonly partial struct OpCode : System.IEquatable<OpCode>
     {
@@ -863,22 +790,11 @@ namespace System.Reflection.Emit
         public bool IsOut { get { throw null; } }
         public virtual string Name { get { throw null; } }
         public virtual int Position { get { throw null; } }
-        public virtual System.Reflection.Emit.ParameterToken GetToken() { throw null; }
         public virtual void SetConstant(object defaultValue) { }
         public void SetCustomAttribute(System.Reflection.ConstructorInfo con, byte[] binaryAttribute) { }
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
 //      [System.ObsoleteAttribute("An alternate API is available: Emit the MarshalAs custom attribute instead. https://go.microsoft.com/fwlink/?linkid=14202")]
 //      public virtual void SetMarshal(System.Reflection.Emit.UnmanagedMarshal unmanagedMarshal) { }
-    }
-    public readonly partial struct ParameterToken : System.IEquatable<ParameterToken>
-    {
-        public static readonly System.Reflection.Emit.ParameterToken Empty;
-        public int Token { get { throw null; } }
-        public override bool Equals(object obj) { throw null; }
-        public bool Equals(System.Reflection.Emit.ParameterToken obj) { throw null; }
-        public override int GetHashCode() { throw null; }
-        public static bool operator ==(System.Reflection.Emit.ParameterToken a, System.Reflection.Emit.ParameterToken b) { throw null; }
-        public static bool operator !=(System.Reflection.Emit.ParameterToken a, System.Reflection.Emit.ParameterToken b) { throw null; }
     }
 //  Excluded because PEFileKinds is only meaningful to assemblies that are written to disk, which we only support in .NET Framework.
 //  public enum PEFileKinds
@@ -896,7 +812,6 @@ namespace System.Reflection.Emit
         public override System.Type DeclaringType { get { throw null; } }
         public override System.Reflection.Module Module { get { throw null; } }
         public override string Name { get { throw null; } }
-        public System.Reflection.Emit.PropertyToken PropertyToken { get { throw null; } }
         public override System.Type PropertyType { get { throw null; } }
         public override System.Type ReflectedType { get { throw null; } }
         public void AddOtherMethod(System.Reflection.Emit.MethodBuilder mdBuilder) { }
@@ -917,16 +832,6 @@ namespace System.Reflection.Emit
         public override void SetValue(object obj, object value, object[] index) { }
         public override void SetValue(object obj, object value, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, object[] index, System.Globalization.CultureInfo culture) { }
     }
-    public readonly partial struct PropertyToken : System.IEquatable<PropertyToken>
-    {
-        public static readonly System.Reflection.Emit.PropertyToken Empty;
-        public int Token { get { throw null; } }
-        public override bool Equals(object obj) { throw null; }
-        public bool Equals(System.Reflection.Emit.PropertyToken obj) { throw null; }
-        public override int GetHashCode() { throw null; }
-        public static bool operator ==(System.Reflection.Emit.PropertyToken a, System.Reflection.Emit.PropertyToken b) { throw null; }
-        public static bool operator !=(System.Reflection.Emit.PropertyToken a, System.Reflection.Emit.PropertyToken b) { throw null; }
-    }
     public sealed partial class SignatureHelper
     {
         internal SignatureHelper() { }
@@ -942,24 +847,12 @@ namespace System.Reflection.Emit
         public static System.Reflection.Emit.SignatureHelper GetLocalVarSigHelper(System.Reflection.Module mod) { throw null; }
         public static System.Reflection.Emit.SignatureHelper GetMethodSigHelper(System.Reflection.CallingConventions callingConvention, System.Type returnType) { throw null; }
         public static System.Reflection.Emit.SignatureHelper GetMethodSigHelper(System.Reflection.Module mod, System.Reflection.CallingConventions callingConvention, System.Type returnType) { throw null; }
-        public static System.Reflection.Emit.SignatureHelper GetMethodSigHelper(System.Reflection.Module mod, System.Runtime.InteropServices.CallingConvention unmanagedCallConv, System.Type returnType) { throw null; }
         public static System.Reflection.Emit.SignatureHelper GetMethodSigHelper(System.Reflection.Module mod, System.Type returnType, System.Type[] parameterTypes) { throw null; }
-        public static System.Reflection.Emit.SignatureHelper GetMethodSigHelper(System.Runtime.InteropServices.CallingConvention unmanagedCallingConvention, System.Type returnType) { throw null; }
         public static System.Reflection.Emit.SignatureHelper GetPropertySigHelper(System.Reflection.Module mod, System.Reflection.CallingConventions callingConvention, System.Type returnType, System.Type[] requiredReturnTypeCustomModifiers, System.Type[] optionalReturnTypeCustomModifiers, System.Type[] parameterTypes, System.Type[][] requiredParameterTypeCustomModifiers, System.Type[][] optionalParameterTypeCustomModifiers) { throw null; }
         public static System.Reflection.Emit.SignatureHelper GetPropertySigHelper(System.Reflection.Module mod, System.Type returnType, System.Type[] parameterTypes) { throw null; }
         public static System.Reflection.Emit.SignatureHelper GetPropertySigHelper(System.Reflection.Module mod, System.Type returnType, System.Type[] requiredReturnTypeCustomModifiers, System.Type[] optionalReturnTypeCustomModifiers, System.Type[] parameterTypes, System.Type[][] requiredParameterTypeCustomModifiers, System.Type[][] optionalParameterTypeCustomModifiers) { throw null; }
         public byte[] GetSignature() { throw null; }
         public override string ToString() { throw null; }
-    }
-    public readonly partial struct SignatureToken : System.IEquatable<SignatureToken>
-    {
-        public static readonly System.Reflection.Emit.SignatureToken Empty;
-        public int Token { get { throw null; } }
-        public override bool Equals(object obj) { throw null; }
-        public bool Equals(System.Reflection.Emit.SignatureToken obj) { throw null; }
-        public override int GetHashCode() { throw null; }
-        public static bool operator ==(System.Reflection.Emit.SignatureToken a, System.Reflection.Emit.SignatureToken b) { throw null; }
-        public static bool operator !=(System.Reflection.Emit.SignatureToken a, System.Reflection.Emit.SignatureToken b) { throw null; }
     }
     public enum StackBehaviour
     {
@@ -993,16 +886,7 @@ namespace System.Reflection.Emit
         Varpop = 26,
         Varpush = 27,
     }
-    public readonly partial struct StringToken : System.IEquatable<StringToken>
-    {
-        public int Token { get { throw null; } }
-        public override bool Equals(object obj) { throw null; }
-        public bool Equals(System.Reflection.Emit.StringToken obj) { throw null; }
-        public override int GetHashCode() { throw null; }
-        public static bool operator ==(System.Reflection.Emit.StringToken a, System.Reflection.Emit.StringToken b) { throw null; }
-        public static bool operator !=(System.Reflection.Emit.StringToken a, System.Reflection.Emit.StringToken b) { throw null; }
-    }
-    public sealed partial class TypeBuilder : System.Reflection.TypeInfo
+    public sealed partial class TypeBuilder : System.Type
     {
         internal TypeBuilder() { }
         public const int UnspecifiedTypeSize = 0;
@@ -1033,7 +917,6 @@ namespace System.Reflection.Emit
         public override System.Type ReflectedType { get { throw null; } }
         public int Size { get { throw null; } }
         public override System.RuntimeTypeHandle TypeHandle { get { throw null; } }
-        public System.Reflection.Emit.TypeToken TypeToken { get { throw null; } }
         public override System.Type UnderlyingSystemType { get { throw null; } }
 //CAS   public void AddDeclarativeSecurity(System.Security.Permissions.SecurityAction action, System.Security.PermissionSet pset) { }
         public void AddInterfaceImplementation(System.Type interfaceType) { }
@@ -1116,16 +999,6 @@ namespace System.Reflection.Emit
         public void SetCustomAttribute(System.Reflection.Emit.CustomAttributeBuilder customBuilder) { }
         public void SetParent(System.Type parent) { }
         public override string ToString() { throw null; }
-    }
-    public readonly partial struct TypeToken : System.IEquatable<TypeToken>
-    {
-        public static readonly System.Reflection.Emit.TypeToken Empty;
-        public int Token { get { throw null; } }
-        public override bool Equals(object obj) { throw null; }
-        public bool Equals(System.Reflection.Emit.TypeToken obj) { throw null; }
-        public override int GetHashCode() { throw null; }
-        public static bool operator ==(System.Reflection.Emit.TypeToken a, System.Reflection.Emit.TypeToken b) { throw null; }
-        public static bool operator !=(System.Reflection.Emit.TypeToken a, System.Reflection.Emit.TypeToken b) { throw null; }
     }
 //  [System.ObsoleteAttribute("An alternate API is available: Emit the MarshalAs custom attribute instead. https://go.microsoft.com/fwlink/?linkid=14202")]
 //  public sealed partial class UnmanagedMarshal
