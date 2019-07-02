@@ -208,7 +208,7 @@ namespace System.Data.Common
         public System.Nullable<int> NumericScale { get { throw null; } protected set { } }
         public string UdtAssemblyQualifiedName { get { throw null; } protected set { } }
     }
-    public abstract partial class DbCommand : System.ComponentModel.Component, System.Data.IDbCommand, System.IDisposable
+    public abstract partial class DbCommand : System.ComponentModel.Component, System.Data.IDbCommand, System.IDisposable, System.IAsyncDisposable
     {
         protected DbCommand() { }
         [System.ComponentModel.DefaultValueAttribute("")]
@@ -260,9 +260,11 @@ namespace System.Data.Common
         public System.Threading.Tasks.Task<object> ExecuteScalarAsync() { throw null; }
         public virtual System.Threading.Tasks.Task<object> ExecuteScalarAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
         public abstract void Prepare();
+        public virtual System.Threading.Tasks.Task PrepareAsync(System.Threading.CancellationToken cancellationToken = default) { throw null; }
         System.Data.IDbDataParameter System.Data.IDbCommand.CreateParameter() { throw null; }
         System.Data.IDataReader System.Data.IDbCommand.ExecuteReader() { throw null; }
         System.Data.IDataReader System.Data.IDbCommand.ExecuteReader(System.Data.CommandBehavior behavior) { throw null; }
+        public virtual System.Threading.Tasks.ValueTask DisposeAsync() { throw null; }
     }
     public abstract partial class DbCommandBuilder : System.ComponentModel.Component
     {
@@ -303,7 +305,7 @@ namespace System.Data.Common
         protected abstract void SetRowUpdatingHandler(System.Data.Common.DbDataAdapter adapter);
         public virtual string UnquoteIdentifier(string quotedIdentifier) { throw null; }
     }
-    public abstract partial class DbConnection : System.ComponentModel.Component, System.Data.IDbConnection, System.IDisposable
+    public abstract partial class DbConnection : System.ComponentModel.Component, System.Data.IDbConnection, System.IDisposable, System.IAsyncDisposable
     {
         protected DbConnection() { }
         [System.ComponentModel.DefaultValueAttribute("")]
@@ -324,7 +326,9 @@ namespace System.Data.Common
         public System.Data.Common.DbTransaction BeginTransaction() { throw null; }
         public System.Data.Common.DbTransaction BeginTransaction(System.Data.IsolationLevel isolationLevel) { throw null; }
         public abstract void ChangeDatabase(string databaseName);
+        public virtual System.Threading.Tasks.Task ChangeDatabaseAsync(string databaseName, System.Threading.CancellationToken cancellationToken = default) { throw null; }
         public abstract void Close();
+        public virtual System.Threading.Tasks.Task CloseAsync(System.Threading.CancellationToken cancellationToken = default) { throw null; }
         public System.Data.Common.DbCommand CreateCommand() { throw null; }
         protected abstract System.Data.Common.DbCommand CreateDbCommand();
         public virtual void EnlistTransaction(System.Transactions.Transaction transaction) { }
@@ -337,7 +341,11 @@ namespace System.Data.Common
         public virtual System.Threading.Tasks.Task OpenAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
         System.Data.IDbTransaction System.Data.IDbConnection.BeginTransaction() { throw null; }
         System.Data.IDbTransaction System.Data.IDbConnection.BeginTransaction(System.Data.IsolationLevel isolationLevel) { throw null; }
+        protected virtual System.Threading.Tasks.ValueTask<DbTransaction> BeginDbTransactionAsync(IsolationLevel isolationLevel, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.ValueTask<DbTransaction> BeginTransactionAsync(System.Threading.CancellationToken cancellationToken = default) { throw null; }
+        public System.Threading.Tasks.ValueTask<DbTransaction> BeginTransactionAsync(IsolationLevel isolationLevel, System.Threading.CancellationToken cancellationToken = default) { throw null; }
         System.Data.IDbCommand System.Data.IDbConnection.CreateCommand() { throw null; }
+        public virtual System.Threading.Tasks.ValueTask DisposeAsync() { throw null; }
     }
     public partial class DbConnectionStringBuilder : System.Collections.ICollection, System.Collections.IDictionary, System.Collections.IEnumerable, System.ComponentModel.ICustomTypeDescriptor
     {
@@ -454,7 +462,7 @@ namespace System.Data.Common
         public int Update(System.Data.DataSet dataSet, string srcTable) { throw null; }
         public int Update(System.Data.DataTable dataTable) { throw null; }
     }
-    public abstract partial class DbDataReader : System.MarshalByRefObject, System.Collections.IEnumerable, System.Data.IDataReader, System.Data.IDataRecord, System.IDisposable
+    public abstract partial class DbDataReader : System.MarshalByRefObject, System.Collections.IEnumerable, System.Data.IDataReader, System.Data.IDataRecord, System.IDisposable, System.IAsyncDisposable
     {
         protected DbDataReader() { }
         public abstract int Depth { get; }
@@ -466,9 +474,11 @@ namespace System.Data.Common
         public abstract int RecordsAffected { get; }
         public virtual int VisibleFieldCount { get { throw null; } }
         public virtual void Close() { }
+        public virtual System.Threading.Tasks.Task CloseAsync(System.Threading.CancellationToken cancellationToken = default) { throw null; }
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
+        public virtual System.Threading.Tasks.ValueTask DisposeAsync() { throw null; }
         public abstract bool GetBoolean(int ordinal);
         public abstract byte GetByte(int ordinal);
         public abstract long GetBytes(int ordinal, long dataOffset, byte[] buffer, int bufferOffset, int length);
@@ -756,7 +766,7 @@ namespace System.Data.Common
         public DbProviderSpecificTypePropertyAttribute(bool isProviderSpecificTypeProperty) { }
         public bool IsProviderSpecificTypeProperty { get { throw null; } }
     }
-    public abstract partial class DbTransaction : System.MarshalByRefObject, System.Data.IDbTransaction, System.IDisposable
+    public abstract partial class DbTransaction : System.MarshalByRefObject, System.Data.IDbTransaction, System.IDisposable, System.IAsyncDisposable
     {
         protected DbTransaction() { }
         public System.Data.Common.DbConnection Connection { get { throw null; } }
@@ -764,9 +774,12 @@ namespace System.Data.Common
         public abstract System.Data.IsolationLevel IsolationLevel { get; }
         System.Data.IDbConnection System.Data.IDbTransaction.Connection { get { throw null; } }
         public abstract void Commit();
+        public virtual System.Threading.Tasks.Task CommitAsync(System.Threading.CancellationToken cancellationToken = default) { throw null; }
         public void Dispose() { }
+        public virtual System.Threading.Tasks.ValueTask DisposeAsync() { throw null; }
         protected virtual void Dispose(bool disposing) { }
         public abstract void Rollback();
+        public virtual System.Threading.Tasks.Task RollbackAsync(System.Threading.CancellationToken cancellationToken = default) { throw null; }
     }
     public enum GroupByBehavior
     {
