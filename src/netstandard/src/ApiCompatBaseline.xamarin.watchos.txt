@@ -298,9 +298,27 @@ CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Componen
 TypesMustExist : Type 'System.Data.DataReaderExtensions' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.ToolboxItemAttribute' exists on 'System.Data.DataSet' in the contract but not the implementation.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Data.DataSysDescriptionAttribute' changed from '[ObsoleteAttribute("DataSysDescriptionAttribute has been deprecated.  https://go.microsoft.com/fwlink/?linkid=14202", false)]' in the contract to '[ObsoleteAttribute("DataSysDescriptionAttribute has been deprecated.  http://go.microsoft.com/fwlink/?linkid=14202", false)]' in the implementation.
+CannotRemoveBaseTypeOrInterface : Type 'System.Data.DataTableReader' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Data.Common.DbCommand' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Data.Common.DbCommand.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbCommand.PrepareAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Data.Common.DbConnection' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.BeginDbTransactionAsync(System.Data.IsolationLevel, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.BeginTransactionAsync(System.Data.IsolationLevel, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.BeginTransactionAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.ChangeDatabaseAsync(System.String, System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.CloseAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbConnection.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Data.Common.DbDataReader' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Data.Common.DbDataReader.CloseAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbDataReader.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Data.Common.DbProviderFactories' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Data.Common.DbProviderFactory.CanCreateCommandBuilder.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Data.Common.DbProviderFactory.CanCreateDataAdapter.get()' does not exist in the implementation but it does exist in the contract.
+CannotRemoveBaseTypeOrInterface : Type 'System.Data.Common.DbTransaction' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+MembersMustExist : Member 'System.Data.Common.DbTransaction.CommitAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbTransaction.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'System.Data.Common.DbTransaction.RollbackAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.ProcessStartInfo.ArgumentList.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.ProcessStartInfo.StandardInputEncoding.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.ProcessStartInfo.StandardInputEncoding.set(System.Text.Encoding)' does not exist in the implementation but it does exist in the contract.
@@ -623,27 +641,14 @@ CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.GetDeclaredNeste
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.GetDeclaredProperty(System.String)' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.ImplementedInterfaces.get()' is non-virtual in the implementation but is virtual in the contract.
 CannotMakeMemberNonVirtual : Member 'System.Reflection.TypeInfo.IsAssignableFrom(System.Reflection.TypeInfo)' is non-virtual in the implementation but is virtual in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.AssemblyBuilder.SetEntryPoint(System.Reflection.MethodInfo)' does not exist in the implementation but it does exist in the contract.
 CannotMakeTypeAbstract : Type 'System.Reflection.Emit.ConstructorBuilder' is abstract in the implementation but is not abstract in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ConstructorBuilder.GetModule()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ConstructorBuilder.GetToken()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ConstructorBuilder.SetMethodBody(System.Byte[], System.Int32, System.Byte[], System.Collections.Generic.IEnumerable<System.Reflection.Emit.ExceptionHandler>, System.Collections.Generic.IEnumerable<System.Int32>)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ConstructorBuilder.Signature.get()' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Reflection.Emit.DynamicILInfo' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Reflection.Emit.DynamicMethod' does not exist in the implementation but it does exist in the contract.
 CannotMakeTypeAbstract : Type 'System.Reflection.Emit.EnumBuilder' is abstract in the implementation but is not abstract in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.EnumBuilder.CreateType()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.EnumBuilder.IsByRefLike.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.EnumBuilder.IsTypeDefinition.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.EnumBuilder.IsVariableBoundArray.get()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.EnumBuilder.TypeToken.get()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.EventBuilder.GetEventToken()' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.EventToken' does not exist in the implementation but it does exist in the contract.
-CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Reflection.Emit.ExceptionHandler' in the contract but not the implementation.
-TypeCannotChangeClassification : Type 'System.Reflection.Emit.ExceptionHandler' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 CannotMakeTypeAbstract : Type 'System.Reflection.Emit.FieldBuilder' is abstract in the implementation but is not abstract in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.FieldBuilder.GetToken()' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.FieldToken' does not exist in the implementation but it does exist in the contract.
 CannotMakeTypeAbstract : Type 'System.Reflection.Emit.GenericTypeParameterBuilder' is abstract in the implementation but is not abstract in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.GenericTypeParameterBuilder.IsByRefLike.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.GenericTypeParameterBuilder.IsTypeDefinition.get()' does not exist in the implementation but it does exist in the contract.
@@ -653,41 +658,14 @@ CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAtt
 CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.Emit.Label' does not implement interface 'System.IEquatable<System.Reflection.Emit.Label>' in the implementation but it does in the contract.
 TypeCannotChangeClassification : Type 'System.Reflection.Emit.Label' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 CannotMakeTypeAbstract : Type 'System.Reflection.Emit.MethodBuilder' is abstract in the implementation but is not abstract in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.MethodBuilder.CreateMethodBody(System.Byte[], System.Int32)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.MethodBuilder.GetModule()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.MethodBuilder.GetToken()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.MethodBuilder.IsConstructedGenericMethod.get()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.MethodBuilder.SetMethodBody(System.Byte[], System.Int32, System.Byte[], System.Collections.Generic.IEnumerable<System.Reflection.Emit.ExceptionHandler>, System.Collections.Generic.IEnumerable<System.Int32>)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.MethodBuilder.Signature.get()' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.MethodToken' does not exist in the implementation but it does exist in the contract.
 CannotMakeTypeAbstract : Type 'System.Reflection.Emit.ModuleBuilder' is abstract in the implementation but is not abstract in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.ModuleBuilder.DefinePInvokeMethod(System.String, System.String, System.Reflection.MethodAttributes, System.Reflection.CallingConventions, System.Type, System.Type[], System.Runtime.InteropServices.CallingConvention, System.Runtime.InteropServices.CharSet)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.ModuleBuilder.DefinePInvokeMethod(System.String, System.String, System.String, System.Reflection.MethodAttributes, System.Reflection.CallingConventions, System.Type, System.Type[], System.Runtime.InteropServices.CallingConvention, System.Runtime.InteropServices.CharSet)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ModuleBuilder.GetArrayMethodToken(System.Type, System.String, System.Reflection.CallingConventions, System.Type, System.Type[])' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ModuleBuilder.GetConstructorToken(System.Reflection.ConstructorInfo)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ModuleBuilder.GetConstructorToken(System.Reflection.ConstructorInfo, System.Collections.Generic.IEnumerable<System.Type>)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ModuleBuilder.GetFieldToken(System.Reflection.FieldInfo)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ModuleBuilder.GetMethodToken(System.Reflection.MethodInfo)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ModuleBuilder.GetMethodToken(System.Reflection.MethodInfo, System.Collections.Generic.IEnumerable<System.Type>)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ModuleBuilder.GetSignatureToken(System.Byte[], System.Int32)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ModuleBuilder.GetSignatureToken(System.Reflection.Emit.SignatureHelper)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ModuleBuilder.GetStringConstant(System.String)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ModuleBuilder.GetTypeToken(System.String)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ModuleBuilder.GetTypeToken(System.Type)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ModuleBuilder.IsTransient()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.ModuleBuilder.SetUserEntryPoint(System.Reflection.MethodInfo)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Reflection.Emit.OpCode' in the contract but not the implementation.
 CannotRemoveBaseTypeOrInterface : Type 'System.Reflection.Emit.OpCode' does not implement interface 'System.IEquatable<System.Reflection.Emit.OpCode>' in the implementation but it does in the contract.
 TypeCannotChangeClassification : Type 'System.Reflection.Emit.OpCode' is marked as readonly in the contract so it must also be marked readonly in the implementation.
-MembersMustExist : Member 'System.Reflection.Emit.ParameterBuilder.GetToken()' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.ParameterToken' does not exist in the implementation but it does exist in the contract.
 CannotMakeTypeAbstract : Type 'System.Reflection.Emit.PropertyBuilder' is abstract in the implementation but is not abstract in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.PropertyBuilder.PropertyToken.get()' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.PropertyToken' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.SignatureHelper.GetMethodSigHelper(System.Reflection.Module, System.Runtime.InteropServices.CallingConvention, System.Type)' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.SignatureHelper.GetMethodSigHelper(System.Runtime.InteropServices.CallingConvention, System.Type)' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.SignatureToken' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.StringToken' does not exist in the implementation but it does exist in the contract.
 CannotMakeTypeAbstract : Type 'System.Reflection.Emit.TypeBuilder' is abstract in the implementation but is not abstract in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.TypeBuilder.CreateType()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.TypeBuilder.DefinePInvokeMethod(System.String, System.String, System.Reflection.MethodAttributes, System.Reflection.CallingConventions, System.Type, System.Type[], System.Runtime.InteropServices.CallingConvention, System.Runtime.InteropServices.CharSet)' does not exist in the implementation but it does exist in the contract.
@@ -696,8 +674,6 @@ MembersMustExist : Member 'System.Reflection.Emit.TypeBuilder.DefinePInvokeMetho
 MembersMustExist : Member 'System.Reflection.Emit.TypeBuilder.IsByRefLike.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.TypeBuilder.IsTypeDefinition.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Reflection.Emit.TypeBuilder.IsVariableBoundArray.get()' does not exist in the implementation but it does exist in the contract.
-MembersMustExist : Member 'System.Reflection.Emit.TypeBuilder.TypeToken.get()' does not exist in the implementation but it does exist in the contract.
-TypesMustExist : Type 'System.Reflection.Emit.TypeToken' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.AmbiguousImplementationException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncIteratorMethodBuilder' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Runtime.CompilerServices.AsyncIteratorStateMachineAttribute' does not exist in the implementation but it does exist in the contract.
@@ -1072,4 +1048,4 @@ CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xm
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlChoiceIdentifierAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xml.Serialization.XmlSchemaImporter' does not inherit from base type 'System.Xml.Serialization.SchemaImporter' in the implementation but it does in the contract.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlSerializerAssemblyAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct)]' in the implementation.
-Total Issues: 1073
+Total Issues: 1030
