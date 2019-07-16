@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <!-- 
-    We need to move to 4.7 as part of our versioning change when we switch to arcade to avoid downgrading versions.
-    Our binaries need to have a higher file version then the last ones we shipped to ensure they win
-    the conflict resolution so setting major/minor to match what was shipped before. The patch version
-    is computed based on a date seed so it should always be higher then what we shipped previously.
-    -->
-    <MajorVersion Condition="'$(MajorVersion)' == ''">4</MajorVersion>
-    <MinorVersion Condition="'$(MinorVersion)' == ''">7</MinorVersion>
+    <MajorVersion Condition="'$(MajorVersion)' == ''">5</MajorVersion>
+    <MinorVersion Condition="'$(MinorVersion)' == ''">0</MinorVersion>
     <PreReleaseVersionLabel>prerelease</PreReleaseVersionLabel>
     <!-- Opt-out repo features -->
     <UsingToolXliff>false</UsingToolXliff>
