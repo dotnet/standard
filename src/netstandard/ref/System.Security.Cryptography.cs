@@ -10,6 +10,18 @@ namespace System.Security.Cryptography
         public static new System.Security.Cryptography.Aes Create() { throw null; }
         public static new System.Security.Cryptography.Aes Create(string algorithmName) { throw null; }
     }
+    public sealed partial class AesCcm : System.IDisposable
+    {
+        public AesCcm(byte[] key) { }
+        public AesCcm(System.ReadOnlySpan<byte> key) { }
+        public static System.Security.Cryptography.KeySizes NonceByteSizes { get { throw null; } }
+        public static System.Security.Cryptography.KeySizes TagByteSizes { get { throw null; } }
+        public void Decrypt(byte[] nonce, byte[] ciphertext, byte[] tag, byte[] plaintext, byte[] associatedData = null) { }
+        public void Decrypt(System.ReadOnlySpan<byte> nonce, System.ReadOnlySpan<byte> ciphertext, System.ReadOnlySpan<byte> tag, System.Span<byte> plaintext, System.ReadOnlySpan<byte> associatedData = default(System.ReadOnlySpan<byte>)) { }
+        public void Dispose() { }
+        public void Encrypt(byte[] nonce, byte[] plaintext, byte[] ciphertext, byte[] tag, byte[] associatedData = null) { }
+        public void Encrypt(System.ReadOnlySpan<byte> nonce, System.ReadOnlySpan<byte> plaintext, System.Span<byte> ciphertext, System.Span<byte> tag, System.ReadOnlySpan<byte> associatedData = default(System.ReadOnlySpan<byte>)) { }
+    }
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public sealed partial class AesCryptoServiceProvider : System.Security.Cryptography.Aes
     {
@@ -30,6 +42,18 @@ namespace System.Security.Cryptography
         protected override void Dispose(bool disposing) { }
         public override void GenerateIV() { }
         public override void GenerateKey() { }
+    }
+    public sealed partial class AesGcm : System.IDisposable
+    {
+        public AesGcm(byte[] key) { }
+        public AesGcm(System.ReadOnlySpan<byte> key) { }
+        public static System.Security.Cryptography.KeySizes NonceByteSizes { get { throw null; } }
+        public static System.Security.Cryptography.KeySizes TagByteSizes { get { throw null; } }
+        public void Decrypt(byte[] nonce, byte[] ciphertext, byte[] tag, byte[] plaintext, byte[] associatedData = null) { }
+        public void Decrypt(System.ReadOnlySpan<byte> nonce, System.ReadOnlySpan<byte> ciphertext, System.ReadOnlySpan<byte> tag, System.Span<byte> plaintext, System.ReadOnlySpan<byte> associatedData = default(System.ReadOnlySpan<byte>)) { }
+        public void Dispose() { }
+        public void Encrypt(byte[] nonce, byte[] plaintext, byte[] ciphertext, byte[] tag, byte[] associatedData = null) { }
+        public void Encrypt(System.ReadOnlySpan<byte> nonce, System.ReadOnlySpan<byte> plaintext, System.Span<byte> ciphertext, System.Span<byte> tag, System.ReadOnlySpan<byte> associatedData = default(System.ReadOnlySpan<byte>)) { }
     }
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public sealed partial class AesManaged : System.Security.Cryptography.Aes

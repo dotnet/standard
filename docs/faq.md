@@ -327,7 +327,7 @@ redundant moving forward.
 [netstandard-refdocs]: https://docs.microsoft.com/dotnet/api/?view=netstandard-2.0
 [netstandard-docs]: https://docs.microsoft.com/dotnet/standard/net-standard
 [netstandard-post]: https://blogs.msdn.microsoft.com/dotnet/2016/09/26/introducing-net-standard/
-[netstandard-spec]: planning/netstandard-20/README.md
+[netstandard-spec]: planning/netstandard-2.0/README.md
 [netstandard-metaphor]: metaphor.md
 [netstandard-versions]: http://immo.landwerth.net/netstandard-versions/#
 [netstandard-targeting]: versions.md#how-do-i-know-which-net-standard-version-i-should-target
