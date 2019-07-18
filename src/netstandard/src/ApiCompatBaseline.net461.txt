@@ -380,7 +380,16 @@ MembersMustExist : Member 'System.Diagnostics.ProcessStartInfo.ArgumentList.get(
 MembersMustExist : Member 'System.Diagnostics.ProcessStartInfo.StandardInputEncoding.get()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Diagnostics.ProcessStartInfo.StandardInputEncoding.set(System.Text.Encoding)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Diagnostics.StackFrameExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.CodeAnalysis.AllowNullAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.CodeAnalysis.DisallowNullAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute' does not exist in the implementation but it does exist in the contract.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Constructor | AttributeTargets.Event | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Struct, Inherited=false, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Constructor | AttributeTargets.Event | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Struct, Inherited=false, AllowMultiple=false)]' in the implementation.
+TypesMustExist : Type 'System.Diagnostics.CodeAnalysis.MaybeNullAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.CodeAnalysis.NotNullAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Diagnostics.CodeAnalysis.NotNullWhenAttribute' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAttribute' exists on 'System.Diagnostics.SymbolStore.SymbolToken' in the contract but not the implementation.
 TypeCannotChangeClassification : Type 'System.Diagnostics.SymbolStore.SymbolToken' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 TypesMustExist : Type 'System.Diagnostics.Tracing.DiagnosticCounter' does not exist in the implementation but it does exist in the contract.
@@ -1188,4 +1197,4 @@ CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Xml.Sche
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the implementation.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the implementation.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 1189
+Total Issues: 1198
