@@ -41,17 +41,19 @@ namespace System.Diagnostics
 // Removed to break dependency on the larger TraceListener set of APIs
 //        public static System.Diagnostics.TraceListenerCollection Listeners { get { throw null; } }
         [System.Diagnostics.ConditionalAttribute("DEBUG")]
-        public static void Assert(bool condition) { }
+        public static void Assert([System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute(false)]bool condition) { }
         [System.Diagnostics.ConditionalAttribute("DEBUG")]
-        public static void Assert(bool condition, string message) { }
+        public static void Assert([System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute(false)]bool condition, string message) { }
         [System.Diagnostics.ConditionalAttribute("DEBUG")]
-        public static void Assert(bool condition, string message, string detailMessage) { }
+        public static void Assert([System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute(false)]bool condition, string message, string detailMessage) { }
         [System.Diagnostics.ConditionalAttribute("DEBUG")]
-        public static void Assert(bool condition, string message, string detailMessageFormat, params object[] args) { }
+        public static void Assert([System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute(false)]bool condition, string message, string detailMessageFormat, params object[] args) { }
         [System.Diagnostics.ConditionalAttribute("DEBUG")]
         public static void Close() { }
+        [System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
         [System.Diagnostics.ConditionalAttribute("DEBUG")]
         public static void Fail(string message) { }
+        [System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
         [System.Diagnostics.ConditionalAttribute("DEBUG")]
         public static void Fail(string message, string detailMessage) { }
         [System.Diagnostics.ConditionalAttribute("DEBUG")]

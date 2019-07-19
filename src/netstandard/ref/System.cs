@@ -2167,9 +2167,12 @@ namespace System
         public static string UserName { get { throw null; } }
         public static System.Version Version { get { throw null; } }
         public static long WorkingSet { get { throw null; } }
+        [System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
         public static void Exit(int exitCode) { }
         public static string ExpandEnvironmentVariables(string name) { throw null; }
+        [System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
         public static void FailFast(string message) { }
+        [System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
         public static void FailFast(string message, System.Exception exception) { }
         public static string[] GetCommandLineArgs() { throw null; }
         public static string GetEnvironmentVariable(string variable) { throw null; }
@@ -3769,8 +3772,8 @@ namespace System
         public static System.String IsInterned(System.String str) { throw null; }
         public bool IsNormalized() { throw null; }
         public bool IsNormalized(System.Text.NormalizationForm normalizationForm) { throw null; }
-        public static bool IsNullOrEmpty(System.String value) { throw null; }
-        public static bool IsNullOrWhiteSpace(System.String value) { throw null; }
+        public static bool IsNullOrEmpty([System.Diagnostics.CodeAnalysis.NotNullWhenAttribute(false)]System.String value) { throw null; }
+        public static bool IsNullOrWhiteSpace([System.Diagnostics.CodeAnalysis.NotNullWhenAttribute(false)]System.String value) { throw null; }
         public static System.String Join(char separator, params object[] values) { throw null; }
         public static System.String Join(char separator, params string[] value) { throw null; }
         public static System.String Join(char separator, string[] value, int startIndex, int count) { throw null; }
