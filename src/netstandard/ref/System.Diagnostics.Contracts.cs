@@ -9,16 +9,16 @@ namespace System.Diagnostics.Contracts
         public static event System.EventHandler<System.Diagnostics.Contracts.ContractFailedEventArgs> ContractFailed { add { } remove { } }
         [System.Diagnostics.ConditionalAttribute("CONTRACTS_FULL")]
         [System.Diagnostics.ConditionalAttribute("DEBUG")]
-        public static void Assert(bool condition) { }
+        public static void Assert([System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute(false)]bool condition) { }
         [System.Diagnostics.ConditionalAttribute("CONTRACTS_FULL")]
         [System.Diagnostics.ConditionalAttribute("DEBUG")]
-        public static void Assert(bool condition, string userMessage) { }
+        public static void Assert([System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute(false)]bool condition, string userMessage) { }
         [System.Diagnostics.ConditionalAttribute("CONTRACTS_FULL")]
         [System.Diagnostics.ConditionalAttribute("DEBUG")]
-        public static void Assume(bool condition) { }
+        public static void Assume([System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute(false)]bool condition) { }
         [System.Diagnostics.ConditionalAttribute("CONTRACTS_FULL")]
         [System.Diagnostics.ConditionalAttribute("DEBUG")]
-        public static void Assume(bool condition, string userMessage) { }
+        public static void Assume([System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute(false)]bool condition, string userMessage) { }
         [System.Diagnostics.ConditionalAttribute("CONTRACTS_FULL")]
         public static void EndContractBlock() { }
         [System.Diagnostics.ConditionalAttribute("CONTRACTS_FULL")]
