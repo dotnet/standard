@@ -16,6 +16,9 @@ variables:
   - name: _DotNetArtifactsCategory
     value: .NETCore
 
+stages:
+- stage: build
+displayName: Build
 jobs:
 - template: /eng/common/templates/jobs/jobs.yml
   parameters:
@@ -111,3 +114,13 @@ jobs:
             --prepareMachine
             --ci
           displayName: OSX Build
+
+- ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
+  - template: eng\common\templates\post-build\post-build.yml
+    parameters:
+      # Symbol validation isn't being very reliable lately. This should be enabled back
+      # once this issue is resolved: https://github.com/dotnet/arcade/issues/2871
+      enableSymbolValidation: false
+      # Sourcelink validation isn't passing for Arcade due to some regressions. This should be
+      # enabled back once this issue is resolved: https://github.com/dotnet/arcade/issues/2912
+      enableSourceLinkValidation: false
