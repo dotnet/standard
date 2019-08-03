@@ -18,11 +18,11 @@
     <NetStandardLibraryPackage>netstandard.library</NetStandardLibraryPackage>
   </PropertyGroup>
   <PropertyGroup>
-    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.19401.23</MicrosoftDotNetApiCompatPackageVersion>
-    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.19401.23</MicrosoftDotNetBuildTasksPackagingPackageVersion>
-    <MicrosoftDotNetCodeAnalysisPackageVersion>1.0.0-beta.19401.23</MicrosoftDotNetCodeAnalysisPackageVersion>
-    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.19401.23</MicrosoftDotNetGenAPIPackageVersion>
-    <MicrosoftDotNetGenFacadesPackageVersion>1.0.0-beta.19401.23</MicrosoftDotNetGenFacadesPackageVersion>
+    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.19402.16</MicrosoftDotNetApiCompatPackageVersion>
+    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.19402.16</MicrosoftDotNetBuildTasksPackagingPackageVersion>
+    <MicrosoftDotNetCodeAnalysisPackageVersion>1.0.0-beta.19402.16</MicrosoftDotNetCodeAnalysisPackageVersion>
+    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.19402.16</MicrosoftDotNetGenAPIPackageVersion>
+    <MicrosoftDotNetGenFacadesPackageVersion>1.0.0-beta.19402.16</MicrosoftDotNetGenFacadesPackageVersion>
     <SystemReflectionEmitPackageVersion>5.0.0-alpha1.19401.3</SystemReflectionEmitPackageVersion>
     <SystemReflectionEmitILGenerationPackageVersion>5.0.0-alpha1.19401.3</SystemReflectionEmitILGenerationPackageVersion>
     <SystemReflectionEmitLightweightPackageVersion>5.0.0-alpha1.19401.3</SystemReflectionEmitLightweightPackageVersion>
