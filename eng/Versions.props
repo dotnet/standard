@@ -24,21 +24,15 @@
     <NetStandardLibraryPackage>netstandard.library</NetStandardLibraryPackage>
   </PropertyGroup>
   <PropertyGroup>
-    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.19365.4</MicrosoftDotNetApiCompatPackageVersion>
-    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.19365.4</MicrosoftDotNetBuildTasksPackagingPackageVersion>
-    <MicrosoftDotNetCodeAnalysisPackageVersion>1.0.0-beta.19365.4</MicrosoftDotNetCodeAnalysisPackageVersion>
-    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.19365.4</MicrosoftDotNetGenAPIPackageVersion>
-    <MicrosoftDotNetGenFacadesPackageVersion>1.0.0-beta.19365.4</MicrosoftDotNetGenFacadesPackageVersion>
+    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.19412.7</MicrosoftDotNetApiCompatPackageVersion>
+    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.19412.7</MicrosoftDotNetBuildTasksPackagingPackageVersion>
+    <MicrosoftDotNetCodeAnalysisPackageVersion>1.0.0-beta.19412.7</MicrosoftDotNetCodeAnalysisPackageVersion>
+    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.19412.7</MicrosoftDotNetGenAPIPackageVersion>
+    <MicrosoftDotNetGenFacadesPackageVersion>1.0.0-beta.19412.7</MicrosoftDotNetGenFacadesPackageVersion>
     <SystemReflectionEmitPackageVersion>4.6.0-preview9.19413.13</SystemReflectionEmitPackageVersion>
     <SystemReflectionEmitILGenerationPackageVersion>4.6.0-preview9.19413.13</SystemReflectionEmitILGenerationPackageVersion>
     <SystemReflectionEmitLightweightPackageVersion>4.6.0-preview9.19413.13</SystemReflectionEmitLightweightPackageVersion>
     <!-- This is the LKG stable version of NetStandard.Library from myget.org. Please don't edit this version -->
     <NetStandardLibraryPackageVersion>2.0.3</NetStandardLibraryPackageVersion>
-  </PropertyGroup>
-  <PropertyGroup>
-    <RestoreSources>
-      $(RestoreSources);
-      https://dotnetfeed.blob.core.windows.net/dotnet-core/index.json;
-    </RestoreSources>
   </PropertyGroup>
 </Project>
