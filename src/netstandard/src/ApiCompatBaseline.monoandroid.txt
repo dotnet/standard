@@ -296,9 +296,19 @@ CannotRemoveAttribute : Attribute 'System.Runtime.CompilerServices.IsReadOnlyAtt
 TypeCannotChangeClassification : Type 'System.ComponentModel.Design.Serialization.MemberRelationship' is marked as readonly in the contract so it must also be marked readonly in the implementation.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.ComponentModel.Design.Serialization.RootDesignerSerializerAttribute' changed from '[ObsoleteAttribute("This attribute has been deprecated. Use DesignerSerializerAttribute instead.  For example, to specify a root designer for CodeDom, use DesignerSerializerAttribute(...,typeof(TypeCodeDomSerializer)).  https://go.microsoft.com/fwlink/?linkid=14202")]' in the contract to '[ObsoleteAttribute("This attribute has been deprecated. Use DesignerSerializerAttribute instead.  For example, to specify a root designer for CodeDom, use DesignerSerializerAttribute(...,typeof(TypeCodeDomSerializer)).  http://go.microsoft.com/fwlink/?linkid=14202")]' in the implementation.
 TypesMustExist : Type 'System.Data.DataReaderExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Data.DataRowComparer' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Data.DataRowComparer<TRow>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Data.DataRowExtensions' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.ToolboxItemAttribute' exists on 'System.Data.DataSet' in the contract but not the implementation.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Data.DataSysDescriptionAttribute' changed from '[ObsoleteAttribute("DataSysDescriptionAttribute has been deprecated.  https://go.microsoft.com/fwlink/?linkid=14202", false)]' in the contract to '[ObsoleteAttribute("DataSysDescriptionAttribute has been deprecated.  http://go.microsoft.com/fwlink/?linkid=14202", false)]' in the implementation.
+TypesMustExist : Type 'System.Data.DataTableExtensions' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Data.DataTableReader' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
+TypesMustExist : Type 'System.Data.EnumerableRowCollection' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Data.EnumerableRowCollection<TRow>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Data.EnumerableRowCollectionExtensions' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Data.OrderedEnumerableRowCollection<TRow>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Data.TypedTableBase<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Data.TypedTableBaseExtensions' does not exist in the implementation but it does exist in the contract.
 CannotRemoveBaseTypeOrInterface : Type 'System.Data.Common.DbCommand' does not implement interface 'System.IAsyncDisposable' in the implementation but it does in the contract.
 MembersMustExist : Member 'System.Data.Common.DbCommand.DisposeAsync()' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Data.Common.DbCommand.PrepareAsync(System.Threading.CancellationToken)' does not exist in the implementation but it does exist in the contract.
@@ -1036,4 +1046,4 @@ CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xm
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlChoiceIdentifierAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 CannotRemoveBaseTypeOrInterface : Type 'System.Xml.Serialization.XmlSchemaImporter' does not inherit from base type 'System.Xml.Serialization.SchemaImporter' in the implementation but it does in the contract.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlSerializerAssemblyAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Enum | AttributeTargets.Interface | AttributeTargets.Struct)]' in the implementation.
-Total Issues: 1037
+Total Issues: 1047
