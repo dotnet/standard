@@ -12,7 +12,7 @@
   <!-- Xml doc package info, which we don't need to be updated by DARC -->
   <PropertyGroup>
     <XmlDocPackage>Microsoft.Private.Intellisense</XmlDocPackage>
-    <XmlDocPackageVersion>2.0.0-preview3-26209-0</XmlDocPackageVersion>
+    <XmlDocPackageVersion>3.0.0-preview8-190815-0</XmlDocPackageVersion>
   </PropertyGroup>
   <PropertyGroup>
     <NetStandardLibraryPackage>netstandard.library</NetStandardLibraryPackage>
