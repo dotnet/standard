@@ -4,6 +4,20 @@
 
 namespace System.Buffers
 {
+    public sealed partial class ArrayBufferWriter<T> : System.Buffers.IBufferWriter<T>
+    {
+        public ArrayBufferWriter() { }
+        public ArrayBufferWriter(int initialCapacity) { }
+        public int Capacity { get { throw null; } }
+        public int FreeCapacity { get { throw null; } }
+        public int WrittenCount { get { throw null; } }
+        public System.ReadOnlyMemory<T> WrittenMemory { get { throw null; } }
+        public System.ReadOnlySpan<T> WrittenSpan { get { throw null; } }
+        public void Advance(int count) { }
+        public void Clear() { }
+        public System.Memory<T> GetMemory(int sizeHint = 0) { throw null; }
+        public System.Span<T> GetSpan(int sizeHint = 0) { throw null; }
+    }
     public abstract partial class ArrayPool<T>
     {
         protected ArrayPool() { }
@@ -85,6 +99,7 @@ namespace System.Buffers
         public ReadOnlySequence(T[] array, int start, int length) { throw null; }
         public System.SequencePosition End { get { throw null; } }
         public System.ReadOnlyMemory<T> First { get { throw null; } }
+        public System.ReadOnlySpan<T> FirstSpan { get { throw null; } }
         public bool IsEmpty { get { throw null; } }
         public bool IsSingleSegment { get { throw null; } }
         public long Length { get { throw null; } }
@@ -106,7 +121,6 @@ namespace System.Buffers
         public partial struct Enumerator
         {
             private object _dummy;
-            private int _dummyPrimitive;
             public Enumerator(in System.Buffers.ReadOnlySequence<T> sequence) { throw null; }
             public System.ReadOnlyMemory<T> Current { get { throw null; } }
             public bool MoveNext() { throw null; }
@@ -120,6 +134,51 @@ namespace System.Buffers
         public long RunningIndex { get { throw null; } protected set { } }
     }
     public delegate void ReadOnlySpanAction<T, in TArg>(System.ReadOnlySpan<T> span, TArg arg);
+    public ref partial struct SequenceReader<T> where T : unmanaged, System.IEquatable<T>
+    {
+        private object _dummy;
+        private int _dummyPrimitive;
+        public SequenceReader(System.Buffers.ReadOnlySequence<T> sequence) { throw null; }
+        public readonly long Consumed { get { throw null; } }
+        public readonly System.ReadOnlySpan<T> CurrentSpan { get { throw null; } }
+        public readonly int CurrentSpanIndex { get { throw null; } }
+        public readonly bool End { get { throw null; } }
+        public readonly long Length { get { throw null; } }
+        public readonly System.SequencePosition Position { get { throw null; } }
+        public readonly long Remaining { get { throw null; } }
+        public readonly System.Buffers.ReadOnlySequence<T> Sequence { get { throw null; } }
+        public readonly System.ReadOnlySpan<T> UnreadSpan { get { throw null; } }
+        public void Advance(long count) { }
+        public long AdvancePast(T value) { throw null; }
+        public long AdvancePastAny(System.ReadOnlySpan<T> values) { throw null; }
+        public long AdvancePastAny(T value0, T value1) { throw null; }
+        public long AdvancePastAny(T value0, T value1, T value2) { throw null; }
+        public long AdvancePastAny(T value0, T value1, T value2, T value3) { throw null; }
+        public bool IsNext(System.ReadOnlySpan<T> next, bool advancePast = false) { throw null; }
+        public bool IsNext(T next, bool advancePast = false) { throw null; }
+        public void Rewind(long count) { }
+        public bool TryAdvanceTo(T delimiter, bool advancePastDelimiter = true) { throw null; }
+        public bool TryAdvanceToAny(System.ReadOnlySpan<T> delimiters, bool advancePastDelimiter = true) { throw null; }
+        public readonly bool TryCopyTo(System.Span<T> destination) { throw null; }
+        public readonly bool TryPeek(out T value) { throw null; }
+        public bool TryRead(out T value) { throw null; }
+        public bool TryReadTo(out System.Buffers.ReadOnlySequence<T> sequence, System.ReadOnlySpan<T> delimiter, bool advancePastDelimiter = true) { throw null; }
+        public bool TryReadTo(out System.Buffers.ReadOnlySequence<T> sequence, T delimiter, bool advancePastDelimiter = true) { throw null; }
+        public bool TryReadTo(out System.Buffers.ReadOnlySequence<T> sequence, T delimiter, T delimiterEscape, bool advancePastDelimiter = true) { throw null; }
+        public bool TryReadTo(out System.ReadOnlySpan<T> span, T delimiter, bool advancePastDelimiter = true) { throw null; }
+        public bool TryReadTo(out System.ReadOnlySpan<T> span, T delimiter, T delimiterEscape, bool advancePastDelimiter = true) { throw null; }
+        public bool TryReadToAny(out System.Buffers.ReadOnlySequence<T> sequence, System.ReadOnlySpan<T> delimiters, bool advancePastDelimiter = true) { throw null; }
+        public bool TryReadToAny(out System.ReadOnlySpan<T> span, System.ReadOnlySpan<T> delimiters, bool advancePastDelimiter = true) { throw null; }
+    }
+    public static partial class SequenceReaderExtensions
+    {
+        public static bool TryReadBigEndian(this ref System.Buffers.SequenceReader<byte> reader, out short value) { throw null; }
+        public static bool TryReadBigEndian(this ref System.Buffers.SequenceReader<byte> reader, out int value) { throw null; }
+        public static bool TryReadBigEndian(this ref System.Buffers.SequenceReader<byte> reader, out long value) { throw null; }
+        public static bool TryReadLittleEndian(this ref System.Buffers.SequenceReader<byte> reader, out short value) { throw null; }
+        public static bool TryReadLittleEndian(this ref System.Buffers.SequenceReader<byte> reader, out int value) { throw null; }
+        public static bool TryReadLittleEndian(this ref System.Buffers.SequenceReader<byte> reader, out long value) { throw null; }
+    }
     public delegate void SpanAction<T, in TArg>(System.Span<T> span, TArg arg);
     public readonly partial struct StandardFormat : System.IEquatable<System.Buffers.StandardFormat>
     {
@@ -140,5 +199,6 @@ namespace System.Buffers
         public static System.Buffers.StandardFormat Parse(System.ReadOnlySpan<char> format) { throw null; }
         public static System.Buffers.StandardFormat Parse(string format) { throw null; }
         public override string ToString() { throw null; }
+        public static bool TryParse(System.ReadOnlySpan<char> format, out System.Buffers.StandardFormat result) { throw null; }
     }
 }
