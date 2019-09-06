@@ -285,6 +285,7 @@ MembersMustExist : Member 'System.Version.Parse(System.ReadOnlySpan<System.Char>
 MembersMustExist : Member 'System.Version.TryFormat(System.Span<System.Char>, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Version.TryFormat(System.Span<System.Char>, System.Int32, System.Int32)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Version.TryParse(System.ReadOnlySpan<System.Char>, System.Version)' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Buffers.ArrayBufferWriter<T>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Buffers.ArrayPool<T>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Buffers.BuffersExtensions' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Buffers.IBufferWriter<T>' does not exist in the implementation but it does exist in the contract.
@@ -297,6 +298,8 @@ TypesMustExist : Type 'System.Buffers.OperationStatus' does not exist in the imp
 TypesMustExist : Type 'System.Buffers.ReadOnlySequence<T>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Buffers.ReadOnlySequenceSegment<T>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Buffers.ReadOnlySpanAction<T, TArg>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Buffers.SequenceReader<T>' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Buffers.SequenceReaderExtensions' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Buffers.SpanAction<T, TArg>' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Buffers.StandardFormat' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Buffers.Binary.BinaryPrimitives' does not exist in the implementation but it does exist in the contract.
@@ -1207,4 +1210,4 @@ CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Xml.Sche
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the implementation.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the implementation.
 TypesMustExist : Type 'System.Xml.XPath.XDocumentExtensions' does not exist in the implementation but it does exist in the contract.
-Total Issues: 1208
+Total Issues: 1211
