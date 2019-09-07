@@ -6,7 +6,7 @@
     <Copyright>$(CopyrightNetFoundation)</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
-  
+
   <PropertyGroup>
     <!--
     For non-SDK projects that import this file and then import Microsoft.Common.props,
@@ -73,9 +73,9 @@
     <RunApiCompat>$(IsSourceProject)</RunApiCompat>
     <BaselineAllAPICompatError Condition="'$(BaselineAllAPICompatError)' == ''">true</BaselineAllAPICompatError>
     <BaselineAllAPICompatError Condition="'$(ContinuousIntegrationBuild)' == 'true'">false</BaselineAllAPICompatError>
-    <LangVersion>latest</LangVersion> <!-- default to allowing all language features -->
+    <LangVersion>preview</LangVersion> <!-- default to allowing all language features -->
   </PropertyGroup>
-  
+
   <!-- Redefine this here so that it can be picked up by GetFilesToPackage -->
   <PropertyGroup>
     <XmlDocFileRoot>$(PackagesDir)$(XmlDocPackage.ToLowerInvariant())/$(XmlDocPackageVersion)/xmldocs/netstandard</XmlDocFileRoot>
