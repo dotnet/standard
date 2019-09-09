@@ -389,6 +389,7 @@ MembersMustExist : Member 'System.Drawing.SizeF.op_Division(System.Drawing.SizeF
 MembersMustExist : Member 'System.Drawing.SizeF.op_Multiply(System.Drawing.SizeF, System.Single)' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Drawing.SizeF.op_Multiply(System.Single, System.Drawing.SizeF)' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.Drawing.SizeFConverter' does not exist in the implementation but it does exist in the contract.
+TypesMustExist : Type 'System.Drawing.ImageConverter' does not exist in the implementation but it does exist in the contract.
 MembersMustExist : Member 'System.Globalization.CharUnicodeInfo.GetUnicodeCategory(System.Int32)' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Globalization.GlobalizationExtensions' in the contract but not the implementation.
 TypesMustExist : Type 'System.Globalization.ISOWeek' does not exist in the implementation but it does exist in the contract.
