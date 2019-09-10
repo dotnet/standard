@@ -23,9 +23,9 @@
     <MicrosoftDotNetCodeAnalysisPackageVersion>1.0.0-beta.19459.10</MicrosoftDotNetCodeAnalysisPackageVersion>
     <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.19459.10</MicrosoftDotNetGenAPIPackageVersion>
     <MicrosoftDotNetGenFacadesPackageVersion>1.0.0-beta.19459.10</MicrosoftDotNetGenFacadesPackageVersion>
-    <SystemReflectionEmitPackageVersion>5.0.0-alpha1.19458.6</SystemReflectionEmitPackageVersion>
-    <SystemReflectionEmitILGenerationPackageVersion>5.0.0-alpha1.19458.6</SystemReflectionEmitILGenerationPackageVersion>
-    <SystemReflectionEmitLightweightPackageVersion>5.0.0-alpha1.19458.6</SystemReflectionEmitLightweightPackageVersion>
+    <SystemReflectionEmitPackageVersion>5.0.0-alpha1.19459.14</SystemReflectionEmitPackageVersion>
+    <SystemReflectionEmitILGenerationPackageVersion>5.0.0-alpha1.19459.14</SystemReflectionEmitILGenerationPackageVersion>
+    <SystemReflectionEmitLightweightPackageVersion>5.0.0-alpha1.19459.14</SystemReflectionEmitLightweightPackageVersion>
     <!-- This is the LKG stable version of NetStandard.Library from myget.org. Please don't edit this version -->
     <NetStandardLibraryPackageVersion>2.0.3</NetStandardLibraryPackageVersion>
   </PropertyGroup>
