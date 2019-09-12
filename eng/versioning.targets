@@ -77,6 +77,7 @@
     </ItemGroup>
   </Target>
 
+  <!-- Standard repo requires this VersionSuffix property to always be set. It uses packageIndex.json file to look for non-stable dependecies. -->
   <PropertyGroup Condition="'$(DotNetFinalVersionKind)' == 'release'">
     <VersionSuffix>$(_PreReleaseLabel)$(_BuildNumberLabels)</VersionSuffix>
   </PropertyGroup>

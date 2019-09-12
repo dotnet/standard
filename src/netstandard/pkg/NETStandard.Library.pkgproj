@@ -58,9 +58,10 @@
                       Overwrite="true" />
   </Target>
 
+  <!-- The StableVersion needs to be non-empty in order to not apply VersionSuffix to stable packages during release build. -->
   <Target Name="SetStableVersion" BeforeTargets="CalculatePackageVersion" Condition="'$(DotNetFinalVersionKind)' == 'release'">
     <PropertyGroup>
-      <StableVersion>9.9.9</StableVersion>
+      <StableVersion>$(PackageVersion)</StableVersion>
     </PropertyGroup>
   </Target>
 
