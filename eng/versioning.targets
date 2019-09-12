@@ -76,4 +76,8 @@
       <FileWrites Include="$(AssemblyInfoFile)" />
     </ItemGroup>
   </Target>
+
+  <PropertyGroup Condition="'$(DotNetFinalVersionKind)' == 'release'">
+    <VersionSuffix>$(_PreReleaseLabel)$(_BuildNumberLabels)</VersionSuffix>
+  </PropertyGroup>
 </Project>

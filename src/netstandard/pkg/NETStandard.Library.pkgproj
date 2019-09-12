@@ -58,6 +58,12 @@
                       Overwrite="true" />
   </Target>
 
+  <Target Name="SetStableVersion" BeforeTargets="CalculatePackageVersion" Condition="'$(DotNetFinalVersionKind)' == 'release'">
+    <PropertyGroup>
+      <StableVersion>9.9.9</StableVersion>
+    </PropertyGroup>
+  </Target>
+
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
 
 </Project>
