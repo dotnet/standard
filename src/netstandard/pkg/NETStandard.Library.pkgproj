@@ -58,6 +58,13 @@
                       Overwrite="true" />
   </Target>
 
+  <!-- The StableVersion needs to be non-empty in order to not apply VersionSuffix to stable packages during release build. -->
+  <Target Name="SetStableVersion" BeforeTargets="CalculatePackageVersion" Condition="'$(DotNetFinalVersionKind)' == 'release'">
+    <PropertyGroup>
+      <StableVersion>$(PackageVersion)</StableVersion>
+    </PropertyGroup>
+  </Target>
+
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
 
 </Project>
