@@ -8,58 +8,62 @@
 
 ## Platform Support
 
-* TBD
+* No longer supported on .NET Framework
+* .NET Core 3.0
+* Mono 6.4
+* Xamarin.iOS 12.16
+* Xamarin.Mac 5.16
+* Xamarin.Android 10
+* An upcoming version Universal Windows Platform
+* An upcoming version Unity
 
 ## What's new?
 
 | Namespace                                     | #APIs |
 |-----------------------------------------------|-------|
-| Microsoft.Win32.SafeHandles                   | 5     |
-| System                                        | 578   |
-| System.Buffers                                | 104   |
-| System.Buffers.Binary                         | 58    |
-| System.Buffers.Text                           | 42    |
-| System.Collections                            | 3     |
-| System.Collections.Concurrent                 | 4     |
-| System.Collections.Generic                    | 31    |
-| System.Collections.ObjectModel                | 1     |
-| System.Collections.Specialized                | 1     |
-| System.ComponentModel                         | 5     |
-| System.ComponentModel.Design.Serialization    | 1     |
-| System.Data                                   | 1     |
-| System.Data.Common                            | 11    |
-| System.Diagnostics                            | 2     |
-| System.Diagnostics.SymbolStore                | 1     |
-| System.Diagnostics.Tracing                    | 8     |
-| System.Drawing                                | 251   |
-| System.Globalization                          | 9     |
-| System.IO                                     | 118   |
-| System.IO.Compression                         | 48    |
-| System.IO.Enumeration                         | 41    |
-| System.IO.IsolatedStorage                     | 2     |
-| System.IO.Pipes                               | 3     |
-| System.Linq                                   | 9     |
-| System.Net                                    | 32    |
-| System.Net.Http                               | 10    |
-| System.Net.Mime                               | 2     |
-| System.Net.Security                           | 50    |
-| System.Net.Sockets                            | 14    |
-| System.Net.WebSockets                         | 9     |
-| System.Numerics                               | 477   |
-| System.Reflection                             | 16    |
-| System.Reflection.Emit                        | 639   |
-| System.Runtime.CompilerServices               | 101   |
-| System.Runtime.ExceptionServices              | 1     |
-| System.Runtime.InteropServices                | 111   |
-| System.Runtime.Serialization                  | 2     |
-| System.Runtime.Serialization.Formatters       | 3     |
-| System.Security.Authentication                | 3     |
-| System.Security.Cryptography                  | 169   |
-| System.Security.Cryptography.X509Certificates | 45    |
-| System.Text                                   | 26    |
-| System.Text.RegularExpressions                | 61    |
-| System.Threading                              | 11    |
-| System.Threading.Tasks                        | 40    |
-| System.Threading.Tasks.Sources                | 29    |
-| System.Xml.Linq                               | 21    |
-| System.Xml.Serialization                      | 2     |
+| System                                        |   560 |
+| System.Buffers                                |   199 |
+| System.Buffers.Binary                         |    58 |
+| System.Buffers.Text                           |    42 |
+| System.Collections                            |     3 |
+| System.Collections.Concurrent                 |     4 |
+| System.Collections.Generic                    |    30 |
+| System.Collections.ObjectModel                |     1 |
+| System.ComponentModel                         |     4 |
+| System.Data                                   |    85 |
+| System.Data.Common                            |    28 |
+| System.Diagnostics                            |     5 |
+| System.Diagnostics.CodeAnalysis               |    26 |
+| System.Diagnostics.Tracing                    |    41 |
+| System.Drawing                                |   208 |
+| System.Globalization                          |     8 |
+| System.IO                                     |    97 |
+| System.IO.Compression                         |    27 |
+| System.IO.Enumeration                         |    66 |
+| System.IO.IsolatedStorage                     |     1 |
+| System.IO.Pipes                               |     1 |
+| System.Linq                                   |     8 |
+| System.Net                                    |    32 |
+| System.Net.Http                               |    12 |
+| System.Net.Mime                               |     2 |
+| System.Net.Security                           |    84 |
+| System.Net.Sockets                            |    13 |
+| System.Net.WebSockets                         |    14 |
+| System.Numerics                               |   482 |
+| System.Reflection                             |    10 |
+| System.Reflection.Emit                        |   248 |
+| System.Runtime                                |     4 |
+| System.Runtime.CompilerServices               |   107 |
+| System.Runtime.ExceptionServices              |     1 |
+| System.Runtime.InteropServices                |   122 |
+| System.Runtime.Serialization.Formatters       |     7 |
+| System.Security.Authentication                |     3 |
+| System.Security.Cryptography                  |   132 |
+| System.Security.Cryptography.X509Certificates |    50 |
+| System.Text                                   |    27 |
+| System.Text.RegularExpressions                |    74 |
+| System.Threading                              |     8 |
+| System.Threading.Tasks                        |    46 |
+| System.Threading.Tasks.Sources                |    32 |
+| System.Xml.Linq                               |    14 |
+| System.Xml.Serialization                      |     1 |
