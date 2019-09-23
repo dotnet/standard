@@ -8,7 +8,14 @@
 
 ## Platform Support
 
-* TBD
+* No longer supported on .NET Framework
+* .NET Core 3.0
+* Mono 6.4
+* Xamarin.iOS 12.16
+* Xamarin.Mac 5.16
+* Xamarin.Android 10
+* An upcoming version Universal Windows Platform
+* An upcoming version Unity
 
 ## What's new?
 
