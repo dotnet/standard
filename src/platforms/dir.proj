@@ -5,7 +5,7 @@
     <Project Include="extensions/*.csproj" />
     <Project Include="net461/*.csproj" />
     <Project Include="xamarin.ios/*.csproj" />
-    <Project Include="xamarin.watchos/**/*.csproj" />
+    <Project Include="xamarin.watchos/*.csproj" />
     <Project Include="xamarin.tvos/*.csproj" />
     <Project Include="xamarin.mac/**/*.csproj" />
     <Project Include="monoandroid/**/*.csproj" />

@@ -4,7 +4,7 @@
 
 namespace System.Runtime.Serialization
 {
-    [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited=false, AllowMultiple=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Struct, Inherited=false, AllowMultiple=false)]
     public sealed partial class CollectionDataContractAttribute : System.Attribute
     {
         public CollectionDataContractAttribute() { }
@@ -21,14 +21,14 @@ namespace System.Runtime.Serialization
         public string Namespace { get { throw null; } set { } }
         public string ValueName { get { throw null; } set { } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(3), Inherited=false, AllowMultiple=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Assembly | System.AttributeTargets.Module, Inherited=false, AllowMultiple=true)]
     public sealed partial class ContractNamespaceAttribute : System.Attribute
     {
         public ContractNamespaceAttribute(string contractNamespace) { }
         public string ClrNamespace { get { throw null; } set { } }
         public string ContractNamespace { get { throw null; } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(28), Inherited=false, AllowMultiple=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Enum | System.AttributeTargets.Struct, Inherited=false, AllowMultiple=false)]
     public sealed partial class DataContractAttribute : System.Attribute
     {
         public DataContractAttribute() { }
@@ -82,6 +82,11 @@ namespace System.Runtime.Serialization
         public override void WriteStartObject(System.Xml.XmlDictionaryWriter writer, object graph) { }
         public override void WriteStartObject(System.Xml.XmlWriter writer, object graph) { }
     }
+    public static partial class DataContractSerializerExtensions
+    {
+        public static System.Runtime.Serialization.ISerializationSurrogateProvider GetSerializationSurrogateProvider(this System.Runtime.Serialization.DataContractSerializer serializer) { throw null; }
+        public static void SetSerializationSurrogateProvider(this System.Runtime.Serialization.DataContractSerializer serializer, System.Runtime.Serialization.ISerializationSurrogateProvider provider) { }
+    }
     public partial class DataContractSerializerSettings
     {
         public DataContractSerializerSettings() { }
@@ -95,7 +100,7 @@ namespace System.Runtime.Serialization
         public System.Xml.XmlDictionaryString RootNamespace { get { throw null; } set { } }
         public bool SerializeReadOnlyTypes { get { throw null; } set { } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(384), Inherited=false, AllowMultiple=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Field | System.AttributeTargets.Property, Inherited=false, AllowMultiple=false)]
     public sealed partial class DataMemberAttribute : System.Attribute
     {
         public DataMemberAttribute() { }
@@ -115,11 +120,11 @@ namespace System.Runtime.Serialization
     }
     public enum EmitTypeInformation
     {
-        Always = 1,
         AsNeeded = 0,
+        Always = 1,
         Never = 2,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(256), Inherited=false, AllowMultiple=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Field, Inherited=false, AllowMultiple=false)]
     public sealed partial class EnumMemberAttribute : System.Attribute
     {
         public EnumMemberAttribute() { }
@@ -150,7 +155,7 @@ namespace System.Runtime.Serialization
     {
         System.Runtime.Serialization.ExtensionDataObject ExtensionData { get; set; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(384), Inherited=false, AllowMultiple=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Field | System.AttributeTargets.Property, Inherited=false, AllowMultiple=false)]
     public sealed partial class IgnoreDataMemberAttribute : System.Attribute
     {
         public IgnoreDataMemberAttribute() { }
@@ -162,7 +167,13 @@ namespace System.Runtime.Serialization
         public InvalidDataContractException(string message) { }
         public InvalidDataContractException(string message, System.Exception innerException) { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(12), Inherited=true, AllowMultiple=true)]
+    public partial interface ISerializationSurrogateProvider
+    {
+        object GetDeserializedObject(object obj, System.Type targetType);
+        object GetObjectToSerialize(object obj, System.Type targetType);
+        System.Type GetSurrogateType(System.Type type);
+    }
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Struct, Inherited=true, AllowMultiple=true)]
     public sealed partial class KnownTypeAttribute : System.Attribute
     {
         public KnownTypeAttribute(string methodName) { }
@@ -562,11 +573,11 @@ namespace System.Xml
     [System.FlagsAttribute]
     public enum XmlDictionaryReaderQuotaTypes
     {
+        MaxDepth = 1,
+        MaxStringContentLength = 2,
         MaxArrayLength = 4,
         MaxBytesPerRead = 8,
-        MaxDepth = 1,
         MaxNameTableCharCount = 16,
-        MaxStringContentLength = 2,
     }
     public partial class XmlDictionaryString
     {
