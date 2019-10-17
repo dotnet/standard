@@ -49,7 +49,7 @@ namespace System.Web.Services
         RequiresNew = 3,
         Supported = 4,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Method, Inherited=true)]
     public sealed partial class WebMethodAttribute : System.Attribute
     {
         public WebMethodAttribute() { }
@@ -64,7 +64,7 @@ namespace System.Web.Services
         public string MessageName { get { throw null; } set { } }
         public System.Web.Services.TransactionOption TransactionOption { get { throw null; } set { } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Interface, Inherited=true)]
     public sealed partial class WebServiceAttribute : System.Attribute
     {
         public const string DefaultNamespace = "http://tempuri.org/";
@@ -73,7 +73,7 @@ namespace System.Web.Services
         public string Name { get { throw null; } set { } }
         public string Namespace { get { throw null; } set { } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), AllowMultiple=true, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Interface, AllowMultiple=true, Inherited=true)]
     public sealed partial class WebServiceBindingAttribute : System.Attribute
     {
         public WebServiceBindingAttribute() { }
@@ -89,13 +89,13 @@ namespace System.Web.Services
     [System.FlagsAttribute]
     public enum WsiProfiles
     {
-        BasicProfile1_1 = 1,
         None = 0,
+        BasicProfile1_1 = 1,
     }
 }
 namespace System.Web.Services.Configuration
 {
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, Inherited=true)]
     public sealed partial class XmlFormatExtensionAttribute : System.Attribute
     {
         public XmlFormatExtensionAttribute() { }
@@ -108,14 +108,14 @@ namespace System.Web.Services.Configuration
         public System.Type[] ExtensionPoints { get { throw null; } set { } }
         public string Namespace { get { throw null; } set { } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, Inherited=true)]
     public sealed partial class XmlFormatExtensionPointAttribute : System.Attribute
     {
         public XmlFormatExtensionPointAttribute(string memberName) { }
         public bool AllowElements { get { throw null; } set { } }
         public string MemberName { get { throw null; } set { } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), AllowMultiple=true, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, AllowMultiple=true, Inherited=true)]
     public sealed partial class XmlFormatExtensionPrefixAttribute : System.Attribute
     {
         public XmlFormatExtensionPrefixAttribute() { }
@@ -449,8 +449,8 @@ namespace System.Web.Services.Description
     public enum OperationFlow
     {
         None = 0,
-        Notification = 2,
         OneWay = 1,
+        Notification = 2,
         RequestResponse = 3,
         SolicitResponse = 4,
     }
@@ -724,7 +724,7 @@ namespace System.Web.Services.Description
         public const string Namespace = "http://schemas.xmlsoap.org/wsdl/soap/";
         public SoapBinding() { }
         public static System.Xml.Schema.XmlSchema Schema { get { throw null; } }
-        [System.ComponentModel.DefaultValueAttribute((System.Web.Services.Description.SoapBindingStyle)(1))]
+        [System.ComponentModel.DefaultValueAttribute(System.Web.Services.Description.SoapBindingStyle.Document)]
         public System.Web.Services.Description.SoapBindingStyle Style { get { throw null; } set { } }
         public string Transport { get { throw null; } set { } }
     }
@@ -750,7 +750,7 @@ namespace System.Web.Services.Description
         public string Namespace { get { throw null; } set { } }
         public string[] Parts { get { throw null; } set { } }
         public string PartsString { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute((System.Web.Services.Description.SoapBindingUse)(0))]
+        [System.ComponentModel.DefaultValueAttribute(System.Web.Services.Description.SoapBindingUse.Default)]
         public System.Web.Services.Description.SoapBindingUse Use { get { throw null; } set { } }
     }
     [System.Web.Services.Configuration.XmlFormatExtensionAttribute("fault", "http://schemas.xmlsoap.org/wsdl/soap/", typeof(System.Web.Services.Description.FaultBinding))]
@@ -761,7 +761,7 @@ namespace System.Web.Services.Description
         public string Encoding { get { throw null; } set { } }
         public string Name { get { throw null; } set { } }
         public string Namespace { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute((System.Web.Services.Description.SoapBindingUse)(0))]
+        [System.ComponentModel.DefaultValueAttribute(System.Web.Services.Description.SoapBindingUse.Default)]
         public System.Web.Services.Description.SoapBindingUse Use { get { throw null; } set { } }
     }
     [System.Web.Services.Configuration.XmlFormatExtensionAttribute("header", "http://schemas.xmlsoap.org/wsdl/soap/", typeof(System.Web.Services.Description.InputBinding), typeof(System.Web.Services.Description.OutputBinding))]
@@ -777,7 +777,7 @@ namespace System.Web.Services.Description
         [System.ComponentModel.DefaultValueAttribute("")]
         public string Namespace { get { throw null; } set { } }
         public string Part { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute((System.Web.Services.Description.SoapBindingUse)(0))]
+        [System.ComponentModel.DefaultValueAttribute(System.Web.Services.Description.SoapBindingUse.Default)]
         public System.Web.Services.Description.SoapBindingUse Use { get { throw null; } set { } }
     }
     public partial class SoapHeaderFaultBinding : System.Web.Services.Description.ServiceDescriptionFormatExtension
@@ -789,7 +789,7 @@ namespace System.Web.Services.Description
         [System.ComponentModel.DefaultValueAttribute("")]
         public string Namespace { get { throw null; } set { } }
         public string Part { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute((System.Web.Services.Description.SoapBindingUse)(0))]
+        [System.ComponentModel.DefaultValueAttribute(System.Web.Services.Description.SoapBindingUse.Default)]
         public System.Web.Services.Description.SoapBindingUse Use { get { throw null; } set { } }
     }
     [System.Web.Services.Configuration.XmlFormatExtensionAttribute("operation", "http://schemas.xmlsoap.org/wsdl/soap/", typeof(System.Web.Services.Description.OperationBinding))]
@@ -797,7 +797,7 @@ namespace System.Web.Services.Description
     {
         public SoapOperationBinding() { }
         public string SoapAction { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute((System.Web.Services.Description.SoapBindingStyle)(0))]
+        [System.ComponentModel.DefaultValueAttribute(System.Web.Services.Description.SoapBindingStyle.Default)]
         public System.Web.Services.Description.SoapBindingStyle Style { get { throw null; } set { } }
     }
     [System.Web.Services.Configuration.XmlFormatExtensionPointAttribute("Extensions")]
@@ -1021,7 +1021,7 @@ namespace System.Web.Services.Discovery
 }
 namespace System.Web.Services.Protocols
 {
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Method, Inherited=true)]
     public sealed partial class HttpMethodAttribute : System.Attribute
     {
         public HttpMethodAttribute() { }
@@ -1035,20 +1035,20 @@ namespace System.Web.Services.Protocols
         [System.ComponentModel.DefaultValueAttribute(false)]
         public bool AllowAutoRedirect { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.Security.Cryptography.X509Certificates.X509CertificateCollection ClientCertificates { get { throw null; } }
         [System.ComponentModel.DefaultValueAttribute(null)]
         public System.Net.CookieContainer CookieContainer { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute(false)]
         public bool EnableDecompression { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.Net.IWebProxy Proxy { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public bool UnsafeAuthenticatedConnectionSharing { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public string UserAgent { get { throw null; } set { } }
         protected void CancelAsync(object userState) { }
         public static bool GenerateXmlMappings(System.Type type, System.Collections.ArrayList mapping) { throw null; }
@@ -1095,8 +1095,8 @@ namespace System.Web.Services.Protocols
     }
     public enum LogicalMethodTypes
     {
-        Async = 2,
         Sync = 1,
+        Async = 2,
     }
     public abstract partial class MimeFormatter
     {
@@ -1158,7 +1158,7 @@ namespace System.Web.Services.Protocols
         protected override void EnsureInStage() { }
         protected override void EnsureOutStage() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Method, Inherited=true)]
     public sealed partial class SoapDocumentMethodAttribute : System.Attribute
     {
         public SoapDocumentMethodAttribute() { }
@@ -1173,7 +1173,7 @@ namespace System.Web.Services.Protocols
         public string ResponseNamespace { get { throw null; } set { } }
         public System.Web.Services.Description.SoapBindingUse Use { get { throw null; } set { } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, Inherited=true)]
     public sealed partial class SoapDocumentServiceAttribute : System.Attribute
     {
         public SoapDocumentServiceAttribute() { }
@@ -1263,7 +1263,7 @@ namespace System.Web.Services.Protocols
         [System.Xml.Serialization.SoapAttributeAttribute("role", Namespace="http://www.w3.org/2003/05/soap-envelope")]
         public string Role { get { throw null; } set { } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), AllowMultiple=true, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Method, AllowMultiple=true, Inherited=true)]
     public sealed partial class SoapHeaderAttribute : System.Attribute
     {
         public SoapHeaderAttribute(string memberName) { }
@@ -1286,10 +1286,10 @@ namespace System.Web.Services.Protocols
     [System.FlagsAttribute]
     public enum SoapHeaderDirection
     {
-        Fault = 4,
         In = 1,
-        InOut = 3,
         Out = 2,
+        InOut = 3,
+        Fault = 4,
     }
     public sealed partial class SoapHeaderMapping
     {
@@ -1303,7 +1303,7 @@ namespace System.Web.Services.Protocols
     public partial class SoapHttpClientProtocol : System.Web.Services.Protocols.HttpWebClientProtocol
     {
         public SoapHttpClientProtocol() { }
-        [System.ComponentModel.DefaultValueAttribute((System.Web.Services.Protocols.SoapProtocolVersion)(0))]
+        [System.ComponentModel.DefaultValueAttribute(System.Web.Services.Protocols.SoapProtocolVersion.Default)]
         public System.Web.Services.Protocols.SoapProtocolVersion SoapVersion { get { throw null; } set { } }
         protected System.IAsyncResult BeginInvoke(string methodName, object[] parameters, System.AsyncCallback callback, object asyncState) { throw null; }
         public void Discover() { }
@@ -1325,7 +1325,7 @@ namespace System.Web.Services.Protocols
         public System.Web.Services.Protocols.SoapHeaderCollection Headers { get { throw null; } }
         public abstract System.Web.Services.Protocols.LogicalMethodInfo MethodInfo { get; }
         public abstract bool OneWay { get; }
-        [System.ComponentModel.DefaultValueAttribute((System.Web.Services.Protocols.SoapProtocolVersion)(0))]
+        [System.ComponentModel.DefaultValueAttribute(System.Web.Services.Protocols.SoapProtocolVersion.Default)]
         public virtual System.Web.Services.Protocols.SoapProtocolVersion SoapVersion { get { throw null; } }
         public System.Web.Services.Protocols.SoapMessageStage Stage { get { throw null; } }
         public System.IO.Stream Stream { get { throw null; } }
@@ -1339,15 +1339,15 @@ namespace System.Web.Services.Protocols
     }
     public enum SoapMessageStage
     {
-        AfterDeserialize = 8,
+        BeforeSerialize = 1,
         AfterSerialize = 2,
         BeforeDeserialize = 4,
-        BeforeSerialize = 1,
+        AfterDeserialize = 8,
     }
     public enum SoapParameterStyle
     {
-        Bare = 1,
         Default = 0,
+        Bare = 1,
         Wrapped = 2,
     }
     public enum SoapProtocolVersion
@@ -1356,7 +1356,7 @@ namespace System.Web.Services.Protocols
         Soap11 = 1,
         Soap12 = 2,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64), Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Method, Inherited=true)]
     public sealed partial class SoapRpcMethodAttribute : System.Attribute
     {
         public SoapRpcMethodAttribute() { }
@@ -1370,7 +1370,7 @@ namespace System.Web.Services.Protocols
         public string ResponseNamespace { get { throw null; } set { } }
         public System.Web.Services.Description.SoapBindingUse Use { get { throw null; } set { } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, Inherited=true)]
     public sealed partial class SoapRpcServiceAttribute : System.Attribute
     {
         public SoapRpcServiceAttribute() { }
@@ -1379,8 +1379,8 @@ namespace System.Web.Services.Protocols
     }
     public enum SoapServiceRoutingStyle
     {
-        RequestElement = 1,
         SoapAction = 0,
+        RequestElement = 1,
     }
     public sealed partial class SoapUnknownHeader : System.Web.Services.Protocols.SoapHeader
     {
