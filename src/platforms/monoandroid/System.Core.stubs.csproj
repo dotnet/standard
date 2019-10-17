@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <StrongNameKeyId>Microsoft</StrongNameKeyId>
-    <AssemblyVersion>4.0.1.0</AssemblyVersion>
+    <StrongNameKeyId>SilverlightPlatform</StrongNameKeyId>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <OutputType>Library</OutputType>
+    <AssemblyName>System.Core</AssemblyName>
     <!-- disable obsolete warnings/errors -->
     <NoWarn>$(NoWarn);0618;0619;0809</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\mscorlib.csproj" />
-    <Compile Include="System.Diagnostics.StackTrace.cs" />
+    <ProjectReference Include="mscorlib.csproj" />
+    <Compile Include="System.Core.stubs.cs" />
   </ItemGroup>
 </Project>

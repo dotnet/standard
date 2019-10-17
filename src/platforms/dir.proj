@@ -8,7 +8,7 @@
     <Project Include="xamarin.watchos/*.csproj" />
     <Project Include="xamarin.tvos/*.csproj" />
     <Project Include="xamarin.mac/*.csproj" />
-    <Project Include="monoandroid/**/*.csproj" />
+    <Project Include="monoandroid/*.csproj" />
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.traversal.targets))\dir.traversal.targets" />
 </Project>
