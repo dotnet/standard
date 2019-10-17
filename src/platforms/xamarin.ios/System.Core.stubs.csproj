@@ -1,15 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <AssemblyVersion>0.0.0.0</AssemblyVersion>
-    <StrongNameKeyId>XamarinProducts</StrongNameKeyId>
+    <StrongNameKeyId>SilverlightPlatform</StrongNameKeyId>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <OutputType>Library</OutputType>
+    <AssemblyName>System.Core</AssemblyName>
     <!-- disable obsolete warnings/errors -->
     <NoWarn>$(NoWarn);0618;0619;0809</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="mscorlib.csproj" />
-    <ProjectReference Include="System.csproj" />
-    <Compile Include="Xamarin.iOS.cs" />
+    <Compile Include="System.Core.stubs.cs" />
   </ItemGroup>
 </Project>

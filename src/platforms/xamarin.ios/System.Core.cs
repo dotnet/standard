@@ -84,6 +84,7 @@ namespace System.Collections.Generic
         public void CopyTo(T[] array, int arrayIndex) { }
         public void CopyTo(T[] array, int arrayIndex, int count) { }
         public static System.Collections.Generic.IEqualityComparer<System.Collections.Generic.HashSet<T>> CreateSetComparer() { throw null; }
+        public int EnsureCapacity(int capacity) { throw null; }
         public void ExceptWith(System.Collections.Generic.IEnumerable<T> other) { }
         public System.Collections.Generic.HashSet<T>.Enumerator GetEnumerator() { throw null; }
         public virtual void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
@@ -108,6 +109,8 @@ namespace System.Collections.Generic
         public partial struct Enumerator : System.Collections.Generic.IEnumerator<T>, System.Collections.IEnumerator, System.IDisposable
         {
             private T _current;
+            private object _dummy;
+            private int _dummyPrimitive;
             public T Current { get { throw null; } }
             object System.Collections.IEnumerator.Current { get { throw null; } }
             public void Dispose() { }
@@ -342,8 +345,8 @@ namespace System.IO
 {
     public enum HandleInheritability
     {
-        Inheritable = 1,
         None = 0,
+        Inheritable = 1,
     }
 }
 namespace System.IO.MemoryMappedFiles
@@ -383,35 +386,35 @@ namespace System.IO.MemoryMappedFiles
     }
     public enum MemoryMappedFileAccess
     {
-        CopyOnWrite = 3,
-        Read = 1,
-        ReadExecute = 4,
         ReadWrite = 0,
-        ReadWriteExecute = 5,
+        Read = 1,
         Write = 2,
+        CopyOnWrite = 3,
+        ReadExecute = 4,
+        ReadWriteExecute = 5,
     }
     [System.FlagsAttribute]
     public enum MemoryMappedFileOptions
     {
-        DelayAllocatePages = 67108864,
         None = 0,
+        DelayAllocatePages = 67108864,
     }
     [System.FlagsAttribute]
     public enum MemoryMappedFileRights
     {
-        AccessSystemSecurity = 16777216,
-        ChangePermissions = 262144,
         CopyOnWrite = 1,
-        Delete = 65536,
-        Execute = 8,
-        FullControl = 983055,
-        Read = 4,
-        ReadExecute = 12,
-        ReadPermissions = 131072,
-        ReadWrite = 6,
-        ReadWriteExecute = 14,
-        TakeOwnership = 524288,
         Write = 2,
+        Read = 4,
+        ReadWrite = 6,
+        Execute = 8,
+        ReadExecute = 12,
+        ReadWriteExecute = 14,
+        Delete = 65536,
+        ReadPermissions = 131072,
+        ChangePermissions = 262144,
+        TakeOwnership = 524288,
+        FullControl = 983055,
+        AccessSystemSecurity = 16777216,
     }
     public partial class MemoryMappedFileSecurity : System.Security.AccessControl.ObjectSecurity<System.IO.MemoryMappedFiles.MemoryMappedFileRights>
     {
@@ -457,6 +460,7 @@ namespace System.IO.Pipes
         public Microsoft.Win32.SafeHandles.SafePipeHandle ClientSafePipeHandle { get { throw null; } }
         public override System.IO.Pipes.PipeTransmissionMode ReadMode { set { } }
         public override System.IO.Pipes.PipeTransmissionMode TransmissionMode { get { throw null; } }
+        protected override void Dispose(bool disposing) { }
         public void DisposeLocalCopyOfClientHandle() { }
         ~AnonymousPipeServerStream() { }
         public string GetClientHandleAsString() { throw null; }
@@ -507,23 +511,23 @@ namespace System.IO.Pipes
     [System.FlagsAttribute]
     public enum PipeAccessRights
     {
-        AccessSystemSecurity = 16777216,
-        ChangePermissions = 262144,
-        CreateNewInstance = 4,
-        Delete = 65536,
-        FullControl = 2032031,
-        Read = 131209,
-        ReadAttributes = 128,
         ReadData = 1,
-        ReadExtendedAttributes = 8,
-        ReadPermissions = 131072,
-        ReadWrite = 131483,
-        Synchronize = 1048576,
-        TakeOwnership = 524288,
-        Write = 274,
-        WriteAttributes = 256,
         WriteData = 2,
+        CreateNewInstance = 4,
+        ReadExtendedAttributes = 8,
         WriteExtendedAttributes = 16,
+        ReadAttributes = 128,
+        WriteAttributes = 256,
+        Write = 274,
+        Delete = 65536,
+        ReadPermissions = 131072,
+        Read = 131209,
+        ReadWrite = 131483,
+        ChangePermissions = 262144,
+        TakeOwnership = 524288,
+        Synchronize = 1048576,
+        FullControl = 2032031,
+        AccessSystemSecurity = 16777216,
     }
     public sealed partial class PipeAccessRule : System.Security.AccessControl.AccessRule
     {
@@ -540,15 +544,16 @@ namespace System.IO.Pipes
     public enum PipeDirection
     {
         In = 1,
-        InOut = 3,
         Out = 2,
+        InOut = 3,
     }
     [System.FlagsAttribute]
     public enum PipeOptions
     {
-        Asynchronous = 1073741824,
-        None = 0,
         WriteThrough = -2147483648,
+        None = 0,
+        CurrentUserOnly = 536870912,
+        Asynchronous = 1073741824,
     }
     public partial class PipeSecurity : System.Security.AccessControl.NativeObjectSecurity
     {
@@ -601,12 +606,18 @@ namespace System.IO.Pipes
         public System.IO.Pipes.PipeSecurity GetAccessControl() { throw null; }
         protected void InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle handle, bool isExposed, bool isAsync) { }
         public override int Read(byte[] buffer, int offset, int count) { throw null; }
+        public override int Read(System.Span<byte> buffer) { throw null; }
+        public override System.Threading.Tasks.Task<int> ReadAsync(byte[] buffer, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public override System.Threading.Tasks.ValueTask<int> ReadAsync(System.Memory<byte> buffer, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public override int ReadByte() { throw null; }
         public override long Seek(long offset, System.IO.SeekOrigin origin) { throw null; }
         public void SetAccessControl(System.IO.Pipes.PipeSecurity pipeSecurity) { }
         public override void SetLength(long value) { }
         public void WaitForPipeDrain() { }
         public override void Write(byte[] buffer, int offset, int count) { }
+        public override void Write(System.ReadOnlySpan<byte> buffer) { }
+        public override System.Threading.Tasks.Task WriteAsync(byte[] buffer, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public override System.Threading.Tasks.ValueTask WriteAsync(System.ReadOnlyMemory<byte> buffer, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public override void WriteByte(byte value) { }
     }
     public delegate void PipeStreamImpersonationWorker();
@@ -632,21 +643,21 @@ namespace System.Linq
         public static double Average(this System.Collections.Generic.IEnumerable<double> source) { throw null; }
         public static double Average(this System.Collections.Generic.IEnumerable<int> source) { throw null; }
         public static double Average(this System.Collections.Generic.IEnumerable<long> source) { throw null; }
-        public static System.Nullable<decimal> Average(this System.Collections.Generic.IEnumerable<System.Nullable<decimal>> source) { throw null; }
-        public static System.Nullable<double> Average(this System.Collections.Generic.IEnumerable<System.Nullable<double>> source) { throw null; }
-        public static System.Nullable<double> Average(this System.Collections.Generic.IEnumerable<System.Nullable<int>> source) { throw null; }
-        public static System.Nullable<double> Average(this System.Collections.Generic.IEnumerable<System.Nullable<long>> source) { throw null; }
-        public static System.Nullable<float> Average(this System.Collections.Generic.IEnumerable<System.Nullable<float>> source) { throw null; }
+        public static decimal? Average(this System.Collections.Generic.IEnumerable<decimal?> source) { throw null; }
+        public static double? Average(this System.Collections.Generic.IEnumerable<double?> source) { throw null; }
+        public static double? Average(this System.Collections.Generic.IEnumerable<int?> source) { throw null; }
+        public static double? Average(this System.Collections.Generic.IEnumerable<long?> source) { throw null; }
+        public static float? Average(this System.Collections.Generic.IEnumerable<float?> source) { throw null; }
         public static float Average(this System.Collections.Generic.IEnumerable<float> source) { throw null; }
         public static decimal Average<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, decimal> selector) { throw null; }
         public static double Average<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, double> selector) { throw null; }
         public static double Average<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, int> selector) { throw null; }
         public static double Average<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, long> selector) { throw null; }
-        public static System.Nullable<decimal> Average<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<decimal>> selector) { throw null; }
-        public static System.Nullable<double> Average<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<double>> selector) { throw null; }
-        public static System.Nullable<double> Average<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<int>> selector) { throw null; }
-        public static System.Nullable<double> Average<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<long>> selector) { throw null; }
-        public static System.Nullable<float> Average<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<float>> selector) { throw null; }
+        public static decimal? Average<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, decimal?> selector) { throw null; }
+        public static double? Average<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, double?> selector) { throw null; }
+        public static double? Average<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, int?> selector) { throw null; }
+        public static double? Average<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, long?> selector) { throw null; }
+        public static float? Average<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, float?> selector) { throw null; }
         public static float Average<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, float> selector) { throw null; }
         public static System.Collections.Generic.IEnumerable<TResult> Cast<TResult>(this System.Collections.IEnumerable source) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> Concat<TSource>(this System.Collections.Generic.IEnumerable<TSource> first, System.Collections.Generic.IEnumerable<TSource> second) { throw null; }
@@ -691,44 +702,44 @@ namespace System.Linq
         public static double Max(this System.Collections.Generic.IEnumerable<double> source) { throw null; }
         public static int Max(this System.Collections.Generic.IEnumerable<int> source) { throw null; }
         public static long Max(this System.Collections.Generic.IEnumerable<long> source) { throw null; }
-        public static System.Nullable<decimal> Max(this System.Collections.Generic.IEnumerable<System.Nullable<decimal>> source) { throw null; }
-        public static System.Nullable<double> Max(this System.Collections.Generic.IEnumerable<System.Nullable<double>> source) { throw null; }
-        public static System.Nullable<int> Max(this System.Collections.Generic.IEnumerable<System.Nullable<int>> source) { throw null; }
-        public static System.Nullable<long> Max(this System.Collections.Generic.IEnumerable<System.Nullable<long>> source) { throw null; }
-        public static System.Nullable<float> Max(this System.Collections.Generic.IEnumerable<System.Nullable<float>> source) { throw null; }
+        public static decimal? Max(this System.Collections.Generic.IEnumerable<decimal?> source) { throw null; }
+        public static double? Max(this System.Collections.Generic.IEnumerable<double?> source) { throw null; }
+        public static int? Max(this System.Collections.Generic.IEnumerable<int?> source) { throw null; }
+        public static long? Max(this System.Collections.Generic.IEnumerable<long?> source) { throw null; }
+        public static float? Max(this System.Collections.Generic.IEnumerable<float?> source) { throw null; }
         public static float Max(this System.Collections.Generic.IEnumerable<float> source) { throw null; }
         public static TSource Max<TSource>(this System.Collections.Generic.IEnumerable<TSource> source) { throw null; }
         public static decimal Max<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, decimal> selector) { throw null; }
         public static double Max<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, double> selector) { throw null; }
         public static int Max<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, int> selector) { throw null; }
         public static long Max<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, long> selector) { throw null; }
-        public static System.Nullable<decimal> Max<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<decimal>> selector) { throw null; }
-        public static System.Nullable<double> Max<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<double>> selector) { throw null; }
-        public static System.Nullable<int> Max<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<int>> selector) { throw null; }
-        public static System.Nullable<long> Max<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<long>> selector) { throw null; }
-        public static System.Nullable<float> Max<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<float>> selector) { throw null; }
+        public static decimal? Max<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, decimal?> selector) { throw null; }
+        public static double? Max<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, double?> selector) { throw null; }
+        public static int? Max<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, int?> selector) { throw null; }
+        public static long? Max<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, long?> selector) { throw null; }
+        public static float? Max<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, float?> selector) { throw null; }
         public static float Max<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, float> selector) { throw null; }
         public static TResult Max<TSource, TResult>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, TResult> selector) { throw null; }
         public static decimal Min(this System.Collections.Generic.IEnumerable<decimal> source) { throw null; }
         public static double Min(this System.Collections.Generic.IEnumerable<double> source) { throw null; }
         public static int Min(this System.Collections.Generic.IEnumerable<int> source) { throw null; }
         public static long Min(this System.Collections.Generic.IEnumerable<long> source) { throw null; }
-        public static System.Nullable<decimal> Min(this System.Collections.Generic.IEnumerable<System.Nullable<decimal>> source) { throw null; }
-        public static System.Nullable<double> Min(this System.Collections.Generic.IEnumerable<System.Nullable<double>> source) { throw null; }
-        public static System.Nullable<int> Min(this System.Collections.Generic.IEnumerable<System.Nullable<int>> source) { throw null; }
-        public static System.Nullable<long> Min(this System.Collections.Generic.IEnumerable<System.Nullable<long>> source) { throw null; }
-        public static System.Nullable<float> Min(this System.Collections.Generic.IEnumerable<System.Nullable<float>> source) { throw null; }
+        public static decimal? Min(this System.Collections.Generic.IEnumerable<decimal?> source) { throw null; }
+        public static double? Min(this System.Collections.Generic.IEnumerable<double?> source) { throw null; }
+        public static int? Min(this System.Collections.Generic.IEnumerable<int?> source) { throw null; }
+        public static long? Min(this System.Collections.Generic.IEnumerable<long?> source) { throw null; }
+        public static float? Min(this System.Collections.Generic.IEnumerable<float?> source) { throw null; }
         public static float Min(this System.Collections.Generic.IEnumerable<float> source) { throw null; }
         public static TSource Min<TSource>(this System.Collections.Generic.IEnumerable<TSource> source) { throw null; }
         public static decimal Min<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, decimal> selector) { throw null; }
         public static double Min<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, double> selector) { throw null; }
         public static int Min<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, int> selector) { throw null; }
         public static long Min<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, long> selector) { throw null; }
-        public static System.Nullable<decimal> Min<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<decimal>> selector) { throw null; }
-        public static System.Nullable<double> Min<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<double>> selector) { throw null; }
-        public static System.Nullable<int> Min<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<int>> selector) { throw null; }
-        public static System.Nullable<long> Min<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<long>> selector) { throw null; }
-        public static System.Nullable<float> Min<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<float>> selector) { throw null; }
+        public static decimal? Min<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, decimal?> selector) { throw null; }
+        public static double? Min<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, double?> selector) { throw null; }
+        public static int? Min<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, int?> selector) { throw null; }
+        public static long? Min<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, long?> selector) { throw null; }
+        public static float? Min<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, float?> selector) { throw null; }
         public static float Min<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, float> selector) { throw null; }
         public static TResult Min<TSource, TResult>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, TResult> selector) { throw null; }
         public static System.Collections.Generic.IEnumerable<TResult> OfType<TResult>(this System.Collections.IEnumerable source) { throw null; }
@@ -760,21 +771,21 @@ namespace System.Linq
         public static double Sum(this System.Collections.Generic.IEnumerable<double> source) { throw null; }
         public static int Sum(this System.Collections.Generic.IEnumerable<int> source) { throw null; }
         public static long Sum(this System.Collections.Generic.IEnumerable<long> source) { throw null; }
-        public static System.Nullable<decimal> Sum(this System.Collections.Generic.IEnumerable<System.Nullable<decimal>> source) { throw null; }
-        public static System.Nullable<double> Sum(this System.Collections.Generic.IEnumerable<System.Nullable<double>> source) { throw null; }
-        public static System.Nullable<int> Sum(this System.Collections.Generic.IEnumerable<System.Nullable<int>> source) { throw null; }
-        public static System.Nullable<long> Sum(this System.Collections.Generic.IEnumerable<System.Nullable<long>> source) { throw null; }
-        public static System.Nullable<float> Sum(this System.Collections.Generic.IEnumerable<System.Nullable<float>> source) { throw null; }
+        public static decimal? Sum(this System.Collections.Generic.IEnumerable<decimal?> source) { throw null; }
+        public static double? Sum(this System.Collections.Generic.IEnumerable<double?> source) { throw null; }
+        public static int? Sum(this System.Collections.Generic.IEnumerable<int?> source) { throw null; }
+        public static long? Sum(this System.Collections.Generic.IEnumerable<long?> source) { throw null; }
+        public static float? Sum(this System.Collections.Generic.IEnumerable<float?> source) { throw null; }
         public static float Sum(this System.Collections.Generic.IEnumerable<float> source) { throw null; }
         public static decimal Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, decimal> selector) { throw null; }
         public static double Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, double> selector) { throw null; }
         public static int Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, int> selector) { throw null; }
         public static long Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, long> selector) { throw null; }
-        public static System.Nullable<decimal> Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<decimal>> selector) { throw null; }
-        public static System.Nullable<double> Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<double>> selector) { throw null; }
-        public static System.Nullable<int> Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<int>> selector) { throw null; }
-        public static System.Nullable<long> Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<long>> selector) { throw null; }
-        public static System.Nullable<float> Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, System.Nullable<float>> selector) { throw null; }
+        public static decimal? Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, decimal?> selector) { throw null; }
+        public static double? Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, double?> selector) { throw null; }
+        public static int? Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, int?> selector) { throw null; }
+        public static long? Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, long?> selector) { throw null; }
+        public static float? Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, float?> selector) { throw null; }
         public static float Sum<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, float> selector) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> TakeLast<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, int count) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> TakeWhile<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, bool> predicate) { throw null; }
@@ -902,21 +913,21 @@ namespace System.Linq
         public static double Average(this System.Linq.ParallelQuery<double> source) { throw null; }
         public static double Average(this System.Linq.ParallelQuery<int> source) { throw null; }
         public static double Average(this System.Linq.ParallelQuery<long> source) { throw null; }
-        public static System.Nullable<decimal> Average(this System.Linq.ParallelQuery<System.Nullable<decimal>> source) { throw null; }
-        public static System.Nullable<double> Average(this System.Linq.ParallelQuery<System.Nullable<double>> source) { throw null; }
-        public static System.Nullable<double> Average(this System.Linq.ParallelQuery<System.Nullable<int>> source) { throw null; }
-        public static System.Nullable<double> Average(this System.Linq.ParallelQuery<System.Nullable<long>> source) { throw null; }
-        public static System.Nullable<float> Average(this System.Linq.ParallelQuery<System.Nullable<float>> source) { throw null; }
+        public static decimal? Average(this System.Linq.ParallelQuery<decimal?> source) { throw null; }
+        public static double? Average(this System.Linq.ParallelQuery<double?> source) { throw null; }
+        public static double? Average(this System.Linq.ParallelQuery<int?> source) { throw null; }
+        public static double? Average(this System.Linq.ParallelQuery<long?> source) { throw null; }
+        public static float? Average(this System.Linq.ParallelQuery<float?> source) { throw null; }
         public static float Average(this System.Linq.ParallelQuery<float> source) { throw null; }
         public static decimal Average<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, decimal> selector) { throw null; }
         public static double Average<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, double> selector) { throw null; }
         public static double Average<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, int> selector) { throw null; }
         public static double Average<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, long> selector) { throw null; }
-        public static System.Nullable<decimal> Average<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<decimal>> selector) { throw null; }
-        public static System.Nullable<double> Average<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<double>> selector) { throw null; }
-        public static System.Nullable<double> Average<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<int>> selector) { throw null; }
-        public static System.Nullable<double> Average<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<long>> selector) { throw null; }
-        public static System.Nullable<float> Average<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<float>> selector) { throw null; }
+        public static decimal? Average<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, decimal?> selector) { throw null; }
+        public static double? Average<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, double?> selector) { throw null; }
+        public static double? Average<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, int?> selector) { throw null; }
+        public static double? Average<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, long?> selector) { throw null; }
+        public static float? Average<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, float?> selector) { throw null; }
         public static float Average<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, float> selector) { throw null; }
         public static System.Linq.ParallelQuery<TResult> Cast<TResult>(this System.Linq.ParallelQuery source) { throw null; }
         [System.ObsoleteAttribute("The second data source of a binary operator must be of type System.Linq.ParallelQuery<T> rather than System.Collections.Generic.IEnumerable<T>. To fix this problem, use the AsParallel() extension method to convert the right data source to System.Linq.ParallelQuery<T>.")]
@@ -980,44 +991,44 @@ namespace System.Linq
         public static double Max(this System.Linq.ParallelQuery<double> source) { throw null; }
         public static int Max(this System.Linq.ParallelQuery<int> source) { throw null; }
         public static long Max(this System.Linq.ParallelQuery<long> source) { throw null; }
-        public static System.Nullable<decimal> Max(this System.Linq.ParallelQuery<System.Nullable<decimal>> source) { throw null; }
-        public static System.Nullable<double> Max(this System.Linq.ParallelQuery<System.Nullable<double>> source) { throw null; }
-        public static System.Nullable<int> Max(this System.Linq.ParallelQuery<System.Nullable<int>> source) { throw null; }
-        public static System.Nullable<long> Max(this System.Linq.ParallelQuery<System.Nullable<long>> source) { throw null; }
-        public static System.Nullable<float> Max(this System.Linq.ParallelQuery<System.Nullable<float>> source) { throw null; }
+        public static decimal? Max(this System.Linq.ParallelQuery<decimal?> source) { throw null; }
+        public static double? Max(this System.Linq.ParallelQuery<double?> source) { throw null; }
+        public static int? Max(this System.Linq.ParallelQuery<int?> source) { throw null; }
+        public static long? Max(this System.Linq.ParallelQuery<long?> source) { throw null; }
+        public static float? Max(this System.Linq.ParallelQuery<float?> source) { throw null; }
         public static float Max(this System.Linq.ParallelQuery<float> source) { throw null; }
         public static TSource Max<TSource>(this System.Linq.ParallelQuery<TSource> source) { throw null; }
         public static decimal Max<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, decimal> selector) { throw null; }
         public static double Max<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, double> selector) { throw null; }
         public static int Max<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, int> selector) { throw null; }
         public static long Max<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, long> selector) { throw null; }
-        public static System.Nullable<decimal> Max<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<decimal>> selector) { throw null; }
-        public static System.Nullable<double> Max<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<double>> selector) { throw null; }
-        public static System.Nullable<int> Max<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<int>> selector) { throw null; }
-        public static System.Nullable<long> Max<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<long>> selector) { throw null; }
-        public static System.Nullable<float> Max<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<float>> selector) { throw null; }
+        public static decimal? Max<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, decimal?> selector) { throw null; }
+        public static double? Max<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, double?> selector) { throw null; }
+        public static int? Max<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, int?> selector) { throw null; }
+        public static long? Max<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, long?> selector) { throw null; }
+        public static float? Max<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, float?> selector) { throw null; }
         public static float Max<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, float> selector) { throw null; }
         public static TResult Max<TSource, TResult>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, TResult> selector) { throw null; }
         public static decimal Min(this System.Linq.ParallelQuery<decimal> source) { throw null; }
         public static double Min(this System.Linq.ParallelQuery<double> source) { throw null; }
         public static int Min(this System.Linq.ParallelQuery<int> source) { throw null; }
         public static long Min(this System.Linq.ParallelQuery<long> source) { throw null; }
-        public static System.Nullable<decimal> Min(this System.Linq.ParallelQuery<System.Nullable<decimal>> source) { throw null; }
-        public static System.Nullable<double> Min(this System.Linq.ParallelQuery<System.Nullable<double>> source) { throw null; }
-        public static System.Nullable<int> Min(this System.Linq.ParallelQuery<System.Nullable<int>> source) { throw null; }
-        public static System.Nullable<long> Min(this System.Linq.ParallelQuery<System.Nullable<long>> source) { throw null; }
-        public static System.Nullable<float> Min(this System.Linq.ParallelQuery<System.Nullable<float>> source) { throw null; }
+        public static decimal? Min(this System.Linq.ParallelQuery<decimal?> source) { throw null; }
+        public static double? Min(this System.Linq.ParallelQuery<double?> source) { throw null; }
+        public static int? Min(this System.Linq.ParallelQuery<int?> source) { throw null; }
+        public static long? Min(this System.Linq.ParallelQuery<long?> source) { throw null; }
+        public static float? Min(this System.Linq.ParallelQuery<float?> source) { throw null; }
         public static float Min(this System.Linq.ParallelQuery<float> source) { throw null; }
         public static TSource Min<TSource>(this System.Linq.ParallelQuery<TSource> source) { throw null; }
         public static decimal Min<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, decimal> selector) { throw null; }
         public static double Min<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, double> selector) { throw null; }
         public static int Min<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, int> selector) { throw null; }
         public static long Min<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, long> selector) { throw null; }
-        public static System.Nullable<decimal> Min<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<decimal>> selector) { throw null; }
-        public static System.Nullable<double> Min<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<double>> selector) { throw null; }
-        public static System.Nullable<int> Min<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<int>> selector) { throw null; }
-        public static System.Nullable<long> Min<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<long>> selector) { throw null; }
-        public static System.Nullable<float> Min<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<float>> selector) { throw null; }
+        public static decimal? Min<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, decimal?> selector) { throw null; }
+        public static double? Min<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, double?> selector) { throw null; }
+        public static int? Min<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, int?> selector) { throw null; }
+        public static long? Min<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, long?> selector) { throw null; }
+        public static float? Min<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, float?> selector) { throw null; }
         public static float Min<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, float> selector) { throw null; }
         public static TResult Min<TSource, TResult>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, TResult> selector) { throw null; }
         public static System.Linq.ParallelQuery<TResult> OfType<TResult>(this System.Linq.ParallelQuery source) { throw null; }
@@ -1051,21 +1062,21 @@ namespace System.Linq
         public static double Sum(this System.Linq.ParallelQuery<double> source) { throw null; }
         public static int Sum(this System.Linq.ParallelQuery<int> source) { throw null; }
         public static long Sum(this System.Linq.ParallelQuery<long> source) { throw null; }
-        public static System.Nullable<decimal> Sum(this System.Linq.ParallelQuery<System.Nullable<decimal>> source) { throw null; }
-        public static System.Nullable<double> Sum(this System.Linq.ParallelQuery<System.Nullable<double>> source) { throw null; }
-        public static System.Nullable<int> Sum(this System.Linq.ParallelQuery<System.Nullable<int>> source) { throw null; }
-        public static System.Nullable<long> Sum(this System.Linq.ParallelQuery<System.Nullable<long>> source) { throw null; }
-        public static System.Nullable<float> Sum(this System.Linq.ParallelQuery<System.Nullable<float>> source) { throw null; }
+        public static decimal? Sum(this System.Linq.ParallelQuery<decimal?> source) { throw null; }
+        public static double? Sum(this System.Linq.ParallelQuery<double?> source) { throw null; }
+        public static int? Sum(this System.Linq.ParallelQuery<int?> source) { throw null; }
+        public static long? Sum(this System.Linq.ParallelQuery<long?> source) { throw null; }
+        public static float? Sum(this System.Linq.ParallelQuery<float?> source) { throw null; }
         public static float Sum(this System.Linq.ParallelQuery<float> source) { throw null; }
         public static decimal Sum<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, decimal> selector) { throw null; }
         public static double Sum<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, double> selector) { throw null; }
         public static int Sum<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, int> selector) { throw null; }
         public static long Sum<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, long> selector) { throw null; }
-        public static System.Nullable<decimal> Sum<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<decimal>> selector) { throw null; }
-        public static System.Nullable<double> Sum<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<double>> selector) { throw null; }
-        public static System.Nullable<int> Sum<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<int>> selector) { throw null; }
-        public static System.Nullable<long> Sum<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<long>> selector) { throw null; }
-        public static System.Nullable<float> Sum<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, System.Nullable<float>> selector) { throw null; }
+        public static decimal? Sum<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, decimal?> selector) { throw null; }
+        public static double? Sum<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, double?> selector) { throw null; }
+        public static int? Sum<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, int?> selector) { throw null; }
+        public static long? Sum<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, long?> selector) { throw null; }
+        public static float? Sum<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, float?> selector) { throw null; }
         public static float Sum<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, float> selector) { throw null; }
         public static System.Linq.ParallelQuery<TSource> TakeWhile<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, bool> predicate) { throw null; }
         public static System.Linq.ParallelQuery<TSource> TakeWhile<TSource>(this System.Linq.ParallelQuery<TSource> source, System.Func<TSource, int, bool> predicate) { throw null; }
@@ -1107,10 +1118,10 @@ namespace System.Linq
     }
     public enum ParallelMergeOptions
     {
-        AutoBuffered = 2,
         Default = 0,
-        FullyBuffered = 3,
         NotBuffered = 1,
+        AutoBuffered = 2,
+        FullyBuffered = 3,
     }
     public partial class ParallelQuery : System.Collections.IEnumerable
     {
@@ -1137,21 +1148,21 @@ namespace System.Linq
         public static double Average(this System.Linq.IQueryable<double> source) { throw null; }
         public static double Average(this System.Linq.IQueryable<int> source) { throw null; }
         public static double Average(this System.Linq.IQueryable<long> source) { throw null; }
-        public static System.Nullable<decimal> Average(this System.Linq.IQueryable<System.Nullable<decimal>> source) { throw null; }
-        public static System.Nullable<double> Average(this System.Linq.IQueryable<System.Nullable<double>> source) { throw null; }
-        public static System.Nullable<double> Average(this System.Linq.IQueryable<System.Nullable<int>> source) { throw null; }
-        public static System.Nullable<double> Average(this System.Linq.IQueryable<System.Nullable<long>> source) { throw null; }
-        public static System.Nullable<float> Average(this System.Linq.IQueryable<System.Nullable<float>> source) { throw null; }
+        public static decimal? Average(this System.Linq.IQueryable<decimal?> source) { throw null; }
+        public static double? Average(this System.Linq.IQueryable<double?> source) { throw null; }
+        public static double? Average(this System.Linq.IQueryable<int?> source) { throw null; }
+        public static double? Average(this System.Linq.IQueryable<long?> source) { throw null; }
+        public static float? Average(this System.Linq.IQueryable<float?> source) { throw null; }
         public static float Average(this System.Linq.IQueryable<float> source) { throw null; }
         public static decimal Average<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, decimal>> selector) { throw null; }
         public static double Average<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, double>> selector) { throw null; }
         public static double Average<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, int>> selector) { throw null; }
         public static double Average<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, long>> selector) { throw null; }
-        public static System.Nullable<decimal> Average<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, System.Nullable<decimal>>> selector) { throw null; }
-        public static System.Nullable<double> Average<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, System.Nullable<double>>> selector) { throw null; }
-        public static System.Nullable<double> Average<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, System.Nullable<int>>> selector) { throw null; }
-        public static System.Nullable<double> Average<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, System.Nullable<long>>> selector) { throw null; }
-        public static System.Nullable<float> Average<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, System.Nullable<float>>> selector) { throw null; }
+        public static decimal? Average<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, decimal?>> selector) { throw null; }
+        public static double? Average<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, double?>> selector) { throw null; }
+        public static double? Average<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, int?>> selector) { throw null; }
+        public static double? Average<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, long?>> selector) { throw null; }
+        public static float? Average<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, float?>> selector) { throw null; }
         public static float Average<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, float>> selector) { throw null; }
         public static System.Linq.IQueryable<TResult> Cast<TResult>(this System.Linq.IQueryable source) { throw null; }
         public static System.Linq.IQueryable<TSource> Concat<TSource>(this System.Linq.IQueryable<TSource> source1, System.Collections.Generic.IEnumerable<TSource> source2) { throw null; }
@@ -1222,21 +1233,21 @@ namespace System.Linq
         public static double Sum(this System.Linq.IQueryable<double> source) { throw null; }
         public static int Sum(this System.Linq.IQueryable<int> source) { throw null; }
         public static long Sum(this System.Linq.IQueryable<long> source) { throw null; }
-        public static System.Nullable<decimal> Sum(this System.Linq.IQueryable<System.Nullable<decimal>> source) { throw null; }
-        public static System.Nullable<double> Sum(this System.Linq.IQueryable<System.Nullable<double>> source) { throw null; }
-        public static System.Nullable<int> Sum(this System.Linq.IQueryable<System.Nullable<int>> source) { throw null; }
-        public static System.Nullable<long> Sum(this System.Linq.IQueryable<System.Nullable<long>> source) { throw null; }
-        public static System.Nullable<float> Sum(this System.Linq.IQueryable<System.Nullable<float>> source) { throw null; }
+        public static decimal? Sum(this System.Linq.IQueryable<decimal?> source) { throw null; }
+        public static double? Sum(this System.Linq.IQueryable<double?> source) { throw null; }
+        public static int? Sum(this System.Linq.IQueryable<int?> source) { throw null; }
+        public static long? Sum(this System.Linq.IQueryable<long?> source) { throw null; }
+        public static float? Sum(this System.Linq.IQueryable<float?> source) { throw null; }
         public static float Sum(this System.Linq.IQueryable<float> source) { throw null; }
         public static decimal Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, decimal>> selector) { throw null; }
         public static double Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, double>> selector) { throw null; }
         public static int Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, int>> selector) { throw null; }
         public static long Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, long>> selector) { throw null; }
-        public static System.Nullable<decimal> Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, System.Nullable<decimal>>> selector) { throw null; }
-        public static System.Nullable<double> Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, System.Nullable<double>>> selector) { throw null; }
-        public static System.Nullable<int> Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, System.Nullable<int>>> selector) { throw null; }
-        public static System.Nullable<long> Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, System.Nullable<long>>> selector) { throw null; }
-        public static System.Nullable<float> Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, System.Nullable<float>>> selector) { throw null; }
+        public static decimal? Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, decimal?>> selector) { throw null; }
+        public static double? Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, double?>> selector) { throw null; }
+        public static int? Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, int?>> selector) { throw null; }
+        public static long? Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, long?>> selector) { throw null; }
+        public static float? Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, float?>> selector) { throw null; }
         public static float Sum<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, float>> selector) { throw null; }
         public static System.Linq.IQueryable<TSource> TakeLast<TSource>(this System.Linq.IQueryable<TSource> source, int count) { throw null; }
         public static System.Linq.IQueryable<TSource> TakeWhile<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, bool>> predicate) { throw null; }
@@ -1707,90 +1718,90 @@ namespace System.Linq.Expressions
     public enum ExpressionType
     {
         Add = 0,
-        AddAssign = 63,
-        AddAssignChecked = 74,
         AddChecked = 1,
         And = 2,
         AndAlso = 3,
-        AndAssign = 64,
-        ArrayIndex = 5,
         ArrayLength = 4,
-        Assign = 46,
-        Block = 47,
+        ArrayIndex = 5,
         Call = 6,
         Coalesce = 7,
         Conditional = 8,
         Constant = 9,
         Convert = 10,
         ConvertChecked = 11,
-        DebugInfo = 48,
-        Decrement = 49,
-        Default = 51,
         Divide = 12,
-        DivideAssign = 65,
-        Dynamic = 50,
         Equal = 13,
         ExclusiveOr = 14,
-        ExclusiveOrAssign = 66,
-        Extension = 52,
-        Goto = 53,
         GreaterThan = 15,
         GreaterThanOrEqual = 16,
-        Increment = 54,
-        Index = 55,
         Invoke = 17,
-        IsFalse = 84,
-        IsTrue = 83,
-        Label = 56,
         Lambda = 18,
         LeftShift = 19,
-        LeftShiftAssign = 67,
         LessThan = 20,
         LessThanOrEqual = 21,
         ListInit = 22,
-        Loop = 58,
         MemberAccess = 23,
         MemberInit = 24,
         Modulo = 25,
-        ModuloAssign = 68,
         Multiply = 26,
-        MultiplyAssign = 69,
-        MultiplyAssignChecked = 75,
         MultiplyChecked = 27,
         Negate = 28,
+        UnaryPlus = 29,
         NegateChecked = 30,
         New = 31,
-        NewArrayBounds = 33,
         NewArrayInit = 32,
+        NewArrayBounds = 33,
         Not = 34,
         NotEqual = 35,
-        OnesComplement = 82,
         Or = 36,
-        OrAssign = 70,
         OrElse = 37,
         Parameter = 38,
-        PostDecrementAssign = 80,
-        PostIncrementAssign = 79,
         Power = 39,
-        PowerAssign = 71,
-        PreDecrementAssign = 78,
-        PreIncrementAssign = 77,
         Quote = 40,
         RightShift = 41,
-        RightShiftAssign = 72,
-        RuntimeVariables = 57,
         Subtract = 42,
-        SubtractAssign = 73,
-        SubtractAssignChecked = 76,
         SubtractChecked = 43,
+        TypeAs = 44,
+        TypeIs = 45,
+        Assign = 46,
+        Block = 47,
+        DebugInfo = 48,
+        Decrement = 49,
+        Dynamic = 50,
+        Default = 51,
+        Extension = 52,
+        Goto = 53,
+        Increment = 54,
+        Index = 55,
+        Label = 56,
+        RuntimeVariables = 57,
+        Loop = 58,
         Switch = 59,
         Throw = 60,
         Try = 61,
-        TypeAs = 44,
-        TypeEqual = 81,
-        TypeIs = 45,
-        UnaryPlus = 29,
         Unbox = 62,
+        AddAssign = 63,
+        AndAssign = 64,
+        DivideAssign = 65,
+        ExclusiveOrAssign = 66,
+        LeftShiftAssign = 67,
+        ModuloAssign = 68,
+        MultiplyAssign = 69,
+        OrAssign = 70,
+        PowerAssign = 71,
+        RightShiftAssign = 72,
+        SubtractAssign = 73,
+        AddAssignChecked = 74,
+        MultiplyAssignChecked = 75,
+        SubtractAssignChecked = 76,
+        PreIncrementAssign = 77,
+        PreDecrementAssign = 78,
+        PostIncrementAssign = 79,
+        PostDecrementAssign = 80,
+        TypeEqual = 81,
+        OnesComplement = 82,
+        IsTrue = 83,
+        IsFalse = 84,
     }
     public abstract partial class ExpressionVisitor
     {
@@ -1857,10 +1868,10 @@ namespace System.Linq.Expressions
     }
     public enum GotoExpressionKind
     {
-        Break = 2,
-        Continue = 3,
         Goto = 0,
         Return = 1,
+        Break = 2,
+        Continue = 3,
     }
     public partial interface IArgumentProvider
     {
@@ -1930,6 +1941,8 @@ namespace System.Linq.Expressions
         public System.Delegate Compile() { throw null; }
         public System.Delegate Compile(bool preferInterpretation) { throw null; }
         public System.Delegate Compile(System.Runtime.CompilerServices.DebugInfoGenerator debugInfoGenerator) { throw null; }
+        public void CompileToMethod(System.Reflection.Emit.MethodBuilder method) { }
+        public void CompileToMethod(System.Reflection.Emit.MethodBuilder method, System.Runtime.CompilerServices.DebugInfoGenerator debugInfoGenerator) { }
     }
     public sealed partial class ListInitExpression : System.Linq.Expressions.Expression
     {
@@ -1971,8 +1984,8 @@ namespace System.Linq.Expressions
     public enum MemberBindingType
     {
         Assignment = 0,
-        ListBinding = 2,
         MemberBinding = 1,
+        ListBinding = 2,
     }
     public partial class MemberExpression : System.Linq.Expressions.Expression
     {
@@ -2126,6 +2139,26 @@ namespace System.Linq.Expressions
         public System.Linq.Expressions.UnaryExpression Update(System.Linq.Expressions.Expression operand) { throw null; }
     }
 }
+namespace System.Net.Sockets
+{
+    public sealed partial class UnixDomainSocketEndPoint : System.Net.EndPoint
+    {
+        public UnixDomainSocketEndPoint(string path) { }
+        public override System.Net.Sockets.AddressFamily AddressFamily { get { throw null; } }
+        public override System.Net.EndPoint Create(System.Net.SocketAddress socketAddress) { throw null; }
+        public override System.Net.SocketAddress Serialize() { throw null; }
+        public override string ToString() { throw null; }
+    }
+}
+namespace System.Reflection
+{
+    public abstract partial class DispatchProxy
+    {
+        protected DispatchProxy() { }
+        public static T Create<T, TProxy>() where TProxy : System.Reflection.DispatchProxy { throw null; }
+        protected abstract object Invoke(System.Reflection.MethodInfo targetMethod, object[] args);
+    }
+}
 namespace System.Runtime.CompilerServices
 {
     public partial class CallSite
@@ -2146,40 +2179,40 @@ namespace System.Runtime.CompilerServices
     {
         public static bool IsInternalFrame(System.Reflection.MethodBase mb) { throw null; }
     }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public static partial class CallSiteOps
     {
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static void AddRule<T>(System.Runtime.CompilerServices.CallSite<T> site, T rule) where T : class { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static T Bind<T>(System.Runtime.CompilerServices.CallSiteBinder binder, System.Runtime.CompilerServices.CallSite<T> site, object[] args) where T : class { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static void ClearMatch(System.Runtime.CompilerServices.CallSite site) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static System.Runtime.CompilerServices.CallSite<T> CreateMatchmaker<T>(System.Runtime.CompilerServices.CallSite<T> site) where T : class { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static T[] GetCachedRules<T>(System.Runtime.CompilerServices.RuleCache<T> cache) where T : class { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static bool GetMatch(System.Runtime.CompilerServices.CallSite site) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static System.Runtime.CompilerServices.RuleCache<T> GetRuleCache<T>(System.Runtime.CompilerServices.CallSite<T> site) where T : class { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static T[] GetRules<T>(System.Runtime.CompilerServices.CallSite<T> site) where T : class { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static void MoveRule<T>(System.Runtime.CompilerServices.RuleCache<T> cache, T rule, int i) where T : class { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static bool SetNotMatched(System.Runtime.CompilerServices.CallSite site) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static void UpdateRules<T>(System.Runtime.CompilerServices.CallSite<T> @this, int matched) where T : class { }
     }
@@ -2190,7 +2223,7 @@ namespace System.Runtime.CompilerServices
         public T Update { get { throw null; } }
         public static System.Runtime.CompilerServices.CallSite<T> Create(System.Runtime.CompilerServices.CallSiteBinder binder) { throw null; }
     }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public sealed partial class Closure
     {
         public readonly object[] Constants;
@@ -2203,7 +2236,7 @@ namespace System.Runtime.CompilerServices
         public static System.Runtime.CompilerServices.DebugInfoGenerator CreatePdbGenerator() { throw null; }
         public abstract void MarkSequencePoint(System.Linq.Expressions.LambdaExpression method, int ilOffset, System.Linq.Expressions.DebugInfoExpression sequencePoint);
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(10636))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Field | System.AttributeTargets.Parameter | System.AttributeTargets.Property | System.AttributeTargets.ReturnValue | System.AttributeTargets.Struct)]
     public sealed partial class DynamicAttribute : System.Attribute
     {
         public DynamicAttribute() { }
@@ -2265,35 +2298,39 @@ namespace System.Runtime.CompilerServices
         public T[] ToArray() { throw null; }
         public System.Collections.ObjectModel.ReadOnlyCollection<T> ToReadOnlyCollection() { throw null; }
     }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public partial class RuleCache<T> where T : class
     {
         internal RuleCache() { }
     }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public static partial class RuntimeOps
     {
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static System.Runtime.CompilerServices.IRuntimeVariables CreateRuntimeVariables() { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static System.Runtime.CompilerServices.IRuntimeVariables CreateRuntimeVariables(object[] data, long[] indexes) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static bool ExpandoCheckVersion(System.Dynamic.ExpandoObject expando, object version) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static void ExpandoPromoteClass(System.Dynamic.ExpandoObject expando, object oldClass, object newClass) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static bool ExpandoTryDeleteValue(System.Dynamic.ExpandoObject expando, object indexClass, int index, string name, bool ignoreCase) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static bool ExpandoTryGetValue(System.Dynamic.ExpandoObject expando, object indexClass, int index, string name, bool ignoreCase, out object value) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("do not use this method", true)]
         public static object ExpandoTrySetValue(System.Dynamic.ExpandoObject expando, object indexClass, int index, object value, string name, bool ignoreCase) { throw null; }
+        [System.ObsoleteAttribute("do not use this method")]
+        public static System.Runtime.CompilerServices.IRuntimeVariables MergeRuntimeVariables(System.Runtime.CompilerServices.IRuntimeVariables first, System.Runtime.CompilerServices.IRuntimeVariables second, int[] indexes) { throw null; }
+        [System.ObsoleteAttribute("do not use this method")]
+        public static System.Linq.Expressions.Expression Quote(System.Linq.Expressions.Expression expression, object hoistedLocals, object[] locals) { throw null; }
     }
     public partial class StrongBox<T> : System.Runtime.CompilerServices.IStrongBox
     {
@@ -2400,11 +2437,11 @@ namespace System.Security.Cryptography
     [System.FlagsAttribute]
     public enum CngExportPolicies
     {
-        AllowArchiving = 4,
-        AllowExport = 1,
-        AllowPlaintextArchiving = 8,
-        AllowPlaintextExport = 2,
         None = 0,
+        AllowExport = 1,
+        AllowPlaintextExport = 2,
+        AllowArchiving = 4,
+        AllowPlaintextArchiving = 8,
     }
     public sealed partial class CngKey : System.IDisposable
     {
@@ -2464,48 +2501,49 @@ namespace System.Security.Cryptography
     [System.FlagsAttribute]
     public enum CngKeyCreationOptions
     {
-        MachineKey = 32,
         None = 0,
+        MachineKey = 32,
         OverwriteExistingKey = 128,
     }
     public sealed partial class CngKeyCreationParameters
     {
         public CngKeyCreationParameters() { }
-        public System.Nullable<System.Security.Cryptography.CngExportPolicies> ExportPolicy { get { throw null; } set { } }
+        public System.Security.Cryptography.CngExportPolicies? ExportPolicy { get { throw null; } set { } }
         public System.Security.Cryptography.CngKeyCreationOptions KeyCreationOptions { get { throw null; } set { } }
-        public System.Nullable<System.Security.Cryptography.CngKeyUsages> KeyUsage { get { throw null; } set { } }
+        public System.Security.Cryptography.CngKeyUsages? KeyUsage { get { throw null; } set { } }
         public System.Security.Cryptography.CngPropertyCollection Parameters { get { throw null; } }
         public System.IntPtr ParentWindowHandle { get { throw null; } set { } }
         public System.Security.Cryptography.CngProvider Provider { get { throw null; } set { } }
-        public System.Security.Cryptography.CngUIPolicy UIPolicy { get { throw null; } [System.Security.Permissions.UIPermissionAttribute(System.Security.Permissions.SecurityAction.Demand, Window=(System.Security.Permissions.UIPermissionWindow)(1)), System.Security.Permissions.HostProtectionAttribute(System.Security.Permissions.SecurityAction.LinkDemand, UI=true)]set { } }
+        public System.Security.Cryptography.CngUIPolicy UIPolicy { get { throw null; } [System.Security.Permissions.UIPermissionAttribute(System.Security.Permissions.SecurityAction.Demand, Window=System.Security.Permissions.UIPermissionWindow.SafeSubWindows), System.Security.Permissions.HostProtectionAttribute(System.Security.Permissions.SecurityAction.LinkDemand, UI=true)]set { } }
     }
     [System.FlagsAttribute]
     public enum CngKeyHandleOpenOptions
     {
-        EphemeralKey = 1,
         None = 0,
+        EphemeralKey = 1,
     }
     [System.FlagsAttribute]
     public enum CngKeyOpenOptions
     {
-        MachineKey = 32,
         None = 0,
-        Silent = 64,
         UserKey = 0,
+        MachineKey = 32,
+        Silent = 64,
     }
     [System.FlagsAttribute]
     public enum CngKeyUsages
     {
-        AllUsages = 16777215,
-        Decryption = 1,
-        KeyAgreement = 4,
         None = 0,
+        Decryption = 1,
         Signing = 2,
+        KeyAgreement = 4,
+        AllUsages = 16777215,
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct CngProperty : System.IEquatable<System.Security.Cryptography.CngProperty>
     {
         private object _dummy;
+        private int _dummyPrimitive;
         public CngProperty(string name, byte[] value, System.Security.Cryptography.CngPropertyOptions options) { throw null; }
         public string Name { get { throw null; } }
         public System.Security.Cryptography.CngPropertyOptions Options { get { throw null; } }
@@ -2523,9 +2561,9 @@ namespace System.Security.Cryptography
     [System.FlagsAttribute]
     public enum CngPropertyOptions
     {
-        CustomProperty = 1073741824,
-        None = 0,
         Persist = -2147483648,
+        None = 0,
+        CustomProperty = 1073741824,
     }
     public sealed partial class CngProvider : System.IEquatable<System.Security.Cryptography.CngProvider>
     {
@@ -2556,19 +2594,21 @@ namespace System.Security.Cryptography
     [System.FlagsAttribute]
     public enum CngUIProtectionLevels
     {
-        ForceHighProtection = 2,
         None = 0,
         ProtectKey = 1,
+        ForceHighProtection = 2,
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct ECCurve
     {
+        private object _dummy;
+        private int _dummyPrimitive;
         public byte[] A;
         public byte[] B;
         public byte[] Cofactor;
         public System.Security.Cryptography.ECCurve.ECCurveType CurveType;
         public System.Security.Cryptography.ECPoint G;
-        public System.Nullable<System.Security.Cryptography.HashAlgorithmName> Hash;
+        public System.Security.Cryptography.HashAlgorithmName? Hash;
         public byte[] Order;
         public byte[] Polynomial;
         public byte[] Prime;
@@ -2584,12 +2624,12 @@ namespace System.Security.Cryptography
         public void Validate() { }
         public enum ECCurveType
         {
-            Characteristic2 = 4,
             Implicit = 0,
-            Named = 5,
-            PrimeMontgomery = 3,
             PrimeShortWeierstrass = 1,
             PrimeTwistedEdwards = 2,
+            PrimeMontgomery = 3,
+            Characteristic2 = 4,
+            Named = 5,
         }
         public static partial class NamedCurves
         {
@@ -2612,6 +2652,30 @@ namespace System.Security.Cryptography
             public static System.Security.Cryptography.ECCurve nistP521 { get { throw null; } }
         }
     }
+    public abstract partial class ECDiffieHellman : System.Security.Cryptography.AsymmetricAlgorithm
+    {
+        protected ECDiffieHellman() { }
+        public override string KeyExchangeAlgorithm { get { throw null; } }
+        public abstract System.Security.Cryptography.ECDiffieHellmanPublicKey PublicKey { get; }
+        public override string SignatureAlgorithm { get { throw null; } }
+        public static new System.Security.Cryptography.ECDiffieHellman Create() { throw null; }
+        public static System.Security.Cryptography.ECDiffieHellman Create(System.Security.Cryptography.ECCurve curve) { throw null; }
+        public static System.Security.Cryptography.ECDiffieHellman Create(System.Security.Cryptography.ECParameters parameters) { throw null; }
+        public static new System.Security.Cryptography.ECDiffieHellman Create(string algorithm) { throw null; }
+        public byte[] DeriveKeyFromHash(System.Security.Cryptography.ECDiffieHellmanPublicKey otherPartyPublicKey, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
+        public virtual byte[] DeriveKeyFromHash(System.Security.Cryptography.ECDiffieHellmanPublicKey otherPartyPublicKey, System.Security.Cryptography.HashAlgorithmName hashAlgorithm, byte[] secretPrepend, byte[] secretAppend) { throw null; }
+        public byte[] DeriveKeyFromHmac(System.Security.Cryptography.ECDiffieHellmanPublicKey otherPartyPublicKey, System.Security.Cryptography.HashAlgorithmName hashAlgorithm, byte[] hmacKey) { throw null; }
+        public virtual byte[] DeriveKeyFromHmac(System.Security.Cryptography.ECDiffieHellmanPublicKey otherPartyPublicKey, System.Security.Cryptography.HashAlgorithmName hashAlgorithm, byte[] hmacKey, byte[] secretPrepend, byte[] secretAppend) { throw null; }
+        public virtual byte[] DeriveKeyMaterial(System.Security.Cryptography.ECDiffieHellmanPublicKey otherPartyPublicKey) { throw null; }
+        public virtual byte[] DeriveKeyTls(System.Security.Cryptography.ECDiffieHellmanPublicKey otherPartyPublicKey, byte[] prfLabel, byte[] prfSeed) { throw null; }
+        public virtual byte[] ExportECPrivateKey() { throw null; }
+        public virtual System.Security.Cryptography.ECParameters ExportExplicitParameters(bool includePrivateParameters) { throw null; }
+        public virtual System.Security.Cryptography.ECParameters ExportParameters(bool includePrivateParameters) { throw null; }
+        public virtual void GenerateKey(System.Security.Cryptography.ECCurve curve) { }
+        public virtual void ImportECPrivateKey(System.ReadOnlySpan<byte> source, out int bytesRead) { throw null; }
+        public virtual void ImportParameters(System.Security.Cryptography.ECParameters parameters) { }
+        public virtual bool TryExportECPrivateKey(System.Span<byte> destination, out int bytesWritten) { throw null; }
+    }
     public abstract partial class ECDiffieHellmanPublicKey : System.IDisposable
     {
         protected ECDiffieHellmanPublicKey() { }
@@ -2632,20 +2696,28 @@ namespace System.Security.Cryptography
         public static System.Security.Cryptography.ECDsa Create(System.Security.Cryptography.ECCurve curve) { throw null; }
         public static System.Security.Cryptography.ECDsa Create(System.Security.Cryptography.ECParameters parameters) { throw null; }
         public static new System.Security.Cryptography.ECDsa Create(string algorithm) { throw null; }
+        public virtual byte[] ExportECPrivateKey() { throw null; }
         public virtual System.Security.Cryptography.ECParameters ExportExplicitParameters(bool includePrivateParameters) { throw null; }
         public virtual System.Security.Cryptography.ECParameters ExportParameters(bool includePrivateParameters) { throw null; }
         public virtual void GenerateKey(System.Security.Cryptography.ECCurve curve) { }
         protected virtual byte[] HashData(byte[] data, int offset, int count, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         protected virtual byte[] HashData(System.IO.Stream data, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
+        public virtual void ImportECPrivateKey(System.ReadOnlySpan<byte> source, out int bytesRead) { throw null; }
         public virtual void ImportParameters(System.Security.Cryptography.ECParameters parameters) { }
         public virtual byte[] SignData(byte[] data, int offset, int count, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         public virtual byte[] SignData(byte[] data, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         public virtual byte[] SignData(System.IO.Stream data, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         public abstract byte[] SignHash(byte[] hash);
+        public virtual bool TryExportECPrivateKey(System.Span<byte> destination, out int bytesWritten) { throw null; }
+        protected virtual bool TryHashData(System.ReadOnlySpan<byte> data, System.Span<byte> destination, System.Security.Cryptography.HashAlgorithmName hashAlgorithm, out int bytesWritten) { throw null; }
+        public virtual bool TrySignData(System.ReadOnlySpan<byte> data, System.Span<byte> destination, System.Security.Cryptography.HashAlgorithmName hashAlgorithm, out int bytesWritten) { throw null; }
+        public virtual bool TrySignHash(System.ReadOnlySpan<byte> hash, System.Span<byte> destination, out int bytesWritten) { throw null; }
         public bool VerifyData(byte[] data, byte[] signature, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         public virtual bool VerifyData(byte[] data, int offset, int count, byte[] signature, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         public bool VerifyData(System.IO.Stream data, byte[] signature, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
+        public virtual bool VerifyData(System.ReadOnlySpan<byte> data, System.ReadOnlySpan<byte> signature, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
         public abstract bool VerifyHash(byte[] hash, byte[] signature);
+        public virtual bool VerifyHash(System.ReadOnlySpan<byte> hash, System.ReadOnlySpan<byte> signature) { throw null; }
     }
     public sealed partial class ECDsaCng : System.Security.Cryptography.ECDsa
     {
@@ -2683,6 +2755,19 @@ namespace System.Security.Cryptography
     {
         public byte[] X;
         public byte[] Y;
+    }
+    public sealed partial class IncrementalHash : System.IDisposable
+    {
+        internal IncrementalHash() { }
+        public System.Security.Cryptography.HashAlgorithmName AlgorithmName { get { throw null; } }
+        public void AppendData(byte[] data) { }
+        public void AppendData(byte[] data, int offset, int count) { }
+        public void AppendData(System.ReadOnlySpan<byte> data) { }
+        public static System.Security.Cryptography.IncrementalHash CreateHash(System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { throw null; }
+        public static System.Security.Cryptography.IncrementalHash CreateHMAC(System.Security.Cryptography.HashAlgorithmName hashAlgorithm, byte[] key) { throw null; }
+        public void Dispose() { }
+        public byte[] GetHashAndReset() { throw null; }
+        public bool TryGetHashAndReset(System.Span<byte> destination, out int bytesWritten) { throw null; }
     }
     public sealed partial class RSACng : System.Security.Cryptography.RSA
     {
@@ -2736,22 +2821,30 @@ namespace System.Security.Cryptography
 }
 namespace System.Security.Cryptography.X509Certificates
 {
+    public static partial class DSACertificateExtensions
+    {
+        public static System.Security.Cryptography.X509Certificates.X509Certificate2 CopyWithPrivateKey(this System.Security.Cryptography.X509Certificates.X509Certificate2 certificate, System.Security.Cryptography.DSA privateKey) { throw null; }
+        public static System.Security.Cryptography.DSA GetDSAPrivateKey(this System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { throw null; }
+        public static System.Security.Cryptography.DSA GetDSAPublicKey(this System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { throw null; }
+    }
     public static partial class ECDsaCertificateExtensions
     {
+        public static System.Security.Cryptography.X509Certificates.X509Certificate2 CopyWithPrivateKey(this System.Security.Cryptography.X509Certificates.X509Certificate2 certificate, System.Security.Cryptography.ECDsa privateKey) { throw null; }
         public static System.Security.Cryptography.ECDsa GetECDsaPrivateKey(this System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { throw null; }
         public static System.Security.Cryptography.ECDsa GetECDsaPublicKey(this System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { throw null; }
     }
     public static partial class RSACertificateExtensions
     {
+        public static System.Security.Cryptography.X509Certificates.X509Certificate2 CopyWithPrivateKey(this System.Security.Cryptography.X509Certificates.X509Certificate2 certificate, System.Security.Cryptography.RSA privateKey) { throw null; }
         public static System.Security.Cryptography.RSA GetRSAPrivateKey(this System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { throw null; }
         public static System.Security.Cryptography.RSA GetRSAPublicKey(this System.Security.Cryptography.X509Certificates.X509Certificate2 certificate) { throw null; }
     }
     public enum TrustStatus
     {
+        Untrusted = 0,
+        UnknownIdentity = 1,
         KnownIdentity = 2,
         Trusted = 3,
-        UnknownIdentity = 1,
-        Untrusted = 0,
     }
 }
 namespace System.Threading
