@@ -43,7 +43,7 @@ namespace System.ComponentModel.Composition
         public static System.ComponentModel.Composition.Primitives.ComposablePart SatisfyImportsOnce(this System.ComponentModel.Composition.ICompositionService compositionService, object attributedPart) { throw null; }
         public static System.ComponentModel.Composition.Primitives.ComposablePart SatisfyImportsOnce(this System.ComponentModel.Composition.ICompositionService compositionService, object attributedPart, System.Reflection.ReflectionContext reflectionContext) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1), AllowMultiple=false, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Assembly, AllowMultiple=false, Inherited=true)]
     public partial class CatalogReflectionContextAttribute : System.Attribute
     {
         public CatalogReflectionContextAttribute(System.Type reflectionContextType) { }
@@ -87,11 +87,11 @@ namespace System.ComponentModel.Composition
     public enum CreationPolicy
     {
         Any = 0,
-        NewScope = 3,
-        NonShared = 2,
         Shared = 1,
+        NonShared = 2,
+        NewScope = 3,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(452), AllowMultiple=true, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Field | System.AttributeTargets.Method | System.AttributeTargets.Property, AllowMultiple=true, Inherited=false)]
     public partial class ExportAttribute : System.Attribute
     {
         public ExportAttribute() { }
@@ -118,7 +118,7 @@ namespace System.ComponentModel.Composition
         public T Value { get { throw null; } }
         public void Dispose() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1476), AllowMultiple=true, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Field | System.AttributeTargets.Interface | System.AttributeTargets.Method | System.AttributeTargets.Property, AllowMultiple=true, Inherited=false)]
     public sealed partial class ExportMetadataAttribute : System.Attribute
     {
         public ExportMetadataAttribute(string name, object value) { }
@@ -130,7 +130,7 @@ namespace System.ComponentModel.Composition
     {
         void SatisfyImportsOnce(System.ComponentModel.Composition.Primitives.ComposablePart part);
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(2432), AllowMultiple=false, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Field | System.AttributeTargets.Parameter | System.AttributeTargets.Property, AllowMultiple=false, Inherited=false)]
     public partial class ImportAttribute : System.Attribute
     {
         public ImportAttribute() { }
@@ -151,12 +151,12 @@ namespace System.ComponentModel.Composition
         public ImportCardinalityMismatchException(string message) { }
         public ImportCardinalityMismatchException(string message, System.Exception innerException) { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32), AllowMultiple=false, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Constructor, AllowMultiple=false, Inherited=false)]
     public partial class ImportingConstructorAttribute : System.Attribute
     {
         public ImportingConstructorAttribute() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(2432), AllowMultiple=false, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Field | System.AttributeTargets.Parameter | System.AttributeTargets.Property, AllowMultiple=false, Inherited=false)]
     public partial class ImportManyAttribute : System.Attribute
     {
         public ImportManyAttribute() { }
@@ -175,7 +175,7 @@ namespace System.ComponentModel.Composition
         Local = 1,
         NonLocal = 2,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), AllowMultiple=true, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Interface, AllowMultiple=true, Inherited=true)]
     public partial class InheritedExportAttribute : System.ComponentModel.Composition.ExportAttribute
     {
         public InheritedExportAttribute() { }
@@ -187,31 +187,31 @@ namespace System.ComponentModel.Composition
     {
         void OnImportsSatisfied();
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), AllowMultiple=false, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, AllowMultiple=false, Inherited=true)]
     public sealed partial class MetadataAttributeAttribute : System.Attribute
     {
         public MetadataAttributeAttribute() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1024), AllowMultiple=false, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Interface, AllowMultiple=false, Inherited=false)]
     public sealed partial class MetadataViewImplementationAttribute : System.Attribute
     {
         public MetadataViewImplementationAttribute(System.Type implementationType) { }
         public System.Type ImplementationType { get { throw null; } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), AllowMultiple=false, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, AllowMultiple=false, Inherited=false)]
     public sealed partial class PartCreationPolicyAttribute : System.Attribute
     {
         public PartCreationPolicyAttribute(System.ComponentModel.Composition.CreationPolicy creationPolicy) { }
         public System.ComponentModel.Composition.CreationPolicy CreationPolicy { get { throw null; } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), AllowMultiple=true, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, AllowMultiple=true, Inherited=false)]
     public sealed partial class PartMetadataAttribute : System.Attribute
     {
         public PartMetadataAttribute(string name, object value) { }
         public string Name { get { throw null; } }
         public object Value { get { throw null; } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), AllowMultiple=false, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, AllowMultiple=false, Inherited=false)]
     public sealed partial class PartNotDiscoverableAttribute : System.Attribute
     {
         public PartNotDiscoverableAttribute() { }
@@ -364,8 +364,8 @@ namespace System.ComponentModel.Composition.Hosting
     {
         Default = 0,
         DisableSilentRejection = 1,
-        ExportCompositionService = 4,
         IsThreadSafe = 2,
+        ExportCompositionService = 4,
     }
     public partial class CompositionScopeDefinition : System.ComponentModel.Composition.Primitives.ComposablePartCatalog, System.ComponentModel.Composition.Hosting.INotifyComposablePartCatalogChanged
     {
@@ -520,7 +520,7 @@ namespace System.ComponentModel.Composition.Primitives
     public abstract partial class ComposablePartCatalog : System.Collections.Generic.IEnumerable<System.ComponentModel.Composition.Primitives.ComposablePartDefinition>, System.Collections.IEnumerable, System.IDisposable
     {
         protected ComposablePartCatalog() { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public virtual System.Linq.IQueryable<System.ComponentModel.Composition.Primitives.ComposablePartDefinition> Parts { get { throw null; } }
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
@@ -591,9 +591,9 @@ namespace System.ComponentModel.Composition.Primitives
     }
     public enum ImportCardinality
     {
+        ZeroOrOne = 0,
         ExactlyOne = 1,
         ZeroOrMore = 2,
-        ZeroOrOne = 0,
     }
     public partial class ImportDefinition
     {
@@ -616,6 +616,7 @@ namespace System.ComponentModel.Composition.ReflectionModel
     public partial struct LazyMemberInfo
     {
         private object _dummy;
+        private int _dummyPrimitive;
         public LazyMemberInfo(System.Reflection.MemberInfo member) { throw null; }
         public LazyMemberInfo(System.Reflection.MemberTypes memberType, System.Func<System.Reflection.MemberInfo[]> accessorsCreator) { throw null; }
         public LazyMemberInfo(System.Reflection.MemberTypes memberType, params System.Reflection.MemberInfo[] accessors) { throw null; }

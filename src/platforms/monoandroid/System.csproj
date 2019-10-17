@@ -8,6 +8,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="mscorlib.csproj" />
+    <ProjectReference Include="System.Core.stubs.csproj" />
     <Compile Include="System.cs" />
   </ItemGroup>
 </Project>

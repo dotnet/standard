@@ -32,18 +32,18 @@ namespace System
     [System.FlagsAttribute]
     public enum GenericUriParserOptions
     {
-        AllowEmptyAuthority = 2,
         Default = 0,
-        DontCompressPath = 128,
-        DontConvertPathBackslashes = 64,
-        DontUnescapePathDotsAndSlashes = 256,
         GenericAuthority = 1,
-        Idn = 512,
-        IriParsing = 1024,
-        NoFragment = 32,
+        AllowEmptyAuthority = 2,
+        NoUserInfo = 4,
         NoPort = 8,
         NoQuery = 16,
-        NoUserInfo = 4,
+        NoFragment = 32,
+        DontConvertPathBackslashes = 64,
+        DontCompressPath = 128,
+        DontUnescapePathDotsAndSlashes = 256,
+        Idn = 512,
+        IriParsing = 1024,
     }
     public partial class GopherStyleUriParser : System.UriParser
     {
@@ -68,6 +68,13 @@ namespace System
     public partial class NewsStyleUriParser : System.UriParser
     {
         public NewsStyleUriParser() { }
+    }
+    public static partial class StringNormalizationExtensions
+    {
+        public static bool IsNormalized(this string strInput) { throw null; }
+        public static bool IsNormalized(this string strInput, System.Text.NormalizationForm normalizationForm) { throw null; }
+        public static string Normalize(this string strInput) { throw null; }
+        public static string Normalize(this string strInput, System.Text.NormalizationForm normalizationForm) { throw null; }
     }
     public partial class Uri : System.Runtime.Serialization.ISerializable
     {
@@ -186,29 +193,29 @@ namespace System
     [System.FlagsAttribute]
     public enum UriComponents
     {
-        AbsoluteUri = 127,
-        Fragment = 64,
-        Host = 4,
-        HostAndPort = 132,
-        HttpRequestUrl = 61,
-        KeepDelimiter = 1073741824,
-        NormalizedHost = 256,
-        Path = 16,
-        PathAndQuery = 48,
-        Port = 8,
-        Query = 32,
-        Scheme = 1,
-        SchemeAndServer = 13,
         SerializationInfoString = -2147483648,
-        StrongAuthority = 134,
-        StrongPort = 128,
+        Scheme = 1,
         UserInfo = 2,
+        Host = 4,
+        Port = 8,
+        SchemeAndServer = 13,
+        Path = 16,
+        Query = 32,
+        PathAndQuery = 48,
+        HttpRequestUrl = 61,
+        Fragment = 64,
+        AbsoluteUri = 127,
+        StrongPort = 128,
+        HostAndPort = 132,
+        StrongAuthority = 134,
+        NormalizedHost = 256,
+        KeepDelimiter = 1073741824,
     }
     public enum UriFormat
     {
-        SafeUnescaped = 3,
-        Unescaped = 2,
         UriEscaped = 1,
+        Unescaped = 2,
+        SafeUnescaped = 3,
     }
     public partial class UriFormatException : System.FormatException, System.Runtime.Serialization.ISerializable
     {
@@ -220,23 +227,23 @@ namespace System
     }
     public enum UriHostNameType
     {
+        Unknown = 0,
         Basic = 1,
         Dns = 2,
         IPv4 = 3,
         IPv6 = 4,
-        Unknown = 0,
     }
     public enum UriIdnScope
     {
-        All = 2,
-        AllExceptIntranet = 1,
         None = 0,
+        AllExceptIntranet = 1,
+        All = 2,
     }
     public enum UriKind
     {
+        RelativeOrAbsolute = 0,
         Absolute = 1,
         Relative = 2,
-        RelativeOrAbsolute = 0,
     }
     public abstract partial class UriParser
     {
@@ -253,10 +260,10 @@ namespace System
     }
     public enum UriPartial
     {
+        Scheme = 0,
         Authority = 1,
         Path = 2,
         Query = 3,
-        Scheme = 0,
     }
     public partial class UriTypeConverter : System.ComponentModel.TypeConverter
     {
@@ -269,7 +276,7 @@ namespace System
 }
 namespace System.CodeDom.Compiler
 {
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767), Inherited=false, AllowMultiple=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All, Inherited=false, AllowMultiple=false)]
     public sealed partial class GeneratedCodeAttribute : System.Attribute
     {
         public GeneratedCodeAttribute(string tool, string version) { }
@@ -452,6 +459,8 @@ namespace System.Collections.Generic
         public partial struct Enumerator : System.Collections.Generic.IEnumerator<T>, System.Collections.IEnumerator, System.IDisposable, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable
         {
             private T _current;
+            private object _dummy;
+            private int _dummyPrimitive;
             public T Current { get { throw null; } }
             object System.Collections.IEnumerator.Current { get { throw null; } }
             public void Dispose() { }
@@ -459,39 +468,6 @@ namespace System.Collections.Generic
             void System.Collections.IEnumerator.Reset() { }
             void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender) { }
             void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        }
-    }
-    public partial class Queue<T> : System.Collections.Generic.IEnumerable<T>, System.Collections.Generic.IReadOnlyCollection<T>, System.Collections.ICollection, System.Collections.IEnumerable
-    {
-        public Queue() { }
-        public Queue(System.Collections.Generic.IEnumerable<T> collection) { }
-        public Queue(int capacity) { }
-        public int Count { get { throw null; } }
-        bool System.Collections.ICollection.IsSynchronized { get { throw null; } }
-        object System.Collections.ICollection.SyncRoot { get { throw null; } }
-        public void Clear() { }
-        public bool Contains(T item) { throw null; }
-        public void CopyTo(T[] array, int arrayIndex) { }
-        public T Dequeue() { throw null; }
-        public void Enqueue(T item) { }
-        public System.Collections.Generic.Queue<T>.Enumerator GetEnumerator() { throw null; }
-        public T Peek() { throw null; }
-        System.Collections.Generic.IEnumerator<T> System.Collections.Generic.IEnumerable<T>.GetEnumerator() { throw null; }
-        void System.Collections.ICollection.CopyTo(System.Array array, int index) { }
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
-        public T[] ToArray() { throw null; }
-        public void TrimExcess() { }
-        public bool TryDequeue(out T result) { throw null; }
-        public bool TryPeek(out T result) { throw null; }
-        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-        public partial struct Enumerator : System.Collections.Generic.IEnumerator<T>, System.Collections.IEnumerator, System.IDisposable
-        {
-            private T _currentElement;
-            public T Current { get { throw null; } }
-            object System.Collections.IEnumerator.Current { get { throw null; } }
-            public void Dispose() { }
-            public bool MoveNext() { throw null; }
-            void System.Collections.IEnumerator.Reset() { }
         }
     }
     public partial class SortedDictionary<TKey, TValue> : System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<TKey, TValue>>, System.Collections.Generic.IDictionary<TKey, TValue>, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<TKey, TValue>>, System.Collections.Generic.IReadOnlyCollection<System.Collections.Generic.KeyValuePair<TKey, TValue>>, System.Collections.Generic.IReadOnlyDictionary<TKey, TValue>, System.Collections.ICollection, System.Collections.IDictionary, System.Collections.IEnumerable
@@ -539,6 +515,7 @@ namespace System.Collections.Generic
         public partial struct Enumerator : System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<TKey, TValue>>, System.Collections.IDictionaryEnumerator, System.Collections.IEnumerator, System.IDisposable
         {
             private object _dummy;
+            private int _dummyPrimitive;
             public System.Collections.Generic.KeyValuePair<TKey, TValue> Current { get { throw null; } }
             System.Collections.DictionaryEntry System.Collections.IDictionaryEnumerator.Entry { get { throw null; } }
             object System.Collections.IDictionaryEnumerator.Key { get { throw null; } }
@@ -568,6 +545,7 @@ namespace System.Collections.Generic
             public partial struct Enumerator : System.Collections.Generic.IEnumerator<TKey>, System.Collections.IEnumerator, System.IDisposable
             {
                 private object _dummy;
+                private int _dummyPrimitive;
                 public TKey Current { get { throw null; } }
                 object System.Collections.IEnumerator.Current { get { throw null; } }
                 public void Dispose() { }
@@ -595,6 +573,7 @@ namespace System.Collections.Generic
             public partial struct Enumerator : System.Collections.Generic.IEnumerator<TValue>, System.Collections.IEnumerator, System.IDisposable
             {
                 private object _dummy;
+                private int _dummyPrimitive;
                 public TValue Current { get { throw null; } }
                 object System.Collections.IEnumerator.Current { get { throw null; } }
                 public void Dispose() { }
@@ -702,6 +681,7 @@ namespace System.Collections.Generic
         public partial struct Enumerator : System.Collections.Generic.IEnumerator<T>, System.Collections.IEnumerator, System.IDisposable, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable
         {
             private object _dummy;
+            private int _dummyPrimitive;
             public T Current { get { throw null; } }
             object System.Collections.IEnumerator.Current { get { throw null; } }
             public void Dispose() { }
@@ -709,39 +689,6 @@ namespace System.Collections.Generic
             void System.Collections.IEnumerator.Reset() { }
             void System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(object sender) { }
             void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        }
-    }
-    public partial class Stack<T> : System.Collections.Generic.IEnumerable<T>, System.Collections.Generic.IReadOnlyCollection<T>, System.Collections.ICollection, System.Collections.IEnumerable
-    {
-        public Stack() { }
-        public Stack(System.Collections.Generic.IEnumerable<T> collection) { }
-        public Stack(int capacity) { }
-        public int Count { get { throw null; } }
-        bool System.Collections.ICollection.IsSynchronized { get { throw null; } }
-        object System.Collections.ICollection.SyncRoot { get { throw null; } }
-        public void Clear() { }
-        public bool Contains(T item) { throw null; }
-        public void CopyTo(T[] array, int arrayIndex) { }
-        public System.Collections.Generic.Stack<T>.Enumerator GetEnumerator() { throw null; }
-        public T Peek() { throw null; }
-        public T Pop() { throw null; }
-        public void Push(T item) { }
-        System.Collections.Generic.IEnumerator<T> System.Collections.Generic.IEnumerable<T>.GetEnumerator() { throw null; }
-        void System.Collections.ICollection.CopyTo(System.Array array, int arrayIndex) { }
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
-        public T[] ToArray() { throw null; }
-        public void TrimExcess() { }
-        public bool TryPeek(out T result) { throw null; }
-        public bool TryPop(out T result) { throw null; }
-        [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-        public partial struct Enumerator : System.Collections.Generic.IEnumerator<T>, System.Collections.IEnumerator, System.IDisposable
-        {
-            private T _currentElement;
-            public T Current { get { throw null; } }
-            object System.Collections.IEnumerator.Current { get { throw null; } }
-            public void Dispose() { }
-            public bool MoveNext() { throw null; }
-            void System.Collections.IEnumerator.Reset() { }
         }
     }
 }
@@ -782,7 +729,7 @@ namespace System.Collections.Specialized
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct BitVector32
     {
-        private int _dummy;
+        private int _dummyPrimitive;
         public BitVector32(System.Collections.Specialized.BitVector32 value) { throw null; }
         public BitVector32(int data) { throw null; }
         public int Data { get { throw null; } }
@@ -797,9 +744,9 @@ namespace System.Collections.Specialized
         public override string ToString() { throw null; }
         public static string ToString(System.Collections.Specialized.BitVector32 value) { throw null; }
         [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-        public partial struct Section
+        public readonly partial struct Section
         {
-            private int _dummy;
+            private readonly int _dummyPrimitive;
             public short Mask { get { throw null; } }
             public short Offset { get { throw null; } }
             public bool Equals(System.Collections.Specialized.BitVector32.Section obj) { throw null; }
@@ -871,6 +818,13 @@ namespace System.Collections.Specialized
         public System.Collections.IDictionaryEnumerator GetEnumerator() { throw null; }
         public void Remove(object key) { }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
+        public partial class DictionaryNode
+        {
+            public object key;
+            public System.Collections.Specialized.ListDictionary.DictionaryNode next;
+            public object value;
+            public DictionaryNode() { }
+        }
     }
     public abstract partial class NameObjectCollectionBase : System.Collections.ICollection, System.Collections.IEnumerable, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable
     {
@@ -950,9 +904,9 @@ namespace System.Collections.Specialized
     public enum NotifyCollectionChangedAction
     {
         Add = 0,
-        Move = 3,
         Remove = 1,
         Replace = 2,
+        Move = 3,
         Reset = 4,
     }
     public partial class NotifyCollectionChangedEventArgs : System.EventArgs
@@ -1068,7 +1022,7 @@ namespace System.ComponentModel
         public object NewObject { get { throw null; } set { } }
     }
     public delegate void AddingNewEventHandler(object sender, System.ComponentModel.AddingNewEventArgs e);
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class AmbientValueAttribute : System.Attribute
     {
         public AmbientValueAttribute(bool value) { }
@@ -1095,7 +1049,7 @@ namespace System.ComponentModel
     }
     public partial class AsyncCompletedEventArgs : System.EventArgs
     {
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
         public AsyncCompletedEventArgs() { }
         public AsyncCompletedEventArgs(System.Exception error, bool cancelled, object userState) { }
@@ -1117,7 +1071,7 @@ namespace System.ComponentModel
     }
     public static partial class AsyncOperationManager
     {
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.Threading.SynchronizationContext SynchronizationContext { get { throw null; } set { } }
         public static System.ComponentModel.AsyncOperation CreateOperation(object userSuppliedState) { throw null; }
     }
@@ -1143,7 +1097,7 @@ namespace System.ComponentModel
         public bool Matches(System.Attribute[] attributes) { throw null; }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(128))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Property)]
     public partial class AttributeProviderAttribute : System.Attribute
     {
         public AttributeProviderAttribute(string typeName) { }
@@ -1156,18 +1110,15 @@ namespace System.ComponentModel
     public partial class BackgroundWorker : System.ComponentModel.Component
     {
         public BackgroundWorker() { }
-        [System.ComponentModel.BrowsableAttribute(false)]
         public bool CancellationPending { get { throw null; } }
-        [System.ComponentModel.BrowsableAttribute(false)]
         public bool IsBusy { get { throw null; } }
-        [System.ComponentModel.DefaultValueAttribute(false)]
         public bool WorkerReportsProgress { get { throw null; } set { } }
-        [System.ComponentModel.DefaultValueAttribute(false)]
         public bool WorkerSupportsCancellation { get { throw null; } set { } }
         public event System.ComponentModel.DoWorkEventHandler DoWork { add { } remove { } }
         public event System.ComponentModel.ProgressChangedEventHandler ProgressChanged { add { } remove { } }
         public event System.ComponentModel.RunWorkerCompletedEventHandler RunWorkerCompleted { add { } remove { } }
         public void CancelAsync() { }
+        protected override void Dispose(bool disposing) { }
         protected virtual void OnDoWork(System.ComponentModel.DoWorkEventArgs e) { }
         protected virtual void OnProgressChanged(System.ComponentModel.ProgressChangedEventArgs e) { }
         protected virtual void OnRunWorkerCompleted(System.ComponentModel.RunWorkerCompletedEventArgs e) { }
@@ -1178,13 +1129,13 @@ namespace System.ComponentModel
     }
     public abstract partial class BaseNumberConverter : System.ComponentModel.TypeConverter
     {
-        protected BaseNumberConverter() { }
+        internal BaseNumberConverter() { }
         public override bool CanConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Type sourceType) { throw null; }
-        public override bool CanConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Type t) { throw null; }
+        public override bool CanConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Type destinationType) { throw null; }
         public override object ConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value) { throw null; }
         public override object ConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, System.Type destinationType) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class BindableAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.BindableAttribute Default;
@@ -1202,9 +1153,9 @@ namespace System.ComponentModel
     }
     public enum BindableSupport
     {
-        Default = 2,
         No = 0,
         Yes = 1,
+        Default = 2,
     }
     public enum BindingDirection
     {
@@ -1268,7 +1219,7 @@ namespace System.ComponentModel
         public override bool GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext context) { throw null; }
         public override bool GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext context) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class BrowsableAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.BrowsableAttribute Default;
@@ -1291,7 +1242,7 @@ namespace System.ComponentModel
         public bool Cancel { get { throw null; } set { } }
     }
     public delegate void CancelEventHandler(object sender, System.ComponentModel.CancelEventArgs e);
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public partial class CategoryAttribute : System.Attribute
     {
         public CategoryAttribute() { }
@@ -1326,8 +1277,8 @@ namespace System.ComponentModel
     public enum CollectionChangeAction
     {
         Add = 1,
-        Refresh = 3,
         Remove = 2,
+        Refresh = 3,
     }
     public partial class CollectionChangeEventArgs : System.EventArgs
     {
@@ -1343,7 +1294,7 @@ namespace System.ComponentModel
         public override System.ComponentModel.PropertyDescriptorCollection GetProperties(System.ComponentModel.ITypeDescriptorContext context, object value, System.Attribute[] attributes) { throw null; }
         public override bool GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext context) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public sealed partial class ComplexBindingPropertiesAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.ComplexBindingPropertiesAttribute Default;
@@ -1361,17 +1312,17 @@ namespace System.ComponentModel
         public Component() { }
         protected virtual bool CanRaiseEvents { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.ComponentModel.IContainer Container { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         protected bool DesignMode { get { throw null; } }
         protected System.ComponentModel.EventHandlerList Events { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public virtual System.ComponentModel.ISite Site { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public event System.EventHandler Disposed { add { } remove { } }
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
@@ -1459,7 +1410,7 @@ namespace System.ComponentModel
         public DataErrorsChangedEventArgs(string propertyName) { }
         public virtual string PropertyName { get { throw null; } }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public sealed partial class DataObjectAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DataObjectAttribute DataObject;
@@ -1472,7 +1423,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(128))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Property)]
     public sealed partial class DataObjectFieldAttribute : System.Attribute
     {
         public DataObjectFieldAttribute(bool primaryKey) { }
@@ -1486,7 +1437,7 @@ namespace System.ComponentModel
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(64))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Method)]
     public sealed partial class DataObjectMethodAttribute : System.Attribute
     {
         public DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType methodType) { }
@@ -1499,11 +1450,11 @@ namespace System.ComponentModel
     }
     public enum DataObjectMethodType
     {
-        Delete = 4,
         Fill = 0,
-        Insert = 3,
         Select = 1,
         Update = 2,
+        Insert = 3,
+        Delete = 4,
     }
     public partial class DateTimeConverter : System.ComponentModel.TypeConverter
     {
@@ -1527,7 +1478,7 @@ namespace System.ComponentModel
         public override bool CanConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Type destinationType) { throw null; }
         public override object ConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, System.Type destinationType) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public sealed partial class DefaultBindingPropertyAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DefaultBindingPropertyAttribute Default;
@@ -1537,7 +1488,7 @@ namespace System.ComponentModel
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public sealed partial class DefaultEventAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DefaultEventAttribute Default;
@@ -1546,7 +1497,7 @@ namespace System.ComponentModel
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public sealed partial class DefaultPropertyAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DefaultPropertyAttribute Default;
@@ -1555,7 +1506,7 @@ namespace System.ComponentModel
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public partial class DefaultValueAttribute : System.Attribute
     {
         public DefaultValueAttribute(bool value) { }
@@ -1566,15 +1517,23 @@ namespace System.ComponentModel
         public DefaultValueAttribute(int value) { }
         public DefaultValueAttribute(long value) { }
         public DefaultValueAttribute(object value) { }
+        [System.CLSCompliantAttribute(false)]
+        public DefaultValueAttribute(sbyte value) { }
         public DefaultValueAttribute(float value) { }
         public DefaultValueAttribute(string value) { }
         public DefaultValueAttribute(System.Type type, string value) { }
+        [System.CLSCompliantAttribute(false)]
+        public DefaultValueAttribute(ushort value) { }
+        [System.CLSCompliantAttribute(false)]
+        public DefaultValueAttribute(uint value) { }
+        [System.CLSCompliantAttribute(false)]
+        public DefaultValueAttribute(ulong value) { }
         public virtual object Value { get { throw null; } }
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
         protected void SetValue(object value) { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public partial class DescriptionAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DescriptionAttribute Default;
@@ -1586,7 +1545,8 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), AllowMultiple=true, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Interface, AllowMultiple=true, Inherited=true)]
+    [System.Diagnostics.ConditionalAttribute("FALSE")]
     public sealed partial class DesignerAttribute : System.Attribute
     {
         public DesignerAttribute(string designerTypeName) { }
@@ -1600,7 +1560,7 @@ namespace System.ComponentModel
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), AllowMultiple=false, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, AllowMultiple=false, Inherited=true)]
     public sealed partial class DesignerCategoryAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DesignerCategoryAttribute Component;
@@ -1617,11 +1577,11 @@ namespace System.ComponentModel
     }
     public enum DesignerSerializationVisibility
     {
-        Content = 2,
         Hidden = 0,
         Visible = 1,
+        Content = 2,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(960))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Event | System.AttributeTargets.Field | System.AttributeTargets.Method | System.AttributeTargets.Property)]
     public sealed partial class DesignerSerializationVisibilityAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DesignerSerializationVisibilityAttribute Content;
@@ -1634,7 +1594,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class DesignOnlyAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DesignOnlyAttribute Default;
@@ -1646,7 +1606,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1028))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Interface)]
     public sealed partial class DesignTimeVisibleAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DesignTimeVisibleAttribute Default;
@@ -1659,7 +1619,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(708))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Event | System.AttributeTargets.Method | System.AttributeTargets.Property)]
     public partial class DisplayNameAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.DisplayNameAttribute Default;
@@ -1682,7 +1642,7 @@ namespace System.ComponentModel
         public object Result { get { throw null; } set { } }
     }
     public delegate void DoWorkEventHandler(object sender, System.ComponentModel.DoWorkEventArgs e);
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767), AllowMultiple=true, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All, AllowMultiple=true, Inherited=true)]
     public sealed partial class EditorAttribute : System.Attribute
     {
         public EditorAttribute() { }
@@ -1695,7 +1655,7 @@ namespace System.ComponentModel
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(6140))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Constructor | System.AttributeTargets.Delegate | System.AttributeTargets.Enum | System.AttributeTargets.Event | System.AttributeTargets.Field | System.AttributeTargets.Interface | System.AttributeTargets.Method | System.AttributeTargets.Property | System.AttributeTargets.Struct)]
     public sealed partial class EditorBrowsableAttribute : System.Attribute
     {
         public EditorBrowsableAttribute() { }
@@ -1706,9 +1666,9 @@ namespace System.ComponentModel
     }
     public enum EditorBrowsableState
     {
-        Advanced = 2,
         Always = 0,
         Never = 1,
+        Advanced = 2,
     }
     public partial class EnumConverter : System.ComponentModel.TypeConverter
     {
@@ -1790,7 +1750,7 @@ namespace System.ComponentModel
         public override System.ComponentModel.PropertyDescriptorCollection GetProperties(System.ComponentModel.ITypeDescriptorContext context, object value, System.Attribute[] attributes) { throw null; }
         public override bool GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext context) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class ExtenderProvidedPropertyAttribute : System.Attribute
     {
         public ExtenderProvidedPropertyAttribute() { }
@@ -1854,7 +1814,7 @@ namespace System.ComponentModel
         bool IsChanged { get; }
         void AcceptChanges();
     }
-    [System.ObsoleteAttribute("This interface has been deprecated. Add a TypeDescriptionProvider to handle type TypeDescriptor.ComObjectType instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+    [System.ObsoleteAttribute("This interface has been deprecated. Add a TypeDescriptionProvider to handle type TypeDescriptor.ComObjectType instead.  https://go.microsoft.com/fwlink/?linkid=14202")]
     public partial interface IComNativeDescriptorHandler
     {
         System.ComponentModel.AttributeCollection GetAttributes(object component);
@@ -1923,7 +1883,7 @@ namespace System.ComponentModel
         bool ContainsListCollection { get; }
         System.Collections.IList GetList();
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class ImmutableObjectAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.ImmutableObjectAttribute Default;
@@ -1943,7 +1903,7 @@ namespace System.ComponentModel
     {
         string FullName { get; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(896))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Event | System.AttributeTargets.Field | System.AttributeTargets.Property)]
     public sealed partial class InheritanceAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.InheritanceAttribute Default;
@@ -1964,7 +1924,7 @@ namespace System.ComponentModel
         InheritedReadOnly = 2,
         NotInherited = 3,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public sealed partial class InitializationEventAttribute : System.Attribute
     {
         public InitializationEventAttribute(string eventName) { }
@@ -1984,7 +1944,7 @@ namespace System.ComponentModel
     {
         event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public partial class InstallerTypeAttribute : System.Attribute
     {
         public InstallerTypeAttribute(string typeName) { }
@@ -2115,7 +2075,7 @@ namespace System.ComponentModel
         protected LicenseProvider() { }
         public abstract System.ComponentModel.License GetLicense(System.ComponentModel.LicenseContext context, System.Type type, object instance, bool allowExceptions);
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), AllowMultiple=false, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, AllowMultiple=false, Inherited=false)]
     public sealed partial class LicenseProviderAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.LicenseProviderAttribute Default;
@@ -2129,8 +2089,8 @@ namespace System.ComponentModel
     }
     public enum LicenseUsageMode
     {
-        Designtime = 1,
         Runtime = 0,
+        Designtime = 1,
     }
     public partial class LicFileLicenseProvider : System.ComponentModel.LicenseProvider
     {
@@ -2139,7 +2099,7 @@ namespace System.ComponentModel
         public override System.ComponentModel.License GetLicense(System.ComponentModel.LicenseContext context, System.Type type, object instance, bool allowExceptions) { throw null; }
         protected virtual bool IsKeyValid(string key, System.Type type) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class ListBindableAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.ListBindableAttribute Default;
@@ -2166,14 +2126,14 @@ namespace System.ComponentModel
     public delegate void ListChangedEventHandler(object sender, System.ComponentModel.ListChangedEventArgs e);
     public enum ListChangedType
     {
+        Reset = 0,
         ItemAdded = 1,
-        ItemChanged = 4,
         ItemDeleted = 2,
         ItemMoved = 3,
+        ItemChanged = 4,
         PropertyDescriptorAdded = 5,
-        PropertyDescriptorChanged = 7,
         PropertyDescriptorDeleted = 6,
-        Reset = 0,
+        PropertyDescriptorChanged = 7,
     }
     public partial class ListSortDescription
     {
@@ -2207,7 +2167,7 @@ namespace System.ComponentModel
         Ascending = 0,
         Descending = 1,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class LocalizableAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.LocalizableAttribute Default;
@@ -2219,7 +2179,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public sealed partial class LookupBindingPropertiesAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.LookupBindingPropertiesAttribute Default;
@@ -2237,14 +2197,14 @@ namespace System.ComponentModel
     {
         public MarshalByValueComponent() { }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public virtual System.ComponentModel.IContainer Container { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public virtual bool DesignMode { get { throw null; } }
         protected System.ComponentModel.EventHandlerList Events { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public virtual System.ComponentModel.ISite Site { get { throw null; } set { } }
         public event System.EventHandler Disposed { add { } remove { } }
         public void Dispose() { }
@@ -2338,21 +2298,21 @@ namespace System.ComponentModel
     }
     public enum MaskedTextResultHint
     {
+        PositionOutOfRange = -55,
+        NonEditPosition = -54,
+        UnavailableEditPosition = -53,
+        PromptCharNotAllowed = -52,
+        InvalidInput = -51,
+        SignedDigitExpected = -5,
+        LetterExpected = -4,
+        DigitExpected = -3,
         AlphanumericCharacterExpected = -2,
         AsciiCharacterExpected = -1,
-        CharacterEscaped = 1,
-        DigitExpected = -3,
-        InvalidInput = -51,
-        LetterExpected = -4,
-        NoEffect = 2,
-        NonEditPosition = -54,
-        PositionOutOfRange = -55,
-        PromptCharNotAllowed = -52,
-        SideEffect = 3,
-        SignedDigitExpected = -5,
-        Success = 4,
-        UnavailableEditPosition = -53,
         Unknown = 0,
+        CharacterEscaped = 1,
+        NoEffect = 2,
+        SideEffect = 3,
+        Success = 4,
     }
     public abstract partial class MemberDescriptor
     {
@@ -2380,7 +2340,7 @@ namespace System.ComponentModel
         protected static object GetInvokee(System.Type componentClass, object component) { throw null; }
         protected static System.ComponentModel.ISite GetSite(object component) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class MergablePropertyAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.MergablePropertyAttribute Default;
@@ -2408,7 +2368,7 @@ namespace System.ComponentModel
         protected override void Dispose(bool disposing) { }
         protected override object GetService(System.Type service) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(128))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Property)]
     public sealed partial class NotifyParentPropertyAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.NotifyParentPropertyAttribute Default;
@@ -2439,7 +2399,7 @@ namespace System.ComponentModel
         public override bool GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext context) { throw null; }
         public override bool IsValid(System.ComponentModel.ITypeDescriptorContext context, object value) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class ParenthesizePropertyNameAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.ParenthesizePropertyNameAttribute Default;
@@ -2450,7 +2410,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class PasswordPropertyTextAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.PasswordPropertyTextAttribute Default;
@@ -2564,7 +2524,7 @@ namespace System.ComponentModel
         void System.Collections.IList.Remove(object value) { }
         void System.Collections.IList.RemoveAt(int index) { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public partial class PropertyTabAttribute : System.Attribute
     {
         public PropertyTabAttribute() { }
@@ -2583,12 +2543,12 @@ namespace System.ComponentModel
     }
     public enum PropertyTabScope
     {
-        Component = 3,
-        Document = 2,
-        Global = 1,
         Static = 0,
+        Global = 1,
+        Document = 2,
+        Component = 3,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), AllowMultiple=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, AllowMultiple=true)]
     public sealed partial class ProvidePropertyAttribute : System.Attribute
     {
         public ProvidePropertyAttribute(string propertyName, string receiverTypeName) { }
@@ -2599,7 +2559,7 @@ namespace System.ComponentModel
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class ReadOnlyAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.ReadOnlyAttribute Default;
@@ -2611,7 +2571,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(128))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Property)]
     [System.ObsoleteAttribute("Use System.ComponentModel.SettingsBindableAttribute instead to work with the new settings model.")]
     public partial class RecommendedAsConfigurableAttribute : System.Attribute
     {
@@ -2645,11 +2605,11 @@ namespace System.ComponentModel
     public delegate void RefreshEventHandler(System.ComponentModel.RefreshEventArgs e);
     public enum RefreshProperties
     {
-        All = 1,
         None = 0,
+        All = 1,
         Repaint = 2,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class RefreshPropertiesAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.RefreshPropertiesAttribute All;
@@ -2661,7 +2621,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public partial class RunInstallerAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.RunInstallerAttribute Default;
@@ -2678,7 +2638,7 @@ namespace System.ComponentModel
         public RunWorkerCompletedEventArgs(object result, System.Exception error, bool cancelled) : base (default(System.Exception), default(bool), default(object)) { }
         public object Result { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public new object UserState { get { throw null; } }
     }
     public delegate void RunWorkerCompletedEventHandler(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e);
@@ -2686,7 +2646,7 @@ namespace System.ComponentModel
     {
         public SByteConverter() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(128))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Property)]
     public sealed partial class SettingsBindableAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.SettingsBindableAttribute No;
@@ -2720,7 +2680,7 @@ namespace System.ComponentModel
         public override object ConvertFrom(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value) { throw null; }
         public override object ConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, System.Type destinationType) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public partial class ToolboxItemAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.ToolboxItemAttribute Default;
@@ -2734,7 +2694,7 @@ namespace System.ComponentModel
         public override int GetHashCode() { throw null; }
         public override bool IsDefaultAttribute() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), AllowMultiple=true, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, AllowMultiple=true, Inherited=true)]
     public sealed partial class ToolboxItemFilterAttribute : System.Attribute
     {
         public ToolboxItemFilterAttribute(string filterString) { }
@@ -2820,7 +2780,7 @@ namespace System.ComponentModel
             System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { throw null; }
         }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public sealed partial class TypeConverterAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.TypeConverterAttribute Default;
@@ -2849,7 +2809,7 @@ namespace System.ComponentModel
         public virtual System.ComponentModel.ICustomTypeDescriptor GetTypeDescriptor(System.Type objectType, object instance) { throw null; }
         public virtual bool IsSupportedType(System.Type type) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, Inherited=true)]
     public sealed partial class TypeDescriptionProviderAttribute : System.Attribute
     {
         public TypeDescriptionProviderAttribute(string typeName) { }
@@ -2861,26 +2821,26 @@ namespace System.ComponentModel
         internal TypeDescriptor() { }
         [System.ObsoleteAttribute("This property has been deprecated.  Use a type description provider to supply type information for COM types instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
         public static System.ComponentModel.IComNativeDescriptorHandler ComNativeDescriptorHandler { get { throw null; } set { } }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.Type ComObjectType { get { throw null; } }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.Type InterfaceType { get { throw null; } }
         public static event System.ComponentModel.RefreshEventHandler Refreshed { add { } remove { } }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.TypeDescriptionProvider AddAttributes(object instance, params System.Attribute[] attributes) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.TypeDescriptionProvider AddAttributes(System.Type type, params System.Attribute[] attributes) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void AddEditorTable(System.Type editorBaseType, System.Collections.Hashtable table) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void AddProvider(System.ComponentModel.TypeDescriptionProvider provider, object instance) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void AddProvider(System.ComponentModel.TypeDescriptionProvider provider, System.Type type) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void AddProviderTransparent(System.ComponentModel.TypeDescriptionProvider provider, object instance) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void AddProviderTransparent(System.ComponentModel.TypeDescriptionProvider provider, System.Type type) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void CreateAssociation(object primary, object secondary) { }
         public static System.ComponentModel.Design.IDesigner CreateDesigner(System.ComponentModel.IComponent component, System.Type designerBaseType) { throw null; }
         public static System.ComponentModel.EventDescriptor CreateEvent(System.Type componentType, System.ComponentModel.EventDescriptor oldEventDescriptor, params System.Attribute[] attributes) { throw null; }
@@ -2888,40 +2848,40 @@ namespace System.ComponentModel
         public static object CreateInstance(System.IServiceProvider provider, System.Type objectType, System.Type[] argTypes, object[] args) { throw null; }
         public static System.ComponentModel.PropertyDescriptor CreateProperty(System.Type componentType, System.ComponentModel.PropertyDescriptor oldPropertyDescriptor, params System.Attribute[] attributes) { throw null; }
         public static System.ComponentModel.PropertyDescriptor CreateProperty(System.Type componentType, string name, System.Type type, params System.Attribute[] attributes) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static object GetAssociation(System.Type type, object primary) { throw null; }
         public static System.ComponentModel.AttributeCollection GetAttributes(object component) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.AttributeCollection GetAttributes(object component, bool noCustomTypeDesc) { throw null; }
         public static System.ComponentModel.AttributeCollection GetAttributes(System.Type componentType) { throw null; }
         public static string GetClassName(object component) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static string GetClassName(object component, bool noCustomTypeDesc) { throw null; }
         public static string GetClassName(System.Type componentType) { throw null; }
         public static string GetComponentName(object component) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static string GetComponentName(object component, bool noCustomTypeDesc) { throw null; }
         public static System.ComponentModel.TypeConverter GetConverter(object component) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.TypeConverter GetConverter(object component, bool noCustomTypeDesc) { throw null; }
         public static System.ComponentModel.TypeConverter GetConverter(System.Type type) { throw null; }
         public static System.ComponentModel.EventDescriptor GetDefaultEvent(object component) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.EventDescriptor GetDefaultEvent(object component, bool noCustomTypeDesc) { throw null; }
         public static System.ComponentModel.EventDescriptor GetDefaultEvent(System.Type componentType) { throw null; }
         public static System.ComponentModel.PropertyDescriptor GetDefaultProperty(object component) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.PropertyDescriptor GetDefaultProperty(object component, bool noCustomTypeDesc) { throw null; }
         public static System.ComponentModel.PropertyDescriptor GetDefaultProperty(System.Type componentType) { throw null; }
         public static object GetEditor(object component, System.Type editorBaseType) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static object GetEditor(object component, System.Type editorBaseType, bool noCustomTypeDesc) { throw null; }
         public static object GetEditor(System.Type type, System.Type editorBaseType) { throw null; }
         public static System.ComponentModel.EventDescriptorCollection GetEvents(object component) { throw null; }
         public static System.ComponentModel.EventDescriptorCollection GetEvents(object component, System.Attribute[] attributes) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.EventDescriptorCollection GetEvents(object component, System.Attribute[] attributes, bool noCustomTypeDesc) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.EventDescriptorCollection GetEvents(object component, bool noCustomTypeDesc) { throw null; }
         public static System.ComponentModel.EventDescriptorCollection GetEvents(System.Type componentType) { throw null; }
         public static System.ComponentModel.EventDescriptorCollection GetEvents(System.Type componentType, System.Attribute[] attributes) { throw null; }
@@ -2929,33 +2889,33 @@ namespace System.ComponentModel
         public static System.ComponentModel.PropertyDescriptorCollection GetProperties(object component) { throw null; }
         public static System.ComponentModel.PropertyDescriptorCollection GetProperties(object component, System.Attribute[] attributes) { throw null; }
         public static System.ComponentModel.PropertyDescriptorCollection GetProperties(object component, System.Attribute[] attributes, bool noCustomTypeDesc) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.PropertyDescriptorCollection GetProperties(object component, bool noCustomTypeDesc) { throw null; }
         public static System.ComponentModel.PropertyDescriptorCollection GetProperties(System.Type componentType) { throw null; }
         public static System.ComponentModel.PropertyDescriptorCollection GetProperties(System.Type componentType, System.Attribute[] attributes) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.TypeDescriptionProvider GetProvider(object instance) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.ComponentModel.TypeDescriptionProvider GetProvider(System.Type type) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.Type GetReflectionType(object instance) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.Type GetReflectionType(System.Type type) { throw null; }
         public static void Refresh(object component) { }
         public static void Refresh(System.Reflection.Assembly assembly) { }
         public static void Refresh(System.Reflection.Module module) { }
         public static void Refresh(System.Type type) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void RemoveAssociation(object primary, object secondary) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void RemoveAssociations(object primary) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void RemoveProvider(System.ComponentModel.TypeDescriptionProvider provider, object instance) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void RemoveProvider(System.ComponentModel.TypeDescriptionProvider provider, System.Type type) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void RemoveProviderTransparent(System.ComponentModel.TypeDescriptionProvider provider, object instance) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static void RemoveProviderTransparent(System.ComponentModel.TypeDescriptionProvider provider, System.Type type) { }
         public static void SortDescriptorArray(System.Collections.IList infos) { }
     }
@@ -3184,11 +3144,11 @@ namespace System.ComponentModel.Design
     public enum HelpContextType
     {
         Ambient = 0,
+        Window = 1,
         Selection = 2,
         ToolWindowSelection = 3,
-        Window = 1,
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767), AllowMultiple=false, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All, AllowMultiple=false, Inherited=false)]
     public sealed partial class HelpKeywordAttribute : System.Attribute
     {
         public static readonly System.ComponentModel.Design.HelpKeywordAttribute Default;
@@ -3203,8 +3163,8 @@ namespace System.ComponentModel.Design
     public enum HelpKeywordType
     {
         F1Keyword = 0,
-        FilterKeyword = 2,
         GeneralKeyword = 1,
+        FilterKeyword = 2,
     }
     public partial interface IComponentChangeService
     {
@@ -3419,22 +3379,22 @@ namespace System.ComponentModel.Design
     [System.FlagsAttribute]
     public enum SelectionTypes
     {
-        Add = 64,
         Auto = 1,
-        [System.ObsoleteAttribute("This value has been deprecated. Use SelectionTypes.Primary instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
-        Click = 16,
+        [System.ObsoleteAttribute("This value has been deprecated. Use SelectionTypes.Auto instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        Normal = 1,
+        Replace = 2,
         [System.ObsoleteAttribute("This value has been deprecated.  It is no longer supported. http://go.microsoft.com/fwlink/?linkid=14202")]
         MouseDown = 4,
         [System.ObsoleteAttribute("This value has been deprecated.  It is no longer supported. http://go.microsoft.com/fwlink/?linkid=14202")]
         MouseUp = 8,
-        [System.ObsoleteAttribute("This value has been deprecated. Use SelectionTypes.Auto instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
-        Normal = 1,
+        [System.ObsoleteAttribute("This value has been deprecated. Use SelectionTypes.Primary instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
+        Click = 16,
         Primary = 16,
-        Remove = 128,
-        Replace = 2,
-        Toggle = 32,
         [System.ObsoleteAttribute("This value has been deprecated. Use Enum class methods to determine valid values, or use a type converter. http://go.microsoft.com/fwlink/?linkid=14202")]
         Valid = 31,
+        Toggle = 32,
+        Add = 64,
+        Remove = 128,
     }
     public partial class ServiceContainer : System.ComponentModel.Design.IServiceContainer, System.IDisposable, System.IServiceProvider
     {
@@ -3531,11 +3491,11 @@ namespace System.ComponentModel.Design
     }
     public enum ViewTechnology
     {
-        Default = 2,
         [System.ObsoleteAttribute("This value has been deprecated. Use ViewTechnology.Default instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
         Passthrough = 0,
         [System.ObsoleteAttribute("This value has been deprecated. Use ViewTechnology.Default instead.  http://go.microsoft.com/fwlink/?linkid=14202")]
         WindowsForms = 1,
+        Default = 2,
     }
 }
 namespace System.ComponentModel.Design.Serialization
@@ -3565,7 +3525,7 @@ namespace System.ComponentModel.Design.Serialization
         public object Pop() { throw null; }
         public void Push(object context) { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4), Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class, Inherited=false)]
     public sealed partial class DefaultSerializationProviderAttribute : System.Attribute
     {
         public DefaultSerializationProviderAttribute(string providerTypeName) { }
@@ -3580,7 +3540,7 @@ namespace System.ComponentModel.Design.Serialization
         public abstract void Dispose();
         public virtual void Flush() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), AllowMultiple=true, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Interface, AllowMultiple=true, Inherited=true)]
     public sealed partial class DesignerSerializerAttribute : System.Attribute
     {
         public DesignerSerializerAttribute(string serializerTypeName, string baseSerializerTypeName) { }
@@ -3647,9 +3607,10 @@ namespace System.ComponentModel.Design.Serialization
         public object Invoke() { throw null; }
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public partial struct MemberRelationship
+    public readonly partial struct MemberRelationship
     {
-        private object _dummy;
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
         public static readonly System.ComponentModel.Design.Serialization.MemberRelationship Empty;
         public MemberRelationship(object owner, System.ComponentModel.MemberDescriptor member) { throw null; }
         public bool IsEmpty { get { throw null; } }
@@ -3676,8 +3637,8 @@ namespace System.ComponentModel.Design.Serialization
         public object Value { get { throw null; } set { } }
     }
     public delegate void ResolveNameEventHandler(object sender, System.ComponentModel.Design.Serialization.ResolveNameEventArgs e);
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1028), AllowMultiple=true, Inherited=true)]
-    [System.ObsoleteAttribute("This attribute has been deprecated. Use DesignerSerializerAttribute instead.  For example, to specify a root designer for CodeDom, use DesignerSerializerAttribute(...,typeof(TypeCodeDomSerializer)).  http://go.microsoft.com/fwlink/?linkid=14202")]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Interface, AllowMultiple=true, Inherited=true)]
+    [System.ObsoleteAttribute("This attribute has been deprecated. Use DesignerSerializerAttribute instead.  For example, to specify a root designer for CodeDom, use DesignerSerializerAttribute(...,typeof(TypeCodeDomSerializer)).  https://go.microsoft.com/fwlink/?linkid=14202")]
     public sealed partial class RootDesignerSerializerAttribute : System.Attribute
     {
         public RootDesignerSerializerAttribute(string serializerTypeName, string baseSerializerTypeName, bool reloadable) { }
@@ -3852,7 +3813,7 @@ namespace System.Diagnostics
         public static System.Diagnostics.FileVersionInfo GetVersionInfo(string fileName) { throw null; }
         public override string ToString() { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public partial class MonitoringDescriptionAttribute : System.ComponentModel.DescriptionAttribute
     {
         public MonitoringDescriptionAttribute(string description) { }
@@ -3863,128 +3824,128 @@ namespace System.Diagnostics
     public partial class Process : System.ComponentModel.Component
     {
         public Process() { }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public int BasePriority { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DefaultValueAttribute(false)]
         public bool EnableRaisingEvents { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public int ExitCode { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.DateTime ExitTime { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.IntPtr Handle { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public int HandleCount { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public bool HasExited { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public int Id { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public string MachineName { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.Diagnostics.ProcessModule MainModule { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.IntPtr MainWindowHandle { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public string MainWindowTitle { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.IntPtr MaxWorkingSet { get { throw null; } set { } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.IntPtr MinWorkingSet { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.Diagnostics.ProcessModuleCollection Modules { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         [System.ObsoleteAttribute("Use NonpagedSystemMemorySize64")]
         public int NonpagedSystemMemorySize { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public long NonpagedSystemMemorySize64 { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         [System.ObsoleteAttribute("Use PagedMemorySize64")]
         public int PagedMemorySize { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public long PagedMemorySize64 { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         [System.ObsoleteAttribute("Use PagedSystemMemorySize64")]
         public int PagedSystemMemorySize { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public long PagedSystemMemorySize64 { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         [System.ObsoleteAttribute("Use PeakPagedMemorySize64")]
         public int PeakPagedMemorySize { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public long PeakPagedMemorySize64 { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         [System.ObsoleteAttribute("Use PeakVirtualMemorySize64")]
         public int PeakVirtualMemorySize { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public long PeakVirtualMemorySize64 { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         [System.ObsoleteAttribute("Use PeakWorkingSet64")]
         public int PeakWorkingSet { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public long PeakWorkingSet64 { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public bool PriorityBoostEnabled { get { throw null; } set { } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.Diagnostics.ProcessPriorityClass PriorityClass { get { throw null; } set { } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         [System.ObsoleteAttribute("Use PrivateMemorySize64")]
         public int PrivateMemorySize { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public long PrivateMemorySize64 { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.TimeSpan PrivilegedProcessorTime { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public string ProcessName { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.IntPtr ProcessorAffinity { get { throw null; } set { } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public bool Responding { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public Microsoft.Win32.SafeHandles.SafeProcessHandle SafeHandle { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public int SessionId { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.IO.StreamReader StandardError { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.IO.StreamWriter StandardInput { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.IO.StreamReader StandardOutput { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(2))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public System.Diagnostics.ProcessStartInfo StartInfo { get { throw null; } set { } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.DateTime StartTime { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(false)]
         [System.ComponentModel.DefaultValueAttribute(null)]
         public System.ComponentModel.ISynchronizeInvoke SynchronizingObject { get { throw null; } set { } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.Diagnostics.ProcessThreadCollection Threads { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.TimeSpan TotalProcessorTime { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.TimeSpan UserProcessorTime { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         [System.ObsoleteAttribute("Use VirtualMemorySize64")]
         public int VirtualMemorySize { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public long VirtualMemorySize64 { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         [System.ObsoleteAttribute("Use WorkingSet64")]
         public int WorkingSet { get { throw null; } }
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public long WorkingSet64 { get { throw null; } }
         [System.ComponentModel.BrowsableAttribute(true)]
         public event System.Diagnostics.DataReceivedEventHandler ErrorDataReceived { add { } remove { } }
@@ -4132,12 +4093,12 @@ namespace System.Diagnostics
     }
     public enum ProcessPriorityClass
     {
-        AboveNormal = 32768,
-        BelowNormal = 16384,
-        High = 128,
-        Idle = 64,
         Normal = 32,
+        Idle = 64,
+        High = 128,
         RealTime = 256,
+        BelowNormal = 16384,
+        AboveNormal = 32768,
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public sealed partial class ProcessStartInfo
@@ -4145,6 +4106,7 @@ namespace System.Diagnostics
         public ProcessStartInfo() { }
         public ProcessStartInfo(string fileName) { }
         public ProcessStartInfo(string fileName, string arguments) { }
+        public System.Collections.ObjectModel.Collection<string> ArgumentList { get { throw null; } }
         [System.ComponentModel.DefaultValueAttribute("")]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         [System.ComponentModel.SettingsBindableAttribute(true)]
@@ -4155,18 +4117,18 @@ namespace System.Diagnostics
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         public string Domain { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute(null)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         public System.Collections.Generic.IDictionary<string, string> Environment { get { throw null; } }
         [System.ComponentModel.DefaultValueAttribute(null)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(2))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Content)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         public System.Collections.Specialized.StringDictionary EnvironmentVariables { get { throw null; } }
         [System.ComponentModel.DefaultValueAttribute(false)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         public bool ErrorDialog { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public System.IntPtr ErrorDialogParentHandle { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute("")]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
@@ -4176,7 +4138,7 @@ namespace System.Diagnostics
         public bool LoadUserProfile { get { throw null; } set { } }
         public System.Security.SecureString Password { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public string PasswordInClearText { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute(false)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
@@ -4188,6 +4150,7 @@ namespace System.Diagnostics
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         public bool RedirectStandardOutput { get { throw null; } set { } }
         public System.Text.Encoding StandardErrorEncoding { get { throw null; } set { } }
+        public System.Text.Encoding StandardInputEncoding { get { throw null; } set { } }
         public System.Text.Encoding StandardOutputEncoding { get { throw null; } set { } }
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         public string UserName { get { throw null; } set { } }
@@ -4198,9 +4161,9 @@ namespace System.Diagnostics
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         public string Verb { get { throw null; } set { } }
         [System.ComponentModel.BrowsableAttribute(false)]
-        [System.ComponentModel.DesignerSerializationVisibilityAttribute((System.ComponentModel.DesignerSerializationVisibility)(0))]
+        [System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public string[] Verbs { get { throw null; } }
-        [System.ComponentModel.DefaultValueAttribute((System.Diagnostics.ProcessWindowStyle)(0))]
+        [System.ComponentModel.DefaultValueAttribute(System.Diagnostics.ProcessWindowStyle.Normal)]
         [System.ComponentModel.NotifyParentPropertyAttribute(true)]
         public System.Diagnostics.ProcessWindowStyle WindowStyle { get { throw null; } set { } }
         [System.ComponentModel.DefaultValueAttribute("")]
@@ -4323,10 +4286,10 @@ namespace System.Diagnostics
     }
     public enum ProcessWindowStyle
     {
-        Hidden = 1,
-        Maximized = 3,
-        Minimized = 2,
         Normal = 0,
+        Hidden = 1,
+        Minimized = 2,
+        Maximized = 3,
     }
     public partial class SourceFilter : System.Diagnostics.TraceFilter
     {
@@ -4337,15 +4300,15 @@ namespace System.Diagnostics
     [System.FlagsAttribute]
     public enum SourceLevels
     {
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
-        ActivityTracing = 65280,
         All = -1,
+        Off = 0,
         Critical = 1,
         Error = 3,
-        Information = 15,
-        Off = 0,
-        Verbose = 31,
         Warning = 7,
+        Information = 15,
+        Verbose = 31,
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ActivityTracing = 65280,
     }
     public partial class SourceSwitch : System.Diagnostics.Switch
     {
@@ -4354,6 +4317,15 @@ namespace System.Diagnostics
         public System.Diagnostics.SourceLevels Level { get { throw null; } set { } }
         protected override void OnValueChanged() { }
         public bool ShouldTrace(System.Diagnostics.TraceEventType eventType) { throw null; }
+    }
+    public static partial class StackFrameExtensions
+    {
+        public static System.IntPtr GetNativeImageBase(this System.Diagnostics.StackFrame stackFrame) { throw null; }
+        public static System.IntPtr GetNativeIP(this System.Diagnostics.StackFrame stackFrame) { throw null; }
+        public static bool HasILOffset(this System.Diagnostics.StackFrame stackFrame) { throw null; }
+        public static bool HasMethod(this System.Diagnostics.StackFrame stackFrame) { throw null; }
+        public static bool HasNativeImage(this System.Diagnostics.StackFrame stackFrame) { throw null; }
+        public static bool HasSource(this System.Diagnostics.StackFrame stackFrame) { throw null; }
     }
     public partial class Stopwatch
     {
@@ -4384,7 +4356,7 @@ namespace System.Diagnostics
         protected virtual void OnSwitchSettingChanged() { }
         protected virtual void OnValueChanged() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(741))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Assembly | System.AttributeTargets.Class | System.AttributeTargets.Constructor | System.AttributeTargets.Event | System.AttributeTargets.Method | System.AttributeTargets.Property)]
     public sealed partial class SwitchAttribute : System.Attribute
     {
         public SwitchAttribute(string switchName, System.Type switchType) { }
@@ -4393,7 +4365,7 @@ namespace System.Diagnostics
         public System.Type SwitchType { get { throw null; } set { } }
         public static System.Diagnostics.SwitchAttribute[] GetAll(System.Reflection.Assembly assembly) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(4))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class)]
     public sealed partial class SwitchLevelAttribute : System.Attribute
     {
         public SwitchLevelAttribute(System.Type switchLevelType) { }
@@ -4417,12 +4389,12 @@ namespace System.Diagnostics
     }
     public enum ThreadPriorityLevel
     {
-        AboveNormal = 1,
-        BelowNormal = -1,
-        Highest = 2,
         Idle = -15,
         Lowest = -2,
+        BelowNormal = -1,
         Normal = 0,
+        AboveNormal = 1,
+        Highest = 2,
         TimeCritical = 15,
     }
     public enum ThreadState
@@ -4432,26 +4404,26 @@ namespace System.Diagnostics
         Running = 2,
         Standby = 3,
         Terminated = 4,
+        Wait = 5,
         Transition = 6,
         Unknown = 7,
-        Wait = 5,
     }
     public enum ThreadWaitReason
     {
-        EventPairHigh = 7,
-        EventPairLow = 8,
-        ExecutionDelay = 4,
         Executive = 0,
         FreePage = 1,
+        PageIn = 2,
+        SystemAllocation = 3,
+        ExecutionDelay = 4,
+        Suspended = 5,
+        UserRequest = 6,
+        EventPairHigh = 7,
+        EventPairLow = 8,
         LpcReceive = 9,
         LpcReply = 10,
-        PageIn = 2,
-        PageOut = 12,
-        Suspended = 5,
-        SystemAllocation = 3,
-        Unknown = 13,
-        UserRequest = 6,
         VirtualMemory = 11,
+        PageOut = 12,
+        Unknown = 13,
     }
     public sealed partial class Trace
     {
@@ -4540,19 +4512,19 @@ namespace System.Diagnostics
     {
         Critical = 1,
         Error = 2,
-        Information = 8,
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
-        Resume = 2048,
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
-        Start = 256,
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
-        Stop = 512,
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
-        Suspend = 1024,
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(2))]
-        Transfer = 4096,
-        Verbose = 16,
         Warning = 4,
+        Information = 8,
+        Verbose = 16,
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Start = 256,
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Stop = 512,
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Suspend = 1024,
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Resume = 2048,
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Transfer = 4096,
     }
     public abstract partial class TraceFilter
     {
@@ -4561,11 +4533,11 @@ namespace System.Diagnostics
     }
     public enum TraceLevel
     {
-        Error = 1,
-        Info = 3,
         Off = 0,
-        Verbose = 4,
+        Error = 1,
         Warning = 2,
+        Info = 3,
+        Verbose = 4,
     }
     public abstract partial class TraceListener : System.MarshalByRefObject, System.IDisposable
     {
@@ -4635,13 +4607,13 @@ namespace System.Diagnostics
     [System.FlagsAttribute]
     public enum TraceOptions
     {
-        Callstack = 32,
-        DateTime = 2,
-        LogicalOperationStack = 1,
         None = 0,
+        LogicalOperationStack = 1,
+        DateTime = 2,
+        Timestamp = 4,
         ProcessId = 8,
         ThreadId = 16,
-        Timestamp = 4,
+        Callstack = 32,
     }
     public partial class TraceSource
     {
@@ -4687,7 +4659,7 @@ namespace System.Diagnostics
 }
 namespace System.Diagnostics.CodeAnalysis
 {
-    [System.AttributeUsageAttribute((System.AttributeTargets)(748), Inherited=false, AllowMultiple=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Assembly | System.AttributeTargets.Class | System.AttributeTargets.Constructor | System.AttributeTargets.Event | System.AttributeTargets.Method | System.AttributeTargets.Property | System.AttributeTargets.Struct, Inherited=false, AllowMultiple=false)]
     public sealed partial class ExcludeFromCodeCoverageAttribute : System.Attribute
     {
         public ExcludeFromCodeCoverageAttribute() { }
@@ -4709,13 +4681,15 @@ namespace System.IO
         public string Name { get { throw null; } }
     }
     public delegate void FileSystemEventHandler(object sender, System.IO.FileSystemEventArgs e);
-    public partial class FileSystemWatcher : System.ComponentModel.Component, System.ComponentModel.ISupportInitialize, System.IDisposable
+    [System.ComponentModel.DefaultEventAttribute("Changed")]
+    public partial class FileSystemWatcher : System.ComponentModel.Component, System.ComponentModel.ISupportInitialize
     {
         public FileSystemWatcher() { }
         public FileSystemWatcher(string path) { }
         public FileSystemWatcher(string path, string filter) { }
         public bool EnableRaisingEvents { get { throw null; } set { } }
         public string Filter { get { throw null; } set { } }
+        public System.Collections.ObjectModel.Collection<string> Filters { get { throw null; } }
         public bool IncludeSubdirectories { get { throw null; } set { } }
         public int InternalBufferSize { get { throw null; } set { } }
         public System.IO.NotifyFilters NotifyFilter { get { throw null; } set { } }
@@ -4751,7 +4725,7 @@ namespace System.IO
         public InvalidDataException(string message) { }
         public InvalidDataException(string message, System.Exception innerException) { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public partial class IODescriptionAttribute : System.ComponentModel.DescriptionAttribute
     {
         public IODescriptionAttribute(string description) { }
@@ -4760,14 +4734,14 @@ namespace System.IO
     [System.FlagsAttribute]
     public enum NotifyFilters
     {
-        Attributes = 4,
-        CreationTime = 64,
-        DirectoryName = 2,
         FileName = 1,
-        LastAccess = 32,
-        LastWrite = 16,
-        Security = 256,
+        DirectoryName = 2,
+        Attributes = 4,
         Size = 8,
+        LastWrite = 16,
+        LastAccess = 32,
+        CreationTime = 64,
+        Security = 256,
     }
     public partial class RenamedEventArgs : System.IO.FileSystemEventArgs
     {
@@ -4780,6 +4754,7 @@ namespace System.IO
     public partial struct WaitForChangedResult
     {
         private object _dummy;
+        private int _dummyPrimitive;
         public System.IO.WatcherChangeTypes ChangeType { get { throw null; } set { } }
         public string Name { get { throw null; } set { } }
         public string OldName { get { throw null; } set { } }
@@ -4788,25 +4763,25 @@ namespace System.IO
     [System.FlagsAttribute]
     public enum WatcherChangeTypes
     {
-        All = 15,
-        Changed = 4,
         Created = 1,
         Deleted = 2,
+        Changed = 4,
         Renamed = 8,
+        All = 15,
     }
 }
 namespace System.IO.Compression
 {
     public enum CompressionLevel
     {
+        Optimal = 0,
         Fastest = 1,
         NoCompression = 2,
-        Optimal = 0,
     }
     public enum CompressionMode
     {
-        Compress = 1,
         Decompress = 0,
+        Compress = 1,
     }
     public partial class DeflateStream : System.IO.Stream
     {
@@ -4825,6 +4800,7 @@ namespace System.IO.Compression
         protected override void Dispose(bool disposing) { }
         public override int EndRead(System.IAsyncResult asyncResult) { throw null; }
         public override void EndWrite(System.IAsyncResult asyncResult) { }
+        ~DeflateStream() { }
         public override void Flush() { }
         public override int Read(byte[] array, int offset, int count) { throw null; }
         public override long Seek(long offset, System.IO.SeekOrigin origin) { throw null; }
@@ -4853,12 +4829,16 @@ namespace System.IO.Compression
         public override void Flush() { }
         public override System.Threading.Tasks.Task FlushAsync(System.Threading.CancellationToken cancellationToken) { throw null; }
         public override int Read(byte[] array, int offset, int count) { throw null; }
+        public override int Read(System.Span<byte> buffer) { throw null; }
         public override System.Threading.Tasks.Task<int> ReadAsync(byte[] array, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public override System.Threading.Tasks.ValueTask<int> ReadAsync(System.Memory<byte> buffer, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public override int ReadByte() { throw null; }
         public override long Seek(long offset, System.IO.SeekOrigin origin) { throw null; }
         public override void SetLength(long value) { }
         public override void Write(byte[] array, int offset, int count) { }
+        public override void Write(System.ReadOnlySpan<byte> buffer) { }
         public override System.Threading.Tasks.Task WriteAsync(byte[] array, int offset, int count, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public override System.Threading.Tasks.ValueTask WriteAsync(System.ReadOnlyMemory<byte> buffer, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
     }
 }
 namespace System.Net
@@ -4878,13 +4858,13 @@ namespace System.Net
     [System.FlagsAttribute]
     public enum AuthenticationSchemes
     {
-        Anonymous = 32768,
-        Basic = 8,
-        Digest = 1,
-        IntegratedWindowsAuthentication = 6,
-        Negotiate = 2,
         None = 0,
+        Digest = 1,
+        Negotiate = 2,
         Ntlm = 4,
+        IntegratedWindowsAuthentication = 6,
+        Basic = 8,
+        Anonymous = 32768,
     }
     public delegate System.Net.AuthenticationSchemes AuthenticationSchemeSelector(System.Net.HttpListenerRequest httpRequest);
     public partial class Authorization
@@ -4983,9 +4963,9 @@ namespace System.Net
     [System.FlagsAttribute]
     public enum DecompressionMethods
     {
-        Deflate = 2,
-        GZip = 1,
         None = 0,
+        GZip = 1,
+        Deflate = 2,
     }
     public static partial class Dns
     {
@@ -5106,53 +5086,55 @@ namespace System.Net
     }
     public enum FtpStatusCode
     {
-        AccountNeeded = 532,
-        ActionAbortedLocalProcessingError = 451,
-        ActionAbortedUnknownPageType = 551,
-        ActionNotTakenFilenameNotAllowed = 553,
-        ActionNotTakenFileUnavailable = 550,
-        ActionNotTakenFileUnavailableOrBusy = 450,
-        ActionNotTakenInsufficientSpace = 452,
-        ArgumentSyntaxError = 501,
-        BadCommandSequence = 503,
-        CantOpenData = 425,
+        Undefined = 0,
+        RestartMarker = 110,
+        ServiceTemporarilyNotAvailable = 120,
+        DataAlreadyOpen = 125,
+        OpeningData = 150,
+        CommandOK = 200,
+        CommandExtraneous = 202,
+        DirectoryStatus = 212,
+        FileStatus = 213,
+        SystemType = 215,
+        SendUserCommand = 220,
         ClosingControl = 221,
         ClosingData = 226,
-        CommandExtraneous = 202,
-        CommandNotImplemented = 502,
-        CommandOK = 200,
-        CommandSyntaxError = 500,
-        ConnectionClosed = 426,
-        DataAlreadyOpen = 125,
-        DirectoryStatus = 212,
         EnteringPassive = 227,
-        FileActionAborted = 552,
-        FileActionOK = 250,
-        FileCommandPending = 350,
-        FileStatus = 213,
         LoggedInProceed = 230,
-        NeedLoginAccount = 332,
-        NotLoggedIn = 530,
-        OpeningData = 150,
-        PathnameCreated = 257,
-        RestartMarker = 110,
-        SendPasswordCommand = 331,
-        SendUserCommand = 220,
         ServerWantsSecureSession = 234,
+        FileActionOK = 250,
+        PathnameCreated = 257,
+        SendPasswordCommand = 331,
+        NeedLoginAccount = 332,
+        FileCommandPending = 350,
         ServiceNotAvailable = 421,
-        ServiceTemporarilyNotAvailable = 120,
-        SystemType = 215,
-        Undefined = 0,
+        CantOpenData = 425,
+        ConnectionClosed = 426,
+        ActionNotTakenFileUnavailableOrBusy = 450,
+        ActionAbortedLocalProcessingError = 451,
+        ActionNotTakenInsufficientSpace = 452,
+        CommandSyntaxError = 500,
+        ArgumentSyntaxError = 501,
+        CommandNotImplemented = 502,
+        BadCommandSequence = 503,
+        NotLoggedIn = 530,
+        AccountNeeded = 532,
+        ActionNotTakenFileUnavailable = 550,
+        ActionAbortedUnknownPageType = 551,
+        FileActionAborted = 552,
+        ActionNotTakenFilenameNotAllowed = 553,
     }
     public sealed partial class FtpWebRequest : System.Net.WebRequest
     {
         internal FtpWebRequest() { }
+        public override System.Net.Cache.RequestCachePolicy CachePolicy { get { throw null; } set { } }
         public System.Security.Cryptography.X509Certificates.X509CertificateCollection ClientCertificates { get { throw null; } set { } }
         public override string ConnectionGroupName { get { throw null; } set { } }
         public override long ContentLength { get { throw null; } set { } }
         public long ContentOffset { get { throw null; } set { } }
         public override string ContentType { get { throw null; } set { } }
         public override System.Net.ICredentials Credentials { get { throw null; } set { } }
+        public static new System.Net.Cache.RequestCachePolicy DefaultCachePolicy { get { throw null; } set { } }
         public bool EnableSsl { get { throw null; } set { } }
         public override System.Net.WebHeaderCollection Headers { get { throw null; } set { } }
         public bool KeepAlive { get { throw null; } set { } }
@@ -5175,7 +5157,7 @@ namespace System.Net
         public override System.IO.Stream GetRequestStream() { throw null; }
         public override System.Net.WebResponse GetResponse() { throw null; }
     }
-    public partial class FtpWebResponse : System.Net.WebResponse
+    public partial class FtpWebResponse : System.Net.WebResponse, System.IDisposable
     {
         internal FtpWebResponse() { }
         public string BannerMessage { get { throw null; } }
@@ -5191,7 +5173,7 @@ namespace System.Net
         public override void Close() { }
         public override System.IO.Stream GetResponseStream() { throw null; }
     }
-    [System.ObsoleteAttribute("This class has been deprecated. Please use WebRequest.DefaultWebProxy instead to access and set the global default proxy. Use 'null' instead of GetEmptyWebProxy. http://go.microsoft.com/fwlink/?linkid=14202")]
+    [System.ObsoleteAttribute("This class has been deprecated. Please use WebRequest.DefaultWebProxy instead to access and set the global default proxy. Use 'null' instead of GetEmptyWebProxy. https://go.microsoft.com/fwlink/?linkid=14202")]
     public partial class GlobalProxySelection
     {
         public GlobalProxySelection() { }
@@ -5339,25 +5321,33 @@ namespace System.Net
     }
     public enum HttpRequestHeader
     {
+        CacheControl = 0,
+        Connection = 1,
+        Date = 2,
+        KeepAlive = 3,
+        Pragma = 4,
+        Trailer = 5,
+        TransferEncoding = 6,
+        Upgrade = 7,
+        Via = 8,
+        Warning = 9,
+        Allow = 10,
+        ContentLength = 11,
+        ContentType = 12,
+        ContentEncoding = 13,
+        ContentLanguage = 14,
+        ContentLocation = 15,
+        ContentMd5 = 16,
+        ContentRange = 17,
+        Expires = 18,
+        LastModified = 19,
         Accept = 20,
         AcceptCharset = 21,
         AcceptEncoding = 22,
         AcceptLanguage = 23,
-        Allow = 10,
         Authorization = 24,
-        CacheControl = 0,
-        Connection = 1,
-        ContentEncoding = 13,
-        ContentLanguage = 14,
-        ContentLength = 11,
-        ContentLocation = 15,
-        ContentMd5 = 16,
-        ContentRange = 17,
-        ContentType = 12,
         Cookie = 25,
-        Date = 2,
         Expect = 26,
-        Expires = 18,
         From = 27,
         Host = 28,
         IfMatch = 29,
@@ -5365,109 +5355,122 @@ namespace System.Net
         IfNoneMatch = 31,
         IfRange = 32,
         IfUnmodifiedSince = 33,
-        KeepAlive = 3,
-        LastModified = 19,
         MaxForwards = 34,
-        Pragma = 4,
         ProxyAuthorization = 35,
-        Range = 37,
         Referer = 36,
+        Range = 37,
         Te = 38,
-        Trailer = 5,
-        TransferEncoding = 6,
         Translate = 39,
-        Upgrade = 7,
         UserAgent = 40,
-        Via = 8,
-        Warning = 9,
     }
     public enum HttpResponseHeader
     {
-        AcceptRanges = 20,
-        Age = 21,
-        Allow = 10,
         CacheControl = 0,
         Connection = 1,
+        Date = 2,
+        KeepAlive = 3,
+        Pragma = 4,
+        Trailer = 5,
+        TransferEncoding = 6,
+        Upgrade = 7,
+        Via = 8,
+        Warning = 9,
+        Allow = 10,
+        ContentLength = 11,
+        ContentType = 12,
         ContentEncoding = 13,
         ContentLanguage = 14,
-        ContentLength = 11,
         ContentLocation = 15,
         ContentMd5 = 16,
         ContentRange = 17,
-        ContentType = 12,
-        Date = 2,
-        ETag = 22,
         Expires = 18,
-        KeepAlive = 3,
         LastModified = 19,
+        AcceptRanges = 20,
+        Age = 21,
+        ETag = 22,
         Location = 23,
-        Pragma = 4,
         ProxyAuthenticate = 24,
         RetryAfter = 25,
         Server = 26,
         SetCookie = 27,
-        Trailer = 5,
-        TransferEncoding = 6,
-        Upgrade = 7,
         Vary = 28,
-        Via = 8,
-        Warning = 9,
         WwwAuthenticate = 29,
     }
     public enum HttpStatusCode
     {
-        Accepted = 202,
-        Ambiguous = 300,
-        BadGateway = 502,
-        BadRequest = 400,
-        Conflict = 409,
         Continue = 100,
+        SwitchingProtocols = 101,
+        Processing = 102,
+        EarlyHints = 103,
+        OK = 200,
         Created = 201,
-        ExpectationFailed = 417,
-        Forbidden = 403,
-        Found = 302,
-        GatewayTimeout = 504,
-        Gone = 410,
-        HttpVersionNotSupported = 505,
-        InternalServerError = 500,
-        LengthRequired = 411,
-        MethodNotAllowed = 405,
+        Accepted = 202,
+        NonAuthoritativeInformation = 203,
+        NoContent = 204,
+        ResetContent = 205,
+        PartialContent = 206,
+        MultiStatus = 207,
+        AlreadyReported = 208,
+        IMUsed = 226,
+        Ambiguous = 300,
+        MultipleChoices = 300,
         Moved = 301,
         MovedPermanently = 301,
-        MultipleChoices = 300,
-        NoContent = 204,
-        NonAuthoritativeInformation = 203,
-        NotAcceptable = 406,
-        NotFound = 404,
-        NotImplemented = 501,
-        NotModified = 304,
-        OK = 200,
-        PartialContent = 206,
-        PaymentRequired = 402,
-        PreconditionFailed = 412,
-        ProxyAuthenticationRequired = 407,
+        Found = 302,
         Redirect = 302,
-        RedirectKeepVerb = 307,
         RedirectMethod = 303,
-        RequestedRangeNotSatisfiable = 416,
-        RequestEntityTooLarge = 413,
-        RequestTimeout = 408,
-        RequestUriTooLong = 414,
-        ResetContent = 205,
         SeeOther = 303,
-        ServiceUnavailable = 503,
-        SwitchingProtocols = 101,
-        TemporaryRedirect = 307,
-        Unauthorized = 401,
-        UnsupportedMediaType = 415,
-        Unused = 306,
-        UpgradeRequired = 426,
+        NotModified = 304,
         UseProxy = 305,
+        Unused = 306,
+        RedirectKeepVerb = 307,
+        TemporaryRedirect = 307,
+        PermanentRedirect = 308,
+        BadRequest = 400,
+        Unauthorized = 401,
+        PaymentRequired = 402,
+        Forbidden = 403,
+        NotFound = 404,
+        MethodNotAllowed = 405,
+        NotAcceptable = 406,
+        ProxyAuthenticationRequired = 407,
+        RequestTimeout = 408,
+        Conflict = 409,
+        Gone = 410,
+        LengthRequired = 411,
+        PreconditionFailed = 412,
+        RequestEntityTooLarge = 413,
+        RequestUriTooLong = 414,
+        UnsupportedMediaType = 415,
+        RequestedRangeNotSatisfiable = 416,
+        ExpectationFailed = 417,
+        MisdirectedRequest = 421,
+        UnprocessableEntity = 422,
+        Locked = 423,
+        FailedDependency = 424,
+        UpgradeRequired = 426,
+        PreconditionRequired = 428,
+        TooManyRequests = 429,
+        RequestHeaderFieldsTooLarge = 431,
+        UnavailableForLegalReasons = 451,
+        InternalServerError = 500,
+        NotImplemented = 501,
+        BadGateway = 502,
+        ServiceUnavailable = 503,
+        GatewayTimeout = 504,
+        HttpVersionNotSupported = 505,
+        VariantAlsoNegotiates = 506,
+        InsufficientStorage = 507,
+        LoopDetected = 508,
+        NotExtended = 510,
+        NetworkAuthenticationRequired = 511,
     }
     public partial class HttpVersion
     {
+        public static readonly System.Version Unknown;
         public static readonly System.Version Version10;
         public static readonly System.Version Version11;
+        public static readonly System.Version Version20;
         public HttpVersion() { }
     }
     public partial class HttpWebRequest : System.Net.WebRequest, System.Runtime.Serialization.ISerializable
@@ -5542,6 +5545,7 @@ namespace System.Net
     }
     public partial class HttpWebResponse : System.Net.WebResponse, System.IDisposable, System.Runtime.Serialization.ISerializable
     {
+        public HttpWebResponse() { }
         [System.ObsoleteAttribute("Serialization is obsoleted for this type", false)]
         protected HttpWebResponse(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) { }
         public string CharacterSet { get { throw null; } }
@@ -5602,7 +5606,9 @@ namespace System.Net
         public IPAddress(byte[] address) { }
         public IPAddress(byte[] address, long scopeid) { }
         public IPAddress(long newAddress) { }
-        [System.ObsoleteAttribute("This property has been deprecated. It is address family dependent. Please use IPAddress.Equals method to perform comparisons. http://go.microsoft.com/fwlink/?linkid=14202")]
+        public IPAddress(System.ReadOnlySpan<byte> address) { }
+        public IPAddress(System.ReadOnlySpan<byte> address, long scopeid) { }
+        [System.ObsoleteAttribute("This property has been deprecated. It is address family dependent. Please use IPAddress.Equals method to perform comparisons. https://go.microsoft.com/fwlink/?linkid=14202")]
         public long Address { get { throw null; } set { } }
         public System.Net.Sockets.AddressFamily AddressFamily { get { throw null; } }
         public bool IsIPv4MappedToIPv6 { get { throw null; } }
@@ -5623,9 +5629,13 @@ namespace System.Net
         public static short NetworkToHostOrder(short network) { throw null; }
         public static int NetworkToHostOrder(int network) { throw null; }
         public static long NetworkToHostOrder(long network) { throw null; }
+        public static System.Net.IPAddress Parse(System.ReadOnlySpan<char> ipSpan) { throw null; }
         public static System.Net.IPAddress Parse(string ipString) { throw null; }
         public override string ToString() { throw null; }
+        public bool TryFormat(System.Span<char> destination, out int charsWritten) { throw null; }
+        public static bool TryParse(System.ReadOnlySpan<char> ipSpan, out System.Net.IPAddress address) { throw null; }
         public static bool TryParse(string ipString, out System.Net.IPAddress address) { throw null; }
+        public bool TryWriteBytes(System.Span<byte> destination, out int bytesWritten) { throw null; }
     }
     public partial class IPEndPoint : System.Net.EndPoint
     {
@@ -5668,8 +5678,8 @@ namespace System.Net
     [System.FlagsAttribute]
     public enum NetworkAccess
     {
-        Accept = 128,
         Connect = 64,
+        Accept = 128,
     }
     public partial class NetworkCredential : System.Net.ICredentials, System.Net.ICredentialsByHost
     {
@@ -5708,11 +5718,12 @@ namespace System.Net
     [System.FlagsAttribute]
     public enum SecurityProtocolType
     {
-        Ssl3 = 48,
         SystemDefault = 0,
+        Ssl3 = 48,
         Tls = 192,
         Tls11 = 768,
         Tls12 = 3072,
+        Tls13 = 12288,
     }
     public partial class ServicePoint
     {
@@ -5790,7 +5801,7 @@ namespace System.Net
         public override System.Security.SecurityElement ToXml() { throw null; }
         public override System.Security.IPermission Union(System.Security.IPermission target) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(109), AllowMultiple=true, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Assembly | System.AttributeTargets.Class | System.AttributeTargets.Constructor | System.AttributeTargets.Method | System.AttributeTargets.Struct, AllowMultiple=true, Inherited=false)]
     public sealed partial class SocketPermissionAttribute : System.Security.Permissions.CodeAccessSecurityAttribute
     {
         public SocketPermissionAttribute(System.Security.Permissions.SecurityAction action) : base (default(System.Security.Permissions.SecurityAction)) { }
@@ -5808,11 +5819,11 @@ namespace System.Net
     }
     public enum TransportType
     {
-        All = 3,
         Connectionless = 1,
+        Udp = 1,
         ConnectionOriented = 2,
         Tcp = 2,
-        Udp = 1,
+        All = 3,
     }
     public partial class UploadDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
     {
@@ -5850,10 +5861,10 @@ namespace System.Net
     public partial class WebClient : System.ComponentModel.Component
     {
         public WebClient() { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
         public bool AllowReadStreamBuffering { get { throw null; } set { } }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
         public bool AllowWriteStreamBuffering { get { throw null; } set { } }
         public string BaseAddress { get { throw null; } set { } }
@@ -5877,7 +5888,7 @@ namespace System.Net
         public event System.Net.UploadProgressChangedEventHandler UploadProgressChanged { add { } remove { } }
         public event System.Net.UploadStringCompletedEventHandler UploadStringCompleted { add { } remove { } }
         public event System.Net.UploadValuesCompletedEventHandler UploadValuesCompleted { add { } remove { } }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
         public event System.Net.WriteStreamClosedEventHandler WriteStreamClosed { add { } remove { } }
         public void CancelAsync() { }
@@ -5913,7 +5924,7 @@ namespace System.Net
         protected virtual void OnUploadProgressChanged(System.Net.UploadProgressChangedEventArgs e) { }
         protected virtual void OnUploadStringCompleted(System.Net.UploadStringCompletedEventArgs e) { }
         protected virtual void OnUploadValuesCompleted(System.Net.UploadValuesCompletedEventArgs e) { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
         protected virtual void OnWriteStreamClosed(System.Net.WriteStreamClosedEventArgs e) { }
         public System.IO.Stream OpenRead(string address) { throw null; }
@@ -5993,27 +6004,27 @@ namespace System.Net
     }
     public enum WebExceptionStatus
     {
-        CacheEntryNotFound = 18,
-        ConnectFailure = 2,
-        ConnectionClosed = 8,
-        KeepAliveFailure = 12,
-        MessageLengthLimitExceeded = 17,
+        Success = 0,
         NameResolutionFailure = 1,
-        Pending = 13,
-        PipelineFailure = 5,
-        ProtocolError = 7,
-        ProxyNameResolutionFailure = 15,
+        ConnectFailure = 2,
         ReceiveFailure = 3,
+        SendFailure = 4,
+        PipelineFailure = 5,
         RequestCanceled = 6,
+        ProtocolError = 7,
+        ConnectionClosed = 8,
+        TrustFailure = 9,
+        SecureChannelFailure = 10,
+        ServerProtocolViolation = 11,
+        KeepAliveFailure = 12,
+        Pending = 13,
+        Timeout = 14,
+        ProxyNameResolutionFailure = 15,
+        UnknownError = 16,
+        MessageLengthLimitExceeded = 17,
+        CacheEntryNotFound = 18,
         RequestProhibitedByCachePolicy = 19,
         RequestProhibitedByProxy = 20,
-        SecureChannelFailure = 10,
-        SendFailure = 4,
-        ServerProtocolViolation = 11,
-        Success = 0,
-        Timeout = 14,
-        TrustFailure = 9,
-        UnknownError = 16,
     }
     public partial class WebHeaderCollection : System.Collections.Specialized.NameValueCollection, System.Runtime.Serialization.ISerializable
     {
@@ -6068,7 +6079,7 @@ namespace System.Net
         public override System.Security.SecurityElement ToXml() { throw null; }
         public override System.Security.IPermission Union(System.Security.IPermission target) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(109), AllowMultiple=true, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Assembly | System.AttributeTargets.Class | System.AttributeTargets.Constructor | System.AttributeTargets.Method | System.AttributeTargets.Struct, AllowMultiple=true, Inherited=false)]
     public sealed partial class WebPermissionAttribute : System.Security.Permissions.CodeAccessSecurityAttribute
     {
         public WebPermissionAttribute(System.Security.Permissions.SecurityAction action) : base (default(System.Security.Permissions.SecurityAction)) { }
@@ -6114,7 +6125,7 @@ namespace System.Net
         public virtual string ConnectionGroupName { get { throw null; } set { } }
         public virtual long ContentLength { get { throw null; } set { } }
         public virtual string ContentType { get { throw null; } set { } }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
         public virtual System.Net.IWebRequestCreate CreatorInstance { get { throw null; } }
         public virtual System.Net.ICredentials Credentials { get { throw null; } set { } }
@@ -6144,7 +6155,7 @@ namespace System.Net
         public virtual System.Net.WebResponse GetResponse() { throw null; }
         public virtual System.Threading.Tasks.Task<System.Net.WebResponse> GetResponseAsync() { throw null; }
         public static System.Net.IWebProxy GetSystemWebProxy() { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
         public static void RegisterPortableWebRequestCreator(System.Net.IWebRequestCreate creator) { }
         public static bool RegisterPrefix(string prefix, System.Net.IWebRequestCreate creator) { throw null; }
@@ -6212,41 +6223,41 @@ namespace System.Net
         public static string UrlEncode(string value) { throw null; }
         public static byte[] UrlEncodeToBytes(byte[] value, int offset, int count) { throw null; }
     }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public partial class WriteStreamClosedEventArgs : System.EventArgs
     {
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
         public WriteStreamClosedEventArgs() { }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
         public System.Exception Error { get { throw null; } }
     }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     public delegate void WriteStreamClosedEventHandler(object sender, System.Net.WriteStreamClosedEventArgs e);
 }
 namespace System.Net.Cache
 {
     public enum HttpCacheAgeControl
     {
+        None = 0,
+        MinFresh = 1,
         MaxAge = 2,
-        MaxAgeAndMaxStale = 6,
         MaxAgeAndMinFresh = 3,
         MaxStale = 4,
-        MinFresh = 1,
-        None = 0,
+        MaxAgeAndMaxStale = 6,
     }
     public enum HttpRequestCacheLevel
     {
-        BypassCache = 1,
-        CacheIfAvailable = 3,
-        CacheOnly = 2,
-        CacheOrNextCacheOnly = 7,
         Default = 0,
-        NoCacheNoStore = 6,
-        Refresh = 8,
-        Reload = 5,
+        BypassCache = 1,
+        CacheOnly = 2,
+        CacheIfAvailable = 3,
         Revalidate = 4,
+        Reload = 5,
+        NoCacheNoStore = 6,
+        CacheOrNextCacheOnly = 7,
+        Refresh = 8,
     }
     public partial class HttpRequestCachePolicy : System.Net.Cache.RequestCachePolicy
     {
@@ -6265,13 +6276,13 @@ namespace System.Net.Cache
     }
     public enum RequestCacheLevel
     {
-        BypassCache = 1,
-        CacheIfAvailable = 3,
-        CacheOnly = 2,
         Default = 0,
-        NoCacheNoStore = 6,
-        Reload = 5,
+        BypassCache = 1,
+        CacheOnly = 2,
+        CacheIfAvailable = 3,
         Revalidate = 4,
+        Reload = 5,
+        NoCacheNoStore = 6,
     }
     public partial class RequestCachePolicy
     {
@@ -6349,11 +6360,11 @@ namespace System.Net.Mail
     [System.FlagsAttribute]
     public enum DeliveryNotificationOptions
     {
+        None = 0,
+        OnSuccess = 1,
+        OnFailure = 2,
         Delay = 4,
         Never = 134217728,
-        None = 0,
-        OnFailure = 2,
-        OnSuccess = 1,
     }
     public partial class LinkedResource : System.Net.Mail.AttachmentBase
     {
@@ -6429,16 +6440,16 @@ namespace System.Net.Mail
     }
     public enum MailPriority
     {
-        High = 2,
-        Low = 1,
         Normal = 0,
+        Low = 1,
+        High = 2,
     }
     public delegate void SendCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     public enum SmtpAccess
     {
+        None = 0,
         Connect = 1,
         ConnectToUnrestrictedPort = 2,
-        None = 0,
     }
     [System.ObsoleteAttribute("SmtpClient and its network of types are poorly designed, we strongly recommend you use https://github.com/jstedfast/MailKit and https://github.com/jstedfast/MimeKit instead")]
     public partial class SmtpClient : System.IDisposable
@@ -6472,14 +6483,14 @@ namespace System.Net.Mail
     }
     public enum SmtpDeliveryFormat
     {
-        International = 1,
         SevenBit = 0,
+        International = 1,
     }
     public enum SmtpDeliveryMethod
     {
         Network = 0,
-        PickupDirectoryFromIis = 2,
         SpecifiedPickupDirectory = 1,
+        PickupDirectoryFromIis = 2,
     }
     public partial class SmtpException : System.Exception, System.Runtime.Serialization.ISerializable
     {
@@ -6519,31 +6530,31 @@ namespace System.Net.Mail
     }
     public enum SmtpStatusCode
     {
-        BadCommandSequence = 503,
-        CannotVerifyUserWillAttemptDelivery = 252,
-        ClientNotPermitted = 454,
-        CommandNotImplemented = 502,
-        CommandParameterNotImplemented = 504,
-        CommandUnrecognized = 500,
-        ExceededStorageAllocation = 552,
         GeneralFailure = -1,
-        HelpMessage = 214,
-        InsufficientStorage = 452,
-        LocalErrorInProcessing = 451,
-        MailboxBusy = 450,
-        MailboxNameNotAllowed = 553,
-        MailboxUnavailable = 550,
-        MustIssueStartTlsFirst = 530,
-        Ok = 250,
-        ServiceClosingTransmissionChannel = 221,
-        ServiceNotAvailable = 421,
-        ServiceReady = 220,
-        StartMailInput = 354,
-        SyntaxError = 501,
         SystemStatus = 211,
-        TransactionFailed = 554,
-        UserNotLocalTryAlternatePath = 551,
+        HelpMessage = 214,
+        ServiceReady = 220,
+        ServiceClosingTransmissionChannel = 221,
+        Ok = 250,
         UserNotLocalWillForward = 251,
+        CannotVerifyUserWillAttemptDelivery = 252,
+        StartMailInput = 354,
+        ServiceNotAvailable = 421,
+        MailboxBusy = 450,
+        LocalErrorInProcessing = 451,
+        InsufficientStorage = 452,
+        ClientNotPermitted = 454,
+        CommandUnrecognized = 500,
+        SyntaxError = 501,
+        CommandNotImplemented = 502,
+        BadCommandSequence = 503,
+        CommandParameterNotImplemented = 504,
+        MustIssueStartTlsFirst = 530,
+        MailboxUnavailable = 550,
+        UserNotLocalTryAlternatePath = 551,
+        ExceededStorageAllocation = 552,
+        MailboxNameNotAllowed = 553,
+        TransactionFailed = 554,
     }
 }
 namespace System.Net.Mime
@@ -6586,10 +6597,12 @@ namespace System.Net.Mime
     {
         public static partial class Application
         {
+            public const string Json = "application/json";
             public const string Octet = "application/octet-stream";
             public const string Pdf = "application/pdf";
             public const string Rtf = "application/rtf";
             public const string Soap = "application/soap+xml";
+            public const string Xml = "application/xml";
             public const string Zip = "application/zip";
         }
         public static partial class Image
@@ -6608,22 +6621,22 @@ namespace System.Net.Mime
     }
     public enum TransferEncoding
     {
-        Base64 = 1,
-        EightBit = 3,
-        QuotedPrintable = 0,
-        SevenBit = 2,
         Unknown = -1,
+        QuotedPrintable = 0,
+        Base64 = 1,
+        SevenBit = 2,
+        EightBit = 3,
     }
 }
 namespace System.Net.NetworkInformation
 {
     public enum DuplicateAddressDetectionState
     {
-        Deprecated = 3,
-        Duplicate = 2,
         Invalid = 0,
-        Preferred = 4,
         Tentative = 1,
+        Duplicate = 2,
+        Deprecated = 3,
+        Preferred = 4,
     }
     public abstract partial class GatewayIPAddressInformation
     {
@@ -6830,30 +6843,30 @@ namespace System.Net.NetworkInformation
     }
     public enum IPStatus
     {
-        BadDestination = 11018,
-        BadHeader = 11042,
-        BadOption = 11007,
-        BadRoute = 11012,
-        DestinationHostUnreachable = 11003,
+        Unknown = -1,
+        Success = 0,
         DestinationNetworkUnreachable = 11002,
-        DestinationPortUnreachable = 11005,
+        DestinationHostUnreachable = 11003,
         DestinationProhibited = 11004,
         DestinationProtocolUnreachable = 11004,
-        DestinationScopeMismatch = 11045,
-        DestinationUnreachable = 11040,
-        HardwareError = 11008,
-        IcmpError = 11044,
+        DestinationPortUnreachable = 11005,
         NoResources = 11006,
+        BadOption = 11007,
+        HardwareError = 11008,
         PacketTooBig = 11009,
-        ParameterProblem = 11015,
-        SourceQuench = 11016,
-        Success = 0,
         TimedOut = 11010,
-        TimeExceeded = 11041,
+        BadRoute = 11012,
         TtlExpired = 11013,
         TtlReassemblyTimeExceeded = 11014,
-        Unknown = -1,
+        ParameterProblem = 11015,
+        SourceQuench = 11016,
+        BadDestination = 11018,
+        DestinationUnreachable = 11040,
+        TimeExceeded = 11041,
+        BadHeader = 11042,
         UnrecognizedNextHeader = 11043,
+        IcmpError = 11044,
+        DestinationScopeMismatch = 11045,
     }
     public abstract partial class IPv4InterfaceProperties
     {
@@ -6915,11 +6928,11 @@ namespace System.Net.NetworkInformation
     }
     public enum NetBiosNodeType
     {
-        Broadcast = 1,
-        Hybrid = 8,
-        Mixed = 4,
-        Peer2Peer = 2,
         Unknown = 0,
+        Broadcast = 1,
+        Peer2Peer = 2,
+        Mixed = 4,
+        Hybrid = 8,
     }
     public delegate void NetworkAddressChangedEventHandler(object sender, System.EventArgs e);
     public delegate void NetworkAvailabilityChangedEventHandler(object sender, System.Net.NetworkInformation.NetworkAvailabilityEventArgs e);
@@ -6938,8 +6951,8 @@ namespace System.Net.NetworkInformation
     public enum NetworkInformationAccess
     {
         None = 0,
-        Ping = 4,
         Read = 1,
+        Ping = 4,
     }
     public partial class NetworkInformationException : System.ComponentModel.Win32Exception
     {
@@ -6962,7 +6975,7 @@ namespace System.Net.NetworkInformation
         public override System.Security.SecurityElement ToXml() { throw null; }
         public override System.Security.IPermission Union(System.Security.IPermission target) { throw null; }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(109), AllowMultiple=true, Inherited=false)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Assembly | System.AttributeTargets.Class | System.AttributeTargets.Constructor | System.AttributeTargets.Method | System.AttributeTargets.Struct, AllowMultiple=true, Inherited=false)]
     public sealed partial class NetworkInformationPermissionAttribute : System.Security.Permissions.CodeAccessSecurityAttribute
     {
         public NetworkInformationPermissionAttribute(System.Security.Permissions.SecurityAction action) : base (default(System.Security.Permissions.SecurityAction)) { }
@@ -6997,44 +7010,44 @@ namespace System.Net.NetworkInformation
     }
     public enum NetworkInterfaceType
     {
-        AsymmetricDsl = 94,
-        Atm = 37,
-        BasicIsdn = 20,
-        Ethernet = 6,
-        Ethernet3Megabit = 26,
-        FastEthernetFx = 69,
-        FastEthernetT = 62,
-        Fddi = 15,
-        GenericModem = 48,
-        GigabitEthernet = 117,
-        HighPerformanceSerialBus = 144,
-        IPOverAtm = 114,
-        Isdn = 63,
-        Loopback = 24,
-        MultiRateSymmetricDsl = 143,
-        Ppp = 23,
-        PrimaryIsdn = 21,
-        RateAdaptDsl = 95,
-        Slip = 28,
-        SymmetricDsl = 96,
-        TokenRing = 9,
-        Tunnel = 131,
         Unknown = 1,
-        VeryHighSpeedDsl = 97,
+        Ethernet = 6,
+        TokenRing = 9,
+        Fddi = 15,
+        BasicIsdn = 20,
+        PrimaryIsdn = 21,
+        Ppp = 23,
+        Loopback = 24,
+        Ethernet3Megabit = 26,
+        Slip = 28,
+        Atm = 37,
+        GenericModem = 48,
+        FastEthernetT = 62,
+        Isdn = 63,
+        FastEthernetFx = 69,
         Wireless80211 = 71,
+        AsymmetricDsl = 94,
+        RateAdaptDsl = 95,
+        SymmetricDsl = 96,
+        VeryHighSpeedDsl = 97,
+        IPOverAtm = 114,
+        GigabitEthernet = 117,
+        Tunnel = 131,
+        MultiRateSymmetricDsl = 143,
+        HighPerformanceSerialBus = 144,
         Wman = 237,
         Wwanpp = 243,
         Wwanpp2 = 244,
     }
     public enum OperationalStatus
     {
-        Dormant = 5,
+        Up = 1,
         Down = 2,
-        LowerLayerDown = 7,
-        NotPresent = 6,
         Testing = 3,
         Unknown = 4,
-        Up = 1,
+        Dormant = 5,
+        NotPresent = 6,
+        LowerLayerDown = 7,
     }
     public partial class PhysicalAddress
     {
@@ -7108,31 +7121,31 @@ namespace System.Net.NetworkInformation
     }
     public enum PrefixOrigin
     {
-        Dhcp = 3,
-        Manual = 1,
         Other = 0,
-        RouterAdvertisement = 4,
+        Manual = 1,
         WellKnown = 2,
+        Dhcp = 3,
+        RouterAdvertisement = 4,
     }
     public enum ScopeLevel
     {
-        Admin = 4,
-        Global = 14,
+        None = 0,
         Interface = 1,
         Link = 2,
-        None = 0,
-        Organization = 8,
-        Site = 5,
         Subnet = 3,
+        Admin = 4,
+        Site = 5,
+        Organization = 8,
+        Global = 14,
     }
     public enum SuffixOrigin
     {
-        LinkLayerAddress = 4,
-        Manual = 1,
-        OriginDhcp = 3,
         Other = 0,
-        Random = 5,
+        Manual = 1,
         WellKnown = 2,
+        OriginDhcp = 3,
+        LinkLayerAddress = 4,
+        Random = 5,
     }
     public abstract partial class TcpConnectionInformation
     {
@@ -7143,19 +7156,19 @@ namespace System.Net.NetworkInformation
     }
     public enum TcpState
     {
+        Unknown = 0,
         Closed = 1,
-        CloseWait = 8,
-        Closing = 9,
-        DeleteTcb = 12,
+        Listen = 2,
+        SynSent = 3,
+        SynReceived = 4,
         Established = 5,
         FinWait1 = 6,
         FinWait2 = 7,
+        CloseWait = 8,
+        Closing = 9,
         LastAck = 10,
-        Listen = 2,
-        SynReceived = 4,
-        SynSent = 3,
         TimeWait = 11,
-        Unknown = 0,
+        DeleteTcb = 12,
     }
     public abstract partial class TcpStatistics
     {
@@ -7227,15 +7240,15 @@ namespace System.Net.Security
     }
     public enum AuthenticationLevel
     {
+        None = 0,
         MutualAuthRequested = 1,
         MutualAuthRequired = 2,
-        None = 0,
     }
     public enum EncryptionPolicy
     {
+        RequireEncryption = 0,
         AllowNoEncryption = 1,
         NoEncryption = 2,
-        RequireEncryption = 0,
     }
     public delegate System.Security.Cryptography.X509Certificates.X509Certificate LocalCertificateSelectionCallback(object sender, string targetHost, System.Security.Cryptography.X509Certificates.X509CertificateCollection localCertificates, System.Security.Cryptography.X509Certificates.X509Certificate remoteCertificate, string[] acceptableIssuers);
     public partial class NegotiateStream : System.Net.Security.AuthenticatedStream
@@ -7299,18 +7312,62 @@ namespace System.Net.Security
     }
     public enum ProtectionLevel
     {
-        EncryptAndSign = 2,
         None = 0,
         Sign = 1,
+        EncryptAndSign = 2,
     }
     public delegate bool RemoteCertificateValidationCallback(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors);
+    public delegate System.Security.Cryptography.X509Certificates.X509Certificate ServerCertificateSelectionCallback(object sender, string hostName);
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    public readonly partial struct SslApplicationProtocol : System.IEquatable<System.Net.Security.SslApplicationProtocol>
+    {
+        private readonly object _dummy;
+        private readonly int _dummyPrimitive;
+        public static readonly System.Net.Security.SslApplicationProtocol Http11;
+        public static readonly System.Net.Security.SslApplicationProtocol Http2;
+        public SslApplicationProtocol(byte[] protocol) { throw null; }
+        public SslApplicationProtocol(string protocol) { throw null; }
+        public System.ReadOnlyMemory<byte> Protocol { get { throw null; } }
+        public bool Equals(System.Net.Security.SslApplicationProtocol other) { throw null; }
+        public override bool Equals(object obj) { throw null; }
+        public override int GetHashCode() { throw null; }
+        public static bool operator ==(System.Net.Security.SslApplicationProtocol left, System.Net.Security.SslApplicationProtocol right) { throw null; }
+        public static bool operator !=(System.Net.Security.SslApplicationProtocol left, System.Net.Security.SslApplicationProtocol right) { throw null; }
+        public override string ToString() { throw null; }
+    }
+    public partial class SslClientAuthenticationOptions
+    {
+        public SslClientAuthenticationOptions() { }
+        public bool AllowRenegotiation { get { throw null; } set { } }
+        public System.Collections.Generic.List<System.Net.Security.SslApplicationProtocol> ApplicationProtocols { get { throw null; } set { } }
+        public System.Security.Cryptography.X509Certificates.X509RevocationMode CertificateRevocationCheckMode { get { throw null; } set { } }
+        public System.Security.Cryptography.X509Certificates.X509CertificateCollection ClientCertificates { get { throw null; } set { } }
+        public System.Security.Authentication.SslProtocols EnabledSslProtocols { get { throw null; } set { } }
+        public System.Net.Security.EncryptionPolicy EncryptionPolicy { get { throw null; } set { } }
+        public System.Net.Security.LocalCertificateSelectionCallback LocalCertificateSelectionCallback { get { throw null; } set { } }
+        public System.Net.Security.RemoteCertificateValidationCallback RemoteCertificateValidationCallback { get { throw null; } set { } }
+        public string TargetHost { get { throw null; } set { } }
+    }
     [System.FlagsAttribute]
     public enum SslPolicyErrors
     {
         None = 0,
-        RemoteCertificateChainErrors = 4,
-        RemoteCertificateNameMismatch = 2,
         RemoteCertificateNotAvailable = 1,
+        RemoteCertificateNameMismatch = 2,
+        RemoteCertificateChainErrors = 4,
+    }
+    public partial class SslServerAuthenticationOptions
+    {
+        public SslServerAuthenticationOptions() { }
+        public bool AllowRenegotiation { get { throw null; } set { } }
+        public System.Collections.Generic.List<System.Net.Security.SslApplicationProtocol> ApplicationProtocols { get { throw null; } set { } }
+        public System.Security.Cryptography.X509Certificates.X509RevocationMode CertificateRevocationCheckMode { get { throw null; } set { } }
+        public bool ClientCertificateRequired { get { throw null; } set { } }
+        public System.Security.Authentication.SslProtocols EnabledSslProtocols { get { throw null; } set { } }
+        public System.Net.Security.EncryptionPolicy EncryptionPolicy { get { throw null; } set { } }
+        public System.Net.Security.RemoteCertificateValidationCallback RemoteCertificateValidationCallback { get { throw null; } set { } }
+        public System.Security.Cryptography.X509Certificates.X509Certificate ServerCertificate { get { throw null; } set { } }
+        public System.Net.Security.ServerCertificateSelectionCallback ServerCertificateSelectionCallback { get { throw null; } set { } }
     }
     public partial class SslStream : System.Net.Security.AuthenticatedStream
     {
@@ -7337,6 +7394,7 @@ namespace System.Net.Security
         public virtual int KeyExchangeStrength { get { throw null; } }
         public override long Length { get { throw null; } }
         public virtual System.Security.Cryptography.X509Certificates.X509Certificate LocalCertificate { get { throw null; } }
+        public System.Net.Security.SslApplicationProtocol NegotiatedApplicationProtocol { get { throw null; } }
         public override long Position { get { throw null; } set { } }
         public override int ReadTimeout { get { throw null; } set { } }
         public virtual System.Security.Cryptography.X509Certificates.X509Certificate RemoteCertificate { get { throw null; } }
@@ -7344,16 +7402,24 @@ namespace System.Net.Security
         public System.Net.TransportContext TransportContext { get { throw null; } }
         public override int WriteTimeout { get { throw null; } set { } }
         public virtual void AuthenticateAsClient(string targetHost) { }
+        public virtual void AuthenticateAsClient(string targetHost, System.Security.Cryptography.X509Certificates.X509CertificateCollection clientCertificates, bool checkCertificateRevocation) { }
         public virtual void AuthenticateAsClient(string targetHost, System.Security.Cryptography.X509Certificates.X509CertificateCollection clientCertificates, System.Security.Authentication.SslProtocols enabledSslProtocols, bool checkCertificateRevocation) { }
+        public System.Threading.Tasks.Task AuthenticateAsClientAsync(System.Net.Security.SslClientAuthenticationOptions sslClientAuthenticationOptions, System.Threading.CancellationToken cancellationToken) { throw null; }
         public virtual System.Threading.Tasks.Task AuthenticateAsClientAsync(string targetHost) { throw null; }
+        public virtual System.Threading.Tasks.Task AuthenticateAsClientAsync(string targetHost, System.Security.Cryptography.X509Certificates.X509CertificateCollection clientCertificates, bool checkCertificateRevocation) { throw null; }
         public virtual System.Threading.Tasks.Task AuthenticateAsClientAsync(string targetHost, System.Security.Cryptography.X509Certificates.X509CertificateCollection clientCertificates, System.Security.Authentication.SslProtocols enabledSslProtocols, bool checkCertificateRevocation) { throw null; }
         public virtual void AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate serverCertificate) { }
+        public virtual void AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate serverCertificate, bool clientCertificateRequired, bool checkCertificateRevocation) { }
         public virtual void AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate serverCertificate, bool clientCertificateRequired, System.Security.Authentication.SslProtocols enabledSslProtocols, bool checkCertificateRevocation) { }
+        public System.Threading.Tasks.Task AuthenticateAsServerAsync(System.Net.Security.SslServerAuthenticationOptions sslServerAuthenticationOptions, System.Threading.CancellationToken cancellationToken) { throw null; }
         public virtual System.Threading.Tasks.Task AuthenticateAsServerAsync(System.Security.Cryptography.X509Certificates.X509Certificate serverCertificate) { throw null; }
+        public virtual System.Threading.Tasks.Task AuthenticateAsServerAsync(System.Security.Cryptography.X509Certificates.X509Certificate serverCertificate, bool clientCertificateRequired, bool checkCertificateRevocation) { throw null; }
         public virtual System.Threading.Tasks.Task AuthenticateAsServerAsync(System.Security.Cryptography.X509Certificates.X509Certificate serverCertificate, bool clientCertificateRequired, System.Security.Authentication.SslProtocols enabledSslProtocols, bool checkCertificateRevocation) { throw null; }
         public virtual System.IAsyncResult BeginAuthenticateAsClient(string targetHost, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
+        public virtual System.IAsyncResult BeginAuthenticateAsClient(string targetHost, System.Security.Cryptography.X509Certificates.X509CertificateCollection clientCertificates, bool checkCertificateRevocation, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
         public virtual System.IAsyncResult BeginAuthenticateAsClient(string targetHost, System.Security.Cryptography.X509Certificates.X509CertificateCollection clientCertificates, System.Security.Authentication.SslProtocols enabledSslProtocols, bool checkCertificateRevocation, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
         public virtual System.IAsyncResult BeginAuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate serverCertificate, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
+        public virtual System.IAsyncResult BeginAuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate serverCertificate, bool clientCertificateRequired, bool checkCertificateRevocation, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
         public virtual System.IAsyncResult BeginAuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate serverCertificate, bool clientCertificateRequired, System.Security.Authentication.SslProtocols enabledSslProtocols, bool checkCertificateRevocation, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
         public override System.IAsyncResult BeginRead(byte[] buffer, int offset, int count, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
         public override System.IAsyncResult BeginWrite(byte[] buffer, int offset, int count, System.AsyncCallback asyncCallback, object asyncState) { throw null; }
@@ -7376,79 +7442,80 @@ namespace System.Net.Sockets
 {
     public enum AddressFamily
     {
-        AppleTalk = 16,
-        Atm = 22,
-        Banyan = 21,
-        Ccitt = 10,
-        Chaos = 5,
-        Cluster = 24,
-        DataKit = 9,
-        DataLink = 13,
-        DecNet = 12,
-        Ecma = 8,
-        FireFox = 19,
-        HyperChannel = 15,
-        Ieee12844 = 25,
-        ImpLink = 3,
-        InterNetwork = 2,
-        InterNetworkV6 = 23,
-        Ipx = 6,
-        Irda = 26,
-        Iso = 7,
-        Lat = 14,
-        Max = 29,
-        NetBios = 17,
-        NetworkDesigners = 28,
-        NS = 6,
-        Osi = 7,
-        Pup = 4,
-        Sna = 11,
-        Unix = 1,
         Unknown = -1,
         Unspecified = 0,
+        Unix = 1,
+        InterNetwork = 2,
+        ImpLink = 3,
+        Pup = 4,
+        Chaos = 5,
+        Ipx = 6,
+        NS = 6,
+        Iso = 7,
+        Osi = 7,
+        Ecma = 8,
+        DataKit = 9,
+        Ccitt = 10,
+        Sna = 11,
+        DecNet = 12,
+        DataLink = 13,
+        Lat = 14,
+        HyperChannel = 15,
+        AppleTalk = 16,
+        NetBios = 17,
         VoiceView = 18,
+        FireFox = 19,
+        Banyan = 21,
+        Atm = 22,
+        InterNetworkV6 = 23,
+        Cluster = 24,
+        Ieee12844 = 25,
+        Irda = 26,
+        NetworkDesigners = 28,
+        Max = 29,
     }
     public enum IOControlCode : long
     {
-        AbsorbRouterAlert = (long)2550136837,
-        AddMulticastGroupOnInterface = (long)2550136842,
-        AddressListChange = (long)671088663,
-        AddressListQuery = (long)1207959574,
-        AddressListSort = (long)3355443225,
-        AssociateHandle = (long)2281701377,
-        AsyncIO = (long)2147772029,
-        BindToInterface = (long)2550136840,
-        DataToRead = (long)1074030207,
-        DeleteMulticastGroupFromInterface = (long)2550136843,
         EnableCircularQueuing = (long)671088642,
         Flush = (long)671088644,
-        GetBroadcastAddress = (long)1207959557,
-        GetExtensionFunctionPointer = (long)3355443206,
-        GetGroupQos = (long)3355443208,
-        GetQos = (long)3355443207,
-        KeepAliveValues = (long)2550136836,
-        LimitBroadcasts = (long)2550136839,
-        MulticastInterface = (long)2550136841,
-        MulticastScope = (long)2281701386,
-        MultipointLoopback = (long)2281701385,
-        NamespaceChange = (long)2281701401,
-        NonBlockingIO = (long)2147772030,
+        AddressListChange = (long)671088663,
+        DataToRead = (long)1074030207,
         OobDataRead = (long)1074033415,
+        GetBroadcastAddress = (long)1207959557,
+        AddressListQuery = (long)1207959574,
         QueryTargetPnpHandle = (long)1207959576,
-        ReceiveAll = (long)2550136833,
-        ReceiveAllIgmpMulticast = (long)2550136835,
-        ReceiveAllMulticast = (long)2550136834,
-        RoutingInterfaceChange = (long)2281701397,
-        RoutingInterfaceQuery = (long)3355443220,
-        SetGroupQos = (long)2281701388,
+        AsyncIO = (long)2147772029,
+        NonBlockingIO = (long)2147772030,
+        AssociateHandle = (long)2281701377,
+        MultipointLoopback = (long)2281701385,
+        MulticastScope = (long)2281701386,
         SetQos = (long)2281701387,
-        TranslateHandle = (long)3355443213,
+        SetGroupQos = (long)2281701388,
+        RoutingInterfaceChange = (long)2281701397,
+        NamespaceChange = (long)2281701401,
+        ReceiveAll = (long)2550136833,
+        ReceiveAllMulticast = (long)2550136834,
+        ReceiveAllIgmpMulticast = (long)2550136835,
+        KeepAliveValues = (long)2550136836,
+        AbsorbRouterAlert = (long)2550136837,
         UnicastInterface = (long)2550136838,
+        LimitBroadcasts = (long)2550136839,
+        BindToInterface = (long)2550136840,
+        MulticastInterface = (long)2550136841,
+        AddMulticastGroupOnInterface = (long)2550136842,
+        DeleteMulticastGroupFromInterface = (long)2550136843,
+        GetExtensionFunctionPointer = (long)3355443206,
+        GetQos = (long)3355443207,
+        GetGroupQos = (long)3355443208,
+        TranslateHandle = (long)3355443213,
+        RoutingInterfaceQuery = (long)3355443220,
+        AddressListSort = (long)3355443225,
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct IPPacketInformation
     {
         private object _dummy;
+        private int _dummyPrimitive;
         public System.Net.IPAddress Address { get { throw null; } }
         public int Interface { get { throw null; } }
         public override bool Equals(object comparand) { throw null; }
@@ -7458,10 +7525,10 @@ namespace System.Net.Sockets
     }
     public enum IPProtectionLevel
     {
+        Unspecified = -1,
+        Unrestricted = 10,
         EdgeRestricted = 20,
         Restricted = 30,
-        Unrestricted = 10,
-        Unspecified = -1,
     }
     public partial class IPv6MulticastOption
     {
@@ -7519,71 +7586,71 @@ namespace System.Net.Sockets
     }
     public enum ProtocolFamily
     {
-        AppleTalk = 16,
-        Atm = 22,
-        Banyan = 21,
-        Ccitt = 10,
-        Chaos = 5,
-        Cluster = 24,
-        DataKit = 9,
-        DataLink = 13,
-        DecNet = 12,
-        Ecma = 8,
-        FireFox = 19,
-        HyperChannel = 15,
-        Ieee12844 = 25,
-        ImpLink = 3,
-        InterNetwork = 2,
-        InterNetworkV6 = 23,
-        Ipx = 6,
-        Irda = 26,
-        Iso = 7,
-        Lat = 14,
-        Max = 29,
-        NetBios = 17,
-        NetworkDesigners = 28,
-        NS = 6,
-        Osi = 7,
-        Pup = 4,
-        Sna = 11,
-        Unix = 1,
         Unknown = -1,
         Unspecified = 0,
+        Unix = 1,
+        InterNetwork = 2,
+        ImpLink = 3,
+        Pup = 4,
+        Chaos = 5,
+        Ipx = 6,
+        NS = 6,
+        Iso = 7,
+        Osi = 7,
+        Ecma = 8,
+        DataKit = 9,
+        Ccitt = 10,
+        Sna = 11,
+        DecNet = 12,
+        DataLink = 13,
+        Lat = 14,
+        HyperChannel = 15,
+        AppleTalk = 16,
+        NetBios = 17,
         VoiceView = 18,
+        FireFox = 19,
+        Banyan = 21,
+        Atm = 22,
+        InterNetworkV6 = 23,
+        Cluster = 24,
+        Ieee12844 = 25,
+        Irda = 26,
+        NetworkDesigners = 28,
+        Max = 29,
     }
     public enum ProtocolType
     {
-        Ggp = 3,
-        Icmp = 1,
-        IcmpV6 = 58,
-        Idp = 22,
-        Igmp = 2,
+        Unknown = -1,
         IP = 0,
-        IPSecAuthenticationHeader = 51,
-        IPSecEncapsulatingSecurityPayload = 50,
-        IPv4 = 4,
-        IPv6 = 41,
-        IPv6DestinationOptions = 60,
-        IPv6FragmentHeader = 44,
         IPv6HopByHopOptions = 0,
-        IPv6NoNextHeader = 59,
-        IPv6RoutingHeader = 43,
-        Ipx = 1000,
-        ND = 77,
+        Unspecified = 0,
+        Icmp = 1,
+        Igmp = 2,
+        Ggp = 3,
+        IPv4 = 4,
+        Tcp = 6,
         Pup = 12,
+        Udp = 17,
+        Idp = 22,
+        IPv6 = 41,
+        IPv6RoutingHeader = 43,
+        IPv6FragmentHeader = 44,
+        IPSecEncapsulatingSecurityPayload = 50,
+        IPSecAuthenticationHeader = 51,
+        IcmpV6 = 58,
+        IPv6NoNextHeader = 59,
+        IPv6DestinationOptions = 60,
+        ND = 77,
         Raw = 255,
+        Ipx = 1000,
         Spx = 1256,
         SpxII = 1257,
-        Tcp = 6,
-        Udp = 17,
-        Unknown = -1,
-        Unspecified = 0,
     }
     public enum SelectMode
     {
-        SelectError = 2,
         SelectRead = 0,
         SelectWrite = 1,
+        SelectError = 2,
     }
     public partial class SendPacketsElement
     {
@@ -7703,6 +7770,9 @@ namespace System.Net.Sockets
         public int Receive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public int Receive(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode) { throw null; }
+        public int Receive(System.Span<byte> buffer) { throw null; }
+        public int Receive(System.Span<byte> buffer, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
+        public int Receive(System.Span<byte> buffer, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode) { throw null; }
         public bool ReceiveAsync(System.Net.Sockets.SocketAsyncEventArgs e) { throw null; }
         public int ReceiveFrom(byte[] buffer, int offset, int size, System.Net.Sockets.SocketFlags socketFlags, ref System.Net.EndPoint remoteEP) { throw null; }
         public int ReceiveFrom(byte[] buffer, int size, System.Net.Sockets.SocketFlags socketFlags, ref System.Net.EndPoint remoteEP) { throw null; }
@@ -7721,6 +7791,9 @@ namespace System.Net.Sockets
         public int Send(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public int Send(System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode) { throw null; }
+        public int Send(System.ReadOnlySpan<byte> buffer) { throw null; }
+        public int Send(System.ReadOnlySpan<byte> buffer, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
+        public int Send(System.ReadOnlySpan<byte> buffer, System.Net.Sockets.SocketFlags socketFlags, out System.Net.Sockets.SocketError errorCode) { throw null; }
         public bool SendAsync(System.Net.Sockets.SocketAsyncEventArgs e) { throw null; }
         public void SendFile(string fileName) { }
         public void SendFile(string fileName, byte[] preBuffer, byte[] postBuffer, System.Net.Sockets.TransmitFileOptions flags) { }
@@ -7749,6 +7822,7 @@ namespace System.Net.Sockets
         public int Count { get { throw null; } }
         public bool DisconnectReuseSocket { get { throw null; } set { } }
         public System.Net.Sockets.SocketAsyncOperation LastOperation { get { throw null; } }
+        public System.Memory<byte> MemoryBuffer { get { throw null; } }
         public int Offset { get { throw null; } }
         public System.Net.Sockets.IPPacketInformation ReceiveMessageFromPacketInfo { get { throw null; } }
         public System.Net.EndPoint RemoteEndPoint { get { throw null; } set { } }
@@ -7764,13 +7838,14 @@ namespace System.Net.Sockets
         protected virtual void OnCompleted(System.Net.Sockets.SocketAsyncEventArgs e) { }
         public void SetBuffer(byte[] buffer, int offset, int count) { }
         public void SetBuffer(int offset, int count) { }
+        public void SetBuffer(System.Memory<byte> buffer) { }
     }
     public enum SocketAsyncOperation
     {
+        None = 0,
         Accept = 1,
         Connect = 2,
         Disconnect = 3,
-        None = 0,
         Receive = 4,
         ReceiveFrom = 5,
         ReceiveMessageFrom = 6,
@@ -7778,62 +7853,62 @@ namespace System.Net.Sockets
         SendPackets = 8,
         SendTo = 9,
     }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
     [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.", true)]
     public enum SocketClientAccessPolicyProtocol
     {
-        Http = 1,
         Tcp = 0,
+        Http = 1,
     }
     public enum SocketError
     {
-        AccessDenied = 10013,
-        AddressAlreadyInUse = 10048,
-        AddressFamilyNotSupported = 10047,
-        AddressNotAvailable = 10049,
-        AlreadyInProgress = 10037,
-        ConnectionAborted = 10053,
-        ConnectionRefused = 10061,
-        ConnectionReset = 10054,
-        DestinationAddressRequired = 10039,
-        Disconnecting = 10101,
-        Fault = 10014,
-        HostDown = 10064,
-        HostNotFound = 11001,
-        HostUnreachable = 10065,
-        InProgress = 10036,
-        Interrupted = 10004,
-        InvalidArgument = 10022,
-        IOPending = 997,
-        IsConnected = 10056,
-        MessageSize = 10040,
-        NetworkDown = 10050,
-        NetworkReset = 10052,
-        NetworkUnreachable = 10051,
-        NoBufferSpaceAvailable = 10055,
-        NoData = 11004,
-        NoRecovery = 11003,
-        NotConnected = 10057,
-        NotInitialized = 10093,
-        NotSocket = 10038,
-        OperationAborted = 995,
-        OperationNotSupported = 10045,
-        ProcessLimit = 10067,
-        ProtocolFamilyNotSupported = 10046,
-        ProtocolNotSupported = 10043,
-        ProtocolOption = 10042,
-        ProtocolType = 10041,
-        Shutdown = 10058,
         SocketError = -1,
-        SocketNotSupported = 10044,
         Success = 0,
-        SystemNotReady = 10091,
-        TimedOut = 10060,
+        OperationAborted = 995,
+        IOPending = 997,
+        Interrupted = 10004,
+        AccessDenied = 10013,
+        Fault = 10014,
+        InvalidArgument = 10022,
         TooManyOpenSockets = 10024,
-        TryAgain = 11002,
-        TypeNotFound = 10109,
-        VersionNotSupported = 10092,
         WouldBlock = 10035,
+        InProgress = 10036,
+        AlreadyInProgress = 10037,
+        NotSocket = 10038,
+        DestinationAddressRequired = 10039,
+        MessageSize = 10040,
+        ProtocolType = 10041,
+        ProtocolOption = 10042,
+        ProtocolNotSupported = 10043,
+        SocketNotSupported = 10044,
+        OperationNotSupported = 10045,
+        ProtocolFamilyNotSupported = 10046,
+        AddressFamilyNotSupported = 10047,
+        AddressAlreadyInUse = 10048,
+        AddressNotAvailable = 10049,
+        NetworkDown = 10050,
+        NetworkUnreachable = 10051,
+        NetworkReset = 10052,
+        ConnectionAborted = 10053,
+        ConnectionReset = 10054,
+        NoBufferSpaceAvailable = 10055,
+        IsConnected = 10056,
+        NotConnected = 10057,
+        Shutdown = 10058,
+        TimedOut = 10060,
+        ConnectionRefused = 10061,
+        HostDown = 10064,
+        HostUnreachable = 10065,
+        ProcessLimit = 10067,
+        SystemNotReady = 10091,
+        VersionNotSupported = 10092,
+        NotInitialized = 10093,
+        Disconnecting = 10101,
+        TypeNotFound = 10109,
+        HostNotFound = 11001,
+        TryAgain = 11002,
+        NoRecovery = 11003,
+        NoData = 11004,
     }
     public partial class SocketException : System.ComponentModel.Win32Exception
     {
@@ -7847,88 +7922,89 @@ namespace System.Net.Sockets
     [System.FlagsAttribute]
     public enum SocketFlags
     {
-        Broadcast = 1024,
-        ControlDataTruncated = 512,
-        DontRoute = 4,
-        MaxIOVectorLength = 16,
-        Multicast = 2048,
         None = 0,
         OutOfBand = 1,
-        Partial = 32768,
         Peek = 2,
+        DontRoute = 4,
+        MaxIOVectorLength = 16,
         Truncated = 256,
+        ControlDataTruncated = 512,
+        Broadcast = 1024,
+        Multicast = 2048,
+        Partial = 32768,
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SocketInformation
     {
         private object _dummy;
+        private int _dummyPrimitive;
         public System.Net.Sockets.SocketInformationOptions Options { get { throw null; } set { } }
         public byte[] ProtocolInformation { get { throw null; } set { } }
     }
     [System.FlagsAttribute]
     public enum SocketInformationOptions
     {
+        NonBlocking = 1,
         Connected = 2,
         Listening = 4,
-        NonBlocking = 1,
         UseOnlyOverlappedIO = 8,
     }
     public enum SocketOptionLevel
     {
         IP = 0,
-        IPv6 = 41,
-        Socket = 65535,
         Tcp = 6,
         Udp = 17,
+        IPv6 = 41,
+        Socket = 65535,
     }
     public enum SocketOptionName
     {
-        AcceptConnection = 2,
-        AddMembership = 12,
-        AddSourceMembership = 15,
-        BlockSource = 17,
-        Broadcast = 32,
-        BsdUrgent = 2,
-        ChecksumCoverage = 20,
-        Debug = 1,
-        DontFragment = 14,
         DontLinger = -129,
-        DontRoute = 16,
-        DropMembership = 13,
-        DropSourceMembership = 16,
-        Error = 4103,
         ExclusiveAddressUse = -5,
-        Expedited = 2,
-        HeaderIncluded = 2,
-        HopLimit = 21,
+        Debug = 1,
         IPOptions = 1,
-        IPProtectionLevel = 23,
-        IpTimeToLive = 4,
-        IPv6Only = 27,
-        KeepAlive = 8,
-        Linger = 128,
-        MaxConnections = 2147483647,
-        MulticastInterface = 9,
-        MulticastLoopback = 11,
-        MulticastTimeToLive = 10,
         NoChecksum = 1,
         NoDelay = 1,
-        OutOfBandInline = 256,
-        PacketInformation = 19,
-        ReceiveBuffer = 4098,
-        ReceiveLowWater = 4100,
-        ReceiveTimeout = 4102,
-        ReuseAddress = 4,
-        ReuseUnicastPort = 12295,
-        SendBuffer = 4097,
-        SendLowWater = 4099,
-        SendTimeout = 4101,
-        Type = 4104,
+        AcceptConnection = 2,
+        BsdUrgent = 2,
+        Expedited = 2,
+        HeaderIncluded = 2,
         TypeOfService = 3,
+        IpTimeToLive = 4,
+        ReuseAddress = 4,
+        KeepAlive = 8,
+        MulticastInterface = 9,
+        MulticastTimeToLive = 10,
+        MulticastLoopback = 11,
+        AddMembership = 12,
+        DropMembership = 13,
+        DontFragment = 14,
+        AddSourceMembership = 15,
+        DontRoute = 16,
+        DropSourceMembership = 16,
+        BlockSource = 17,
         UnblockSource = 18,
+        PacketInformation = 19,
+        ChecksumCoverage = 20,
+        HopLimit = 21,
+        IPProtectionLevel = 23,
+        IPv6Only = 27,
+        Broadcast = 32,
+        UseLoopback = 64,
+        Linger = 128,
+        OutOfBandInline = 256,
+        SendBuffer = 4097,
+        ReceiveBuffer = 4098,
+        SendLowWater = 4099,
+        ReceiveLowWater = 4100,
+        SendTimeout = 4101,
+        ReceiveTimeout = 4102,
+        Error = 4103,
+        Type = 4104,
+        ReuseUnicastPort = 12295,
         UpdateAcceptContext = 28683,
         UpdateConnectContext = 28688,
-        UseLoopback = 64,
+        MaxConnections = 2147483647,
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct SocketReceiveFromResult
@@ -7946,9 +8022,9 @@ namespace System.Net.Sockets
     }
     public enum SocketShutdown
     {
-        Both = 2,
         Receive = 0,
         Send = 1,
+        Both = 2,
     }
     public static partial class SocketTaskExtensions
     {
@@ -7960,20 +8036,22 @@ namespace System.Net.Sockets
         public static System.Threading.Tasks.Task ConnectAsync(this System.Net.Sockets.Socket socket, string host, int port) { throw null; }
         public static System.Threading.Tasks.Task<int> ReceiveAsync(this System.Net.Sockets.Socket socket, System.ArraySegment<byte> buffer, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
         public static System.Threading.Tasks.Task<int> ReceiveAsync(this System.Net.Sockets.Socket socket, System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
+        public static System.Threading.Tasks.ValueTask<int> ReceiveAsync(this System.Net.Sockets.Socket socket, System.Memory<byte> memory, System.Net.Sockets.SocketFlags socketFlags, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public static System.Threading.Tasks.Task<System.Net.Sockets.SocketReceiveFromResult> ReceiveFromAsync(this System.Net.Sockets.Socket socket, System.ArraySegment<byte> buffer, System.Net.Sockets.SocketFlags socketFlags, System.Net.EndPoint remoteEndPoint) { throw null; }
         public static System.Threading.Tasks.Task<System.Net.Sockets.SocketReceiveMessageFromResult> ReceiveMessageFromAsync(this System.Net.Sockets.Socket socket, System.ArraySegment<byte> buffer, System.Net.Sockets.SocketFlags socketFlags, System.Net.EndPoint remoteEndPoint) { throw null; }
         public static System.Threading.Tasks.Task<int> SendAsync(this System.Net.Sockets.Socket socket, System.ArraySegment<byte> buffer, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
         public static System.Threading.Tasks.Task<int> SendAsync(this System.Net.Sockets.Socket socket, System.Collections.Generic.IList<System.ArraySegment<byte>> buffers, System.Net.Sockets.SocketFlags socketFlags) { throw null; }
+        public static System.Threading.Tasks.ValueTask<int> SendAsync(this System.Net.Sockets.Socket socket, System.ReadOnlyMemory<byte> buffer, System.Net.Sockets.SocketFlags socketFlags, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) { throw null; }
         public static System.Threading.Tasks.Task<int> SendToAsync(this System.Net.Sockets.Socket socket, System.ArraySegment<byte> buffer, System.Net.Sockets.SocketFlags socketFlags, System.Net.EndPoint remoteEP) { throw null; }
     }
     public enum SocketType
     {
+        Unknown = -1,
+        Stream = 1,
         Dgram = 2,
         Raw = 3,
         Rdm = 4,
         Seqpacket = 5,
-        Stream = 1,
-        Unknown = -1,
     }
     public partial class TcpClient : System.IDisposable
     {
@@ -8037,12 +8115,12 @@ namespace System.Net.Sockets
     [System.FlagsAttribute]
     public enum TransmitFileOptions
     {
+        UseDefaultWorkerThread = 0,
         Disconnect = 1,
         ReuseSocket = 2,
-        UseDefaultWorkerThread = 0,
-        UseKernelApc = 32,
-        UseSystemThread = 16,
         WriteBehind = 4,
+        UseSystemThread = 16,
+        UseKernelApc = 32,
     }
     public partial class UdpClient : System.IDisposable
     {
@@ -8092,6 +8170,7 @@ namespace System.Net.Sockets
     public partial struct UdpReceiveResult : System.IEquatable<System.Net.Sockets.UdpReceiveResult>
     {
         private object _dummy;
+        private int _dummyPrimitive;
         public UdpReceiveResult(byte[] buffer, System.Net.IPEndPoint remoteEndPoint) { throw null; }
         public byte[] Buffer { get { throw null; } }
         public System.Net.IPEndPoint RemoteEndPoint { get { throw null; } }
@@ -8107,7 +8186,7 @@ namespace System.Net.WebSockets
     public sealed partial class ClientWebSocket : System.Net.WebSockets.WebSocket
     {
         public ClientWebSocket() { }
-        public override System.Nullable<System.Net.WebSockets.WebSocketCloseStatus> CloseStatus { get { throw null; } }
+        public override System.Net.WebSockets.WebSocketCloseStatus? CloseStatus { get { throw null; } }
         public override string CloseStatusDescription { get { throw null; } }
         public System.Net.WebSockets.ClientWebSocketOptions Options { get { throw null; } }
         public override System.Net.WebSockets.WebSocketState State { get { throw null; } }
@@ -8118,7 +8197,9 @@ namespace System.Net.WebSockets
         public System.Threading.Tasks.Task ConnectAsync(System.Uri uri, System.Threading.CancellationToken cancellationToken) { throw null; }
         public override void Dispose() { }
         public override System.Threading.Tasks.Task<System.Net.WebSockets.WebSocketReceiveResult> ReceiveAsync(System.ArraySegment<byte> buffer, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public override System.Threading.Tasks.ValueTask<System.Net.WebSockets.ValueWebSocketReceiveResult> ReceiveAsync(System.Memory<byte> buffer, System.Threading.CancellationToken cancellationToken) { throw null; }
         public override System.Threading.Tasks.Task SendAsync(System.ArraySegment<byte> buffer, System.Net.WebSockets.WebSocketMessageType messageType, bool endOfMessage, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public override System.Threading.Tasks.ValueTask SendAsync(System.ReadOnlyMemory<byte> buffer, System.Net.WebSockets.WebSocketMessageType messageType, bool endOfMessage, System.Threading.CancellationToken cancellationToken) { throw null; }
     }
     public sealed partial class ClientWebSocketOptions
     {
@@ -8128,6 +8209,7 @@ namespace System.Net.WebSockets
         public System.Net.ICredentials Credentials { get { throw null; } set { } }
         public System.TimeSpan KeepAliveInterval { get { throw null; } set { } }
         public System.Net.IWebProxy Proxy { get { throw null; } set { } }
+        public System.Net.Security.RemoteCertificateValidationCallback RemoteCertificateValidationCallback { get { throw null; } set { } }
         public bool UseDefaultCredentials { get { throw null; } set { } }
         public void AddSubProtocol(string subProtocol) { }
         public void SetBuffer(int receiveBufferSize, int sendBufferSize) { }
@@ -8153,7 +8235,7 @@ namespace System.Net.WebSockets
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public readonly partial struct ValueWebSocketReceiveResult
     {
-        private readonly int _dummy;
+        private readonly int _dummyPrimitive;
         public ValueWebSocketReceiveResult(int count, System.Net.WebSockets.WebSocketMessageType messageType, bool endOfMessage) { throw null; }
         public int Count { get { throw null; } }
         public bool EndOfMessage { get { throw null; } }
@@ -8162,7 +8244,7 @@ namespace System.Net.WebSockets
     public abstract partial class WebSocket : System.IDisposable
     {
         protected WebSocket() { }
-        public abstract System.Nullable<System.Net.WebSockets.WebSocketCloseStatus> CloseStatus { get; }
+        public abstract System.Net.WebSockets.WebSocketCloseStatus? CloseStatus { get; }
         public abstract string CloseStatusDescription { get; }
         public static System.TimeSpan DefaultKeepAliveInterval { get { throw null; } }
         public abstract System.Net.WebSockets.WebSocketState State { get; }
@@ -8171,32 +8253,35 @@ namespace System.Net.WebSockets
         public abstract System.Threading.Tasks.Task CloseAsync(System.Net.WebSockets.WebSocketCloseStatus closeStatus, string statusDescription, System.Threading.CancellationToken cancellationToken);
         public abstract System.Threading.Tasks.Task CloseOutputAsync(System.Net.WebSockets.WebSocketCloseStatus closeStatus, string statusDescription, System.Threading.CancellationToken cancellationToken);
         public static System.ArraySegment<byte> CreateClientBuffer(int receiveBufferSize, int sendBufferSize) { throw null; }
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public static System.Net.WebSockets.WebSocket CreateClientWebSocket(System.IO.Stream innerStream, string subProtocol, int receiveBufferSize, int sendBufferSize, System.TimeSpan keepAliveInterval, bool useZeroMaskingKey, System.ArraySegment<byte> internalBuffer) { throw null; }
+        public static System.Net.WebSockets.WebSocket CreateFromStream(System.IO.Stream stream, bool isServer, string subProtocol, System.TimeSpan keepAliveInterval) { throw null; }
         public static System.ArraySegment<byte> CreateServerBuffer(int receiveBufferSize) { throw null; }
         public abstract void Dispose();
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         [System.ObsoleteAttribute("This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.")]
         public static bool IsApplicationTargeting45() { throw null; }
         protected static bool IsStateTerminal(System.Net.WebSockets.WebSocketState state) { throw null; }
         public abstract System.Threading.Tasks.Task<System.Net.WebSockets.WebSocketReceiveResult> ReceiveAsync(System.ArraySegment<byte> buffer, System.Threading.CancellationToken cancellationToken);
-        [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
+        public virtual System.Threading.Tasks.ValueTask<System.Net.WebSockets.ValueWebSocketReceiveResult> ReceiveAsync(System.Memory<byte> buffer, System.Threading.CancellationToken cancellationToken) { throw null; }
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
         public static void RegisterPrefixes() { }
         public abstract System.Threading.Tasks.Task SendAsync(System.ArraySegment<byte> buffer, System.Net.WebSockets.WebSocketMessageType messageType, bool endOfMessage, System.Threading.CancellationToken cancellationToken);
+        public virtual System.Threading.Tasks.ValueTask SendAsync(System.ReadOnlyMemory<byte> buffer, System.Net.WebSockets.WebSocketMessageType messageType, bool endOfMessage, System.Threading.CancellationToken cancellationToken) { throw null; }
         protected static void ThrowOnInvalidState(System.Net.WebSockets.WebSocketState state, params System.Net.WebSockets.WebSocketState[] validStates) { }
     }
     public enum WebSocketCloseStatus
     {
-        Empty = 1005,
-        EndpointUnavailable = 1001,
-        InternalServerError = 1011,
-        InvalidMessageType = 1003,
-        InvalidPayloadData = 1007,
-        MandatoryExtension = 1010,
-        MessageTooBig = 1009,
         NormalClosure = 1000,
-        PolicyViolation = 1008,
+        EndpointUnavailable = 1001,
         ProtocolError = 1002,
+        InvalidMessageType = 1003,
+        Empty = 1005,
+        InvalidPayloadData = 1007,
+        PolicyViolation = 1008,
+        MessageTooBig = 1009,
+        MandatoryExtension = 1010,
+        InternalServerError = 1011,
     }
     public abstract partial class WebSocketContext
     {
@@ -8216,16 +8301,16 @@ namespace System.Net.WebSockets
     }
     public enum WebSocketError
     {
-        ConnectionClosedPrematurely = 8,
-        Faulted = 2,
-        HeaderError = 7,
+        Success = 0,
         InvalidMessageType = 1,
-        InvalidState = 9,
+        Faulted = 2,
         NativeError = 3,
         NotAWebSocket = 4,
-        Success = 0,
-        UnsupportedProtocol = 6,
         UnsupportedVersion = 5,
+        UnsupportedProtocol = 6,
+        HeaderError = 7,
+        ConnectionClosedPrematurely = 8,
+        InvalidState = 9,
     }
     public sealed partial class WebSocketException : System.ComponentModel.Win32Exception
     {
@@ -8249,15 +8334,15 @@ namespace System.Net.WebSockets
     }
     public enum WebSocketMessageType
     {
+        Text = 0,
         Binary = 1,
         Close = 2,
-        Text = 0,
     }
     public partial class WebSocketReceiveResult
     {
         public WebSocketReceiveResult(int count, System.Net.WebSockets.WebSocketMessageType messageType, bool endOfMessage) { }
-        public WebSocketReceiveResult(int count, System.Net.WebSockets.WebSocketMessageType messageType, bool endOfMessage, System.Nullable<System.Net.WebSockets.WebSocketCloseStatus> closeStatus, string closeStatusDescription) { }
-        public System.Nullable<System.Net.WebSockets.WebSocketCloseStatus> CloseStatus { get { throw null; } }
+        public WebSocketReceiveResult(int count, System.Net.WebSockets.WebSocketMessageType messageType, bool endOfMessage, System.Net.WebSockets.WebSocketCloseStatus? closeStatus, string closeStatusDescription) { }
+        public System.Net.WebSockets.WebSocketCloseStatus? CloseStatus { get { throw null; } }
         public string CloseStatusDescription { get { throw null; } }
         public int Count { get { throw null; } }
         public bool EndOfMessage { get { throw null; } }
@@ -8265,18 +8350,18 @@ namespace System.Net.WebSockets
     }
     public enum WebSocketState
     {
-        Aborted = 6,
-        Closed = 5,
-        CloseReceived = 4,
-        CloseSent = 3,
-        Connecting = 1,
         None = 0,
+        Connecting = 1,
         Open = 2,
+        CloseSent = 3,
+        CloseReceived = 4,
+        Closed = 5,
+        Aborted = 6,
     }
 }
 namespace System.Runtime.InteropServices
 {
-    [System.AttributeUsageAttribute((System.AttributeTargets)(2048))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Parameter)]
     public sealed partial class DefaultParameterValueAttribute : System.Attribute
     {
         public DefaultParameterValueAttribute(object value) { }
@@ -8299,13 +8384,13 @@ namespace System.Runtime.InteropServices.ComTypes
     [System.FlagsAttribute]
     public enum ADVF
     {
-        ADVFCACHE_FORCEBUILTIN = 16,
+        ADVF_NODATA = 1,
+        ADVF_PRIMEFIRST = 2,
+        ADVF_ONLYONCE = 4,
         ADVFCACHE_NOHANDLER = 8,
+        ADVFCACHE_FORCEBUILTIN = 16,
         ADVFCACHE_ONSAVE = 32,
         ADVF_DATAONSTOP = 64,
-        ADVF_NODATA = 1,
-        ADVF_ONLYONCE = 4,
-        ADVF_PRIMEFIRST = 2,
     }
     public enum DATADIR
     {
@@ -8316,9 +8401,9 @@ namespace System.Runtime.InteropServices.ComTypes
     public enum DVASPECT
     {
         DVASPECT_CONTENT = 1,
-        DVASPECT_DOCPRINT = 8,
-        DVASPECT_ICON = 4,
         DVASPECT_THUMBNAIL = 2,
+        DVASPECT_ICON = 4,
+        DVASPECT_DOCPRINT = 8,
     }
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public partial struct FORMATETC
@@ -8381,14 +8466,14 @@ namespace System.Runtime.InteropServices.ComTypes
     [System.FlagsAttribute]
     public enum TYMED
     {
-        TYMED_ENHMF = 64,
-        TYMED_FILE = 2,
-        TYMED_GDI = 16,
-        TYMED_HGLOBAL = 1,
-        TYMED_ISTORAGE = 8,
-        TYMED_ISTREAM = 4,
-        TYMED_MFPICT = 32,
         TYMED_NULL = 0,
+        TYMED_HGLOBAL = 1,
+        TYMED_FILE = 2,
+        TYMED_ISTREAM = 4,
+        TYMED_ISTORAGE = 8,
+        TYMED_GDI = 16,
+        TYMED_MFPICT = 32,
+        TYMED_ENHMF = 64,
     }
 }
 namespace System.Runtime.Versioning
@@ -8410,6 +8495,16 @@ namespace System.Runtime.Versioning
         public override string ToString() { throw null; }
     }
 }
+namespace System.Security
+{
+    public static partial class SecureStringMarshal
+    {
+        public static System.IntPtr SecureStringToCoTaskMemAnsi(System.Security.SecureString s) { throw null; }
+        public static System.IntPtr SecureStringToCoTaskMemUnicode(System.Security.SecureString s) { throw null; }
+        public static System.IntPtr SecureStringToGlobalAllocAnsi(System.Security.SecureString s) { throw null; }
+        public static System.IntPtr SecureStringToGlobalAllocUnicode(System.Security.SecureString s) { throw null; }
+    }
+}
 namespace System.Security.AccessControl
 {
     public sealed partial class SemaphoreAccessRule : System.Security.AccessControl.AccessRule
@@ -8426,13 +8521,13 @@ namespace System.Security.AccessControl
     [System.FlagsAttribute]
     public enum SemaphoreRights
     {
-        ChangePermissions = 262144,
-        Delete = 65536,
-        FullControl = 2031619,
         Modify = 2,
+        Delete = 65536,
         ReadPermissions = 131072,
-        Synchronize = 1048576,
+        ChangePermissions = 262144,
         TakeOwnership = 524288,
+        Synchronize = 1048576,
+        FullControl = 2031619,
     }
     public sealed partial class SemaphoreSecurity : System.Security.AccessControl.NativeObjectSecurity
     {
@@ -8467,29 +8562,32 @@ namespace System.Security.Authentication
     }
     public enum CipherAlgorithmType
     {
-        Aes = 26129,
+        None = 0,
+        Null = 24576,
+        Des = 26113,
+        Rc2 = 26114,
+        TripleDes = 26115,
         Aes128 = 26126,
         Aes192 = 26127,
         Aes256 = 26128,
-        Des = 26113,
-        None = 0,
-        Null = 24576,
-        Rc2 = 26114,
+        Aes = 26129,
         Rc4 = 26625,
-        TripleDes = 26115,
     }
     public enum ExchangeAlgorithmType
     {
-        DiffieHellman = 43522,
         None = 0,
-        RsaKeyX = 41984,
         RsaSign = 9216,
+        RsaKeyX = 41984,
+        DiffieHellman = 43522,
     }
     public enum HashAlgorithmType
     {
-        Md5 = 32771,
         None = 0,
+        Md5 = 32771,
         Sha1 = 32772,
+        Sha256 = 32780,
+        Sha384 = 32781,
+        Sha512 = 32782,
     }
     public partial class InvalidCredentialException : System.Security.Authentication.AuthenticationException
     {
@@ -8501,13 +8599,14 @@ namespace System.Security.Authentication
     [System.FlagsAttribute]
     public enum SslProtocols
     {
-        Default = 240,
         None = 0,
         Ssl2 = 12,
         Ssl3 = 48,
         Tls = 192,
+        Default = 240,
         Tls11 = 768,
         Tls12 = 3072,
+        Tls13 = 12288,
     }
 }
 namespace System.Security.Authentication.ExtendedProtection
@@ -8520,9 +8619,9 @@ namespace System.Security.Authentication.ExtendedProtection
     }
     public enum ChannelBindingKind
     {
-        Endpoint = 26,
-        Unique = 25,
         Unknown = 0,
+        Unique = 25,
+        Endpoint = 26,
     }
     public partial class ExtendedProtectionPolicy : System.Runtime.Serialization.ISerializable
     {
@@ -8547,9 +8646,9 @@ namespace System.Security.Authentication.ExtendedProtection
     }
     public enum PolicyEnforcement
     {
-        Always = 2,
         Never = 0,
         WhenSupported = 1,
+        Always = 2,
     }
     public enum ProtectionScenario
     {
@@ -8648,28 +8747,45 @@ namespace System.Security.Cryptography
     public enum OidGroup
     {
         All = 0,
-        Attribute = 5,
-        EncryptionAlgorithm = 2,
-        EnhancedKeyUsage = 7,
-        ExtensionOrAttribute = 6,
         HashAlgorithm = 1,
-        KeyDerivationFunction = 10,
-        Policy = 8,
+        EncryptionAlgorithm = 2,
         PublicKeyAlgorithm = 3,
         SignatureAlgorithm = 4,
+        Attribute = 5,
+        ExtensionOrAttribute = 6,
+        EnhancedKeyUsage = 7,
+        Policy = 8,
         Template = 9,
+        KeyDerivationFunction = 10,
     }
 }
 namespace System.Security.Cryptography.X509Certificates
 {
+    public sealed partial class CertificateRequest
+    {
+        public CertificateRequest(System.Security.Cryptography.X509Certificates.X500DistinguishedName subjectName, System.Security.Cryptography.ECDsa key, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { }
+        public CertificateRequest(System.Security.Cryptography.X509Certificates.X500DistinguishedName subjectName, System.Security.Cryptography.RSA key, System.Security.Cryptography.HashAlgorithmName hashAlgorithm, System.Security.Cryptography.RSASignaturePadding padding) { }
+        public CertificateRequest(System.Security.Cryptography.X509Certificates.X500DistinguishedName subjectName, System.Security.Cryptography.X509Certificates.PublicKey publicKey, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { }
+        public CertificateRequest(string subjectName, System.Security.Cryptography.ECDsa key, System.Security.Cryptography.HashAlgorithmName hashAlgorithm) { }
+        public CertificateRequest(string subjectName, System.Security.Cryptography.RSA key, System.Security.Cryptography.HashAlgorithmName hashAlgorithm, System.Security.Cryptography.RSASignaturePadding padding) { }
+        public System.Collections.ObjectModel.Collection<System.Security.Cryptography.X509Certificates.X509Extension> CertificateExtensions { get { throw null; } }
+        public System.Security.Cryptography.HashAlgorithmName HashAlgorithm { get { throw null; } }
+        public System.Security.Cryptography.X509Certificates.PublicKey PublicKey { get { throw null; } }
+        public System.Security.Cryptography.X509Certificates.X500DistinguishedName SubjectName { get { throw null; } }
+        public System.Security.Cryptography.X509Certificates.X509Certificate2 Create(System.Security.Cryptography.X509Certificates.X500DistinguishedName issuerName, System.Security.Cryptography.X509Certificates.X509SignatureGenerator generator, System.DateTimeOffset notBefore, System.DateTimeOffset notAfter, byte[] serialNumber) { throw null; }
+        public System.Security.Cryptography.X509Certificates.X509Certificate2 Create(System.Security.Cryptography.X509Certificates.X509Certificate2 issuerCertificate, System.DateTimeOffset notBefore, System.DateTimeOffset notAfter, byte[] serialNumber) { throw null; }
+        public System.Security.Cryptography.X509Certificates.X509Certificate2 CreateSelfSigned(System.DateTimeOffset notBefore, System.DateTimeOffset notAfter) { throw null; }
+        public byte[] CreateSigningRequest() { throw null; }
+        public byte[] CreateSigningRequest(System.Security.Cryptography.X509Certificates.X509SignatureGenerator signatureGenerator) { throw null; }
+    }
     [System.FlagsAttribute]
     public enum OpenFlags
     {
-        IncludeArchived = 8,
-        MaxAllowed = 2,
-        OpenExistingOnly = 4,
         ReadOnly = 0,
         ReadWrite = 1,
+        MaxAllowed = 2,
+        OpenExistingOnly = 4,
+        IncludeArchived = 8,
     }
     public sealed partial class PublicKey
     {
@@ -8695,6 +8811,16 @@ namespace System.Security.Cryptography.X509Certificates
         TrustedPeople = 7,
         TrustedPublisher = 8,
     }
+    public sealed partial class SubjectAlternativeNameBuilder
+    {
+        public SubjectAlternativeNameBuilder() { }
+        public void AddDnsName(string dnsName) { }
+        public void AddEmailAddress(string emailAddress) { }
+        public void AddIpAddress(System.Net.IPAddress ipAddress) { }
+        public void AddUri(System.Uri uri) { }
+        public void AddUserPrincipalName(string upn) { }
+        public System.Security.Cryptography.X509Certificates.X509Extension Build(bool critical = false) { throw null; }
+    }
     public sealed partial class X500DistinguishedName : System.Security.Cryptography.AsnEncodedData
     {
         public X500DistinguishedName(byte[] encodedDistinguishedName) { }
@@ -8709,16 +8835,16 @@ namespace System.Security.Cryptography.X509Certificates
     [System.FlagsAttribute]
     public enum X500DistinguishedNameFlags
     {
-        DoNotUsePlusSign = 32,
-        DoNotUseQuotes = 64,
-        ForceUTF8Encoding = 16384,
         None = 0,
         Reversed = 1,
+        UseSemicolons = 16,
+        DoNotUsePlusSign = 32,
+        DoNotUseQuotes = 64,
         UseCommas = 128,
         UseNewLines = 256,
-        UseSemicolons = 16,
-        UseT61Encoding = 8192,
         UseUTF8Encoding = 4096,
+        UseT61Encoding = 8192,
+        ForceUTF8Encoding = 16384,
     }
     public sealed partial class X509BasicConstraintsExtension : System.Security.Cryptography.X509Certificates.X509Extension
     {
@@ -8734,7 +8860,9 @@ namespace System.Security.Cryptography.X509Certificates
     {
         public X509Certificate2() { }
         public X509Certificate2(byte[] rawData) { }
+        [System.CLSCompliantAttribute(false)]
         public X509Certificate2(byte[] rawData, System.Security.SecureString password) { }
+        [System.CLSCompliantAttribute(false)]
         public X509Certificate2(byte[] rawData, System.Security.SecureString password, System.Security.Cryptography.X509Certificates.X509KeyStorageFlags keyStorageFlags) { }
         public X509Certificate2(byte[] rawData, string password) { }
         public X509Certificate2(byte[] rawData, string password, System.Security.Cryptography.X509Certificates.X509KeyStorageFlags keyStorageFlags) { }
@@ -8761,14 +8889,15 @@ namespace System.Security.Cryptography.X509Certificates
         public System.Security.Cryptography.X509Certificates.X500DistinguishedName SubjectName { get { throw null; } }
         public string Thumbprint { get { throw null; } }
         public int Version { get { throw null; } }
-        public override byte[] Export(System.Security.Cryptography.X509Certificates.X509ContentType contentType, string password) { throw null; }
         public static System.Security.Cryptography.X509Certificates.X509ContentType GetCertContentType(byte[] rawData) { throw null; }
         public static System.Security.Cryptography.X509Certificates.X509ContentType GetCertContentType(string fileName) { throw null; }
         public string GetNameInfo(System.Security.Cryptography.X509Certificates.X509NameType nameType, bool forIssuer) { throw null; }
         public override void Import(byte[] rawData) { }
+        [System.CLSCompliantAttribute(false)]
         public override void Import(byte[] rawData, System.Security.SecureString password, System.Security.Cryptography.X509Certificates.X509KeyStorageFlags keyStorageFlags) { }
         public override void Import(byte[] rawData, string password, System.Security.Cryptography.X509Certificates.X509KeyStorageFlags keyStorageFlags) { }
         public override void Import(string fileName) { }
+        [System.CLSCompliantAttribute(false)]
         public override void Import(string fileName, System.Security.SecureString password, System.Security.Cryptography.X509Certificates.X509KeyStorageFlags keyStorageFlags) { }
         public override void Import(string fileName, string password, System.Security.Cryptography.X509Certificates.X509KeyStorageFlags keyStorageFlags) { }
         public override void Reset() { }
@@ -8898,38 +9027,39 @@ namespace System.Security.Cryptography.X509Certificates
     public partial struct X509ChainStatus
     {
         private object _dummy;
+        private int _dummyPrimitive;
         public System.Security.Cryptography.X509Certificates.X509ChainStatusFlags Status { get { throw null; } set { } }
         public string StatusInformation { get { throw null; } set { } }
     }
     [System.FlagsAttribute]
     public enum X509ChainStatusFlags
     {
-        CtlNotSignatureValid = 262144,
-        CtlNotTimeValid = 131072,
-        CtlNotValidForUsage = 524288,
+        NoError = 0,
+        NotTimeValid = 1,
+        NotTimeNested = 2,
+        Revoked = 4,
+        NotSignatureValid = 8,
+        NotValidForUsage = 16,
+        UntrustedRoot = 32,
+        RevocationStatusUnknown = 64,
         Cyclic = 128,
-        ExplicitDistrust = 67108864,
-        HasExcludedNameConstraint = 32768,
+        InvalidExtension = 256,
+        InvalidPolicyConstraints = 512,
+        InvalidBasicConstraints = 1024,
+        InvalidNameConstraints = 2048,
+        HasNotSupportedNameConstraint = 4096,
         HasNotDefinedNameConstraint = 8192,
         HasNotPermittedNameConstraint = 16384,
-        HasNotSupportedCriticalExtension = 134217728,
-        HasNotSupportedNameConstraint = 4096,
-        HasWeakSignature = 1048576,
-        InvalidBasicConstraints = 1024,
-        InvalidExtension = 256,
-        InvalidNameConstraints = 2048,
-        InvalidPolicyConstraints = 512,
-        NoError = 0,
-        NoIssuanceChainPolicy = 33554432,
-        NotSignatureValid = 8,
-        NotTimeNested = 2,
-        NotTimeValid = 1,
-        NotValidForUsage = 16,
-        OfflineRevocation = 16777216,
+        HasExcludedNameConstraint = 32768,
         PartialChain = 65536,
-        RevocationStatusUnknown = 64,
-        Revoked = 4,
-        UntrustedRoot = 32,
+        CtlNotTimeValid = 131072,
+        CtlNotSignatureValid = 262144,
+        CtlNotValidForUsage = 524288,
+        HasWeakSignature = 1048576,
+        OfflineRevocation = 16777216,
+        NoIssuanceChainPolicy = 33554432,
+        ExplicitDistrust = 67108864,
+        HasNotSupportedCriticalExtension = 134217728,
     }
     public sealed partial class X509EnhancedKeyUsageExtension : System.Security.Cryptography.X509Certificates.X509Extension
     {
@@ -8972,27 +9102,27 @@ namespace System.Security.Cryptography.X509Certificates
     }
     public enum X509FindType
     {
+        FindByThumbprint = 0,
+        FindBySubjectName = 1,
+        FindBySubjectDistinguishedName = 2,
+        FindByIssuerName = 3,
+        FindByIssuerDistinguishedName = 4,
+        FindBySerialNumber = 5,
+        FindByTimeValid = 6,
+        FindByTimeNotYetValid = 7,
+        FindByTimeExpired = 8,
+        FindByTemplateName = 9,
         FindByApplicationPolicy = 10,
         FindByCertificatePolicy = 11,
         FindByExtension = 12,
-        FindByIssuerDistinguishedName = 4,
-        FindByIssuerName = 3,
         FindByKeyUsage = 13,
-        FindBySerialNumber = 5,
-        FindBySubjectDistinguishedName = 2,
         FindBySubjectKeyIdentifier = 14,
-        FindBySubjectName = 1,
-        FindByTemplateName = 9,
-        FindByThumbprint = 0,
-        FindByTimeExpired = 8,
-        FindByTimeNotYetValid = 7,
-        FindByTimeValid = 6,
     }
     public enum X509IncludeOption
     {
-        EndCertOnly = 2,
-        ExcludeRoot = 1,
         None = 0,
+        ExcludeRoot = 1,
+        EndCertOnly = 2,
         WholeChain = 3,
     }
     public sealed partial class X509KeyUsageExtension : System.Security.Cryptography.X509Certificates.X509Extension
@@ -9006,24 +9136,24 @@ namespace System.Security.Cryptography.X509Certificates
     [System.FlagsAttribute]
     public enum X509KeyUsageFlags
     {
-        CrlSign = 2,
-        DataEncipherment = 16,
-        DecipherOnly = 32768,
-        DigitalSignature = 128,
-        EncipherOnly = 1,
-        KeyAgreement = 8,
-        KeyCertSign = 4,
-        KeyEncipherment = 32,
         None = 0,
+        EncipherOnly = 1,
+        CrlSign = 2,
+        KeyCertSign = 4,
+        KeyAgreement = 8,
+        DataEncipherment = 16,
+        KeyEncipherment = 32,
         NonRepudiation = 64,
+        DigitalSignature = 128,
+        DecipherOnly = 32768,
     }
     public enum X509NameType
     {
-        DnsFromAlternativeName = 4,
-        DnsName = 3,
-        EmailName = 1,
         SimpleName = 0,
+        EmailName = 1,
         UpnName = 2,
+        DnsName = 3,
+        DnsFromAlternativeName = 4,
         UrlName = 5,
     }
     public enum X509RevocationFlag
@@ -9035,8 +9165,18 @@ namespace System.Security.Cryptography.X509Certificates
     public enum X509RevocationMode
     {
         NoCheck = 0,
-        Offline = 2,
         Online = 1,
+        Offline = 2,
+    }
+    public abstract partial class X509SignatureGenerator
+    {
+        protected X509SignatureGenerator() { }
+        public System.Security.Cryptography.X509Certificates.PublicKey PublicKey { get { throw null; } }
+        protected abstract System.Security.Cryptography.X509Certificates.PublicKey BuildPublicKey();
+        public static System.Security.Cryptography.X509Certificates.X509SignatureGenerator CreateForECDsa(System.Security.Cryptography.ECDsa key) { throw null; }
+        public static System.Security.Cryptography.X509Certificates.X509SignatureGenerator CreateForRSA(System.Security.Cryptography.RSA key, System.Security.Cryptography.RSASignaturePadding signaturePadding) { throw null; }
+        public abstract byte[] GetSignatureAlgorithmIdentifier(System.Security.Cryptography.HashAlgorithmName hashAlgorithm);
+        public abstract byte[] SignData(byte[] data, System.Security.Cryptography.HashAlgorithmName hashAlgorithm);
     }
     public sealed partial class X509Store : System.IDisposable
     {
@@ -9045,9 +9185,12 @@ namespace System.Security.Cryptography.X509Certificates
         public X509Store(System.Security.Cryptography.X509Certificates.StoreLocation storeLocation) { }
         public X509Store(System.Security.Cryptography.X509Certificates.StoreName storeName) { }
         public X509Store(System.Security.Cryptography.X509Certificates.StoreName storeName, System.Security.Cryptography.X509Certificates.StoreLocation storeLocation) { }
+        public X509Store(System.Security.Cryptography.X509Certificates.StoreName storeName, System.Security.Cryptography.X509Certificates.StoreLocation storeLocation, System.Security.Cryptography.X509Certificates.OpenFlags openFlags) { }
         public X509Store(string storeName) { }
         public X509Store(string storeName, System.Security.Cryptography.X509Certificates.StoreLocation storeLocation) { }
+        public X509Store(string storeName, System.Security.Cryptography.X509Certificates.StoreLocation storeLocation, System.Security.Cryptography.X509Certificates.OpenFlags openFlags) { }
         public System.Security.Cryptography.X509Certificates.X509Certificate2Collection Certificates { get { throw null; } }
+        public bool IsOpen { get { throw null; } }
         public System.Security.Cryptography.X509Certificates.StoreLocation Location { get { throw null; } }
         public string Name { get { throw null; } }
         public System.IntPtr StoreHandle { get { throw null; } }
@@ -9072,27 +9215,27 @@ namespace System.Security.Cryptography.X509Certificates
     }
     public enum X509SubjectKeyIdentifierHashAlgorithm
     {
-        CapiSha1 = 2,
         Sha1 = 0,
         ShortSha1 = 1,
+        CapiSha1 = 2,
     }
     [System.FlagsAttribute]
     public enum X509VerificationFlags
     {
-        AllFlags = 4095,
-        AllowUnknownCertificateAuthority = 16,
-        IgnoreCertificateAuthorityRevocationUnknown = 1024,
+        NoFlag = 0,
+        IgnoreNotTimeValid = 1,
         IgnoreCtlNotTimeValid = 2,
-        IgnoreCtlSignerRevocationUnknown = 512,
-        IgnoreEndRevocationUnknown = 256,
+        IgnoreNotTimeNested = 4,
         IgnoreInvalidBasicConstraints = 8,
+        AllowUnknownCertificateAuthority = 16,
+        IgnoreWrongUsage = 32,
         IgnoreInvalidName = 64,
         IgnoreInvalidPolicy = 128,
-        IgnoreNotTimeNested = 4,
-        IgnoreNotTimeValid = 1,
+        IgnoreEndRevocationUnknown = 256,
+        IgnoreCtlSignerRevocationUnknown = 512,
+        IgnoreCertificateAuthorityRevocationUnknown = 1024,
         IgnoreRootRevocationUnknown = 2048,
-        IgnoreWrongUsage = 32,
-        NoFlag = 0,
+        AllFlags = 4095,
     }
 }
 namespace System.Security.Permissions
@@ -9127,7 +9270,7 @@ namespace System.Text.RegularExpressions
         public string Value { get { throw null; } }
         public override string ToString() { throw null; }
     }
-    public partial class CaptureCollection : System.Collections.ICollection, System.Collections.IEnumerable
+    public partial class CaptureCollection : System.Collections.Generic.ICollection<System.Text.RegularExpressions.Capture>, System.Collections.Generic.IEnumerable<System.Text.RegularExpressions.Capture>, System.Collections.Generic.IList<System.Text.RegularExpressions.Capture>, System.Collections.Generic.IReadOnlyCollection<System.Text.RegularExpressions.Capture>, System.Collections.Generic.IReadOnlyList<System.Text.RegularExpressions.Capture>, System.Collections.ICollection, System.Collections.IEnumerable, System.Collections.IList
     {
         internal CaptureCollection() { }
         public int Count { get { throw null; } }
@@ -9135,8 +9278,27 @@ namespace System.Text.RegularExpressions
         public bool IsSynchronized { get { throw null; } }
         public System.Text.RegularExpressions.Capture this[int i] { get { throw null; } }
         public object SyncRoot { get { throw null; } }
+        System.Text.RegularExpressions.Capture System.Collections.Generic.IList<System.Text.RegularExpressions.Capture>.this[int index] { get { throw null; } set { } }
+        bool System.Collections.IList.IsFixedSize { get { throw null; } }
+        object System.Collections.IList.this[int index] { get { throw null; } set { } }
         public void CopyTo(System.Array array, int arrayIndex) { }
+        public void CopyTo(System.Text.RegularExpressions.Capture[] array, int arrayIndex) { }
         public System.Collections.IEnumerator GetEnumerator() { throw null; }
+        void System.Collections.Generic.ICollection<System.Text.RegularExpressions.Capture>.Add(System.Text.RegularExpressions.Capture item) { }
+        void System.Collections.Generic.ICollection<System.Text.RegularExpressions.Capture>.Clear() { }
+        bool System.Collections.Generic.ICollection<System.Text.RegularExpressions.Capture>.Contains(System.Text.RegularExpressions.Capture item) { throw null; }
+        bool System.Collections.Generic.ICollection<System.Text.RegularExpressions.Capture>.Remove(System.Text.RegularExpressions.Capture item) { throw null; }
+        System.Collections.Generic.IEnumerator<System.Text.RegularExpressions.Capture> System.Collections.Generic.IEnumerable<System.Text.RegularExpressions.Capture>.GetEnumerator() { throw null; }
+        int System.Collections.Generic.IList<System.Text.RegularExpressions.Capture>.IndexOf(System.Text.RegularExpressions.Capture item) { throw null; }
+        void System.Collections.Generic.IList<System.Text.RegularExpressions.Capture>.Insert(int index, System.Text.RegularExpressions.Capture item) { }
+        void System.Collections.Generic.IList<System.Text.RegularExpressions.Capture>.RemoveAt(int index) { }
+        int System.Collections.IList.Add(object value) { throw null; }
+        void System.Collections.IList.Clear() { }
+        bool System.Collections.IList.Contains(object value) { throw null; }
+        int System.Collections.IList.IndexOf(object value) { throw null; }
+        void System.Collections.IList.Insert(int index, object value) { }
+        void System.Collections.IList.Remove(object value) { }
+        void System.Collections.IList.RemoveAt(int index) { }
     }
     public partial class Group : System.Text.RegularExpressions.Capture
     {
@@ -9146,7 +9308,7 @@ namespace System.Text.RegularExpressions
         public bool Success { get { throw null; } }
         public static System.Text.RegularExpressions.Group Synchronized(System.Text.RegularExpressions.Group inner) { throw null; }
     }
-    public partial class GroupCollection : System.Collections.ICollection, System.Collections.IEnumerable
+    public partial class GroupCollection : System.Collections.Generic.ICollection<System.Text.RegularExpressions.Group>, System.Collections.Generic.IEnumerable<System.Text.RegularExpressions.Group>, System.Collections.Generic.IList<System.Text.RegularExpressions.Group>, System.Collections.Generic.IReadOnlyCollection<System.Text.RegularExpressions.Group>, System.Collections.Generic.IReadOnlyList<System.Text.RegularExpressions.Group>, System.Collections.ICollection, System.Collections.IEnumerable, System.Collections.IList
     {
         internal GroupCollection() { }
         public int Count { get { throw null; } }
@@ -9155,8 +9317,27 @@ namespace System.Text.RegularExpressions
         public System.Text.RegularExpressions.Group this[int groupnum] { get { throw null; } }
         public System.Text.RegularExpressions.Group this[string groupname] { get { throw null; } }
         public object SyncRoot { get { throw null; } }
+        System.Text.RegularExpressions.Group System.Collections.Generic.IList<System.Text.RegularExpressions.Group>.this[int index] { get { throw null; } set { } }
+        bool System.Collections.IList.IsFixedSize { get { throw null; } }
+        object System.Collections.IList.this[int index] { get { throw null; } set { } }
         public void CopyTo(System.Array array, int arrayIndex) { }
+        public void CopyTo(System.Text.RegularExpressions.Group[] array, int arrayIndex) { }
         public System.Collections.IEnumerator GetEnumerator() { throw null; }
+        void System.Collections.Generic.ICollection<System.Text.RegularExpressions.Group>.Add(System.Text.RegularExpressions.Group item) { }
+        void System.Collections.Generic.ICollection<System.Text.RegularExpressions.Group>.Clear() { }
+        bool System.Collections.Generic.ICollection<System.Text.RegularExpressions.Group>.Contains(System.Text.RegularExpressions.Group item) { throw null; }
+        bool System.Collections.Generic.ICollection<System.Text.RegularExpressions.Group>.Remove(System.Text.RegularExpressions.Group item) { throw null; }
+        System.Collections.Generic.IEnumerator<System.Text.RegularExpressions.Group> System.Collections.Generic.IEnumerable<System.Text.RegularExpressions.Group>.GetEnumerator() { throw null; }
+        int System.Collections.Generic.IList<System.Text.RegularExpressions.Group>.IndexOf(System.Text.RegularExpressions.Group item) { throw null; }
+        void System.Collections.Generic.IList<System.Text.RegularExpressions.Group>.Insert(int index, System.Text.RegularExpressions.Group item) { }
+        void System.Collections.Generic.IList<System.Text.RegularExpressions.Group>.RemoveAt(int index) { }
+        int System.Collections.IList.Add(object value) { throw null; }
+        void System.Collections.IList.Clear() { }
+        bool System.Collections.IList.Contains(object value) { throw null; }
+        int System.Collections.IList.IndexOf(object value) { throw null; }
+        void System.Collections.IList.Insert(int index, object value) { }
+        void System.Collections.IList.Remove(object value) { }
+        void System.Collections.IList.RemoveAt(int index) { }
     }
     public partial class Match : System.Text.RegularExpressions.Group
     {
@@ -9167,7 +9348,7 @@ namespace System.Text.RegularExpressions
         public virtual string Result(string replacement) { throw null; }
         public static System.Text.RegularExpressions.Match Synchronized(System.Text.RegularExpressions.Match inner) { throw null; }
     }
-    public partial class MatchCollection : System.Collections.ICollection, System.Collections.IEnumerable
+    public partial class MatchCollection : System.Collections.Generic.ICollection<System.Text.RegularExpressions.Match>, System.Collections.Generic.IEnumerable<System.Text.RegularExpressions.Match>, System.Collections.Generic.IList<System.Text.RegularExpressions.Match>, System.Collections.Generic.IReadOnlyCollection<System.Text.RegularExpressions.Match>, System.Collections.Generic.IReadOnlyList<System.Text.RegularExpressions.Match>, System.Collections.ICollection, System.Collections.IEnumerable, System.Collections.IList
     {
         internal MatchCollection() { }
         public int Count { get { throw null; } }
@@ -9175,8 +9356,27 @@ namespace System.Text.RegularExpressions
         public bool IsSynchronized { get { throw null; } }
         public virtual System.Text.RegularExpressions.Match this[int i] { get { throw null; } }
         public object SyncRoot { get { throw null; } }
+        System.Text.RegularExpressions.Match System.Collections.Generic.IList<System.Text.RegularExpressions.Match>.this[int index] { get { throw null; } set { } }
+        bool System.Collections.IList.IsFixedSize { get { throw null; } }
+        object System.Collections.IList.this[int index] { get { throw null; } set { } }
         public void CopyTo(System.Array array, int arrayIndex) { }
+        public void CopyTo(System.Text.RegularExpressions.Match[] array, int arrayIndex) { }
         public System.Collections.IEnumerator GetEnumerator() { throw null; }
+        void System.Collections.Generic.ICollection<System.Text.RegularExpressions.Match>.Add(System.Text.RegularExpressions.Match item) { }
+        void System.Collections.Generic.ICollection<System.Text.RegularExpressions.Match>.Clear() { }
+        bool System.Collections.Generic.ICollection<System.Text.RegularExpressions.Match>.Contains(System.Text.RegularExpressions.Match item) { throw null; }
+        bool System.Collections.Generic.ICollection<System.Text.RegularExpressions.Match>.Remove(System.Text.RegularExpressions.Match item) { throw null; }
+        System.Collections.Generic.IEnumerator<System.Text.RegularExpressions.Match> System.Collections.Generic.IEnumerable<System.Text.RegularExpressions.Match>.GetEnumerator() { throw null; }
+        int System.Collections.Generic.IList<System.Text.RegularExpressions.Match>.IndexOf(System.Text.RegularExpressions.Match item) { throw null; }
+        void System.Collections.Generic.IList<System.Text.RegularExpressions.Match>.Insert(int index, System.Text.RegularExpressions.Match item) { }
+        void System.Collections.Generic.IList<System.Text.RegularExpressions.Match>.RemoveAt(int index) { }
+        int System.Collections.IList.Add(object value) { throw null; }
+        void System.Collections.IList.Clear() { }
+        bool System.Collections.IList.Contains(object value) { throw null; }
+        int System.Collections.IList.IndexOf(object value) { throw null; }
+        void System.Collections.IList.Insert(int index, object value) { }
+        void System.Collections.IList.Remove(object value) { }
+        void System.Collections.IList.RemoveAt(int index) { }
     }
     public delegate string MatchEvaluator(System.Text.RegularExpressions.Match match);
     public partial class Regex : System.Runtime.Serialization.ISerializable
@@ -9186,9 +9386,7 @@ namespace System.Text.RegularExpressions
         protected internal int capsize;
         protected internal string[] capslist;
         protected internal System.Text.RegularExpressions.RegexRunnerFactory factory;
-        [System.NonSerializedAttribute]
         public static readonly System.TimeSpan InfiniteMatchTimeout;
-        [System.Runtime.Serialization.OptionalFieldAttribute(VersionAdded=2)]
         protected internal System.TimeSpan internalMatchTimeout;
         protected internal string pattern;
         protected internal System.Text.RegularExpressions.RegexOptions roptions;
@@ -9252,7 +9450,7 @@ namespace System.Text.RegularExpressions
         public override string ToString() { throw null; }
         public static string Unescape(string str) { throw null; }
         protected bool UseOptionC() { throw null; }
-        protected bool UseOptionR() { throw null; }
+        protected internal bool UseOptionR() { throw null; }
         protected internal static void ValidateMatchTimeout(System.TimeSpan matchTimeout) { }
     }
     public partial class RegexCompilationInfo
@@ -9276,23 +9474,22 @@ namespace System.Text.RegularExpressions
         public string Input { get { throw null; } }
         public System.TimeSpan MatchTimeout { get { throw null; } }
         public string Pattern { get { throw null; } }
-        void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo si, System.Runtime.Serialization.StreamingContext context) { }
+        void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
     }
     [System.FlagsAttribute]
     public enum RegexOptions
     {
-        Compiled = 8,
-        CultureInvariant = 512,
-        ECMAScript = 256,
-        ExplicitCapture = 4,
-        IgnoreCase = 1,
-        IgnorePatternWhitespace = 32,
-        Multiline = 2,
         None = 0,
-        RightToLeft = 64,
+        IgnoreCase = 1,
+        Multiline = 2,
+        ExplicitCapture = 4,
+        Compiled = 8,
         Singleline = 16,
+        IgnorePatternWhitespace = 32,
+        RightToLeft = 64,
+        ECMAScript = 256,
+        CultureInvariant = 512,
     }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
     public abstract partial class RegexRunner
     {
         protected internal int[] runcrawl;
@@ -9334,7 +9531,6 @@ namespace System.Text.RegularExpressions
         protected void TransferCapture(int capnum, int uncapnum, int start, int end) { }
         protected void Uncapture() { }
     }
-    [System.ComponentModel.EditorBrowsableAttribute((System.ComponentModel.EditorBrowsableState)(1))]
     public abstract partial class RegexRunnerFactory
     {
         protected RegexRunnerFactory() { }
@@ -9436,7 +9632,7 @@ namespace System.Timers
         public void Start() { }
         public void Stop() { }
     }
-    [System.AttributeUsageAttribute((System.AttributeTargets)(32767))]
+    [System.AttributeUsageAttribute(System.AttributeTargets.All)]
     public partial class TimersDescriptionAttribute : System.ComponentModel.DescriptionAttribute
     {
         public TimersDescriptionAttribute(string description) { }
@@ -9454,7 +9650,7 @@ namespace System.Windows.Input
 }
 namespace System.Windows.Markup
 {
-    [System.AttributeUsageAttribute((System.AttributeTargets)(1244), AllowMultiple=false, Inherited=true)]
+    [System.AttributeUsageAttribute(System.AttributeTargets.Class | System.AttributeTargets.Enum | System.AttributeTargets.Interface | System.AttributeTargets.Method | System.AttributeTargets.Property | System.AttributeTargets.Struct, AllowMultiple=false, Inherited=true)]
     public sealed partial class ValueSerializerAttribute : System.Attribute
     {
         public ValueSerializerAttribute(string valueSerializerTypeName) { }

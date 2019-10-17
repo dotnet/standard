@@ -16,6 +16,7 @@
     <RunApiCompatForSrc>true</RunApiCompatForSrc>
     <RunMatchingRefApiCompat>false</RunMatchingRefApiCompat>
     <ApiCompatBaseline>$(MSBuildProjectDirectory)\ApiCompatBaseline.$(TargetFramework).txt</ApiCompatBaseline>
+    <ApiCompatExcludeAttributeList>..\..\platforms\attributeExcludeList.txt</ApiCompatExcludeAttributeList>
     <NoWarn>$(NoWarn);618</NoWarn>
   </PropertyGroup>
 

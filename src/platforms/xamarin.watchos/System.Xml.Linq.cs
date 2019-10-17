@@ -42,8 +42,8 @@ namespace System.Xml.Linq
     [System.FlagsAttribute]
     public enum SaveOptions
     {
-        DisableFormatting = 1,
         None = 0,
+        DisableFormatting = 1,
         OmitDuplicateNamespaces = 2,
     }
     public partial class XAttribute : System.Xml.Linq.XObject
@@ -74,29 +74,29 @@ namespace System.Xml.Linq
         [System.CLSCompliantAttribute(false)]
         public static explicit operator long (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<bool> (System.Xml.Linq.XAttribute attribute) { throw null; }
+        public static explicit operator bool? (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<System.DateTimeOffset> (System.Xml.Linq.XAttribute attribute) { throw null; }
+        public static explicit operator System.DateTimeOffset? (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<System.DateTime> (System.Xml.Linq.XAttribute attribute) { throw null; }
+        public static explicit operator System.DateTime? (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<decimal> (System.Xml.Linq.XAttribute attribute) { throw null; }
+        public static explicit operator decimal? (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<double> (System.Xml.Linq.XAttribute attribute) { throw null; }
+        public static explicit operator double? (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<System.Guid> (System.Xml.Linq.XAttribute attribute) { throw null; }
+        public static explicit operator System.Guid? (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<int> (System.Xml.Linq.XAttribute attribute) { throw null; }
+        public static explicit operator int? (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<long> (System.Xml.Linq.XAttribute attribute) { throw null; }
+        public static explicit operator long? (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<float> (System.Xml.Linq.XAttribute attribute) { throw null; }
+        public static explicit operator float? (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<System.TimeSpan> (System.Xml.Linq.XAttribute attribute) { throw null; }
+        public static explicit operator System.TimeSpan? (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<uint> (System.Xml.Linq.XAttribute attribute) { throw null; }
+        public static explicit operator uint? (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<ulong> (System.Xml.Linq.XAttribute attribute) { throw null; }
+        public static explicit operator ulong? (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static explicit operator float (System.Xml.Linq.XAttribute attribute) { throw null; }
         [System.CLSCompliantAttribute(false)]
@@ -117,6 +117,7 @@ namespace System.Xml.Linq
         public XCData(System.Xml.Linq.XCData other) : base (default(string)) { }
         public override System.Xml.XmlNodeType NodeType { get { throw null; } }
         public override void WriteTo(System.Xml.XmlWriter writer) { }
+        public override System.Threading.Tasks.Task WriteToAsync(System.Xml.XmlWriter writer, System.Threading.CancellationToken cancellationToken) { throw null; }
     }
     public partial class XComment : System.Xml.Linq.XNode
     {
@@ -125,6 +126,7 @@ namespace System.Xml.Linq
         public override System.Xml.XmlNodeType NodeType { get { throw null; } }
         public string Value { get { throw null; } set { } }
         public override void WriteTo(System.Xml.XmlWriter writer) { }
+        public override System.Threading.Tasks.Task WriteToAsync(System.Xml.XmlWriter writer, System.Threading.CancellationToken cancellationToken) { throw null; }
     }
     public abstract partial class XContainer : System.Xml.Linq.XNode
     {
@@ -174,6 +176,9 @@ namespace System.Xml.Linq
         public static System.Xml.Linq.XDocument Load(string uri, System.Xml.Linq.LoadOptions options) { throw null; }
         public static System.Xml.Linq.XDocument Load(System.Xml.XmlReader reader) { throw null; }
         public static System.Xml.Linq.XDocument Load(System.Xml.XmlReader reader, System.Xml.Linq.LoadOptions options) { throw null; }
+        public static System.Threading.Tasks.Task<System.Xml.Linq.XDocument> LoadAsync(System.IO.Stream stream, System.Xml.Linq.LoadOptions options, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public static System.Threading.Tasks.Task<System.Xml.Linq.XDocument> LoadAsync(System.IO.TextReader textReader, System.Xml.Linq.LoadOptions options, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public static System.Threading.Tasks.Task<System.Xml.Linq.XDocument> LoadAsync(System.Xml.XmlReader reader, System.Xml.Linq.LoadOptions options, System.Threading.CancellationToken cancellationToken) { throw null; }
         public static System.Xml.Linq.XDocument Parse(string text) { throw null; }
         public static System.Xml.Linq.XDocument Parse(string text, System.Xml.Linq.LoadOptions options) { throw null; }
         public void Save(System.IO.Stream stream) { }
@@ -183,7 +188,11 @@ namespace System.Xml.Linq
         public void Save(string fileName) { }
         public void Save(string fileName, System.Xml.Linq.SaveOptions options) { }
         public void Save(System.Xml.XmlWriter writer) { }
+        public System.Threading.Tasks.Task SaveAsync(System.IO.Stream stream, System.Xml.Linq.SaveOptions options, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task SaveAsync(System.IO.TextWriter textWriter, System.Xml.Linq.SaveOptions options, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task SaveAsync(System.Xml.XmlWriter writer, System.Threading.CancellationToken cancellationToken) { throw null; }
         public override void WriteTo(System.Xml.XmlWriter writer) { }
+        public override System.Threading.Tasks.Task WriteToAsync(System.Xml.XmlWriter writer, System.Threading.CancellationToken cancellationToken) { throw null; }
     }
     public partial class XDocumentType : System.Xml.Linq.XNode
     {
@@ -195,6 +204,7 @@ namespace System.Xml.Linq
         public string PublicId { get { throw null; } set { } }
         public string SystemId { get { throw null; } set { } }
         public override void WriteTo(System.Xml.XmlWriter writer) { }
+        public override System.Threading.Tasks.Task WriteToAsync(System.Xml.XmlWriter writer, System.Threading.CancellationToken cancellationToken) { throw null; }
     }
     [System.Xml.Serialization.XmlSchemaProviderAttribute(null, IsAny=true)]
     public partial class XElement : System.Xml.Linq.XContainer, System.Xml.Serialization.IXmlSerializable
@@ -232,6 +242,9 @@ namespace System.Xml.Linq
         public static System.Xml.Linq.XElement Load(string uri, System.Xml.Linq.LoadOptions options) { throw null; }
         public static System.Xml.Linq.XElement Load(System.Xml.XmlReader reader) { throw null; }
         public static System.Xml.Linq.XElement Load(System.Xml.XmlReader reader, System.Xml.Linq.LoadOptions options) { throw null; }
+        public static System.Threading.Tasks.Task<System.Xml.Linq.XElement> LoadAsync(System.IO.Stream stream, System.Xml.Linq.LoadOptions options, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public static System.Threading.Tasks.Task<System.Xml.Linq.XElement> LoadAsync(System.IO.TextReader textReader, System.Xml.Linq.LoadOptions options, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public static System.Threading.Tasks.Task<System.Xml.Linq.XElement> LoadAsync(System.Xml.XmlReader reader, System.Xml.Linq.LoadOptions options, System.Threading.CancellationToken cancellationToken) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static explicit operator bool (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
@@ -249,29 +262,29 @@ namespace System.Xml.Linq
         [System.CLSCompliantAttribute(false)]
         public static explicit operator long (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<bool> (System.Xml.Linq.XElement element) { throw null; }
+        public static explicit operator bool? (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<System.DateTimeOffset> (System.Xml.Linq.XElement element) { throw null; }
+        public static explicit operator System.DateTimeOffset? (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<System.DateTime> (System.Xml.Linq.XElement element) { throw null; }
+        public static explicit operator System.DateTime? (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<decimal> (System.Xml.Linq.XElement element) { throw null; }
+        public static explicit operator decimal? (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<double> (System.Xml.Linq.XElement element) { throw null; }
+        public static explicit operator double? (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<System.Guid> (System.Xml.Linq.XElement element) { throw null; }
+        public static explicit operator System.Guid? (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<int> (System.Xml.Linq.XElement element) { throw null; }
+        public static explicit operator int? (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<long> (System.Xml.Linq.XElement element) { throw null; }
+        public static explicit operator long? (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<float> (System.Xml.Linq.XElement element) { throw null; }
+        public static explicit operator float? (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<System.TimeSpan> (System.Xml.Linq.XElement element) { throw null; }
+        public static explicit operator System.TimeSpan? (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<uint> (System.Xml.Linq.XElement element) { throw null; }
+        public static explicit operator uint? (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static explicit operator System.Nullable<ulong> (System.Xml.Linq.XElement element) { throw null; }
+        public static explicit operator ulong? (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static explicit operator float (System.Xml.Linq.XElement element) { throw null; }
         [System.CLSCompliantAttribute(false)]
@@ -297,6 +310,9 @@ namespace System.Xml.Linq
         public void Save(string fileName) { }
         public void Save(string fileName, System.Xml.Linq.SaveOptions options) { }
         public void Save(System.Xml.XmlWriter writer) { }
+        public System.Threading.Tasks.Task SaveAsync(System.IO.Stream stream, System.Xml.Linq.SaveOptions options, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task SaveAsync(System.IO.TextWriter textWriter, System.Xml.Linq.SaveOptions options, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task SaveAsync(System.Xml.XmlWriter writer, System.Threading.CancellationToken cancellationToken) { throw null; }
         public void SetAttributeValue(System.Xml.Linq.XName name, object value) { }
         public void SetElementValue(System.Xml.Linq.XName name, object value) { }
         public void SetValue(object value) { }
@@ -304,6 +320,7 @@ namespace System.Xml.Linq
         void System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader reader) { }
         void System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter writer) { }
         public override void WriteTo(System.Xml.XmlWriter writer) { }
+        public override System.Threading.Tasks.Task WriteToAsync(System.Xml.XmlWriter writer, System.Threading.CancellationToken cancellationToken) { throw null; }
     }
     public sealed partial class XName : System.IEquatable<System.Xml.Linq.XName>, System.Runtime.Serialization.ISerializable
     {
@@ -367,12 +384,14 @@ namespace System.Xml.Linq
         public System.Collections.Generic.IEnumerable<System.Xml.Linq.XNode> NodesAfterSelf() { throw null; }
         public System.Collections.Generic.IEnumerable<System.Xml.Linq.XNode> NodesBeforeSelf() { throw null; }
         public static System.Xml.Linq.XNode ReadFrom(System.Xml.XmlReader reader) { throw null; }
+        public static System.Threading.Tasks.Task<System.Xml.Linq.XNode> ReadFromAsync(System.Xml.XmlReader reader, System.Threading.CancellationToken cancellationToken) { throw null; }
         public void Remove() { }
         public void ReplaceWith(object content) { }
         public void ReplaceWith(params object[] content) { }
         public override string ToString() { throw null; }
         public string ToString(System.Xml.Linq.SaveOptions options) { throw null; }
         public abstract void WriteTo(System.Xml.XmlWriter writer);
+        public abstract System.Threading.Tasks.Task WriteToAsync(System.Xml.XmlWriter writer, System.Threading.CancellationToken cancellationToken);
     }
     public sealed partial class XNodeDocumentOrderComparer : System.Collections.Generic.IComparer<System.Xml.Linq.XNode>, System.Collections.IComparer
     {
@@ -411,8 +430,8 @@ namespace System.Xml.Linq
     public enum XObjectChange
     {
         Add = 0,
-        Name = 2,
         Remove = 1,
+        Name = 2,
         Value = 3,
     }
     public partial class XObjectChangeEventArgs : System.EventArgs
@@ -432,6 +451,7 @@ namespace System.Xml.Linq
         public override System.Xml.XmlNodeType NodeType { get { throw null; } }
         public string Target { get { throw null; } set { } }
         public override void WriteTo(System.Xml.XmlWriter writer) { }
+        public override System.Threading.Tasks.Task WriteToAsync(System.Xml.XmlWriter writer, System.Threading.CancellationToken cancellationToken) { throw null; }
     }
     public partial class XStreamingElement
     {
@@ -459,6 +479,7 @@ namespace System.Xml.Linq
         public override System.Xml.XmlNodeType NodeType { get { throw null; } }
         public string Value { get { throw null; } set { } }
         public override void WriteTo(System.Xml.XmlWriter writer) { }
+        public override System.Threading.Tasks.Task WriteToAsync(System.Xml.XmlWriter writer, System.Threading.CancellationToken cancellationToken) { throw null; }
     }
 }
 namespace System.Xml.Schema
@@ -487,5 +508,9 @@ namespace System.Xml.XPath
         public static System.Xml.Linq.XElement XPathSelectElement(this System.Xml.Linq.XNode node, string expression, System.Xml.IXmlNamespaceResolver resolver) { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> XPathSelectElements(this System.Xml.Linq.XNode node, string expression) { throw null; }
         public static System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement> XPathSelectElements(this System.Xml.Linq.XNode node, string expression, System.Xml.IXmlNamespaceResolver resolver) { throw null; }
+    }
+    public static partial class XDocumentExtensions
+    {
+        public static System.Xml.XPath.IXPathNavigable ToXPathNavigable(this System.Xml.Linq.XNode node) { throw null; }
     }
 }

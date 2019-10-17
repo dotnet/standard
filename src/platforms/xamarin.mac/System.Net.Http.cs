@@ -14,8 +14,8 @@ namespace System.Net.Http
     }
     public enum ClientCertificateOption
     {
-        Automatic = 1,
         Manual = 0,
+        Automatic = 1,
     }
     public abstract partial class DelegatingHandler : System.Net.Http.HttpMessageHandler
     {
@@ -58,6 +58,10 @@ namespace System.Net.Http
         public System.Threading.Tasks.Task<System.IO.Stream> GetStreamAsync(System.Uri requestUri) { throw null; }
         public System.Threading.Tasks.Task<string> GetStringAsync(string requestUri) { throw null; }
         public System.Threading.Tasks.Task<string> GetStringAsync(System.Uri requestUri) { throw null; }
+        public System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> PatchAsync(string requestUri, System.Net.Http.HttpContent content) { throw null; }
+        public System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> PatchAsync(string requestUri, System.Net.Http.HttpContent content, System.Threading.CancellationToken cancellationToken) { throw null; }
+        public System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> PatchAsync(System.Uri requestUri, System.Net.Http.HttpContent content) { throw null; }
+        public System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> PatchAsync(System.Uri requestUri, System.Net.Http.HttpContent content, System.Threading.CancellationToken cancellationToken) { throw null; }
         public System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> PostAsync(string requestUri, System.Net.Http.HttpContent content) { throw null; }
         public System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> PostAsync(string requestUri, System.Net.Http.HttpContent content, System.Threading.CancellationToken cancellationToken) { throw null; }
         public System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> PostAsync(System.Uri requestUri, System.Net.Http.HttpContent content) { throw null; }
@@ -81,6 +85,7 @@ namespace System.Net.Http
         public System.Security.Cryptography.X509Certificates.X509CertificateCollection ClientCertificates { get { throw null; } }
         public System.Net.CookieContainer CookieContainer { get { throw null; } set { } }
         public System.Net.ICredentials Credentials { get { throw null; } set { } }
+        public static System.Func<System.Net.Http.HttpRequestMessage, System.Security.Cryptography.X509Certificates.X509Certificate2, System.Security.Cryptography.X509Certificates.X509Chain, System.Net.Security.SslPolicyErrors, bool> DangerousAcceptAnyServerCertificateValidator { get { throw null; } }
         public System.Net.ICredentials DefaultProxyCredentials { get { throw null; } set { } }
         public int MaxAutomaticRedirections { get { throw null; } set { } }
         public int MaxConnectionsPerServer { get { throw null; } set { } }
@@ -145,6 +150,7 @@ namespace System.Net.Http
         public static System.Net.Http.HttpMethod Head { get { throw null; } }
         public string Method { get { throw null; } }
         public static System.Net.Http.HttpMethod Options { get { throw null; } }
+        public static System.Net.Http.HttpMethod Patch { get { throw null; } }
         public static System.Net.Http.HttpMethod Post { get { throw null; } }
         public static System.Net.Http.HttpMethod Put { get { throw null; } }
         public static System.Net.Http.HttpMethod Trace { get { throw null; } }
@@ -186,6 +192,7 @@ namespace System.Net.Http
         public string ReasonPhrase { get { throw null; } set { } }
         public System.Net.Http.HttpRequestMessage RequestMessage { get { throw null; } set { } }
         public System.Net.HttpStatusCode StatusCode { get { throw null; } set { } }
+        public System.Net.Http.Headers.HttpResponseHeaders TrailingHeaders { get { throw null; } }
         public System.Version Version { get { throw null; } set { } }
         public void Dispose() { }
         protected virtual void Dispose(bool disposing) { }
@@ -219,6 +226,12 @@ namespace System.Net.Http
         public override void Add(System.Net.Http.HttpContent content) { }
         public void Add(System.Net.Http.HttpContent content, string name) { }
         public void Add(System.Net.Http.HttpContent content, string name, string fileName) { }
+    }
+    public sealed partial class ReadOnlyMemoryContent : System.Net.Http.HttpContent
+    {
+        public ReadOnlyMemoryContent(System.ReadOnlyMemory<byte> content) { }
+        protected internal override System.Threading.Tasks.Task SerializeToStreamAsync(System.IO.Stream stream, System.Net.TransportContext context) { throw null; }
+        protected internal override bool TryComputeLength(out long length) { throw null; }
     }
     public partial class StreamContent : System.Net.Http.HttpContent
     {
@@ -255,10 +268,10 @@ namespace System.Net.Http.Headers
     {
         public CacheControlHeaderValue() { }
         public System.Collections.Generic.ICollection<System.Net.Http.Headers.NameValueHeaderValue> Extensions { get { throw null; } }
-        public System.Nullable<System.TimeSpan> MaxAge { get { throw null; } set { } }
+        public System.TimeSpan? MaxAge { get { throw null; } set { } }
         public bool MaxStale { get { throw null; } set { } }
-        public System.Nullable<System.TimeSpan> MaxStaleLimit { get { throw null; } set { } }
-        public System.Nullable<System.TimeSpan> MinFresh { get { throw null; } set { } }
+        public System.TimeSpan? MaxStaleLimit { get { throw null; } set { } }
+        public System.TimeSpan? MinFresh { get { throw null; } set { } }
         public bool MustRevalidate { get { throw null; } set { } }
         public bool NoCache { get { throw null; } set { } }
         public System.Collections.Generic.ICollection<string> NoCacheHeaders { get { throw null; } }
@@ -269,7 +282,7 @@ namespace System.Net.Http.Headers
         public System.Collections.Generic.ICollection<string> PrivateHeaders { get { throw null; } }
         public bool ProxyRevalidate { get { throw null; } set { } }
         public bool Public { get { throw null; } set { } }
-        public System.Nullable<System.TimeSpan> SharedMaxAge { get { throw null; } set { } }
+        public System.TimeSpan? SharedMaxAge { get { throw null; } set { } }
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
         public static System.Net.Http.Headers.CacheControlHeaderValue Parse(string input) { throw null; }
@@ -281,15 +294,15 @@ namespace System.Net.Http.Headers
     {
         protected ContentDispositionHeaderValue(System.Net.Http.Headers.ContentDispositionHeaderValue source) { }
         public ContentDispositionHeaderValue(string dispositionType) { }
-        public System.Nullable<System.DateTimeOffset> CreationDate { get { throw null; } set { } }
+        public System.DateTimeOffset? CreationDate { get { throw null; } set { } }
         public string DispositionType { get { throw null; } set { } }
         public string FileName { get { throw null; } set { } }
         public string FileNameStar { get { throw null; } set { } }
-        public System.Nullable<System.DateTimeOffset> ModificationDate { get { throw null; } set { } }
+        public System.DateTimeOffset? ModificationDate { get { throw null; } set { } }
         public string Name { get { throw null; } set { } }
         public System.Collections.Generic.ICollection<System.Net.Http.Headers.NameValueHeaderValue> Parameters { get { throw null; } }
-        public System.Nullable<System.DateTimeOffset> ReadDate { get { throw null; } set { } }
-        public System.Nullable<long> Size { get { throw null; } set { } }
+        public System.DateTimeOffset? ReadDate { get { throw null; } set { } }
+        public long? Size { get { throw null; } set { } }
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
         public static System.Net.Http.Headers.ContentDispositionHeaderValue Parse(string input) { throw null; }
@@ -302,11 +315,11 @@ namespace System.Net.Http.Headers
         public ContentRangeHeaderValue(long length) { }
         public ContentRangeHeaderValue(long from, long to) { }
         public ContentRangeHeaderValue(long from, long to, long length) { }
-        public System.Nullable<long> From { get { throw null; } }
+        public long? From { get { throw null; } }
         public bool HasLength { get { throw null; } }
         public bool HasRange { get { throw null; } }
-        public System.Nullable<long> Length { get { throw null; } }
-        public System.Nullable<long> To { get { throw null; } }
+        public long? Length { get { throw null; } }
+        public long? To { get { throw null; } }
         public string Unit { get { throw null; } set { } }
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
@@ -336,13 +349,13 @@ namespace System.Net.Http.Headers
         public System.Net.Http.Headers.ContentDispositionHeaderValue ContentDisposition { get { throw null; } set { } }
         public System.Collections.Generic.ICollection<string> ContentEncoding { get { throw null; } }
         public System.Collections.Generic.ICollection<string> ContentLanguage { get { throw null; } }
-        public System.Nullable<long> ContentLength { get { throw null; } set { } }
+        public long? ContentLength { get { throw null; } set { } }
         public System.Uri ContentLocation { get { throw null; } set { } }
         public byte[] ContentMD5 { get { throw null; } set { } }
         public System.Net.Http.Headers.ContentRangeHeaderValue ContentRange { get { throw null; } set { } }
         public System.Net.Http.Headers.MediaTypeHeaderValue ContentType { get { throw null; } set { } }
-        public System.Nullable<System.DateTimeOffset> Expires { get { throw null; } set { } }
-        public System.Nullable<System.DateTimeOffset> LastModified { get { throw null; } set { } }
+        public System.DateTimeOffset? Expires { get { throw null; } set { } }
+        public System.DateTimeOffset? LastModified { get { throw null; } set { } }
     }
     public abstract partial class HttpHeaders : System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, System.Collections.Generic.IEnumerable<string>>>, System.Collections.IEnumerable
     {
@@ -386,18 +399,18 @@ namespace System.Net.Http.Headers
         public System.Net.Http.Headers.AuthenticationHeaderValue Authorization { get { throw null; } set { } }
         public System.Net.Http.Headers.CacheControlHeaderValue CacheControl { get { throw null; } set { } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<string> Connection { get { throw null; } }
-        public System.Nullable<bool> ConnectionClose { get { throw null; } set { } }
-        public System.Nullable<System.DateTimeOffset> Date { get { throw null; } set { } }
+        public bool? ConnectionClose { get { throw null; } set { } }
+        public System.DateTimeOffset? Date { get { throw null; } set { } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<System.Net.Http.Headers.NameValueWithParametersHeaderValue> Expect { get { throw null; } }
-        public System.Nullable<bool> ExpectContinue { get { throw null; } set { } }
+        public bool? ExpectContinue { get { throw null; } set { } }
         public string From { get { throw null; } set { } }
         public string Host { get { throw null; } set { } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<System.Net.Http.Headers.EntityTagHeaderValue> IfMatch { get { throw null; } }
-        public System.Nullable<System.DateTimeOffset> IfModifiedSince { get { throw null; } set { } }
+        public System.DateTimeOffset? IfModifiedSince { get { throw null; } set { } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<System.Net.Http.Headers.EntityTagHeaderValue> IfNoneMatch { get { throw null; } }
         public System.Net.Http.Headers.RangeConditionHeaderValue IfRange { get { throw null; } set { } }
-        public System.Nullable<System.DateTimeOffset> IfUnmodifiedSince { get { throw null; } set { } }
-        public System.Nullable<int> MaxForwards { get { throw null; } set { } }
+        public System.DateTimeOffset? IfUnmodifiedSince { get { throw null; } set { } }
+        public int? MaxForwards { get { throw null; } set { } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<System.Net.Http.Headers.NameValueHeaderValue> Pragma { get { throw null; } }
         public System.Net.Http.Headers.AuthenticationHeaderValue ProxyAuthorization { get { throw null; } set { } }
         public System.Net.Http.Headers.RangeHeaderValue Range { get { throw null; } set { } }
@@ -405,7 +418,7 @@ namespace System.Net.Http.Headers
         public System.Net.Http.Headers.HttpHeaderValueCollection<System.Net.Http.Headers.TransferCodingWithQualityHeaderValue> TE { get { throw null; } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<string> Trailer { get { throw null; } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<System.Net.Http.Headers.TransferCodingHeaderValue> TransferEncoding { get { throw null; } }
-        public System.Nullable<bool> TransferEncodingChunked { get { throw null; } set { } }
+        public bool? TransferEncodingChunked { get { throw null; } set { } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<System.Net.Http.Headers.ProductHeaderValue> Upgrade { get { throw null; } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<System.Net.Http.Headers.ProductInfoHeaderValue> UserAgent { get { throw null; } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<System.Net.Http.Headers.ViaHeaderValue> Via { get { throw null; } }
@@ -415,11 +428,11 @@ namespace System.Net.Http.Headers
     {
         internal HttpResponseHeaders() { }
         public System.Net.Http.Headers.HttpHeaderValueCollection<string> AcceptRanges { get { throw null; } }
-        public System.Nullable<System.TimeSpan> Age { get { throw null; } set { } }
+        public System.TimeSpan? Age { get { throw null; } set { } }
         public System.Net.Http.Headers.CacheControlHeaderValue CacheControl { get { throw null; } set { } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<string> Connection { get { throw null; } }
-        public System.Nullable<bool> ConnectionClose { get { throw null; } set { } }
-        public System.Nullable<System.DateTimeOffset> Date { get { throw null; } set { } }
+        public bool? ConnectionClose { get { throw null; } set { } }
+        public System.DateTimeOffset? Date { get { throw null; } set { } }
         public System.Net.Http.Headers.EntityTagHeaderValue ETag { get { throw null; } set { } }
         public System.Uri Location { get { throw null; } set { } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<System.Net.Http.Headers.NameValueHeaderValue> Pragma { get { throw null; } }
@@ -428,7 +441,7 @@ namespace System.Net.Http.Headers
         public System.Net.Http.Headers.HttpHeaderValueCollection<System.Net.Http.Headers.ProductInfoHeaderValue> Server { get { throw null; } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<string> Trailer { get { throw null; } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<System.Net.Http.Headers.TransferCodingHeaderValue> TransferEncoding { get { throw null; } }
-        public System.Nullable<bool> TransferEncodingChunked { get { throw null; } set { } }
+        public bool? TransferEncodingChunked { get { throw null; } set { } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<System.Net.Http.Headers.ProductHeaderValue> Upgrade { get { throw null; } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<string> Vary { get { throw null; } }
         public System.Net.Http.Headers.HttpHeaderValueCollection<System.Net.Http.Headers.ViaHeaderValue> Via { get { throw null; } }
@@ -453,7 +466,7 @@ namespace System.Net.Http.Headers
     {
         public MediaTypeWithQualityHeaderValue(string mediaType) : base (default(string)) { }
         public MediaTypeWithQualityHeaderValue(string mediaType, double quality) : base (default(string)) { }
-        public System.Nullable<double> Quality { get { throw null; } set { } }
+        public double? Quality { get { throw null; } set { } }
         public static new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue Parse(string input) { throw null; }
         public static bool TryParse(string input, out System.Net.Http.Headers.MediaTypeWithQualityHeaderValue parsedValue) { throw null; }
     }
@@ -516,7 +529,7 @@ namespace System.Net.Http.Headers
         public RangeConditionHeaderValue(System.DateTimeOffset date) { }
         public RangeConditionHeaderValue(System.Net.Http.Headers.EntityTagHeaderValue entityTag) { }
         public RangeConditionHeaderValue(string entityTag) { }
-        public System.Nullable<System.DateTimeOffset> Date { get { throw null; } }
+        public System.DateTimeOffset? Date { get { throw null; } }
         public System.Net.Http.Headers.EntityTagHeaderValue EntityTag { get { throw null; } }
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
@@ -528,7 +541,7 @@ namespace System.Net.Http.Headers
     public partial class RangeHeaderValue : System.ICloneable
     {
         public RangeHeaderValue() { }
-        public RangeHeaderValue(System.Nullable<long> from, System.Nullable<long> to) { }
+        public RangeHeaderValue(long? from, long? to) { }
         public System.Collections.Generic.ICollection<System.Net.Http.Headers.RangeItemHeaderValue> Ranges { get { throw null; } }
         public string Unit { get { throw null; } set { } }
         public override bool Equals(object obj) { throw null; }
@@ -540,9 +553,9 @@ namespace System.Net.Http.Headers
     }
     public partial class RangeItemHeaderValue : System.ICloneable
     {
-        public RangeItemHeaderValue(System.Nullable<long> from, System.Nullable<long> to) { }
-        public System.Nullable<long> From { get { throw null; } }
-        public System.Nullable<long> To { get { throw null; } }
+        public RangeItemHeaderValue(long? from, long? to) { }
+        public long? From { get { throw null; } }
+        public long? To { get { throw null; } }
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
         object System.ICloneable.Clone() { throw null; }
@@ -552,8 +565,8 @@ namespace System.Net.Http.Headers
     {
         public RetryConditionHeaderValue(System.DateTimeOffset date) { }
         public RetryConditionHeaderValue(System.TimeSpan delta) { }
-        public System.Nullable<System.DateTimeOffset> Date { get { throw null; } }
-        public System.Nullable<System.TimeSpan> Delta { get { throw null; } }
+        public System.DateTimeOffset? Date { get { throw null; } }
+        public System.TimeSpan? Delta { get { throw null; } }
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
         public static System.Net.Http.Headers.RetryConditionHeaderValue Parse(string input) { throw null; }
@@ -565,7 +578,7 @@ namespace System.Net.Http.Headers
     {
         public StringWithQualityHeaderValue(string value) { }
         public StringWithQualityHeaderValue(string value, double quality) { }
-        public System.Nullable<double> Quality { get { throw null; } }
+        public double? Quality { get { throw null; } }
         public string Value { get { throw null; } }
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
@@ -591,7 +604,7 @@ namespace System.Net.Http.Headers
     {
         public TransferCodingWithQualityHeaderValue(string value) : base (default(string)) { }
         public TransferCodingWithQualityHeaderValue(string value, double quality) : base (default(string)) { }
-        public System.Nullable<double> Quality { get { throw null; } set { } }
+        public double? Quality { get { throw null; } set { } }
         public static new System.Net.Http.Headers.TransferCodingWithQualityHeaderValue Parse(string input) { throw null; }
         public static bool TryParse(string input, out System.Net.Http.Headers.TransferCodingWithQualityHeaderValue parsedValue) { throw null; }
     }
@@ -617,7 +630,7 @@ namespace System.Net.Http.Headers
         public WarningHeaderValue(int code, string agent, string text, System.DateTimeOffset date) { }
         public string Agent { get { throw null; } }
         public int Code { get { throw null; } }
-        public System.Nullable<System.DateTimeOffset> Date { get { throw null; } }
+        public System.DateTimeOffset? Date { get { throw null; } }
         public string Text { get { throw null; } }
         public override bool Equals(object obj) { throw null; }
         public override int GetHashCode() { throw null; }
