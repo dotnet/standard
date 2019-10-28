@@ -3,29 +3,29 @@
   <ProductDependencies>
   </ProductDependencies>
   <ToolsetDependencies>
-    <Dependency Name="Microsoft.DotNet.Arcade.Sdk" Version="5.0.0-beta.19526.1">
+    <Dependency Name="Microsoft.DotNet.Arcade.Sdk" Version="5.0.0-beta.19527.3">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>109b87c8a520a14ec4a156f0364133c16a8cbc1e</Sha>
+      <Sha>5ce0aaed2f8df9cd2fe0221a426c021efe37f655</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.ApiCompat" Version="5.0.0-beta.19526.1">
+    <Dependency Name="Microsoft.DotNet.ApiCompat" Version="5.0.0-beta.19527.3">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>109b87c8a520a14ec4a156f0364133c16a8cbc1e</Sha>
+      <Sha>5ce0aaed2f8df9cd2fe0221a426c021efe37f655</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.Build.Tasks.Packaging" Version="5.0.0-beta.19526.1">
+    <Dependency Name="Microsoft.DotNet.Build.Tasks.Packaging" Version="5.0.0-beta.19527.3">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>109b87c8a520a14ec4a156f0364133c16a8cbc1e</Sha>
+      <Sha>5ce0aaed2f8df9cd2fe0221a426c021efe37f655</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.CodeAnalysis" Version="5.0.0-beta.19526.1">
+    <Dependency Name="Microsoft.DotNet.CodeAnalysis" Version="5.0.0-beta.19527.3">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>109b87c8a520a14ec4a156f0364133c16a8cbc1e</Sha>
+      <Sha>5ce0aaed2f8df9cd2fe0221a426c021efe37f655</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.GenAPI" Version="5.0.0-beta.19526.1">
+    <Dependency Name="Microsoft.DotNet.GenAPI" Version="5.0.0-beta.19527.3">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>109b87c8a520a14ec4a156f0364133c16a8cbc1e</Sha>
+      <Sha>5ce0aaed2f8df9cd2fe0221a426c021efe37f655</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.DotNet.GenFacades" Version="5.0.0-beta.19526.1">
+    <Dependency Name="Microsoft.DotNet.GenFacades" Version="5.0.0-beta.19527.3">
       <Uri>https://github.com/dotnet/arcade</Uri>
-      <Sha>109b87c8a520a14ec4a156f0364133c16a8cbc1e</Sha>
+      <Sha>5ce0aaed2f8df9cd2fe0221a426c021efe37f655</Sha>
     </Dependency>
     <Dependency Name="System.Reflection.Emit" Version="5.0.0-alpha1.19513.1">
       <Uri>https://github.com/dotnet/corefx</Uri>
