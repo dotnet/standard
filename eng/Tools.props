@@ -16,6 +16,10 @@
     <PackageReference Include="Microsoft.DotNet.Build.Tasks.Packaging" Version="$(MicrosoftDotNetBuildTasksPackagingPackageVersion)" />
     <PackageReference Include="Microsoft.DotNet.CodeAnalysis" Version="$(MicrosoftDotNetCodeAnalysisPackageVersion)" />
     <PackageReference Include="Microsoft.DotNet.GenFacades" Version="$(MicrosoftDotNetGenFacadesPackageVersion)" />
+
+    <!-- SourceLink -->
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkVersion)" PrivateAssets="all" IsImplicitlyDefined="true" />
+    <PackageReference Include="Microsoft.SourceLink.Vsts.Git" Version="$(MicrosoftSourceLinkVersion)" PrivateAssets="all" IsImplicitlyDefined="true" />
   </ItemGroup>
 
   <!-- excluded from source build -->
@@ -26,10 +30,6 @@
 
     <!-- XML docs -->
     <PackageReference Include="$(XmlDocPackage)" Version="$(XmlDocPackageVersion)" />
-
-    <!-- SourceLink -->
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkVersion)" PrivateAssets="all" IsImplicitlyDefined="true" />
-    <PackageReference Include="Microsoft.SourceLink.Vsts.Git" Version="$(MicrosoftSourceLinkVersion)" PrivateAssets="all" IsImplicitlyDefined="true" />
 
     <!-- last NETStandard package for harvesting -->
     <PackageReference Include="$(NetStandardLibraryPackage)" Version="$(NetStandardLibraryPackageVersion)" ExcludeAssets="All" />
