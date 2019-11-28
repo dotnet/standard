@@ -30,11 +30,11 @@
     <NetStandardLibraryPackage>netstandard.library</NetStandardLibraryPackage>
   </PropertyGroup>
   <PropertyGroup>
-    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.19572.3</MicrosoftDotNetApiCompatPackageVersion>
-    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.19572.3</MicrosoftDotNetBuildTasksPackagingPackageVersion>
-    <MicrosoftDotNetCodeAnalysisPackageVersion>1.0.0-beta.19572.3</MicrosoftDotNetCodeAnalysisPackageVersion>
-    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.19572.3</MicrosoftDotNetGenAPIPackageVersion>
-    <MicrosoftDotNetGenFacadesPackageVersion>1.0.0-beta.19572.3</MicrosoftDotNetGenFacadesPackageVersion>
+    <MicrosoftDotNetApiCompatPackageVersion>1.0.0-beta.19577.5</MicrosoftDotNetApiCompatPackageVersion>
+    <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.19577.5</MicrosoftDotNetBuildTasksPackagingPackageVersion>
+    <MicrosoftDotNetCodeAnalysisPackageVersion>1.0.0-beta.19577.5</MicrosoftDotNetCodeAnalysisPackageVersion>
+    <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.19577.5</MicrosoftDotNetGenAPIPackageVersion>
+    <MicrosoftDotNetGenFacadesPackageVersion>1.0.0-beta.19577.5</MicrosoftDotNetGenFacadesPackageVersion>
     <SystemReflectionEmitPackageVersion>4.6.0-rc2.19461.13</SystemReflectionEmitPackageVersion>
     <SystemReflectionEmitILGenerationPackageVersion>4.6.0-rc2.19461.13</SystemReflectionEmitILGenerationPackageVersion>
     <SystemReflectionEmitLightweightPackageVersion>4.6.0-rc2.19461.13</SystemReflectionEmitLightweightPackageVersion>
