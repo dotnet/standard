@@ -30,6 +30,20 @@ CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribut
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceMode' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceResult' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.ICustomQueryInterface' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.CreateAggregatedObject(System.IntPtr, System.Object)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.CreateWrapperOfType(System.Object, System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.DestroyStructure(System.IntPtr, System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.GetComInterfaceForObject(System.Object, System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.GetComInterfaceForObject(System.Object, System.Type, System.Runtime.InteropServices.CustomQueryInterfaceMode)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer(System.IntPtr, System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(System.Delegate)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.OffsetOf(System.Type, System.String)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.PtrToStructure(System.IntPtr, System.Object)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.PtrToStructure(System.IntPtr, System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.SizeOf(System.Object)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.SizeOf(System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.StructureToPtr(System.Object, System.IntPtr, System.Boolean)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.UnsafeAddrOfPinnedArrayElement(System.Array, System.Int32)' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.ComTypes.IStream' in the contract but not the implementation.
@@ -61,6 +75,20 @@ Compat issues with assembly System.Runtime.InteropServices:
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceMode' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceResult' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.ICustomQueryInterface' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.CreateAggregatedObject(System.IntPtr, System.Object)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.CreateWrapperOfType(System.Object, System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.DestroyStructure(System.IntPtr, System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.GetComInterfaceForObject(System.Object, System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.GetComInterfaceForObject(System.Object, System.Type, System.Runtime.InteropServices.CustomQueryInterfaceMode)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer(System.IntPtr, System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(System.Delegate)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.OffsetOf(System.Type, System.String)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.PtrToStructure(System.IntPtr, System.Object)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.PtrToStructure(System.IntPtr, System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.SizeOf(System.Object)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.SizeOf(System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.StructureToPtr(System.Object, System.IntPtr, System.Boolean)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.UnsafeAddrOfPinnedArrayElement(System.Array, System.Int32)' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.SafeBuffer' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.ComTypes.IStream' in the contract but not the implementation.
@@ -111,4 +139,4 @@ CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribut
 Compat issues with assembly System.Xml.XmlSerializer:
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
-Total Issues: 100
+Total Issues: 128

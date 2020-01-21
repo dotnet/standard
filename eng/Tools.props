@@ -19,7 +19,7 @@
 
     <!-- SourceLink -->
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkVersion)" PrivateAssets="all" IsImplicitlyDefined="true" />
-    <PackageReference Include="Microsoft.SourceLink.Vsts.Git" Version="$(MicrosoftSourceLinkVersion)" PrivateAssets="all" IsImplicitlyDefined="true" />
+    <PackageReference Include="Microsoft.SourceLink.AzureRepos.Git" Version="$(MicrosoftSourceLinkVersion)" PrivateAssets="all" IsImplicitlyDefined="true" />
   </ItemGroup>
 
   <!-- excluded from source build -->
@@ -91,6 +91,13 @@
       SkipUnchangedFiles="true" />
   </Target>
 
+<!--   
+    Disabling Analyzers target in order to unblock Arcade update. This is not working any longer with this
+    arcade update because this target depended on the Tools project comming from Arcade to be a Microsoft SDK project
+    which is no longer the case after this: https://github.com/dotnet/arcade/pull/4111
+    Because of that, we will need to refactor the bellow target in order to get it working again with the new way
+    that the Tools restore works in order to get analyzers working again.
+
   <UsingTask TaskName="Microsoft.DotNet.Arcade.Sdk.SaveItems" AssemblyFile="$(ArcadeSdkBuildTasksAssembly)" />
 
   <Target Name="GenerateAnalyzersPropsFile"
@@ -100,6 +107,6 @@
                ItemName="ResolvedAnalyzer"
                Items="@(Analyzer)"
                File="$(AnalyzerPropsFile)" />
-  </Target>
+  </Target> -->
 
 </Project>
