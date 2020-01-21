@@ -10,6 +10,9 @@ CannotSealType : Type 'System.Linq.EnumerableExecutor' is effectively (has a pri
 MembersMustExist : Member 'System.Linq.EnumerableExecutor..ctor()' does not exist in the implementation but it does exist in the contract.
 CannotSealType : Type 'System.Linq.EnumerableQuery' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
 MembersMustExist : Member 'System.Linq.EnumerableQuery..ctor()' does not exist in the implementation but it does exist in the contract.
+Compat issues with assembly System.Net.Primitives:
+CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Security.Authentication.SslProtocols System.Security.Authentication.SslProtocols.Ssl2' changed from '[ObsoleteAttribute("This value has been deprecated.  It is no longer supported. http://go.microsoft.com/fwlink/?linkid=14202")]' in the contract to '[ObsoleteAttribute("This value has been deprecated.  It is no longer supported. https://go.microsoft.com/fwlink/?linkid=14202")]' in the implementation.
+CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Security.Authentication.SslProtocols System.Security.Authentication.SslProtocols.Ssl3' changed from '[ObsoleteAttribute("This value has been deprecated.  It is no longer supported. http://go.microsoft.com/fwlink/?linkid=14202")]' in the contract to '[ObsoleteAttribute("This value has been deprecated.  It is no longer supported. https://go.microsoft.com/fwlink/?linkid=14202")]' in the implementation.
 Compat issues with assembly System.Resources.ResourceManager:
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.MissingManifestResourceException' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Resources.NeutralResourcesLanguageAttribute' in the contract but not the implementation.
@@ -19,10 +22,29 @@ Compat issues with assembly System.Runtime.InteropServices:
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceMode' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.CustomQueryInterfaceResult' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.ICustomQueryInterface' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.CreateAggregatedObject(System.IntPtr, System.Object)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.CreateWrapperOfType(System.Object, System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.DestroyStructure(System.IntPtr, System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.GetComInterfaceForObject(System.Object, System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.GetComInterfaceForObject(System.Object, System.Type, System.Runtime.InteropServices.CustomQueryInterfaceMode)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer(System.IntPtr, System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(System.Delegate)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.OffsetOf(System.Type, System.String)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.PtrToStructure(System.IntPtr, System.Object)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.PtrToStructure(System.IntPtr, System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.SizeOf(System.Object)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.SizeOf(System.Type)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.StructureToPtr(System.Object, System.IntPtr, System.Boolean)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Runtime.InteropServices.Marshal.UnsafeAddrOfPinnedArrayElement(System.Array, System.Int32)' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Runtime.InteropServices.ComTypes.IStream' in the contract but not the implementation.
+Compat issues with assembly System.Runtime.Serialization.Formatters:
+CannotRemoveAttribute : Attribute 'System.CLSCompliantAttribute' exists on 'System.Runtime.Serialization.IFormatterConverter.ToSByte(System.Object)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.CLSCompliantAttribute' exists on 'System.Runtime.Serialization.IFormatterConverter.ToUInt16(System.Object)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.CLSCompliantAttribute' exists on 'System.Runtime.Serialization.IFormatterConverter.ToUInt32(System.Object)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.CLSCompliantAttribute' exists on 'System.Runtime.Serialization.IFormatterConverter.ToUInt64(System.Object)' in the contract but not the implementation.
 Compat issues with assembly System.Xml.ReaderWriter:
 CannotRemoveAttribute : Attribute 'System.ComponentModel.EditorBrowsableAttribute' exists on 'System.Xml.Schema.XmlSchema' in the contract but not the implementation.
 Compat issues with assembly System.Xml.XmlSerializer:
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlAnyAttributeAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
 CannotChangeAttribute : Attribute 'System.AttributeUsageAttribute' on 'System.Xml.Serialization.XmlNamespaceDeclarationsAttribute' changed from '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple=false)]' in the contract to '[AttributeUsageAttribute(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue)]' in the implementation.
-Total Issues: 21
+Total Issues: 41

@@ -6,8 +6,12 @@ TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags' does no
 TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.RuntimeBinderException' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly mscorlib:
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Decimal.Round(System.Decimal, System.Int32)' in the contract but not the implementation.
 TypesMustExist : Type 'System.Diagnostics.Contracts.Internal.ContractHelper' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.CLSCompliantAttribute' exists on 'System.Runtime.CompilerServices.DecimalConstantAttribute' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Threading.SynchronizationContext.Send(System.Threading.SendOrPostCallback, System.Object)' in the contract but not the implementation.
+Compat issues with assembly System:
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Diagnostics.Debug.Assert(System.Boolean, System.String, System.String)' in the contract but not the implementation.
 Compat issues with assembly System.ComponentModel.Composition:
 TypesMustExist : Type 'System.ComponentModel.Composition.AttributedModelServices' does not exist in the implementation but it does exist in the contract.
 TypesMustExist : Type 'System.ComponentModel.Composition.ChangeRejectedException' does not exist in the implementation but it does exist in the contract.
@@ -221,5 +225,8 @@ Compat issues with assembly System.Xml.Serialization:
 TypesMustExist : Type 'System.ServiceModel.XmlSerializerFormatAttribute' does not exist in the implementation but it does exist in the contract.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Xml.Serialization.XmlMapping' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Xml.Serialization.XmlMappingAccess' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Xml.Serialization.XmlSerializer..ctor(System.Xml.Serialization.XmlTypeMapping)' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Xml.Serialization.XmlSerializer.FromMappings(System.Xml.Serialization.XmlMapping[])' in the contract but not the implementation.
+CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Xml.Serialization.XmlSerializer.FromMappings(System.Xml.Serialization.XmlMapping[], System.Type)' in the contract but not the implementation.
 CannotRemoveAttribute : Attribute 'System.ObsoleteAttribute' exists on 'System.Xml.Serialization.XmlTypeMapping' in the contract but not the implementation.
-Total Issues: 216
+Total Issues: 222
