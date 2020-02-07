@@ -333,5 +333,5 @@ redundant moving forward.
 [netstandard-targeting]: versions.md#how-do-i-know-which-net-standard-version-i-should-target
 [netstandard-review-board]: governance/README.md#review-board
 [netstandard-principles]: governance/README.md#inclusion-principles
-[netstandard-461]: planning/netstandard-20/README.md#net-framework-461-supporting-net-standard-20
+[netstandard-461]: planning/netstandard-2.0/README.md#net-framework-461-supporting-net-standard-20
 [issue]: https://github.com/dotnet/standard/issues/new
