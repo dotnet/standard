@@ -1,15 +1,15 @@
 Compat issues with assembly System.ComponentModel.TypeConverter:
 CannotSealType : Type 'System.ComponentModel.BaseNumberConverter' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
-MembersMustExist : Member 'System.ComponentModel.BaseNumberConverter..ctor()' does not exist in the implementation but it does exist in the contract.
-CannotMakeMemberNonVirtual : Member 'System.ComponentModel.BaseNumberConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext, System.Type)' is non-virtual in the implementation but is virtual in the contract.
-CannotMakeMemberNonVirtual : Member 'System.ComponentModel.BaseNumberConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext, System.Type)' is non-virtual in the implementation but is virtual in the contract.
-CannotMakeMemberNonVirtual : Member 'System.ComponentModel.BaseNumberConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, System.Object)' is non-virtual in the implementation but is virtual in the contract.
-CannotMakeMemberNonVirtual : Member 'System.ComponentModel.BaseNumberConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, System.Object, System.Type)' is non-virtual in the implementation but is virtual in the contract.
+MembersMustExist : Member 'protected void System.ComponentModel.BaseNumberConverter..ctor()' does not exist in the implementation but it does exist in the contract.
+CannotMakeMemberNonVirtual : Member 'public System.Boolean System.ComponentModel.BaseNumberConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext, System.Type)' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'public System.Boolean System.ComponentModel.BaseNumberConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext, System.Type)' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'public System.Object System.ComponentModel.BaseNumberConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, System.Object)' is non-virtual in the implementation but is virtual in the contract.
+CannotMakeMemberNonVirtual : Member 'public System.Object System.ComponentModel.BaseNumberConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext, System.Globalization.CultureInfo, System.Object, System.Type)' is non-virtual in the implementation but is virtual in the contract.
 Compat issues with assembly System.Linq.Queryable:
 CannotSealType : Type 'System.Linq.EnumerableExecutor' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
-MembersMustExist : Member 'System.Linq.EnumerableExecutor..ctor()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'protected void System.Linq.EnumerableExecutor..ctor()' does not exist in the implementation but it does exist in the contract.
 CannotSealType : Type 'System.Linq.EnumerableQuery' is effectively (has a private constructor) sealed in the implementation but not sealed in the contract.
-MembersMustExist : Member 'System.Linq.EnumerableQuery..ctor()' does not exist in the implementation but it does exist in the contract.
+MembersMustExist : Member 'protected void System.Linq.EnumerableQuery..ctor()' does not exist in the implementation but it does exist in the contract.
 Compat issues with assembly System.Net.Primitives:
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Security.Authentication.SslProtocols System.Security.Authentication.SslProtocols.Ssl2' changed from '[ObsoleteAttribute("This value has been deprecated.  It is no longer supported. http://go.microsoft.com/fwlink/?linkid=14202")]' in the contract to '[ObsoleteAttribute("This value has been deprecated.  It is no longer supported. https://go.microsoft.com/fwlink/?linkid=14202")]' in the implementation.
 CannotChangeAttribute : Attribute 'System.ObsoleteAttribute' on 'System.Security.Authentication.SslProtocols System.Security.Authentication.SslProtocols.Ssl3' changed from '[ObsoleteAttribute("This value has been deprecated.  It is no longer supported. http://go.microsoft.com/fwlink/?linkid=14202")]' in the contract to '[ObsoleteAttribute("This value has been deprecated.  It is no longer supported. https://go.microsoft.com/fwlink/?linkid=14202")]' in the implementation.
