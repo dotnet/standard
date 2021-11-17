@@ -9,7 +9,7 @@
 ## Platform Support
 
 * No longer supported on .NET Framework
-* .NET Core 3.0
+* .NET Core 3.x / .NET 5 / .NET 6
 * Mono 6.4
 * Xamarin.iOS 12.16
 * Xamarin.Mac 5.16
