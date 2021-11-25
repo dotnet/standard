@@ -102,7 +102,7 @@ stages:
       - ${{ if eq(variables['System.TeamProject'], 'public') }}:
         - job: OSX
           pool: 
-            vmImage: macOS-latest
+            vmImage: macOS-10.14
           variables:
           - name: _SignType
             value: Test
