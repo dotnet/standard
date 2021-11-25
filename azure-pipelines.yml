@@ -85,7 +85,7 @@ stages:
       - ${{ if eq(variables['System.TeamProject'], 'public') }}:
         - job: Linux
           pool: 
-            name: Hosted Ubuntu 1604
+            vmImage: ubuntu-latest
           variables:
           - name: _SignType
             value: Test
@@ -102,7 +102,7 @@ stages:
       - ${{ if eq(variables['System.TeamProject'], 'public') }}:
         - job: OSX
           pool: 
-            name: Hosted macOS
+            vmImage: macOS-latest
           variables:
           - name: _SignType
             value: Test
