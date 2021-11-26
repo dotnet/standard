@@ -33,11 +33,11 @@ stages:
       - job: Windows_NT
         pool: 
           ${{ if or(eq(variables['System.TeamProject'], 'public'), in(variables['Build.Reason'], 'PullRequest')) }}:
-            name: NetCorePublic-Pool
-            queue: buildpool.windows.10.amd64.vs2017.open
+            name: NetCore1ESPool-Public
+            demands: ImageOverride -equals build.windows.10.amd64.vs2017.open
           ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
-            name: NetCoreInternal-Pool
-            queue: buildpool.windows.10.amd64.vs2017
+            name: NetCore1ESPool-Internal
+            demands: ImageOverride -equals build.windows.10.amd64.vs2017
         variables:
         # Enable signing for internal, non-PR builds
         - ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
@@ -85,7 +85,7 @@ stages:
       - ${{ if eq(variables['System.TeamProject'], 'public') }}:
         - job: Linux
           pool: 
-            name: Hosted Ubuntu 1604
+            vmImage: ubuntu-latest
           variables:
           - name: _SignType
             value: Test
@@ -102,7 +102,7 @@ stages:
       - ${{ if eq(variables['System.TeamProject'], 'public') }}:
         - job: OSX
           pool: 
-            name: Hosted macOS
+            vmImage: macOS-10.14
           variables:
           - name: _SignType
             value: Test
