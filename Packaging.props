@@ -1,6 +1,6 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LicenseUrl>https://github.com/dotnet/standard/blob/master/LICENSE.TXT</LicenseUrl>
+    <LicenseUrl>https://github.com/dotnet/standard/blob/release/2.0.0/LICENSE.TXT</LicenseUrl>
     <Copyright>.NET Foundation and Contributors</Copyright>
     <PreReleaseLabel>servicing</PreReleaseLabel>
     <PackageDescriptionFile>$(ProjectDir)pkg/descriptions.json</PackageDescriptionFile>
